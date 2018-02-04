@@ -1,5 +1,7 @@
 # hepek
 
+[![Join the chat at https://gitter.im/sake92-hepek/Lobby](https://badges.gitter.im/sake92-hepek/Lobby.svg)](https://gitter.im/sake92-hepek/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 
 
