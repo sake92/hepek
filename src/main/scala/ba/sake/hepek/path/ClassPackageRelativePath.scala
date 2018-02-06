@@ -3,11 +3,11 @@ package ba.sake.hepek.path
 import ba.sake.hepek.utils.StringUtils
 
 /**
-  * A PackageRelativePath with `fileName` as the class simple name, plus the `fileExtension`. <br>
-  * Default extension is "html". <br>
+  * A PackageRelativePath with `fileName` as the class simple name, plus the `fileExtension`
+  * (default is "html"). <br>
   * E.g. `class MyClass` will have `fileName` as "MyClass.html". <br>
   * Also, all '$' are removed, because `object`s have them... <br>
-  * So the final path will be "my/package/my-class.html" (lowercased in PackageRelativePath)
+  * So the final path will be "my/package/my-class.html" ("urlify"-ed also, prefixed with PackageRelativePath)
   */
 trait ClassPackageRelativePath extends PackageRelativePath {
 

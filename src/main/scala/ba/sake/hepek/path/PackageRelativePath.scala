@@ -9,12 +9,10 @@ import ba.sake.hepek.core.RelativePath
   */
 trait PackageRelativePath extends RelativePath {
 
-  /** Simple name of the rendered file. */
+  /** Name of the rendered file. */
   def fileName: String
 
-  /** Path of resource relative to `sbt-hepek:hepekTarget` folder. */
   final override def relPath = {
-    // needed for Path#relativize later :)
     val path = if (this.getClass.getPackage == null) {
       fileName
     } else {
