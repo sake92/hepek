@@ -4,7 +4,7 @@
 
 ## TODO docs, examples
 
-
+For now, see some [examples](https://github.com/sake92/hepek-examples)
 
 
 
