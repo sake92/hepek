@@ -1,8 +1,7 @@
 package ba.sake.hepek.bootstrap3
 
-import ba.sake.hepek.html.structure.PageDependencies
+import ba.sake.hepek.html.structure._
 import ba.sake.hepek.jquery.JQueryDependencies
-import ba.sake.hepek.html.structure.Dependency
 
 trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
 
@@ -11,17 +10,25 @@ trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
 
   def bootstrapCSSDependencies: List[String] =
     List(
-      dependencyProvider.depPath(
-        Dependency("css/bootstrap.min.css", bootstrapVersion, "bootstrap")
+      bootstrapDepsProvider.depPath(
+        Dependency("css/bootstrap.min.css",
+                   bootstrapVersion,
+                   "bootstrap",
+                   Option("dist/"))
       )
     )
 
   def bootstrapJSDependencies: List[String] =
     List(
-      dependencyProvider.depPath(
-        Dependency("js/bootstrap.min.js", bootstrapVersion, "bootstrap")
+      bootstrapDepsProvider.depPath(
+        Dependency("js/bootstrap.min.js",
+                   bootstrapVersion,
+                   "bootstrap",
+                   Option("dist/"))
       )
     )
+
+  def bootstrapDepsProvider = DependencyProvider.unpkg
 
   abstract override def styleURLs  = super.styleURLs ++ bootstrapCSSDependencies
   abstract override def scriptURLs = super.scriptURLs ++ bootstrapJSDependencies

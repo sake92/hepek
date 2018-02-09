@@ -1,7 +1,6 @@
 package ba.sake.hepek.mathjax
 
-import ba.sake.hepek.html.structure.PageDependencies
-import ba.sake.hepek.html.structure.Dependency
+import ba.sake.hepek.html.structure._
 
 trait MathjaxDependencies extends PageDependencies {
 
@@ -11,13 +10,15 @@ trait MathjaxDependencies extends PageDependencies {
 
   private def mathjaxJSDependencies: List[String] =
     List(
-      dependencyProvider.depPath(
+      mathjaxDepsProvider.depPath(
         Dependency("MathJax.js",
                    mathjaxVersion,
                    "mathjax",
                    Option(s"config=$mathjaxConfig"))
       )
     )
+
+  def mathjaxDepsProvider = DependencyProvider.unpkg
 
   abstract override def scriptURLs =
     super.scriptURLs ++ mathjaxJSDependencies

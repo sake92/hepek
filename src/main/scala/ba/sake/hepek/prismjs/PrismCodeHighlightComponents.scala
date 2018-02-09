@@ -213,7 +213,12 @@ object PrismCmdHighlighter {
 
   def apply(lang: String, showLineNumbers: Boolean): PrismCmdHighlighter = {
     val lineNums = if (showLineNumbers) Option(1) else None
-    PrismCmdHighlighter(lang, lineNums, None, None)
+    PrismCmdHighlighter(lang,
+                        lineNums,
+                        None,
+                        Option(
+                          Left("root" -> "localhost") -> None
+                        ))
   }
 }
 
@@ -238,12 +243,14 @@ case class PrismCmdHighlighter(
 
   def withCmdUser(cmdUser: String,
                   cmdHost: String = "localhost",
-                  outputLines: Option[String]) = {
+                  outputLines: Option[String] = None) = {
     val cmdLine = Left(cmdUser, cmdHost) -> outputLines
     this.copy(commandLine = Option(cmdLine))
   }
 
-  def withCmdPrompt(cmdPrompt: String, outputLines: Option[String]) = {
+// TODO ne valja ovako, treba CMD napravit case class
+// jer ovdje treba COPYYYYYYYYYYYYYY
+  def withCmdPrompt(cmdPrompt: String, outputLines: Option[String] = None) = {
     val cmdLine = Right(cmdPrompt) -> outputLines
     this.copy(commandLine = Option(cmdLine))
   }
@@ -282,16 +289,23 @@ object BaseCodeHighlighter {
           }
         )
     }
-    // line highlight
+    // line highlight or CMD output
     lineHighlight.foreach {
       case (lh, o) =>
-        attrs += (data.line := lh)
-        attrs += (data.line.offset := o)
+        if (commandLine.isEmpty) {
+          attrs += (data.line := lh)
+          attrs += (data.line.offset := o)
+        } else {
+          attrs += (data.output := lh)
+        }
     }
     // line numbers
     lineNumbers.foreach { lineNumsStart =>
-      classes += "line-numbers"
-      attrs += (data.start := lineNumsStart.toString)
+      if (commandLine.isEmpty) {
+        // can't have line numbers when CMD
+        classes += "line-numbers"
+        attrs += (data.start := lineNumsStart.toString)
+      }
     }
     // final result
     val classesString = classes.mkString(" ")

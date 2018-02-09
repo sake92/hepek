@@ -1,7 +1,6 @@
 package ba.sake.hepek.anchorjs
 
-import ba.sake.hepek.html.structure.PageDependencies
-import ba.sake.hepek.html.structure.Dependency
+import ba.sake.hepek.html.structure._
 
 trait AnchorjsDependencies extends PageDependencies {
 
@@ -9,10 +8,12 @@ trait AnchorjsDependencies extends PageDependencies {
   def anchorjsUseWebjars: Boolean = false
 
   def anchorjsJSDependencies: List[String] = List(
-    dependencyProvider.depPath(
+    anchorjsDepsProvider.depPath(
       Dependency("anchor.min.js", anchorjsVersion, "anchor-js")
     )
   )
+
+  def anchorjsDepsProvider = DependencyProvider.cdnjs
 
   abstract override def scriptURLs = super.scriptURLs ++ anchorjsJSDependencies
 

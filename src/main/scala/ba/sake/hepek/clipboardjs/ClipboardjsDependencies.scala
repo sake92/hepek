@@ -1,7 +1,6 @@
 package ba.sake.hepek.clipboardjs
 
-import ba.sake.hepek.html.structure.PageDependencies
-import ba.sake.hepek.html.structure.Dependency
+import ba.sake.hepek.html.structure._
 
 trait ClipboardjsDependencies extends PageDependencies {
 
@@ -10,10 +9,12 @@ trait ClipboardjsDependencies extends PageDependencies {
 
   def clipboardjsJSDependencies: List[String] =
     List(
-      dependencyProvider.depPath(
+      clipboardjsDepsProvider.depPath(
         Dependency("clipboard.min.js", clipboardjsVersion, "clipboard.js")
       )
     )
+
+  def clipboardjsDepsProvider = DependencyProvider.cdnjs
 
   abstract override def scriptURLs =
     super.scriptURLs ++ clipboardjsJSDependencies
