@@ -7,23 +7,162 @@ import ba.sake.hepek.html.component.CodeHighlighter
 
 object PrismCodeHighlightComponents extends PrismCodeHighlightComponents {
 
+  def prismLanguageDeps: List[String] =
+    List(
+      "core",
+      "abap",
+      "ada",
+      "apacheconf",
+      "apl",
+      "applescript",
+      "asciidoc",
+      "asm6502",
+      "autohotkey",
+      "autoit",
+      "bash",
+      "basic",
+      "batch",
+      "brainfuck",
+      "bro",
+      "clike",
+      "c", // extends clike
+      "bison", // extends c
+      "cpp",
+      "arduino", // extends c++
+      "csharp",
+      "css",
+      "css-extras",
+      "csp",
+      "d",
+      "dart",
+      "diff",
+      "docker",
+      "eiffel",
+      "elixir",
+      "elm",
+      "erlang",
+      "fortran",
+      "fsharp",
+      "gherkin",
+      "git",
+      "glsl",
+      "go",
+      "graphql",
+      "groovy",
+      "haml",
+      "haskell",
+      "haxe",
+      "http",
+      "hpkp",
+      "hsts",
+      "ichigojam",
+      "icon",
+      "inform7",
+      "ini",
+      "io",
+      "j",
+      "java",
+      "javascript",
+      "actionscript", // extends js
+      "coffeescript", // extends js
+      "flow",
+      "jolie",
+      "json",
+      "julia",
+      "keyman",
+      "kotlin",
+      "latex",
+      "less",
+      "livescript",
+      "lolcode",
+      "lua",
+      "makefile",
+      "markup",
+      "aspnet", // extends markup
+      //"django", // extends markup, TODO throws error...?
+      "handlebars", // extends markup
+      "jsx", // extends markup
+      "markdown", // extends markup
+      "matlab",
+      "mel",
+      "mizar",
+      "monkey",
+      "n4js",
+      "nasm",
+      "nginx",
+      "nim",
+      "nix",
+      "nsis",
+      "objectivec",
+      "ocaml",
+      "opencl",
+      "oz",
+      "parigp",
+      "parser",
+      "pascal",
+      "perl",
+      "php",
+      "php-extras",
+      "powershell",
+      "processing",
+      "prolog",
+      "properties",
+      "protobuf",
+      "pug",
+      "puppet",
+      "pure",
+      "python",
+      "q",
+      "qore",
+      "r",
+      "reason",
+      "renpy",
+      "rest",
+      "rip",
+      "roboconf",
+      "ruby",
+      "crystal", // extends ruby
+      "rust",
+      "sas",
+      "sass",
+      "scala",
+      "scheme",
+      "scss",
+      "smalltalk",
+      "smarty",
+      "sql",
+      "stylus",
+      "swift",
+      "tcl",
+      "textile",
+      "tsx",
+      "twig",
+      "typescript",
+      "vbnet",
+      "verilog",
+      "vhdl",
+      "vim",
+      "wiki",
+      "xeora",
+      "xojo",
+      "yaml"
+    )
+
   // not every plugin has CSS, so tuples (pluginName, hasCSS)
+  // also see optionalPluginDeps in PrismDependencies
   val prismPlugins: List[(String, Boolean)] = List(
-    "autolinker"           -> true,
-    "command-line"         -> true,
-    "data-uri-highlight"   -> false,
-    "file-highlight"       -> false,
-    "jsonp-highlight"      -> false,
-    "keep-markup"          -> false,
-    "line-highlight"       -> true,
-    "line-numbers"         -> true,
-    "normalize-whitespace" -> false,
-    "previewers"           -> true,
-    "toolbar"              -> true,
-    "show-language"        -> false, // must come after toolbar
-    "copy-to-clipboard"    -> false, // must come after toolbar
-    "unescaped-markup"     -> true,
-    "wpd"                  -> true
+    "autolinker"           -> true, // auto create links
+    "command-line"         -> true, // cmd with nice prompt, etc...
+    "data-uri-highlight"   -> false, // highliht url() stuff inside of CSS
+    "file-highlight"       -> false, // downloads file via AJAX
+    "jsonp-highlight"      -> false, // Gist, Github... via JSONP
+    "line-highlight"       -> true, // highlight SPECIFIC lines 1-5,9 ...
+    "line-numbers"         -> true, // line NUMBERS on the left
+    "normalize-whitespace" -> false, // auto "trim" leading whitespace
+    "previewers"           -> true, // preview CSS stuff live (colors, gradients..)
+    "toolbar"              -> true, // needed for copy plugin and show-language etc
+    "unescaped-markup"     -> true // handy for HTML markup
+    //"wpd"                  -> true // TODO https://github.com/PrismJS/prism/issues/1290
   )
 
   sealed trait CodeSource
@@ -68,6 +207,7 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def csharp     = PrismCodeHighlighter("csharp", showLineNumbers)
   override def css        = PrismCodeHighlighter("css", showLineNumbers)
   override def cssExtras  = PrismCodeHighlighter("css-extras", showLineNumbers)
+  override def csp        = PrismCodeHighlighter("csp", showLineNumbers)
   override def d          = PrismCodeHighlighter("d", showLineNumbers)
   override def dart       = PrismCodeHighlighter("dart", showLineNumbers)
   override def diff       = PrismCodeHighlighter("diff", showLineNumbers)
@@ -90,6 +230,8 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def handlebars = PrismCodeHighlighter("handlebars", showLineNumbers)
   override def haskell    = PrismCodeHighlighter("haskell", showLineNumbers)
   override def haxe       = PrismCodeHighlighter("haxe", showLineNumbers)
+  override def hpkp       = PrismCodeHighlighter("hpkp", showLineNumbers)
+  override def hsts       = PrismCodeHighlighter("hsts", showLineNumbers)
   override def http       = PrismCodeHighlighter("http", showLineNumbers)
   override def ichigojam  = PrismCodeHighlighter("ichigojam", showLineNumbers)
   override def icon       = PrismCodeHighlighter("icon", showLineNumbers)
@@ -164,6 +306,7 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def swift      = PrismCodeHighlighter("swift", showLineNumbers)
   override def tcl        = PrismCodeHighlighter("tcl", showLineNumbers)
   override def textile    = PrismCodeHighlighter("textile", showLineNumbers)
+  override def tsx        = PrismCodeHighlighter("tsx", showLineNumbers)
   override def twig       = PrismCodeHighlighter("twig", showLineNumbers)
   override def typescript = PrismCodeHighlighter("typescript", showLineNumbers)
   override def vbnet      = PrismCodeHighlighter("vbnet", showLineNumbers)
@@ -195,10 +338,10 @@ case class PrismCodeHighlighter(
     isMarkup: Boolean
 ) extends BaseCodeHighlighter(
       lang,
-      isMarkup,
       lineNumbers,
       lineHighlight,
-      None
+      None,
+      isMarkup
     ) {
 
   def withLineNumsStart(startFrom: Int) =
@@ -229,10 +372,10 @@ case class PrismCmdHighlighter(
     commandLine: Option[(Either[(String, String), String], Option[String])]
 ) extends BaseCodeHighlighter(
       lang,
-      false,
       lineNumbers,
       lineHighlight,
-      commandLine
+      commandLine,
+      false
     ) {
 
   def withLineNumsStart(startFrom: Int) =
@@ -261,11 +404,11 @@ object BaseCodeHighlighter {
   /* does ALL THE JOB :D */
   private def highlight(
       lang: String,
-      codeSource: CodeSource,
       lineNumbers: Option[Int],
       lineHighlight: Option[(String, Int)],
       commandLine: Option[(Either[(String, String), String], Option[String])],
-      isMarkup: Boolean
+      isMarkup: Boolean, // via unescaped-markup plugin
+      codeSource: CodeSource
   ): Frag = {
     // additional classes and attributes
     val classes = ListBuffer.empty[String]
@@ -309,7 +452,7 @@ object BaseCodeHighlighter {
     val classesString = classes.mkString(" ")
     codeSource match {
       case PlainText(text) => {
-        val content: Frag = if (isMarkup) raw(s"<!-- $text -->") else text
+        val content: Frag = if (isMarkup) raw(s"<!--$text-->") else text
         pre(cls := classesString, attrs)(
           code(cls := s"language-$lang")(content)
         )
@@ -334,10 +477,10 @@ object BaseCodeHighlighter {
 
 abstract class BaseCodeHighlighter(
     lang: String,
-    isMarkup: Boolean,
     lineNumbers: Option[Int],
     lineHighlight: Option[(String, Int)],
-    commandLine: Option[(Either[(String, String), String], Option[String])]
+    commandLine: Option[(Either[(String, String), String], Option[String])],
+    isMarkup: Boolean
 ) extends CodeHighlighter {
   import BaseCodeHighlighter._
   import PrismCodeHighlightComponents._
@@ -347,11 +490,11 @@ abstract class BaseCodeHighlighter(
   override def apply(text: String): Frag =
     highlight(
       lang,
-      PlainText(text),
       lineNumbers,
       lineHighlight,
       commandLine,
-      isMarkup
+      isMarkup,
+      PlainText(text)
     )
 
   def inline(text: String): Frag =
@@ -361,11 +504,11 @@ abstract class BaseCodeHighlighter(
   def ajax(url: String): Frag =
     highlight(
       lang,
-      AJAX(url),
       lineNumbers,
       lineHighlight,
       commandLine,
-      isMarkup
+      isMarkup,
+      AJAX(url)
     )
 
   /** Fetches a file from url via JSONP. Supported sites: Github, Gist, Bitbucket <br>
@@ -373,10 +516,10 @@ abstract class BaseCodeHighlighter(
   def jsonp(url: String, fileName: Option[String] = None): Frag =
     highlight(
       lang,
-      JSONP(url, fileName),
       lineNumbers,
       lineHighlight,
       commandLine,
-      isMarkup
+      isMarkup,
+      JSONP(url, fileName)
     )
 }

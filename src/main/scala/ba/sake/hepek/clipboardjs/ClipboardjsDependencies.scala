@@ -4,8 +4,7 @@ import ba.sake.hepek.html.structure._
 
 trait ClipboardjsDependencies extends PageDependencies {
 
-  def clipboardjsVersion: String     = "1.7.1"
-  def clipboardjsUseWebjars: Boolean = false
+  def clipboardjsVersion: String = "1.7.1"
 
   def clipboardjsJSDependencies: List[String] =
     List(

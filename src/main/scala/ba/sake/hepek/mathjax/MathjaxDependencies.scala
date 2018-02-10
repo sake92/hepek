@@ -4,9 +4,8 @@ import ba.sake.hepek.html.structure._
 
 trait MathjaxDependencies extends PageDependencies {
 
-  def mathjaxVersion: String     = "2.7.2"
-  def mathjaxUseWebjars: Boolean = false
-  def mathjaxConfig: String      = "AM_CHTML"
+  def mathjaxVersion: String = "2.7.2"
+  def mathjaxConfig: String  = "AM_CHTML"
 
   private def mathjaxJSDependencies: List[String] =
     List(

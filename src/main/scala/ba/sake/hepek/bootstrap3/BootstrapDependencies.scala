@@ -5,8 +5,7 @@ import ba.sake.hepek.jquery.JQueryDependencies
 
 trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
 
-  def bootstrapVersion: String     = "3.3.7"
-  def bootstrapUseWebjars: Boolean = false
+  def bootstrapVersion: String = "3.3.7"
 
   def bootstrapCSSDependencies: List[String] =
     List(

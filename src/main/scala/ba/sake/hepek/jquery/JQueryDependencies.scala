@@ -4,8 +4,7 @@ import ba.sake.hepek.html.structure._
 
 trait JQueryDependencies extends PageDependencies {
 
-  def jQueryVersion: String     = "3.2.1"
-  def jQueryUseWebjars: Boolean = false
+  def jQueryVersion: String = "3.2.1"
 
   def jQueryJSDependencies: List[String] = List(
     jQueryDepsProvider.depPath(

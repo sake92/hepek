@@ -6,13 +6,16 @@ import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 
 trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   import PrismCodeHighlightComponents._
-  import CodeHighlightComponents._
 
-  def prismVersion: String = "1.10.0"
+  def prismVersion: String = "1.11.0"
 
+  /** FULL theme name, with "prism" prefix! */
   def prismTheme: String =
-    "prism-okaidia" // FULL theme name, with "prism" prefix!
-  def prismUseWebjars: Boolean = false
+    "prism-okaidia"
+  //def prismKeepMarkup: Boolean = false
+  def prismShowInvisibles: Boolean  = false
+  def prismShowLanguage: Boolean    = true
+  def prismCopyToClipboard: Boolean = true
 
   def prismCSSDependencies: List[String] = {
     val themeDeps = List(
@@ -20,7 +23,7 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
         Dependency(s"themes/$prismTheme.min.css", prismVersion, "prism")
       )
     )
-    val pluginDeps = prismPlugins.filter(_._2).map {
+    val pluginDeps = (prismPlugins ++ optionalPluginDeps).filter(_._2).map {
       case (plugin, _) =>
         prismDepsProvider.depPath(
           Dependency(s"plugins/$plugin/prism-$plugin.css",
@@ -32,12 +35,12 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   }
 
   def prismJSDependencies: List[String] = {
-    val langDeps = ("core" :: languageNames).map { lang =>
+    val langDeps = prismLanguageDeps.map { lang =>
       prismDepsProvider.depPath(
         Dependency(s"components/prism-$lang.min.js", prismVersion, "prism")
       )
     }
-    val pluginDeps = prismPlugins.map {
+    val pluginDeps = (prismPlugins ++ optionalPluginDeps).map {
       case (plugin, _) =>
         prismDepsProvider.depPath(
           Dependency(s"plugins/$plugin/prism-$plugin.min.js",
@@ -53,4 +56,12 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   abstract override def styleURLs  = super.styleURLs ++ prismCSSDependencies
   abstract override def scriptURLs = super.scriptURLs ++ prismJSDependencies
 
+  // TODO keep-markup isn't working correctly... :/
+  private def optionalPluginDeps: List[(String, Boolean)] =
+    List(
+      //if (prismKeepMarkup) Option("keep-markup" -> false) else None,
+      if (prismShowInvisibles) Option("show-invisibles"    -> true) else None,
+      if (prismShowLanguage) Option("show-language"        -> false) else None,
+      if (prismCopyToClipboard) Option("copy-to-clipboard" -> false) else None
+    ).flatten
 }

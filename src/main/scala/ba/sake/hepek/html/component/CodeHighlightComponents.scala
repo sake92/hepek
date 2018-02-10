@@ -2,145 +2,7 @@ package ba.sake.hepek.html.component
 
 import scalatags.Text.all._
 
-object CodeHighlightComponents /*extends CodeHighlightComponents*/ {
-
-  def languageNames: List[String] =
-    List(
-      "abap",
-      "ada",
-      "apacheconf",
-      "apl",
-      "applescript",
-      "asciidoc",
-      "asm6502",
-      "autohotkey",
-      "autoit",
-      "bash",
-      "basic",
-      "batch",
-      "brainfuck",
-      "bro",
-      "clike",
-      "c", // extends clike
-      "bison", // extends c
-      "cpp",
-      "arduino", // extends c++
-      "csharp",
-      "css",
-      "css-extras",
-      "d",
-      "dart",
-      "diff",
-      "docker",
-      "eiffel",
-      "elixir",
-      "elm",
-      "erlang",
-      "fortran",
-      "fsharp",
-      "gherkin",
-      "git",
-      "glsl",
-      "go",
-      "graphql",
-      "groovy",
-      "haml",
-      "haskell",
-      "haxe",
-      "http",
-      "ichigojam",
-      "icon",
-      "inform7",
-      "ini",
-      "io",
-      "j",
-      "java",
-      "javascript",
-      "actionscript", // extends js
-      "coffeescript", // extends js
-      "flow",
-      "jolie",
-      "json",
-      "julia",
-      "keyman",
-      "kotlin",
-      "latex",
-      "less",
-      "livescript",
-      "lolcode",
-      "lua",
-      "makefile",
-      "markup",
-      "aspnet", // extends markup
-      // "django",// TODO error in js // extends markup
-      "handlebars", // extends markup
-      "jsx", // extends markup
-      "markdown", // extends markup
-      "matlab",
-      "mel",
-      "mizar",
-      "monkey",
-      "n4js",
-      "nasm",
-      "nginx",
-      "nim",
-      "nix",
-      "nsis",
-      "objectivec",
-      "ocaml",
-      "opencl",
-      "oz",
-      "parigp",
-      "parser",
-      "pascal",
-      "perl",
-      "php",
-      "php-extras",
-      "powershell",
-      "processing",
-      "prolog",
-      "properties",
-      "protobuf",
-      "pug",
-      "puppet",
-      "pure",
-      "python",
-      "q",
-      "qore",
-      "r",
-      "reason",
-      "renpy",
-      "rest",
-      "rip",
-      "roboconf",
-      "ruby",
-      "crystal", // extends ruby
-      "rust",
-      "sas",
-      "sass",
-      "scala",
-      "scheme",
-      "scss",
-      "smalltalk",
-      "smarty",
-      "sql",
-      "stylus",
-      "swift",
-      "tcl",
-      "textile",
-      "twig",
-      "typescript",
-      "vbnet",
-      "verilog",
-      "vhdl",
-      "vim",
-      "wiki",
-      "xeora",
-      "xojo",
-      "yaml"
-    )
-
-}
+object CodeHighlightComponents {}
 
 trait CodeHighlightComponents {
 
@@ -171,6 +33,7 @@ trait CodeHighlightComponents {
   def csharp: CodeHighlighter
   def css: CodeHighlighter
   def cssExtras: CodeHighlighter
+  def csp: CodeHighlighter
   def d: CodeHighlighter
   def dart: CodeHighlighter
   def diff: CodeHighlighter
@@ -194,6 +57,8 @@ trait CodeHighlightComponents {
   def haskell: CodeHighlighter
   def haxe: CodeHighlighter
   def http: CodeHighlighter
+  def hpkp: CodeHighlighter
+  def hsts: CodeHighlighter
   def ichigojam: CodeHighlighter
   def icon: CodeHighlighter
   def inform7: CodeHighlighter
@@ -267,6 +132,7 @@ trait CodeHighlightComponents {
   def swift: CodeHighlighter
   def tcl: CodeHighlighter
   def textile: CodeHighlighter
+  def tsx: CodeHighlighter
   def twig: CodeHighlighter
   def typescript: CodeHighlighter
   def vbnet: CodeHighlighter
