@@ -48,7 +48,7 @@ trait BootstrapNavbarComponent extends BootstrapDependencies {
 
   def bootstrapNavbarPosition: Position = Position.FixedTop
 
-  abstract override def stylesInline = {
+  override def stylesInline = {
     // see https://getbootstrap.com/docs/3.3/components/#navbar-fixed-bottom
     val padding = bootstrapNavbarPosition.stylesInline
     super.stylesInline ++ List(padding)

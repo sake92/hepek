@@ -14,6 +14,6 @@ trait AnchorjsDependencies extends PageDependencies {
 
   def anchorjsDepsProvider = DependencyProvider.cdnjs
 
-  abstract override def scriptURLs = super.scriptURLs ++ anchorjsJSDependencies
+  override def scriptURLs = super.scriptURLs ++ anchorjsJSDependencies
 
 }

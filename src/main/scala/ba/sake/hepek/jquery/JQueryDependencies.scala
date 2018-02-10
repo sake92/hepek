@@ -14,6 +14,6 @@ trait JQueryDependencies extends PageDependencies {
 
   def jQueryDepsProvider = DependencyProvider.unpkg
 
-  abstract override def scriptURLs = super.scriptURLs ++ jQueryJSDependencies
+  override def scriptURLs = super.scriptURLs ++ jQueryJSDependencies
 
 }

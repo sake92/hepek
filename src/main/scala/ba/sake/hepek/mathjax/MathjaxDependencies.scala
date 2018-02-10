@@ -19,7 +19,7 @@ trait MathjaxDependencies extends PageDependencies {
 
   def mathjaxDepsProvider = DependencyProvider.unpkg
 
-  abstract override def scriptURLs =
+  override def scriptURLs =
     super.scriptURLs ++ mathjaxJSDependencies
 
 }

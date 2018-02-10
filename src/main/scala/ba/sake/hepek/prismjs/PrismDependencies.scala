@@ -53,8 +53,8 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
 
   def prismDepsProvider = DependencyProvider.cdnjs
 
-  abstract override def styleURLs  = super.styleURLs ++ prismCSSDependencies
-  abstract override def scriptURLs = super.scriptURLs ++ prismJSDependencies
+  override def styleURLs  = super.styleURLs ++ prismCSSDependencies
+  override def scriptURLs = super.scriptURLs ++ prismJSDependencies
 
   // TODO keep-markup isn't working correctly... :/
   private def optionalPluginDeps: List[(String, Boolean)] =

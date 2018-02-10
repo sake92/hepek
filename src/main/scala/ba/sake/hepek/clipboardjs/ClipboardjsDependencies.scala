@@ -15,7 +15,7 @@ trait ClipboardjsDependencies extends PageDependencies {
 
   def clipboardjsDepsProvider = DependencyProvider.cdnjs
 
-  abstract override def scriptURLs =
+  override def scriptURLs =
     super.scriptURLs ++ clipboardjsJSDependencies
 
 }
