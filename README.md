@@ -4,7 +4,7 @@
 
 ## TODO docs, examples
 
-For now, see some [examples](https://github.com/sake92/hepek-examples)
+For now, see some [examples](https://github.com/sake92/hepek-examples) 
+and my [site source code](https://github.com/sake92/sake-ba-source).
 
-
-
+Note that the project is still in early stage. Expect breaking changes.
