@@ -1,5 +1,4 @@
 scalaVersion in ThisBuild := "2.12.4"
-
 scalafmtOnCompile in ThisBuild := true
 
 lazy val hepek = (project in file("."))
@@ -27,10 +26,12 @@ licenses += ("Apache-2.0", url(
   "http://www.apache.org/licenses/LICENSE-2.0.html"
 ))
 
-developers += Developer("sake92",
-                        "Sakib Hadžiavdić",
-                        "sakib@sake.ba",
-                        url("http://sake.ba"))
+developers += Developer(
+  "sake92",
+  "Sakib Hadžiavdić",
+  "sakib@sake.ba",
+  url("http://sake.ba")
+)
 
 scmInfo := Some(
   ScmInfo(url("https://github.com/sake92/hepek"),

@@ -8,11 +8,14 @@ trait JQueryDependencies extends PageDependencies {
 
   def jQueryJSDependencies: List[String] = List(
     jQueryDepsProvider.depPath(
-      Dependency("jquery.min.js", jQueryVersion, "jquery", Option("dist/"))
+      Dependency("jquery.min.js",
+                 jQueryVersion,
+                 "jquery",
+                 baseFolder = Option("dist/"))
     )
   )
 
-  def jQueryDepsProvider = DependencyProvider.unpkg
+  def jQueryDepsProvider = DependencyProvider.cdnjs
 
   override def scriptURLs = super.scriptURLs ++ jQueryJSDependencies
 

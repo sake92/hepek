@@ -13,11 +13,11 @@ trait MathjaxDependencies extends PageDependencies {
         Dependency("MathJax.js",
                    mathjaxVersion,
                    "mathjax",
-                   Option(s"config=$mathjaxConfig"))
+                   qParams = Option(s"config=$mathjaxConfig"))
       )
     )
 
-  def mathjaxDepsProvider = DependencyProvider.unpkg
+  def mathjaxDepsProvider = DependencyProvider.cdnjs
 
   override def scriptURLs =
     super.scriptURLs ++ mathjaxJSDependencies

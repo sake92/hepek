@@ -10,12 +10,11 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   def prismVersion: String = "1.11.0"
 
   /** FULL theme name, with "prism" prefix! */
-  def prismTheme: String =
-    "prism-okaidia"
-  //def prismKeepMarkup: Boolean = false
+  def prismTheme: String            = "prism-okaidia"
   def prismShowInvisibles: Boolean  = false
   def prismShowLanguage: Boolean    = true
   def prismCopyToClipboard: Boolean = true
+  //def prismKeepMarkup: Boolean = false
 
   def prismCSSDependencies: List[String] = {
     val themeDeps = List(

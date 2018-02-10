@@ -13,7 +13,7 @@ trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
         Dependency("css/bootstrap.min.css",
                    bootstrapVersion,
                    "bootstrap",
-                   Option("dist/"))
+                   baseFolder = Option("dist/"))
       )
     )
 
@@ -23,10 +23,11 @@ trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
         Dependency("js/bootstrap.min.js",
                    bootstrapVersion,
                    "bootstrap",
-                   Option("dist/"))
+                   baseFolder = Option("dist/"))
       )
     )
 
+  // TODO cdnjs uses "twitter-bootstrap"...
   def bootstrapDepsProvider = DependencyProvider.unpkg
 
   override def styleURLs  = super.styleURLs ++ bootstrapCSSDependencies
