@@ -248,8 +248,6 @@ case class PrismCmdHighlighter(
     this.copy(commandLine = Option(cmdLine))
   }
 
-// TODO ne valja ovako, treba CMD napravit case class
-// jer ovdje treba COPYYYYYYYYYYYYYY
   def withCmdPrompt(cmdPrompt: String, outputLines: Option[String] = None) = {
     val cmdLine = Right(cmdPrompt) -> outputLines
     this.copy(commandLine = Option(cmdLine))
