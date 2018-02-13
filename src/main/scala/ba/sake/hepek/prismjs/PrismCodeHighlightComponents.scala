@@ -435,23 +435,24 @@ object BaseCodeHighlighter {
     }
     // final result
     val classesString = classes.mkString(" ")
+    val languageClass = s"language-$lang "
     codeSource match {
       case PlainText(text) => {
         val content: Frag = if (isMarkup) raw(s"<!--$text-->") else text
         pre(cls := classesString, attrs)(
-          code(cls := s"language-$lang")(content)
+          code(cls := languageClass)(content)
         )
       }
       case AJAX(url) => {
         attrs += (data.src := url)
-        pre(cls := classesString, attrs)
+        pre(cls := (languageClass + classesString), attrs)
       }
       case JSONP(url, fileName) => {
         attrs += (data.jsonp := url)
         fileName.foreach { fn =>
           attrs += (data.filename := fn)
         }
-        pre(cls := classesString, attrs)
+        pre(cls := (languageClass + classesString), attrs)
       }
     }
   }
@@ -496,7 +497,6 @@ abstract class BaseCodeHighlighter(
       AJAX(url)
     )
 
-// TODO add specific methods for "gist", "github" etc
   /** Fetches a file from url via JSONP. Supported sites: Github, Gist, Bitbucket <br>
     *  Optionally provide gist fileName */
   def jsonp(url: String, fileName: Option[String] = None): Frag =
@@ -508,6 +508,19 @@ abstract class BaseCodeHighlighter(
       isMarkup,
       JSONP(url, fileName)
     )
+
+  /** @param id Id of the Gist, e.g. "65a82e76597f2fb6c2af" */
+  def gist(id: String, fileName: Option[String] = None): Frag =
+    jsonp(s"https://api.github.com/gists/$id", fileName)
+
+  /**
+    * @param user Github user, e.g. "TheAdnan"
+    * @param repo User's repo, e.g. "focustube"
+    * @param filePath Path of the file, e.g. "bla/index.js"
+    */
+  def github(user: String, repo: String, filePath: String): Frag =
+    jsonp(s"https://api.github.com/repos/$user/$repo/contents/$filePath")
+
 }
 
 case class CommandLineOptions(
