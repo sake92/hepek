@@ -192,9 +192,9 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def aspnet     = PrismCodeHighlighter("aspnet", showLineNumbers)
   override def autohotkey = PrismCodeHighlighter("autohotkey", showLineNumbers)
   override def autoit     = PrismCodeHighlighter("autoit", showLineNumbers)
-  override def bash       = PrismCmdHighlighter("bash", showLineNumbers)
+  override def bash       = PrismCmdHighlighter("bash")
   override def basic      = PrismCodeHighlighter("basic", showLineNumbers)
-  override def batch      = PrismCmdHighlighter("batch", showLineNumbers)
+  override def batch      = PrismCmdHighlighter("batch")
   override def bison      = PrismCodeHighlighter("bison", showLineNumbers)
   override def brainfuck  = PrismCodeHighlighter("brainfuck", showLineNumbers)
   override def bro        = PrismCodeHighlighter("bro", showLineNumbers)
@@ -275,7 +275,7 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def perl       = PrismCodeHighlighter("perl", showLineNumbers)
   override def php        = PrismCodeHighlighter("php", showLineNumbers)
   override def phpExtras  = PrismCodeHighlighter("php-extras", showLineNumbers)
-  override def powershell = PrismCmdHighlighter("powershell", showLineNumbers)
+  override def powershell = PrismCmdHighlighter("powershell")
   override def processing = PrismCodeHighlighter("processing", showLineNumbers)
   override def prolog     = PrismCodeHighlighter("prolog", showLineNumbers)
   override def properties = PrismCodeHighlighter("properties", showLineNumbers)
@@ -354,47 +354,40 @@ case class PrismCodeHighlighter(
 /* command-line code highlighter */
 object PrismCmdHighlighter {
 
-  def apply(lang: String, showLineNumbers: Boolean): PrismCmdHighlighter = {
-    val lineNums = if (showLineNumbers) Option(1) else None
-    PrismCmdHighlighter(lang,
-                        lineNums,
-                        None,
-                        Option(
-                          Left("root" -> "localhost") -> None
-                        ))
-  }
+  def apply(lang: String): PrismCmdHighlighter =
+    PrismCmdHighlighter(
+      lang,
+      None,
+      CommandLineOptions(None, Left("root" -> "localhost"))
+    )
 }
 
 case class PrismCmdHighlighter(
     lang: String,
-    lineNumbers: Option[Int],
     lineHighlight: Option[(String, Int)],
-    commandLine: Option[(Either[(String, String), String], Option[String])]
+    commandLine: CommandLineOptions
 ) extends BaseCodeHighlighter(
       lang,
-      lineNumbers,
+      None, // can't have line numbers when CMD
       lineHighlight,
-      commandLine,
+      Option(commandLine),
       false
     ) {
-
-  def withLineNumsStart(startFrom: Int) =
-    this.copy(lineNumbers = Option(startFrom))
 
   def withLineHighlight(lines: String, offset: Int = 0) =
     this.copy(lineHighlight = Option(lines -> offset))
 
-  def withCmdUser(cmdUser: String,
-                  cmdHost: String = "localhost",
-                  outputLines: Option[String] = None) = {
-    val cmdLine = Left(cmdUser, cmdHost) -> outputLines
-    this.copy(commandLine = Option(cmdLine))
-  }
+  def withUser(cmdUser: String, cmdHost: String = "localhost") =
+    this.copy(commandLine = commandLine.copy(prefix = Left(cmdUser, cmdHost)))
 
-  def withCmdPrompt(cmdPrompt: String, outputLines: Option[String] = None) = {
-    val cmdLine = Right(cmdPrompt) -> outputLines
-    this.copy(commandLine = Option(cmdLine))
-  }
+  def withPrompt(cmdPrompt: String) =
+    this.copy(commandLine = commandLine.copy(prefix = Right(cmdPrompt)))
+
+  def withOutputLines(cmdOutputLines: String) =
+    this.copy(
+      commandLine = commandLine.copy(outputLines = Option(cmdOutputLines))
+    )
+
 }
 
 object BaseCodeHighlighter {
@@ -406,7 +399,7 @@ object BaseCodeHighlighter {
       lang: String,
       lineNumbers: Option[Int],
       lineHighlight: Option[(String, Int)],
-      commandLine: Option[(Either[(String, String), String], Option[String])],
+      commandLine: Option[CommandLineOptions],
       isMarkup: Boolean, // via unescaped-markup plugin
       codeSource: CodeSource
   ): Frag = {
@@ -414,39 +407,31 @@ object BaseCodeHighlighter {
     val classes = ListBuffer.empty[String]
     val attrs   = ListBuffer.empty[Modifier]
     // command-line
-    commandLine.foreach {
-      case (commandLinePrefix, maybeOutputLines) =>
-        classes += "command-line"
-        maybeOutputLines.foreach { o =>
-          attrs += (data.output := o)
+    commandLine.foreach { cl =>
+      classes += "command-line"
+      cl.outputLines.foreach { o =>
+        attrs += (data.output := o)
+      }
+      cl.prefix.fold(
+        {
+          case (commandLineUser, commandLineHost) =>
+            attrs += (data.user := commandLineUser)
+            attrs += (data.host := commandLineHost)
+        }, { commandLinePrompt =>
+          attrs += (data.prompt := commandLinePrompt)
         }
-        commandLinePrefix.fold(
-          {
-            case (commandLineUser, commandLineHost) =>
-              attrs += (data.user := commandLineUser)
-              attrs += (data.host := commandLineHost)
-          }, { commandLinePrompt =>
-            attrs += (data.prompt := commandLinePrompt)
-          }
-        )
+      )
     }
     // line highlight or CMD output
     lineHighlight.foreach {
       case (lh, o) =>
-        if (commandLine.isEmpty) {
-          attrs += (data.line := lh)
-          attrs += (data.line.offset := o)
-        } else {
-          attrs += (data.output := lh)
-        }
+        attrs += (data.line := lh)
+        attrs += (data.line.offset := o)
     }
     // line numbers
     lineNumbers.foreach { lineNumsStart =>
-      if (commandLine.isEmpty) {
-        // can't have line numbers when CMD
-        classes += "line-numbers"
-        attrs += (data.start := lineNumsStart.toString)
-      }
+      classes += "line-numbers"
+      attrs += (data.start := lineNumsStart.toString)
     }
     // final result
     val classesString = classes.mkString(" ")
@@ -479,7 +464,7 @@ abstract class BaseCodeHighlighter(
     lang: String,
     lineNumbers: Option[Int],
     lineHighlight: Option[(String, Int)],
-    commandLine: Option[(Either[(String, String), String], Option[String])],
+    commandLine: Option[CommandLineOptions],
     isMarkup: Boolean
 ) extends CodeHighlighter {
   import BaseCodeHighlighter._
@@ -511,6 +496,7 @@ abstract class BaseCodeHighlighter(
       AJAX(url)
     )
 
+// TODO add specific methods for "gist", "github" etc
   /** Fetches a file from url via JSONP. Supported sites: Github, Gist, Bitbucket <br>
     *  Optionally provide gist fileName */
   def jsonp(url: String, fileName: Option[String] = None): Frag =
@@ -523,3 +509,8 @@ abstract class BaseCodeHighlighter(
       JSONP(url, fileName)
     )
 }
+
+case class CommandLineOptions(
+    outputLines: Option[String],
+    prefix: Either[(String, String), String] // (user,host) or custom
+)
