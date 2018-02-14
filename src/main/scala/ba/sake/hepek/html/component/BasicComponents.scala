@@ -4,10 +4,10 @@ import scalatags.Text.all._
 
 object BasicComponents extends BasicComponents {
   case class MarkdownRule(regex: String, replacement: String)
-  // thx https://gist.github.com/renehamburger/12f14a9bd9297394e5bd
-  // TODO add more ?
+  // \R is newline (\r or \n or \r\n)
   private def markdownRules = List(
-    MarkdownRule("""([ ]{2,}\n)|([\n]{2,})""", "<br>"), // newline
+    MarkdownRule("(\\R(\\s*)){2,}", "<br><br>"), // new paragraph
+    MarkdownRule("(\\S)([ ]{2,})\\R", "$1<br>"), // newline
     MarkdownRule("""(\*\*)(.*?)\1""", "<strong>$2</strong>"), // bold
     MarkdownRule("""(\*)(.*?)\1""", "<em>$2</em>"), // emphasis
     MarkdownRule("""(__)(.*?)\1""", "<u>$2</u>"), // underline
@@ -36,7 +36,7 @@ trait BasicComponents {
     markdownRules.foreach { r =>
       result = result.replaceAll(r.regex, r.replacement)
     }
-    p(raw(result))
+    raw(result)
   }
 
 }
