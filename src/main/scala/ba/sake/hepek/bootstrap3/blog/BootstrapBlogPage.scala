@@ -26,9 +26,14 @@ trait BootstrapBlogPage
     row(
       div(cls := "col-lg-2 col-lg-push-1  col-md-3")(sidebar),
       div(cls := "col-lg-8 col-lg-push-1  col-md-9")(
-        div(span(cls := "glyphicon glyphicon-time"),
-            " " + postCreateDate.format(dateFormat)),
-        div(span(cls := "glyphicon glyphicon-user"), "  " + postAuthor),
+        postCreateDate.map(
+          createDate =>
+            div(span(cls := "glyphicon glyphicon-time"),
+                " " + createDate.format(dateFormat))
+        ),
+        postAuthor.map(
+          author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
+        ),
         tag("article")(renderTOCAndSections(postSections)),
         div(id := "disqus_thread")
       )

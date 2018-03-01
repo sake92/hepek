@@ -21,9 +21,6 @@ trait HepekDocsPage
 
   override def categoryPosts = Site.pages
 
-  override def postAuthor     = "Sakib Hadžiavdić"
-  override def postCreateDate = LocalDate.now
-
   abstract override def beforePageContent =
     frag(
       super.beforePageContent,
