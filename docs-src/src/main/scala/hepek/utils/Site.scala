@@ -9,7 +9,7 @@ object Site {
   val name = "hepek"
 
   def pages: List[HepekDocsPage] = List(
-    Installation
+    QuickStart
   )
 
 }
