@@ -1,19 +1,12 @@
 package ba.sake.hepek.html.component
 
 import scalatags.Text.all._
+import org.commonmark.node._
+import org.commonmark.parser.Parser
+import org.commonmark.renderer.html.HtmlRenderer
+import ba.sake.hepek.utils._
 
-object BasicComponents extends BasicComponents {
-  case class MarkdownRule(regex: String, replacement: String)
-  // \R is newline (\r or \n or \r\n)
-  private def markdownRules = List(
-    MarkdownRule("(\\R(\\s*)){2,}", "<br><br>"), // new paragraph
-    MarkdownRule("(\\S)([ ]{2,})\\R", "$1<br>"), // newline
-    MarkdownRule("""(\*\*)(.*?)\1""", "<strong>$2</strong>"), // bold
-    MarkdownRule("""(\*)(.*?)\1""", "<em>$2</em>"), // emphasis
-    MarkdownRule("""(__)(.*?)\1""", "<u>$2</u>"), // underline
-    MarkdownRule("""\~\~(.*?)\~\~""", "<del>$1</del>") // del
-  )
-}
+object BasicComponents extends BasicComponents
 
 trait BasicComponents {
   import BasicComponents._
@@ -24,18 +17,12 @@ trait BasicComponents {
     a(href := hreff, optParams)
   }
 
-  /**
-    * - newline: two spaces on the end of line OR two+ new lines
-    * - bold: **text**
-    * - italic: *text*
-    * - underline: __text__
-    * - strikethrough: ~~text~~
-    */
-  def md(s: String): Frag = {
-    var result = s
-    markdownRules.foreach { r =>
-      result = result.replaceAll(r.regex, r.replacement)
-    }
+  /** Markdown snippet    */
+  def md(str: String): Frag = {
+    val parser   = Parser.builder().build()
+    val document = parser.parse(StringUtils.unindent(str))
+    val renderer = HtmlRenderer.builder().build()
+    val result   = renderer.render(document)
     raw(result)
   }
 

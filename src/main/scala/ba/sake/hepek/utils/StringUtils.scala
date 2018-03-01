@@ -30,4 +30,26 @@ object StringUtils {
     asciiOnly = Normalizer.normalize(asciiOnly, Normalizer.Form.NFD)
     asciiOnly.replaceAll("[^\\x00-\\x7F]", "") // pa-ge-abc-nest-o
   }
+
+  /** Trims leading whitespace while maintaining indentation. */
+  def unindent(str: String): String = {
+    // TODO convert tabs to spaces ???
+    var minWhitespaceLength = Int.MaxValue
+    str.lines.foreach { line =>
+      val currLength = line.takeWhile(c => c == ' ' || c == '\t').length
+      // IF NOT EMPTY! (blank, wspace..)
+      if (currLength < minWhitespaceLength && !line.matches("^\\s*$")) {
+        minWhitespaceLength = currLength
+      }
+    }
+    str.lines
+      .map { line =>
+        val res = line.zipWithIndex
+          .dropWhile { case (_, index) => index < minWhitespaceLength }
+          .map(_._1)
+        res.mkString
+      }
+      .mkString("\n")
+  }
+
 }

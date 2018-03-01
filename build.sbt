@@ -1,13 +1,16 @@
+import com.typesafe.sbt.web.Import.WebKeys
+
 scalaVersion in ThisBuild := "2.12.4"
 scalafmtOnCompile in ThisBuild := true
 
-lazy val hepek = (project in file("."))
+lazy val hepekProject = (project in file("."))
   .settings(
     organization := "ba.sake",
     version := "0.0.3-alpha2-SNAPSHOT",
     libraryDependencies ++= Seq(
-      "ba.sake"     % "hepek-core" % "0.1.0-SNAPSHOT",
-      "com.lihaoyi" %% "scalatags" % "0.6.7"
+      "ba.sake"                  % "hepek-core" % "0.1.0-SNAPSHOT",
+      "com.lihaoyi"              %% "scalatags" % "0.6.7",
+      "com.atlassian.commonmark" % "commonmark" % "0.11.0"
     ),
     resolvers += Resolver.sonatypeRepo("snapshots")
   )
@@ -39,3 +42,17 @@ scmInfo := Some(
 )
 
 homepage := Some(url("http://sake.ba"))
+
+// docs
+lazy val docsSrc = (project in file("docs-src"))
+  .settings(
+    hepekTarget := baseDirectory.value / "..",
+    (hepek in Compile) := {
+      WebKeys.assets.value
+      (hepek in Compile).value
+    },
+    (WebKeys.public in Assets) := baseDirectory.value / ".." / "docs",
+    WebKeys.stagingDirectory := baseDirectory.value / ".." / "docs"
+  )
+  .dependsOn(hepekProject)
+  .enablePlugins(HepekPlugin, SbtWeb)
