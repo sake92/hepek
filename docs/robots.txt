@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /scripts/
+Disallow: /styles/
+Disallow: /lib/

@@ -26,13 +26,21 @@ trait BootstrapBlogPage
     row(
       div(cls := "col-lg-2 col-lg-push-1  col-md-3")(sidebar),
       div(cls := "col-lg-8 col-lg-push-1  col-md-9")(
-        h6(span(cls := "glyphicon glyphicon-time"),
-           " " + postCreateDate.format(dateFormat)),
-        h6(span(cls := "glyphicon glyphicon-user"), " Autor: " + postAuthor),
+        div(span(cls := "glyphicon glyphicon-time"),
+            " " + postCreateDate.format(dateFormat)),
+        div(span(cls := "glyphicon glyphicon-user"), "  " + postAuthor),
         tag("article")(renderTOCAndSections(postSections)),
         div(id := "disqus_thread")
       )
     )
+  )
+
+  override def stylesInline = super.stylesInline ++ List(
+    """
+      article {
+        padding-top: 12px;
+      }
+    """
   )
 
   /* CONTENT*/

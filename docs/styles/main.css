@@ -1,0 +1,23 @@
+
+body {
+  font-size: 19px;
+}
+
+/* default SVG maximum height */
+object[type="image/svg+xml"] {
+  max-height: 300px;
+  width: 100%;
+}
+
+.pages-toc ul { 
+  list-style: none;
+}
+
+.pages-toc > ul > li > a {
+  font-weight: bold;
+}
+
+/* prismjs sets 0.3em and then we get unnecessary horizontal slider. This fixes it. */
+pre[class*="language-"] {
+  border-width: 0.3rem !important;
+}
