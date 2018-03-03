@@ -19,7 +19,7 @@ trait BootstrapBlogPage
 
   def tocTitle: String = "Table Of Contents"
 
-  override def beforePageContent: Frag = navbarr
+  override def bodyContent: List[Frag] = navbarr :: super.bodyContent
 
   override def pageContent = frag(
     row(div(cls := "page-header text-center")(h1(pageTitle))),
