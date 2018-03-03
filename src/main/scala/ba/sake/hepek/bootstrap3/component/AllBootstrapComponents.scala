@@ -4,6 +4,5 @@ object AllBootstrapComponents extends AllBootstrapComponents
 
 trait AllBootstrapComponents
     extends BootstrapGridComponents
-    with BootstrapBasicComponents
     with BootstrapNavbarComponent
     with BootstrapImageComponents

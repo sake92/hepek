@@ -5,6 +5,14 @@ import scalatags.Text.all._
 trait GridComponents {
   import GridComponents._
 
+  /** Same on all screens, by default */
+  def screenRatios: ScreenRatios = ScreenRatios(
+    Ratios.Default,
+    Option(Ratios.Default),
+    Option(Ratios.Default),
+    Option(Ratios.Default)
+  )
+
   // ROW
   def row(content: Frag*): Frag
   def row(half1: Half1, half2: Half2): Frag
@@ -32,6 +40,12 @@ object GridComponents {
 
   case class Ratio(values: List[Int])
   case class Ratios(half: Ratio, third: Ratio)
+  case class ScreenRatios(
+      lg: Ratios,
+      md: Option[Ratios] = None,
+      sm: Option[Ratios] = None,
+      xs: Option[Ratios] = None
+  )
 
   object Ratios {
     val DefaultHalf  = Ratio(List(1, 1))

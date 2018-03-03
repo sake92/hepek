@@ -12,13 +12,13 @@ trait BasicComponents {
   import BasicComponents._
 
   /** Anchor link : <a href="hreff"> */
-  def hyperlink(hreff: String, newWindow: Boolean = false): Frag = {
+  def hyperlink(hreff: String, newWindow: Boolean = false) = {
     val optParams = if (newWindow) List(target := "_blank") else List()
     a(href := hreff, optParams)
   }
 
-  /** Markdown snippet    */
-  def md(str: String): Frag = {
+  /** Markdown snippet */
+  def md(str: String) = {
     val parser   = Parser.builder().build()
     val document = parser.parse(StringUtils.unindent(str))
     val renderer = HtmlRenderer.builder().build()

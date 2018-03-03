@@ -8,11 +8,6 @@ object BootstrapGridComponents extends BootstrapGridComponents
 trait BootstrapGridComponents extends GridComponents {
   import GridComponents._
 
-  def lgRatios: Ratios         = Ratios.Default
-  def mdRatios: Option[Ratios] = Option(lgRatios) // follow lg by default...
-  def smRatios: Option[Ratios] = Option(lgRatios)
-  def xsRatios: Option[Ratios] = Option(lgRatios)
-
   override def row(content: Frag*) =
     div(cls := "row")(content)
 
@@ -56,18 +51,18 @@ trait BootstrapGridComponents extends GridComponents {
 
   /* HELPERS */
   private def halfRatioClasses(index: Int): List[String] = {
-    val lg = lgClass(lgRatios.half, index)
-    val md = mdRatios.map(r => mdClass(r.half, index))
-    val sm = smRatios.map(r => smClass(r.half, index))
-    val xs = xsRatios.map(r => xsClass(r.half, index))
+    val lg = lgClass(screenRatios.lg.half, index)
+    val md = screenRatios.md.map(r => mdClass(r.half, index))
+    val sm = screenRatios.sm.map(r => smClass(r.half, index))
+    val xs = screenRatios.xs.map(r => xsClass(r.half, index))
     List(Option(lg), md, sm, xs).flatten
   }
 
   private def thirdRatioClasses(index: Int): List[String] = {
-    val lg = lgClass(lgRatios.third, index)
-    val md = mdRatios.map(r => mdClass(r.third, index))
-    val sm = smRatios.map(r => smClass(r.third, index))
-    val xs = xsRatios.map(r => xsClass(r.third, index))
+    val lg = lgClass(screenRatios.lg.third, index)
+    val md = screenRatios.md.map(r => mdClass(r.third, index))
+    val sm = screenRatios.sm.map(r => smClass(r.third, index))
+    val xs = screenRatios.xs.map(r => xsClass(r.third, index))
     List(Option(lg), md, sm, xs).flatten
   }
 
