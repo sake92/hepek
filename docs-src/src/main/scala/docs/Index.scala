@@ -67,6 +67,7 @@ object Index extends HepekDocsStaticPage {
         ),
         third3()
       ),
+      super.pageContent
     )
 
 }

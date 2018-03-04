@@ -13,8 +13,8 @@ import hepek.utils.Site
 import hepek.utils.Imports._, resources._
 
 trait HepekDocsPage
-    extends HepekDocsStaticPage
-    with BootstrapBlogPage
+    extends BootstrapBlogPage
+    with HepekDocsStaticPage
     with PrismDependencies {
 
   val hlLangs = List("scala", "java")
@@ -29,19 +29,6 @@ trait HepekDocsPage
   }
 
   override def categoryPosts = Site.pages
-
-  override def pageContent =
-    frag(
-      super.pageContent,
-      raw(
-        """
-          <a href="https://github.com/sake92/hepek">
-            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9001;" 
-            src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
-          </a>
-        """
-      )
-    )
 
 }
 
@@ -65,5 +52,18 @@ trait HepekDocsStaticPage
     sm = None,
     xs = None
   )
+
+  override def pageContent =
+    frag(
+      super.pageContent,
+      raw(
+        """
+          <a href="https://github.com/sake92/hepek">
+            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9001;" 
+            src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+          </a>
+        """
+      )
+    )
 
 }

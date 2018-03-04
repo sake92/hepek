@@ -7,7 +7,7 @@ import ba.sake.hepek.html.structure.StaticPage
 
 trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
 
-  def pageContent: Frag
+  def pageContent: Frag = frag()
 
   def fluidContainer: Boolean = true
 
