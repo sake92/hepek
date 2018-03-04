@@ -1,12 +1,26 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Hepek docs" /><title>Welcome! - hepek</title><link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" /><link rel="stylesheet" href="styles/main.css" /></head><body><div class="container-fluid"><div class="page-header text-center"><h1>Welcome!</h1></div><div class="row"><div class="col-lg-2 col-md-2"></div><div class="col-lg-8 col-md-8"><div class="well well-lg"><p>Dig into docs:</p><div class="pages-toc"><ul><li><a href="quick-start.html">QuickStart</a></li></ul></div></div><p><strong>Hepek</strong> is just a library with useful abstractions for <em>rendering stuff</em>.<br />
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Hepek docs" /><title>Welcome! - hepek</title><link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" /><link rel="stylesheet" href="styles/main.css" /></head><body><div class="container-fluid"><div class="page-header text-center"><h1>Welcome!</h1></div><div class="row"><div class="col-lg-2 col-md-4"></div><div class="col-lg-8 col-md-4"><div class="well well-lg"><h3>Docs:</h3><div class="pages-toc"><ul><li><a href="quick-start.html">Quickstart</a></li><li><a href="code-walkthrough.html">Code walkthrough</a></li></ul></div></div><h2>What is hepek?</h2>
+<p>It is a tool that turns Scala <code>object</code>s into files.<br />
+Everything that can be represented as a <code>String</code> can be written to a file.</p>
+<p>How? By extending <code>Renderable</code> trait, directly or via some predefined abstraction.<br />
+Hepek takes content returned by <code>render</code> method and writes it to corresponding file.</p>
+<h2>What else?</h2>
+<p>It contains lots of useful abstractions for <em>rendering stuff</em>, like blogging, css layout, code highlighting.<br />
 There is no special new markup/template language to learn, just plain old <strong>Scala</strong>.<br />
-Everything else is optional, you can construct your HTML with barebone strings if you want.<br />
+<code>Ctrl</code> + <code>Space</code> and you get all the help needed. :D<br />
+These abstractions are optional, you can construct your HTML with barebone strings if you want...<br />
 You can use Scalatags, Markdown or whatever you find useful.</p>
+<h2>Why should you use it?</h2>
 <p>Since you type content in Scala, you can use functions, for loops, data abstractions etc.<br />
 Say goodbye to emmet snippets and regex find-and-replace... :)<br />
 Functions are handy when you later want to typecheck your code examples or similar stuff.</p>
-<p>Also, since static content is represented with Scala's <code>object</code> you can manipulate those immediately,
+<p>Also, static content is represented with Scala's <code>object</code>, you can manipulate those directly,
 to construct your RSS feed, sitemap.xml, PDF and Word docs.</p>
 <p>Sick of rewriting relative urls all over the place (<code>my/folder/../styles.....</code>)?<br />
 Just use <code>relTo</code> method and you're done! Hepek does that for you.</p>
-</div><div class="col-lg-2 col-md-2"></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="scripts/main.js"></script></body></html>
+<p>Hepek uses <em>incremental rendering</em> by default,
+but you can turn it off if you want (LOL, why would you do that?).<br />
+If you change an object, it analyses its dependencies and renders objects which depende on it also.</p>
+<p>Linux, OSX, Windows supported? Of course.<br />
+Please report issues when you find them.</p>
+<p>And, yes, this site is built with hepek. :)</p>
+</div><div class="col-lg-2 col-md-4"></div></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="scripts/main.js"></script></body></html>

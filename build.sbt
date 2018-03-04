@@ -5,8 +5,9 @@ scalafmtOnCompile in ThisBuild := true
 
 lazy val hepekProject = (project in file("."))
   .settings(
+    name := "hepek",
     organization := "ba.sake",
-    version := "0.0.3-alpha2-SNAPSHOT",
+    version := "0.1.0-alpha1-SNAPSHOT",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core" % "0.1.0-SNAPSHOT",
       "com.lihaoyi"              %% "scalatags" % "0.6.7",

@@ -17,13 +17,22 @@ trait HepekDocsPage
     with BootstrapBlogPage
     with PrismDependencies {
 
+  val hlLangs = List("scala", "java")
+
   override def prismTheme = "prism-twilight"
+  override def prismJSDependencies = super.prismJSDependencies.filter { d =>
+    if (d.contains("component")) {
+      hlLangs.exists(l => d.contains(s"prism-$l."))
+    } else {
+      true
+    }
+  }
 
   override def categoryPosts = Site.pages
 
-  abstract override def beforePageContent =
+  override def pageContent =
     frag(
-      super.beforePageContent,
+      super.pageContent,
       raw(
         """
           <a href="https://github.com/sake92/hepek">
@@ -52,7 +61,9 @@ trait HepekDocsStaticPage
   override def styleURLs  = super.styleURLs :+ relTo(styles.css("main"))
   override def scriptURLs = super.scriptURLs :+ relTo(scripts.js("main"))
 
-  override def smRatios = None
-  override def xsRatios = None
+  override def screenRatios = super.screenRatios.copy(
+    sm = None,
+    xs = None
+  )
 
 }

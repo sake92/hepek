@@ -17,7 +17,7 @@ trait BootstrapBlogPage
   import AllBootstrapComponents._
   import BootstrapSectionUtils._
 
-  def tocTitle: String = "Table Of Contents"
+  def tocTitle: String = "Table of Contents"
 
   override def bodyContent: List[Frag] = navbarr :: super.bodyContent
 
@@ -80,7 +80,8 @@ trait BootstrapBlogPage
       page <- siteSettings.mainPages
       labela = page.pageCategory.getOrElse(page.pageLabel)
       klasa = {
-        if (page.pageCategory == this.pageCategory) "active "
+        if (this.pageCategory.isEmpty) ""
+        else if (page.pageCategory == this.pageCategory) "active "
         else ""
       }
     } yield li(cls := klasa)(a(href := relTo(page))(labela))
