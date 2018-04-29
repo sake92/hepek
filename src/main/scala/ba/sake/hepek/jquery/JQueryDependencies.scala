@@ -4,7 +4,8 @@ import ba.sake.hepek.html.structure._
 
 trait JQueryDependencies extends PageDependencies {
 
-  def jQueryVersion: String = "3.2.1"
+  def jQueryVersion: String                  = "3.2.1"
+  def jQueryDepsProvider: DependencyProvider = DependencyProvider.cdnjs
 
   def jQueryJSDependencies: List[String] = List(
     jQueryDepsProvider.depPath(
@@ -14,8 +15,6 @@ trait JQueryDependencies extends PageDependencies {
                  baseFolder = Option("dist/"))
     )
   )
-
-  def jQueryDepsProvider = DependencyProvider.cdnjs
 
   override def scriptURLs = super.scriptURLs ++ jQueryJSDependencies
 

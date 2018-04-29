@@ -4,10 +4,11 @@ import ba.sake.hepek.html.structure._
 
 trait MathjaxDependencies extends PageDependencies {
 
-  def mathjaxVersion: String = "2.7.2"
-  def mathjaxConfig: String  = "AM_CHTML"
+  def mathjaxVersion: String                  = "2.7.2"
+  def mathjaxConfig: String                   = "AM_CHTML"
+  def mathjaxDepsProvider: DependencyProvider = DependencyProvider.cdnjs
 
-  private def mathjaxJSDependencies: List[String] =
+  def mathjaxJSDependencies: List[String] =
     List(
       mathjaxDepsProvider.depPath(
         Dependency("MathJax.js",
@@ -17,9 +18,6 @@ trait MathjaxDependencies extends PageDependencies {
       )
     )
 
-  def mathjaxDepsProvider = DependencyProvider.cdnjs
-
-  override def scriptURLs =
-    super.scriptURLs ++ mathjaxJSDependencies
+  override def scriptURLs = super.scriptURLs ++ mathjaxJSDependencies
 
 }
