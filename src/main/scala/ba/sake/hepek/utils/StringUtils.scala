@@ -14,7 +14,7 @@ object StringUtils {
     // example "-Pa&geABCNešt-_o"
     val kebabCased = input.trim
       .replaceAll("([a-z])([A-Z])", "$1-$2") // -Pa&ge-ABCNešt-_o
-      .replaceAll("([A-Z]+)([A-Z])", "$1-$2") // -Pa&ge-ABC-Nešt-_o
+      .replaceAll("([A-Z]+)([A-Z])([a-z])", "$1-$2$3") // -Pa&ge-ABC-Nešt-_o
     val withoutUnsafe = kebabCased
       .replaceAll(UnsafeURLCharsRegex, "-") // -Pa-ge-ABC-Nešt-_o
       .replaceAll("_", "-") // -Pa-ge-ABC-Nešt--o
@@ -33,7 +33,6 @@ object StringUtils {
 
   /** Trims leading whitespace while maintaining indentation. */
   def unindent(str: String): String = {
-    // TODO convert tabs to spaces ???
     var minWhitespaceLength = Int.MaxValue
     str.lines.foreach { line =>
       val currLength = line.takeWhile(c => c == ' ' || c == '\t').length
@@ -42,6 +41,9 @@ object StringUtils {
         minWhitespaceLength = currLength
       }
     }
+    // drop minWhitespaceLength characters
+    // be that a SPACE or TAB, doesn't matter...
+    // uglyyyyyyyyyy :/
     str.lines
       .map { line =>
         val res = line.zipWithIndex
