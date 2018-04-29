@@ -35,7 +35,7 @@ trait BootstrapBlogPage
           author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
         ),
         tag("article")(renderTOCAndSections(postSections)),
-        div(id := "disqus_thread")
+        div(id := "disqus_thread", cls := "hidden-print")
       )
     )
   )

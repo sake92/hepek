@@ -11,7 +11,8 @@ lazy val hepekProject = (project in file("."))
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core" % "0.1.0-SNAPSHOT",
       "com.lihaoyi"              %% "scalatags" % "0.6.7",
-      "com.atlassian.commonmark" % "commonmark" % "0.11.0"
+      "com.atlassian.commonmark" % "commonmark" % "0.11.0",
+      "org.scalatest"            %% "scalatest" % "3.0.5" % "test"
     ),
     resolvers += Resolver.sonatypeRepo("snapshots")
   )
