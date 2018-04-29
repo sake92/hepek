@@ -7,10 +7,11 @@ import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   import PrismCodeHighlightComponents._
 
-  def prismVersion: String = "1.11.0"
+  def prismVersion: String                  = "1.11.0"
+  def prismDepsProvider: DependencyProvider = DependencyProvider.cdnjs
 
-  /** FULL theme name, with "prism" prefix! */
-  def prismTheme: String            = "prism-okaidia"
+  /** FULL theme name, with "prism" prefix! See `Themes` */
+  def prismTheme: String            = Themes.Okaidia
   def prismShowInvisibles: Boolean  = false
   def prismShowLanguage: Boolean    = true
   def prismCopyToClipboard: Boolean = true
@@ -50,8 +51,6 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
     langDeps ++ pluginDeps
   }
 
-  def prismDepsProvider = DependencyProvider.cdnjs
-
   override def styleURLs  = super.styleURLs ++ prismCSSDependencies
   override def scriptURLs = super.scriptURLs ++ prismJSDependencies
 
@@ -63,4 +62,16 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
       if (prismShowLanguage) Option("show-language"        -> false) else None,
       if (prismCopyToClipboard) Option("copy-to-clipboard" -> false) else None
     ).flatten
+
+}
+
+object Themes {
+  val Default        = "prism"
+  val Coy            = "prism-coy"
+  val Dark           = "prism-dark"
+  val Funky          = "prism-funky"
+  val SolarizedLight = "prism-solarizedlight"
+  val Okaidia        = "prism-okaidia"
+  val Tomorrow       = "prism-tomorrow"
+  val Twilight       = "prism-twilight"
 }

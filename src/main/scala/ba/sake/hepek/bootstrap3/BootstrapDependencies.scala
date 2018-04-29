@@ -5,7 +5,8 @@ import ba.sake.hepek.jquery.JQueryDependencies
 
 trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
 
-  def bootstrapVersion: String = "3.3.7"
+  def bootstrapVersion: String                  = "3.3.7"
+  def bootstrapDepsProvider: DependencyProvider = DependencyProvider.unpkg
 
   def bootstrapCSSDependencies: List[String] =
     List(
@@ -26,9 +27,6 @@ trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
                    baseFolder = Option("dist/"))
       )
     )
-
-  // TODO cdnjs uses "twitter-bootstrap"...
-  def bootstrapDepsProvider = DependencyProvider.unpkg
 
   override def styleURLs  = super.styleURLs ++ bootstrapCSSDependencies
   override def scriptURLs = super.scriptURLs ++ bootstrapJSDependencies
