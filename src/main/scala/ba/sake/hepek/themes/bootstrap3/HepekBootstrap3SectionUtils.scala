@@ -1,11 +1,11 @@
-package ba.sake.hepek.bootstrap3.blog
+package ba.sake.hepek.themes.bootstrap3
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure.blog.Section
 
-object BootstrapSectionUtils extends BootstrapSectionUtils
+object HepekBootstrap3SectionUtils extends HepekBootstrap3SectionUtils
 
-trait BootstrapSectionUtils {
+trait HepekBootstrap3SectionUtils {
 
   /** Renders the sections. */
   def renderSections(secs: List[Section], depth: Int): List[Frag] =

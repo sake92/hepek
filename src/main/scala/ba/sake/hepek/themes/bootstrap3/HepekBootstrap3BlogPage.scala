@@ -8,14 +8,15 @@ import ba.sake.hepek.bootstrap3.component.{
 }
 import ba.sake.hepek.html.structure.blog.BlogPostPage
 import ba.sake.hepek.html.structure.blog.Section
+import ba.sake.hepek.themes.bootstrap3.HepekBootstrap3SectionUtils
 
-trait BootstrapBlogPage
+trait HepekBootstrap3BlogPage
     extends BlogPostPage
     with BootstrapStaticPage
     with BootstrapNavbarComponent {
   // avoid polluting user's namespace
   import AllBootstrapComponents._
-  import BootstrapSectionUtils._
+  import HepekBootstrap3SectionUtils._
 
   def tocTitle: String = "Table of Contents"
 
