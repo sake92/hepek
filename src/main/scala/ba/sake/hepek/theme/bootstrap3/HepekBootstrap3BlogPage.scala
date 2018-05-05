@@ -13,13 +13,12 @@ trait HepekBootstrap3BlogPage
     extends BlogPostPage
     with BootstrapStaticPage
     with BootstrapNavbarComponent {
+
   // avoid polluting user's namespace
   import AllBootstrapComponents._
   import HepekBootstrap3SectionUtils._
 
   def tocTitle: String = "Table of Contents"
-
-  override def bodyContent: List[Frag] = navbarr :: super.bodyContent
 
   override def pageContent = frag(
     row(div(cls := "page-header text-center")(h1(pageTitle))),
@@ -73,32 +72,5 @@ trait HepekBootstrap3BlogPage
     } yield li(cls := activeClass, a(href := relTo(p))(p.pageLabel))
     ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
   }
-
-  /* NAVBAR */
-  private def navbarLiTags: List[Frag] =
-    for {
-      page <- siteSettings.mainPages
-      labela = page.pageCategory.getOrElse(page.pageLabel)
-      klasa = {
-        if (this.pageCategory.isEmpty) ""
-        else if (page.pageCategory == this.pageCategory) "active "
-        else ""
-      }
-    } yield li(cls := klasa)(a(href := relTo(page))(labela))
-
-  // helpers
-  private def navbarr =
-    navbar(
-      navbarHeader()(
-        navbarCollapseToggleBtn(),
-        navbarBrand(relTo(siteSettings.indexPage))(
-          siteSettings.faviconInverted.map { fav =>
-            span(img(src := fav))
-          },
-          " " + siteSettings.name
-        )
-      ),
-      navbarCollapse()(navbarContent()(navbarLiTags))
-    )
 
 }
