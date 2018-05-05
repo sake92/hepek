@@ -1,4 +1,4 @@
-package ba.sake.hepek.bootstrap3.blog
+package ba.sake.hepek.theme.bootstrap3
 
 import scalatags.Text.all._
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
@@ -8,7 +8,6 @@ import ba.sake.hepek.bootstrap3.component.{
 }
 import ba.sake.hepek.html.structure.blog.BlogPostPage
 import ba.sake.hepek.html.structure.blog.Section
-import ba.sake.hepek.themes.bootstrap3.HepekBootstrap3SectionUtils
 
 trait HepekBootstrap3BlogPage
     extends BlogPostPage

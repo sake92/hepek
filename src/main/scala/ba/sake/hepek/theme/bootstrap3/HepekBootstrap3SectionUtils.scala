@@ -1,4 +1,4 @@
-package ba.sake.hepek.themes.bootstrap3
+package ba.sake.hepek.theme.bootstrap3
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure.blog.Section
