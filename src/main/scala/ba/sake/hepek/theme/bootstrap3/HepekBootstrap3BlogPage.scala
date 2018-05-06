@@ -21,17 +21,20 @@ trait HepekBootstrap3BlogPage
   def tocTitle: String = "Table of Contents"
 
   override def pageContent = frag(
-    row(div(cls := "page-header text-center")(h1(pageTitle))),
+    row(div(cls := "page-header text-center hidden-print")(h1(pageTitle))),
     row(
-      div(cls := "col-lg-2 col-lg-push-1  col-md-3")(sidebar),
+      div(cls := "col-lg-2 col-lg-push-1  col-md-3  hidden-print")(sidebar),
       div(cls := "col-lg-8 col-lg-push-1  col-md-9")(
-        postCreateDate.map(
-          createDate =>
-            div(span(cls := "glyphicon glyphicon-time"),
-                " " + createDate.format(dateFormat))
-        ),
-        postAuthor.map(
-          author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
+        div(cls := "hidden-print")(
+          postCreateDate.map(
+            createDate =>
+              div(span(cls := "glyphicon glyphicon-time"),
+                  " " + createDate.format(dateFormat))
+          ),
+          postAuthor.map(
+            author =>
+              div(span(cls := "glyphicon glyphicon-user"), "  " + author)
+          )
         ),
         tag("article")(renderTOCAndSections(postSections)),
         div(id := "disqus_thread", cls := "hidden-print")
@@ -50,7 +53,7 @@ trait HepekBootstrap3BlogPage
   /* CONTENT*/
   private def renderTOCAndSections(secs: List[Section], depth: Int = 1): Frag =
     frag(
-      div(cls := "panel-group")(
+      div(cls := "panel-group hidden-print")(
         div(cls := "panel panel-default")(
           div(cls := "panel-heading")(
             h4(cls := "panel-title")(
