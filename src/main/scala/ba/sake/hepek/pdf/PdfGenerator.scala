@@ -23,12 +23,13 @@ object PdfGenerator {
     // https://github.com/danfickle/openhtmltopdf/issues/214
 
     val doc          = new PDDocument()
+    val os           = new FileOutputStream(outputFile)
     val mathMlDrawer = new MathMLDrawer()
     val svgDrawer    = new BatikSVGDrawer()
 
     for (page <- pages) {
       val pagePath = targetFolder + "/" + page.relPath
-      val pageUri  = new File(pagePath).getParentFile.toURI.toString
+      val pageUri  = new File(pagePath).toURI.toString
       // XHTML-ify
       val document = org.jsoup.Jsoup.parse(page.render)
       document
@@ -46,8 +47,8 @@ object PdfGenerator {
       renderer.close()
     }
 
-    val os = new FileOutputStream(outputFile)
     doc.save(os)
+    doc.close()
     os.close()
 
     println(
