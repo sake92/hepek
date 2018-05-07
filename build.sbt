@@ -3,16 +3,22 @@ import com.typesafe.sbt.web.Import.WebKeys
 scalaVersion in ThisBuild := "2.12.4"
 scalafmtOnCompile in ThisBuild := true
 
+val openhtmltopdfVersion = "0.0.1-RC13"
+
 lazy val hepekProject = (project in file("."))
   .settings(
     name := "hepek",
     organization := "ba.sake",
     version := "0.1.1-SNAPSHOT",
     libraryDependencies ++= Seq(
-      "ba.sake"                  % "hepek-core" % "0.1.0-SNAPSHOT",
-      "com.lihaoyi"              %% "scalatags" % "0.6.7",
-      "com.atlassian.commonmark" % "commonmark" % "0.11.0",
-      "org.scalatest"            %% "scalatest" % "3.0.5" % "test"
+      "ba.sake"                  % "hepek-core"                   % "0.1.0-SNAPSHOT",
+      "com.lihaoyi"              %% "scalatags"                   % "0.6.7",
+      "com.atlassian.commonmark" % "commonmark"                   % "0.11.0",
+      "org.jsoup"                % "jsoup"                        % "1.11.3",
+      "com.openhtmltopdf"        % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
+      "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
+      "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
+      "org.scalatest"            %% "scalatest"                   % "3.0.5" % "test"
     ),
     resolvers += Resolver.sonatypeRepo("snapshots")
   )
