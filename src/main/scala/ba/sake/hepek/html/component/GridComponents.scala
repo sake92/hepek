@@ -39,7 +39,12 @@ object GridComponents {
   case class Third3(content: List[Frag])
 
   case class Ratio(values: List[Int])
-  case class Ratios(half: Ratio, third: Ratio)
+  case class Ratios(half: Ratio, third: Ratio) {
+    require(half.values.length == 2,
+            "Halves ratios must contain exactly 2 values.")
+    require(third.values.length == 3,
+            "Thirds ratios must contain exactly 3 values.")
+  }
   case class ScreenRatios(
       lg: Ratios,
       md: Option[Ratios] = None,
