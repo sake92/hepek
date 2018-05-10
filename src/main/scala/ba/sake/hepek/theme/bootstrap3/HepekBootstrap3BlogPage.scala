@@ -2,17 +2,11 @@ package ba.sake.hepek.theme.bootstrap3
 
 import scalatags.Text.all._
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
-import ba.sake.hepek.bootstrap3.component.{
-  AllBootstrapComponents,
-  BootstrapNavbarComponent
-}
+import ba.sake.hepek.bootstrap3.component.AllBootstrapComponents
 import ba.sake.hepek.html.structure.blog.BlogPostPage
 import ba.sake.hepek.html.structure.blog.Section
 
-trait HepekBootstrap3BlogPage
-    extends BlogPostPage
-    with BootstrapStaticPage
-    with BootstrapNavbarComponent {
+trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
 
   // avoid polluting user's namespace
   import AllBootstrapComponents._

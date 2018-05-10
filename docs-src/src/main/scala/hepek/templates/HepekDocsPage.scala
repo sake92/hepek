@@ -3,7 +3,7 @@ package hepek.templates
 import java.time.LocalDate
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure._
-import ba.sake.hepek.bootstrap3.blog.BootstrapBlogPage
+import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
@@ -13,7 +13,7 @@ import hepek.utils.Site
 import hepek.utils.Imports._, resources._
 
 trait HepekDocsPage
-    extends BootstrapBlogPage
+    extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
     with PrismDependencies {
 
@@ -40,29 +40,32 @@ trait HepekDocsStaticPage
   override def siteSettings = SiteSettings(
     Site.name,
     docs.Index,
-    Nil,
+    List(docs.Docs),
     Option(relTo(Images.favicon)),
     Option(relTo(Images.faviconSmall))
   )
 
-  override def styleURLs  = super.styleURLs :+ relTo(styles.css("main"))
+  override def styleURLs = super.styleURLs ++ List(
+    relTo(styles.css("main")),
+    "https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+  )
   override def scriptURLs = super.scriptURLs :+ relTo(scripts.js("main"))
 
-  override def screenRatios = super.screenRatios.copy(
-    sm = None,
-    xs = None
-  )
+  override def screenRatios = super.screenRatios.copy(sm = None, xs = None)
 
   override def pageContent =
     frag(
       super.pageContent,
-      raw(
-        """
-          <a href="https://github.com/sake92/hepek">
-            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9001;" 
-            src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
-          </a>
-        """
+      footer(cls := "text-center")(
+        hr,
+        div(cls := "btn-group btn-group-lg")(
+          hyperlink("https://github.com/sake92/hepek")(cls := "btn")(
+            faBrand("github")
+          ),
+          hyperlink("https://gitter.im/sake92/hepek")(cls := "btn")(
+            faBrand("gitter")
+          )
+        )
       )
     )
 

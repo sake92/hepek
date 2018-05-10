@@ -13,4 +13,7 @@ object Imports extends BasicComponents {
     override def siteRootPath = "docs"
   }
 
+  // FontAwesome 5 brand
+  def faBrand(name: String) = i(cls := s"fab fa-$name")
+
 }

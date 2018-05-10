@@ -8,8 +8,7 @@ import hepek.utils.Imports._
 
 object QuickStart extends HepekDocsPage {
 
-  override def pageTitle       = "Quickstart"
-  override def pageDescription = Option("Hepek quickstart")
+  override def pageTitle = "Quickstart"
 
   override def postSections = List(
     Section("Installation", installationSectionContent),
@@ -56,7 +55,7 @@ object QuickStart extends HepekDocsPage {
             If you really need a web server, I'd recommend [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb).
             Very simple to use, enough for static sites. :)
 
-            Deployment constist of copying the contents to your web host (e.g. Github pages).
+            Deployment consists of copying the contents to your web host (e.g. Github pages).
           """)
     )
 

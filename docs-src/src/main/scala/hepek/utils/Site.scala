@@ -1,6 +1,6 @@
 package hepek.utils
 
-import hepek.templates.HepekDocsPage
+import ba.sake.hepek.html.structure.blog.BlogPostPage
 import docs._
 
 object Site {
@@ -8,7 +8,7 @@ object Site {
   val url  = "http://sake92.github.io/hepek"
   val name = "hepek"
 
-  def pages: List[HepekDocsPage] = List(
+  def pages: List[BlogPostPage] = List(
     QuickStart,
     CodeWalkthrough
   )

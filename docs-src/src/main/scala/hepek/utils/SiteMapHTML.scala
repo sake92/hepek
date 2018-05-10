@@ -13,7 +13,12 @@ trait SiteMapHTML {
     ul(
       Site.pages.map { mp =>
         li(
-          hyperlink(renderingPage.relTo(mp))(mp.pageTitle)
+          hyperlink(renderingPage.relTo(mp))(mp.pageTitle),
+          ul(
+            mp.postSections.map { s =>
+              li(hyperlink(renderingPage.relTo(mp) + "#" + s.id)(s.name))
+            }
+          )
         )
       }
     )

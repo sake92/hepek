@@ -1,31 +1,22 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Hepek docs" /><title>Welcome! - hepek</title><link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" /><link rel="stylesheet" href="styles/main.css" /></head><body><div class="container-fluid"><div class="page-header text-center"><h1>Welcome!</h1></div><div class="row"><div class="col-lg-2 col-md-4"></div><div class="col-lg-8 col-md-4"><div class="well well-lg"><h3>Docs:</h3><div class="pages-toc"><ul><li><a href="quick-start.html">Quickstart</a></li><li><a href="code-walkthrough.html">Code walkthrough</a></li></ul></div></div><h2>What is hepek?</h2>
-<p>It is a tool that turns Scala <code>object</code>s into files.<br />
-Everything that can be represented as a <code>String</code> can be written to a file.</p>
-<p>How? By extending <code>Renderable</code> trait, directly or via some predefined abstraction.<br />
-Hepek takes content returned by <code>render</code> method and writes it to corresponding file.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="description" content="Hepek docs" /><title>Welcome! - hepek</title><link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css" /><link rel="stylesheet" href="styles/main.css" /><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" /><style>body { padding-top: 55px; }</style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="docs.html">Docs</a></li></ul></div></div></nav><div class="page-header text-center"><h1>Welcome!</h1></div><div class="row"><div class="col-lg-2 col-md-4"></div><div class="col-lg-8 col-md-4"><h2>What hepek does?</h2>
+<p>It turns Scala <code>object</code>s into files.<br />
+Everything you can <code>println</code> to screen hepek can write to a file. :)</p>
 <h2>What else?</h2>
-<p>It contains lots of useful abstractions for <em>rendering stuff</em>, like blogging, css layout, code highlighting.<br />
+<p>It contains lots of useful functions for <em>rendering stuff</em>,
+like blogging support, css layout, code highlighting.<br />
 There is no special new markup/template language to learn, just plain old <strong>Scala</strong>.<br />
 <code>Ctrl</code> + <code>Space</code> and you get all the help needed. :D<br />
-These abstractions are optional, you can construct your HTML with barebone strings if you want...<br />
-You can use Scalatags, Markdown or whatever you find useful.</p>
-<h2>Why should you use it?</h2>
-<p>Since you type content in Scala, you can use functions, for loops, data abstractions etc.<br />
-Say goodbye to emmet snippets and regex find-and-replace... :)<br />
-Functions are handy when you later want to typecheck your code examples or similar stuff.</p>
-<p>Also, static content is represented with Scala's <code>object</code>, you can manipulate those directly,
-to construct your RSS feed, sitemap.xml, PDF and Word docs.</p>
-<p>Sick of rewriting relative urls all over the place (<code>my/folder/../styles.....</code>)?<br />
-Just use <code>relTo</code> method and you're done! Hepek does that for you.</p>
-<p>Hepek uses <em>incremental rendering</em> by default,
-but you can turn it off if you want (LOL, why would you do that?).<br />
-If you change an object, it analyses its dependencies and renders objects which depende on it also.</p>
-<p>Linux, OSX, Windows supported? Of course.<br />
-Please report issues when you find them.</p>
+You can use Scalatags, Markdown or whatever syntax <strong>you</strong> find useful.</p>
+<h2>So what?</h2>
+<p>Say goodbye to emmet snippets and regex find-and-replace... :)<br />
+Now you can use functions, for loops, data abstractions etc. What more do you need really?</p>
+<p>Also, since content is just a Scala <code>object</code>, you can use it directly
+to construct table of contents, RSS feed, <code>sitemap.xml</code>, PDF and Word docs.</p>
+<p>Sick of rewriting relative urls all over the place, like <code>my/folder/../styles.....</code>?<br />
+Me too, the year is 2018, we can do better!<br />
+Just use <code>relTo</code> method and you're done! Hepek figures out path instead of you. ;)</p>
+<p>Hepek uses <em>incremental rendering</em> by default.<br />
+If you change an object, it renders objects which depend on it also. Neat!</p>
+<p>Linux, OSX, Windows supported? Of course. Thanks JVM!</p>
 <p>And, yes, this site is built with hepek. :)</p>
-</div><div class="col-lg-2 col-md-4"></div></div>
-          <a href="https://github.com/sake92/hepek">
-            <img style="position: absolute; top: 0; right: 0; border: 0; z-index: 9001;" 
-            src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
-          </a>
-        </div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="scripts/main.js"></script></body></html>
+</div><div class="col-lg-2 col-md-4"></div></div><footer class="text-center"><hr /><div class="btn-group btn-group-lg"><a href="https://github.com/sake92/hepek" class="btn"><i class="fab fa-github"></i></a><a href="https://gitter.im/sake92/hepek" class="btn"><i class="fab fa-gitter"></i></a></div></footer></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="scripts/main.js"></script></body></html>

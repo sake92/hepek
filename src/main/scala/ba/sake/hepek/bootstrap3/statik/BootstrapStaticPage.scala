@@ -4,9 +4,13 @@ package statik
 
 import scalatags.Text.all._
 import ba.sake.hepek.bootstrap3.component.AllBootstrapComponents
+import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent
 import ba.sake.hepek.html.structure.StaticPage
 
-trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
+trait BootstrapStaticPage
+    extends StaticPage
+    with BootstrapDependencies
+    with BootstrapNavbarComponent {
 
   // avoid polluting user's namespace
   import AllBootstrapComponents._

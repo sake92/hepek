@@ -24,42 +24,33 @@ object Index extends HepekDocsStaticPage {
       row(
         third1(),
         third2(
-          div(cls := "well well-lg")(
-            h3("Docs:"),
-            div(cls := "pages-toc")(SiteMapHTML.siteMap(this)),
-          ),
           md("""
-            ## What is hepek?
-            It is a tool that turns Scala `object`s into files.  
-            Everything that can be represented as a `String` can be written to a file.
-
-            How? By extending `Renderable` trait, directly or via some predefined abstraction.  
-            Hepek takes content returned by `render` method and writes it to corresponding file.
+            ## What hepek does?
+            It turns Scala `object`s into files.  
+            Everything you can `println` to screen hepek can write to a file. :)
 
             ## What else?
-            It contains lots of useful abstractions for *rendering stuff*, like blogging, css layout, code highlighting.  
+            It contains lots of useful functions for *rendering stuff*, 
+              like blogging support, css layout, code highlighting.  
             There is no special new markup/template language to learn, just plain old **Scala**.  
             `Ctrl` + `Space` and you get all the help needed. :D  
-            These abstractions are optional, you can construct your HTML with barebone strings if you want...  
-            You can use Scalatags, Markdown or whatever you find useful.
+            You can use Scalatags, Markdown or whatever syntax **you** find useful.
             
-            ## Why should you use it?
-            Since you type content in Scala, you can use functions, for loops, data abstractions etc.  
+            ## So what?
             Say goodbye to emmet snippets and regex find-and-replace... :)  
-            Functions are handy when you later want to typecheck your code examples or similar stuff.
+            Now you can use functions, for loops, data abstractions etc. What more do you need really?  
 
-            Also, static content is represented with Scala's `object`, you can manipulate those directly,
-              to construct your RSS feed, sitemap.xml, PDF and Word docs.
+            Also, since content is just a Scala `object`, you can use it directly
+              to construct table of contents, RSS feed, `sitemap.xml`, PDF and Word docs.  
 
-            Sick of rewriting relative urls all over the place (`my/folder/../styles.....`)?  
-            Just use `relTo` method and you're done! Hepek does that for you.
+            Sick of rewriting relative urls all over the place, like `my/folder/../styles.....`?  
+            Me too, the year is 2018, we can do better!  
+            Just use `relTo` method and you're done! Hepek figures out path instead of you. ;)
 
-            Hepek uses *incremental rendering* by default, 
-              but you can turn it off if you want (LOL, why would you do that?).  
-            If you change an object, it analyses its dependencies and renders objects which depende on it also.
+            Hepek uses *incremental rendering* by default.  
+            If you change an object, it renders objects which depend on it also. Neat!
 
-            Linux, OSX, Windows supported? Of course.  
-            Please report issues when you find them.
+            Linux, OSX, Windows supported? Of course. Thanks JVM!  
 
             And, yes, this site is built with hepek. :)
 

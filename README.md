@@ -8,18 +8,18 @@ Click [here](https://sake92.github.io/hepek)
 ## Examples
 
 - [official](https://github.com/sake92/hepek-examples)
-- [source code](https://github.com/sake92/sake-ba-source) for sake.ba site
+- [source code](https://github.com/sake92/sake-ba-source) of sake.ba site
 
 ## Features
 - full Scala support, statically typed templates etc.
 - **automatic relative paths**, with `relTo` method, OMG!!!
 - full Markdown support, [Commonmark](http://commonmark.org/) flavored
 - Prismjs code highlighter (typesafe)
-- Mathjax for math formulas, [AsciiMath](http://asciimath.org/) syntax, **even inside markdown**!
+- Mathjax for math formulas
 - **incremental** rendering, by default!
 - file watching with sbt
+- PDF rendering
 
 ## TODO
-- PDF rendering
 - dynamic pages support, e.g. replace Play's Twirl templates :)
 - integrate more CSS and JS libraries/frameworks
