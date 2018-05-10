@@ -17,7 +17,7 @@ trait HepekDocsPage
     with HepekDocsStaticPage
     with PrismDependencies {
 
-  val hlLangs = List("scala", "java")
+  val hlLangs = List("core", "clike", "scala", "java")
 
   override def prismTheme = "prism-twilight"
   override def prismJSDependencies = super.prismJSDependencies.filter { d =>

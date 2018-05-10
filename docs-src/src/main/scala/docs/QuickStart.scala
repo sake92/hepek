@@ -24,11 +24,10 @@ object QuickStart extends HepekDocsPage {
     frag(
       md("""
           Prerequisites:
-            - Java 8 JDK (because Scala 2.12 uses it)
+            - Java 8
             - sbt
 
-          There is a plan to support other build tools in the future: CBT, Mill, Gradle etc.  
-          Contributions are welcome.
+          It's planned to support other build tools in the future: Mill, Gradle etc.  
         """)
     )
 

@@ -16,4 +16,12 @@ object Imports extends BasicComponents {
   // FontAwesome 5 brand
   def faBrand(name: String) = i(cls := s"fab fa-$name")
 
+  // class field/method description
+  case class ClassProperty(
+      name: String,
+      tpe: String,
+      desc: String = "",
+      defaultValue: Option[String] = None
+  )
+
 }
