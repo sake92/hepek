@@ -7,7 +7,7 @@ import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
-import ba.sake.hepek.prismjs.PrismDependencies
+import ba.sake.hepek.prismjs
 import hepek.images.Images
 import hepek.utils.Site
 import hepek.utils.Imports._, resources._
@@ -15,11 +15,11 @@ import hepek.utils.Imports._, resources._
 trait HepekDocsPage
     extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
-    with PrismDependencies {
+    with prismjs.PrismDependencies {
 
   val hlLangs = List("core", "clike", "scala", "java")
 
-  override def prismTheme = "prism-twilight"
+  override def prismTheme = prismjs.Themes.Okaidia
   override def prismJSDependencies = super.prismJSDependencies.filter { d =>
     if (d.contains("component")) {
       hlLangs.exists(l => d.contains(s"prism-$l."))
@@ -48,6 +48,11 @@ trait HepekDocsStaticPage
   override def styleURLs = super.styleURLs ++ List(
     relTo(styles.css("main")),
     "https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+  )
+  override def bootstrapCSSDependencies = List(
+    DependencyProvider.cdnjs.depPath(
+      Dependency("yeti/bootstrap.min.css", bootstrapVersion, "bootswatch")
+    )
   )
   override def scriptURLs = super.scriptURLs :+ relTo(scripts.js("main"))
 
