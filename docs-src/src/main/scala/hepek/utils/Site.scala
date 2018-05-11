@@ -11,6 +11,7 @@ object Site {
   def pages: List[BlogPostPage] = List(
     QuickStart,
     StaticPage,
+    BlogPage,
     CodeWalkthrough
   )
 

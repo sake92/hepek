@@ -26,8 +26,16 @@ object StaticPage extends HepekDocsPage {
                   "List[StaticPage] ",
                   "Pages to display in navbar",
                   Some("List.empty")),
-    ClassProperty("faviconNormal", "Option[String]", "abc", Some("None")),
-    ClassProperty("faviconInverted", "Option[String]", "abc", Some("None"))
+    ClassProperty("faviconNormal",
+                  "Option[String]",
+                  "Favicon of the site",
+                  Some("None")),
+    ClassProperty(
+      "faviconInverted",
+      "Option[String]",
+      "Favicon with alternative color, can be used in navbar for example",
+      Some("None")
+    )
   )
 
   /* CONTENT */
@@ -43,23 +51,7 @@ object StaticPage extends HepekDocsPage {
         The page will be blank, but we need to start from the somewhere.  
         `SiteSettings` has the following fields:
       """),
-      table(cls := "table table-hover")(
-        tr(th("Name"),
-           th("Type"),
-           th("Mandatory"),
-           th("Default value"),
-           th("Description")),
-        siteSettingsProps.map {
-          case ClassProperty(name, tpe, desc, defaultValue) =>
-            tr(
-              td(name),
-              td(tpe),
-              td(if (defaultValue.isDefined) "No" else "Yes"),
-              td(defaultValue),
-              td(desc)
-            )
-        }
-      ),
+      renderClassProps(siteSettingsProps),
       md("`SiteSettings` are usually defined in a common trait, for example:"),
       chl.scala("""
         trait MySiteTemplate extends StaticSite {
