@@ -1,47 +1,80 @@
 package ba.sake.hepek.pdf
 
-import java.io._
+import java.io.File
+import java.io.FileOutputStream
+import ba.sake.hepek.core.Renderable
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder
 import com.openhtmltopdf.mathmlsupport.MathMLDrawer
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer
 import org.apache.pdfbox.pdmodel.PDDocument
-import ba.sake.hepek.core.Renderable
+import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
+import org.openqa.selenium.support.ui.ExpectedCondition
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.support.ui.WebDriverWait
 
+case class Font(
+    file: File,
+    family: String
+)
+
+/**
+  * You must have Chrome WebDriver installed and its path added to 'webdriver.chrome.driver' environment variable, e.g.
+  * <code>System.setProperty("webdriver.chrome.driver", """C:\selenium\chromedriver.exe""")</code>
+  */
 object PdfGenerator {
 
   def generate(
       outputFile: File,
       targetFolder: String,
-      pages: List[Renderable]
+      pages: List[Renderable],
+      fonts: List[Font] = List.empty, // additional fonts to use
+      loadJsConditions: List[String] = List.empty // page loaded conds
   ): Unit = {
     if (pages.isEmpty) {
       println("List of pages is empty. PDF rendering aborted.")
       return
     }
+    /* check fonts exist */
+    fonts.foreach { f =>
+      if (!f.file.exists) {
+        println(
+          "Font family '" + f.family + "' does not exist. PDF rendering aborted."
+        )
+        return
+      }
+    }
 
     // special thx to @danfickle:
     // https://github.com/danfickle/openhtmltopdf/issues/214
-
     val doc          = new PDDocument()
     val os           = new FileOutputStream(outputFile)
     val mathMlDrawer = new MathMLDrawer()
     val svgDrawer    = new BatikSVGDrawer()
 
+    val options = new ChromeOptions()
+    options.addArguments("headless")
+    options.addArguments("window-size=1200x600")
+    val driver = new ChromeDriver(options)
+
     for (page <- pages) {
       val pagePath = targetFolder + "/" + page.relPath
       val pageUri  = new File(pagePath).toURI.toString
-      // XHTML-ify
-      val document = org.jsoup.Jsoup.parse(page.render)
-      document
-        .outputSettings()
-        .syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml)
-      val pageContent = document.html()
-      // content
+      // let chrome execute JS and stuff
+      // e.g. PrismJs, MathJax
+      // then we use that final HTML to render PDF
+      driver.get(pageUri)
       val builder = new PdfRendererBuilder()
-      builder.withHtmlContent(pageContent, pageUri)
       builder.usePDDocument(doc)
       builder.useMathMLDrawer(mathMlDrawer)
       builder.useSVGDrawer(svgDrawer)
+      fonts.foreach { f =>
+        builder.useFont(f.file, f.family)
+      }
+      waitForLoad(driver, loadJsConditions) // this is essential! :D
+      val pageHtmlAfterJs = driver.getPageSource
+      builder.withHtmlContent(pageHtmlAfterJs, pageUri)
       val renderer = builder.buildPdfRenderer()
       renderer.createPDFWithoutClosing()
       renderer.close()
@@ -50,10 +83,30 @@ object PdfGenerator {
     doc.save(os)
     doc.close()
     os.close()
+    driver.close()
 
+    println("*" * 77)
     println(
       "PDF with " + doc.getPages.getCount + " pages rendered to file: " + outputFile.getAbsoluteFile
     )
+    println("*" * 77)
+  }
+
+  // wait page to load, max time is 10 seconds
+  // see example2 @ https://www.testingexcellence.com/webdriver-wait-page-load-example-java/
+  private def waitForLoad(driver: WebDriver, loadJsConditions: List[String]) {
+    var jsConditions = "document.readyState == 'complete'"
+    if (loadJsConditions.nonEmpty) {
+      jsConditions += " && " + loadJsConditions.mkString(" && ")
+    }
+    jsConditions = "return (" + jsConditions + ");"
+    val pageLoadCondition: ExpectedCondition[Boolean] = d => {
+      val jsEx = d.asInstanceOf[JavascriptExecutor]
+      val res  = jsEx.executeScript(jsConditions)
+      res.toString.equals("true")
+    }
+    val wait = new WebDriverWait(driver, 10)
+    wait.until(pageLoadCondition)
   }
 
 }

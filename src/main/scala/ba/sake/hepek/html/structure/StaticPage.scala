@@ -17,6 +17,9 @@ trait StaticPage
   def pageCategory: Option[String]    = None
   def pageDescription: Option[String] = None
 
+  def renderPretty = false
+  def renderXhtml  = false
+
   // <head>
   def headContent: List[Frag] =
     List(
@@ -43,8 +46,8 @@ trait StaticPage
   // <body>
   def bodyContent: List[Frag] = List.empty
 
-  override def render: String =
-    "<!DOCTYPE html>" +
+  override def render: String = {
+    val rawContent = "<!DOCTYPE html>" +
       html(lang := pageLanguage)(
         head(
           headContent ++
@@ -54,9 +57,25 @@ trait StaticPage
         body(
           bodyContent ++
             scriptURLs.map(u => script(src := u)) ++
-            scriptsInline.map(s => script(s))
+            scriptsInline.map(s => script(raw(s)))
         )
       )
+    if (renderXhtml || renderPretty) {
+      val document = org.jsoup.Jsoup.parse(rawContent)
+      document
+        .outputSettings()
+        .prettyPrint(renderPretty)
+      if (renderXhtml) {
+        document
+          .outputSettings()
+          .syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml)
+      }
+      document.html
+    } else {
+      rawContent
+    }
+  }
+
 }
 
 case class SiteSettings(

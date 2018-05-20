@@ -18,6 +18,7 @@ lazy val hepekProject = (project in file("."))
       "com.openhtmltopdf"        % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
+      "org.seleniumhq.selenium"  % "selenium-java"                % "2.52.0",
       "org.scalatest"            %% "scalatest"                   % "3.0.5" % "test"
     ),
     resolvers += Resolver.sonatypeRepo("snapshots")

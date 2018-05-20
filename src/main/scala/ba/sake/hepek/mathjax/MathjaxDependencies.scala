@@ -5,7 +5,7 @@ import ba.sake.hepek.html.structure._
 trait MathjaxDependencies extends PageDependencies {
 
   def mathjaxVersion: String                  = "2.7.2"
-  def mathjaxConfig: String                   = "AM_CHTML"
+  def mathjaxConfig: String                   = "TeX-MML-AM_CHTML"
   def mathjaxDepsProvider: DependencyProvider = DependencyProvider.cdnjs
 
   def mathjaxJSDependencies: List[String] =
