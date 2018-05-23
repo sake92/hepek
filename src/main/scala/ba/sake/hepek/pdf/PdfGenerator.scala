@@ -25,6 +25,52 @@ case class Font(
   */
 object PdfGenerator {
 
+  private val inlineSvgsScript =
+    """
+// callback to notify ChromeDriver that this script is finished :)
+var callback = arguments[arguments.length - 1];
+
+var svgs = document.querySelectorAll('object[type="image/svg+xml"]');
+if (svgs.length < 1) {
+    callback("Finished SVG inlining (0 SVGs found).");
+} else {
+    var processedSvgsCount = 0;
+    svgs.forEach((el) => {
+        const imgID = el.getAttribute('id');
+        const imgClass = el.getAttribute('class');
+        const imgURL = el.getAttribute('data');
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', imgURL, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xhr.responseText, 'text/html');
+                let svg = xmlDoc.querySelector('svg');
+
+                if (typeof imgID !== 'undefined') {
+                    svg.setAttribute('id', imgID);
+                }
+                if (typeof imgClass !== 'undefined') {
+                    svg.setAttribute('class', imgClass + ' replaced-svg');
+                }
+                svg.removeAttribute('xmlns:a');
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+
+                el.parentNode.replaceChild(svg, el);
+
+                processedSvgsCount++;
+                if (processedSvgsCount == svgs.length) {
+                    callback("Finished SVG inlining.");
+                }
+            }
+        };
+        xhr.send();
+    });
+}
+  """
+
   def generate(
       outputFile: File,
       targetFolder: String,
@@ -45,6 +91,21 @@ object PdfGenerator {
         return
       }
     }
+    // create folder if doesn't exist
+    if (outputFile.getParentFile != null) {
+      outputFile.getParentFile().mkdirs()
+    }
+    // Chrome driver for loading pages
+    val options = new ChromeOptions()
+    options.addArguments("headless") // don't open Chrome window...
+    options.addArguments("window-size=1200x600")
+    options.addArguments("disable-web-security") // Ajax doesn't work without this !!!
+
+    val driver = new ChromeDriver(options)
+    driver
+      .manage()
+      .timeouts()
+      .setScriptTimeout(7, java.util.concurrent.TimeUnit.SECONDS)
 
     // special thx to @danfickle:
     // https://github.com/danfickle/openhtmltopdf/issues/214
@@ -52,11 +113,6 @@ object PdfGenerator {
     val os           = new FileOutputStream(outputFile)
     val mathMlDrawer = new MathMLDrawer()
     val svgDrawer    = new BatikSVGDrawer()
-
-    val options = new ChromeOptions()
-    options.addArguments("headless")
-    options.addArguments("window-size=1200x600")
-    val driver = new ChromeDriver(options)
 
     for (page <- pages) {
       val pagePath = targetFolder + "/" + page.relPath
@@ -72,6 +128,7 @@ object PdfGenerator {
       fonts.foreach { f =>
         builder.useFont(f.file, f.family)
       }
+      val asyncRes = driver.executeAsyncScript(inlineSvgsScript)
       waitForLoad(driver, loadJsConditions) // this is essential! :D
       val pageHtmlAfterJs = driver.getPageSource
       builder.withHtmlContent(pageHtmlAfterJs, pageUri)
@@ -101,9 +158,9 @@ object PdfGenerator {
     }
     jsConditions = "return (" + jsConditions + ");"
     val pageLoadCondition: ExpectedCondition[Boolean] = d => {
-      val jsEx = d.asInstanceOf[JavascriptExecutor]
-      val res  = jsEx.executeScript(jsConditions)
-      res.toString.equals("true")
+      val jsEx                  = d.asInstanceOf[JavascriptExecutor]
+      val jsConditionsSatisfied = jsEx.executeScript(jsConditions)
+      jsConditionsSatisfied.toString.equals("true")
     }
     val wait = new WebDriverWait(driver, 10)
     wait.until(pageLoadCondition)
