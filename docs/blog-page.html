@@ -3,6 +3,7 @@
         padding-top: 12px;
       }
     </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="docs.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="page-header text-center hidden-print"><h1>Blog page</h1></div></div><div class="row"><div class="col-lg-2 col-lg-push-1  col-md-3  hidden-print"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Quickstart</a></li><li class=""><a href="static-page.html">Static page</a></li><li class="active"><a href="blog-page.html">Blog page</a></li><li class=""><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></div><div class="col-lg-8 col-lg-push-1  col-md-9"><div class="hidden-print"></div><article><div class="panel-group hidden-print"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapseTOC">Table of Contents</a></h4></div><div id="collapseTOC" class="panel-collapse collapse"><div class="panel-body pages-toc"><ul><li><a href="#blog-post-settings">Blog post settings</a></li><ul></ul><li><a href="#sections">Sections</a></li><ul></ul><li><a href="#related-posts">Related posts</a></li><ul></ul></ul></div></div></div></div><div><section><h2 id="blog-post-settings">Blog post settings</h2><p>When you extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/html/structure/blog/BlogPostPage.scala"><code>BlogPostPage</code></a> you get support for a blog post page.<br />
+For a Bootstrap-themed page extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/theme/bootstrap3/HepekBootstrap3BlogPage.scala"><code>HepekBootstrap3BlogPage</code></a>.<br />
 <code>BlogPostPage</code> has the following fields:</p>
 <table class="table table-hover"><tr><th>Name</th><th>Type</th><th>Mandatory</th><th>Default value</th><th>Description</th></tr><tr><td>postAuthor</td><td>Option[String]</td><td>No</td><td>None</td><td>Author of the post</td></tr><tr><td>postCreateDate</td><td>Option[LocalDate]</td><td>No</td><td>None</td><td>Date when the post was written</td></tr><tr><td>postSections</td><td>List[Section] </td><td>No</td><td>List.empty</td><td>Sections of the post</td></tr><tr><td>categoryPosts</td><td>List[BlogPostPage]</td><td>No</td><td>List.empty</td><td>Related posts, from same category</td></tr></table></section><section><h2 id="sections">Sections</h2><p>You need to override the <code>postSections</code> method.<br />
 A blog post is made from sections, so you can render a nice TOC (or even a PDF later, why not?).<br />
@@ -23,10 +24,10 @@ Code usually looks similar to this:</p>
             p(&quot;Thanks for visiting!&quot;)
           )
         }
-      </code></pre></section><section><h2 id="related-posts">Related posts</h2><p>Also note the <code>categoryPosts</code> method.
-It is used for grouping posts. Posts that belong to same &quot;category&quot;.<br />
-Often you want to have a sidebar with related posts.</p>
-<p>Let's say you are writing math tutorials.<br />
+      </code></pre></section><section><h2 id="related-posts">Related posts</h2><p>Note the <code>categoryPosts</code> method.
+It is used for grouping posts, posts that belong to same &quot;category&quot;.<br />
+Also, usually you'll want to have a sidebar with related posts links.</p>
+<p><em>Example</em>: Let's say you are writing math tutorials.<br />
 You'll have separate templates for different topics:
 <code>SetTheoryTemplate</code>, <code>AlgebraTemplate</code> etc.<br />
 In each template you populate <code>categoryPosts</code> list and you'll get a nice sidebar. :)</p>

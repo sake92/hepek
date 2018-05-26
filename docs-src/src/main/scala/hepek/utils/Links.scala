@@ -17,10 +17,13 @@ object links {
   val PageDependenciesUrl = hepekUrl + "/html/structure/PageDependencies.scala"
   // bootstrap
   val BootstrapGridComponentsUrl = hepekUrl + "/bootstrap3/component/BootstrapGridComponents.scala"
+  val BootstrapStaticPageUrl     = hepekUrl + "/bootstrap3/statik/BootstrapStaticPage.scala"
   // prismJs
   val PrismCodeHighlightComponentsUrl = hepekUrl + "/prismjs/PrismCodeHighlightComponents.scala"
   val PrismJSExampleUrl               = hepekExamplesUrl + "/prismjs/src/main/scala/example/PrismJSExample.scala"
   // prismJs
   val KatexDependenciesUrl = hepekUrl + "/katex/KatexDependencies.scala"
+  // themes
+  val HepekBootstrap3BlogPagesUrl = hepekUrl + "/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
 
 }

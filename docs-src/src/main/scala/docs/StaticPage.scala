@@ -45,6 +45,7 @@ object StaticPage extends HepekDocsPage {
         - `def siteSettings: SiteSettings` so that your page has a Home button
 
         The page will be blank, but we need to start from the somewhere.  
+        If you want it to be a bit prettier, then extend [`BootstrapStaticPage`](${links.BootstrapStaticPageUrl}).  
         `SiteSettings` has the following fields:
       """),
       renderClassProps(siteSettingsProps),

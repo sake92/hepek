@@ -40,6 +40,7 @@ object BlogPage extends HepekDocsPage {
     frag(
       md(s"""
         When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a blog post page.  
+        For a Bootstrap-themed page extend [`HepekBootstrap3BlogPage`](${links.HepekBootstrap3BlogPagesUrl}).  
         `BlogPostPage` has the following fields:
       """),
       renderClassProps(blogPageSettingsProps)
@@ -77,11 +78,11 @@ object BlogPage extends HepekDocsPage {
   val relatedPostsSection = Section(
     "Related posts",
     md("""
-      Also note the `categoryPosts` method. 
-      It is used for grouping posts. Posts that belong to same "category".  
-      Often you want to have a sidebar with related posts.  
+      Note the `categoryPosts` method. 
+      It is used for grouping posts, posts that belong to same "category".  
+      Also, usually you'll want to have a sidebar with related posts links.  
 
-      Let's say you are writing math tutorials.  
+      *Example*: Let's say you are writing math tutorials.  
       You'll have separate templates for different topics: 
         `SetTheoryTemplate`, `AlgebraTemplate` etc.  
       In each template you populate `categoryPosts` list and you'll get a nice sidebar. :)
