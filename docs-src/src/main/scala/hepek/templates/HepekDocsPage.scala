@@ -17,7 +17,7 @@ trait HepekDocsPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
 
-  val hlLangs = List("core", "clike", "scala", "java")
+  val hlLangs = List("core", "clike", "scala", "java", "markup")
 
   override def prismTheme = prismjs.Themes.Okaidia
   override def prismJSDependencies = super.prismJSDependencies.filter { d =>

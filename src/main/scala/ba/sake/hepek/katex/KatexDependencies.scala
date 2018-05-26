@@ -17,14 +17,26 @@ trait KatexDependencies extends PageDependencies {
       )
     )
 
+// https://en.wikipedia.org/wiki/Acute_accent
+  // couldn't find better escape character, all other are used in Markdown
+  def katexJsInlineDependencies: List[String] =
+    List("""
+        renderMathInElement(
+          document.body, {
+            delimiters: [
+              { left: "´", right: "´", display: false }, // inline
+              { left: "´´", right: "´´", display: true } // block, centered
+            ]
+        });
+      """)
+
   def katexCssDependencies: List[String] =
     List(
-      katexDepsProvider.depPath(
-        Dependency("katex.min.css", katexVersion, pkg)
-      )
+      katexDepsProvider.depPath(Dependency("katex.min.css", katexVersion, pkg))
     )
 
-  override def scriptURLs = super.scriptURLs ++ katexJsDependencies
-  override def styleURLs  = super.styleURLs ++ katexCssDependencies
+  override def scriptURLs    = super.scriptURLs ++ katexJsDependencies
+  override def scriptsInline = super.scriptsInline ++ katexJsInlineDependencies
+  override def styleURLs     = super.styleURLs ++ katexCssDependencies
 
 }

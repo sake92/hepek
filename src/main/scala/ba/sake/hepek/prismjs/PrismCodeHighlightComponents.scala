@@ -438,7 +438,13 @@ object BaseCodeHighlighter {
     val languageClass = s"language-$lang "
     codeSource match {
       case PlainText(text) => {
-        val content: Frag = if (isMarkup) raw(s"<!--$text-->") else text
+        val content: Frag = if (isMarkup) {
+          val unindentedMarkup =
+            ba.sake.hepek.utils.StringUtils.unindent(text).trim
+          raw(s"<!--$unindentedMarkup-->")
+        } else {
+          text
+        }
         pre(cls := classesString, attrs)(
           code(cls := languageClass)(content)
         )

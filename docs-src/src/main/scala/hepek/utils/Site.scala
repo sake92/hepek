@@ -12,6 +12,11 @@ object Site {
     QuickStart,
     StaticPage,
     BlogPage,
+    Layout,
+    Dependencies,
+    CodeHighlighter,
+    MathSupport,
+    PdfGenerator,
     CodeWalkthrough
   )
 

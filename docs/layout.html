@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Layout - hepek</title><link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/yeti/bootstrap.min.css" /><link rel="stylesheet" href="styles/main.css" /><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/themes/prism-okaidia.min.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/autolinker/prism-autolinker.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/command-line/prism-command-line.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/line-highlight/prism-line-highlight.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/line-numbers/prism-line-numbers.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/previewers/prism-previewers.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/toolbar/prism-toolbar.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/unescaped-markup/prism-unescaped-markup.css" /><style>body { padding-top: 55px; }</style><style>
+      article {
+        padding-top: 12px;
+      }
+    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="docs.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="page-header text-center hidden-print"><h1>Layout</h1></div></div><div class="row"><div class="col-lg-2 col-lg-push-1  col-md-3  hidden-print"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Quickstart</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class="active"><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></div><div class="col-lg-8 col-lg-push-1  col-md-9"><div class="hidden-print"></div><article><div class="panel-group hidden-print"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapseTOC">Table of Contents</a></h4></div><div id="collapseTOC" class="panel-collapse collapse"><div class="panel-body pages-toc"><ul><li><a href="#layout-support">Layout support</a></li><ul><li><a href="#problem">Problem</a></li><ul></ul><li><a href="#hepek-grid">Hepek grid</a></li><ul><li><a href="#configuration">Configuration</a></li><ul></ul></ul></ul></ul></div></div></div></div><div><section><h2 id="layout-support">Layout support</h2><p>Let's see what Hepek has to offer regarding layouts.</p>
+</section><section><h3 id="problem">Problem</h3><p>Most static site generators have themes with predefined layout.<br />
+What if you just want to position an image to the right? Not so fast!<br />
+Then you mix in some inline HTML in your beautiful markdown and get a real mess...</p>
+<p>Hepek provides simple grid support, with typesafe columns nesting and flexible config.<br />
+Currently, only Bootstrap 3 is supported. More layouts/frameworks to come in the future!<br />
+It's not hard to forget that sum of columns in a Bootstrap row must be 12.
+For example:</p>
+<pre class="line-numbers" data-start="1"><code class="language-markup "><!--<div class="row">
+  <div class="col-sm-6"></div>
+  <div class="col-sm-7"></div>
+</div>--></code></pre><p>This won't yield wanted result, it will always stack the divs...</p>
+</section><section><h3 id="hepek-grid">Hepek grid</h3><p>Hepek has <code>row</code> abstraction, with 3 possible types of arguments:</p>
+<ul>
+<li>arbitrary HTML, just type anything inside</li>
+<li>halves, constructed with <code>half1</code> and <code>half2</code></li>
+<li>thirds, constructed with <code>third1</code>, <code>third2</code> and <code>third3</code></li>
+</ul>
+<p>You just need to import or extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/bootstrap3/component/BootstrapGridComponents.scala"><code>BootstrapGridComponents</code></a>.
+Shouldn't be hard to add support for other frameworks also.<br />
+So, in a nutshell, these will compile:</p>
+<pre class="line-numbers" data-start="1"><code class="language-scala ">
+        row( /* insert Scalatags here */ ),
+        row(
+          half1( /* content */  ),
+          half2(...)
+        ),
+        row(
+          third1(...),
+          third2(...),
+          third3(...)
+        )
+      </code></pre><p>These won't:</p>
+<pre class="line-numbers" data-start="1"><code class="language-scala ">
+        row(
+          half1(...),
+          half1(...) // half2 is expected here...
+        ),
+        row(
+          third3(...), // can't come first, duh
+          third2(...),
+          third3(...)
+        )
+      </code></pre></section><section><h4 id="configuration">Configuration</h4><p>Halves and thirds use the <code>screenRatios</code> configuration.
+Defaults are same width columns, as expected.<br />
+You can configure each screen size separately, just like in Bootstrap 3:
+<code>lg</code>,<code>md</code>, <code>sm</code> and <code>xs</code>.
+Example:</p>
+<pre class="line-numbers" data-start="1"><code class="language-scala ">
+        val lgHalfRatio  = Ratio(List(5, 7))    // 5:7
+        val lgThirdRatio = Ratio(List(4, 3, 5)) // 4:3:5
+
+        val mdHalfRatio  = Ratio(List(8, 4))    // 8:4
+        val mdThirdRatio = Ratio(List(6, 4, 2)) // 6:4:2
+
+        override def screenRatios = super.screenRatios.copy(
+          lg = Ratios(lgHalfRatio, lgThirdRatio),
+          md = Option(Ratios(mdHalfRatio, mdThirdRatio)),
+          sm = None,
+          xs = None
+        )
+      </code></pre><p>These are pretty self-explanatory. For large screens, halves have 5:7 ratio.<br />
+So, <code>half1</code> will get <code>col-lg-5</code> class, and <code>half2</code> will get <code>col-lg-7</code> class.<br />
+Same pattern follows for thirds  etc.</p>
+<p>Notice that <code>sm</code> and <code>xs</code> have <code>None</code> as value. These won't be filled at all.<br />
+This means that on small and extra-small screens these columns will stack like divs normally do.</p>
+</section></div></article><div id="disqus_thread" class="hidden-print"></div></div></div><footer class="text-center"><hr /><div class="btn-group btn-group-lg"><a href="https://github.com/sake92/hepek" class="btn"><i class="fab fa-github"></i></a><a href="https://gitter.im/sake92/hepek" class="btn"><i class="fab fa-gitter"></i></a></div></footer></div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script><script src="https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="scripts/main.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-clike.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-java.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-markup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/components/prism-scala.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/autolinker/prism-autolinker.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/command-line/prism-command-line.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/data-uri-highlight/prism-data-uri-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/file-highlight/prism-file-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/jsonp-highlight/prism-jsonp-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/line-highlight/prism-line-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/line-numbers/prism-line-numbers.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/previewers/prism-previewers.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/toolbar/prism-toolbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/unescaped-markup/prism-unescaped-markup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/show-language/prism-show-language.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.11.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script></body></html>

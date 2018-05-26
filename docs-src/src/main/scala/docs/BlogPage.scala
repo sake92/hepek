@@ -3,8 +3,7 @@ package docs
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure.blog.Section
 import hepek.templates.HepekDocsPage
-import hepek.utils.SiteMapHTML
-import hepek.utils.Imports._
+import hepek.utils._, Imports._
 
 object BlogPage extends HepekDocsPage {
 
@@ -15,9 +14,6 @@ object BlogPage extends HepekDocsPage {
     sectionsSection,
     relatedPostsSection
   )
-
-  val blogPageUrl =
-    "https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/html/structure/blog/BlogPostPage.scala"
 
   val blogPageSettingsProps = List(
     ClassProperty("postAuthor",
@@ -43,7 +39,7 @@ object BlogPage extends HepekDocsPage {
     "Blog post settings",
     frag(
       md(s"""
-        When you extend [`BlogPostPage`]($blogPageUrl) you get support for a blog post page.  
+        When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a blog post page.  
         `BlogPostPage` has the following fields:
       """),
       renderClassProps(blogPageSettingsProps)
@@ -67,7 +63,7 @@ object BlogPage extends HepekDocsPage {
           val firstSection = Section(
             "Hello world!",
             p("Welcome to my blog!"),
-            innerSection // child section
+            List(innerSection) // child sections, optional
           )
           val innerSection = Section(
             "Goodbye!",

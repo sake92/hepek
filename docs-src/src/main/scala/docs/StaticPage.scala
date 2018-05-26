@@ -3,8 +3,7 @@ package docs
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure.blog.Section
 import hepek.templates.HepekDocsPage
-import hepek.utils.SiteMapHTML
-import hepek.utils.Imports._
+import hepek.utils._, Imports._
 
 object StaticPage extends HepekDocsPage {
 
@@ -15,9 +14,6 @@ object StaticPage extends HepekDocsPage {
     bodyContentSection,
     headContentSection
   )
-
-  val staticPageUrl =
-    "https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/html/structure/StaticPage.scala"
 
   val siteSettingsProps = List(
     ClassProperty("name", "String", "Name of the site"),
@@ -43,7 +39,7 @@ object StaticPage extends HepekDocsPage {
     "Basic settings",
     frag(
       md(s"""
-        When you extend [`StaticPage`]($staticPageUrl) you get basic support for HTML page.  
+        When you extend [`StaticPage`](${links.StaticPageUrl}) you get basic support for HTML page.  
         You must implement the following methods:
         - `def pageTitle: String` so that your page has a title
         - `def siteSettings: SiteSettings` so that your page has a Home button

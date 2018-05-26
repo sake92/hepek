@@ -3,8 +3,7 @@ package docs
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure.blog.Section
 import hepek.templates.HepekDocsPage
-import hepek.utils.SiteMapHTML
-import hepek.utils.Imports._
+import hepek.utils._, Imports._
 
 object QuickStart extends HepekDocsPage {
 
@@ -15,9 +14,6 @@ object QuickStart extends HepekDocsPage {
     usingSection,
     servingSection
   )
-
-  /* CONSTS */
-  val starterProjectURL = "https://github.com/sake92/hepek-starter"
 
   /* CONTENT */
   val installationSection = Section(
@@ -34,7 +30,7 @@ object QuickStart extends HepekDocsPage {
   val usingSection = Section(
     "Using",
     md(s"""
-      Download the starter project from [here]($starterProjectURL) and you're ready to roll.  
+      Download the starter project from [here](${links.StarterProjectURL}) and you're ready to roll.  
       Start up sbt console and type `hepek`.  
       Voila, that's it! :)
 
