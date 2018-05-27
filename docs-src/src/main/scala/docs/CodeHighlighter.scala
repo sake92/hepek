@@ -27,18 +27,15 @@ object CodeHighlighter extends HepekDocsPage {
 
         Example:
       """),
-      chl.scala(
-        StringContext
-          .treatEscapes("""
-        chl.java(\"\"\"
+      chl.scala(s"""
+        chl.java(""\"
           public class HelloWorld {
               public static void main(String[] args) {
                   System.out.println("Hello, Java!"); // a comment
               }
           }
-        \"\"\")
-      """)
-      ),
+        ""\")
+      """),
       md("gets rendered as:"),
       chl.java("""
         public class HelloWorld {
