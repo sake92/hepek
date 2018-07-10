@@ -9,7 +9,7 @@ lazy val hepekProject = (project in file("."))
   .settings(
     name := "hepek",
     organization := "ba.sake",
-    version := "0.1.1-SNAPSHOT",
+    version := "0.1.2-SNAPSHOT",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.0-SNAPSHOT",
       "com.lihaoyi"              %% "scalatags"                   % "0.6.7",
