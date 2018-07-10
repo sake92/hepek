@@ -25,7 +25,7 @@ trait KatexDependencies extends PageDependencies {
           document.body, {
             delimiters: [
               { left: "´", right: "´", display: false }, // inline
-              { left: "´´", right: "´´", display: true } // block, centered
+              { left: "$$", right: "$$", display: true } // block, centered
             ]
         });
       """)

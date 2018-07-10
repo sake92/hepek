@@ -8,12 +8,18 @@ Also, hepek supports PDF rendering only with KaTeX!</p>
 <p>KaTeX supports only LaTeX syntax, but you'll get used to it quickly.<br />
 Of course, you need to extend <a href="${links.KatexDependenciesUrl}"><code>KatexDependencies</code></a>.</p>
 <p>Since Hepek supports Markdown, it is hard to find an unused delimiter character.<br />
-Hepek chose acute accent mark, or &quot;forward-tick&quot;, <code>´</code>.
+Hepek chose acute accent mark (&quot;forward-tick&quot;), <code>´</code> for inline math.
 On Windows the shortcut is <kbd>AltGr</kbd>+<kbd>9</kbd>.</p>
+<p>For block-level math double-dollar is used, <code>$$</code>.</p>
 <p>Example:</p>
   <pre>´A \setminus B = {x | x \in A \land x \notin B}´</pre>  
 <p>becomes:<br />
 ´A \setminus B = \{x | x \in A \land x \notin B\}´.</p>
+<hr />
+<p>Example (block-level):</p>
+  <pre>$$A \setminus B = {x | x \in A \land x \notin B}$$</pre>  
+<p>becomes:<br />
+$$A \setminus B = \{x | x \in A \land x \notin B\}$$</p>
 <p>You need to be careful with Scala's character escaping, e.g. when you want to type
 <code>\notin</code> Scala will try to parse <code>\n</code> as newline...
 So you'll get into that with trial and error. xD</p>
@@ -22,7 +28,7 @@ So you'll get into that with trial and error. xD</p>
           document.body, {
             delimiters: [
               { left: "´", right: "´", display: false }, // inline
-              { left: "´´", right: "´´", display: true } // block, centered
+              { left: "$$", right: "$$", display: true } // block, centered
             ]
         });
       </script></body></html>

@@ -18,7 +18,7 @@ object Dependencies extends HepekDocsPage {
     "JS/CSS dependencies",
     frag(
       md(s"""
-        Every framework has it's dependencies, JS and/or CSS.  
+        Every framework has its dependencies, JS and/or CSS.  
         These are expressed with [`PageDependencies`](${links.PageDependenciesUrl}) trait:
       """),
       chl.scala("""

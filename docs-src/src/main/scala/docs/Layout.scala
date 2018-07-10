@@ -28,8 +28,6 @@ object Layout extends HepekDocsPage {
         What if you just want to position an image to the right? Not so fast!  
         Then you mix in some inline HTML in your beautiful markdown and get a real mess...
         
-        Hepek provides simple grid support, with typesafe columns nesting and flexible config.  
-        Currently, only Bootstrap 3 is supported. More layouts/frameworks to come in the future!  
         It's not hard to forget that sum of columns in a Bootstrap row must be 12.
         For example:
       """),

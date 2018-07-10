@@ -27,13 +27,21 @@ object MathSupport extends HepekDocsPage with KatexDependencies {
         Of course, you need to extend [`KatexDependencies`](${links.KatexDependenciesUrl}).
 
         Since Hepek supports Markdown, it is hard to find an unused delimiter character.  
-        Hepek chose acute accent mark, or "forward-tick", `´`. 
+        Hepek chose acute accent mark ("forward-tick"), `´` for inline math. 
         On Windows the shortcut is <kbd>AltGr</kbd>+<kbd>9</kbd>.
+
+        For block-level math double-dollar is used, `$$`.
 
         Example: 
           <pre>´A \setminus B = {x | x \in A \land x \notin B}´</pre>  
         becomes:  
           ´A \setminus B = \\{x | x \\in A \land x \\notin B\\}´.
+
+        ---
+        Example (block-level): 
+          <pre>$$A \setminus B = {x | x \in A \land x \notin B}$$</pre>  
+        becomes:  
+          $$A \setminus B = \\{x | x \\in A \land x \\notin B\\}$$
 
         You need to be careful with Scala's character escaping, e.g. when you want to type
         `\notin` Scala will try to parse `\n` as newline...

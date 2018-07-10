@@ -21,7 +21,7 @@ object CodeHighlighter extends HepekDocsPage {
         Hepek has support for the awesome PrismJS code highlighter.  
         Add its dependencies by extending `PrismDependencies`.  
 
-        You can use it's goodies by importing [`PrismCodeHighlightComponents`](${links.PrismCodeHighlightComponentsUrl}) trait.  
+        You can use its goodies by importing [`PrismCodeHighlightComponents`](${links.PrismCodeHighlightComponentsUrl}) trait.  
         > Pro tip: Extend this trait as `object chl extends PrismCodeHighlightComponents`
         > and import `chl` in your page, so later you can tweak settings in `chl` ;)
 
@@ -61,7 +61,7 @@ object CodeHighlighter extends HepekDocsPage {
         Note that `withPrompt`, `withUser` and `withOutputLines` 
           are available only on console languages like `bash` and `batch`. Nifty! :)
         
-        Examples are available [`here`](${links.PrismJSExampleUrl}).
+        Examples are available [here](${links.PrismJSExampleUrl}).
       """)
     )
   )
