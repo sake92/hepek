@@ -11,7 +11,7 @@ lazy val hepekProject = (project in file("."))
     organization := "ba.sake",
     version := "0.1.2-SNAPSHOT",
     libraryDependencies ++= Seq(
-      "ba.sake"                  % "hepek-core"                   % "0.1.0-SNAPSHOT",
+      "ba.sake"                  % "hepek-core"                   % "0.1.1",
       "com.lihaoyi"              %% "scalatags"                   % "0.6.7",
       "com.atlassian.commonmark" % "commonmark"                   % "0.11.0",
       "org.jsoup"                % "jsoup"                        % "1.11.3",
@@ -20,8 +20,7 @@ lazy val hepekProject = (project in file("."))
       "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
       "org.seleniumhq.selenium"  % "selenium-java"                % "2.52.0",
       "org.scalatest"            %% "scalatest"                   % "3.0.5" % "test"
-    ),
-    resolvers += Resolver.sonatypeRepo("snapshots")
+    )
   )
 
 publishMavenStyle := true
