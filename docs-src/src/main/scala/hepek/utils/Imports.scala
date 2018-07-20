@@ -3,14 +3,20 @@ package hepek.utils
 import ba.sake.hepek.Resources
 import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
+import ba.sake.hepek.bootstrap3.component.BootstrapFormComponents
 import scalatags.Text.all._
 
 object Imports extends BasicComponents {
 
-  object chl extends PrismCodeHighlightComponents
-
   object resources extends Resources {
     override def siteRootPath = "docs"
+  }
+
+  object chl extends PrismCodeHighlightComponents
+
+  object forms extends BootstrapFormComponents {
+    import BootstrapFormComponents._
+    override def bootstrapFormType: Type = Type.Horizontal()
   }
 
   // FontAwesome 5 brand
