@@ -57,5 +57,4 @@ trait BootstrapStaticPage
         else ""
       }
     } yield li(cls := klasa)(a(href := relTo(page))(labela))
-
 }

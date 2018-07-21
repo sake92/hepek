@@ -25,6 +25,7 @@ case class Font(
   */
 object PdfGenerator {
 
+  // TODO put this in a file..
   private val inlineSvgsScript =
     """
 // callback to notify ChromeDriver that this script is finished :)

@@ -2,6 +2,9 @@ package ba.sake.hepek.anchorjs
 
 import ba.sake.hepek.html.structure._
 
+/** You need to provide Anchorjs config by yourself.
+  * @see https://www.bryanbraun.com/anchorjs/#basic-usage
+  */
 trait AnchorjsDependencies extends PageDependencies {
 
   def anchorjsVersion: String                  = "4.1.0"
@@ -14,5 +17,4 @@ trait AnchorjsDependencies extends PageDependencies {
   )
 
   override def scriptURLs = super.scriptURLs ++ anchorjsJSDependencies
-
 }

@@ -25,5 +25,4 @@ trait BootstrapImageComponents {
         else div(cls := "caption text-center")(p(captionn))
       }
     )
-
 }

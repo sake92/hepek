@@ -17,5 +17,4 @@ trait JQueryDependencies extends PageDependencies {
   )
 
   override def scriptURLs = super.scriptURLs ++ jQueryJsDependencies
-
 }

@@ -17,5 +17,4 @@ trait ClassPackageRelativePath extends PackageRelativePath {
     val name = this.getClass.getSimpleName.replaceAll("\\$", "")
     StringUtils.urlify(name) + "." + fileExtension
   }
-
 }

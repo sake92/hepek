@@ -19,5 +19,4 @@ trait MathjaxDependencies extends PageDependencies {
     )
 
   override def scriptURLs = super.scriptURLs ++ mathjaxJSDependencies
-
 }

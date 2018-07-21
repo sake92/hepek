@@ -69,5 +69,4 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
     } yield li(cls := activeClass, a(href := relTo(p))(p.pageLabel))
     ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
   }
-
 }

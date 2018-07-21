@@ -84,5 +84,4 @@ trait BootstrapGridComponents extends GridComponents {
   // for args 1,1:2 => (1/3)*12 == 4
   private def ratio2BS(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 12).toInt
-
 }

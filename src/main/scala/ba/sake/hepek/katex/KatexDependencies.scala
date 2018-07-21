@@ -4,10 +4,10 @@ import ba.sake.hepek.html.structure._
 
 trait KatexDependencies extends PageDependencies {
 
+  private val pkg = "KaTeX"
+
   def katexVersion: String                  = "0.9.0"
   def katexDepsProvider: DependencyProvider = DependencyProvider.cdnjs
-
-  private val pkg = "KaTeX"
 
   def katexJsDependencies: List[String] =
     List(
@@ -38,5 +38,4 @@ trait KatexDependencies extends PageDependencies {
   override def scriptURLs    = super.scriptURLs ++ katexJsDependencies
   override def scriptsInline = super.scriptsInline ++ katexJsInlineDependencies
   override def styleURLs     = super.styleURLs ++ katexCssDependencies
-
 }

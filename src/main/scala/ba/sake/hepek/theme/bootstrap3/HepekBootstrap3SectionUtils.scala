@@ -24,5 +24,4 @@ trait HepekBootstrap3SectionUtils {
     }
     List(ul(lis))
   }
-
 }

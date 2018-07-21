@@ -30,5 +30,4 @@ trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
 
   override def styleURLs  = super.styleURLs ++ bootstrapCSSDependencies
   override def scriptURLs = super.scriptURLs ++ bootstrapJSDependencies
-
 }

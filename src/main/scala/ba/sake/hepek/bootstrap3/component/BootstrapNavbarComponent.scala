@@ -35,7 +35,6 @@ object BootstrapNavbarComponent extends BootstrapNavbarComponent {
     case object Left  extends Alignment { def classes = "navbar-left"  }
     case object Right extends Alignment { def classes = "navbar-right" }
   }
-
 }
 
 trait BootstrapNavbarComponent extends BootstrapDependencies {
@@ -83,5 +82,4 @@ trait BootstrapNavbarComponent extends BootstrapDependencies {
       span(cls := "icon-bar"),
       span(cls := "icon-bar")
     )
-
 }

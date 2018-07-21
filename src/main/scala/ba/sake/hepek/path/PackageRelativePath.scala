@@ -20,5 +20,4 @@ trait PackageRelativePath extends RelativePath {
     }
     Paths.get(path)
   }
-
 }

@@ -43,5 +43,4 @@ trait Resources {
     def css(baseName: String)    = resource(s"lib/$baseName.css")
     def cssMin(baseName: String) = css(baseName + ".min")
   }
-
 }
