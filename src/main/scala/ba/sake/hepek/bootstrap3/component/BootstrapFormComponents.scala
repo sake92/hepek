@@ -44,43 +44,15 @@ trait BootstrapFormComponents extends FormComponents {
           ((labelRatio / (labelRatio + inputRatio).toDouble) * 12).toInt
         val inputRatioBootstrap =
           ((inputRatio / (labelRatio + inputRatio).toDouble) * 12).toInt
-
-        if (_type == "checkbox") {
-          div(cls := "form-group")(
-            div(
-              cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
-            )(
-              div(cls := "checkbox")(
-                label(inputId.map(`for` := _))(
-                  input(tpe := _type, inputAttrsFiltered),
-                  _label
-                )
-              )
-            )
-          )
-        } else if (isButtonLike(_type)) {
-          val inputAttrsFiltered2 =
-            inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-
-          div(cls := "form-group")(
-            div(
-              cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
-            )(
-              input(tpe := _type,
-                    value := _label,
-                    cls := "btn ",
-                    inputAttrsFiltered2)
-            )
-          )
-        } else {
-          div(cls := "form-group")(
-            label(inputId.map(`for` := _),
-                  cls := s"control-label col-sm-$labelRatioBootstrap")(_label),
-            div(cls := s"col-sm-$inputRatioBootstrap")(
-              input(tpe := _type, cls := "form-control", inputAttrsFiltered)
-            )
-          )
-        }
+        bsHorizontalFormGroup(
+          _type,
+          _label,
+          inputId,
+          labelRatioBootstrap,
+          inputRatioBootstrap,
+          inputAttrsFiltered,
+          _inputAttrs: _*
+        )
       case _ =>
         if (_type == "checkbox") {
           div(cls := "checkbox")(
@@ -104,4 +76,50 @@ trait BootstrapFormComponents extends FormComponents {
         }
     }
   }
+
+  private def bsHorizontalFormGroup(
+      _type: String,
+      _label: String,
+      inputId: Option[String],
+      labelRatioBootstrap: Int,
+      inputRatioBootstrap: Int,
+      inputAttrsFiltered: Seq[AttrPair],
+      _inputAttrs: AttrPair*
+  ): Frag =
+    if (_type == "checkbox") {
+      div(cls := "form-group")(
+        div(
+          cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
+        )(
+          div(cls := "checkbox")(
+            label(inputId.map(`for` := _))(
+              input(tpe := _type, inputAttrsFiltered),
+              _label
+            )
+          )
+        )
+      )
+    } else if (isButtonLike(_type)) {
+      val inputAttrsFiltered2 =
+        inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
+
+      div(cls := "form-group")(
+        div(
+          cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
+        )(
+          input(tpe := _type,
+                value := _label,
+                cls := "btn ",
+                inputAttrsFiltered2)
+        )
+      )
+    } else {
+      div(cls := "form-group")(
+        label(inputId.map(`for` := _),
+              cls := s"control-label col-sm-$labelRatioBootstrap")(_label),
+        div(cls := s"col-sm-$inputRatioBootstrap")(
+          input(tpe := _type, cls := "form-control", inputAttrsFiltered)
+        )
+      )
+    }
 }

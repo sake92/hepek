@@ -11,9 +11,9 @@ object BasicComponents extends BasicComponents
 
 trait BasicComponents {
 
-  def hyperlink(hreff: String, _aAttrs: AttrPair*): Frag = {
+  def hyperlink(hreff: String, _aAttrs: AttrPair*)(content: Frag*): Frag = {
     val inputAttrsFiltered = _aAttrs.filterNot(_.a.name == "href") // ignore href
-    a(href := hreff, inputAttrsFiltered)
+    a(href := hreff, inputAttrsFiltered)(content)
   }
 
   /** Markdown snippet */
@@ -30,6 +30,6 @@ trait BasicComponents {
 trait BasicRenderableComponents extends BasicComponents { self: Renderable =>
   import BasicComponents._
 
-  def hyperlink(other: Renderable, _aAttrs: AttrPair*): Frag =
-    hyperlink(relTo(other), _aAttrs: _*)
+  def hyperlink(other: Renderable, _aAttrs: AttrPair*)(content: Frag*): Frag =
+    hyperlink(relTo(other), _aAttrs: _*)(content: _*)
 }

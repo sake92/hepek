@@ -64,10 +64,10 @@ trait HepekDocsStaticPage
       footer(cls := "text-center")(
         hr,
         div(cls := "btn-group btn-group-lg")(
-          hyperlink("https://github.com/sake92/hepek")(cls := "btn")(
+          hyperlink("https://github.com/sake92/hepek", cls := "btn")(
             faBrand("github")
           ),
-          hyperlink("https://gitter.im/sake92/hepek")(cls := "btn")(
+          hyperlink("https://gitter.im/sake92/hepek", cls := "btn")(
             faBrand("gitter")
           )
         )
