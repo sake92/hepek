@@ -17,7 +17,7 @@ trait KatexDependencies extends PageDependencies {
       )
     )
 
-// https://en.wikipedia.org/wiki/Acute_accent
+  // https://en.wikipedia.org/wiki/Acute_accent
   // couldn't find better escape character, all other are used in Markdown
   def katexJsInlineDependencies: List[String] =
     List("""

@@ -9,7 +9,6 @@ trait PageDependencies {
   // JS
   def scriptURLs: List[String]    = List.empty
   def scriptsInline: List[String] = List.empty
-
 }
 
 case class Dependency(
@@ -36,13 +35,11 @@ object DependencyProvider {
     override def depPath(dep: Dependency) =
       s"https://cdnjs.cloudflare.com/ajax/libs/${dep.pkg}/${dep.version}/${dep.file}${dep.queryParams}"
   }
-
 }
 
 trait DependencyProvider {
 
   def depPath(dep: Dependency): String
-
 }
 
 case class WebjarsDependencyProvider(webjarsPath: String)

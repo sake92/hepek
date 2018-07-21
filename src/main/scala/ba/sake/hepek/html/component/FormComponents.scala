@@ -109,5 +109,4 @@ trait FormComponents {
 
   protected def isButtonLike(_type: String) =
     buttonLikeTypes.contains(_type)
-
 }

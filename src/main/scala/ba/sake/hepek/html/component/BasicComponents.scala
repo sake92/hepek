@@ -4,17 +4,16 @@ import scalatags.Text.all._
 import org.commonmark.node._
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
+import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.utils._
 
 object BasicComponents extends BasicComponents
 
 trait BasicComponents {
-  import BasicComponents._
 
-  /** Anchor link : <a href="hreff"> */
-  def hyperlink(hreff: String, newWindow: Boolean = false) = {
-    val optParams = if (newWindow) List(target := "_blank") else List()
-    a(href := hreff, optParams)
+  def hyperlink(hreff: String, _aAttrs: AttrPair*): Frag = {
+    val inputAttrsFiltered = _aAttrs.filterNot(_.a.name == "href") // ignore href
+    a(href := hreff, inputAttrsFiltered)
   }
 
   /** Markdown snippet */
@@ -25,5 +24,12 @@ trait BasicComponents {
     val result   = renderer.render(document)
     raw(result)
   }
+}
 
+/** Mixin for additional Renderable goodies. */
+trait BasicRenderableComponents extends BasicComponents { self: Renderable =>
+  import BasicComponents._
+
+  def hyperlink(other: Renderable, _aAttrs: AttrPair*): Frag =
+    hyperlink(relTo(other), _aAttrs: _*)
 }

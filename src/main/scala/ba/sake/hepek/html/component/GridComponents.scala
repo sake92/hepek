@@ -26,7 +26,6 @@ trait GridComponents {
   def third1(content: Frag*): Third1
   def third2(content: Frag*): Third2
   def third3(content: Frag*): Third3
-
 }
 
 object GridComponents {
@@ -57,5 +56,4 @@ object GridComponents {
     val DefaultThird = Ratio(List(1, 1, 1))
     val Default      = Ratios(DefaultHalf, DefaultThird)
   }
-
 }

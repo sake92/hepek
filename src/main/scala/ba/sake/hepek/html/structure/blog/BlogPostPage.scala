@@ -20,7 +20,6 @@ trait BlogPostPage extends StaticPage {
   def categoryPosts: List[BlogPostPage] = List.empty
 
   def dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-
 }
 
 /**
@@ -33,7 +32,5 @@ case class Section(
     children: List[Section] = List.empty
 ) {
 
-  def id: String =
-    StringUtils.urlify(name)
-
+  def id: String = StringUtils.urlify(name)
 }

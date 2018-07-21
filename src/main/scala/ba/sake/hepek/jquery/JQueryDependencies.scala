@@ -7,7 +7,7 @@ trait JQueryDependencies extends PageDependencies {
   def jQueryVersion: String                  = "3.2.1"
   def jQueryDepsProvider: DependencyProvider = DependencyProvider.cdnjs
 
-  def jQueryJSDependencies: List[String] = List(
+  def jQueryJsDependencies: List[String] = List(
     jQueryDepsProvider.depPath(
       Dependency("jquery.min.js",
                  jQueryVersion,
@@ -16,6 +16,6 @@ trait JQueryDependencies extends PageDependencies {
     )
   )
 
-  override def scriptURLs = super.scriptURLs ++ jQueryJSDependencies
+  override def scriptURLs = super.scriptURLs ++ jQueryJsDependencies
 
 }

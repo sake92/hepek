@@ -143,7 +143,6 @@ trait CodeHighlightComponents {
   def xeora: CodeHighlighter
   def xojo: CodeHighlighter
   def yaml: CodeHighlighter
-
 }
 
 trait CodeHighlighter {
@@ -151,5 +150,4 @@ trait CodeHighlighter {
   def lang: String
 
   def apply(text: String): Frag
-
 }
