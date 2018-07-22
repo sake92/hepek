@@ -11,6 +11,7 @@ Click [here](https://sake92.github.io/hepek)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba site
 
 Deploy your first `hepek` project with Netlify with a few clicks:  
+
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
 
 ## Features
@@ -18,7 +19,8 @@ Deploy your first `hepek` project with Netlify with a few clicks:
 - **automatic relative paths**, with `relTo` method, OMG!!!
 - full Markdown support, [Commonmark](http://commonmark.org/) flavored
 - Prismjs code highlighter (typesafe)
-- Mathjax for math formulas
+- KaTeX or Mathjax for math formulas
+- form helpers
 - **incremental** rendering, by default!
 - file watching with sbt
 - PDF rendering
