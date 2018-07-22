@@ -10,6 +10,9 @@ Click [here](https://sake92.github.io/hepek)
 - [official](https://github.com/sake92/hepek-examples)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba site
 
+Deploy your first `hepek` project with Netlify with a few clicks:  
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
+
 ## Features
 - full Scala support, statically typed templates etc.
 - **automatic relative paths**, with `relTo` method, OMG!!!
