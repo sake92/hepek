@@ -27,7 +27,7 @@ trait BootstrapFormComponents extends FormComponents {
       content: Frag*
   ): Frag = {
     val newFormAttrs = _formAttrs :+ (cls := bootstrapFormType.classes)
-    super.formm(_url, newFormAttrs: _*)(content: _*)
+    form(action := _url, newFormAttrs)(content)
   }
 
   override def inputWithType(
