@@ -9,7 +9,7 @@ lazy val hepekProject = (project in file("."))
   .settings(
     name := "hepek",
     organization := "ba.sake",
-    version := "0.1.2-SNAPSHOT",
+    version := "0.1.2",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.1",
       "com.lihaoyi"              %% "scalatags"                   % "0.6.7",
@@ -49,7 +49,7 @@ scmInfo := Some(
           "scm:git:git@github.com:sake92/hepek.git")
 )
 
-homepage := Some(url("http://sake.ba"))
+homepage := Some(url("https://sake92.github.io/hepek/"))
 
 // docs
 lazy val docsSrc = (project in file("docs-src"))
