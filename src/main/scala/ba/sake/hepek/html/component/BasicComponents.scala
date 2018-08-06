@@ -9,12 +9,25 @@ import ba.sake.hepek.utils._
 
 object BasicComponents extends BasicComponents
 
-trait BasicComponents {
+trait BasicComponents extends LinkComponents with CommonmarkComponents
+
+/** Mixin for additional Renderable goodies. */
+trait BasicRenderableComponents extends BasicComponents { self: Renderable =>
+  import BasicComponents._
+
+  def hyperlink(other: Renderable, _aAttrs: AttrPair*)(content: Frag*): Frag =
+    hyperlink(relTo(other), _aAttrs: _*)(content: _*)
+}
+
+trait LinkComponents {
 
   def hyperlink(hreff: String, _aAttrs: AttrPair*)(content: Frag*): Frag = {
     val inputAttrsFiltered = _aAttrs.filterNot(_.a.name == "href") // ignore href
     a(href := hreff, inputAttrsFiltered)(content)
   }
+}
+
+trait CommonmarkComponents {
 
   /** Markdown snippet */
   def md(str: String) = {
@@ -24,12 +37,4 @@ trait BasicComponents {
     val result   = renderer.render(document)
     raw(result)
   }
-}
-
-/** Mixin for additional Renderable goodies. */
-trait BasicRenderableComponents extends BasicComponents { self: Renderable =>
-  import BasicComponents._
-
-  def hyperlink(other: Renderable, _aAttrs: AttrPair*)(content: Frag*): Frag =
-    hyperlink(relTo(other), _aAttrs: _*)(content: _*)
 }
