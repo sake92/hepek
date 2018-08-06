@@ -18,6 +18,7 @@ Deploy your first `hepek` project with Netlify with a few clicks:
 - full Scala support, statically typed templates etc.
 - **automatic relative paths**, with `relTo` method, OMG!!!
 - full Markdown support, [Commonmark](http://commonmark.org/) flavored
+- Bootstrap3, PureCSS helpers
 - Prismjs code highlighter (typesafe)
 - KaTeX or Mathjax for math formulas
 - form helpers
@@ -28,3 +29,16 @@ Deploy your first `hepek` project with Netlify with a few clicks:
 ## TODO
 - dynamic pages support, e.g. replace Play's Twirl templates :)
 - integrate more CSS and JS libraries/frameworks
+
+## Changelog
+
+### 0.1.2
+- added PureCSS support ([#16](https://github.com/sake92/hepek/pull/16))
+- added form support
+
+### 0.1.1 (first release)
+- basic Bootstrap3 support: dependencies, grid, navbar
+- Markdown support via Commonmark
+- Prismjs support
+- Katex and Mathjax support
+- PDF render support
