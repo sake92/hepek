@@ -18,16 +18,5 @@ trait PureDependencies extends PageDependencies {
         )
       }
 
-  def pureJSDependencies: List[String] =
-    List(
-      pureDepsProvider.depPath(
-        Dependency("purecss", // TODO
-                   pureVersion,
-                   "purecss",
-                   baseFolder = Option("build/"))
-      )
-    )
-
   override def styleURLs = super.styleURLs ++ pureCSSDependencies
-  // override def scriptURLs = super.scriptURLs ++ pureJSDependencies
 }
