@@ -16,7 +16,7 @@ Deploy your first `hepek` project with Netlify with a few clicks:
 
 ## Features
 - full Scala support, statically typed templates etc.
-- **automatic relative paths**, with `relTo` method, OMG!!!
+- **automatic relative paths**, with `ref` or `relTo` method, OMG!!!
 - full Markdown support, [Commonmark](http://commonmark.org/) flavored
 - Bootstrap3, PureCSS helpers
 - Prismjs code highlighter (typesafe)

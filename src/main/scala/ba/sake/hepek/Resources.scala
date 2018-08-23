@@ -1,9 +1,12 @@
 package ba.sake.hepek
 
 import ba.sake.hepek.core.RelativePath
+import ba.sake.hepek.path.RelativePathAddons
 import java.nio.file.Paths
 
-case class Resource(fileName: String) extends RelativePath {
+case class Resource(fileName: String)
+    extends RelativePath
+    with RelativePathAddons {
   override def relPath = Paths.get(fileName)
 }
 
@@ -32,6 +35,8 @@ trait Resources {
     def ico(baseName: String)   = image(baseName + ".ico")
     def svg(baseName: String)   = image(baseName + ".svg")
     def jpg(baseName: String)   = image(baseName + ".jpg")
+    def jpeg(baseName: String)  = image(baseName + ".jpeg")
+    def png(baseName: String)   = image(baseName + ".png")
     def gif(baseName: String)   = image(baseName + ".gif")
   }
 

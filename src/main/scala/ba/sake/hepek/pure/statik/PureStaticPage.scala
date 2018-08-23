@@ -65,7 +65,7 @@ trait PureStaticPage extends StaticPage with PureDependencies {
       }
     } yield
       menuItem()(
-        menuLink(relTo(page))(labela)
+        menuLink(page.ref)(labela)
       )
 
 }

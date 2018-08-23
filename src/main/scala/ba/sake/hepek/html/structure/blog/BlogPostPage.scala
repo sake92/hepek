@@ -7,6 +7,7 @@ package blog
 import java.time.format.DateTimeFormatter
 import java.time.LocalDate
 import scalatags.Text.all._
+import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.utils.StringUtils
 
 trait BlogPostPage extends StaticPage {
@@ -30,7 +31,14 @@ case class Section(
     name: String,
     content: Frag,
     children: List[Section] = List.empty
+)(
+    implicit owner: RelativePath
 ) {
 
   def id: String = StringUtils.urlify(name)
+
+  /** Refer to section only by its path, e.g. Index.mySection.ref */
+  def ref(implicit caller: RelativePath): String =
+    if (owner == caller) "#" + id
+    else caller.relTo(owner) + "#" + id
 }

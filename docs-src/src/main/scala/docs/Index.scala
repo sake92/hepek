@@ -45,7 +45,7 @@ object Index extends HepekDocsStaticPage {
 
             Sick of rewriting relative urls all over the place, like `my/folder/../styles.....`?  
             Me too, the year is 2018, we can do better!  
-            Just use `relTo` method and you're done! Hepek figures out path instead of you. ;)
+            Just use `.ref` method and you're done! Hepek figures out path instead of you. ;)
 
             Hepek uses *incremental rendering* by default.  
             If you change an object, it renders objects which depend on it also. Neat!

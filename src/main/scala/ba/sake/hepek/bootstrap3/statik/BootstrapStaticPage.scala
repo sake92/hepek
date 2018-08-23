@@ -37,7 +37,7 @@ trait BootstrapStaticPage
     navbar(
       navbarHeader()(
         navbarCollapseToggleBtn(),
-        navbarBrand(relTo(siteSettings.indexPage))(
+        navbarBrand(siteSettings.indexPage.ref)(
           siteSettings.faviconInverted.map { fav =>
             span(img(src := fav))
           },
@@ -56,5 +56,5 @@ trait BootstrapStaticPage
         else if (page.pageCategory == this.pageCategory) "active "
         else ""
       }
-    } yield li(cls := klasa)(a(href := relTo(page))(labela))
+    } yield li(cls := klasa)(a(href := page.ref)(labela))
 }

@@ -11,14 +11,14 @@ You must implement the following methods:</p>
 <p>The page will be blank, but we need to start somewhere.<br />
 If you want it to be a bit prettier, then extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/bootstrap3/statik/BootstrapStaticPage.scala"><code>BootstrapStaticPage</code></a>.<br />
 <code>SiteSettings</code> has the following fields:</p>
-<table class="table table-hover"><tr><th>Name</th><th>Type</th><th>Mandatory</th><th>Default value</th><th>Description</th></tr><tr><td>name</td><td>String</td><td>Yes</td><td></td><td>Name of the site</td></tr><tr><td>indexPage</td><td>StaticPage</td><td>Yes</td><td></td><td>Home page</td></tr><tr><td>mainPages</td><td>List[StaticPage] </td><td>No</td><td>List.empty</td><td>Pages to display in navbar</td></tr><tr><td>faviconNormal</td><td>Option[String]</td><td>No</td><td>None</td><td>Favicon of the site</td></tr><tr><td>faviconInverted</td><td>Option[String]</td><td>No</td><td>None</td><td>Favicon with alternative color, can be used in navbar for example</td></tr></table><p><code>SiteSettings</code> are usually defined in a common trait, for example:</p>
+<table class="table table-hover"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>name</td><td>Yes</td><td>String</td><td></td><td>Name of the site</td></tr><tr><td>indexPage</td><td>Yes</td><td>StaticPage</td><td></td><td>Home page</td></tr><tr><td>mainPages</td><td>No</td><td>List[StaticPage] </td><td>List.empty</td><td>Pages to display in navbar</td></tr><tr><td>faviconNormal</td><td>No</td><td>Option[String]</td><td>None</td><td>Favicon of the site</td></tr><tr><td>faviconInverted</td><td>No</td><td>Option[String]</td><td>None</td><td>Favicon with alternative color, can be used in navbar for example</td></tr></table><p><code>SiteSettings</code> are usually defined in a common trait, for example:</p>
 <pre class="line-numbers" data-start="1"><code class="language-scala ">
         trait MySiteTemplate extends StaticSite {
           override def siteSettings = SiteSettings(
             &quot;example.com&quot;,
             site.Index,
             List(site.MyPage),
-            Some(relTo(Images.favicon))
+            Some(Images.favicon.ref)
           )
         }
       </code></pre><p>Then you just extend this one and all your pages have same settings. :)</p>

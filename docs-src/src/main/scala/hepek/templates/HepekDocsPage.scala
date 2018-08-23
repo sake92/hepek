@@ -41,12 +41,12 @@ trait HepekDocsStaticPage
     Site.name,
     docs.Index,
     List(docs.Docs),
-    Option(relTo(Images.favicon)),
-    Option(relTo(Images.faviconSmall))
+    Option(Images.favicon.ref),
+    Option(Images.faviconSmall.ref)
   )
 
   override def styleURLs = super.styleURLs ++ List(
-    relTo(styles.css("main")),
+    styles.css("main").ref,
     "https://use.fontawesome.com/releases/v5.0.12/css/all.css"
   )
   override def bootstrapCSSDependencies = List(
@@ -54,7 +54,7 @@ trait HepekDocsStaticPage
       Dependency("yeti/bootstrap.min.css", bootstrapVersion, "bootswatch")
     )
   )
-  override def scriptURLs = super.scriptURLs :+ relTo(scripts.js("main"))
+  override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
 
   override def screenRatios = super.screenRatios.copy(sm = None, xs = None)
 

@@ -56,7 +56,7 @@ object StaticPage extends HepekDocsPage {
             "example.com",
             site.Index,
             List(site.MyPage),
-            Some(relTo(Images.favicon))
+            Some(Images.favicon.ref)
           )
         }
       """),

@@ -66,7 +66,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
     val pageLiTags = for {
       p <- categoryPosts
       activeClass = if (p.relPath == relPath) "active" else ""
-    } yield li(cls := activeClass, a(href := relTo(p))(p.pageLabel))
+    } yield li(cls := activeClass, a(href := p.ref)(p.pageLabel))
     ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
   }
 }
