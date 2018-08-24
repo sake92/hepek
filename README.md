@@ -8,7 +8,7 @@
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 
 Start with cloninng the [starter template](https://github.com/sake92/hepek-starter)  
-or deploy+fork it with Netlify in just a few clicks:  
+or deploy+fork it with Netlify (yes, for free) in just a few clicks:  
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
 
