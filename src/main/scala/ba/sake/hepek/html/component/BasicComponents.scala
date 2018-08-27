@@ -13,7 +13,6 @@ trait BasicComponents extends LinkComponents with CommonmarkComponents
 
 /** Mixin for additional Renderable goodies. */
 trait BasicRenderableComponents extends BasicComponents { self: Renderable =>
-  import BasicComponents._
 
   def hyperlink(other: Renderable, _aAttrs: AttrPair*)(content: Frag*): Frag =
     hyperlink(relTo(other), _aAttrs: _*)(content: _*)
@@ -30,7 +29,7 @@ trait LinkComponents {
 trait CommonmarkComponents {
 
   /** Markdown snippet */
-  def md(str: String) = {
+  def md(str: String): Frag = {
     val parser   = Parser.builder().build()
     val document = parser.parse(StringUtils.unindent(str))
     val renderer = HtmlRenderer.builder().build()

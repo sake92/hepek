@@ -1,11 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
+import ba.sake.hepek.implicits._
 import ba.sake.hepek.html.component.GridComponents._
-import hepek.templates._
-import hepek.utils.SiteMapHTML
-import hepek.utils.Imports._
+import templates.HepekDocsStaticPage
 
 object Index extends HepekDocsStaticPage {
 
@@ -24,7 +22,7 @@ object Index extends HepekDocsStaticPage {
       row(
         third1(),
         third2(
-          md("""
+          """
             ## What hepek does?
             It turns Scala `object`s into files.  
             Everything you can `println` to screen hepek can write to a file. :)
@@ -54,7 +52,7 @@ object Index extends HepekDocsStaticPage {
 
             And, yes, this site is built with hepek. :)
 
-          """)
+          """.md
         ),
         third3()
       ),

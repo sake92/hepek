@@ -1,9 +1,8 @@
 package docs
 
-import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
-import hepek.templates.HepekDocsPage
-import hepek.utils._, Imports._
+import ba.sake.hepek.implicits._
+import utils._, Imports._
+import templates.HepekDocsPage
 
 object QuickStart extends HepekDocsPage {
 
@@ -18,18 +17,18 @@ object QuickStart extends HepekDocsPage {
   /* CONTENT */
   val installationSection = Section(
     "Installation",
-    md("""
+    """
       Prerequisites:
         - Java 8
         - sbt
 
       It's planned to support other build tools in the future: Mill, Gradle etc.  
-    """)
+    """.md
   )
 
   val usingSection = Section(
     "Using",
-    md(s"""
+    s"""
       Download the starter project from [here](${links.StarterProjectURL}) and you're ready to roll.  
       Start up sbt console and type `hepek`.  
       Voila, that's it! :)
@@ -39,7 +38,7 @@ object QuickStart extends HepekDocsPage {
 
       > HTML/CSS or whatever you're rendering will be in `/target/web/public/main/site` folder.  
       > You can make an sbt task for copying these to a more desirable location.  
-    """)
+    """.md
   )
 
   val servingSection = Section(

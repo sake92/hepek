@@ -1,13 +1,8 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
-import ba.sake.hepek.html.component.GridComponents._
-import hepek.templates._
-import hepek.utils.SiteMapHTML
-import hepek.utils.Imports._
 
-object Docs extends HepekDocsStaticPage {
+object Docs extends templates.HepekDocsStaticPage {
 
   override def pageTitle = "Docs"
 
@@ -16,7 +11,7 @@ object Docs extends HepekDocsStaticPage {
       third1(),
       third2(
         div(cls := "pages-toc")(margin := 21.px)(
-          SiteMapHTML.siteMap(this)
+          utils.SiteMapHTML.siteMap(this)
         )
       ),
       third3()

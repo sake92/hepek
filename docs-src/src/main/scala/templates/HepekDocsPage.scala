@@ -1,16 +1,15 @@
-package hepek.templates
+package templates
 
-import java.time.LocalDate
-import scalatags.Text.all._
-import ba.sake.hepek.html.structure._
-import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
-import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
-import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
+import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
+import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
+import ba.sake.hepek.html.structure._
 import ba.sake.hepek.prismjs
-import hepek.images.Images
-import hepek.utils.Site
-import hepek.utils.Imports._, resources._
+import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
+import utils.Imports._
+import utils.Imports.resources._
+import utils.Site
+import scalatags.Text.all._
 
 trait HepekDocsPage
     extends HepekBootstrap3BlogPage
@@ -41,8 +40,8 @@ trait HepekDocsStaticPage
     Site.name,
     docs.Index,
     List(docs.Docs),
-    Option(Images.favicon.ref),
-    Option(Images.faviconSmall.ref)
+    Option(images.ico("favicon").ref),
+    Option(images.ico("favicon-small").ref)
   )
 
   override def styleURLs = super.styleURLs ++ List(

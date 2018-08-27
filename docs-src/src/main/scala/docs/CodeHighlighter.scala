@@ -1,9 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
-import hepek.templates.HepekDocsPage
-import hepek.utils._, Imports._
+import ba.sake.hepek.implicits._
+import utils._, Imports._
+import templates.HepekDocsPage
 
 object CodeHighlighter extends HepekDocsPage {
 
@@ -17,7 +17,7 @@ object CodeHighlighter extends HepekDocsPage {
   def codeHighlighterSection = Section(
     "Code highlighter",
     frag(
-      md(s"""
+      s"""
         Hepek has support for the awesome PrismJS code highlighter.  
         Add its dependencies by extending `PrismDependencies`.  
 
@@ -26,7 +26,7 @@ object CodeHighlighter extends HepekDocsPage {
         > and import `chl` in your page, so later you can tweak settings in `chl` ;)
 
         Example:
-      """),
+      """.md,
       chl.scala(s"""
         chl.java(""\"
           public class HelloWorld {
@@ -36,7 +36,7 @@ object CodeHighlighter extends HepekDocsPage {
           }
         ""\")
       """),
-      md("gets rendered as:"),
+      "gets rendered as:".md,
       chl.java("""
         public class HelloWorld {
             public static void main(String[] args) {
@@ -44,7 +44,7 @@ object CodeHighlighter extends HepekDocsPage {
             }
         }
       """),
-      md(s"""
+      s"""
         ---
         There is support for all PrismJS languages.  
         Also, most of PrismJS are expressed as methods:
@@ -62,7 +62,7 @@ object CodeHighlighter extends HepekDocsPage {
           are available only on console languages like `bash` and `batch`. Nifty! :)
         
         Examples are available [here](${links.PrismJSExampleUrl}).
-      """)
+      """.md
     )
   )
 

@@ -1,9 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
-import hepek.templates.HepekDocsPage
-import hepek.utils._, Imports._
+import ba.sake.hepek.implicits._
+import utils._, Imports._
+import templates.HepekDocsPage
 
 object PdfGenerator extends HepekDocsPage {
 

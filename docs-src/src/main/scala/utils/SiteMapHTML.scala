@@ -1,8 +1,8 @@
-package hepek.utils
+package utils
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.structure.StaticPage
-import hepek.utils.Imports._
+import utils.Imports._
 
 object SiteMapHTML extends SiteMapHTML
 

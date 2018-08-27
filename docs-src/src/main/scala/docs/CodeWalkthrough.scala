@@ -1,10 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
-import hepek.templates.HepekDocsPage
-import hepek.utils.SiteMapHTML
-import hepek.utils.Imports._
+import ba.sake.hepek.implicits._
+import utils.Imports._
+import templates.HepekDocsPage
 
 object CodeWalkthrough extends HepekDocsPage {
 

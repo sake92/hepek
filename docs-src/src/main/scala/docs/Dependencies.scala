@@ -1,9 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
-import hepek.templates.HepekDocsPage
-import hepek.utils._, Imports._
+import ba.sake.hepek.implicits._
+import utils._, Imports._
+import templates.HepekDocsPage
 
 object Dependencies extends HepekDocsPage {
 
@@ -17,10 +17,10 @@ object Dependencies extends HepekDocsPage {
   val depsSection = Section(
     "JS/CSS dependencies",
     frag(
-      md(s"""
+      s"""
         Every framework has its dependencies, JS and/or CSS.  
         These are expressed with [`PageDependencies`](${links.PageDependenciesUrl}) trait:
-      """),
+      """.md,
       chl.scala("""
         trait PageDependencies {
           def styleURLs: List[String]    = List.empty
@@ -30,7 +30,7 @@ object Dependencies extends HepekDocsPage {
           def scriptsInline: List[String] = List.empty
         }
       """),
-      md(s"""
+      s"""
         Some dependencies are fetched from the web, via CDNs.  
         But sometimes you need to inject some inline JS and CSS. 
           Those have corresponding settings also.  
@@ -43,7 +43,7 @@ object Dependencies extends HepekDocsPage {
 
         ---
         Of course, you can also override these to filter/add/change dependencies. :)
-      """),
+      """.md
     )
   )
 

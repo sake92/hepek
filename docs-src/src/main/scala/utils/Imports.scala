@@ -1,4 +1,4 @@
-package hepek.utils
+package utils
 
 import ba.sake.hepek.Resources
 import ba.sake.hepek.html.component.BasicComponents

@@ -1,10 +1,10 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
+import ba.sake.hepek.implicits._
 import ba.sake.hepek.katex.KatexDependencies
-import hepek.templates.HepekDocsPage
-import hepek.utils._, Imports._
+import utils._, Imports._
+import templates.HepekDocsPage
 
 object MathSupport extends HepekDocsPage with KatexDependencies {
 

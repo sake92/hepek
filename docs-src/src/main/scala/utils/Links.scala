@@ -1,7 +1,4 @@
-package hepek.utils
-
-import ba.sake.hepek.html.structure.blog.BlogPostPage
-import docs._
+package utils
 
 object links {
 

@@ -2,9 +2,9 @@ package docs
 
 import scalatags.Text.all._
 import ba.sake.hepek.core.RelativePath
-import hepek.templates.HepekDocsPage
-import hepek.utils.Site
-import hepek.utils.Imports._
+import utils.Site
+import utils.Imports._
+import templates.HepekDocsPage
 
 object NotFound extends HepekDocsPage {
 

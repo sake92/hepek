@@ -1,4 +1,4 @@
-package hepek.utils
+package utils
 
 import ba.sake.hepek.html.structure.blog.BlogPostPage
 import docs._
