@@ -2,27 +2,25 @@
 
 [![Join the chat at https://gitter.im/sake92/hepek](https://badges.gitter.im/sake92/hepek.svg)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## Docs
-Click [here](https://sake92.github.io/hepek)
+## Docs and examples
+- [docs](https://sake92.github.io/hepek)
+- [examples](https://github.com/sake92/hepek-examples)
+- [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 
-## Examples
-
-- [official](https://github.com/sake92/hepek-examples)
-- [source code](https://github.com/sake92/sake-ba-source) of sake.ba site
-
-Deploy your first `hepek` project with Netlify with a few clicks:  
+Start with cloninng the [starter template](https://github.com/sake92/hepek-starter)  
+or deploy+fork it with Netlify (yes, for free) in just a few clicks:  
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
 
 ## Features
 - full Scala support, statically typed templates etc.
-- **automatic relative paths**, with `ref` or `relTo` method, OMG!!!
-- full Markdown support, [Commonmark](http://commonmark.org/) flavored
+- **automatic relative paths**, with `.ref` or `.relTo` method!!!
+- Markdown support, [Commonmark](http://commonmark.org/) flavored
 - Bootstrap3, PureCSS helpers
-- Prismjs code highlighter (typesafe)
+- Prismjs code highlighter
 - KaTeX or Mathjax for math formulas
 - form helpers
-- **incremental** rendering, by default!
+- **incremental** rendering by default
 - file watching with sbt
 - PDF rendering
 
