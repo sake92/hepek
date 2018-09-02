@@ -3,18 +3,17 @@ package ba.sake.hepek.anchorjs
 import ba.sake.hepek.html.structure._
 
 /** You need to provide Anchorjs config by yourself.
+  *
   * @see https://www.bryanbraun.com/anchorjs/#basic-usage
   */
 trait AnchorjsDependencies extends PageDependencies {
 
-  def anchorjsVersion: String                  = "4.1.0"
-  def anchorjsDepsProvider: DependencyProvider = DependencyProvider.cdnjs
+  def anchorjsSettings: ComponentSettings =
+    ComponentSettings("4.1.0", "anchor-js", DependencyProvider.cdnjs)
 
-  def anchorjsJSDependencies: List[String] = List(
-    anchorjsDepsProvider.depPath(
-      Dependency("anchor.min.js", anchorjsVersion, "anchor-js")
-    )
+  def anchorjsDependencies = ComponentDependencies().withDependencies(
+    Dependency("anchor.min.js", anchorjsSettings.version, anchorjsSettings.pkg)
   )
 
-  override def scriptURLs = super.scriptURLs ++ anchorjsJSDependencies
+  override def componentsDeps = super.componentsDeps :+ anchorjsDependencies
 }

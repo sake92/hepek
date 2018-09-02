@@ -37,12 +37,14 @@ trait BootstrapStaticPage
     navbar(
       navbarHeader()(
         navbarCollapseToggleBtn(),
-        navbarBrand(siteSettings.indexPage.ref)(
-          siteSettings.faviconInverted.map { fav =>
-            span(img(src := fav))
-          },
-          " " + siteSettings.name
-        )
+        siteSettings.indexPage.map { iPage =>
+          navbarBrand(iPage.ref)(
+            siteSettings.faviconInverted.map { fav =>
+              span(img(src := fav))
+            },
+            siteSettings.name.map(n => " " + n)
+          )
+        }
       ),
       navbarCollapse()(navbarContent()(navbarLiTags))
     )

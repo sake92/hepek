@@ -1,15 +1,21 @@
 package ba.sake.hepek
 
-import scalatags.Text.all.Frag
-
 package object implicits {
 
-  private val bc = ba.sake.hepek.html.component.BasicComponents
+  val SiteSettings = ba.sake.hepek.html.structure.SiteSettings
+  type SiteSettings = ba.sake.hepek.html.structure.SiteSettings
 
   val Section = ba.sake.hepek.html.structure.blog.Section
   type Section = ba.sake.hepek.html.structure.blog.Section
 
-  implicit class HepekStringOps(str: String) {
-    def md: Frag = bc.md(str)
-  }
+  // grid
+  val Ratio = ba.sake.hepek.html.component.GridComponents.Ratio
+  type Ratio = ba.sake.hepek.html.component.GridComponents.Ratio
+
+  val Ratios = ba.sake.hepek.html.component.GridComponents.Ratios
+  type Ratios = ba.sake.hepek.html.component.GridComponents.Ratios
+
+  val ScreenRatios = ba.sake.hepek.html.component.GridComponents.ScreenRatios
+  type ScreenRatios = ba.sake.hepek.html.component.GridComponents.ScreenRatios
+
 }

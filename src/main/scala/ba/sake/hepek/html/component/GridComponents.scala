@@ -38,12 +38,18 @@ object GridComponents {
   case class Third3(content: List[Frag])
 
   case class Ratio(values: List[Int])
+
+  object Ratio {
+    def apply(values: Int*): Ratio = new Ratio(values.toList)
+  }
+
   case class Ratios(half: Ratio, third: Ratio) {
     require(half.values.length == 2,
             "Halves ratios must contain exactly 2 values.")
     require(third.values.length == 3,
             "Thirds ratios must contain exactly 3 values.")
   }
+
   case class ScreenRatios(
       lg: Ratios,
       md: Option[Ratios] = None,
@@ -52,8 +58,8 @@ object GridComponents {
   )
 
   object Ratios {
-    val DefaultHalf  = Ratio(List(1, 1))
-    val DefaultThird = Ratio(List(1, 1, 1))
+    val DefaultHalf  = Ratio(1, 1)
+    val DefaultThird = Ratio(1, 1, 1)
     val Default      = Ratios(DefaultHalf, DefaultThird)
   }
 }

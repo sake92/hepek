@@ -1,6 +1,6 @@
 package ba.sake.hepek.html.structure
 
-trait PageDependencies {
+trait Dependencies {
 
   // CSS
   def styleURLs: List[String]    = List.empty
@@ -9,6 +9,21 @@ trait PageDependencies {
   // JS
   def scriptURLs: List[String]    = List.empty
   def scriptsInline: List[String] = List.empty
+}
+
+trait PageDependencies extends Dependencies {
+
+  // dependencies of all components
+  def componentsDeps: List[ComponentDependencies] = List.empty
+
+  override def styleURLs =
+    super.styleURLs ++ componentsDeps.flatMap(_.styleURLs)
+  override def stylesInline =
+    super.stylesInline ++ componentsDeps.flatMap(_.stylesInline)
+  override def scriptURLs =
+    super.scriptURLs ++ componentsDeps.flatMap(_.scriptURLs)
+  override def scriptsInline =
+    super.scriptsInline ++ componentsDeps.flatMap(_.scriptsInline)
 }
 
 case class Dependency(

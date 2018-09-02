@@ -7,7 +7,7 @@ import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   import PrismCodeHighlightComponents._
 
-  def prismVersion: String                  = "1.11.0"
+  def prismVersion: String                  = "1.15.0"
   def prismDepsProvider: DependencyProvider = DependencyProvider.cdnjs
 
   /** FULL theme name, with "prism" prefix! See `Themes` */

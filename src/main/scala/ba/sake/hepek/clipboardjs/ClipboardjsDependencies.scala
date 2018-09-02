@@ -5,16 +5,14 @@ import ba.sake.hepek.html.structure._
 /** Prismjs needs this for copying operation */
 trait ClipboardjsDependencies extends PageDependencies {
 
-  def clipboardjsVersion: String                  = "1.7.1"
-  def clipboardjsDepsProvider: DependencyProvider = DependencyProvider.cdnjs
+  def clipboardjsSettings: ComponentSettings =
+    ComponentSettings("1.7.1", "clipboard.js", DependencyProvider.cdnjs)
 
-  def clipboardjsJSDependencies: List[String] =
-    List(
-      clipboardjsDepsProvider.depPath(
-        Dependency("clipboard.min.js", clipboardjsVersion, "clipboard.js")
-      )
-    )
+  def clipboardjsDependencies = ComponentDependencies().withDependencies(
+    Dependency("clipboard.min.js",
+               clipboardjsSettings.version,
+               clipboardjsSettings.pkg)
+  )
 
-  override def scriptURLs =
-    super.scriptURLs ++ clipboardjsJSDependencies
+  override def componentsDeps = super.componentsDeps :+ clipboardjsDependencies
 }

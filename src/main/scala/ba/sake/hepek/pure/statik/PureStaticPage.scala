@@ -47,7 +47,7 @@ trait PureStaticPage extends StaticPage with PureDependencies {
         siteSettings.faviconInverted.map { fav =>
           span(img(src := fav))
         },
-        " " + siteSettings.name
+        siteSettings.name.map(n => " " + n)
       ),
       menuList()(
         sidebarMenuItems
