@@ -1,31 +1,29 @@
 package ba.sake.hepek.html.structure
 
+abstract class BaseComponentSettings(
+    val version: String,
+    val pkg: String,
+    val depsProvider: DependencyProvider
+) {
+  def withVersion(version: String)
+  def withPkg(pkg: String)
+  def withDepsProvider(depsProvider: DependencyProvider)
+}
+
 case class ComponentSettings(
-    version: String,
-    pkg: String,
-    depsProvider: DependencyProvider = DependencyProvider.cdnjs
-) {}
+    override val version: String,
+    override val pkg: String,
+    override val depsProvider: DependencyProvider = DependencyProvider.cdnjs
+) extends BaseComponentSettings(version, pkg, depsProvider) {
+  def withVersion(version: String)                       = copy(version = version)
+  def withPkg(pkg: String)                               = copy(pkg = pkg)
+  def withDepsProvider(depsProvider: DependencyProvider) = copy(depsProvider = depsProvider)
+}
 
 case class ComponentDependencies(
-    override val styleURLs: List[String] = List.empty,
-    override val stylesInline: List[String] = List.empty,
-    override val scriptURLs: List[String] = List.empty,
-    override val scriptsInline: List[String] = List.empty,
-    dependencies: List[Dependency] = List.empty
-) extends Dependencies {
-
-  def withStyleURLs(urls: List[String]) = copy(styleURLs = urls)
-  def withStyleURLs(urls: String*)      = copy(styleURLs = urls.toList)
-
-  def withStylesInline(inlines: List[String]) = copy(stylesInline = inlines)
-  def withStylesInline(inlines: String*)      = copy(stylesInline = inlines.toList)
-
-  def withScriptURLs(urls: List[String]) = copy(scriptURLs = urls)
-  def withScriptURLs(urls: String*)      = copy(scriptURLs = urls.toList)
-
-  def withScriptsInline(inlines: List[String]) = copy(scriptsInline = inlines)
-  def withScriptsInline(inlines: String*)      = copy(scriptsInline = inlines.toList)
-
-  def withDependencies(deps: List[Dependency]) = copy(dependencies = deps)
-  def withDependencies(deps: Dependency*)      = copy(dependencies = deps.toList)
+    cssDependencies: Dependencies = Dependencies(),
+    jsDependencies: Dependencies = Dependencies()
+) {
+  def withCssDependencies(cssDependencies: Dependencies) = copy(cssDependencies = cssDependencies)
+  def withJsDependencies(jsDependencies: Dependencies)   = copy(jsDependencies = jsDependencies)
 }

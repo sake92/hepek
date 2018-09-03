@@ -4,10 +4,7 @@ import scalatags.Text.all._
 import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.path.ClassPackageRelativePath
 
-trait StaticPage
-    extends Renderable
-    with ClassPackageRelativePath
-    with PageDependencies {
+trait StaticPage extends Renderable with ClassPackageRelativePath with PageDependencies {
 
   def siteSettings: SiteSettings
 
@@ -47,19 +44,44 @@ trait StaticPage
   def bodyContent: List[Frag] = List.empty
 
   override def render: String = {
+    // inline css
+    val compStyleInlines = components.flatMap { _._2.cssDependencies.inlines }
+    val allStyleInlines  = compStyleInlines ++ stylesInline
+    // urls css
+    val compStyleUrls = components.flatMap {
+      case (cs, cd) =>
+        cd.cssDependencies.urls ++
+          cd.cssDependencies.deps.map(cs.depsProvider.depPath)
+    }
+    val allStyleURLs = compStyleUrls ++ styleURLs
+
+    // inline js
+    val compScriptInlines = components.flatMap { _._2.jsDependencies.inlines }
+    val allScriptInlines  = compScriptInlines ++ scriptsInline
+    // urls js
+    val compScriptUrls = components.flatMap {
+      case (cs, cd) =>
+        cd.jsDependencies.urls ++
+          cd.jsDependencies.deps.map(cs.depsProvider.depPath)
+    }
+    val allScriptURLs = compScriptUrls ++ scriptURLs
+
+    // CONTENT
     val rawContent = "<!DOCTYPE html>" +
       html(lang := pageLanguage)(
         head(
           headContent ++
-            styleURLs.map(u => link(rel := "stylesheet", href := u)) ++
-            stylesInline.map(s => tag("style")(s))
+            allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
+            allStyleInlines.map(s => tag("style")(s))
         ),
         body(
           bodyContent ++
-            scriptURLs.map(u => script(src := u)) ++
-            scriptsInline.map(s => script(raw(s)))
+            allScriptURLs.map(u => script(src := u)) ++
+            allScriptInlines.map(s => script(raw(s)))
         )
       )
+
+    // optionally XHTML-ify and pretty-fy
     if (renderXhtml || renderPretty) {
       val document = org.jsoup.Jsoup.parse(rawContent)
       document

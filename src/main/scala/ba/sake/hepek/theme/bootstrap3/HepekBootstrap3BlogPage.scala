@@ -22,12 +22,10 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
         div(cls := "hidden-print")(
           postCreateDate.map(
             createDate =>
-              div(span(cls := "glyphicon glyphicon-time"),
-                  " " + createDate.format(dateFormat))
+              div(span(cls := "glyphicon glyphicon-time"), " " + createDate.format(dateFormat))
           ),
           postAuthor.map(
-            author =>
-              div(span(cls := "glyphicon glyphicon-user"), "  " + author)
+            author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
           )
         ),
         tag("article")(renderTOCAndSections(postSections)),

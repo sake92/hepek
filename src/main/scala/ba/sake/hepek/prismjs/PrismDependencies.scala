@@ -7,60 +7,45 @@ import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   import PrismCodeHighlightComponents._
 
-  def prismVersion: String                  = "1.15.0"
-  def prismDepsProvider: DependencyProvider = DependencyProvider.cdnjs
+  def prismSettings: PrismSettings = PrismSettings("1.15.0", "prism", DependencyProvider.cdnjs)
 
-  /** FULL theme name, with "prism" prefix! See `Themes` */
-  def prismTheme: String            = Themes.Okaidia
-  def prismShowInvisibles: Boolean  = false
-  def prismShowLanguage: Boolean    = true
-  def prismCopyToClipboard: Boolean = true
-  //def prismKeepMarkup: Boolean = false
-
-  def prismCSSDependencies: List[String] = {
-    val themeDeps = List(
-      prismDepsProvider.depPath(
-        Dependency(s"themes/$prismTheme.min.css", prismVersion, "prism")
-      )
-    )
-    val pluginDeps = (prismPlugins ++ optionalPluginDeps).filter(_._2).map {
+  def prismDependencies: ComponentDependencies = {
+    val cssPluginDeps = (prismPlugins ++ optionalPluginDeps).filter(_._2).map {
       case (plugin, _) =>
-        prismDepsProvider.depPath(
-          Dependency(s"plugins/$plugin/prism-$plugin.css",
-                     prismVersion,
-                     "prism")
-        )
+        Dependency(s"plugins/$plugin/prism-$plugin.css", prismSettings.version, "prism")
     }
-    themeDeps ++ pluginDeps
+
+    val jsLangDeps = prismLanguageDeps.map { lang =>
+      Dependency(s"components/prism-$lang.min.js", prismSettings.version, "prism")
+    }
+    val jsPluginDeps = (prismPlugins ++ optionalPluginDeps).map {
+      case (plugin, _) =>
+        Dependency(s"plugins/$plugin/prism-$plugin.min.js", prismSettings.version, "prism")
+    }
+
+    ComponentDependencies()
+      .withCssDependencies(
+        Dependencies().withDeps(
+          Dependency(s"themes/${prismSettings.theme}.min.css",
+                     prismSettings.version,
+                     prismSettings.pkg) :: cssPluginDeps
+        )
+      )
+      .withJsDependencies(
+        Dependencies().withDeps(jsLangDeps ++ jsPluginDeps)
+      )
   }
 
-  def prismJSDependencies: List[String] = {
-    val langDeps = prismLanguageDeps.map { lang =>
-      prismDepsProvider.depPath(
-        Dependency(s"components/prism-$lang.min.js", prismVersion, "prism")
-      )
-    }
-    val pluginDeps = (prismPlugins ++ optionalPluginDeps).map {
-      case (plugin, _) =>
-        prismDepsProvider.depPath(
-          Dependency(s"plugins/$plugin/prism-$plugin.min.js",
-                     prismVersion,
-                     "prism")
-        )
-    }
-    langDeps ++ pluginDeps
-  }
-
-  override def styleURLs  = super.styleURLs ++ prismCSSDependencies
-  override def scriptURLs = super.scriptURLs ++ prismJSDependencies
+  override def components =
+    super.components :+ (prismSettings, prismDependencies)
 
   // TODO keep-markup isn't working correctly... :/
   private def optionalPluginDeps: List[(String, Boolean)] =
     List(
       //if (prismKeepMarkup) Option("keep-markup" -> false) else None,
-      if (prismShowInvisibles) Option("show-invisibles"    -> true) else None,
-      if (prismShowLanguage) Option("show-language"        -> false) else None,
-      if (prismCopyToClipboard) Option("copy-to-clipboard" -> false) else None
+      if (prismSettings.showInvisibles) Option("show-invisibles"    -> true) else None,
+      if (prismSettings.showLanguage) Option("show-language"        -> false) else None,
+      if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
     ).flatten
 
 }
@@ -74,4 +59,24 @@ object Themes {
   val Okaidia        = "prism-okaidia"
   val Tomorrow       = "prism-tomorrow"
   val Twilight       = "prism-twilight"
+}
+
+case class PrismSettings(
+    override val version: String,
+    override val pkg: String,
+    override val depsProvider: DependencyProvider = DependencyProvider.cdnjs,
+    /** FULL theme name, with "prism" prefix! See `Themes` */
+    theme: String = Themes.Okaidia,
+    showInvisibles: Boolean = false,
+    showLanguage: Boolean = true,
+    copyToClipboard: Boolean = true,
+    //def prismKeepMarkup: Boolean = false // TODO
+) extends BaseComponentSettings(version, pkg, depsProvider) {
+  def withVersion(version: String)                       = copy(version = version)
+  def withPkg(pkg: String)                               = copy(pkg = pkg)
+  def withDepsProvider(depsProvider: DependencyProvider) = copy(depsProvider = depsProvider)
+  def withTheme(theme: String)                           = copy(theme = theme)
+  def withShowInvisibles(showInvisibles: Boolean)        = copy(showInvisibles = showInvisibles)
+  def withShowLanguage(showLanguage: Boolean)            = copy(showLanguage = showLanguage)
+  def withCopyToClipboard(copyToClipboard: Boolean)      = copy(copyToClipboard = copyToClipboard)
 }

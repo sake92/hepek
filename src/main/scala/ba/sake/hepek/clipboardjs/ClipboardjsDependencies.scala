@@ -8,11 +8,11 @@ trait ClipboardjsDependencies extends PageDependencies {
   def clipboardjsSettings: ComponentSettings =
     ComponentSettings("1.7.1", "clipboard.js", DependencyProvider.cdnjs)
 
-  def clipboardjsDependencies = ComponentDependencies().withDependencies(
-    Dependency("clipboard.min.js",
-               clipboardjsSettings.version,
-               clipboardjsSettings.pkg)
+  def clipboardjsDependencies: ComponentDependencies = ComponentDependencies().withJsDependencies(
+    Dependencies().withDeps(
+      Dependency("clipboard.min.js", clipboardjsSettings.version, clipboardjsSettings.pkg)
+    )
   )
 
-  override def componentsDeps = super.componentsDeps :+ clipboardjsDependencies
+  override def components = super.components :+ (clipboardjsSettings, clipboardjsDependencies)
 }

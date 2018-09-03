@@ -4,17 +4,17 @@ import ba.sake.hepek.html.structure._
 
 trait JQueryDependencies extends PageDependencies {
 
-  def jQueryVersion: String                  = "3.2.1"
-  def jQueryDepsProvider: DependencyProvider = DependencyProvider.cdnjs
+  def jQuerySettings: ComponentSettings =
+    ComponentSettings("3.2.1", "jquery", DependencyProvider.cdnjs)
 
-  def jQueryJsDependencies: List[String] = List(
-    jQueryDepsProvider.depPath(
+  def jQueryDependencies = ComponentDependencies().withJsDependencies(
+    Dependencies().withDeps(
       Dependency("jquery.min.js",
-                 jQueryVersion,
-                 "jquery",
+                 jQuerySettings.version,
+                 jQuerySettings.pkg,
                  baseFolder = Option("dist/"))
     )
   )
 
-  override def scriptURLs = super.scriptURLs ++ jQueryJsDependencies
+  override def components = super.components :+ (jQuerySettings, jQueryDependencies)
 }

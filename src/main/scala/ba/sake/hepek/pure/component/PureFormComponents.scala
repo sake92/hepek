@@ -56,10 +56,7 @@ trait PureFormComponents extends FormComponents {
         } else if (isButtonLike(_type)) {
           val inputAttrsFiltered2 =
             inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-          input(tpe := _type,
-                value := _label,
-                cls := "pure-button ",
-                inputAttrsFiltered2)
+          input(tpe := _type, value := _label, cls := "pure-button ", inputAttrsFiltered2)
         } else {
           frag(
             label(inputId.map(`for` := _))(_label),
@@ -88,10 +85,7 @@ trait PureFormComponents extends FormComponents {
         inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
 
       div(cls := "pure-controls")(
-        input(tpe := _type,
-              value := _label,
-              cls := "pure-button ",
-              inputAttrsFiltered2)
+        input(tpe := _type, value := _label, cls := "pure-button ", inputAttrsFiltered2)
       )
     } else {
       div(cls := "pure-control-group")(

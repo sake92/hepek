@@ -4,38 +4,34 @@ import ba.sake.hepek.html.structure._
 
 trait KatexDependencies extends PageDependencies {
 
-  private val pkg = "KaTeX"
+  def katexSettings: ComponentSettings =
+    ComponentSettings("0.9.0", "KaTeX", DependencyProvider.cdnjs)
 
-  def katexVersion: String                  = "0.9.0"
-  def katexDepsProvider: DependencyProvider = DependencyProvider.cdnjs
-
-  def katexJsDependencies: List[String] =
-    List(
-      katexDepsProvider.depPath(Dependency("katex.min.js", katexVersion, pkg)),
-      katexDepsProvider.depPath(
-        Dependency("contrib/auto-render.min.js", katexVersion, pkg)
+  def katexDependencies =
+    ComponentDependencies()
+      .withJsDependencies(
+        Dependencies()
+          .withDeps(
+            Dependency("katex.min.js", katexSettings.version, katexSettings.pkg),
+            Dependency("contrib/auto-render.min.js", katexSettings.version, katexSettings.pkg)
+          )
+          .withInlines(
+            """
+              // couldn't find better escape character, all other are used in Markdown
+              renderMathInElement(
+                document.body, {
+                  delimiters: [
+                    { left: "´", right: "´", display: false }, // inline
+                    { left: "$$", right: "$$", display: true } // block, centered
+                  ]
+              });
+            """
+          )
       )
-    )
+      .withCssDependencies(
+        Dependencies()
+          .withDeps(Dependency("katex.min.css", katexSettings.version, katexSettings.pkg))
+      )
 
-  // https://en.wikipedia.org/wiki/Acute_accent
-  // couldn't find better escape character, all other are used in Markdown
-  def katexJsInlineDependencies: List[String] =
-    List("""
-        renderMathInElement(
-          document.body, {
-            delimiters: [
-              { left: "´", right: "´", display: false }, // inline
-              { left: "$$", right: "$$", display: true } // block, centered
-            ]
-        });
-      """)
-
-  def katexCssDependencies: List[String] =
-    List(
-      katexDepsProvider.depPath(Dependency("katex.min.css", katexVersion, pkg))
-    )
-
-  override def scriptURLs    = super.scriptURLs ++ katexJsDependencies
-  override def scriptsInline = super.scriptsInline ++ katexJsInlineDependencies
-  override def styleURLs     = super.styleURLs ++ katexCssDependencies
+  override def components = super.components :+ (katexSettings, katexDependencies)
 }

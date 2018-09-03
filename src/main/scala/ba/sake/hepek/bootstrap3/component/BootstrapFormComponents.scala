@@ -9,8 +9,7 @@ object BootstrapFormComponents extends BootstrapFormComponents {
   object Type {
     case object Vertical extends Type
     case object Inline   extends Type { override def classes = "form-inline" }
-    case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3)
-        extends Type {
+    case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
       require(labelRatio > 0, "Label ratio < 1")
       require(inputRatio > 0, "Input ratio < 1")
       override def classes = "form-horizontal"
@@ -64,10 +63,7 @@ trait BootstrapFormComponents extends FormComponents {
         } else if (isButtonLike(_type)) {
           val inputAttrsFiltered2 =
             inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-          input(tpe := _type,
-                value := _label,
-                cls := "btn ",
-                inputAttrsFiltered2)
+          input(tpe := _type, value := _label, cls := "btn ", inputAttrsFiltered2)
         } else {
           div(cls := "form-group")(
             label(inputId.map(`for` := _))(_label),
@@ -107,16 +103,12 @@ trait BootstrapFormComponents extends FormComponents {
         div(
           cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
         )(
-          input(tpe := _type,
-                value := _label,
-                cls := "btn ",
-                inputAttrsFiltered2)
+          input(tpe := _type, value := _label, cls := "btn ", inputAttrsFiltered2)
         )
       )
     } else {
       div(cls := "form-group")(
-        label(inputId.map(`for` := _),
-              cls := s"control-label col-sm-$labelRatioBootstrap")(_label),
+        label(inputId.map(`for` := _), cls := s"control-label col-sm-$labelRatioBootstrap")(_label),
         div(cls := s"col-sm-$inputRatioBootstrap")(
           input(tpe := _type, cls := "form-control", inputAttrsFiltered)
         )

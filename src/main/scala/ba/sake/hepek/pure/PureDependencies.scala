@@ -4,19 +4,22 @@ import ba.sake.hepek.html.structure._
 
 trait PureDependencies extends PageDependencies {
 
-  def pureVersion: String                  = "1.0.0"
-  def pureDepsProvider: DependencyProvider = DependencyProvider.unpkg
-
-  def pureCSSDependencies: List[String] =
+  def pureModules: List[String] =
     List("pure", "buttons", "forms", "grids-responsive", "menus", "tables")
-      .map { moduleName =>
-        pureDepsProvider.depPath(
-          Dependency(s"$moduleName-min.css",
-                     pureVersion,
-                     "purecss",
-                     baseFolder = Option("build/"))
-        )
-      }
 
-  override def styleURLs = super.styleURLs ++ pureCSSDependencies
+  def pureSettings: ComponentSettings =
+    ComponentSettings("1.0.0", "purecss", DependencyProvider.unpkg)
+
+  def pureDependencies = ComponentDependencies().withJsDependencies(
+    Dependencies().withDeps(
+      pureModules.map { moduleName =>
+        Dependency(s"$moduleName-min.css",
+                   pureSettings.version,
+                   pureSettings.pkg,
+                   baseFolder = Option("build/"))
+      }
+    )
+  )
+
+  override def components = super.components :+ (pureSettings, pureDependencies)
 }
