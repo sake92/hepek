@@ -2,7 +2,7 @@
       article {
         padding-top: 12px;
       }
-    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="docs.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="page-header text-center hidden-print"><h1>Layout</h1></div></div><div class="row"><div class="col-lg-2 col-lg-push-1  col-md-3  hidden-print"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Quickstart</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class="active"><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></div><div class="col-lg-8 col-lg-push-1  col-md-9"><div class="hidden-print"></div><article><div class="panel-group hidden-print"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapseTOC">Table of Contents</a></h4></div><div id="collapseTOC" class="panel-collapse collapse"><div class="panel-body pages-toc"><ul><li><a href="#layout-support">Layout support</a></li><ul><li><a href="#problem">Problem</a></li><ul></ul><li><a href="#hepek-grid">Hepek grid</a></li><ul><li><a href="#configuration">Configuration</a></li><ul></ul></ul></ul></ul></div></div></div></div><div><section><h2 id="layout-support">Layout support</h2><p>Let's see what Hepek has to offer regarding layouts.</p>
+    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="docs.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="page-header text-center hidden-print"><h1>Layout</h1></div></div><div class="row"><div class="col-lg-2 col-lg-push-1  col-md-3  hidden-print"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Quickstart</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class="active"><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></div><div class="col-lg-8 col-lg-push-1  col-md-9"><div class="hidden-print"><div><span class="glyphicon glyphicon-time"></span> 05.09.2018</div></div><article><div class="panel-group hidden-print"><div class="panel panel-default"><div class="panel-heading"><h4 class="panel-title"><a data-toggle="collapse" href="#collapseTOC">Table of Contents</a></h4></div><div id="collapseTOC" class="panel-collapse collapse"><div class="panel-body pages-toc"><ul><li><a href="#layout-support">Layout support</a></li><ul><li><a href="#problem">Problem</a></li><ul></ul><li><a href="#hepek-grid">Hepek grid</a></li><ul><li><a href="#configuration">Configuration</a></li><ul></ul></ul></ul></ul></div></div></div></div><div><section><h2 id="layout-support">Layout support</h2><p>Let's see what Hepek has to offer regarding layouts.</p>
 </section><section><h3 id="problem">Problem</h3><p>Most static site generators have themes with predefined layout.<br />
 What if you just want to position an image to the right? Not so fast!<br />
 Then you mix in some inline HTML in your beautiful markdown and get a real mess...</p>
@@ -19,7 +19,7 @@ For example:</p>
 <li>thirds, constructed with <code>third1</code>, <code>third2</code> and <code>third3</code></li>
 </ul>
 <p>You just need to import or extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/bootstrap3/component/BootstrapGridComponents.scala"><code>BootstrapGridComponents</code></a>.
-Shouldn't be hard to add support for other frameworks also.<br />
+There is also support for PureCSS framework.<br />
 So, in a nutshell, these will compile:</p>
 <pre class="line-numbers" data-start="1"><code class="language-scala ">
         row( /* insert Scalatags here */ ),
@@ -49,18 +49,17 @@ You can configure each screen size separately, just like in Bootstrap 3:
 <code>lg</code>,<code>md</code>, <code>sm</code> and <code>xs</code>.
 Example:</p>
 <pre class="line-numbers" data-start="1"><code class="language-scala ">
-        val lgHalfRatio  = Ratio(List(5, 7))    // 5:7
-        val lgThirdRatio = Ratio(List(4, 3, 5)) // 4:3:5
+        val lgHalfRatio  = Ratio(5, 7)    // 5:7
+        val lgThirdRatio = Ratio(4, 3, 5) // 4:3:5
 
-        val mdHalfRatio  = Ratio(List(8, 4))    // 8:4
-        val mdThirdRatio = Ratio(List(6, 4, 2)) // 6:4:2
+        val mdHalfRatio  = Ratio(8, 4)    // 8:4
+        val mdThirdRatio = Ratio(6, 4, 2) // 6:4:2
 
-        override def screenRatios = super.screenRatios.copy(
-          lg = Ratios(lgHalfRatio, lgThirdRatio),
-          md = Option(Ratios(mdHalfRatio, mdThirdRatio)),
-          sm = None,
-          xs = None
-        )
+        override def screenRatios = super.screenRatios
+          .withLg(Ratios(lgHalfRatio, lgThirdRatio))
+          .withMd(Ratios(mdHalfRatio, mdThirdRatio))
+          .withSm(None)
+          .withXs(None)
       </code></pre><p>These are pretty self-explanatory. For large screens, halves have 5:7 ratio.<br />
 So, <code>half1</code> will get <code>col-lg-5</code> class, and <code>half2</code> will get <code>col-lg-7</code> class.<br />
 Same pattern follows for thirds  etc.</p>

@@ -16,24 +16,14 @@ object BlogPage extends HepekDocsPage {
     relatedPostsSection
   )
 
-  /*
-  author: Option[String] = None,
-    createDate: Option[LocalDate] = None,
-    sections: List[Section] = List.empty,
-    dateFormat: DateTimeFormatter
-   */
-
   val blogPageSettingsProps = List(
-    ClassProperty("postAuthor", "Option[String]", "Author of the post", Some("None")),
-    ClassProperty("postCreateDate",
+    ClassProperty("author", "Option[String]", "Author of this post", Some("None")),
+    ClassProperty("createDate",
                   "Option[LocalDate]",
-                  "Date when the post was written",
+                  "Date when this post was written",
                   Some("None")),
-    ClassProperty("postSections", "List[Section] ", "Sections of the post", Some("List.empty")),
-    ClassProperty("categoryPosts",
-                  "List[BlogPostPage]",
-                  "Related posts, from same category",
-                  Some("List.empty"))
+    ClassProperty("sections", "List[Section]", "Sections of this post", Some("List.empty")),
+    ClassProperty("dateFormat", "DateTimeFormatter", "Sections of this post", Some("dd.MM.yyyy")),
   )
 
   /* CONTENT */
@@ -43,7 +33,7 @@ object BlogPage extends HepekDocsPage {
       s"""
         When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a blog post page.  
         For a Bootstrap-themed page extend [`HepekBootstrap3BlogPage`](${links.HepekBootstrap3BlogPagesUrl}).  
-        `BlogPostPage` has the following fields:
+        You can override `def blogSettings: BlogSettings` method with following fields:
       """.md,
       renderClassProps(blogPageSettingsProps)
     )
@@ -53,15 +43,16 @@ object BlogPage extends HepekDocsPage {
     "Sections",
     frag(
       """
-        You need to override the `postSections` method.  
-        A blog post is made from sections, so you can render a nice TOC (or even a PDF later, why not?).  
-        `Section`s are hierarchical, they can contain other sections.  
+        A blog post is made of **sections**, so you can render a nice TOC, sitemap.xml, or even a PDF...  
+        `Section`s are tree-like, they can contain other sections.  
         Every section has a name (title), content, and optionally child sections.  
         Code usually looks similar to this:
       """.md,
       chl.scala("""
-        trait MySiteBlogPostTemplate extends BlogPostPage {
-          override def postSections = List(firstSection)
+        object ExampleBlogPost extends MyBlogPostPage {
+          override def blogSettings = super.blogSettings
+            .withCreateDate(LocalDate.of(2018, 9, 5))
+            .withSections(firstSection)
 
           val firstSection = Section(
             "Hello world!",
@@ -73,16 +64,20 @@ object BlogPage extends HepekDocsPage {
             p("Thanks for visiting!")
           )
         }
-      """)
+      """),
+      """
+        You can even get a link to a section!  
+        E.g. `ExampleBlogPost.firstSection.ref` would return something like "example-blog-post.html#hello-world"
+      """.md
     )
   )
 
   val relatedPostsSection = Section(
     "Related posts",
     """
-      Note the `categoryPosts` method. 
+      There is also `def categoryPosts: List[BlogPostPage]` method.  
       It is used for grouping posts, posts that belong to same "category".  
-      Also, usually you'll want to have a sidebar with related posts links.  
+      Also, it can be used for a sidebar with related posts links.  
 
       *Example*: Let's say you are writing math tutorials.  
       You'll have separate templates for different topics: 

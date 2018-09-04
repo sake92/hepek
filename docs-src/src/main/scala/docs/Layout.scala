@@ -1,17 +1,23 @@
 package docs
 
+import java.time.LocalDate
+
 import scalatags.Text.all._
 import ba.sake.hepek.implicits._
-import utils._, Imports._
+import utils._
+import Imports._
 import templates.HepekDocsPage
 
 object Layout extends HepekDocsPage {
 
   override def pageSettings = PageSettings("Layout")
 
-  override def blogSettings = super.blogSettings.withSections(
-    layoutSection
-  )
+  override def blogSettings =
+    super.blogSettings
+      .withSections(
+        layoutSection
+      )
+      .withCreateDate(LocalDate.of(2018, 9, 5))
 
   /* CONTENT */
   def layoutSection = Section(
@@ -51,7 +57,7 @@ object Layout extends HepekDocsPage {
           - thirds, constructed with `third1`, `third2` and `third3`
         
         You just need to import or extend [`BootstrapGridComponents`](${links.BootstrapGridComponentsUrl}).
-        Shouldn't be hard to add support for other frameworks also.  
+        There is also support for PureCSS framework.  
         So, in a nutshell, these will compile:
       """),
       chl.scala("""
@@ -93,18 +99,17 @@ object Layout extends HepekDocsPage {
         Example:
       """),
       chl.scala("""
-        val lgHalfRatio  = Ratio(List(5, 7))    // 5:7
-        val lgThirdRatio = Ratio(List(4, 3, 5)) // 4:3:5
+        val lgHalfRatio  = Ratio(5, 7)    // 5:7
+        val lgThirdRatio = Ratio(4, 3, 5) // 4:3:5
 
-        val mdHalfRatio  = Ratio(List(8, 4))    // 8:4
-        val mdThirdRatio = Ratio(List(6, 4, 2)) // 6:4:2
+        val mdHalfRatio  = Ratio(8, 4)    // 8:4
+        val mdThirdRatio = Ratio(6, 4, 2) // 6:4:2
 
-        override def screenRatios = super.screenRatios.copy(
-          lg = Ratios(lgHalfRatio, lgThirdRatio),
-          md = Option(Ratios(mdHalfRatio, mdThirdRatio)),
-          sm = None,
-          xs = None
-        )
+        override def screenRatios = super.screenRatios
+          .withLg(Ratios(lgHalfRatio, lgThirdRatio))
+          .withMd(Ratios(mdHalfRatio, mdThirdRatio))
+          .withSm(None)
+          .withXs(None)
       """),
       md(s"""
         These are pretty self-explanatory. For large screens, halves have 5:7 ratio.  

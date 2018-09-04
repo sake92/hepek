@@ -71,12 +71,18 @@ object StaticPage extends HepekDocsPage {
       renderClassProps(pageSettingsProps),
       "Example of page definition:",
       chl.scala("""
+          package site
           object Index extends MySiteTemplate {
             override def pageSettings =
               PageSettings("Welcome!") // title
                 .withDescription("My cool site")
           }
-        """)
+        """),
+      """
+         You can get a relative link to `Index` page with `ref` method.  
+         E.g. if you have a page in `site.posts` package (notice that `Index` is in the `site` package), 
+          `Index.ref` will give you a string "../index.html"
+      """.md
     )
   )
 
