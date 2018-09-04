@@ -1,14 +1,12 @@
 package templates
 
+import scalatags.Text.all._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 import ba.sake.hepek.html.structure._
 import ba.sake.hepek.prismjs
-import ba.sake.hepek.prismjs.PrismConsts
 import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
-import utils.Imports._, resources._
-import utils.Site
-import scalatags.Text.all._
+import utils._, Imports._, resources._
 
 trait HepekDocsPage
     extends HepekBootstrap3BlogPage
@@ -20,15 +18,7 @@ trait HepekDocsPage
   override def prismSettings =
     super.prismSettings
       .withTheme(prismjs.Themes.Okaidia)
-      .withLanguages(
-        PrismConsts.languages.filter { d =>
-          if (d.contains("component")) {
-            hlLangs.exists(l => d.contains(s"prism-$l."))
-          } else {
-            true
-          }
-        }
-      )
+      .withLanguages(prismjs.PrismConsts.languages filter hlLangs.contains)
 
   override def categoryPosts = Site.pages
 }

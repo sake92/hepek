@@ -9,7 +9,7 @@ object PdfGenerator extends HepekDocsPage {
 
   override def pageSettings = PageSettings("Pdf generator")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     pdfGeneratorSection
   )
 

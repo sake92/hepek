@@ -134,7 +134,7 @@ case class PageSettings(
 }
 
 object PageSettings {
-  val DefaultTitle    = "ChangeMe!"
+  val DefaultTitle    = "changeme"
   val DefaultLanguage = "en"
 
   def apply(title: String = DefaultTitle): PageSettings =

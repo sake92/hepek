@@ -10,11 +10,18 @@ object BlogPage extends HepekDocsPage {
 
   override def pageSettings = PageSettings("Blog page")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     blogPostSettingsSection,
     sectionsSection,
     relatedPostsSection
   )
+
+  /*
+  author: Option[String] = None,
+    createDate: Option[LocalDate] = None,
+    sections: List[Section] = List.empty,
+    dateFormat: DateTimeFormatter
+   */
 
   val blogPageSettingsProps = List(
     ClassProperty("postAuthor", "Option[String]", "Author of the post", Some("None")),

@@ -23,4 +23,6 @@ object links {
   // themes
   val HepekBootstrap3BlogPagesUrl = hepekUrl + "/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
 
+  val BrowsersyncUrl = "https://browsersync.io/"
+
 }

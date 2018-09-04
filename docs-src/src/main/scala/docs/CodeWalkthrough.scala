@@ -11,7 +11,7 @@ object CodeWalkthrough extends HepekDocsPage {
     PageSettings("Code walkthrough")
       .withDescription("Code walkthrough")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     Section("Contents", contentContent),
     Section("Templates", templatesContent),
     Section("Common imports", importsContent),

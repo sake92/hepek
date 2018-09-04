@@ -10,7 +10,7 @@ object MathSupport extends HepekDocsPage with KatexDependencies {
 
   override def pageSettings = PageSettings("Math support")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     mathSection
   )
 

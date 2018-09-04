@@ -9,7 +9,7 @@ object Dependencies extends HepekDocsPage {
 
   override def pageSettings = PageSettings("JS and CSS dependencies")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     depsSection
   )
 

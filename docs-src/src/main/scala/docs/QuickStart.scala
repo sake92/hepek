@@ -8,7 +8,7 @@ object QuickStart extends HepekDocsPage {
 
   override def pageSettings = PageSettings("Quickstart")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     installationSection,
     usingSection,
     servingSection
@@ -18,11 +18,8 @@ object QuickStart extends HepekDocsPage {
   val installationSection = Section(
     "Installation",
     """
-      Prerequisites:
-        - Java 8
-        - sbt
-
-      It's planned to support other build tools in the future: Mill, Gradle etc.  
+      You need to have Java 8 installed and sbt version 1 or greater.
+      It's planned to support other build tools in the future: Mill, Gradle etc.
     """.md
   )
 
@@ -33,7 +30,7 @@ object QuickStart extends HepekDocsPage {
       Start up sbt console and type `hepek`.  
       Voila, that's it! :)
 
-      You can also make sbt **watch** for files changes.  
+      You can also make sbt **watch for file changes**.
       Just type `~hepek` and you'll see changes in matter of a second.
 
       > HTML/CSS or whatever you're rendering will be in `/target/web/public/main/site` folder.  
@@ -43,12 +40,18 @@ object QuickStart extends HepekDocsPage {
 
   val servingSection = Section(
     "Serving",
-    md(s"""
+    s"""
       You can just open `index.html` and see the results...  
       If you really need a web server, I'd recommend [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb).
-      Very simple to use, enough for static sites. :)  
+      Very simple to use, enough for static sites. :)
+
+      Another great way is with [Browsersync](${links.BrowsersyncUrl}).
+      Install it, `cd` to rendering folder and type:  
+      `browser-sync start --server --files .`  
+      Browsersync will **automatically refresh page** in browser when it gets changed, or its CSS etc!
+
       Deployment consists of copying the contents to your web host (e.g. Github pages).
-    """)
+    """.md
   )
 
 }

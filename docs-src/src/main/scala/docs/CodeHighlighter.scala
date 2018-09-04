@@ -9,7 +9,7 @@ object CodeHighlighter extends HepekDocsPage {
 
   override def pageSettings = PageSettings("Code highlighter")
 
-  override def postSections = List(
+  override def blogSettings = super.blogSettings.withSections(
     codeHighlighterSection
   )
 
