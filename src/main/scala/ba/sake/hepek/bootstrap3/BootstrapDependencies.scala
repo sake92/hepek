@@ -3,7 +3,7 @@ package ba.sake.hepek.bootstrap3
 import ba.sake.hepek.html.structure._
 import ba.sake.hepek.jquery.JQueryDependencies
 
-trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
+trait BootstrapDependencies extends JQueryDependencies {
 
   def bootstrapSettings: ComponentSettings =
     ComponentSettings("3.3.7", "bootstrap", DependencyProvider.unpkg)

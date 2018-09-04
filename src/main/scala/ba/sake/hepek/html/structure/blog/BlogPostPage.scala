@@ -11,18 +11,29 @@ import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.utils.StringUtils
 
 trait BlogPostPage extends StaticPage {
-
-  // TODO BlogSettings
-
-  def postAuthor: Option[String] = None
-
-  def postCreateDate: Option[LocalDate] = None
-
-  def postSections: List[Section] = List.empty
-
+  def blogSettings: BlogSettings        = BlogSettings()
   def categoryPosts: List[BlogPostPage] = List.empty
+}
 
-  def dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+case class BlogSettings(
+    author: Option[String] = None,
+    createDate: Option[LocalDate] = None,
+    sections: List[Section] = List.empty,
+    dateFormat: DateTimeFormatter = BlogSettings.DefaultDateFormat
+) {
+  def withAuthor(author: String)                    = copy(author = Some(author))
+  def withAuthor(author: Option[String])            = copy(author = author)
+  def withCreateDate(createDate: LocalDate)         = copy(createDate = Some(createDate))
+  def withCreateDate(createDate: Option[LocalDate]) = copy(createDate = createDate)
+  def withSections(sections: List[Section])         = copy(sections = sections)
+  def withSections(sections: Section*)              = copy(sections = sections.toList)
+  def withDateFormat(df: DateTimeFormatter)         = copy(dateFormat = df)
+  def withDateFormat(df: String)                    = copy(dateFormat = DateTimeFormatter.ofPattern(df))
+}
+
+object BlogSettings {
+  val DefaultDateFormatPattern = "dd.MM.yyyy"
+  val DefaultDateFormat        = DateTimeFormatter.ofPattern(BlogSettings.DefaultDateFormatPattern)
 }
 
 /**

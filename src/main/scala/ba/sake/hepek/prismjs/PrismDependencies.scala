@@ -1,10 +1,9 @@
 package ba.sake.hepek.prismjs
 
 import ba.sake.hepek.html.structure._
-import ba.sake.hepek.html.component.CodeHighlightComponents
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 
-trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
+trait PrismDependencies extends ClipboardjsDependencies {
 
   def prismSettings: PrismSettings = PrismSettings("1.15.0", "prism", DependencyProvider.cdnjs)
 
@@ -41,7 +40,7 @@ trait PrismDependencies extends PageDependencies with ClipboardjsDependencies {
   // TODO keep-markup isn't working correctly... :/
   private def optionalPluginDeps: List[(String, Boolean)] =
     List(
-      //if (prismKeepMarkup) Option("keep-markup" -> false) else None,
+      //if (prismSettings.keepMarkup) Option("keep-markup"            -> false) else None,
       if (prismSettings.showInvisibles) Option("show-invisibles"    -> true) else None,
       if (prismSettings.showLanguage) Option("show-language"        -> false) else None,
       if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
@@ -64,14 +63,13 @@ case class PrismSettings(
     override val version: String,
     override val pkg: String,
     override val depsProvider: DependencyProvider = DependencyProvider.cdnjs,
-    /** FULL theme name, with "prism" prefix! See `Themes` */
     theme: String = Themes.Okaidia,
     languages: List[String] = PrismConsts.languages,
     plugins: List[(String, Boolean)] = PrismConsts.plugins,
     showInvisibles: Boolean = false,
     showLanguage: Boolean = true,
     copyToClipboard: Boolean = true,
-    //def prismKeepMarkup: Boolean = false // TODO
+    //keepMarkup: Boolean = true
 ) extends BaseComponentSettings(version, pkg, depsProvider) {
   def withVersion(version: String)                       = copy(version = version)
   def withPkg(pkg: String)                               = copy(pkg = pkg)
@@ -81,6 +79,7 @@ case class PrismSettings(
   def withShowInvisibles(showInvisibles: Boolean)        = copy(showInvisibles = showInvisibles)
   def withShowLanguage(showLanguage: Boolean)            = copy(showLanguage = showLanguage)
   def withCopyToClipboard(copyToClipboard: Boolean)      = copy(copyToClipboard = copyToClipboard)
+  // def withKeepMarkup(keepMarkup: Boolean)                = copy(keepMarkup = keepMarkup)
 }
 
 object PrismConsts {
@@ -156,6 +155,7 @@ object PrismConsts {
       "lua",
       "makefile",
       "markup",
+      "markup-templating",
       "aspnet", // extends markup
       //"django", // extends markup, TODO throws error...?
       "handlebars", // extends markup
@@ -239,7 +239,7 @@ object PrismConsts {
     "normalize-whitespace" -> false, // auto "trim" leading whitespace
     "previewers"           -> true, // preview CSS stuff live (colors, gradients..)
     "toolbar"              -> true, // needed for copy plugin and show-language etc
-    "unescaped-markup"     -> true // handy for HTML markup
-    //"wpd"                  -> true // TODO https://github.com/PrismJS/prism/issues/1290
+    "unescaped-markup"     -> true, // handy for HTML markup
+    "wpd"                  -> true // WebPlatform Docs
   )
 }

@@ -20,15 +20,15 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
       div(cls := "col-lg-2 col-lg-push-1  col-md-3  hidden-print")(sidebar),
       div(cls := "col-lg-8 col-lg-push-1  col-md-9")(
         div(cls := "hidden-print")(
-          postCreateDate.map(
-            createDate =>
-              div(span(cls := "glyphicon glyphicon-time"), " " + createDate.format(dateFormat))
+          blogSettings.createDate.map(
+            cd =>
+              div(span(cls := "glyphicon glyphicon-time"), " " + cd.format(blogSettings.dateFormat))
           ),
-          postAuthor.map(
+          blogSettings.author.map(
             author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
           )
         ),
-        tag("article")(renderTOCAndSections(postSections)),
+        tag("article")(renderTOCAndSections(blogSettings.sections)),
         div(id := "disqus_thread", cls := "hidden-print")
       )
     )

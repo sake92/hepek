@@ -2,7 +2,6 @@ package ba.sake.hepek.clipboardjs
 
 import ba.sake.hepek.html.structure._
 
-/** Prismjs needs this for copying operation */
 trait ClipboardjsDependencies extends PageDependencies {
 
   def clipboardjsSettings: ComponentSettings =
