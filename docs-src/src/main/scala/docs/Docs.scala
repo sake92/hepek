@@ -1,6 +1,7 @@
 package docs
 
 import scalatags.Text.all._
+import utils.Imports._, grid._
 
 object Docs extends templates.HepekDocsStaticPage {
 
@@ -12,7 +13,7 @@ object Docs extends templates.HepekDocsStaticPage {
     row(
       third1(),
       third2(
-        div(cls := "pages-toc")(margin := 21.px)(
+        div(cls := "pages-toc", margin := 21.px)(
           utils.SiteMapHTML.siteMap
         )
       ),

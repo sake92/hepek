@@ -1,6 +1,7 @@
 package utils
 
 import ba.sake.hepek.Resources
+import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 import scalatags.Text.all._
@@ -12,6 +13,10 @@ object Imports extends BasicComponents {
   }
 
   object chl extends PrismCodeHighlightComponents
+
+  object grid extends BootstrapGridComponents {
+    override def screenRatios = super.screenRatios.withSm(None).withXs(None)
+  }
 
   // FontAwesome 5 brand
   def faBrand(name: String) = i(cls := s"fab fa-$name")

@@ -1,20 +1,26 @@
 package docs
 
+import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import scalatags.Text.all._
 import ba.sake.hepek.implicits._
 import utils.Imports._
 import templates.HepekDocsStaticPage
 
+object grid extends BootstrapGridComponents {
+  override def screenRatios =
+    super.screenRatios
+      .withSm(None)
+      .withXs(None)
+      .withLg(Ratios(Ratio(1, 1), Ratio(1, 4, 1)))
+}
+
 object Index extends HepekDocsStaticPage {
+  import grid._
 
   override def pageSettings =
     super.pageSettings
       .withTitle("Welcome!")
       .withDescription("Hepek docs")
-
-  override def screenRatios = super.screenRatios.copy(
-    lg = Ratios(Ratio(List(1, 1)), Ratio(List(1, 4, 1)))
-  )
 
   override def pageContent =
     frag(

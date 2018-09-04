@@ -4,11 +4,7 @@ abstract class BaseComponentSettings(
     val version: String,
     val pkg: String,
     val depsProvider: DependencyProvider
-) {
-  def withVersion(version: String)
-  def withPkg(pkg: String)
-  def withDepsProvider(depsProvider: DependencyProvider)
-}
+)
 
 case class ComponentSettings(
     override val version: String,

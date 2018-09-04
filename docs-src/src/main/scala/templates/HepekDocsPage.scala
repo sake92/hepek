@@ -34,10 +34,7 @@ trait HepekDocsPage
   override def categoryPosts = Site.pages
 }
 
-trait HepekDocsStaticPage
-    extends BootstrapStaticPage
-    with BootstrapGridComponents
-    with AnchorjsDependencies {
+trait HepekDocsStaticPage extends BootstrapStaticPage with AnchorjsDependencies {
 
   override def siteSettings =
     SiteSettings()
@@ -53,16 +50,11 @@ trait HepekDocsStaticPage
     "https://use.fontawesome.com/releases/v5.0.12/css/all.css"
   )
   override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
-    Dependencies().withDeps(
-      Dependency("yeti/bootstrap.min.js",
-                 bootstrapSettings.version,
-                 "bootswatch",
-                 baseFolder = Option("dist/"))
-    )
+    Dependencies()
+      .withDeps(Dependency("yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
   )
-  override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
 
-  override def screenRatios = super.screenRatios.withSm(None).withXs(None)
+  override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
 
   override def pageContent =
     frag(
