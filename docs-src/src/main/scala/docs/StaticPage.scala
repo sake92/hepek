@@ -7,9 +7,7 @@ import templates.HepekDocsPage
 
 object StaticPage extends HepekDocsPage {
 
-  override def pageSettings =
-    super.pageSettings
-      .withTitle("Static page")
+  override def pageSettings = PageSettings("Static page")
 
   override def postSections = List(
     basicSettingsSection,

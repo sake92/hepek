@@ -18,8 +18,7 @@ object Index extends HepekDocsStaticPage {
   import grid._
 
   override def pageSettings =
-    super.pageSettings
-      .withTitle("Welcome!")
+    PageSettings("Welcome!")
       .withDescription("Hepek docs")
 
   override def pageContent =

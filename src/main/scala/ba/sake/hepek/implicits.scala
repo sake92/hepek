@@ -5,6 +5,9 @@ package object implicits {
   val SiteSettings = ba.sake.hepek.html.structure.SiteSettings
   type SiteSettings = ba.sake.hepek.html.structure.SiteSettings
 
+  val PageSettings = ba.sake.hepek.html.structure.PageSettings
+  type PageSettings = ba.sake.hepek.html.structure.PageSettings
+
   val Section = ba.sake.hepek.html.structure.blog.Section
   type Section = ba.sake.hepek.html.structure.blog.Section
 

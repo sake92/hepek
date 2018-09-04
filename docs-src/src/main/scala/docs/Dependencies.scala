@@ -7,9 +7,7 @@ import templates.HepekDocsPage
 
 object Dependencies extends HepekDocsPage {
 
-  override def pageSettings =
-    super.pageSettings
-      .withTitle("JS and CSS dependencies")
+  override def pageSettings = PageSettings("JS and CSS dependencies")
 
   override def postSections = List(
     depsSection

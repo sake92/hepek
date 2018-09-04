@@ -13,9 +13,7 @@ object Testttt extends PureStaticPage with PureGridComponents with PureMenuCompo
     docs.Layout
   )
 
-  override def pageSettings =
-    super.pageSettings
-      .withTitle("Welcome!")
+  override def pageSettings = PageSettings("Welcome!")
 
   override def pageContent =
     frag(

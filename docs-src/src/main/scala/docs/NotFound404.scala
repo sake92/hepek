@@ -2,15 +2,13 @@ package docs
 
 import scalatags.Text.all._
 import ba.sake.hepek.core.RelativePath
+import ba.sake.hepek.implicits._
 import utils.Site
 import utils.Imports._
-import templates.HepekDocsPage
 
-object NotFound extends HepekDocsPage {
+object NotFound extends templates.HepekDocsPage {
 
-  override def pageSettings =
-    super.pageSettings
-      .withTitle("Doesn't exist")
+  override def pageSettings = PageSettings("Doesn't exist")
 
   override def fileName = "404.html"
 

@@ -8,9 +8,7 @@ import templates.HepekDocsPage
 
 object MathSupport extends HepekDocsPage with KatexDependencies {
 
-  override def pageSettings =
-    super.pageSettings
-      .withTitle("Math support")
+  override def pageSettings = PageSettings("Math support")
 
   override def postSections = List(
     mathSection

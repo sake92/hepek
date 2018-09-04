@@ -1,7 +1,6 @@
 package templates
 
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
-import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 import ba.sake.hepek.html.structure._
 import ba.sake.hepek.prismjs

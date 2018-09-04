@@ -7,7 +7,7 @@ import templates.HepekDocsPage
 
 object CodeHighlighter extends HepekDocsPage {
 
-  override def pageSettings = super.pageSettings.withTitle("Code highlighter")
+  override def pageSettings = PageSettings("Code highlighter")
 
   override def postSections = List(
     codeHighlighterSection

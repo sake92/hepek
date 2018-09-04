@@ -1,14 +1,14 @@
 package ba.sake.hepek.html.structure
 
-import scalatags.Text.all._
 import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.path.ClassPackageRelativePath
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with PageDependencies {
+  import scalatags.Text.all._
 
   def siteSettings: SiteSettings = SiteSettings()
 
-  def pageSettings: PageSettings = PageSettings()
+  def pageSettings: PageSettings
 
   def renderPretty = false
   def renderXhtml  = false
@@ -29,7 +29,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
         meta(name := "description", content := d)
       },
       tag("title")(
-        pageSettings.title + siteSettings.name.map(n => " - " + n)
+        pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
       ),
       siteSettings.faviconNormal.map { fav =>
         link(rel := "shortcut icon", href := fav, tpe := "image/x-icon")
@@ -118,11 +118,11 @@ case class SiteSettings(
 
 /* page setttings */
 case class PageSettings(
-    title: String = PageSettings.DefaultTitle,
-    label: String = PageSettings.DefaultTitle,
-    language: String = PageSettings.DefaultLanguage,
-    category: Option[String] = None,
-    description: Option[String] = None
+    title: String,
+    label: String,
+    language: String,
+    category: Option[String],
+    description: Option[String]
 ) {
   def withTitle(t: String)               = copy(title = t)
   def withLabel(l: String)               = copy(label = l)
@@ -136,4 +136,7 @@ case class PageSettings(
 object PageSettings {
   val DefaultTitle    = "ChangeMe!"
   val DefaultLanguage = "en"
+
+  def apply(title: String = DefaultTitle): PageSettings =
+    PageSettings(title, title, DefaultLanguage, None, None)
 }
