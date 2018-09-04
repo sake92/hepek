@@ -2,13 +2,15 @@ package docs
 
 import scalatags.Text.all._
 import ba.sake.hepek.implicits._
-import ba.sake.hepek.html.component.GridComponents._
+import utils.Imports._
 import templates.HepekDocsStaticPage
 
 object Index extends HepekDocsStaticPage {
 
-  override def pageTitle       = "Welcome!"
-  override def pageDescription = Option("Hepek docs")
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Welcome!")
+      .withDescription("Hepek docs")
 
   override def screenRatios = super.screenRatios.copy(
     lg = Ratios(Ratio(List(1, 1)), Ratio(List(1, 4, 1)))

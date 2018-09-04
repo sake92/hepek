@@ -7,7 +7,9 @@ import templates.HepekDocsPage
 
 object PdfGenerator extends HepekDocsPage {
 
-  override def pageTitle = "Pdf generator"
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Pdf generator")
 
   override def postSections = List(
     pdfGeneratorSection

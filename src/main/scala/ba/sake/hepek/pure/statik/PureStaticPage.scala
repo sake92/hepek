@@ -57,10 +57,10 @@ trait PureStaticPage extends StaticPage with PureDependencies {
   private def sidebarMenuItems: List[Frag] =
     for {
       page <- siteSettings.mainPages
-      labela = page.pageCategory.getOrElse(page.pageLabel)
+      labela = page.pageSettings.category.getOrElse(page.pageSettings.label)
       klasa = {
-        if (this.pageCategory.isEmpty) ""
-        else if (page.pageCategory == this.pageCategory) "pure-menu-selected "
+        if (this.pageSettings.category.isEmpty) ""
+        else if (page.pageSettings.category == this.pageSettings.category) "pure-menu-selected "
         else ""
       }
     } yield

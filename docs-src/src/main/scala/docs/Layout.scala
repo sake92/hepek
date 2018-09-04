@@ -7,7 +7,9 @@ import templates.HepekDocsPage
 
 object Layout extends HepekDocsPage {
 
-  override def pageTitle = "Layout"
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Layout")
 
   override def postSections = List(
     layoutSection

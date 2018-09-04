@@ -7,8 +7,10 @@ import templates.HepekDocsPage
 
 object CodeWalkthrough extends HepekDocsPage {
 
-  override def pageTitle       = "Code walkthrough"
-  override def pageDescription = Option("Code walkthrough")
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Code walkthrough")
+      .withDescription("Code walkthrough")
 
   override def postSections = List(
     Section("Contents", contentContent),

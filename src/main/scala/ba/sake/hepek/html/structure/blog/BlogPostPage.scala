@@ -12,6 +12,8 @@ import ba.sake.hepek.utils.StringUtils
 
 trait BlogPostPage extends StaticPage {
 
+  // TODO BlogSettings
+
   def postAuthor: Option[String] = None
 
   def postCreateDate: Option[LocalDate] = None

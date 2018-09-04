@@ -43,11 +43,14 @@ object GridComponents {
     def apply(values: Int*): Ratio = new Ratio(values.toList)
   }
 
-  case class Ratios(half: Ratio, third: Ratio) {
-    require(half.values.length == 2,
-            "Halves ratios must contain exactly 2 values.")
-    require(third.values.length == 3,
-            "Thirds ratios must contain exactly 3 values.")
+  case class Ratios(
+      half: Ratio = Ratios.DefaultHalf,
+      third: Ratio = Ratios.DefaultThird
+  ) {
+    require(half.values.length == 2, "Halves ratios must contain exactly 2 values.")
+    require(third.values.length == 3, "Thirds ratios must contain exactly 3 values.")
+    def withHalf(r: Ratio)  = copy(half = r)
+    def withThird(r: Ratio) = copy(third = r)
   }
 
   case class ScreenRatios(
@@ -55,7 +58,15 @@ object GridComponents {
       md: Option[Ratios] = None,
       sm: Option[Ratios] = None,
       xs: Option[Ratios] = None
-  )
+  ) {
+    def withLg(r: Ratios)         = copy(lg = r)
+    def withMd(r: Ratios)         = copy(md = Some(r))
+    def withMd(r: Option[Ratios]) = copy(md = r)
+    def withSm(r: Ratios)         = copy(sm = Some(r))
+    def withSm(r: Option[Ratios]) = copy(sm = r)
+    def withXs(r: Ratios)         = copy(xs = Some(r))
+    def withXs(r: Option[Ratios]) = copy(xs = r)
+  }
 
   object Ratios {
     val DefaultHalf  = Ratio(1, 1)

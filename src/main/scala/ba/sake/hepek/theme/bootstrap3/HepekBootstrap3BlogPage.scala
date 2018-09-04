@@ -15,7 +15,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
   def tocTitle: String = "Table of Contents"
 
   override def pageContent = frag(
-    row(div(cls := "page-header text-center hidden-print")(h1(pageTitle))),
+    row(div(cls := "page-header text-center hidden-print")(h1(pageSettings.title))),
     row(
       div(cls := "col-lg-2 col-lg-push-1  col-md-3  hidden-print")(sidebar),
       div(cls := "col-lg-8 col-lg-push-1  col-md-9")(
@@ -64,7 +64,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
     val pageLiTags = for {
       p <- categoryPosts
       activeClass = if (p.relPath == relPath) "active" else ""
-    } yield li(cls := activeClass, a(href := p.ref)(p.pageLabel))
+    } yield li(cls := activeClass, a(href := p.ref)(p.pageSettings.label))
     ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
   }
 }

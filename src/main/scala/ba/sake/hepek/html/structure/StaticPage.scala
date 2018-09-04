@@ -6,13 +6,9 @@ import ba.sake.hepek.path.ClassPackageRelativePath
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with PageDependencies {
 
-  def siteSettings: SiteSettings
+  def siteSettings: SiteSettings = SiteSettings()
 
-  def pageTitle: String
-  def pageLabel: String               = pageTitle
-  def pageLanguage: String            = "en"
-  def pageCategory: Option[String]    = None
-  def pageDescription: Option[String] = None
+  def pageSettings: PageSettings = PageSettings()
 
   def renderPretty = false
   def renderXhtml  = false
@@ -29,11 +25,11 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
         name := "viewport",
         content := "width=device-width, initial-scale=1"
       ),
-      pageDescription.map { d =>
+      pageSettings.description.map { d =>
         meta(name := "description", content := d)
       },
       tag("title")(
-        pageTitle + siteSettings.name.map(n => " - " + n)
+        pageSettings.title + siteSettings.name.map(n => " - " + n)
       ),
       siteSettings.faviconNormal.map { fav =>
         link(rel := "shortcut icon", href := fav, tpe := "image/x-icon")
@@ -68,7 +64,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
 
     // CONTENT
     val rawContent = "<!DOCTYPE html>" +
-      html(lang := pageLanguage)(
+      html(lang := pageSettings.language)(
         head(
           headContent ++
             allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
@@ -100,6 +96,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
 
 }
 
+/* website setttings */
 case class SiteSettings(
     name: Option[String] = None,
     indexPage: Option[StaticPage] = None,
@@ -107,10 +104,36 @@ case class SiteSettings(
     faviconNormal: Option[String] = None,
     faviconInverted: Option[String] = None
 ) {
-  def withName(n: String)                  = copy(name = Some(n))
-  def withIndexPage(ip: StaticPage)        = copy(indexPage = Some(ip))
-  def withMainPages(mps: List[StaticPage]) = copy(mainPages = mps)
-  def withMainPages(mps: StaticPage*)      = copy(mainPages = mps.toList)
-  def withFaviconNormal(fav: String)       = copy(faviconNormal = Some(fav))
-  def withFaviconInverted(fav: String)     = copy(faviconInverted = Some(fav))
+  def withName(n: String)                      = copy(name = Some(n))
+  def withName(n: Option[String])              = copy(name = n)
+  def withIndexPage(ip: StaticPage)            = copy(indexPage = Some(ip))
+  def withIndexPage(ip: Option[StaticPage])    = copy(indexPage = ip)
+  def withMainPages(mps: List[StaticPage])     = copy(mainPages = mps)
+  def withMainPages(mps: StaticPage*)          = copy(mainPages = mps.toList)
+  def withFaviconNormal(fav: String)           = copy(faviconNormal = Some(fav))
+  def withFaviconNormal(fav: Option[String])   = copy(faviconNormal = fav)
+  def withFaviconInverted(fav: String)         = copy(faviconInverted = Some(fav))
+  def withFaviconInverted(fav: Option[String]) = copy(faviconInverted = fav)
+}
+
+/* page setttings */
+case class PageSettings(
+    title: String = PageSettings.DefaultTitle,
+    label: String = PageSettings.DefaultTitle,
+    language: String = PageSettings.DefaultLanguage,
+    category: Option[String] = None,
+    description: Option[String] = None
+) {
+  def withTitle(t: String)               = copy(title = t)
+  def withLabel(l: String)               = copy(label = l)
+  def withLanguage(l: String)            = copy(language = l)
+  def withCategory(c: String)            = copy(category = Some(c))
+  def withCategory(c: Option[String])    = copy(category = c)
+  def withDescription(d: String)         = copy(description = Some(d))
+  def withDescription(d: Option[String]) = copy(description = d)
+}
+
+object PageSettings {
+  val DefaultTitle    = "ChangeMe!"
+  val DefaultLanguage = "en"
 }

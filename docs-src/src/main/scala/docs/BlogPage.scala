@@ -7,7 +7,7 @@ import templates.HepekDocsPage
 
 object BlogPage extends HepekDocsPage {
 
-  override def pageTitle = "Blog page"
+  override def pageSettings = super.pageSettings.withTitle("Blog page")
 
   override def postSections = List(
     blogPostSettingsSection,
@@ -16,18 +16,12 @@ object BlogPage extends HepekDocsPage {
   )
 
   val blogPageSettingsProps = List(
-    ClassProperty("postAuthor",
-                  "Option[String]",
-                  "Author of the post",
-                  Some("None")),
+    ClassProperty("postAuthor", "Option[String]", "Author of the post", Some("None")),
     ClassProperty("postCreateDate",
                   "Option[LocalDate]",
                   "Date when the post was written",
                   Some("None")),
-    ClassProperty("postSections",
-                  "List[Section] ",
-                  "Sections of the post",
-                  Some("List.empty")),
+    ClassProperty("postSections", "List[Section] ", "Sections of the post", Some("List.empty")),
     ClassProperty("categoryPosts",
                   "List[BlogPostPage]",
                   "Related posts, from same category",

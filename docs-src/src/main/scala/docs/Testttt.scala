@@ -6,22 +6,16 @@ import utils._
 import ba.sake.hepek.pure._, statik._
 import ba.sake.hepek.pure.component._
 
-object Testttt
-    extends PureStaticPage
-    with PureGridComponents
-    with PureMenuComponents {
+object Testttt extends PureStaticPage with PureGridComponents with PureMenuComponents {
 
-  override def siteSettings = SiteSettings(
-    Site.name,
-    docs.Index,
-    List(docs.Docs, docs.Layout)
+  override def siteSettings = super.siteSettings.withMainPages(
+    docs.Docs,
+    docs.Layout
   )
 
-  override def pageTitle       = "Welcome!"
-  override def pageDescription = Option("Hepek docs")
-
-  // override def menuType = PureMenuComponents.Type.Horizontal
-  //override def withPureMenu = false
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Welcome!")
 
   override def pageContent =
     frag(

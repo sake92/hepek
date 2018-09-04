@@ -37,30 +37,24 @@ object BootstrapNavbarComponent extends BootstrapNavbarComponent {
   }
 }
 
-trait BootstrapNavbarComponent extends BootstrapDependencies {
+trait BootstrapNavbarComponent {
   import BootstrapNavbarComponent._
 
   private val nav   = tag("nav")
   private val bsBtn = tag("button")(tpe := "button", cls := "btn ")
 
-  def bootstrapNavbarStyle: Style = Style.Default
-
-  def bootstrapNavbarPosition: Position = Position.FixedTop
-
-  override def stylesInline = {
-    // see https://getbootstrap.com/docs/3.3/components/#navbar-fixed-bottom
-    val padding = bootstrapNavbarPosition.stylesInline
-    super.stylesInline ++ List(padding)
-  }
+  def navbarStyle: Style       = Style.Default
+  def navbarPosition: Position = Position.FixedTop
 
   def navbar(content: Frag*): Frag = {
-    val positionClass = bootstrapNavbarPosition.classes
-    val styleClass    = bootstrapNavbarStyle.classes
+    val positionClass = navbarPosition.classes
+    val styleClass    = navbarStyle.classes
     nav(cls := s"navbar $styleClass $positionClass")(
       div(cls := "container")(content)
     )
   }
 
+  // TODO pass attrs/classes/ids...
   def navbarHeader() =
     div(cls := "navbar-header")
 

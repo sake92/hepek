@@ -7,7 +7,9 @@ import templates.HepekDocsPage
 
 object StaticPage extends HepekDocsPage {
 
-  override def pageTitle = "Static page"
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Static page")
 
   override def postSections = List(
     basicSettingsSection,
@@ -22,10 +24,7 @@ object StaticPage extends HepekDocsPage {
                   "List[StaticPage] ",
                   "Pages to display in navbar",
                   Some("List.empty")),
-    ClassProperty("faviconNormal",
-                  "Option[String]",
-                  "Favicon of the site",
-                  Some("None")),
+    ClassProperty("faviconNormal", "Option[String]", "Favicon of the site", Some("None")),
     ClassProperty(
       "faviconInverted",
       "Option[String]",

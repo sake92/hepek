@@ -8,8 +8,11 @@ import templates.HepekDocsPage
 
 object NotFound extends HepekDocsPage {
 
-  override def pageTitle = "Doesn't exist"
-  override def fileName  = "404.html"
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Doesn't exist")
+
+  override def fileName = "404.html"
 
   override def relTo(other: RelativePath) =
     Site.url + "/" + super.relTo(other)

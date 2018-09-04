@@ -6,7 +6,9 @@ import templates.HepekDocsPage
 
 object QuickStart extends HepekDocsPage {
 
-  override def pageTitle = "Quickstart"
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Quickstart")
 
   override def postSections = List(
     installationSection,

@@ -26,11 +26,7 @@ object Imports extends BasicComponents {
 
   def renderClassProps(props: List[ClassProperty]) =
     table(cls := "table table-hover")(
-      tr(th("Name"),
-         th("Mandatory"),
-         th("Type"),
-         th("Default value"),
-         th("Description")),
+      tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
       props.map {
         case ClassProperty(name, tpe, desc, defaultValue) =>
           tr(

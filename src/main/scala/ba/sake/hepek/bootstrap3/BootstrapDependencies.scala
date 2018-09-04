@@ -5,29 +5,27 @@ import ba.sake.hepek.jquery.JQueryDependencies
 
 trait BootstrapDependencies extends PageDependencies with JQueryDependencies {
 
-  def bootstrapVersion: String                  = "3.3.7"
-  def bootstrapDepsProvider: DependencyProvider = DependencyProvider.unpkg
+  def bootstrapSettings: ComponentSettings =
+    ComponentSettings("3.3.7", "bootstrap", DependencyProvider.unpkg)
 
-  def bootstrapCSSDependencies: List[String] =
-    List(
-      bootstrapDepsProvider.depPath(
-        Dependency("css/bootstrap.min.css",
-                   bootstrapVersion,
-                   "bootstrap",
-                   baseFolder = Option("dist/"))
+  def bootstrapDependencies: ComponentDependencies =
+    ComponentDependencies()
+      .withJsDependencies(
+        Dependencies().withDeps(
+          Dependency("js/bootstrap.min.js",
+                     bootstrapSettings.version,
+                     bootstrapSettings.pkg,
+                     baseFolder = Option("dist/"))
+        )
       )
-    )
-
-  def bootstrapJSDependencies: List[String] =
-    List(
-      bootstrapDepsProvider.depPath(
-        Dependency("js/bootstrap.min.js",
-                   bootstrapVersion,
-                   "bootstrap",
-                   baseFolder = Option("dist/"))
+      .withCssDependencies(
+        Dependencies().withDeps(
+          Dependency("css/bootstrap.min.css",
+                     bootstrapSettings.version,
+                     bootstrapSettings.pkg,
+                     baseFolder = Option("dist/"))
+        )
       )
-    )
 
-  override def styleURLs  = super.styleURLs ++ bootstrapCSSDependencies
-  override def scriptURLs = super.scriptURLs ++ bootstrapJSDependencies
+  override def components = super.components :+ (bootstrapSettings, bootstrapDependencies)
 }
