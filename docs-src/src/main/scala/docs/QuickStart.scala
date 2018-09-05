@@ -18,7 +18,7 @@ object QuickStart extends HepekDocsPage {
   val installationSection = Section(
     "Installation",
     """
-      You need to have Java 8 installed and sbt version 1 or greater.
+      You need to have Java 8 installed and sbt version 1 or greater.  
       It's planned to support other build tools in the future: Mill, Gradle etc.
     """.md
   )

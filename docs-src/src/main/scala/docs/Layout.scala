@@ -12,12 +12,7 @@ object Layout extends HepekDocsPage {
 
   override def pageSettings = PageSettings("Layout")
 
-  override def blogSettings =
-    super.blogSettings
-      .withSections(
-        layoutSection
-      )
-      .withCreateDate(LocalDate.of(2018, 9, 5))
+  override def blogSettings = super.blogSettings.withSections(layoutSection)
 
   /* CONTENT */
   def layoutSection = Section(

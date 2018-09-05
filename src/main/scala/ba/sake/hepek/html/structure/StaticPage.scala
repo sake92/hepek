@@ -124,7 +124,11 @@ case class PageSettings(
     category: Option[String],
     description: Option[String]
 ) {
-  def withTitle(t: String)               = copy(title = t)
+
+  def withTitle(t: String) =
+    if (label.isEmpty || label == PageSettings.DefaultTitle)
+      copy(title = t, label = t) // set label also, if not set
+    else copy(title = t)
   def withLabel(l: String)               = copy(label = l)
   def withLanguage(l: String)            = copy(language = l)
   def withCategory(c: String)            = copy(category = Some(c))
