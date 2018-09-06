@@ -33,7 +33,8 @@ case class BlogSettings(
 
 object BlogSettings {
   val DefaultDateFormatPattern = "dd.MM.yyyy"
-  val DefaultDateFormat        = DateTimeFormatter.ofPattern(BlogSettings.DefaultDateFormatPattern)
+
+  val DefaultDateFormat = DateTimeFormatter.ofPattern(BlogSettings.DefaultDateFormatPattern)
 }
 
 /**

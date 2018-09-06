@@ -60,7 +60,8 @@ trait PureStaticPage extends StaticPage with PureDependencies {
       labela = page.pageSettings.category.getOrElse(page.pageSettings.label)
       klasa = {
         if (this.pageSettings.category.isEmpty) ""
-        else if (page.pageSettings.category == this.pageSettings.category) "pure-menu-selected "
+        else if (page.pageSettings.category == this.pageSettings.category)
+          "pure-menu-selected "
         else ""
       }
     } yield

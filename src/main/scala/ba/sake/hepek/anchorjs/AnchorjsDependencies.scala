@@ -11,11 +11,13 @@ trait AnchorjsDependencies extends PageDependencies {
   def anchorjsSettings: ComponentSettings =
     ComponentSettings("4.1.0", "anchor-js", DependencyProvider.cdnjs)
 
-  def anchorjsDependencies: ComponentDependencies = ComponentDependencies().withJsDependencies(
-    Dependencies().withDeps(
-      Dependency("anchor.min.js", anchorjsSettings.version, anchorjsSettings.pkg)
+  def anchorjsDependencies: ComponentDependencies =
+    ComponentDependencies().withJsDependencies(
+      Dependencies().withDeps(
+        Dependency("anchor.min.js", anchorjsSettings.version, anchorjsSettings.pkg)
+      )
     )
-  )
 
-  override def components = super.components :+ (anchorjsSettings, anchorjsDependencies)
+  override def components =
+    super.components :+ (anchorjsSettings, anchorjsDependencies)
 }

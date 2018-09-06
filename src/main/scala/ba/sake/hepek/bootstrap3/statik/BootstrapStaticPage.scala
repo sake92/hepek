@@ -14,7 +14,8 @@ trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
 
   def bootstrapContainer: String = "container-fluid"
 
-  def bootstrapNavbar: Option[(Position, Style)] = Some(Position.FixedTop, Style.Default)
+  def bootstrapNavbar: Option[(Position, Style)] =
+    Some(Position.FixedTop, Style.Default)
 
   override def stylesInline = {
     // see https://getbootstrap.com/docs/3.3/components/#navbar-fixed-bottom

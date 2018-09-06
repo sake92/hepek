@@ -64,3 +64,17 @@ lazy val docsSrc = (project in file("docs-src"))
   )
   .dependsOn(hepekProject)
   .enablePlugins(HepekPlugin, SbtWeb)
+
+// tests
+lazy val hepekTestsProject = (project in file("tests"))
+  .settings(
+    (hepek in Compile) := {
+      WebKeys.assets.value
+      (hepek in Compile).value
+    },
+    libraryDependencies ++= Seq(
+      "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+    )
+  )
+  .dependsOn(hepekProject)
+  .enablePlugins(HepekPlugin, SbtWeb)

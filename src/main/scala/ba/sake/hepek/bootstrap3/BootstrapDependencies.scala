@@ -27,5 +27,6 @@ trait BootstrapDependencies extends JQueryDependencies {
         )
       )
 
-  override def components = super.components :+ (bootstrapSettings, bootstrapDependencies)
+  override def components =
+    super.components :+ (bootstrapSettings, bootstrapDependencies)
 }

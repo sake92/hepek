@@ -8,7 +8,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
 
   def siteSettings: SiteSettings = SiteSettings()
 
-  def pageSettings: PageSettings
+  def pageSettings: PageSettings = PageSettings()
 
   def renderPretty = false
   def renderXhtml  = false

@@ -8,11 +8,11 @@ trait PrismDependencies extends ClipboardjsDependencies {
   def prismSettings: PrismSettings = PrismSettings("1.15.0", "prism", DependencyProvider.cdnjs)
 
   def prismDependencies: ComponentDependencies = {
-    val cssPluginDeps = (prismSettings.plugins ++ optionalPluginDeps).filter(_._2).map {
-      case (plugin, _) =>
-        Dependency(s"plugins/$plugin/prism-$plugin.css", prismSettings.version, "prism")
-    }
-
+    val cssPluginDeps =
+      (prismSettings.plugins ++ optionalPluginDeps).filter(_._2).map {
+        case (plugin, _) =>
+          Dependency(s"plugins/$plugin/prism-$plugin.css", prismSettings.version, "prism")
+      }
     val jsLangDeps = prismSettings.languages.map { lang =>
       Dependency(s"components/prism-$lang.min.js", prismSettings.version, "prism")
     }
@@ -40,7 +40,7 @@ trait PrismDependencies extends ClipboardjsDependencies {
   // TODO keep-markup isn't working correctly... :/
   private def optionalPluginDeps: List[(String, Boolean)] =
     List(
-      //if (prismSettings.keepMarkup) Option("keep-markup"            -> false) else None,
+      //if (prismSettings.keepMarkup) Option("keep-markup" -> false) else None,
       if (prismSettings.showInvisibles) Option("show-invisibles"    -> true) else None,
       if (prismSettings.showLanguage) Option("show-language"        -> false) else None,
       if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
@@ -79,7 +79,7 @@ case class PrismSettings(
   def withShowInvisibles(showInvisibles: Boolean)        = copy(showInvisibles = showInvisibles)
   def withShowLanguage(showLanguage: Boolean)            = copy(showLanguage = showLanguage)
   def withCopyToClipboard(copyToClipboard: Boolean)      = copy(copyToClipboard = copyToClipboard)
-  // def withKeepMarkup(keepMarkup: Boolean)                = copy(keepMarkup = keepMarkup)
+  // def withKeepMarkup(keepMarkup: Boolean)  = copy(keepMarkup = keepMarkup)
 }
 
 object PrismConsts {

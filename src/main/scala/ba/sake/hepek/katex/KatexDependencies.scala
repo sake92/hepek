@@ -33,5 +33,6 @@ trait KatexDependencies extends PageDependencies {
           .withDeps(Dependency("katex.min.css", katexSettings.version, katexSettings.pkg))
       )
 
-  override def components = super.components :+ (katexSettings, katexDependencies)
+  override def components =
+    super.components :+ (katexSettings, katexDependencies)
 }
