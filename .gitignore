@@ -27,4 +27,4 @@ bin/
 .ensime
 .ensime_cache/
 
-
+.idea/
