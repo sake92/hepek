@@ -1,4 +1,4 @@
-# Hepek [![Join the chat at https://gitter.im/sake92/hepek](https://badges.gitter.im/sake92/hepek.svg)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Hepek [![Build Status](https://travis-ci.org/sake92/hepek.svg?branch=master)](https://travis-ci.org/sake92/hepek) [![Join the chat at https://gitter.im/sake92/hepek](https://badges.gitter.im/sake92/hepek.svg)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Docs and examples
 - [docs](https://sake92.github.io/hepek)
@@ -15,7 +15,7 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 - **automatic relative paths**, just type `MyPage.ref`!!!
 - **incremental** rendering by default
 - Markdown support
-- Bootstrap3, PureCSS helpers
+- Bootstrap3, PureCSS helpers (with **typesafe grids**!)
 - Prismjs code highlighter
 - KaTeX or Mathjax for math formulas
 - form helpers
@@ -27,6 +27,11 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 - integrate more CSS and JS libraries/frameworks
 
 ## Changelog
+
+### 0.2.0
+- refactored `page*` and `site*` flat propertes to more structured `PageSettings` and `SiteSettings` (now use `with*` on those objects, autocomplete for free and more readable IMHO)
+- refactored dependencies structure, added `components`
+- added `implicits` for common imports
 
 ### 0.1.2
 - added PureCSS support ([#16](https://github.com/sake92/hepek/pull/16))
