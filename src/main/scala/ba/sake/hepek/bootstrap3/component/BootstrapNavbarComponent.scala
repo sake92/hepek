@@ -40,7 +40,6 @@ object BootstrapNavbarComponent extends BootstrapNavbarComponent {
 trait BootstrapNavbarComponent {
   import BootstrapNavbarComponent._
 
-  private val nav   = tag("nav")
   private val bsBtn = tag("button")(tpe := "button", cls := "btn ")
 
   def navbarStyle: Style       = Style.Default
@@ -49,7 +48,7 @@ trait BootstrapNavbarComponent {
   def navbar(content: Frag*): Frag = {
     val positionClass = navbarPosition.classes
     val styleClass    = navbarStyle.classes
-    nav(cls := s"navbar $styleClass $positionClass")(
+    tag("nav")(cls := s"navbar $styleClass $positionClass")(
       div(cls := "container")(content)
     )
   }

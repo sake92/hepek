@@ -1,6 +1,7 @@
 package ba.sake.hepek.bootstrap3.component
 
-import scalatags.Text.all._
+import scalatags.Text.all
+import all.{form => _, _}
 import ba.sake.hepek.html.component.FormComponents
 
 object BootstrapFormComponents extends BootstrapFormComponents {
@@ -22,11 +23,9 @@ trait BootstrapFormComponents extends FormComponents {
 
   def bootstrapFormType: Type = Type.Vertical
 
-  override def formm(_url: String, _formAttrs: AttrPair*)(
-      content: Frag*
-  ): Frag = {
+  override def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
     val newFormAttrs = _formAttrs :+ (cls := bootstrapFormType.classes)
-    form(action := _url, newFormAttrs)(content)
+    all.form(newFormAttrs)(content)
   }
 
   override def inputWithType(

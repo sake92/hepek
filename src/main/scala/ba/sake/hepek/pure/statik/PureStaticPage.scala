@@ -9,20 +9,16 @@ import component.PureMenuComponents._
 
 trait PureStaticPage extends StaticPage with PureDependencies {
 
-  def pageContent: Frag = frag()
-
   def withPureMenu: Boolean = true
 
-  override def bodyContent: List[Frag] = {
-    val contentWithSidebar = if (withPureMenu) {
+  override def bodyContent =
+    if (withPureMenu) {
       import grid._
       row(
         half1(sidebarMenu),
         half2(pageContent)
       )
-    } else frag(pageContent)
-    List(contentWithSidebar)
-  }
+    } else pageContent
 
   override def stylesInline = {
     val maybeInlineStyles = if (withPureMenu) List("""

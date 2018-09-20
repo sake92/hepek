@@ -1,9 +1,9 @@
 package ba.sake.hepek.html.component
 
-import org.commonmark.parser.Parser
-import org.commonmark.renderer.html.HtmlRenderer
 import scalatags.Text.all._
 import ba.sake.hepek.utils.StringUtils
+import org.commonmark.parser.Parser
+import org.commonmark.renderer.html.HtmlRenderer
 
 trait MarkdownComponents { self =>
   def md(str: String): Frag

@@ -9,9 +9,6 @@ import ba.sake.hepek.html.structure.StaticPage
 
 trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
 
-  // TODO define in some more general trait ???
-  def pageContent: Frag = frag()
-
   def bootstrapContainer: String = "container-fluid"
 
   def bootstrapNavbar: Option[(Position, Style)] =
@@ -23,16 +20,14 @@ trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
     super.stylesInline ++ padding.toList
   }
 
-  override def bodyContent: List[Frag] = {
+  override def bodyContent = {
     val maybeNavbar = bootstrapNavbar.map {
       case (p, s) =>
         navbarr(p, s)
     } getOrElse frag()
-    List(
-      div(cls := bootstrapContainer)(
-        maybeNavbar,
-        pageContent
-      )
+    div(cls := bootstrapContainer)(
+      maybeNavbar,
+      pageContent
     )
   }
 

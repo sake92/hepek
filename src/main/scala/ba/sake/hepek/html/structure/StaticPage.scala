@@ -7,15 +7,14 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
   import scalatags.Text.all._
 
   def siteSettings: SiteSettings = SiteSettings()
-
   def pageSettings: PageSettings = PageSettings()
 
   def renderPretty = false
   def renderXhtml  = false
 
   // <head>
-  def headContent: List[Frag] =
-    List(
+  def headContent: Frag =
+    frag(
       meta(charset := "utf-8"),
       meta(
         attr("http-equiv") := "X-UA-Compatible",
@@ -37,7 +36,9 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
     )
 
   // <body>
-  def bodyContent: List[Frag] = List.empty
+  def bodyContent: Frag = pageContent
+
+  def pageContent: Frag = frag()
 
   override def render: String = {
     // inline css
@@ -66,13 +67,13 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
     val rawContent = "<!DOCTYPE html>" +
       html(lang := pageSettings.language)(
         head(
-          headContent ++
-            allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
+          headContent,
+          allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
             allStyleInlines.map(s => tag("style")(s))
         ),
         body(
-          bodyContent ++
-            allScriptURLs.map(u => script(src := u)) ++
+          bodyContent,
+          allScriptURLs.map(u => script(src := u)) ++
             allScriptInlines.map(s => script(raw(s)))
         )
       )
@@ -93,7 +94,6 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
       rawContent
     }
   }
-
 }
 
 /* website setttings */

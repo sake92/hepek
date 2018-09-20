@@ -66,6 +66,7 @@ object GridComponents {
     def withSm(r: Option[Ratios]) = copy(sm = r)
     def withXs(r: Ratios)         = copy(xs = Some(r))
     def withXs(r: Option[Ratios]) = copy(xs = r)
+    def withAll(r: Ratios)        = withLg(r).withMd(r).withSm(r).withXs(r)
   }
 
   object Ratios {

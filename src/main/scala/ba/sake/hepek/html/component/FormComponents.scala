@@ -1,6 +1,7 @@
 package ba.sake.hepek.html.component
 
-import scalatags.Text.all._
+import scalatags.Text.all
+import all.{form => _, _}
 
 object FormComponents extends FormComponents
 
@@ -8,10 +9,8 @@ trait FormComponents {
 
   private val buttonLikeTypes = Set("button", "submit", "reset")
 
-  def formm(_url: String, _formAttrs: AttrPair*)(
-      content: Frag*
-  ): Frag =
-    form(action := _url, _formAttrs)(content)
+  def form(_formAttrs: AttrPair*)(content: Frag*): Frag =
+    all.form(_formAttrs)(content)
 
   /* inputs */
   def inputText(_label: String, _inputAttrs: AttrPair*): Frag =

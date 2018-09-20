@@ -34,7 +34,7 @@ case class BlogSettings(
 object BlogSettings {
   val DefaultDateFormatPattern = "dd.MM.yyyy"
 
-  val DefaultDateFormat = DateTimeFormatter.ofPattern(BlogSettings.DefaultDateFormatPattern)
+  val DefaultDateFormat = DateTimeFormatter.ofPattern(DefaultDateFormatPattern)
 }
 
 /**
@@ -48,6 +48,8 @@ case class Section(
 )(
     implicit owner: RelativePath
 ) {
+
+  def withChildren(children: Section*) = copy(children = children.toList)
 
   def id: String = StringUtils.urlify(name)
 
