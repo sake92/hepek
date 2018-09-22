@@ -10,9 +10,9 @@ trait SiteMapHTML {
 
   // Site map, HTML for users ("sitemap" is XML, dont be confused :p)
   def siteMap(implicit renderingPage: RelativePath) =
-    ul(
+    ul(cls := "list-group")(
       Site.pages.map { mp =>
-        li(
+        li(cls := "list-group-item")(
           hyperlink(renderingPage.relTo(mp))(mp.pageSettings.title)
         )
       }

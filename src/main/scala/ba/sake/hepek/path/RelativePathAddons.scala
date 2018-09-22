@@ -3,7 +3,7 @@ package ba.sake.hepek.path
 import ba.sake.hepek.core.RelativePath
 
 /**
-  * RelativePath enrichments. <br>
+  * RelativePath enrichments.
   */
 trait RelativePathAddons extends RelativePath {
 

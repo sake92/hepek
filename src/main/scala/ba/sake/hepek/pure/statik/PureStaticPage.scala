@@ -32,7 +32,7 @@ trait PureStaticPage extends StaticPage with PureDependencies {
   // grid for layout with sidebar
   private object grid extends component.PureGridComponents {
     override def screenRatios = super.screenRatios.copy(
-      lg = Ratios(Ratio(List(1, 5)), Ratio(List(1, 1, 1)))
+      lg = Ratios(Ratio(1, 5), Ratio(1, 1, 1))
     )
   }
 

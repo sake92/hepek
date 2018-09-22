@@ -15,6 +15,7 @@ object[type="image/svg+xml"] {
 
 .pages-toc > ul > li > a {
   font-weight: bold;
+  font-size: 17px;
 }
 
 /* prismjs sets 0.3em and then we get unnecessary horizontal slider. This fixes it. */

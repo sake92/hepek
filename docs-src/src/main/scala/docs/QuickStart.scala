@@ -1,6 +1,7 @@
 package docs
 
 import ba.sake.hepek.implicits._
+import scalatags.Text.all._
 import utils._, Imports._
 import templates.HepekDocsPage
 
@@ -40,18 +41,22 @@ object QuickStart extends HepekDocsPage {
 
   val servingSection = Section(
     "Serving",
-    s"""
-      You can just open `index.html` and see the results...  
-      If you really need a web server, I'd recommend [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb).
-      Very simple to use, enough for static sites. :)
-
-      Another great way is with [Browsersync](${links.BrowsersyncUrl}).
-      Install it, `cd` to rendering folder and type:  
-      `browser-sync start --server --files .`  
-      Browsersync will **automatically refresh page** in browser when it gets changed, or its CSS etc!
-
-      Deployment consists of copying the contents to your web host (e.g. Github pages).
-    """.md
+    div(
+      s"""
+        You can just open `index.html` and see the results...  
+        If you really need a web server, I'd recommend [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb).
+        Very simple to use, enough for static sites. :)
+  
+        Another great way is with [Browsersync](${links.BrowsersyncUrl}).
+        Install it, `cd` to rendering folder and type:  
+      """.md,
+      chl.bash.withPrompt("$")("browser-sync start --server --files ."),
+      """
+        Browsersync will **automatically refresh page** in browser when it gets changed, or its CSS etc!
+  
+        Deployment consists of copying the contents to your web host (e.g. Github pages).
+      """.md
+    )
   )
 
 }
