@@ -16,12 +16,26 @@ trait HepekBootstrap3SectionUtils {
       thisSection :: renderSections(s.children, depth + 1)
     }
 
-  /** Renders the TOC (Table of Contents). */
-  def renderTOC(secs: List[Section], depth: Int): List[Frag] = {
+  /** Renders the togglable TOC (Table of Contents). */
+  def renderTogglableTOC(secs: List[Section], depth: Int = 1): List[Frag] = {
     val lis = secs.flatMap { s =>
       val aLink = a(href := s"#${s.id}")(s.name)
-      li(aLink) :: renderTOC(s.children, depth + 1)
+      li(aLink) :: renderTogglableTOC(s.children, depth + 1)
     }
     List(ul(lis))
+  }
+
+  /** Renders the scrollable TOC (Table of Contents). */
+  def renderScrollspyTOC(secs: List[Section], depth: Int = 1): Frag =
+    tag("nav")(id := "tocScrollspy")(
+      renderScrollspyTocUl(secs, depth)
+    )
+
+  private def renderScrollspyTocUl(secs: List[Section], depth: Int = 1): List[Frag] = {
+    val lis = secs.flatMap { s =>
+      val aLink = a(href := s"#${s.id}")(s.name)
+      li(aLink) :: renderScrollspyTocUl(s.children, depth + 1)
+    }
+    List(ul(cls := "nav nav-pills nav-stacked", data.spy := "affix")(lis))
   }
 }

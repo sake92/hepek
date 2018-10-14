@@ -20,7 +20,7 @@ trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
     super.stylesInline ++ padding.toList
   }
 
-  override def bodyContent = {
+  override def bodyContent: Frag = {
     val maybeNavbar = bootstrapNavbar.map {
       case (p, s) =>
         navbarr(p, s)

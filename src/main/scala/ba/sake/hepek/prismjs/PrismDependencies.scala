@@ -37,10 +37,9 @@ trait PrismDependencies extends ClipboardjsDependencies {
   override def components =
     super.components :+ (prismSettings, prismDependencies)
 
-  // TODO keep-markup isn't working correctly... :/
   private def optionalPluginDeps: List[(String, Boolean)] =
     List(
-      //if (prismSettings.keepMarkup) Option("keep-markup" -> false) else None,
+      if (prismSettings.keepMarkup) Option("keep-markup"            -> false) else None,
       if (prismSettings.showInvisibles) Option("show-invisibles"    -> true) else None,
       if (prismSettings.showLanguage) Option("show-language"        -> false) else None,
       if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
@@ -69,7 +68,7 @@ case class PrismSettings(
     showInvisibles: Boolean = false,
     showLanguage: Boolean = true,
     copyToClipboard: Boolean = true,
-    //keepMarkup: Boolean = true
+    keepMarkup: Boolean = true
 ) extends BaseComponentSettings(version, pkg, depsProvider) {
   def withVersion(version: String)                       = copy(version = version)
   def withPkg(pkg: String)                               = copy(pkg = pkg)
@@ -79,7 +78,7 @@ case class PrismSettings(
   def withShowInvisibles(showInvisibles: Boolean)        = copy(showInvisibles = showInvisibles)
   def withShowLanguage(showLanguage: Boolean)            = copy(showLanguage = showLanguage)
   def withCopyToClipboard(copyToClipboard: Boolean)      = copy(copyToClipboard = copyToClipboard)
-  // def withKeepMarkup(keepMarkup: Boolean)  = copy(keepMarkup = keepMarkup)
+  def withKeepMarkup(keepMarkup: Boolean)                = copy(keepMarkup = keepMarkup)
 }
 
 object PrismConsts {
