@@ -5,8 +5,10 @@ import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 import ba.sake.hepek.html.structure._
 import ba.sake.hepek.prismjs
-import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
-import utils._, Imports._, resources._
+import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}
+import utils._
+import Imports._
+import resources._
 
 trait HepekDocsPage
     extends HepekBootstrap3BlogPage
@@ -29,7 +31,7 @@ trait HepekDocsStaticPage extends BootstrapStaticPage with AnchorjsDependencies 
     SiteSettings()
       .withName(Site.name)
       .withIndexPage(docs.Index)
-      .withMainPages(docs.Docs)
+      .withMainPages(docs.QuickStart)
       .withFaviconNormal(images.ico("favicon").ref)
       .withFaviconInverted(images.ico("favicon-small").ref)
 

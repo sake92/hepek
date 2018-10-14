@@ -69,7 +69,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with PageDepen
         head(
           headContent,
           allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
-            allStyleInlines.map(s => tag("style")(s))
+            allStyleInlines.map(s => tag("style")(raw(s)))
         ),
         body(
           bodyContent,

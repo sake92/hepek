@@ -7,7 +7,9 @@ import templates.HepekDocsPage
 
 object QuickStart extends HepekDocsPage {
 
-  override def pageSettings = PageSettings("Quickstart")
+  override def pageSettings =
+    super.pageSettings
+      .withTitle("Docs")
 
   override def blogSettings = super.blogSettings.withSections(
     installationSection,

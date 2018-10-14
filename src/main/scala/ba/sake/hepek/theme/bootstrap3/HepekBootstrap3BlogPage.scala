@@ -63,6 +63,12 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
       article {
         padding-top: 12px;
       }
+      nav#tocScrollspy .nav .nav>li>a {
+          padding-top: 1px;
+          padding-bottom: 1px;
+          padding-left: 3em;
+          font-size: .7em;
+      }
     """
   )
   override def scriptsInline = {
@@ -74,6 +80,9 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
                 target: '#tocScrollspy',
                 offset: 40
             });
+            $('#tocScrollspy').affix({
+                offset: 15
+            })
           """)
       }
       .getOrElse(Nil)
@@ -84,26 +93,11 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
   private def renderTOCAndSections(secs: List[Section], depth: Int = 1): Frag = tocType match {
     case Some(TocType.Togglable) =>
       frag(
-        togglableTOC(secs, depth),
+        togglableTOC(tocTitle, secs, depth),
         div(renderSections(secs, depth))
       )
     case _ => div(renderSections(secs, depth))
   }
-
-  // TOC
-  private def togglableTOC(secs: List[Section], depth: Int = 1): Frag =
-    div(cls := "panel-group hidden-print")(
-      div(cls := "panel panel-default")(
-        div(cls := "panel-heading")(
-          h4(cls := "panel-title")(
-            a(data.toggle := "collapse", href := "#collapseTOC")(tocTitle)
-          )
-        ),
-        div(id := "collapseTOC", cls := "panel-collapse collapse")(
-          div(cls := "panel-body pages-toc")(renderTogglableTOC(secs, depth))
-        )
-      )
-    )
 
   // related pages
   private def sidebar: Frag = {
