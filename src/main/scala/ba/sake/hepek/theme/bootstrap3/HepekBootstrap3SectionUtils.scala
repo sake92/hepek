@@ -8,7 +8,7 @@ object HepekBootstrap3SectionUtils extends HepekBootstrap3SectionUtils
 trait HepekBootstrap3SectionUtils {
 
   /** Renders the sections. */
-  def renderSections(secs: List[Section], depth: Int): List[Frag] =
+  def renderSections(secs: List[Section], depth: Int = 2): List[Frag] =
     secs.flatMap { s =>
       val hTag = tag("h" + (depth + 1)) // depth = h2, h3...
       val thisSection =
@@ -17,7 +17,7 @@ trait HepekBootstrap3SectionUtils {
     }
 
   /** Renders the togglable TOC (Table of Contents). */
-  def togglableTOC(tocTitle: String, secs: List[Section], depth: Int = 1): Frag =
+  def togglableTOC(tocTitle: String, secs: List[Section]): Frag =
     div(cls := "panel-group hidden-print")(
       div(cls := "panel panel-default")(
         div(cls := "panel-heading")(
@@ -26,31 +26,41 @@ trait HepekBootstrap3SectionUtils {
           )
         ),
         div(id := "collapseTOC", cls := "panel-collapse collapse")(
-          div(cls := "panel-body pages-toc")(renderTogglableTOC(secs, depth))
+          div(cls := "panel-body pages-toc")(renderTogglableTOC(secs))
         )
       )
     )
 
   /** Renders the scrollable TOC (Table of Contents). */
-  def renderScrollspyTOC(secs: List[Section], depth: Int = 1): Frag =
+  def renderScrollspyTOC(secs: List[Section]): Frag =
     tag("nav")(id := "tocScrollspy")(
-      renderScrollspyTocUl(secs, depth)
+      renderScrollspyTocUl(secs)
     )
 
   /* helpers */
-  private def renderTogglableTOC(secs: List[Section], depth: Int = 1): List[Frag] = {
-    val lis = secs.flatMap { s =>
-      val aLink = a(href := s"#${s.id}")(s.name)
-      li(aLink) :: renderTogglableTOC(s.children, depth + 1)
+  private def renderTogglableTOC(secs: List[Section],
+                                 maxDepth: Int = 2,
+                                 depth: Int = 1): List[Frag] =
+    if (depth > maxDepth) {
+      List.empty
+    } else {
+      val lis = secs.flatMap { s =>
+        val aLink = a(href := s"#${s.id}")(s.name)
+        li(aLink) :: renderTogglableTOC(s.children, depth + 1)
+      }
+      List(ul(lis))
     }
-    List(ul(lis))
-  }
 
-  private def renderScrollspyTocUl(secs: List[Section], depth: Int = 1): List[Frag] = {
-    val lis = secs.map { s =>
-      val aLink = a(href := s"#${s.id}")(s.name)
-      li(aLink :: renderScrollspyTocUl(s.children, depth + 1))
+  private def renderScrollspyTocUl(secs: List[Section],
+                                   maxDepth: Int = 2,
+                                   depth: Int = 1): List[Frag] =
+    if (depth > maxDepth) {
+      List.empty
+    } else {
+      val lis = secs.map { s =>
+        val aLink = a(href := s"#${s.id}")(s.name)
+        li(aLink :: renderScrollspyTocUl(s.children, depth + 1))
+      }
+      List(ul(cls := "nav nav-pills nav-stacked")(lis))
     }
-    List(ul(cls := "nav nav-pills nav-stacked")(lis))
-  }
 }

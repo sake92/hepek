@@ -23,6 +23,10 @@ trait HepekDocsPage
       .withLanguages(prismjs.PrismConsts.languages filter hlLangs.contains)
 
   override def categoryPosts = Site.pages
+
+  override def tocSettings = super.tocSettings.copy(
+    tocType = Some(TocType.Scrollspy(50))
+  )
 }
 
 trait HepekDocsStaticPage extends BootstrapStaticPage with AnchorjsDependencies {

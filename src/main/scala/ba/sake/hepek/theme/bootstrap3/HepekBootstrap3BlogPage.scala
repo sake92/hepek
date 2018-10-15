@@ -10,8 +10,16 @@ trait TocType
 
 object TocType {
   object Togglable extends TocType
-  object Scrollspy extends TocType
+  case class Scrollspy(
+      offset: Int = 10,
+      affixOffset: Int = 10
+  ) extends TocType
 }
+
+case class TocSettings(
+    title: String = "Table of Contents",
+    tocType: Option[TocType] = Some(TocType.Scrollspy())
+)
 
 trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
 
@@ -19,8 +27,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
   import AllBootstrapComponents._
   import HepekBootstrap3SectionUtils._
 
-  def tocTitle: String         = "Table of Contents"
-  def tocType: Option[TocType] = Some(TocType.Scrollspy)
+  def tocSettings: TocSettings = TocSettings()
 
   /**
     * @return Optional page header with page title.
@@ -30,15 +37,15 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
   )
 
   override def pageContent: Frag = {
-    val maybeScrollspy = tocType.collect {
-      case TocType.Scrollspy =>
+    val maybeScrollspy = tocSettings.tocType.collect {
+      case _: TocType.Scrollspy =>
         renderScrollspyTOC(blogSettings.sections)
     }
 
     frag(
       pageHeader.map(ph => row(ph)),
       row(
-        div(cls := "col-lg-2 col-lg-offset-1  col-md-3  hidden-print")(sidebar),
+        div(cls := "col-lg-2 col-lg-offset-1  col-md-3  hidden-print")(renderSidebar),
         div(cls := "col-lg-6                  col-md-6")(
           div(cls := "hidden-print")(
             blogSettings.createDate.map(
@@ -50,7 +57,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
               author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
             )
           ),
-          tag("article")(renderTOCAndSections(blogSettings.sections)),
+          tag("article")(renderTocAndSections(blogSettings.sections)),
           div(id := "disqus_thread", cls := "hidden-print")
         ),
         div(cls := "col-lg-3                  col-md-3  hidden-print")(maybeScrollspy)
@@ -72,16 +79,19 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
     """
   )
   override def scriptsInline = {
-    val maybeScrollSpy = tocType
+    val maybeScrollSpy = tocSettings.tocType
       .collect {
-        case TocType.Scrollspy =>
-          List("""
-            $('body').scrollspy({
+        case TocType.Scrollspy(offset, affixOffset) =>
+          List(s"""
+            // activate scrollspy on body
+            $$('body').scrollspy({
                 target: '#tocScrollspy',
-                offset: 40
+                offset: $offset
             });
-            $('#tocScrollspy').affix({
-                offset: 15
+            
+            // fix scrollspy navigation div
+            $$('#tocScrollspy').affix({
+                offset: $affixOffset
             })
           """)
       }
@@ -90,17 +100,17 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
   }
 
   /* CONTENT*/
-  private def renderTOCAndSections(secs: List[Section], depth: Int = 1): Frag = tocType match {
+  private def renderTocAndSections(secs: List[Section]): Frag = tocSettings.tocType match {
     case Some(TocType.Togglable) =>
       frag(
-        togglableTOC(tocTitle, secs, depth),
-        div(renderSections(secs, depth))
+        togglableTOC(tocSettings.title, secs),
+        div(renderSections(secs))
       )
-    case _ => div(renderSections(secs, depth))
+    case _ => div(renderSections(secs))
   }
 
   // related pages
-  private def sidebar: Frag = {
+  private def renderSidebar: Frag = {
     val pageLiTags = for {
       p <- categoryPosts
       activeClass = if (p.relPath == relPath) "active" else ""
