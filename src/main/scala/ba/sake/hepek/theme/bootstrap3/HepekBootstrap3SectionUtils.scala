@@ -46,7 +46,7 @@ trait HepekBootstrap3SectionUtils {
     } else {
       val lis = secs.flatMap { s =>
         val aLink = a(href := s"#${s.id}")(s.name)
-        li(aLink) :: renderTogglableTOC(s.children, depth + 1)
+        li(aLink) :: renderTogglableTOC(s.children, maxDepth, depth + 1)
       }
       List(ul(lis))
     }
@@ -59,7 +59,7 @@ trait HepekBootstrap3SectionUtils {
     } else {
       val lis = secs.map { s =>
         val aLink = a(href := s"#${s.id}")(s.name)
-        li(aLink :: renderScrollspyTocUl(s.children, depth + 1))
+        li(aLink :: renderScrollspyTocUl(s.children, maxDepth, depth + 1))
       }
       List(ul(cls := "nav nav-pills nav-stacked")(lis))
     }

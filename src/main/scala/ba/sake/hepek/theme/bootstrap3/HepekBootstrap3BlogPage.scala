@@ -86,12 +86,12 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
             // activate scrollspy on body
             $$('body').scrollspy({
                 target: '#tocScrollspy',
-                offset: $offset
+                offset: $offset // ~~ when the first heading starts...
             });
             
             // fix scrollspy navigation div
             $$('#tocScrollspy').affix({
-                offset: $affixOffset
+                offset: $affixOffset // when to start moving fixed div
             })
           """)
       }
