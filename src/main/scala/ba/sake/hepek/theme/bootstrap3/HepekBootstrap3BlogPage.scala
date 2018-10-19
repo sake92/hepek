@@ -45,7 +45,9 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
     frag(
       pageHeader.map(ph => row(ph)),
       row(
-        div(cls := "col-lg-2 col-lg-offset-1  col-md-3  hidden-print")(renderSidebar),
+        div(cls := "col-lg-2 col-lg-offset-1  col-md-3  hidden-print")(
+          renderSidebar
+        ),
         div(cls := "col-lg-6                  col-md-6")(
           div(cls := "hidden-print")(
             blogSettings.createDate.map(
@@ -60,21 +62,30 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
           tag("article")(renderTocAndSections(blogSettings.sections)),
           div(id := "disqus_thread", cls := "hidden-print")
         ),
-        div(cls := "col-lg-3                  col-md-3  hidden-print")(maybeScrollspy)
+        div(cls := "col-lg-3                  col-md-3  hidden-print hidden-sm")(maybeScrollspy)
       )
     )
   }
 
   override def stylesInline = super.stylesInline ++ List(
     """
-      article {
-        padding-top: 12px;
+      /* scrollspy stuff */
+      nav#tocScrollspy  .nav>li>a {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        font-size: .9em;
       }
       nav#tocScrollspy .nav .nav>li>a {
           padding-top: 1px;
           padding-bottom: 1px;
           padding-left: 3em;
           font-size: .7em;
+      }
+      /* turn off affix on screens < md */
+      @media (max-width: 992px) { 
+          .affix {
+              position: static;
+          }
       }
     """
   )
@@ -89,10 +100,15 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
                 offset: $offset // ~~ when the first heading starts...
             });
             
-            // fix scrollspy navigation div
+            // fix scrollspy for current page sections
             $$('#tocScrollspy').affix({
                 offset: $affixOffset // when to start moving fixed div
-            })
+            });
+            
+            // fix scrollspy related pages
+            $$('#relatedPagesSidebar').affix({
+                offset: $affixOffset // when to start moving fixed div
+            });
           """)
       }
       .getOrElse(Nil)
@@ -115,6 +131,8 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
       p <- categoryPosts
       activeClass = if (p.relPath == relPath) "active" else ""
     } yield li(cls := activeClass, a(href := p.ref)(p.pageSettings.label))
-    ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
+    tag("nav")(id := "relatedPagesSidebar")(
+      ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
+    )
   }
 }

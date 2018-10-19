@@ -25,8 +25,10 @@ trait HepekDocsPage
   override def categoryPosts = Site.pages
 
   override def tocSettings = super.tocSettings.copy(
-    tocType = Some(TocType.Scrollspy(50))
+    tocType = Some(TocType.Scrollspy(33))
   )
+
+  override def pageHeader = None
 }
 
 trait HepekDocsStaticPage extends BootstrapStaticPage with AnchorjsDependencies {
