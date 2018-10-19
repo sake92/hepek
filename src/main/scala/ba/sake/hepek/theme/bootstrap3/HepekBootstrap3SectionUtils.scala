@@ -9,11 +9,14 @@ trait HepekBootstrap3SectionUtils {
 
   /** Renders the sections. */
   def renderSections(secs: List[Section], depth: Int = 2): List[Frag] =
-    secs.flatMap { s =>
-      val hTag = tag("h" + (depth + 1)) // depth = h2, h3...
-      val thisSection =
-        tag("section")(hTag(id := s.id)(s.name), s.content)
-      thisSection :: renderSections(s.children, depth + 1)
+    secs.map { s =>
+      // h2, h3...
+      val hTag = tag("h" + (depth + 1))
+      tag("section")(
+        hTag(id := s.id)(s.name),
+        s.content,
+        renderSections(s.children, depth + 1)
+      )
     }
 
   /** Renders the togglable TOC (Table of Contents). */
