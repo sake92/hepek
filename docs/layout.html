@@ -11,13 +11,17 @@
           padding-left: 3em;
           font-size: .7em;
       }
+      .affix {
+          overflow-y: auto;
+          height: 100%;
+      }
       /* turn off affix on screens < md */
       @media (max-width: 992px) { 
           .affix {
               position: static;
           }
       }
-    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="quick-start.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="col-lg-2 col-lg-offset-1  col-md-3  hidden-print"><nav id="relatedPagesSidebar"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Docs</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class="active"><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></nav></div><div class="col-lg-6                  col-md-6"><div class="hidden-print"></div><article><div><section><h3 id="layout-support">Layout support</h3><p>Let's see what Hepek has to offer regarding layouts.</p>
+    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="quick-start.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="col-lg-2 col-lg-offset-1  col-md-3  hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Docs</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class="active"><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></nav></div><div class="col-lg-6                  col-md-6"><div class="hidden-print"></div><article><div><section><h3 id="layout-support">Layout support</h3><p>Let's see what Hepek has to offer regarding layouts.</p>
 <section><h4 id="problem">Problem</h4><p>Most static site generators have themes with predefined layout.<br />
 What if you just want to position an image to the right? Not so fast!<br />
 Then you mix in some inline HTML in your beautiful markdown and get a real mess...</p>
@@ -89,11 +93,6 @@ This means that on small and extra-small screens these columns will stack like d
             
             // fix scrollspy for current page sections
             $('#tocScrollspy').affix({
-                offset: 10 // when to start moving fixed div
-            });
-            
-            // fix scrollspy related pages
-            $('#relatedPagesSidebar').affix({
                 offset: 10 // when to start moving fixed div
             });
           </script></body></html>

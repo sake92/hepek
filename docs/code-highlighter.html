@@ -11,13 +11,17 @@
           padding-left: 3em;
           font-size: .7em;
       }
+      .affix {
+          overflow-y: auto;
+          height: 100%;
+      }
       /* turn off affix on screens < md */
       @media (max-width: 992px) { 
           .affix {
               position: static;
           }
       }
-    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="quick-start.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="col-lg-2 col-lg-offset-1  col-md-3  hidden-print"><nav id="relatedPagesSidebar"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Docs</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class=""><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class="active"><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></nav></div><div class="col-lg-6                  col-md-6"><div class="hidden-print"></div><article><div><section><h3 id="code-highlighter">Code highlighter</h3><p>Hepek has support for the awesome PrismJS code highlighter.<br />
+    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="quick-start.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="col-lg-2 col-lg-offset-1  col-md-3  hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Docs</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class=""><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class="active"><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></nav></div><div class="col-lg-6                  col-md-6"><div class="hidden-print"></div><article><div><section><h3 id="code-highlighter">Code highlighter</h3><p>Hepek has support for the awesome PrismJS code highlighter.<br />
 Add its dependencies by extending <code>PrismDependencies</code>.</p>
 <p>You can use its goodies by importing <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/prismjs/PrismCodeHighlightComponents.scala"><code>PrismCodeHighlightComponents</code></a> trait.</p>
 <blockquote>
@@ -66,11 +70,6 @@ are available only on console languages like <code>bash</code> and <code>batch</
             
             // fix scrollspy for current page sections
             $('#tocScrollspy').affix({
-                offset: 10 // when to start moving fixed div
-            });
-            
-            // fix scrollspy related pages
-            $('#relatedPagesSidebar').affix({
                 offset: 10 // when to start moving fixed div
             });
           </script></body></html>

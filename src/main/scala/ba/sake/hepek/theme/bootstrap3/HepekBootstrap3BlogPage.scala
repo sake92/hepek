@@ -81,6 +81,11 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
           padding-left: 3em;
           font-size: .7em;
       }
+      .affix {
+          overflow-y: auto;
+          height: 85%; /* nicer if not full height */
+          width: 15%; /* col-2 is 16.666% but it's nicer like this */
+      }
       /* turn off affix on screens < md */
       @media (max-width: 992px) { 
           .affix {
@@ -89,6 +94,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
       }
     """
   )
+
   override def scriptsInline = {
     val maybeScrollSpy = tocSettings.tocType
       .collect {
@@ -102,11 +108,6 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
             
             // fix scrollspy for current page sections
             $$('#tocScrollspy').affix({
-                offset: $affixOffset // when to start moving fixed div
-            });
-            
-            // fix scrollspy related pages
-            $$('#relatedPagesSidebar').affix({
                 offset: $affixOffset // when to start moving fixed div
             });
           """)
@@ -131,7 +132,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
       p <- categoryPosts
       activeClass = if (p.relPath == relPath) "active" else ""
     } yield li(cls := activeClass, a(href := p.ref)(p.pageSettings.label))
-    tag("nav")(id := "relatedPagesSidebar")(
+    tag("nav")(cls := "affix")(
       ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
     )
   }

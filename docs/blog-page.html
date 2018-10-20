@@ -11,13 +11,17 @@
           padding-left: 3em;
           font-size: .7em;
       }
+      .affix {
+          overflow-y: auto;
+          height: 100%;
+      }
       /* turn off affix on screens < md */
       @media (max-width: 992px) { 
           .affix {
               position: static;
           }
       }
-    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="quick-start.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="col-lg-2 col-lg-offset-1  col-md-3  hidden-print"><nav id="relatedPagesSidebar"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Docs</a></li><li class=""><a href="static-page.html">Static page</a></li><li class="active"><a href="blog-page.html">Blog page</a></li><li class=""><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></nav></div><div class="col-lg-6                  col-md-6"><div class="hidden-print"></div><article><div><section><h3 id="blog-post-settings">Blog post settings</h3><p>When you extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/html/structure/blog/BlogPostPage.scala"><code>BlogPostPage</code></a> you get support for a blog post page.<br />
+    </style></head><body><div class="container-fluid"><nav class="navbar navbar-default navbar-fixed-top"><div class="container"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed " data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html"><span><img src="images/favicon-small.ico" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-right"><li class=""><a href="quick-start.html">Docs</a></li></ul></div></div></nav><div class="row"><div class="col-lg-2 col-lg-offset-1  col-md-3  hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class=""><a href="quick-start.html">Docs</a></li><li class=""><a href="static-page.html">Static page</a></li><li class="active"><a href="blog-page.html">Blog page</a></li><li class=""><a href="layout.html">Layout</a></li><li class=""><a href="dependencies.html">JS and CSS dependencies</a></li><li class=""><a href="code-highlighter.html">Code highlighter</a></li><li class=""><a href="math-support.html">Math support</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li><li class=""><a href="code-walkthrough.html">Code walkthrough</a></li></ul></nav></div><div class="col-lg-6                  col-md-6"><div class="hidden-print"></div><article><div><section><h3 id="blog-post-settings">Blog post settings</h3><p>When you extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/html/structure/blog/BlogPostPage.scala"><code>BlogPostPage</code></a> you get support for a blog post page.<br />
 For a Bootstrap-themed page extend <a href="https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek/theme/bootstrap3/HepekBootstrap3BlogPage.scala"><code>HepekBootstrap3BlogPage</code></a>.<br />
 You can override <code>def blogSettings: BlogSettings</code> method with following fields:</p>
 <table class="table table-hover"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>author</td><td>No</td><td>Option[String]</td><td>None</td><td>Author of this post</td></tr><tr><td>createDate</td><td>No</td><td>Option[LocalDate]</td><td>None</td><td>Date when this post was written</td></tr><tr><td>sections</td><td>No</td><td>List[Section]</td><td>List.empty</td><td>Sections of this post</td></tr><tr><td>dateFormat</td><td>No</td><td>DateTimeFormatter</td><td>dd.MM.yyyy</td><td>Sections of this post</td></tr></table></section><section><h3 id="sections">Sections</h3><p>A blog post is made of <strong>sections</strong>, so you can render a nice TOC, sitemap.xml, or even a PDF...<br />
@@ -58,11 +62,6 @@ In each template you populate <code>categoryPosts</code> list and you'll get a n
             
             // fix scrollspy for current page sections
             $('#tocScrollspy').affix({
-                offset: 10 // when to start moving fixed div
-            });
-            
-            // fix scrollspy related pages
-            $('#relatedPagesSidebar').affix({
                 offset: 10 // when to start moving fixed div
             });
           </script></body></html>
