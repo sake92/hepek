@@ -108,7 +108,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
             
             // fix scrollspy for current page sections
             $$('#tocScrollspy').affix({
-                offset: $affixOffset // when to start moving fixed div
+                offset: { top: $affixOffset } // when to start moving fixed div
             });
           """)
       }

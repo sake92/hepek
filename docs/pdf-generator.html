@@ -13,7 +13,8 @@
       }
       .affix {
           overflow-y: auto;
-          height: 100%;
+          height: 85%; /* nicer if not full height */
+          width: 15%; /* col-2 is 16.666% but it's nicer like this */
       }
       /* turn off affix on screens < md */
       @media (max-width: 992px) { 
@@ -48,6 +49,6 @@ If someone wants to contribute with an sbt task for doing this, that would be aw
             
             // fix scrollspy for current page sections
             $('#tocScrollspy').affix({
-                offset: 10 // when to start moving fixed div
+                offset: { top: 10 } // when to start moving fixed div
             });
           </script></body></html>
