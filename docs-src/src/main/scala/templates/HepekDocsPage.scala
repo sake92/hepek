@@ -25,7 +25,7 @@ trait HepekDocsPage
   override def categoryPosts = Site.pages
 
   override def tocSettings = super.tocSettings.copy(
-    tocType = Some(TocType.Scrollspy(33))
+    tocType = Some(TocType.Scrollspy(45))
   )
 
   override def pageHeader = None

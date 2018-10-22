@@ -62,7 +62,9 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
           tag("article")(renderTocAndSections(blogSettings.sections)),
           div(id := "disqus_thread", cls := "hidden-print")
         ),
-        div(cls := "col-lg-3                  col-md-3  hidden-print hidden-sm")(maybeScrollspy)
+        div(cls := "col-lg-3                  col-md-3  hidden-print hidden-sm hidden-xs")(
+          maybeScrollspy
+        )
       )
     )
   }
@@ -81,15 +83,23 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
           padding-left: 3em;
           font-size: .7em;
       }
-      .affix {
-          overflow-y: auto;
-          height: 85%; /* nicer if not full height */
-          width: 15%; /* col-2 is 16.666% but it's nicer like this */
-      }
+      
       /* turn off affix on screens < md */
       @media (max-width: 992px) { 
+          .affix { position: static; }
+      }
+      @media (min-width: 1200px) {
+          /* col-2 is 16.666% but it's nicer like this */
+          .affix { width: 15%; }
+      }
+      @media (min-width: 992px) and (max-width: 1199px) {
+          /* col-3 is 25% but it's nicer like this */
+          .affix { width: 23%; }
+      }
+      @media (min-width: 992px) {
           .affix {
-              position: static;
+              overflow-y: auto;
+              height: 85%; /* nicer if not full height */
           }
       }
     """
