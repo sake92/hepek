@@ -3,7 +3,7 @@ import com.typesafe.sbt.web.Import.WebKeys
 scalaVersion in ThisBuild := "2.12.4"
 scalafmtOnCompile in ThisBuild := true
 
-val openhtmltopdfVersion = "0.0.1-RC13"
+val openhtmltopdfVersion = "0.0.1-RC17"
 
 lazy val hepekProject = (project in file("."))
   .settings(
