@@ -4,6 +4,7 @@ scalaVersion in ThisBuild := "2.12.4"
 scalafmtOnCompile in ThisBuild := true
 
 val openhtmltopdfVersion = "0.0.1-RC17"
+val seleniumVersion      = "2.52.0"
 
 lazy val hepekProject = (project in file("."))
   .settings(
@@ -18,7 +19,7 @@ lazy val hepekProject = (project in file("."))
       "com.openhtmltopdf"        % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
-      "org.seleniumhq.selenium"  % "selenium-java"                % "3.141.5",
+      "org.seleniumhq.selenium"  % "selenium-java"                % seleniumVersion,
       "org.scalatest"            %% "scalatest"                   % "3.0.5" % "test"
     )
   )
@@ -73,7 +74,8 @@ lazy val hepekTestsProject = (project in file("tests"))
       (hepek in Compile).value
     },
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+      "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+      "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion % "test"
     )
   )
   .dependsOn(hepekProject)
