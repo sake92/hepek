@@ -14,10 +14,10 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 - full Scala support, statically typed templates etc.
 - **automatic relative paths**, just type `MyPage.ref`!!!
 - **incremental** rendering by default
-- Markdown support
-- Bootstrap3, PureCSS helpers (with **typesafe grids**!)
-- Prismjs code highlighter
-- KaTeX or Mathjax for math formulas
+- **typesafe grids** (Bootstrap3, PureCSS), never worry to miss `col-*`
+- Markdown support (Commonmark)
+- code highlighting (Prismjs)
+- math support (KaTeX, Mathjax)
 - form helpers
 - file watching with sbt
 - PDF rendering
