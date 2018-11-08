@@ -73,7 +73,8 @@ lazy val hepekTestsProject = (project in file("tests"))
       (hepek in Compile).value
     },
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+      "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+      "org.seleniumhq.selenium" % "selenium-java" % "2.53.1" % "test"
     )
   )
   .dependsOn(hepekProject)
