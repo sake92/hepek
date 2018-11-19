@@ -7,7 +7,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class ClipboardjsDependenciesSpec extends FlatSpec with Matchers with HepekMatchers {
 
-  val clipboardJsDependencies = new ClipboardjsDependencies{}
+  val clipboardJsDependencies = new ClipboardjsDependencies {}
 
   "ClipboardjsDependencies" should "contain the proper componentSettings" in {
     clipboardJsDependencies.clipboardjsSettings shouldBe a[ComponentSettings]
@@ -18,7 +18,7 @@ class ClipboardjsDependenciesSpec extends FlatSpec with Matchers with HepekMatch
   }
 
   it should "have component major version greater or equal than 1 and a minor version greater or equal than 7" in {
-    val semVer = clipboardJsDependencies.clipboardjsSettings.version.split('.')
+    val semVer         = clipboardJsDependencies.clipboardjsSettings.version.split('.')
     val (major, minor) = (semVer(0).toInt, semVer(1).toInt)
     (major, minor) should beEqualOrGreaterThanVersion(1, 7)
   }
@@ -32,11 +32,11 @@ class ClipboardjsDependenciesSpec extends FlatSpec with Matchers with HepekMatch
   }
 
   it should "have a JS dependency" in {
-      val jsDeps = clipboardJsDependencies.clipboardjsDependencies.jsDependencies.deps
-      val jsDepVersion = clipboardJsDependencies.clipboardjsSettings.version
-      val jsDepPackage = clipboardJsDependencies.clipboardjsSettings.pkg
-      jsDeps.length shouldBe 1
-      jsDeps.head shouldBe Dependency("clipboard.min.js", jsDepVersion, jsDepPackage)
+    val jsDeps       = clipboardJsDependencies.clipboardjsDependencies.jsDependencies.deps
+    val jsDepVersion = clipboardJsDependencies.clipboardjsSettings.version
+    val jsDepPackage = clipboardJsDependencies.clipboardjsSettings.pkg
+    jsDeps.length shouldBe 1
+    jsDeps.head shouldBe Dependency("clipboard.min.js", jsDepVersion, jsDepPackage)
   }
 
   it should "contain a list of components" in {
