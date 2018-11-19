@@ -4,7 +4,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class AnchorjsDependenciesSpec extends FlatSpec with Matchers {
 
-  val anchorJsDependencies = new AnchorjsDependencies{}
+  val anchorJsDependencies = new AnchorjsDependencies {}
 
   "AnchorjsDependencies" should "contain the proper componentSettings" in {
     anchorJsDependencies.anchorjsSettings shouldBe a[ComponentSettings]
@@ -27,11 +27,11 @@ class AnchorjsDependenciesSpec extends FlatSpec with Matchers {
   }
 
   it should "have a JS dependency" in {
-      val jsDeps = anchorJsDependencies.anchorjsDependencies.jsDependencies.deps
-      val jsDepVersion = anchorJsDependencies.anchorjsSettings.version
-      val jsDepPackage = anchorJsDependencies.anchorjsSettings.pkg
-      jsDeps.length shouldBe 1
-      jsDeps.head shouldBe Dependency("anchor.min.js", jsDepVersion, jsDepPackage)
+    val jsDeps       = anchorJsDependencies.anchorjsDependencies.jsDependencies.deps
+    val jsDepVersion = anchorJsDependencies.anchorjsSettings.version
+    val jsDepPackage = anchorJsDependencies.anchorjsSettings.pkg
+    jsDeps.length shouldBe 1
+    jsDeps.head shouldBe Dependency("anchor.min.js", jsDepVersion, jsDepPackage)
   }
 
   it should "contain a list of components" in {
