@@ -20,7 +20,7 @@ lazy val hepekProject = (project in file("."))
       "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
       "org.seleniumhq.selenium"  % "selenium-java"                % seleniumVersion,
-      "org.scalatest"            %% "scalatest"                   % "3.0.5" % "test"
+      "org.scalatest"            %% "scalatest"                   % "3.0.7" % "test"
     )
   )
 
@@ -74,7 +74,7 @@ lazy val hepekTestsProject = (project in file("tests"))
       (hepek in Compile).value
     },
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "3.0.5" % "test",
+      "org.scalatest" %% "scalatest" % "3.0.7" % "test",
       "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion % "test"
     )
   )
