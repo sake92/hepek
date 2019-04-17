@@ -13,10 +13,12 @@ trait PureDependencies extends PageDependencies {
   def pureDependencies = ComponentDependencies().withJsDependencies(
     Dependencies().withDeps(
       pureModules.map { moduleName =>
-        Dependency(s"$moduleName-min.css",
-                   pureSettings.version,
-                   pureSettings.pkg,
-                   baseFolder = Option("build/"))
+        Dependency(
+          s"$moduleName-min.css",
+          pureSettings.version,
+          pureSettings.pkg,
+          baseFolder = Option("build/")
+        )
       }
     )
   )

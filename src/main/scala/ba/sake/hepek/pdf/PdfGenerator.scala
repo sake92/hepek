@@ -76,7 +76,7 @@ if (svgs.length < 1) {
       outputFile: File,
       targetFolder: String,
       pages: List[Renderable],
-      fonts: List[Font] = List.empty, // additional fonts to use
+      fonts: List[Font] = List.empty,             // additional fonts to use
       loadJsConditions: List[String] = List.empty // page loaded conds
   ): Unit = {
     if (pages.isEmpty) {

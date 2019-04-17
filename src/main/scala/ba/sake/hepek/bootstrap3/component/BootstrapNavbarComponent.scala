@@ -67,9 +67,11 @@ trait BootstrapNavbarComponent {
     div(cls := "collapse navbar-collapse", id := navCollapseId)
 
   def navbarCollapseToggleBtn(navCollapseId: String = "main-navbar") =
-    bsBtn(cls := "navbar-toggle collapsed ",
-          data.toggle := "collapse",
-          data.target := s"#$navCollapseId")(
+    bsBtn(
+      cls := "navbar-toggle collapsed ",
+      data.toggle := "collapse",
+      data.target := s"#$navCollapseId"
+    )(
       span(cls := "sr-only")("Toggle navigation"),
       span(cls := "icon-bar"),
       span(cls := "icon-bar"),

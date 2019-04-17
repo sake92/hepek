@@ -60,9 +60,8 @@ trait PureStaticPage extends StaticPage with PureDependencies {
           "pure-menu-selected "
         else ""
       }
-    } yield
-      menuItem()(
-        menuLink(page.ref)(labela)
-      )
+    } yield menuItem()(
+      menuLink(page.ref)(labela)
+    )
 
 }

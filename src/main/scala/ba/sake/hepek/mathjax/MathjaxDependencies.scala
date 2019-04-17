@@ -11,10 +11,12 @@ trait MathjaxDependencies extends PageDependencies {
 
   def mathjaxDependencies = ComponentDependencies().withJsDependencies(
     Dependencies().withDeps(
-      Dependency("MathJax.js",
-                 mathjaxSettings.version,
-                 mathjaxSettings.pkg,
-                 qParams = Option(s"config=$mathjaxConfig"))
+      Dependency(
+        "MathJax.js",
+        mathjaxSettings.version,
+        mathjaxSettings.pkg,
+        qParams = Option(s"config=$mathjaxConfig")
+      )
     )
   )
 

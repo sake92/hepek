@@ -13,17 +13,17 @@ object StringUtils {
   def urlify(input: String): String = {
     // example "-Pa&geABCNešt-_o"
     val kebabCased = input.trim
-      .replaceAll("([a-z])([A-Z])", "$1-$2") // -Pa&ge-ABCNešt-_o
+      .replaceAll("([a-z])([A-Z])", "$1-$2")           // -Pa&ge-ABCNešt-_o
       .replaceAll("([A-Z]+)([A-Z])([a-z])", "$1-$2$3") // -Pa&ge-ABC-Nešt-_o
     val withoutUnsafe = kebabCased
       .replaceAll(UnsafeURLCharsRegex, "-") // -Pa-ge-ABC-Nešt-_o
-      .replaceAll("_", "-") // -Pa-ge-ABC-Nešt--o
-      .replaceAll("-+", "-") // -Pa-ge-ABC-Nešt-o
+      .replaceAll("_", "-")                 // -Pa-ge-ABC-Nešt--o
+      .replaceAll("-+", "-")                // -Pa-ge-ABC-Nešt-o
     val dashTrimmed = withoutUnsafe
       .dropWhile(_ == '-')
       .reverse
       .dropWhile(_ == '-')
-      .reverse // Pa-ge-ABC-Nešt-o
+      .reverse     // Pa-ge-ABC-Nešt-o
       .toLowerCase // pa-ge-abc-nešt-o
 
     var asciiOnly = dashTrimmed.replaceAll("đ", "dj")

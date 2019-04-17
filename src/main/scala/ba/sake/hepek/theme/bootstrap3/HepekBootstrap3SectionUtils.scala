@@ -41,9 +41,11 @@ trait HepekBootstrap3SectionUtils {
     )
 
   /* helpers */
-  private def renderTogglableTOC(secs: List[Section],
-                                 maxDepth: Int = 2,
-                                 depth: Int = 1): List[Frag] =
+  private def renderTogglableTOC(
+      secs: List[Section],
+      maxDepth: Int = 2,
+      depth: Int = 1
+  ): List[Frag] =
     if (depth > maxDepth) {
       List.empty
     } else {
@@ -54,9 +56,11 @@ trait HepekBootstrap3SectionUtils {
       List(ul(lis))
     }
 
-  private def renderScrollspyTocUl(secs: List[Section],
-                                   maxDepth: Int = 2,
-                                   depth: Int = 1): List[Frag] =
+  private def renderScrollspyTocUl(
+      secs: List[Section],
+      maxDepth: Int = 2,
+      depth: Int = 1
+  ): List[Frag] =
     if (depth > maxDepth) {
       List.empty
     } else {

@@ -165,9 +165,11 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
 /* "normal" code highlighter */
 object PrismCodeHighlighter {
 
-  def apply(lang: String,
-            showLineNumbers: Boolean,
-            isMarkup: Boolean = false): PrismCodeHighlighter = {
+  def apply(
+      lang: String,
+      showLineNumbers: Boolean,
+      isMarkup: Boolean = false
+  ): PrismCodeHighlighter = {
     val lineNums = if (showLineNumbers) Option(1) else None
     PrismCodeHighlighter(lang, lineNums, None, isMarkup)
   }

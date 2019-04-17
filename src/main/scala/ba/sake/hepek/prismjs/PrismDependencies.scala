@@ -24,9 +24,11 @@ trait PrismDependencies extends ClipboardjsDependencies {
     ComponentDependencies()
       .withCssDependencies(
         Dependencies().withDeps(
-          Dependency(s"themes/${prismSettings.theme}.min.css",
-                     prismSettings.version,
-                     prismSettings.pkg) :: cssPluginDeps
+          Dependency(
+            s"themes/${prismSettings.theme}.min.css",
+            prismSettings.version,
+            prismSettings.pkg
+          ) :: cssPluginDeps
         )
       )
       .withJsDependencies(
@@ -101,7 +103,7 @@ object PrismConsts {
       "brainfuck",
       "bro",
       "clike",
-      "c", // extends clike
+      "c",     // extends clike
       "bison", // extends c
       "cpp",
       "arduino", // extends c++
@@ -158,8 +160,8 @@ object PrismConsts {
       "aspnet", // extends markup
       //"django", // extends markup, TODO throws error...?
       "handlebars", // extends markup
-      "jsx", // extends markup
-      "markdown", // extends markup
+      "jsx",        // extends markup
+      "markdown",   // extends markup
       "matlab",
       "mel",
       "mizar",
@@ -228,17 +230,17 @@ object PrismConsts {
   // not every plugin has CSS, so tuples (pluginName, hasCSS)
   // also see optionalPluginDeps in PrismDependencies
   val plugins: List[(String, Boolean)] = List(
-    "autolinker"           -> true, // auto create links
-    "command-line"         -> true, // cmd with nice prompt, etc...
+    "autolinker"           -> true,  // auto create links
+    "command-line"         -> true,  // cmd with nice prompt, etc...
     "data-uri-highlight"   -> false, // highliht url() stuff inside of CSS
     "file-highlight"       -> false, // downloads file via AJAX
     "jsonp-highlight"      -> false, // Gist, Github... via JSONP
-    "line-highlight"       -> true, // highlight SPECIFIC lines 1-5,9 ...
-    "line-numbers"         -> true, // line NUMBERS on the left
+    "line-highlight"       -> true,  // highlight SPECIFIC lines 1-5,9 ...
+    "line-numbers"         -> true,  // line NUMBERS on the left
     "normalize-whitespace" -> false, // auto "trim" leading whitespace
-    "previewers"           -> true, // preview CSS stuff live (colors, gradients..)
-    "toolbar"              -> true, // needed for copy plugin and show-language etc
-    "unescaped-markup"     -> true, // handy for HTML markup
-    "wpd"                  -> true // WebPlatform Docs
+    "previewers"           -> true,  // preview CSS stuff live (colors, gradients..)
+    "toolbar"              -> true,  // needed for copy plugin and show-language etc
+    "unescaped-markup"     -> true,  // handy for HTML markup
+    "wpd"                  -> true   // WebPlatform Docs
   )
 }

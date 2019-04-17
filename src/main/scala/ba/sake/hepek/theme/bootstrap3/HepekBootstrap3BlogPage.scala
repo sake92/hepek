@@ -52,8 +52,10 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
           div(cls := "hidden-print")(
             blogSettings.createDate.map(
               cd =>
-                div(span(cls := "glyphicon glyphicon-time"),
-                    " " + cd.format(blogSettings.dateFormat))
+                div(
+                  span(cls := "glyphicon glyphicon-time"),
+                  " " + cd.format(blogSettings.dateFormat)
+                )
             ),
             blogSettings.author.map(
               author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)

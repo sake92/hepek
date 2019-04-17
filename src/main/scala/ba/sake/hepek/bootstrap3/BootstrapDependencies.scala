@@ -12,18 +12,22 @@ trait BootstrapDependencies extends JQueryDependencies {
     ComponentDependencies()
       .withJsDependencies(
         Dependencies().withDeps(
-          Dependency("js/bootstrap.min.js",
-                     bootstrapSettings.version,
-                     bootstrapSettings.pkg,
-                     baseFolder = Option("dist/"))
+          Dependency(
+            "js/bootstrap.min.js",
+            bootstrapSettings.version,
+            bootstrapSettings.pkg,
+            baseFolder = Option("dist/")
+          )
         )
       )
       .withCssDependencies(
         Dependencies().withDeps(
-          Dependency("css/bootstrap.min.css",
-                     bootstrapSettings.version,
-                     bootstrapSettings.pkg,
-                     baseFolder = Option("dist/"))
+          Dependency(
+            "css/bootstrap.min.css",
+            bootstrapSettings.version,
+            bootstrapSettings.pkg,
+            baseFolder = Option("dist/")
+          )
         )
       )
 

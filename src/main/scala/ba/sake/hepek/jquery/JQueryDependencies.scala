@@ -9,10 +9,12 @@ trait JQueryDependencies extends PageDependencies {
 
   def jQueryDependencies = ComponentDependencies().withJsDependencies(
     Dependencies().withDeps(
-      Dependency("jquery.min.js",
-                 jQuerySettings.version,
-                 jQuerySettings.pkg,
-                 baseFolder = Option("dist/"))
+      Dependency(
+        "jquery.min.js",
+        jQuerySettings.version,
+        jQuerySettings.pkg,
+        baseFolder = Option("dist/")
+      )
     )
   )
 
