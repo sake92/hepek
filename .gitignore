@@ -28,3 +28,6 @@ bin/
 .ensime_cache/
 
 .idea/
+
+.bloop/
+.metals/

@@ -1,6 +1,6 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
-scalaVersion in ThisBuild := "2.12.4"
+scalaVersion in ThisBuild := "2.12.8"
 scalafmtOnCompile in ThisBuild := true
 
 val openhtmltopdfVersion = "0.0.1-RC19"
@@ -10,7 +10,7 @@ lazy val hepekProject = (project in file("."))
   .settings(
     name := "hepek",
     organization := "ba.sake",
-    version := "0.2.1-SNAPSHOT",
+    version := "0.2.1",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.1",
       "com.lihaoyi"              %% "scalatags"                   % "0.6.8",

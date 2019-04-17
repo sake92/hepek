@@ -5,14 +5,15 @@ import ba.sake.hepek.core.RelativePath
 
 /**
   * Path relative to the class' package. <br>
-  * E.g. `object MyPage extends PackageRelativePath { def fileName = "mypage.html" }` in `my.company` package renders to `my/company/mypage.html`
+  * E.g. `object MyPage extends PackageRelativePath { def fileName = "mypage.html" }`
+  * in `my.company` package renders to `my/company/mypage.html`
   */
 trait PackageRelativePath extends RelativePath with RelativePathAddons {
 
   /** Name of the rendered file. */
   def fileName: String
 
-  final override def relPath = {
+  override def relPath = {
     val path = if (this.getClass.getPackage == null) {
       fileName
     } else {
