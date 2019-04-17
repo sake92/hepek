@@ -15,7 +15,7 @@ trait HepekMatchers {
       MatchResult(
         left._1 > major || (left._1 == major && left._2 >= minor),
         s"$left +  version is not valid because not equal or greater than $major.$minor",
-        s"$left +  version is valid because equal or greater than $major.$minor",
+        s"$left +  version is valid because equal or greater than $major.$minor"
       )
     }
 }
