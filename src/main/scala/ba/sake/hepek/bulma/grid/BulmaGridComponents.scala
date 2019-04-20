@@ -8,10 +8,10 @@ object BulmaGridComponents extends BulmaGridComponents
 
 trait BulmaGridComponents extends GridComponents {
   import GridComponents._
-  import ba.sake.hepek.bulma.component.cssClasses
+  import ba.sake.hepek.bulma.component.enrichCssClasses
 
   def row(modifiers: BulmaModifier*)(content: Frag*) =
-    div(cls := s"columns${cssClasses(modifiers)}")(content)
+    div(cls := enrichCssClasses("columns", modifiers))(content)
 
   override def row(content: Frag*) =
     div(cls := "columns")(content)

@@ -37,7 +37,7 @@ case class DropdownMenu(elements: DropdownElement*) extends BulmaElement {
 
 trait DropdownComponents {
 
-  def dropdown(trigger: Option[DropdownTrigger], menu: DropdownMenu) =
+  def dropdown(trigger: Option[DropdownTrigger] = None, menu: DropdownMenu) =
     div(cls := "dropdown")(
       optionalElementContent(trigger),
       menu.content

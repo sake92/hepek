@@ -19,7 +19,7 @@ class BulmaStaticPageSpec extends HepekSeleniumTest {
 
     val navbar = find(className("navbar"))
     val items  = navbar.get.underlying.findElements(By.tagName("a"))
-    items.size shouldBe 2
+    items.size shouldBe 3
     items.get(0).getText shouldBe "test-1"
 
     val cardContent =

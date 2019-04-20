@@ -1,24 +1,27 @@
 package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.bulma._
-import scalatags.Text.all._
+import scalatags.Text
+import scalatags.Text.all.{content, _}
 
 object BreadcrumbComponents extends BreadcrumbComponents
 
+case class BreadcrumbItem(label: String) extends BulmaElement {
+  override def content: Text.all.Frag = li(a(label))
+}
+
 trait BreadcrumbComponents {
 
-  def breadcrumb(content: Frag*)         = customBreadcrumb(List())(content)
-  def centeredBreadcrumb(content: Frag*) = customBreadcrumb(List(Centered))(content)
-  def leftBreadcrumb(content: Frag*)     = customBreadcrumb(List(Left))(content)
-  def rightBreadcrumb(content: Frag*)    = customBreadcrumb(List(Right))(content)
+  def breadcrumb(content: BreadcrumbItem*)         = customBreadcrumb(List())(content: _*)
+  def centeredBreadcrumb(content: BreadcrumbItem*) = customBreadcrumb(List(Centered))(content: _*)
+  def leftBreadcrumb(content: BreadcrumbItem*)     = customBreadcrumb(List(Left))(content: _*)
+  def rightBreadcrumb(content: BreadcrumbItem*)    = customBreadcrumb(List(Right))(content: _*)
 
-  def smallBreadcrumb(content: Frag*)  = customBreadcrumb(List(Small))(content)
-  def mediumBreadcrumb(content: Frag*) = customBreadcrumb(List(Medium))(content)
-  def largeBreadcrumb(content: Frag*)  = customBreadcrumb(List(Large))(content)
+  def smallBreadcrumb(content: BreadcrumbItem*)  = customBreadcrumb(List(Small))(content: _*)
+  def mediumBreadcrumb(content: BreadcrumbItem*) = customBreadcrumb(List(Medium))(content: _*)
+  def largeBreadcrumb(content: BreadcrumbItem*)  = customBreadcrumb(List(Large))(content: _*)
 
-  def customBreadcrumb(attributes: List[BulmaModifier])(content: Frag*) =
-    tag("nav")(cls := s"breadcrumb${cssClasses(attributes)}")(ul(for {
-      elem <- content
-    } yield li(elem)))
+  def customBreadcrumb(attributes: List[BulmaModifier])(items: BreadcrumbItem*) =
+    tag("nav")(cls := enrichCssClasses("breadcrumb", attributes))(ul(items.map(_.content)))
 
 }

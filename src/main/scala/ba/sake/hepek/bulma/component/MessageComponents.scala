@@ -15,7 +15,7 @@ trait MessageComponents {
     completeStyledMessage(EmptyAttribute)(header)(body)
 
   def completeStyledMessage(color: BulmaModifier)(header: Frag*)(body: Frag*) = {
-    val cssClassValues = s"message${cssClass(color)}"
+    val cssClassValues = enrichCssClass("message", color)
     header.size match {
       case 0 => tag("article")(cls := cssClassValues, messageBody(body))
       case _ => tag("article")(cls := cssClassValues, messageHeader(header), messageBody(body))

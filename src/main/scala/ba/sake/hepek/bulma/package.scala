@@ -52,21 +52,19 @@ trait BulmaElement {
 
 package object component {
 
-  def cssClass(attribute: BulmaModifier): String =
-    cssClasses(Seq(attribute))
+  def enrichCssClass(currentClass: String, attribute: BulmaModifier): String =
+    enrichCssClasses(currentClass, Seq(attribute))
 
-  def cssClasses(attributes: Seq[BulmaModifier]): String = {
-    val classes = attributes
-      .foldLeft("")((str, attribute) => s"$str ${attribute.classname}")
-    if (classes.equals(" "))
-      ""
-    else
-      classes
-  }
+  def enrichCssClasses(currentClass: String, attributes: Seq[BulmaModifier]): String =
+    attributes
+      .foldLeft(currentClass)((str, attribute) => s"$str ${attribute.classname}")
+      .trim
 
   def optionalElementContent(opt: Option[BulmaElement]): Frag =
     opt.fold[Frag](SeqFrag[String](List()))(_.content)
 
   def optionalModifier(opt: Option[BulmaModifier]): String =
     opt.fold[String]("")(modifier => s" ${modifier.classname}")
+
+  def isActive(active: Boolean): BulmaModifier = if (active) Active else EmptyAttribute
 }

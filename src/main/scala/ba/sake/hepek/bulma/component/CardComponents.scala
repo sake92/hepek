@@ -7,9 +7,11 @@ object CardComponents extends CardComponents
 
 trait CardHeader extends BulmaElement {
 
-  def contentBuilder(attributeClass: BulmaModifier*)(title: String, iconClass: Option[String]) =
+  def contentBuilder(
+      attributeClass: BulmaModifier*
+  )(title: String, iconClass: Option[String] = None) =
     header(cls := "card-header")(
-      p(cls := s"card-header-title${cssClasses(attributeClass)}", title),
+      p(cls := enrichCssClasses("card-header-title", attributeClass), title),
       iconClass.fold[Frag](SeqFrag[String](List()))(
         className =>
           a(href := "#", cls := "card-header-icon")(span(cls := "icon", i(cls := className)))
@@ -17,7 +19,7 @@ trait CardHeader extends BulmaElement {
     )
 }
 
-case class CenteredHeader(title: String, iconClass: Option[String]) extends CardHeader {
+case class CenteredHeader(title: String, iconClass: Option[String] = None) extends CardHeader {
   override def content = contentBuilder(Centered)(title, iconClass)
 }
 
@@ -51,10 +53,10 @@ case class CardFooter(items: Frag*) extends BulmaElement {
 trait CardComponents {
 
   def card(
-      header: Option[CardHeader],
-      image: Option[CardImage],
+      header: Option[CardHeader] = None,
+      image: Option[CardImage] = None,
       cardContent: CardContent,
-      footer: Option[CardFooter]
+      footer: Option[CardFooter] = None
   ) =
     div(cls := "card")(
       optionalElementContent(header),

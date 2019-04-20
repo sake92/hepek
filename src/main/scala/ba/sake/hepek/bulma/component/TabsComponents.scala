@@ -1,13 +1,17 @@
 package ba.sake.hepek.bulma.component
 
+import ba.sake.hepek.bulma.{BulmaElement, BulmaModifier}
 import scalatags.Text.all._
-import ba.sake.hepek.bulma.BulmaModifier
 
 object TabsComponents extends TabsComponents
 
-trait TabsComponents {
-  def tabsContainer(content: Frag*) = ul(cls := "tabs")(content)
+case class TabItem(label: String) extends BulmaElement {
+  override def content = li(a(label))
+}
 
-  def customTabsContainer(attributes: List[BulmaModifier])(content: Frag*) =
-    ul(cls := s"tabs${cssClasses(attributes)}")(content)
+trait TabsComponents {
+  def tabsContainer(items: TabItem*) = ul(cls := "tabs")(items.map(_.content))
+
+  def customTabsContainer(attributes: BulmaModifier*)(items: TabItem*) =
+    ul(cls := enrichCssClasses("tabs", attributes))(items.map(_.content))
 }

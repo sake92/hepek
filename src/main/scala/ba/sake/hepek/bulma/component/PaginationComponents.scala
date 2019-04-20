@@ -7,10 +7,13 @@ object PaginationComponents extends PaginationComponents
 
 sealed trait PaginationElement extends BulmaElement
 
-case class Pagination(previous: Option[String], next: Option[String]) extends BulmaElement {
+case class Pagination(
+    previous: Option[String] = Some("previous"),
+    next: Option[String] = Some("next")
+) extends PaginationElement {
   override def content = frag(
-    previous.fold[Frag](SeqFrag[String](List()))(a(cls := "pagination-previous")(_)),
-    next.fold[Frag](SeqFrag[String](List()))(a(cls := "pagination-next")(_))
+    previous.map(a(cls := "pagination-previous")(_)),
+    next.map(a(cls := "pagination-next")(_))
   )
 }
 
@@ -18,14 +21,14 @@ case object PaginationEllipsis extends PaginationElement {
   override def content = a(cls := "pagination-ellipsis")(raw("&hellip;"))
 }
 
-case class PaginationNumber(number: Integer, isCurrent: Boolean) extends PaginationElement {
+case class PaginationNumber(number: Integer, isCurrent: Boolean = false) extends PaginationElement {
   override def content = {
     val current: BulmaModifier = if (isCurrent) Current else EmptyAttribute
-    li(a(cls := s"pagination-link${cssClass(current)}", number.toString()))
+    li(a(cls := enrichCssClass("pagination-link", current), number.toString()))
   }
 }
 
-case class PaginationList(elements: Seq[PaginationNumber]) extends PaginationElement {
+case class PaginationList(elements: PaginationNumber*) extends PaginationElement {
   override def content = ul(cls := "pagination-list")(elements.map(_.content))
 }
 

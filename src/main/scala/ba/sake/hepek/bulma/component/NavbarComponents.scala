@@ -6,14 +6,12 @@ import scalatags.Text.all._
 
 object NavbarComponents extends NavbarComponents
 
-trait NavbarElement extends BulmaElement {
-  def isActive(active: Boolean): BulmaModifier = if (active) Active else EmptyAttribute
-}
+trait NavbarElement extends BulmaElement
 
-case class NavbarHamburger(active: Boolean) extends NavbarElement {
+case class NavbarHamburger(active: Boolean = false) extends NavbarElement {
   override def content =
     a(
-      cls := s"navbar-burger${cssClass(isActive(active))}",
+      cls := enrichCssClass("navbar-burger", isActive(active)),
       role := "button",
       aria.label := "menu",
       aria.expanded := false
@@ -27,18 +25,20 @@ case class NavbarHamburger(active: Boolean) extends NavbarElement {
 trait NavbarItem extends NavbarElement
 
 case class AnchorNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
-  override def content: Text.all.Frag = a(cls := s"navbar-item${cssClasses(modifiers)}")(elements)
+  override def content: Text.all.Frag =
+    a(cls := enrichCssClasses("navbar-item", modifiers))(elements)
 }
 
 case class DivNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
-  override def content: Text.all.Frag = div(cls := s"navbar-item${cssClasses(modifiers)}")(elements)
+  override def content: Text.all.Frag =
+    div(cls := enrichCssClasses("navbar-item", modifiers))(elements)
 }
 case class PlainAnchorNavbarItem(elements: Frag*) extends NavbarItem {
-  override def content: Text.all.Frag = a(cls := s"navbar-item")(elements)
+  override def content: Text.all.Frag = a(cls := "navbar-item")(elements)
 }
 
 case class PlainDivNavbarItem(elements: Frag*) extends NavbarItem {
-  override def content: Text.all.Frag = div(cls := s"navbar-item")(elements)
+  override def content: Text.all.Frag = div(cls := "navbar-item")(elements)
 }
 
 case class NavbarBrand(hamburger: Option[NavbarHamburger], items: NavbarItem*)
@@ -55,9 +55,9 @@ case class NavbarDropdown(items: NavbarItem*) extends NavbarElement {
   )
 }
 
-case class NavbarMenu(active: Boolean)(startItems: NavbarItem*)(endItems: NavbarItem*)
+case class NavbarMenu(active: Boolean = false)(startItems: NavbarItem*)(endItems: NavbarItem*)
     extends NavbarElement {
-  override def content: Text.all.Frag = div(cls := s"navbar-menu${cssClass(isActive(active))}")(
+  override def content: Text.all.Frag = div(cls := enrichCssClass("navbar-menu", isActive(active)))(
     div(cls := "navbar-start")(startItems.map(_.content)),
     div(cls := "navbar-end")(endItems.map(_.content))
   )
@@ -69,7 +69,7 @@ trait NavbarComponents {
 
   private def buildNavbar(modifier: BulmaModifier, elements: NavbarElement*) =
     tag("nav")(
-      cls := s"navbar${cssClass(modifier)}",
+      cls := enrichCssClass("navbar", modifier),
       role := "navigation",
       aria.label := "main navigation"
     )(

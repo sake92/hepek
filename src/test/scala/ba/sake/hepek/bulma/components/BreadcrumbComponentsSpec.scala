@@ -1,6 +1,6 @@
 package ba.sake.hepek.bulma.components
 
-import ba.sake.hepek.bulma.component.BreadcrumbComponents
+import ba.sake.hepek.bulma.component.{BreadcrumbComponents, BreadcrumbItem}
 import ba.sake.hepek.matchers.HepekMatchers
 import org.scalatest.{FlatSpec, Matchers}
 import scalatags.Text
@@ -10,28 +10,25 @@ object BreadcrumbComponentPage extends BreadcrumbComponents {
 
   def simpleContent: Text.all.Frag =
     breadcrumb(
-      div(
-        p("This is a big paragraph of text")
-      )
+      BreadcrumbItem("This is a big paragraph of text")
     )
 
   def centeredContent: Text.all.Frag =
     centeredBreadcrumb(
-      div(
-        p("This is a big paragraph of text")
-      )
+      BreadcrumbItem("Content"),
+      BreadcrumbItem("Content 2")
     )
 }
 
 class BreadcrumbComponentsSpec extends FlatSpec with Matchers with HepekMatchers {
   "simple Breadcrumb" should "have class 'breadcrumb'" in {
     BreadcrumbComponentPage.simpleContent.toString shouldBe
-      """<nav class="breadcrumb"><ul><li><div><p>This is a big paragraph of text</p></div></li></ul></nav>"""
+      """<nav class="breadcrumb"><ul><li><a>This is a big paragraph of text</a></li></ul></nav>"""
   }
 
   "centered Breadcrumb" should "have class 'breadcrumb is-centered'" in {
     BreadcrumbComponentPage.centeredContent.toString shouldBe
-      """<nav class="breadcrumb is-centered"><ul><li><div><p>This is a big paragraph of text</p></div></li></ul></nav>"""
+      """<nav class="breadcrumb is-centered"><ul><li><a>Content</a></li><li><a>Content 2</a></li></ul></nav>"""
   }
 
 }
