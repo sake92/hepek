@@ -1,27 +1,25 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
-scmInfo := Some(
-  ScmInfo(url("https://github.com/sake92/hepek"),
-          "scm:git:git@github.com:sake92/hepek.git")
-)
-
-homepage := Some(url("https://sake92.github.io/hepek/"))
-inThisBuild(List(
-  organization := "com.geirsson",
-  homepage := Some(url("https://github.com/scalameta/sbt-scalafmt")),
-  licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
-  developers := List(
-    Developer(
-      "sake92",
-      "Sakib Hadžiavdić",
-      "sakib@sake.ba",
-      url("http://sake.ba")
-    )
+inThisBuild(
+  List(
+    organization := "ba.sake",
+    homepage := Some(url("https://sake92.github.io/hepek")),
+    licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+    scmInfo := Some(
+      ScmInfo(url("https://github.com/sake92/hepek"), "scm:git:git@github.com:sake92/hepek.git")
+    ),
+    developers := List(
+      Developer(
+        "sake92",
+        "Sakib Hadžiavdić",
+        "sakib@sake.ba",
+        url("http://sake.ba")
+      )
+    ),
+    scalaVersion in ThisBuild := "2.12.8",
+    scalafmtOnCompile in ThisBuild := true
   )
-))
-
-scalaVersion in ThisBuild := "2.12.8"
-scalafmtOnCompile in ThisBuild := true
+)
 
 val openhtmltopdfVersion = "0.0.1-RC19"
 val seleniumVersion      = "2.52.0"
@@ -29,7 +27,6 @@ val seleniumVersion      = "2.52.0"
 lazy val hepekProject = (project in file("."))
   .settings(
     name := "hepek",
-    organization := "ba.sake",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.1",
       "com.lihaoyi"              %% "scalatags"                   % "0.6.8",
@@ -42,7 +39,6 @@ lazy val hepekProject = (project in file("."))
       "org.scalatest"            %% "scalatest"                   % "3.0.7" % "test"
     )
   )
-
 
 // docs
 lazy val docsSrc = (project in file("docs-src"))
@@ -67,7 +63,7 @@ lazy val hepekTestsProject = (project in file("tests"))
       (test in Test).value
     },
     libraryDependencies ++= Seq(
-      "org.scalatest" %% "scalatest" % "3.0.7" % "test",
+      "org.scalatest"           %% "scalatest"    % "3.0.7"         % "test",
       "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion % "test"
     )
   )
