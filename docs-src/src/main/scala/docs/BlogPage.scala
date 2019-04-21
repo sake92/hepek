@@ -18,12 +18,14 @@ object BlogPage extends HepekDocsPage {
 
   val blogPageSettingsProps = List(
     ClassProperty("author", "Option[String]", "Author of this post", Some("None")),
-    ClassProperty("createDate",
-                  "Option[LocalDate]",
-                  "Date when this post was written",
-                  Some("None")),
+    ClassProperty(
+      "createDate",
+      "Option[LocalDate]",
+      "Date when this post was written",
+      Some("None")
+    ),
     ClassProperty("sections", "List[Section]", "Sections of this post", Some("List.empty")),
-    ClassProperty("dateFormat", "DateTimeFormatter", "Sections of this post", Some("dd.MM.yyyy")),
+    ClassProperty("dateFormat", "DateTimeFormatter", "Sections of this post", Some("dd.MM.yyyy"))
   )
 
   /* CONTENT */

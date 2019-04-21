@@ -1,5 +1,25 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
+scmInfo := Some(
+  ScmInfo(url("https://github.com/sake92/hepek"),
+          "scm:git:git@github.com:sake92/hepek.git")
+)
+
+homepage := Some(url("https://sake92.github.io/hepek/"))
+inThisBuild(List(
+  organization := "com.geirsson",
+  homepage := Some(url("https://github.com/scalameta/sbt-scalafmt")),
+  licenses := List("Apache-2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0")),
+  developers := List(
+    Developer(
+      "sake92",
+      "Sakib Hadžiavdić",
+      "sakib@sake.ba",
+      url("http://sake.ba")
+    )
+  )
+))
+
 scalaVersion in ThisBuild := "2.12.8"
 scalafmtOnCompile in ThisBuild := true
 
@@ -10,7 +30,6 @@ lazy val hepekProject = (project in file("."))
   .settings(
     name := "hepek",
     organization := "ba.sake",
-    version := "0.2.2-SNAPSHOT",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.1",
       "com.lihaoyi"              %% "scalatags"                   % "0.6.8",
@@ -24,33 +43,6 @@ lazy val hepekProject = (project in file("."))
     )
   )
 
-publishMavenStyle := true
-
-publishTo := {
-  val nexus = "https://oss.sonatype.org/"
-  if (isSnapshot.value)
-    Some("snapshots" at nexus + "content/repositories/snapshots")
-  else
-    Some("releases" at nexus + "service/local/staging/deploy/maven2")
-}
-
-licenses += ("Apache-2.0", url(
-  "http://www.apache.org/licenses/LICENSE-2.0.html"
-))
-
-developers += Developer(
-  "sake92",
-  "Sakib Hadžiavdić",
-  "sakib@sake.ba",
-  url("http://sake.ba")
-)
-
-scmInfo := Some(
-  ScmInfo(url("https://github.com/sake92/hepek"),
-          "scm:git:git@github.com:sake92/hepek.git")
-)
-
-homepage := Some(url("https://sake92.github.io/hepek/"))
 
 // docs
 lazy val docsSrc = (project in file("docs-src"))
@@ -69,9 +61,10 @@ lazy val docsSrc = (project in file("docs-src"))
 // tests
 lazy val hepekTestsProject = (project in file("tests"))
   .settings(
-    (hepek in Compile) := {
+    (test in Test) := {
       WebKeys.assets.value
-      (hepek in Compile).value
+      (hepek in Compile).value // run hepek before tests
+      (test in Test).value
     },
     libraryDependencies ++= Seq(
       "org.scalatest" %% "scalatest" % "3.0.7" % "test",

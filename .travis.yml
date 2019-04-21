@@ -1,18 +1,36 @@
 language: scala
 
 scala:
-   - 2.12.4
+   - 2.12.8
    
 jdk:
    - oraclejdk8
    - openjdk8
-   
-script:
-   - sbt ++$TRAVIS_SCALA_VERSION ";test ;hepekTestsProject/hepek ;hepekTestsProject/test"
 
 cache:
   directories:
     - $HOME/.ivy2
+
+# https://github.com/olafurpg/sbt-ci-release#travisyml
+before_install:
+  - git fetch --tags
+
+stages:
+  - name: test
+  - name: release
+    if: (branch = master AND type = push) OR (tag IS present)
+
+jobs:
+  include:
+    - stage: test
+    - env: TEST="unit"
+      script: sbt ++$TRAVIS_SCALA_VERSION "test"
+    - env: TEST="selenium"
+      script: sbt ++$TRAVIS_SCALA_VERSION "hepekTestsProject/test"
+
+    # run ci-release only if previous stages passed
+    - stage: release
+      script: sbt ci-release
     
 notifications:
   email:

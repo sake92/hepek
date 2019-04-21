@@ -18,25 +18,31 @@ object StaticPage extends HepekDocsPage {
   val siteSettingsProps = List(
     ClassProperty("name", "Option[String]", "Name of this site", Some("None")),
     ClassProperty("indexPage", "Option[StaticPage]", "Home page", Some("None")),
-    ClassProperty("mainPages",
-                  "List[StaticPage]",
-                  "Pages to display in navbar",
-                  Some("List.empty")),
+    ClassProperty(
+      "mainPages",
+      "List[StaticPage]",
+      "Pages to display in navbar",
+      Some("List.empty")
+    ),
     ClassProperty("faviconNormal", "Option[String]", "Favicon of the site", Some("None")),
-    ClassProperty("faviconInverted",
-                  "Option[String]",
-                  "Favicon with alternative color, can be used in navbar for example",
-                  Some("None"))
+    ClassProperty(
+      "faviconInverted",
+      "Option[String]",
+      "Favicon with alternative color, can be used in navbar for example",
+      Some("None")
+    )
   )
 
   val pageSettingsProps = List(
     ClassProperty("title", "String", "Title of this page", Some("changeme")),
     ClassProperty("label", "String", "Label used for link to this page", Some("<same as title>")),
     ClassProperty("language", "String", "Language of this page", Some("en")),
-    ClassProperty("category",
-                  "Option[String]",
-                  "Page category, used for grouping pages",
-                  Some("None")),
+    ClassProperty(
+      "category",
+      "Option[String]",
+      "Page category, used for grouping pages",
+      Some("None")
+    ),
     ClassProperty("description", "Option[String]", "Description of page content", Some("None"))
   )
 

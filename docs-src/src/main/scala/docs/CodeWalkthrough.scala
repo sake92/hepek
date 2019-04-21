@@ -14,7 +14,7 @@ object CodeWalkthrough extends HepekDocsPage {
   override def blogSettings = super.blogSettings.withSections(
     Section("Contents", contentContent),
     Section("Templates", templatesContent),
-    Section("Common imports", importsContent),
+    Section("Common imports", importsContent)
   )
 
   /* CONTENT */
