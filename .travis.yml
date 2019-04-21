@@ -10,6 +10,7 @@ jdk:
 cache:
   directories:
     - $HOME/.ivy2
+    - $HOME/.sbt
 
 # https://github.com/olafurpg/sbt-ci-release#travisyml
 before_install:
@@ -27,8 +28,6 @@ jobs:
       script: sbt ++$TRAVIS_SCALA_VERSION "test"
     - env: TEST="selenium"
       script: sbt ++$TRAVIS_SCALA_VERSION "hepekTestsProject/test"
-
-    # run ci-release only if previous stages passed
     - stage: release
       script: sbt ci-release
     
