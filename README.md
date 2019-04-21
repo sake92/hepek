@@ -14,7 +14,7 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 - full Scala support, statically typed templates etc.
 - **automatic relative paths**, just type `MyPage.ref`!!!
 - **incremental** rendering by default
-- **typesafe grids** (Bootstrap3, PureCSS), never worry to miss `col-*`
+- **typesafe grids** (Bootstrap3, PureCSS, Bulma), never worry to miss a `col-*`
 - Markdown support (Commonmark)
 - code highlighting (Prismjs)
 - math support (KaTeX, Mathjax)
@@ -30,7 +30,7 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 ## Changelog
 
 ### 0.2.0
-- refactored `page*` and `site*` flat propertes to more structured `PageSettings` and `SiteSettings` (now use `with*` on those objects, autocomplete for free and more readable IMHO)
+- refactored `page*` and `site*` flat properties to more structured `PageSettings` and `SiteSettings` (now use `with*` on those objects, autocomplete for free and more readable)
 - refactored dependencies structure, added `components`
 - added `implicits` for common imports
 
