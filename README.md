@@ -1,4 +1,4 @@
-# Hepek [![Build Status](https://travis-ci.org/sake92/hepek.svg?branch=master)](https://travis-ci.org/sake92/hepek) [![Join the chat at https://gitter.im/sake92/hepek](https://badges.gitter.im/sake92/hepek.svg)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Hepek [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.12.svg?style=flat-square&label=Scala+2.12)](https://mvnrepository.com/artifact/ba.sake/hepek) [![Build Status](	https://img.shields.io/travis/sake92/hepek/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/sake92/hepek) [![Gitter](https://img.shields.io/gitter/room/sake92/hepek.svg?style=flat-square)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Docs and examples
 - [docs](https://sake92.github.io/hepek)
