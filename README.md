@@ -23,7 +23,8 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 - PDF rendering
 
 ## TODO
-- dynamic pages support, e.g. replace Play's Twirl templates :)
+- dynamic pages, e.g. replace Play's Twirl templates :)
+- ScalaJS
 - integrate more CSS and JS libraries/frameworks
 
 ## Changelog
