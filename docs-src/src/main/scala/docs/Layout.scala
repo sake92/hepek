@@ -10,9 +10,11 @@ import templates.HepekDocsPage
 
 object Layout extends HepekDocsPage {
 
-  override def pageSettings = PageSettings("Layout")
+  override def pageSettings =
+    super.pageSettings.withTitle("Layout")
 
-  override def blogSettings = super.blogSettings.withSections(layoutSection)
+  override def blogSettings =
+    super.blogSettings.withSections(layoutSection)
 
   /* CONTENT */
   def layoutSection = Section(

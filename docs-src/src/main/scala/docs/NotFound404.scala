@@ -8,7 +8,8 @@ import utils.Imports._
 
 object NotFound extends templates.HepekDocsPage {
 
-  override def pageSettings = PageSettings("Doesn't exist")
+  override def pageSettings =
+    super.pageSettings.withTitle("Doesn't exist")
 
   override def fileName = "404.html"
 
@@ -16,12 +17,12 @@ object NotFound extends templates.HepekDocsPage {
     Site.url + "/" + super.relTo(other)
 
   override def pageContent = div(cls := "text-center")(
-    md("""
+    """
       This page does not exist... :/  
       Click 
-    """),
+    """.md,
     hyperlink(Site.url)("here"),
-    md(" to go back")
+    " to go back".md
   )
 
 }

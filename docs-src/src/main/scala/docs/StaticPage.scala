@@ -7,7 +7,8 @@ import templates.HepekDocsPage
 
 object StaticPage extends HepekDocsPage {
 
-  override def pageSettings = PageSettings("Static page")
+  override def pageSettings =
+    super.pageSettings.withTitle("Static page")
 
   override def blogSettings = super.blogSettings.withSections(
     basicSettingsSection,
@@ -77,16 +78,16 @@ object StaticPage extends HepekDocsPage {
       renderClassProps(pageSettingsProps),
       "Example of page definition:",
       chl.scala("""
-          package site
-          object Index extends MySiteTemplate {
-            override def pageSettings =
-              PageSettings("Welcome!") // title
-                .withDescription("My cool site")
-          }
-        """),
+        package site
+        object Index extends MySiteTemplate {
+          override def pageSettings =
+            PageSettings("Welcome!") // title
+              .withDescription("My cool site")
+        }
+      """),
       """
-         You can get a relative link to `Index` page with `ref` method.  
-         E.g. if you have a page in `site.posts` package (notice that `Index` is in the `site` package), 
+        You can get a relative link to `Index` page with `ref` method.  
+        E.g. if you have a page in `site.posts` package (notice that `Index` is in the `site` package), 
           `Index.ref` will give you a string "../index.html"
       """.md
     )
@@ -94,25 +95,21 @@ object StaticPage extends HepekDocsPage {
 
   val bodyContentSection = Section(
     "Body content",
-    frag(
-      s"""
-        Next up is the `def bodyContent: List[Frag]` method.  
-        You guessed it, it is the `<body>` of your HTML page. :)  
-        Here you type Scalatags and get it rendered in the body of your page.  
-        By default it is empty list.
-      """.md
-    )
+    s"""
+      Next up is the `def bodyContent: List[Frag]` method.  
+      You guessed it, it is the `<body>` of your HTML page. :)  
+      Here you type Scalatags and get it rendered in the body of your page.  
+      By default it is empty list.
+    """.md
   )
 
   val headContentSection = Section(
     "Head content",
-    frag(
-      md(s"""
-        Next up is the `def headContent: List[Frag]` method.  
-        Yup, it is the `<head>` of your HTML page.  
-        It has some defaults, you can see them in source code or inspect it in browser.
-      """)
-    )
+    s"""
+      Next up is the `def headContent: List[Frag]` method.  
+      Yup, it is the `<head>` of your HTML page.  
+      It has some defaults, you can see them in source code or inspect it in browser.
+    """.md
   )
 
 }

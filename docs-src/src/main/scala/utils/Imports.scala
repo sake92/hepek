@@ -1,12 +1,12 @@
 package utils
 
 import ba.sake.hepek.Resources
-import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
+import ba.sake.hepek.bootstrap3.BootstrapBundle
 import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 import scalatags.Text.all._
 
-object Imports extends BasicComponents {
+object Imports extends BootstrapBundle with BasicComponents {
 
   object resources extends Resources {
     override def siteRootPath = "docs"
@@ -14,7 +14,7 @@ object Imports extends BasicComponents {
 
   object chl extends PrismCodeHighlightComponents
 
-  object grid extends BootstrapGridComponents {
+  object grid extends Grid {
     override def screenRatios = super.screenRatios.withSm(None).withXs(None)
   }
 

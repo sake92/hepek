@@ -1,12 +1,11 @@
 package docs
 
-import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import scalatags.Text.all._
 import ba.sake.hepek.implicits._
 import utils.Imports._
 import templates.HepekDocsStaticPage
 
-object grid extends BootstrapGridComponents {
+object grid extends Grid {
   override def screenRatios =
     super.screenRatios
       .withSm(None)
@@ -19,7 +18,8 @@ object Index extends HepekDocsStaticPage {
   import grid._
 
   override def pageSettings =
-    PageSettings("Welcome!")
+    super.pageSettings
+      .withTitle("Welcome!")
       .withDescription("Hepek docs")
 
   override def pageContent =
@@ -34,7 +34,6 @@ object Index extends HepekDocsStaticPage {
             Hepek turns Scala `object`s into files.
             Everything you can `println` to screen *Hepek* can write to a file.
 
-            ## What else?
             It contains lots of useful functions for *rendering stuff*, 
               like blogging support, css layout, code highlighting.  
             There is no special new markup/template language to learn, just plain old **Scala**.  

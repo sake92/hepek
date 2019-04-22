@@ -48,13 +48,13 @@ For basic site settings you override <code>def siteSettings: SiteSettings</code>
 For start you can just give it page title, e.g. <code>override def pageSettings = PageSettings(&quot;My page&quot;)</code>.<br />
 It has the following fields:</p>
 <table class="table table-hover"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>title</td><td>No</td><td>String</td><td>changeme</td><td>Title of this page</td></tr><tr><td>label</td><td>No</td><td>String</td><td>&lt;same as title&gt;</td><td>Label used for link to this page</td></tr><tr><td>language</td><td>No</td><td>String</td><td>en</td><td>Language of this page</td></tr><tr><td>category</td><td>No</td><td>Option[String]</td><td>None</td><td>Page category, used for grouping pages</td></tr><tr><td>description</td><td>No</td><td>Option[String]</td><td>None</td><td>Description of page content</td></tr></table>Example of page definition:<pre class="line-numbers" data-start="1"><code class="language-scala ">
-          package site
-          object Index extends MySiteTemplate {
-            override def pageSettings =
-              PageSettings(&quot;Welcome!&quot;) // title
-                .withDescription(&quot;My cool site&quot;)
-          }
-        </code></pre><p>You can get a relative link to <code>Index</code> page with <code>ref</code> method.<br />
+        package site
+        object Index extends MySiteTemplate {
+          override def pageSettings =
+            PageSettings(&quot;Welcome!&quot;) // title
+              .withDescription(&quot;My cool site&quot;)
+        }
+      </code></pre><p>You can get a relative link to <code>Index</code> page with <code>ref</code> method.<br />
 E.g. if you have a page in <code>site.posts</code> package (notice that <code>Index</code> is in the <code>site</code> package),
 <code>Index.ref</code> will give you a string &quot;../index.html&quot;</p>
 </section><section><h3 id="body-content">Body content</h3><p>Next up is the <code>def bodyContent: List[Frag]</code> method.<br />

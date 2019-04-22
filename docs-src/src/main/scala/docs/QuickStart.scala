@@ -8,8 +8,7 @@ import templates.HepekDocsPage
 object QuickStart extends HepekDocsPage {
 
   override def pageSettings =
-    super.pageSettings
-      .withTitle("Docs")
+    super.pageSettings.withTitle("Docs")
 
   override def blogSettings = super.blogSettings.withSections(
     installationSection,
@@ -45,12 +44,8 @@ object QuickStart extends HepekDocsPage {
     "Serving",
     div(
       s"""
-        You can just open `index.html` and see the results...  
-        If you really need a web server, I'd recommend [Web Server for Chrome](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb).
-        Very simple to use, enough for static sites. :)
-  
-        Another great way is with [Browsersync](${links.BrowsersyncUrl}).
-        Install it, `cd` to rendering folder and type:  
+        Great tool for developing static sites is [Browsersync](${links.BrowsersyncUrl}).
+        Install it, `cd` to rendered folder and type:  
       """.md,
       chl.bash.withPrompt("$")("browser-sync start --server --files ."),
       """

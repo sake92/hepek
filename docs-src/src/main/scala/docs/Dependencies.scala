@@ -7,11 +7,11 @@ import templates.HepekDocsPage
 
 object Dependencies extends HepekDocsPage {
 
-  override def pageSettings = PageSettings("JS and CSS dependencies")
+  override def pageSettings =
+    super.pageSettings.withTitle("JS and CSS dependencies")
 
-  override def blogSettings = super.blogSettings.withSections(
-    depsSection
-  )
+  override def blogSettings =
+    super.blogSettings.withSections(depsSection)
 
   /* CONTENT */
   val depsSection = Section(
