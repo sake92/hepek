@@ -10,7 +10,7 @@ trait PureDependencies extends PageDependencies {
   def pureSettings: ComponentSettings =
     ComponentSettings("1.0.0", "purecss", DependencyProvider.unpkg)
 
-  def pureDependencies = ComponentDependencies().withJsDependencies(
+  def pureDependencies = ComponentDependencies().withCssDependencies(
     Dependencies().withDeps(
       pureModules.map { moduleName =>
         Dependency(
