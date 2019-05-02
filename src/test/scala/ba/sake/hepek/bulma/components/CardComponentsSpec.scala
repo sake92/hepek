@@ -24,13 +24,13 @@ object BulmaCardPage extends CardComponents {
 class CardComponentsSpec extends FlatSpec with Matchers with HepekMatchers {
   "simple Card" should "have the following structure" in {
     BulmaCardPage.cardExample.toString shouldBe
-      """<div class="card">
-        |<header class="card-header"><p class="card-header-title">Component</p></header>
-        |<div class="card-image"><figure class="image is-4by3"><img src="path.png" /></figure></div>
-        |<div class="card-content"><div><p>pippo</p></div><ul><li>one</li><li>two</li></ul></div>
-        |<footer class="card-footer">
-        |<a class="card-footer-item"><p>element</p></a>
-        |<a class="card-footer-item"><p>element2</p></a>
+      """<div class="card ">
+        |<header class="card-header "><p class="card-header-title ">Component</p></header>
+        |<div class="card-image "><figure class="image is-4by3 "><img src="path.png" /></figure></div>
+        |<div class="card-content "><div><p>pippo</p></div><ul><li>one</li><li>two</li></ul></div>
+        |<footer class="card-footer ">
+        |<a class="card-footer-item "><p>element</p></a>
+        |<a class="card-footer-item "><p>element2</p></a>
         |</footer></div>""".stripMargin
         .replaceAll("\n", "")
   }

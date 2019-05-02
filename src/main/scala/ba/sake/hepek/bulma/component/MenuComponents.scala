@@ -10,15 +10,15 @@ trait MenuElement extends BulmaElement
 
 case class MenuList(elements: Frag*) extends MenuElement {
   override def content: Text.all.Frag =
-    ul(cls := "menu-list")(for {
+    ul(cls := "menu-list ")(for {
       item <- elements
     } yield li(item))
 }
 
 case class MenuLabel(label: String) extends MenuElement {
-  override def content: Text.all.Frag = p(cls := "menu-label", label)
+  override def content: Text.all.Frag = p(cls := "menu-label ", label)
 }
 
 trait MenuComponents {
-  def menu(elements: MenuElement*) = div(cls := "menu")(elements.map(_.content))
+  def menu(elements: MenuElement*) = div(cls := "menu ")(elements.map(_.content))
 }

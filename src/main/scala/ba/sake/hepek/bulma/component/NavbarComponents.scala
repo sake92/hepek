@@ -26,31 +26,31 @@ trait NavbarItem extends NavbarElement
 
 case class AnchorNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
   override def content: Text.all.Frag =
-    a(cls := enrichCssClasses("navbar-item", modifiers))(elements)
+    a(cls := enrichCssClasses("navbar-item", modifiers: _*))(elements)
 }
 
 case class DivNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
   override def content: Text.all.Frag =
-    div(cls := enrichCssClasses("navbar-item", modifiers))(elements)
+    div(cls := enrichCssClasses("navbar-item", modifiers: _*))(elements)
 }
 case class PlainAnchorNavbarItem(elements: Frag*) extends NavbarItem {
-  override def content: Text.all.Frag = a(cls := "navbar-item")(elements)
+  override def content: Text.all.Frag = a(cls := "navbar-item ")(elements)
 }
 
 case class PlainDivNavbarItem(elements: Frag*) extends NavbarItem {
-  override def content: Text.all.Frag = div(cls := "navbar-item")(elements)
+  override def content: Text.all.Frag = div(cls := "navbar-item ")(elements)
 }
 
 case class NavbarBrand(hamburger: Option[NavbarHamburger], items: NavbarItem*)
     extends NavbarElement {
-  override def content: Text.all.Frag = div(cls := "navbar-brand")(
+  override def content: Text.all.Frag = div(cls := "navbar-brand ")(
     items.map(_.content),
     optionalElementContent(hamburger)
   )
 }
 
 case class NavbarDropdown(items: NavbarItem*) extends NavbarElement {
-  override def content: Text.all.Frag = div(cls := "navbar-dropdown")(
+  override def content: Text.all.Frag = div(cls := "navbar-dropdown ")(
     items.map(_.content)
   )
 }
@@ -58,8 +58,8 @@ case class NavbarDropdown(items: NavbarItem*) extends NavbarElement {
 case class NavbarMenu(active: Boolean = false)(startItems: NavbarItem*)(endItems: NavbarItem*)
     extends NavbarElement {
   override def content: Text.all.Frag = div(cls := enrichCssClass("navbar-menu", isActive(active)))(
-    div(cls := "navbar-start")(startItems.map(_.content)),
-    div(cls := "navbar-end")(endItems.map(_.content))
+    div(cls := "navbar-start ")(startItems.map(_.content)),
+    div(cls := "navbar-end ")(endItems.map(_.content))
   )
 }
 

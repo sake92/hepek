@@ -46,6 +46,8 @@ case object Expanded    extends BulmaModifier("is-expanded")
 case object Tab         extends BulmaModifier("is-tab")
 case object Transparent extends BulmaModifier("is-transparent")
 
+case object Hoverable extends BulmaModifier("is-hoverable")
+
 trait BulmaElement {
   def content: Frag
 }
@@ -53,12 +55,12 @@ trait BulmaElement {
 package object component {
 
   def enrichCssClass(currentClass: String, attribute: BulmaModifier): String =
-    enrichCssClasses(currentClass, Seq(attribute))
+    enrichCssClasses(currentClass, attribute)
 
-  def enrichCssClasses(currentClass: String, attributes: Seq[BulmaModifier]): String =
+  def enrichCssClasses(currentClass: String, attributes: BulmaModifier*): String =
     attributes
-      .foldLeft(currentClass)((str, attribute) => s"$str ${attribute.classname}")
-      .trim
+      .filter(m => !m.classname.equals(""))
+      .foldLeft(s"$currentClass ")((str, attribute) => s"$str${attribute.classname} ")
 
   def optionalElementContent(opt: Option[BulmaElement]): Frag =
     opt.fold[Frag](SeqFrag[String](List()))(_.content)
@@ -67,4 +69,10 @@ package object component {
     opt.fold[String]("")(modifier => s" ${modifier.classname}")
 
   def isActive(active: Boolean): BulmaModifier = if (active) Active else EmptyAttribute
+}
+
+object Test extends App {
+  import component._
+  val str = enrichCssClass("test", Hoverable)
+  println(str)
 }
