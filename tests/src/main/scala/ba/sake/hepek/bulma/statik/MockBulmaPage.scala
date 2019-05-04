@@ -86,29 +86,29 @@ object MockBulmaPage extends BulmaStaticPage with BulmaGridComponents {
     breadcrumb,
     menu,
     row(
-      third1(
+      third(
         dropdown
       ),
-      third2(
+      third(
         panel
       ),
-      third3(
+      third(
         tabs
       )
     ),
     row(
-      half1(
+      half(
         card
       ),
-      half2(
+      half(
         pagination
       )
     ),
     row(
-      half1(
+      half(
         message
       ),
-      half2(
+      half(
         panel
       )
     ),
