@@ -14,18 +14,6 @@ project/project/
 target/
 bin/
 
-# Scala-IDE specific
-.scala_dependencies
-.worksheet
-.cache-main
-.cache-tests
-.classpath
-.project
-.settings/
-
-# Ensime
-.ensime
-.ensime_cache/
 
 .idea/
 
