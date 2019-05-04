@@ -2,7 +2,7 @@ package ba.sake.hepek.theme.bootstrap3
 
 import scalatags.Text.all._
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
-import ba.sake.hepek.bootstrap3.component.AllBootstrapComponents
+import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
 import ba.sake.hepek.html.structure.blog.BlogPostPage
 import ba.sake.hepek.html.structure.blog.Section
 
@@ -24,7 +24,7 @@ case class TocSettings(
 trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
 
   // avoid polluting user's namespace
-  import AllBootstrapComponents._
+  import BootstrapGridComponents._
   import HepekBootstrap3SectionUtils._
 
   def tocSettings: TocSettings = TocSettings()
