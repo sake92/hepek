@@ -23,7 +23,6 @@ trait BootstrapGridComponents extends GridComponents {
 
   /* HELPERS */
   private def halfRatioClasses(index: Int): List[String] = {
-    println(s"screenRatios=$screenRatios, i=$index")
     val lg = lgClass(screenRatios.lg.half, index)
     val md = screenRatios.md.map(r => mdClass(r.half, index))
     val sm = screenRatios.sm.map(r => smClass(r.half, index))
