@@ -43,8 +43,8 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
     }
 
     frag(
-      pageHeader.map(ph => row(ph)),
-      row(
+      pageHeader,
+      mkRow(
         div(cls := "col-lg-2 col-lg-offset-1  col-md-3  hidden-print")(
           renderSidebar
         ),

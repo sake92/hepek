@@ -14,10 +14,6 @@ object Imports extends BootstrapBundle with BasicComponents {
 
   object chl extends PrismCodeHighlightComponents
 
-  object grid extends Grid {
-    override def screenRatios = super.screenRatios.withSm(None).withXs(None)
-  }
-
   // FontAwesome 5 brand
   def faBrand(name: String) = i(cls := s"fab fa-$name")
 

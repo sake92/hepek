@@ -8,45 +8,17 @@ object PureGridComponents extends PureGridComponents
 trait PureGridComponents extends GridComponents {
   import GridComponents._
 
-  override def row(content: Frag*) =
+  override def mkRow(content: Frag*): Frag =
     div(cls := "pure-g")(content)
 
-  override def row(half1: Half1, half2: Half2) =
-    row(half1.content ++ half2.content)
-
-  override def row(third1: Third1, third2: Third2, third3: Third3) =
-    row(third1.content ++ third2.content ++ third3.content)
-
-  // HALF
-  override def half1(content: Frag*) = {
-    val classes = halfRatioClasses(0)
-    val c       = div(cls := classes.mkString(" "))(content)
-    Half1(List(c))
+  override def mkCol2(index: Int, content: List[Frag]): Frag = {
+    val classes = halfRatioClasses(index)
+    div(cls := classes.mkString(" "))(content)
   }
 
-  override def half2(content: Frag*) = {
-    val classes = halfRatioClasses(1)
-    val c       = div(cls := classes.mkString(" "))(content)
-    Half2(List(c))
-  }
-
-  // THIRD
-  override def third1(content: Frag*) = {
-    val classes = thirdRatioClasses(0)
-    val c       = div(cls := classes.mkString(" "))(content)
-    Third1(List(c))
-  }
-
-  override def third2(content: Frag*) = {
-    val classes = thirdRatioClasses(1)
-    val c       = div(cls := classes.mkString(" "))(content)
-    Third2(List(c))
-  }
-
-  override def third3(content: Frag*) = {
-    val classes = thirdRatioClasses(2)
-    val c       = div(cls := classes.mkString(" "))(content)
-    Third3(List(c))
+  override def mkCol3(index: Int, content: List[Frag]): Frag = {
+    val classes = thirdRatioClasses(index)
+    div(cls := classes.mkString(" "))(content)
   }
 
   /* HELPERS */
@@ -80,9 +52,9 @@ trait PureGridComponents extends GridComponents {
     "pure-u-lg-" + ratioValue(ratio, index) + "-24"
 
   private def ratioValue(ratio: Ratio, index: Int): Int =
-    ratio2BS(ratio.values(index), ratio.values)
+    ratio2Pure(ratio.values(index), ratio.values)
 
   // for args 1,1:2 => (1/3)*24 == 8
-  private def ratio2BS(ratio: Int, allRatios: List[Int]): Int =
+  private def ratio2Pure(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 24).toInt
 }
