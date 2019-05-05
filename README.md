@@ -29,6 +29,11 @@ or deploy+fork it with Netlify (yes, for free) in just a few clicks:
 
 ## Changelog
 
+### 0.3.1
+- `half1`, `half2` are now `half`. Same for `third1` etc.
+- introduced `Bundle` trait, a collection of same-framework components
+- added Bulma support, thanks to [@P3trur0](https://github.com/P3trur0)
+
 ### 0.2.0
 - refactored `page*` and `site*` flat properties to more structured `PageSettings` and `SiteSettings` (now use `with*` on those objects, autocomplete for free and more readable)
 - refactored dependencies structure, added `components`
