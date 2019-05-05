@@ -6,8 +6,8 @@ import ba.sake.hepek.pure.statik.PureStaticPage
 
 trait PureBundle extends Bundle {
 
-  type Grid = PureGridComponents
-  type Form = PureFormComponents
+  override type Grid = PureGridComponents
+  override type Form = PureFormComponents
 
-  type StatikPage = PureStaticPage
+  override type StaticPage = PureStaticPage
 }

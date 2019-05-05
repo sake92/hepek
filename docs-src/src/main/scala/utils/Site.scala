@@ -10,6 +10,7 @@ object Site {
 
   def pages: List[BlogPostPage] = List(
     QuickStart,
+    Bundle,
     StaticPage,
     BlogPage,
     Layout,

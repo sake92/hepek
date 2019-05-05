@@ -28,7 +28,9 @@ object QuickStart extends HepekDocsPage {
   val usingSection = Section(
     "Using",
     s"""
-      Download the starter project from [here](${links.StarterProjectURL}) and you're ready to roll.  
+      Just type `sbt new sake92/hepek-starter.g8` to generate a project.  
+      Or you can the starter project from [here](${links.StarterProjectURL}).  
+
       Start up sbt console and type `hepek`.  
       Voila, that's it! :)
 
@@ -44,12 +46,12 @@ object QuickStart extends HepekDocsPage {
     "Serving",
     div(
       s"""
-        Great tool for developing static sites is [Browsersync](${links.BrowsersyncUrl}).
+        Great tool for developing static sites is [Browsersync](${links.BrowsersyncUrl}).  
         Install it, `cd` to rendered folder and type:  
       """.md,
       chl.bash.withPrompt("$")("browser-sync start --server --files ."),
       """
-        Browsersync will **automatically refresh page** in browser when it gets changed, or its CSS etc!
+        Browsersync will **automatically refresh page** in browser when it gets changed!
   
         Deployment consists of copying the contents to your web host (e.g. Github pages).
       """.md

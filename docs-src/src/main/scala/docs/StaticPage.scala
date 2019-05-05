@@ -53,7 +53,6 @@ object StaticPage extends HepekDocsPage {
     frag(
       s"""
         When you extend [`StaticPage`](${links.StaticPageUrl}) you get basic support for HTML page.  
-        If you want a prettier version, then extend [`BootstrapStaticPage`](${links.BootstrapStaticPageUrl}).  
          
         First we'll define a template for all our static pages.  
         Here we can put site-wide settings, include common JS and CSS dependencies.  
@@ -62,23 +61,24 @@ object StaticPage extends HepekDocsPage {
       renderClassProps(siteSettingsProps),
       "`SiteSettings` are usually defined in a common trait, for example:".md,
       chl.scala("""
-        trait MySiteTemplate extends BootstrapStaticPage {
+        trait MySiteTemplate extends StaticPage {
           override def siteSettings =
-            SiteSettings()
+            super.siteSettings
               .withName("example.com")
               .withIndexPage(site.Index)
               .withFaviconNormal(images.ico("favicon").ref)
         }
       """),
       """
-        When creating a page implementation (object), you need to implement method `def pageSettings: PageSettings`.  
-        For start you can just give it page title, e.g. `override def pageSettings = PageSettings("My page")`.  
-        It has the following fields:
+        ---
+        Per-page settings are contained in the `def pageSettings`.  
+        `PageSettings` has the following fields:
       """.md,
       renderClassProps(pageSettingsProps),
       "Example of page definition:",
       chl.scala("""
         package site
+        
         object Index extends MySiteTemplate {
           override def pageSettings =
             PageSettings("Welcome!") // title

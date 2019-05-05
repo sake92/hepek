@@ -6,8 +6,8 @@ import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 
 trait BootstrapBundle extends Bundle {
 
-  type Grid = BootstrapGridComponents
-  type Form = BootstrapFormComponents
+  override type Grid = BootstrapGridComponents
+  override type Form = BootstrapFormComponents
 
-  type StatikPage = BootstrapStaticPage
+  override type StaticPage = BootstrapStaticPage
 }

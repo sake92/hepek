@@ -1,12 +1,11 @@
-package ba.sake.hepek.html.component
+package ba.sake.hepek.html
 
-import ba.sake.hepek.html.structure.StaticPage
-import ba.sake.hepek.html.structure.blog.BlogPostPage
+package component
 
 trait Bundle {
 
   type Grid <: GridComponents
   type Form <: FormComponents
 
-  type StatikPage <: StaticPage
+  type StaticPage <: structure.StaticPage
 }

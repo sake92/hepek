@@ -1,8 +1,8 @@
 package templates
 
 import scalatags.Text.all._
+import ba.sake.hepek.implicits._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
-import ba.sake.hepek.html.structure._
 import ba.sake.hepek.prismjs
 import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}
 import utils._
@@ -30,7 +30,7 @@ trait HepekDocsPage
   override def pageHeader = None
 }
 
-trait HepekDocsStaticPage extends StatikPage with AnchorjsDependencies {
+trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
 
   override def siteSettings =
     super.siteSettings

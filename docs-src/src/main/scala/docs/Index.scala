@@ -4,6 +4,7 @@ import scalatags.Text.all._
 import ba.sake.hepek.implicits._
 import utils.Imports._
 import templates.HepekDocsStaticPage
+import java.time.LocalDate
 
 object grid extends Grid {
   override def screenRatios =
@@ -22,6 +23,8 @@ object Index extends HepekDocsStaticPage {
       .withTitle("Welcome!")
       .withDescription("Hepek docs")
 
+  val currYear = LocalDate.now()
+
   override def pageContent =
     frag(
       div(cls := "page-header text-center")(
@@ -30,7 +33,7 @@ object Index extends HepekDocsStaticPage {
       row(
         third(),
         third(
-          """
+          s"""
             Hepek turns Scala `object`s into files.
             Everything you can `println` to screen *Hepek* can write to a file.
 
@@ -48,7 +51,7 @@ object Index extends HepekDocsStaticPage {
               to construct table of contents, RSS feed, `sitemap.xml`, PDF and Word docs.  
 
             Sick of rewriting relative urls all over the place, like `my/folder/../styles.....`?  
-            Me too, the year is 2018, we can do better!  
+            Me too, the year is ${currYear.getYear()}, we can do better!  
             Just use `.ref` method and you're done! Hepek figures out path instead of you.
 
             Hepek uses *incremental rendering* by default.  
