@@ -15,8 +15,8 @@ trait PureStaticPage extends StaticPage with PureDependencies {
     if (withPureMenu) {
       import grid._
       row(
-        half1(sidebarMenu),
-        half2(pageContent)
+        half(sidebarMenu),
+        half(pageContent)
       )
     } else pageContent
 

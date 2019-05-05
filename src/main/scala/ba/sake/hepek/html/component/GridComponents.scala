@@ -5,6 +5,28 @@ import scalatags.Text.all._
 trait GridComponents {
   import GridComponents._
 
+  private[hepek] def mkRow(content: Frag*): Frag
+  private[hepek] def mkCol2(index: Int, content: List[Frag]): Frag // make a "half"
+  private[hepek] def mkCol3(index: Int, content: List[Frag]): Frag // make a "third"
+
+  // ROW
+  def row(half1: Half, half2: Half): Frag =
+    mkRow(
+      mkCol2(0, half1.content),
+      mkCol2(1, half2.content)
+    )
+
+  def row(third1: Third, third2: Third, third3: Third): Frag =
+    mkRow(
+      mkCol3(0, third1.content),
+      mkCol3(1, third2.content),
+      mkCol3(2, third3.content)
+    )
+
+  def half(content: Frag*): Half = Half(content.toList)
+
+  def third(content: Frag*): Third = Third(content.toList)
+
   /** Same on all screens, by default */
   def screenRatios: ScreenRatios = ScreenRatios(
     Ratios.Default,
@@ -12,30 +34,12 @@ trait GridComponents {
     Option(Ratios.Default),
     Option(Ratios.Default)
   )
-
-  // ROW
-  def row(content: Frag*): Frag
-  def row(half1: Half1, half2: Half2): Frag
-  def row(third1: Third1, third2: Third2, third3: Third3): Frag
-
-  // HALF
-  def half1(content: Frag*): Half1
-  def half2(content: Frag*): Half2
-
-  // THIRD
-  def third1(content: Frag*): Third1
-  def third2(content: Frag*): Third2
-  def third3(content: Frag*): Third3
 }
 
 object GridComponents {
 
-  case class Half1(content: List[Frag])
-  case class Half2(content: List[Frag])
-
-  case class Third1(content: List[Frag])
-  case class Third2(content: List[Frag])
-  case class Third3(content: List[Frag])
+  case class Half(content: List[Frag])
+  case class Third(content: List[Frag])
 
   case class Ratio(values: List[Int])
 

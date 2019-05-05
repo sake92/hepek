@@ -28,8 +28,8 @@ object Index extends HepekDocsStaticPage {
         h1("Welcome!")
       ),
       row(
-        third1(),
-        third2(
+        third(),
+        third(
           """
             Hepek turns Scala `object`s into files.
             Everything you can `println` to screen *Hepek* can write to a file.
@@ -60,7 +60,7 @@ object Index extends HepekDocsStaticPage {
 
           """.md
         ),
-        third3()
+        third()
       ),
       super.pageContent
     )
