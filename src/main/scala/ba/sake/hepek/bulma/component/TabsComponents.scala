@@ -10,8 +10,8 @@ case class TabItem(label: String) extends BulmaElement {
 }
 
 trait TabsComponents {
-  def tabsContainer(items: TabItem*) = ul(cls := "tabs")(items.map(_.content))
+  def tabsContainer(items: TabItem*) = ul(cls := "tabs ")(items.map(_.content))
 
   def customTabsContainer(attributes: BulmaModifier*)(items: TabItem*) =
-    ul(cls := enrichCssClasses("tabs", attributes))(items.map(_.content))
+    ul(cls := enrichCssClasses("tabs", attributes: _*))(items.map(_.content))
 }

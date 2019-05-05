@@ -7,9 +7,9 @@ object MessageComponents extends MessageComponents
 
 trait MessageComponents {
 
-  def messageHeader(content: Frag*) = div(cls := "message-header")(content)
+  def messageHeader(content: Frag*) = div(cls := "message-header ")(content)
 
-  def messageBody(content: Frag*) = div(cls := "message-body")(content)
+  def messageBody(content: Frag*) = div(cls := "message-body ")(content)
 
   def completeMessage(header: Frag*)(body: Frag*) =
     completeStyledMessage(EmptyAttribute)(header)(body)

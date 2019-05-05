@@ -20,6 +20,4 @@ trait BulmaGridComponents extends GridComponents {
   private[hepek] override def mkCol3(index: Int, content: List[Frag]): Frag =
     div(cls := "column")(content)
 
-  def row(modifiers: BulmaModifier*)(content: Frag*) =
-    div(cls := enrichCssClasses("columns", modifiers))(content)
 }

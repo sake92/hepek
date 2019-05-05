@@ -22,6 +22,6 @@ trait BreadcrumbComponents {
   def largeBreadcrumb(content: BreadcrumbItem*)  = customBreadcrumb(List(Large))(content: _*)
 
   def customBreadcrumb(attributes: List[BulmaModifier])(items: BreadcrumbItem*) =
-    tag("nav")(cls := enrichCssClasses("breadcrumb", attributes))(ul(items.map(_.content)))
+    tag("nav")(cls := enrichCssClasses("breadcrumb", attributes: _*))(ul(items.map(_.content)))
 
 }
