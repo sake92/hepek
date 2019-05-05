@@ -5,9 +5,9 @@ import scalatags.Text.all._
 trait GridComponents {
   import GridComponents._
 
-  def mkRow(content: Frag*): Frag
-  def mkCol2(index: Int, content: List[Frag]): Frag // make a "half"
-  def mkCol3(index: Int, content: List[Frag]): Frag // make a "third"
+  private[hepek] def mkRow(content: Frag*): Frag
+  private[hepek] def mkCol2(index: Int, content: List[Frag]): Frag // make a "half"
+  private[hepek] def mkCol3(index: Int, content: List[Frag]): Frag // make a "third"
 
   // ROW
   def row(half1: Half, half2: Half): Frag =

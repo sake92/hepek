@@ -8,15 +8,15 @@ object PureGridComponents extends PureGridComponents
 trait PureGridComponents extends GridComponents {
   import GridComponents._
 
-  override def mkRow(content: Frag*): Frag =
+  private[hepek] override def mkRow(content: Frag*): Frag =
     div(cls := "pure-g")(content)
 
-  override def mkCol2(index: Int, content: List[Frag]): Frag = {
+  private[hepek] override def mkCol2(index: Int, content: List[Frag]): Frag = {
     val classes = halfRatioClasses(index)
     div(cls := classes.mkString(" "))(content)
   }
 
-  override def mkCol3(index: Int, content: List[Frag]): Frag = {
+  private[hepek] override def mkCol3(index: Int, content: List[Frag]): Frag = {
     val classes = thirdRatioClasses(index)
     div(cls := classes.mkString(" "))(content)
   }
