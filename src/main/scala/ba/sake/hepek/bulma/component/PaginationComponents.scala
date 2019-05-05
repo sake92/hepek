@@ -18,7 +18,7 @@ case class Pagination(
 }
 
 case object PaginationEllipsis extends PaginationElement {
-  override def content = a(cls := "pagination-ellipsis")(raw("&hellip;"))
+  override def content = a(cls := "pagination-ellipsis ")(raw("&hellip;"))
 }
 
 case class PaginationNumber(number: Integer, isCurrent: Boolean = false) extends PaginationElement {
@@ -29,13 +29,13 @@ case class PaginationNumber(number: Integer, isCurrent: Boolean = false) extends
 }
 
 case class PaginationList(elements: PaginationNumber*) extends PaginationElement {
-  override def content = ul(cls := "pagination-list")(elements.map(_.content))
+  override def content = ul(cls := "pagination-list ")(elements.map(_.content))
 }
 
 trait PaginationComponents {
 
   def pagination(elements: PaginationElement*) =
-    tag("nav")(cls := "pagination", role := "navigation", aria.label := "pagination")(
+    tag("nav")(cls := "pagination ", role := "navigation", aria.label := "pagination")(
       elements.map(_.content)
     )
 

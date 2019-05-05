@@ -6,27 +6,27 @@ import scalatags.Text.all._
 object ModalComponents extends ModalComponents
 
 case class ModalCardBodyContent(elements: Frag*) extends BulmaElement {
-  override def content = tag("section")(cls := "modal-card-body")(elements)
+  override def content = tag("section")(cls := "modal-card-body ")(elements)
 }
 
 case class ModalCardFooterContent(elements: Frag*) extends BulmaElement {
-  override def content = footer(cls := "modal-card-foot")(elements)
+  override def content = footer(cls := "modal-card-foot ")(elements)
 }
 
 trait ModalComponents {
 
   def activeModal(content: Frag*) =
-    div(cls := s"modal ${Active.classname}")(
-      div(cls := "modal-background"),
-      div(cls := "modal-content")(content),
-      button(cls := s"modal-close ${Large.classname}", aria.label := "close")
+    div(cls := enrichCssClass("modal", Active))(
+      div(cls := "modal-background "),
+      div(cls := "modal-content ")(content),
+      button(cls := enrichCssClass("modal-close", Large), aria.label := "close")
     )
 
   def modal(content: Frag*) =
-    div(cls := "modal")(
-      div(cls := "modal-background"),
-      div(cls := "modal-content")(content),
-      button(cls := s"modal-close ${Large.classname}", aria.label := "close")
+    div(cls := "modal ")(
+      div(cls := "modal-background "),
+      div(cls := "modal-content ")(content),
+      button(cls := enrichCssClass("modal-close", Large), aria.label := "close")
     )
 
   def modalCard(
@@ -36,15 +36,15 @@ trait ModalComponents {
       cardFooter: Option[ModalCardFooterContent]
   ) =
     div(cls := enrichCssClass("modal", isActive(active)))(
-      div(cls := "modal-background"),
-      div(cls := "modal-card")(
-        header(cls := "modal-card-head")(
-          p(cls := "modal-card-title")(modalTitle),
-          button(cls := "delete", aria.label := "close")
+      div(cls := "modal-background "),
+      div(cls := "modal-card ")(
+        header(cls := "modal-card-head ")(
+          p(cls := "modal-card-title ")(modalTitle),
+          button(cls := "delete ", aria.label := "close")
         ),
         cardContent.content,
         optionalElementContent(cardFooter)
       ),
-      button(cls := s"modal-close ${Large.classname}", aria.label := "close")
+      button(cls := enrichCssClass("modal-close", Large), aria.label := "close")
     )
 }

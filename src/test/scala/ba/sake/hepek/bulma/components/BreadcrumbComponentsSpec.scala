@@ -23,12 +23,12 @@ object BreadcrumbComponentPage extends BreadcrumbComponents {
 class BreadcrumbComponentsSpec extends FlatSpec with Matchers with HepekMatchers {
   "simple Breadcrumb" should "have class 'breadcrumb'" in {
     BreadcrumbComponentPage.simpleContent.toString shouldBe
-      """<nav class="breadcrumb"><ul><li><a>This is a big paragraph of text</a></li></ul></nav>"""
+      """<nav class="breadcrumb "><ul><li><a>This is a big paragraph of text</a></li></ul></nav>"""
   }
 
   "centered Breadcrumb" should "have class 'breadcrumb is-centered'" in {
     BreadcrumbComponentPage.centeredContent.toString shouldBe
-      """<nav class="breadcrumb is-centered"><ul><li><a>Content</a></li><li><a>Content 2</a></li></ul></nav>"""
+      """<nav class="breadcrumb is-centered "><ul><li><a>Content</a></li><li><a>Content 2</a></li></ul></nav>"""
   }
 
 }
