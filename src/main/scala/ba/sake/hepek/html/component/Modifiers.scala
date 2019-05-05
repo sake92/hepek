@@ -3,6 +3,9 @@ package ba.sake.hepek.html.component
 import scalatags.Text.all._
 
 trait Modifiers {
+  // TODO extract common classes
+  // https://www.w3schools.com/bootstrap/bootstrap_ref_css_buttons.asp
+  // https://purecss.io/buttons/
   def btn: AttrPair
   def btnSuccess: AttrPair
 }
@@ -15,10 +18,4 @@ object BsModifiers extends Modifiers {
 object PureModifiers extends Modifiers {
   def btn        = cls := "pure-button"
   def btnSuccess = cls := "pure-button-primary"
-}
-
-object Bla extends App {
-  import PureModifiers._
-  println(div(btn)("aaaaaaaaaa"))
-  println(div(btn, btnSuccess)("aaaaaaaaaa"))
 }

@@ -11,10 +11,17 @@ trait GridComponents {
 
   // ROW
   def row(half1: Half, half2: Half): Frag =
-    mkRow(mkCol2(0, half1.content), mkCol2(1, half2.content))
+    mkRow(
+      mkCol2(0, half1.content),
+      mkCol2(1, half2.content)
+    )
 
   def row(third1: Third, third2: Third, third3: Third): Frag =
-    mkRow(mkCol3(0, third1.content), mkCol3(1, third2.content), mkCol3(2, third3.content))
+    mkRow(
+      mkCol3(0, third1.content),
+      mkCol3(1, third2.content),
+      mkCol3(2, third3.content)
+    )
 
   def half(content: Frag*): Half = Half(content.toList)
 
