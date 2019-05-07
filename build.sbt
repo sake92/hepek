@@ -16,15 +16,15 @@ inThisBuild(
         url("http://sake.ba")
       )
     ),
-    scalaVersion in ThisBuild := "2.12.8",
-    scalafmtOnCompile in ThisBuild := true
+    scalaVersion := "2.12.8",
+    scalafmtOnCompile := true
   )
 )
 
 val openhtmltopdfVersion = "0.0.1-RC19"
 val seleniumVersion      = "2.52.0"
 
-lazy val hepekProject = (project in file("."))
+lazy val hepekProject = (project in file("hepek"))
   .settings(
     name := "hepek",
     libraryDependencies ++= Seq(
@@ -41,7 +41,7 @@ lazy val hepekProject = (project in file("."))
   )
 
 // docs
-lazy val docsSrc = (project in file("docs-src"))
+lazy val hepekDocs = (project in file("hepek-docs"))
   .settings(
     hepekTarget := baseDirectory.value / "..",
     (hepek in Compile) := {
@@ -55,7 +55,7 @@ lazy val docsSrc = (project in file("docs-src"))
   .enablePlugins(HepekPlugin, SbtWeb)
 
 // tests
-lazy val hepekTestsProject = (project in file("tests"))
+lazy val hepekTests = (project in file("hepek-tests"))
   .settings(
     (test in Test) := {
       WebKeys.assets.value
