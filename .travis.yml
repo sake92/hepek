@@ -4,7 +4,6 @@ scala:
    - 2.12.8
    
 jdk:
-   - oraclejdk8
    - openjdk8
 
 cache:
@@ -24,10 +23,8 @@ stages:
 jobs:
   include:
     - stage: test
-    - env: TEST="unit"
+    - env: TEST="all"
       script: sbt ++$TRAVIS_SCALA_VERSION "test"
-    - env: TEST="selenium"
-      script: sbt ++$TRAVIS_SCALA_VERSION "hepekTestsProject/test"
     - stage: release
       script: sbt ci-release
     
