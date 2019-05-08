@@ -1,5 +1,9 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
+val openhtmltopdfVersion = "0.0.1-RC19"
+val seleniumVersion      = "2.52.0"
+val scalaTestVersion     = "3.0.7"
+
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -21,24 +25,32 @@ inThisBuild(
   )
 )
 
-val openhtmltopdfVersion = "0.0.1-RC19"
-val seleniumVersion      = "2.52.0"
+// components
+lazy val hepekComponents = (project in file("hepek-components"))
+  .settings(
+    name := "hepek-components",
+    libraryDependencies ++= Seq(
+      "com.lihaoyi"   %% "scalatags" % "0.6.8",
+      "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
+    )
+  )
 
+// static-site-generator
 lazy val hepekProject = (project in file("hepek"))
   .settings(
     name := "hepek",
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.1",
-      "com.lihaoyi"              %% "scalatags"                   % "0.6.8",
       "com.atlassian.commonmark" % "commonmark"                   % "0.12.1",
       "org.jsoup"                % "jsoup"                        % "1.11.3",
       "com.openhtmltopdf"        % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
       "org.seleniumhq.selenium"  % "selenium-java"                % seleniumVersion,
-      "org.scalatest"            %% "scalatest"                   % "3.0.7" % "test"
+      "org.scalatest"            %% "scalatest"                   % scalaTestVersion % "test"
     )
   )
+  .dependsOn(hepekComponents)
 
 // docs
 lazy val hepekDocs = (project in file("hepek-docs"))
@@ -63,8 +75,8 @@ lazy val hepekTests = (project in file("hepek-tests"))
       (test in Test).value
     },
     libraryDependencies ++= Seq(
-      "org.scalatest"           %% "scalatest"    % "3.0.7"         % "test",
-      "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion % "test"
+      "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion  % "test",
+      "org.scalatest"           %% "scalatest"    % scalaTestVersion % "test"
     )
   )
   .dependsOn(hepekProject)
