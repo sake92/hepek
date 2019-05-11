@@ -1,13 +1,10 @@
 package ba.sake.hepek.pure
 
-import ba.sake.hepek.html.component.Bundle
-import ba.sake.hepek.pure.component._
+import ba.sake.hepek.html.Bundle
+import ba.sake.hepek.pure.component.PureComponentsBundle
 import ba.sake.hepek.pure.statik.PureStaticPage
 
-trait PureBundle extends Bundle {
-
-  override type Grid = PureGridComponents
-  override type Form = PureFormComponents
+trait PureBundle extends Bundle with PureComponentsBundle {
 
   override type StaticPage = PureStaticPage
 }

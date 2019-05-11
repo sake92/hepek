@@ -1,6 +1,6 @@
 package ba.sake.hepek.html
 
-package component
+import ba.sake.hepek.html.component.ComponentsBundle
 
 trait Bundle extends ComponentsBundle {
 
