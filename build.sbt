@@ -55,6 +55,7 @@ lazy val hepekProject = (project in file("hepek"))
 // docs
 lazy val hepekDocs = (project in file("hepek-docs"))
   .settings(
+	skip in publish := true,
     hepekTarget := baseDirectory.value / "..",
     (hepek in Compile) := {
       WebKeys.assets.value
@@ -69,6 +70,7 @@ lazy val hepekDocs = (project in file("hepek-docs"))
 // tests
 lazy val hepekTests = (project in file("hepek-tests"))
   .settings(
+	skip in publish := true,
     (test in Test) := {
       WebKeys.assets.value
       (hepek in Compile).value // run hepek before tests

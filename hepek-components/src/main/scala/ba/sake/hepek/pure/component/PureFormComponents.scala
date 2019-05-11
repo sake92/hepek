@@ -59,7 +59,7 @@ trait PureFormComponents extends FormComponents {
         else
           frag(
             label(inputId.map(`for` := _))(inputLabel),
-            input(cls := "form-control", commonAttrs)
+            input(commonAttrs)
           )
 
     }
@@ -90,7 +90,7 @@ trait PureFormComponents extends FormComponents {
     else
       div(cls := "pure-control-group")(
         label(inputId.map(`for` := _), cls := s"control-label ")(inputLabel),
-        input(cls := "form-control", commonAttrs)
+        input(commonAttrs)
       )
   }
 }
