@@ -1,7 +1,6 @@
 package ba.sake.hepek.pure.component
 
-import scalatags.Text.all
-import all.{form => _, _}
+import scalatags.Text.all._
 import ba.sake.hepek.html.component.FormComponents
 
 object PureFormComponents extends PureFormComponents {
@@ -44,26 +43,25 @@ trait PureFormComponents extends FormComponents {
           inputLabel,
           inputId,
           inputValue,
-          inputAttrs: _*
+          inputAttrs
         )
       case _ =>
-        if (inputType == "checkbox") {
+        if (inputType == "checkbox")
           label(cls := "pure-checkbox ", inputId.map(`for` := _))(
             input(commonAttrs),
             inputLabel
           )
-        } else if (isButtonLike(inputType)) {
+        else if (isButtonLike(inputType))
           input(
             cls := "pure-button ",
             commonAttrs
           )
-        } else {
-          // TODO don't render label when None
+        else
           frag(
             label(inputId.map(`for` := _))(inputLabel),
             input(cls := "form-control", commonAttrs)
           )
-        }
+
     }
   }
 
@@ -73,30 +71,26 @@ trait PureFormComponents extends FormComponents {
       inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
-      inputAttrs: AttrPair*
+      inputAttrs: Seq[AttrPair]
   ) = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
-    if (inputType == "checkbox") {
+    if (inputType == "checkbox")
       div(cls := "pure-controls")(
         label(cls := "pure-checkbox ", inputId.map(`for` := _))(
           input(commonAttrs),
           inputLabel
         )
       )
-    } else if (isButtonLike(inputType)) {
+    else if (isButtonLike(inputType))
       div(cls := "pure-controls")(
-        input(
-          cls := "pure-button ",
-          commonAttrs
-        )
+        input(cls := "pure-button ", commonAttrs)
       )
-    } else {
+    else
       div(cls := "pure-control-group")(
         label(inputId.map(`for` := _), cls := s"control-label ")(inputLabel),
         input(cls := "form-control", commonAttrs)
       )
-    }
   }
 }

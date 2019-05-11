@@ -1,16 +1,16 @@
 package ba.sake.hepek.bootstrap3.component
 
-import scalatags.Text.all
-import all.{form => _, _}
+import scalatags.Text.all._
 import ba.sake.hepek.html.component.FormComponents
-import scalatags.Text
 
 object BootstrapFormComponents extends BootstrapFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
     case object Vertical extends Type
-    case object Inline   extends Type { override def classes = "form-inline" }
+    case object Inline extends Type {
+      override def classes = "form-inline"
+    }
     case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
       require(labelRatio > 0, "Label ratio < 1")
       require(inputRatio > 0, "Input ratio < 1")
@@ -49,22 +49,22 @@ trait BootstrapFormComponents extends FormComponents {
           inputValue,
           labelRatioBootstrap,
           inputRatioBootstrap,
-          inputAttrs: _*
+          inputAttrs
         )
       case _ =>
-        if (inputType == "checkbox") {
+        if (inputType == "checkbox")
           div(cls := "checkbox")(
             label(inputId.map(`for` := _))(
               input(commonAttrs),
               inputLabel
             )
           )
-        } else if (isButtonLike(inputType)) {
+        else if (isButtonLike(inputType))
           input(
             cls := "btn ",
             commonAttrs
           )
-        } else {
+        else
           inputLabel match {
             case None =>
               div(cls := "form-group")(
@@ -76,8 +76,6 @@ trait BootstrapFormComponents extends FormComponents {
                 input(cls := "form-control", commonAttrs)
               )
           }
-
-        }
     }
   }
 
@@ -89,16 +87,14 @@ trait BootstrapFormComponents extends FormComponents {
       inputValue: Option[String],
       labelRatioBootstrap: Int,
       inputRatioBootstrap: Int,
-      inputAttrs: AttrPair*
+      inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
-    if (inputType == "checkbox") {
+    if (inputType == "checkbox")
       div(cls := "form-group")(
-        div(
-          cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
-        )(
+        div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
           div(cls := "checkbox")(
             label(inputId.map(`for` := _))(
               input(commonAttrs),
@@ -107,18 +103,13 @@ trait BootstrapFormComponents extends FormComponents {
           )
         )
       )
-    } else if (isButtonLike(inputType)) {
+    else if (isButtonLike(inputType))
       div(cls := "form-group")(
-        div(
-          cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
-        )(
-          input(
-            cls := "btn ",
-            commonAttrs
-          )
+        div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
+          input(cls := "btn ", commonAttrs)
         )
       )
-    } else {
+    else
       div(cls := "form-group")(
         label(cls := s"control-label col-sm-$labelRatioBootstrap", inputId.map(`for` := _))(
           inputLabel
@@ -127,6 +118,5 @@ trait BootstrapFormComponents extends FormComponents {
           input(cls := "form-control", commonAttrs)
         )
       )
-    }
   }
 }
