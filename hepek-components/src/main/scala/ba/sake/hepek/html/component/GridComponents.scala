@@ -6,28 +6,29 @@ trait GridComponents {
   import GridComponents._
 
   private[hepek] def mkRow(content: Frag*): Frag
-  private[hepek] def mkCol2(index: Int, content: List[Frag]): Frag // make a "half"
-  private[hepek] def mkCol3(index: Int, content: List[Frag]): Frag // make a "third"
+  private[hepek] def mkCol2(index: Int, content: Col2): Frag
+  private[hepek] def mkCol3(index: Int, content: Col3): Frag
 
   // ROW
-  def row(half1: Half, half2: Half): Frag =
+  def row(c1: Col2, c2: Col2): Frag =
     mkRow(
-      mkCol2(0, half1.content),
-      mkCol2(1, half2.content)
+      mkCol2(0, c1),
+      mkCol2(1, c2)
     )
 
-  def row(third1: Third, third2: Third, third3: Third): Frag =
+  def row(c1: Col3, c2: Col3, c3: Col3): Frag =
     mkRow(
-      mkCol3(0, third1.content),
-      mkCol3(1, third2.content),
-      mkCol3(2, third3.content)
+      mkCol3(0, c1),
+      mkCol3(1, c2),
+      mkCol3(2, c3)
     )
 
-  def half(content: Frag*): Half = Half(content.toList)
+  def half(content: Frag*): Col2 = Col2(content.toList)
 
-  def third(content: Frag*): Third = Third(content.toList)
+  def third(content: Frag*): Col3 = Col3(content.toList)
 
   /** Same on all screens, by default */
+  // lg is not optional, need to have at least one ratio...
   def screenRatios: ScreenRatios = ScreenRatios(
     Ratios.Default,
     Option(Ratios.Default),
@@ -38,8 +39,8 @@ trait GridComponents {
 
 object GridComponents {
 
-  case class Half(content: List[Frag])
-  case class Third(content: List[Frag])
+  case class Col2(content: List[Frag])
+  case class Col3(content: List[Frag])
 
   case class Ratio(values: List[Int])
 

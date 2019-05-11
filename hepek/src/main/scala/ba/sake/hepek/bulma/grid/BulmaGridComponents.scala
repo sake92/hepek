@@ -14,10 +14,10 @@ trait BulmaGridComponents extends GridComponents {
     div(cls := "columns")(content)
 
   // TODO add responsiveness
-  private[hepek] override def mkCol2(index: Int, content: List[Frag]): Frag =
-    div(cls := "column")(content)
+  private[hepek] override def mkCol2(index: Int, content: Col2): Frag =
+    div(cls := "column")(content.content)
 
-  private[hepek] override def mkCol3(index: Int, content: List[Frag]): Frag =
-    div(cls := "column")(content)
+  private[hepek] override def mkCol3(index: Int, content: Col3): Frag =
+    div(cls := "column")(content.content)
 
 }

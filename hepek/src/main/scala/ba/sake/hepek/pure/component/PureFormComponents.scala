@@ -5,16 +5,17 @@ import all.{form => _, _}
 import ba.sake.hepek.html.component.FormComponents
 
 object PureFormComponents extends PureFormComponents {
-  // TODO check if this pattern is common enough for all frameworks/forms
-  sealed trait Type { def classes: String = "pure-form" }
+  sealed trait Type extends FormComponents.Type
 
   object Type {
     case object Vertical extends Type {
-      override def classes = super.classes + " pure-form-stacked"
+      override def classes = "pure-form pure-form-stacked"
     }
-    case object Inline extends Type
+    case object Inline extends Type {
+      override def classes = "pure-form"
+    }
     case object Horizontal extends Type {
-      override def classes = super.classes + " pure-form-aligned"
+      override def classes = "pure-form pure-form-aligned"
     }
   }
 }
@@ -22,74 +23,84 @@ object PureFormComponents extends PureFormComponents {
 trait PureFormComponents extends FormComponents {
   import PureFormComponents._
 
-  def pureFormType: Type = Type.Vertical
-
-  override def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
-    val newFormAttrs = _formAttrs :+ (cls := pureFormType.classes)
-    all.form(newFormAttrs)(content)
-  }
+  override def formType: FormComponents.Type = Type.Vertical
 
   override def inputWithType(
-      _type: String,
-      _label: String,
-      _inputAttrs: AttrPair*
+      inputType: String,
+      inputName: String,
+      inputLabel: Option[String],
+      inputButtonLabel: Option[String],
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputAttrs: Seq[AttrPair]
   ) = {
-    val inputId            = getAttrValue(_inputAttrs, "id")
-    val inputAttrsFiltered = _inputAttrs.filterNot(_.a.name == "type") // ignore type
+    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
-    pureFormType match {
+    formType match {
       case Type.Horizontal =>
         pureHorizontalFormGroup(
-          _type,
-          _label,
+          inputType,
+          inputName,
+          inputLabel,
+          inputButtonLabel,
           inputId,
-          inputAttrsFiltered,
-          _inputAttrs: _*
+          inputValue,
+          inputAttrs: _*
         )
       case _ =>
-        if (_type == "checkbox") {
+        if (inputType == "checkbox") {
           label(cls := "pure-checkbox ", inputId.map(`for` := _))(
-            input(tpe := _type, inputAttrsFiltered),
-            _label
+            input(commonAttrs),
+            inputLabel
           )
-        } else if (isButtonLike(_type)) {
-          val inputAttrsFiltered2 =
-            inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-          input(tpe := _type, value := _label, cls := "pure-button ", inputAttrsFiltered2)
+        } else if (isButtonLike(inputType)) {
+          input(
+            cls := "pure-button ",
+            commonAttrs,
+            inputButtonLabel.map(value := _)
+          )
         } else {
           frag(
-            label(inputId.map(`for` := _))(_label),
-            input(tpe := _type, cls := "form-control", inputAttrsFiltered)
+            label(inputId.map(`for` := _))(inputLabel),
+            input(cls := "form-control", commonAttrs)
           )
         }
     }
   }
 
   private def pureHorizontalFormGroup(
-      _type: String,
-      _label: String,
+      inputType: String,
+      inputName: String,
+      inputLabel: Option[String],
+      inputButtonLabel: Option[String],
       inputId: Option[String],
-      inputAttrsFiltered: Seq[AttrPair],
-      _inputAttrs: AttrPair*
-  ): Frag =
-    if (_type == "checkbox") {
+      inputValue: Option[String],
+      inputAttrs: AttrPair*
+  ) = {
+    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+
+    if (inputType == "checkbox") {
       div(cls := "pure-controls")(
         label(cls := "pure-checkbox ", inputId.map(`for` := _))(
-          input(tpe := _type, inputAttrsFiltered),
-          _label
+          input(commonAttrs),
+          inputLabel
         )
       )
-    } else if (isButtonLike(_type)) {
-      val inputAttrsFiltered2 =
-        inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-
+    } else if (isButtonLike(inputType)) {
       div(cls := "pure-controls")(
-        input(tpe := _type, value := _label, cls := "pure-button ", inputAttrsFiltered2)
+        input(
+          cls := "pure-button ",
+          commonAttrs,
+          inputButtonLabel.map(value := _)
+        )
       )
     } else {
       div(cls := "pure-control-group")(
-        label(inputId.map(`for` := _), cls := s"control-label ")(_label),
-        input(tpe := _type, cls := "form-control", inputAttrsFiltered)
+        label(inputId.map(`for` := _), cls := s"control-label ")(inputLabel),
+        input(cls := "form-control", commonAttrs)
       )
     }
+  }
 }

@@ -3,9 +3,10 @@ package ba.sake.hepek.bootstrap3.component
 import scalatags.Text.all
 import all.{form => _, _}
 import ba.sake.hepek.html.component.FormComponents
+import scalatags.Text
 
 object BootstrapFormComponents extends BootstrapFormComponents {
-  sealed trait Type { def classes: String = "" }
+  sealed trait Type extends FormComponents.Type
 
   object Type {
     case object Vertical extends Type
@@ -21,96 +22,116 @@ object BootstrapFormComponents extends BootstrapFormComponents {
 trait BootstrapFormComponents extends FormComponents {
   import BootstrapFormComponents._
 
-  def bootstrapFormType: Type = Type.Vertical
-
-  override def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
-    val newFormAttrs = _formAttrs :+ (cls := bootstrapFormType.classes)
-    all.form(newFormAttrs)(content)
-  }
+  override def formType: FormComponents.Type = Type.Vertical
 
   override def inputWithType(
-      _type: String,
-      _label: String,
-      _inputAttrs: AttrPair*
+      inputType: String,
+      inputName: String,
+      inputLabel: Option[String],
+      inputButtonLabel: Option[String],
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputAttrs: Seq[AttrPair]
   ) = {
-    val inputId            = getAttrValue(_inputAttrs, "id")
-    val inputAttrsFiltered = _inputAttrs.filterNot(_.a.name == "type") // ignore type
+    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
-    bootstrapFormType match {
+    formType match {
       case Type.Horizontal(labelRatio, inputRatio) =>
         val labelRatioBootstrap =
           ((labelRatio / (labelRatio + inputRatio).toDouble) * 12).toInt
         val inputRatioBootstrap =
           ((inputRatio / (labelRatio + inputRatio).toDouble) * 12).toInt
         bsHorizontalFormGroup(
-          _type,
-          _label,
+          inputType,
+          inputName,
+          inputLabel,
+          inputButtonLabel,
           inputId,
+          inputValue,
           labelRatioBootstrap,
           inputRatioBootstrap,
-          inputAttrsFiltered,
-          _inputAttrs: _*
+          inputAttrs: _*
         )
       case _ =>
-        if (_type == "checkbox") {
+        if (inputType == "checkbox") {
           div(cls := "checkbox")(
             label(inputId.map(`for` := _))(
-              input(tpe := _type, inputAttrsFiltered),
-              _label
+              input(commonAttrs),
+              inputLabel
             )
           )
-        } else if (isButtonLike(_type)) {
-          val inputAttrsFiltered2 =
-            inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-          input(tpe := _type, value := _label, cls := "btn ", inputAttrsFiltered2)
-        } else {
-          div(cls := "form-group")(
-            label(inputId.map(`for` := _))(_label),
-            input(tpe := _type, cls := "form-control", inputAttrsFiltered)
+        } else if (isButtonLike(inputType)) {
+          input(
+            cls := "btn ",
+            commonAttrs,
+            inputButtonLabel.map(value := _)
           )
+        } else {
+          inputLabel match {
+            case None =>
+              div(cls := "form-group")(
+                input(cls := "form-control", commonAttrs)
+              )
+            case Some(inputLabel) =>
+              div(cls := "form-group")(
+                label(inputId.map(`for` := _))(inputLabel),
+                input(cls := "form-control", commonAttrs)
+              )
+          }
+
         }
     }
   }
 
   private def bsHorizontalFormGroup(
-      _type: String,
-      _label: String,
+      inputType: String,
+      inputName: String,
+      inputLabel: Option[String],
+      inputButtonLabel: Option[String],
       inputId: Option[String],
+      inputValue: Option[String],
       labelRatioBootstrap: Int,
       inputRatioBootstrap: Int,
-      inputAttrsFiltered: Seq[AttrPair],
-      _inputAttrs: AttrPair*
-  ): Frag =
-    if (_type == "checkbox") {
+      inputAttrs: AttrPair*
+  ): Frag = {
+    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+
+    if (inputType == "checkbox") {
       div(cls := "form-group")(
         div(
           cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
         )(
           div(cls := "checkbox")(
             label(inputId.map(`for` := _))(
-              input(tpe := _type, inputAttrsFiltered),
-              _label
+              input(commonAttrs),
+              inputLabel
             )
           )
         )
       )
-    } else if (isButtonLike(_type)) {
-      val inputAttrsFiltered2 =
-        inputAttrsFiltered.filterNot(_.a.name == "value") // ignore value
-
+    } else if (isButtonLike(inputType)) {
       div(cls := "form-group")(
         div(
           cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap"
         )(
-          input(tpe := _type, value := _label, cls := "btn ", inputAttrsFiltered2)
+          input(
+            cls := "btn ",
+            commonAttrs,
+            inputButtonLabel.map(value := _)
+          )
         )
       )
     } else {
       div(cls := "form-group")(
-        label(inputId.map(`for` := _), cls := s"control-label col-sm-$labelRatioBootstrap")(_label),
+        label(cls := s"control-label col-sm-$labelRatioBootstrap", inputId.map(`for` := _))(
+          inputLabel
+        ),
         div(cls := s"col-sm-$inputRatioBootstrap")(
-          input(tpe := _type, cls := "form-control", inputAttrsFiltered)
+          input(cls := "form-control", commonAttrs)
         )
       )
     }
+  }
 }

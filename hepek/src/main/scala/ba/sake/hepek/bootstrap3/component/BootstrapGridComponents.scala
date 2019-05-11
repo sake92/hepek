@@ -11,14 +11,14 @@ trait BootstrapGridComponents extends GridComponents {
   private[hepek] override def mkRow(content: Frag*): Frag =
     div(cls := "row")(content)
 
-  private[hepek] override def mkCol2(index: Int, content: List[Frag]): Frag = {
+  private[hepek] override def mkCol2(index: Int, content: Col2): Frag = {
     val classes = halfRatioClasses(index)
-    div(cls := classes.mkString(" "))(content)
+    div(cls := classes.mkString(" "))(content.content)
   }
 
-  private[hepek] override def mkCol3(index: Int, content: List[Frag]): Frag = {
+  private[hepek] override def mkCol3(index: Int, content: Col3): Frag = {
     val classes = thirdRatioClasses(index)
-    div(cls := classes.mkString(" "))(content)
+    div(cls := classes.mkString(" "))(content.content)
   }
 
   /* HELPERS */
