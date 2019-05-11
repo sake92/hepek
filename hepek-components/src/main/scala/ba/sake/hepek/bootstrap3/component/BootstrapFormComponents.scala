@@ -28,7 +28,6 @@ trait BootstrapFormComponents extends FormComponents {
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
-      inputButtonLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -46,7 +45,6 @@ trait BootstrapFormComponents extends FormComponents {
           inputType,
           inputName,
           inputLabel,
-          inputButtonLabel,
           inputId,
           inputValue,
           labelRatioBootstrap,
@@ -64,8 +62,7 @@ trait BootstrapFormComponents extends FormComponents {
         } else if (isButtonLike(inputType)) {
           input(
             cls := "btn ",
-            commonAttrs,
-            inputButtonLabel.map(value := _)
+            commonAttrs
           )
         } else {
           inputLabel match {
@@ -88,7 +85,6 @@ trait BootstrapFormComponents extends FormComponents {
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
-      inputButtonLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
       labelRatioBootstrap: Int,
@@ -118,8 +114,7 @@ trait BootstrapFormComponents extends FormComponents {
         )(
           input(
             cls := "btn ",
-            commonAttrs,
-            inputButtonLabel.map(value := _)
+            commonAttrs
           )
         )
       )

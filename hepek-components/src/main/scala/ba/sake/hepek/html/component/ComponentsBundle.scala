@@ -6,4 +6,6 @@ trait ComponentsBundle {
 
   type Grid <: GridComponents
   type Form <: FormComponents
+
+  val Form: Form
 }

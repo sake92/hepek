@@ -29,7 +29,6 @@ trait FormComponents {
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
-      inputButtonLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -38,7 +37,7 @@ trait FormComponents {
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     if (isButtonLike(inputType)) {
       // no label for buttons: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
-      input(commonAttrs, inputButtonLabel.map(value := _))
+      input(commonAttrs)
     } else {
       inputLabel match {
         case None => input(commonAttrs)
@@ -174,13 +173,13 @@ trait FormComponents {
 
   /* clickables, these don't have name field !? */
   def inputSubmit(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("submit", "", _label, _id, _label, _inputAttrs)
+    inputWithTypeCleaned("submit", "", _label, _id, "", _inputAttrs)
 
   def inputButton(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("button", "", _label, _id, _label, _inputAttrs)
+    inputWithTypeCleaned("button", "", _label, _id, "", _inputAttrs)
 
   def inputReset(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("reset", "", _label, _id, _label, _inputAttrs)
+    inputWithTypeCleaned("reset", "", _label, _id, "", _inputAttrs)
 
   /* misc */
   def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
@@ -196,11 +195,12 @@ trait FormComponents {
       _value: String,
       _inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val inputName        = _name
-    val inputValue       = getIfNotBlank(_value) orElse getAttrValue(_inputAttrs, "value")
-    val inputLabel       = getIfNotBlank(_label)
-    val inputButtonLabel = inputLabel orElse inputValue
-    val inputId          = getIfNotBlank(_id) orElse getAttrValue(_inputAttrs, "id")
+    val inputName  = _name
+    val inputLabel = getIfNotBlank(_label)
+    val inputValue =
+      if (isButtonLike(_type)) inputLabel
+      else getIfNotBlank(_value) orElse getAttrValue(_inputAttrs, "value")
+    val inputId = getIfNotBlank(_id) orElse getAttrValue(_inputAttrs, "id")
 
     // ignore handled attrs
     val inputAttrsFiltered = _inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
@@ -208,7 +208,6 @@ trait FormComponents {
       _type,
       inputName,
       inputLabel,
-      inputButtonLabel,
       inputId,
       inputValue,
       inputAttrsFiltered

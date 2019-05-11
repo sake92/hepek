@@ -29,7 +29,6 @@ trait PureFormComponents extends FormComponents {
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
-      inputButtonLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -43,7 +42,6 @@ trait PureFormComponents extends FormComponents {
           inputType,
           inputName,
           inputLabel,
-          inputButtonLabel,
           inputId,
           inputValue,
           inputAttrs: _*
@@ -57,10 +55,10 @@ trait PureFormComponents extends FormComponents {
         } else if (isButtonLike(inputType)) {
           input(
             cls := "pure-button ",
-            commonAttrs,
-            inputButtonLabel.map(value := _)
+            commonAttrs
           )
         } else {
+          // TODO don't render label when None
           frag(
             label(inputId.map(`for` := _))(inputLabel),
             input(cls := "form-control", commonAttrs)
@@ -73,7 +71,6 @@ trait PureFormComponents extends FormComponents {
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
-      inputButtonLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
       inputAttrs: AttrPair*
@@ -92,8 +89,7 @@ trait PureFormComponents extends FormComponents {
       div(cls := "pure-controls")(
         input(
           cls := "pure-button ",
-          commonAttrs,
-          inputButtonLabel.map(value := _)
+          commonAttrs
         )
       )
     } else {

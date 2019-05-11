@@ -6,4 +6,6 @@ trait BootstrapComponentsBundle extends ComponentsBundle {
 
   override type Grid = BootstrapGridComponents
   override type Form = BootstrapFormComponents
+
+  override val Form = BootstrapFormComponents
 }

@@ -6,4 +6,6 @@ trait PureComponentsBundle extends ComponentsBundle {
 
   override type Grid = PureGridComponents
   override type Form = PureFormComponents
+
+  override val Form = PureFormComponents
 }
