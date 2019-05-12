@@ -17,6 +17,15 @@ object BootstrapFormComponents extends BootstrapFormComponents {
       override def classes = "form-horizontal"
     }
   }
+
+  sealed trait ValidationState extends FormComponents.ValidationState
+
+  object ValidationState {
+    case object Success extends ValidationState { override def classes: String = "has-success" }
+    case object Warning extends ValidationState { override def classes: String = "has-warning" }
+    case object Error   extends ValidationState { override def classes: String = "has-error"   }
+  }
+
 }
 
 trait BootstrapFormComponents extends FormComponents {
@@ -30,10 +39,49 @@ trait BootstrapFormComponents extends FormComponents {
       inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputHelp: Option[String],
+      inputValidationState: Option[FormComponents.ValidationState],
+      inputValidationMessage: Option[String],
       inputAttrs: Seq[AttrPair]
   ) = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+
+    val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
+    val inputMsgFrag       = inputValidationMessage.map(m => span(cls := "help-block")(m))
+    val inputValidationCls = inputValidationState.map(cls := _.classes)
+
+    // helper for horizontal form
+    def bsHorizontalFormGroup(labelRatioBootstrap: Int, inputRatioBootstrap: Int): Frag =
+      if (inputType == "checkbox")
+        div(cls := "form-group")(
+          div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
+            div(cls := "checkbox")(
+              label(inputId.map(`for` := _))(
+                input(commonAttrs),
+                inputLabel
+              )
+            )
+          )
+        )
+      else if (isButtonLike(inputType))
+        div(cls := "form-group")(
+          div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
+            input(cls := "btn ", commonAttrs)
+          )
+        )
+      else {
+        div(cls := "form-group ", inputValidationCls)(
+          label(cls := s"control-label col-sm-$labelRatioBootstrap", inputId.map(`for` := _))(
+            inputLabel
+          ),
+          div(cls := s"col-sm-$inputRatioBootstrap")(
+            input(cls := "form-control ", commonAttrs),
+            inputHelpFrag,
+            inputMsgFrag
+          )
+        )
+      }
 
     formType match {
       case Type.Horizontal(labelRatio, inputRatio) =>
@@ -41,16 +89,7 @@ trait BootstrapFormComponents extends FormComponents {
           ((labelRatio / (labelRatio + inputRatio).toDouble) * 12).toInt
         val inputRatioBootstrap =
           ((inputRatio / (labelRatio + inputRatio).toDouble) * 12).toInt
-        bsHorizontalFormGroup(
-          inputType,
-          inputName,
-          inputLabel,
-          inputId,
-          inputValue,
-          labelRatioBootstrap,
-          inputRatioBootstrap,
-          inputAttrs
-        )
+        bsHorizontalFormGroup(labelRatioBootstrap, inputRatioBootstrap)
       case _ =>
         if (inputType == "checkbox")
           div(cls := "checkbox")(
@@ -64,59 +103,23 @@ trait BootstrapFormComponents extends FormComponents {
             cls := "btn ",
             commonAttrs
           )
-        else
-          inputLabel match {
-            case None =>
-              div(cls := "form-group")(
-                input(cls := "form-control", commonAttrs)
-              )
-            case Some(inputLabel) =>
-              div(cls := "form-group")(
-                label(inputId.map(`for` := _))(inputLabel),
-                input(cls := "form-control", commonAttrs)
-              )
-          }
+        else {
+
+          div(cls := "form-group ", inputValidationCls)(
+            inputLabel match {
+              case None =>
+                input(cls := "form-control ", commonAttrs)
+              case Some(inputLabel) =>
+                frag(
+                  label(inputId.map(`for` := _))(inputLabel),
+                  input(cls := "form-control ", commonAttrs)
+                )
+            },
+            inputHelpFrag,
+            inputMsgFrag
+          )
+        }
     }
   }
 
-  private def bsHorizontalFormGroup(
-      inputType: String,
-      inputName: String,
-      inputLabel: Option[String],
-      inputId: Option[String],
-      inputValue: Option[String],
-      labelRatioBootstrap: Int,
-      inputRatioBootstrap: Int,
-      inputAttrs: Seq[AttrPair]
-  ): Frag = {
-    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-
-    if (inputType == "checkbox")
-      div(cls := "form-group")(
-        div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
-          div(cls := "checkbox")(
-            label(inputId.map(`for` := _))(
-              input(commonAttrs),
-              inputLabel
-            )
-          )
-        )
-      )
-    else if (isButtonLike(inputType))
-      div(cls := "form-group")(
-        div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
-          input(cls := "btn ", commonAttrs)
-        )
-      )
-    else
-      div(cls := "form-group")(
-        label(cls := s"control-label col-sm-$labelRatioBootstrap", inputId.map(`for` := _))(
-          inputLabel
-        ),
-        div(cls := s"col-sm-$inputRatioBootstrap")(
-          input(cls := "form-control", commonAttrs)
-        )
-      )
-  }
 }

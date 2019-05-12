@@ -30,8 +30,12 @@ trait PureFormComponents extends FormComponents {
       inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputHelp: Option[String],
+      inputValidationState: Option[FormComponents.ValidationState],
+      inputValidationMessage: Option[String],
       inputAttrs: Seq[AttrPair]
   ) = {
+    // TODO display validation !!
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 

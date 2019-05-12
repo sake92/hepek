@@ -4,7 +4,16 @@ import scalatags.Text.all
 import all.{form => _, _}
 
 object FormComponents extends FormComponents {
+
   trait Type { def classes: String = "" }
+
+  trait ValidationState { def classes: String = "" }
+
+  object ValidationState {
+    case object Success extends ValidationState { override def classes: String = "success" }
+    case object Warning extends ValidationState { override def classes: String = "warning" }
+    case object Error   extends ValidationState { override def classes: String = "error"   }
+  }
 }
 
 trait FormComponents {
@@ -13,9 +22,11 @@ trait FormComponents {
   private val ButtonLikeTypes = Set("button", "submit", "reset")
   private val HandledAttrs    = Set("type", "name", "id", "value") // handled explicitly
 
-  private val DefaultLabel = ""
-  private val DefaultId    = ""
-  private val DefaultValue = ""
+  private val DefaultLabel             = ""
+  private val DefaultId                = ""
+  private val DefaultValue             = ""
+  private val DefaultHelp              = ""
+  private val DefaultValidationMessage = ""
 
   def formType: Type = new Type {}
 
@@ -31,6 +42,9 @@ trait FormComponents {
       inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputHelp: Option[String], // help text
+      inputValidationState: Option[ValidationState],
+      inputValidationMessage: Option[String], // error/warning message
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
@@ -39,7 +53,7 @@ trait FormComponents {
       // no label for buttons: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
       input(commonAttrs)
     } else {
-      inputLabel match {
+      val inputField = inputLabel match {
         case None => input(commonAttrs)
         case Some(inputLabel) =>
           label(inputId.map(`for` := _))(
@@ -47,6 +61,11 @@ trait FormComponents {
             inputLabel
           )
       }
+      div(inputValidationState.map(cls := _.classes))(
+        inputField,
+        inputHelp.map(span(_)),
+        inputValidationMessage.map(span(_))
+      )
     }
   }
 
@@ -55,131 +74,327 @@ trait FormComponents {
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("text", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "text",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputPassword(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("password", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "password",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputEmail(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("email", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "email",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputUrl(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("url", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "url",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputTel(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("tel", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "tel",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputCheckbox(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("checkbox", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "checkbox",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputFile(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("file", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "file",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputColor(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("color", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "color",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputNumber(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("number", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "number",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputRange(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("range", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "range",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputTime(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("time", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "time",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputWeek(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("week", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "week",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputMonth(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("month", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "month",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputDate(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("date", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "date",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
   def inputDateTimeLocal(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
       _id: String = DefaultId,
-      _value: String = DefaultValue
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _validationMessage: String = DefaultValidationMessage
   ): Frag =
-    inputWithTypeCleaned("datetime-local", _name, _label, _id, _value, _inputAttrs)
+    inputWithTypeCleaned(
+      "datetime-local",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _validationMessage,
+      _inputAttrs
+    )
 
-  /* clickables, these don't have name field !? */
+  /* clickables */
+  // no name, errors, help
   def inputSubmit(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("submit", "", _label, _id, "", _inputAttrs)
+    inputWithTypeCleaned("submit", "", _label, _id, "", "", None, "", _inputAttrs)
 
   def inputButton(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("button", "", _label, _id, "", _inputAttrs)
+    inputWithTypeCleaned("button", "", _label, _id, "", "", None, "", _inputAttrs)
 
   def inputReset(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("reset", "", _label, _id, "", _inputAttrs)
+    inputWithTypeCleaned("reset", "", _label, _id, "", "", None, "", _inputAttrs)
 
   /* misc */
   def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
@@ -193,23 +408,30 @@ trait FormComponents {
       _label: String,
       _id: String,
       _value: String,
-      _inputAttrs: Seq[AttrPair]
+      _help: String,
+      _validationState: Option[ValidationState],
+      _validationMessage: String,
+      _attrs: Seq[AttrPair]
   ): Frag = {
-    val inputName  = _name
     val inputLabel = getIfNotBlank(_label)
     val inputValue =
       if (isButtonLike(_type)) inputLabel
-      else getIfNotBlank(_value) orElse getAttrValue(_inputAttrs, "value")
-    val inputId = getIfNotBlank(_id) orElse getAttrValue(_inputAttrs, "id")
+      else getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
+    val inputId                = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
+    val inputHelp              = getIfNotBlank(_help)
+    val inputValidationMessage = getIfNotBlank(_validationMessage)
 
     // ignore handled attrs
-    val inputAttrsFiltered = _inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     inputWithType(
       _type,
-      inputName,
+      _name,
       inputLabel,
       inputId,
       inputValue,
+      inputHelp,
+      _validationState,
+      inputValidationMessage,
       inputAttrsFiltered
     )
   }
