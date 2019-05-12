@@ -5,7 +5,7 @@ package statik
 import scalatags.Text.all._
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent.{Position, Style}
-import ba.sake.hepek.html.structure.StaticPage
+import ba.sake.hepek.html.statik.StaticPage
 
 trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
 
@@ -42,7 +42,7 @@ trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
     navbar(
       navbarHeader()(
         navbarCollapseToggleBtn(),
-        siteSettings.indexPage.map { iPage =>
+        staticSiteSettings.indexPage.map { iPage =>
           navbarBrand(iPage.ref)(
             siteSettings.faviconInverted.map { fav =>
               span(img(src := fav))
@@ -57,11 +57,11 @@ trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
 
   private def navbarLiTags: List[Frag] =
     for {
-      page <- siteSettings.mainPages
-      labela = page.pageSettings.category.getOrElse(page.pageSettings.label)
+      page <- staticSiteSettings.mainPages
+      labela = pageCategory.getOrElse(page.pageSettings.label)
       klasa = {
-        if (this.pageSettings.category.isEmpty) ""
-        else if (page.pageSettings.category == this.pageSettings.category) "active "
+        if (this.pageCategory.isEmpty) ""
+        else if (pageCategory == this.pageCategory) "active "
         else ""
       }
     } yield li(cls := klasa)(a(href := page.ref)(labela))

@@ -3,8 +3,8 @@ package ba.sake.hepek.theme.bootstrap3
 import scalatags.Text.all._
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapGridComponents
-import ba.sake.hepek.html.structure.blog.BlogPostPage
-import ba.sake.hepek.html.structure.blog.Section
+import ba.sake.hepek.html.statik.BlogPostPage
+import ba.sake.hepek.html.statik.Section
 
 trait TocType
 

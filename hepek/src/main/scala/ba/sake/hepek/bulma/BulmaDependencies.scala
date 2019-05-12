@@ -1,6 +1,6 @@
 package ba.sake.hepek.bulma
 
-import ba.sake.hepek.html.structure._
+import ba.sake.hepek.html._
 
 trait BulmaDependencies extends PageDependencies {
 

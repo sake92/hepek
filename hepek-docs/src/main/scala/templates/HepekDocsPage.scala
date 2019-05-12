@@ -35,10 +35,13 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
   override def siteSettings =
     super.siteSettings
       .withName(Site.name)
-      .withIndexPage(docs.Index)
-      .withMainPages(docs.QuickStart)
       .withFaviconNormal(images.ico("favicon").ref)
       .withFaviconInverted(images.ico("favicon-small").ref)
+
+  override def staticSiteSettings =
+    super.staticSiteSettings
+      .withIndexPage(docs.Index)
+      .withMainPages(docs.QuickStart)
 
   // CSS
   override def styleURLs = super.styleURLs ++ List(

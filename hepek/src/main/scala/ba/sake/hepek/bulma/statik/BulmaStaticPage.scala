@@ -1,7 +1,7 @@
 package ba.sake.hepek.bulma.statik
 
 import ba.sake.hepek.bulma.{BulmaDependencies, BulmaModifier, Large, Medium}
-import ba.sake.hepek.html.structure.StaticPage
+import ba.sake.hepek.html.statik.StaticPage
 import scalatags.Text.all._
 
 trait BulmaStaticPage extends StaticPage with BulmaDependencies {

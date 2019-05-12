@@ -1,6 +1,6 @@
 package utils
 
-import ba.sake.hepek.html.structure.blog.BlogPostPage
+import ba.sake.hepek.html.statik.BlogPostPage
 import docs._
 
 object Site {

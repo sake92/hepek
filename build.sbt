@@ -52,10 +52,18 @@ lazy val hepekProject = (project in file("hepek"))
   )
   .dependsOn(hepekComponents)
 
+// play
+lazy val hepekPlay = (project in file("hepek-play"))
+  .settings(
+    name := "hepek-play"
+  )
+  .dependsOn(hepekComponents)
+  .enablePlugins(PlayScala)
+
 // docs
 lazy val hepekDocs = (project in file("hepek-docs"))
   .settings(
-	skip in publish := true,
+    skip in publish := true,
     hepekTarget := baseDirectory.value / "..",
     (hepek in Compile) := {
       WebKeys.assets.value
@@ -70,7 +78,7 @@ lazy val hepekDocs = (project in file("hepek-docs"))
 // tests
 lazy val hepekTests = (project in file("hepek-tests"))
   .settings(
-	skip in publish := true,
+    skip in publish := true,
     (test in Test) := {
       WebKeys.assets.value
       (hepek in Compile).value // run hepek before tests

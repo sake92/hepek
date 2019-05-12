@@ -1,7 +1,7 @@
 package ba.sake.hepek.theme.bootstrap3
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.blog.Section
+import ba.sake.hepek.html.statik.Section
 
 object HepekBootstrap3SectionUtils extends HepekBootstrap3SectionUtils
 

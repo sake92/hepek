@@ -1,12 +1,12 @@
 package utils
 
 import ba.sake.hepek.Resources
-import ba.sake.hepek.bootstrap3.BootstrapBundle
+import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 import scalatags.Text.all._
 
-object Imports extends BootstrapBundle with BasicComponents {
+object Imports extends BootstrapStaticBundle with BasicComponents {
 
   object resources extends Resources {
     override def siteRootPath = "docs"

@@ -3,7 +3,7 @@ package ba.sake.hepek.pure
 package statik
 
 import scalatags.Text.all._
-import ba.sake.hepek.html.structure.StaticPage
+import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.html.component.GridComponents._
 import component.PureMenuComponents._
 
@@ -52,11 +52,11 @@ trait PureStaticPage extends StaticPage with PureDependencies {
 
   private def sidebarMenuItems: List[Frag] =
     for {
-      page <- siteSettings.mainPages
-      labela = page.pageSettings.category.getOrElse(page.pageSettings.label)
+      page <- staticSiteSettings.mainPages
+      labela = page.pageCategory.getOrElse(page.pageSettings.label)
       klasa = {
-        if (this.pageSettings.category.isEmpty) ""
-        else if (page.pageSettings.category == this.pageSettings.category)
+        if (this.pageCategory.isEmpty) ""
+        else if (page.pageCategory == this.pageCategory)
           "pure-menu-selected "
         else ""
       }
