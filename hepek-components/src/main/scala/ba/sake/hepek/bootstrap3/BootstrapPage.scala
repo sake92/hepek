@@ -9,6 +9,7 @@ trait BootstrapPage extends HtmlPage with BootstrapDependencies {
 
   override def bodyContent: Frag =
     div(cls := bootstrapContainer)(
-      )
+      pageContent
+    )
 
 }

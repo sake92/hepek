@@ -7,9 +7,7 @@ import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent.{Position, Style}
 import ba.sake.hepek.html.statik.StaticPage
 
-trait BootstrapStaticPage extends StaticPage with BootstrapDependencies {
-
-  def bootstrapContainer: String = "container-fluid"
+trait BootstrapStaticPage extends StaticPage with BootstrapPage {
 
   def bootstrapNavbar: Option[(Position, Style)] =
     Some(Position.FixedTop, Style.Default)

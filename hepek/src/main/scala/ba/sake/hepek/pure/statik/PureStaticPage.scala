@@ -7,7 +7,7 @@ import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.html.component.GridComponents._
 import component.PureMenuComponents._
 
-trait PureStaticPage extends StaticPage with PureDependencies {
+trait PureStaticPage extends StaticPage with PurePage {
 
   def withPureMenu: Boolean = true
 
