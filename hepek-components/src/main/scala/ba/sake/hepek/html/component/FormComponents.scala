@@ -44,7 +44,7 @@ trait FormComponents {
       inputValue: Option[String],
       inputHelp: Option[String], // help text
       inputValidationState: Option[ValidationState],
-      inputValidationMessage: Option[String], // error/warning message
+      inputMessages: Seq[String], // error/warning messages
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
@@ -63,8 +63,8 @@ trait FormComponents {
       }
       div(inputValidationState.map(cls := _.classes))(
         inputField,
-        inputHelp.map(span(_)),
-        inputValidationMessage.map(span(_))
+        inputMessages.map(span(_)), // first show the errors.. :)
+        inputHelp.map(span(_))
       )
     }
   }
@@ -77,7 +77,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "text",
@@ -87,7 +87,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -98,7 +98,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "password",
@@ -108,7 +108,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -119,7 +119,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "email",
@@ -129,7 +129,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -140,7 +140,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "url",
@@ -150,7 +150,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -161,7 +161,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "tel",
@@ -171,7 +171,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -182,7 +182,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "checkbox",
@@ -192,7 +192,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -203,7 +203,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "file",
@@ -213,7 +213,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -224,7 +224,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "color",
@@ -234,7 +234,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -245,7 +245,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "number",
@@ -255,7 +255,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -266,7 +266,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "range",
@@ -276,7 +276,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -287,7 +287,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "time",
@@ -297,7 +297,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -308,7 +308,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "week",
@@ -318,7 +318,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -329,7 +329,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "month",
@@ -339,7 +339,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -350,7 +350,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "date",
@@ -360,7 +360,7 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
@@ -371,7 +371,7 @@ trait FormComponents {
       _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _validationMessage: String = DefaultValidationMessage
+      _messages: Seq[String] = Seq.empty
   ): Frag =
     inputWithTypeCleaned(
       "datetime-local",
@@ -381,20 +381,20 @@ trait FormComponents {
       _value,
       _help,
       _validationState,
-      _validationMessage,
+      _messages,
       _inputAttrs
     )
 
   /* clickables */
   // no name, errors, help
   def inputSubmit(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("submit", "", _label, _id, "", "", None, "", _inputAttrs)
+    inputWithTypeCleaned("submit", "", _label, _id, "", "", None, Seq.empty, _inputAttrs)
 
   def inputButton(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("button", "", _label, _id, "", "", None, "", _inputAttrs)
+    inputWithTypeCleaned("button", "", _label, _id, "", "", None, Seq.empty, _inputAttrs)
 
   def inputReset(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("reset", "", _label, _id, "", "", None, "", _inputAttrs)
+    inputWithTypeCleaned("reset", "", _label, _id, "", "", None, Seq.empty, _inputAttrs)
 
   /* misc */
   def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
@@ -410,16 +410,15 @@ trait FormComponents {
       _value: String,
       _help: String,
       _validationState: Option[ValidationState],
-      _validationMessage: String,
+      _messages: Seq[String],
       _attrs: Seq[AttrPair]
   ): Frag = {
     val inputLabel = getIfNotBlank(_label)
     val inputValue =
       if (isButtonLike(_type)) inputLabel
       else getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
-    val inputId                = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
-    val inputHelp              = getIfNotBlank(_help)
-    val inputValidationMessage = getIfNotBlank(_validationMessage)
+    val inputId   = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
+    val inputHelp = getIfNotBlank(_help)
 
     // ignore handled attrs
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
@@ -431,7 +430,7 @@ trait FormComponents {
       inputValue,
       inputHelp,
       _validationState,
-      inputValidationMessage,
+      _messages,
       inputAttrsFiltered
     )
   }

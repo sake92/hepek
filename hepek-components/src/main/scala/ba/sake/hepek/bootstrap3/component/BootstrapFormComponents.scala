@@ -41,14 +41,14 @@ trait BootstrapFormComponents extends FormComponents {
       inputValue: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[FormComponents.ValidationState],
-      inputValidationMessage: Option[String],
+      inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair]
   ) = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
-    val inputMsgFrag       = inputValidationMessage.map(m => span(cls := "help-block")(m))
+    val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(cls := _.classes)
 
     // helper for horizontal form
@@ -70,18 +70,17 @@ trait BootstrapFormComponents extends FormComponents {
             input(cls := "btn ", commonAttrs)
           )
         )
-      else {
+      else
         div(cls := "form-group ", inputValidationCls)(
           label(cls := s"control-label col-sm-$labelRatioBootstrap", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := s"col-sm-$inputRatioBootstrap")(
             input(cls := "form-control ", commonAttrs),
-            inputHelpFrag,
-            inputMsgFrag
+            inputMsgsFrag,
+            inputHelpFrag
           )
         )
-      }
 
     formType match {
       case Type.Horizontal(labelRatio, inputRatio) =>
@@ -103,8 +102,7 @@ trait BootstrapFormComponents extends FormComponents {
             cls := "btn ",
             commonAttrs
           )
-        else {
-
+        else
           div(cls := "form-group ", inputValidationCls)(
             inputLabel match {
               case None =>
@@ -115,10 +113,9 @@ trait BootstrapFormComponents extends FormComponents {
                   input(cls := "form-control ", commonAttrs)
                 )
             },
-            inputHelpFrag,
-            inputMsgFrag
+            inputMsgsFrag,
+            inputHelpFrag
           )
-        }
     }
   }
 

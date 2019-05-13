@@ -32,7 +32,7 @@ trait PureFormComponents extends FormComponents {
       inputValue: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[FormComponents.ValidationState],
-      inputValidationMessage: Option[String],
+      inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair]
   ) = {
     // TODO display validation !!
