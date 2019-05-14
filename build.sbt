@@ -42,7 +42,7 @@ lazy val hepekProject = (project in file("hepek"))
     libraryDependencies ++= Seq(
       "ba.sake"                  % "hepek-core"                   % "0.1.1",
       "com.atlassian.commonmark" % "commonmark"                   % "0.12.1",
-      "org.jsoup"                % "jsoup"                        % "1.11.3",
+      "org.jsoup"                % "jsoup"                        % "1.12.1",
       "com.openhtmltopdf"        % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
       "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
