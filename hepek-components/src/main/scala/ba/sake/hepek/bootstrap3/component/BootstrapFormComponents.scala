@@ -18,18 +18,17 @@ object BootstrapFormComponents extends BootstrapFormComponents {
     }
   }
 
-  sealed trait ValidationState extends FormComponents.ValidationState
-
-  object ValidationState {
-    case object Success extends ValidationState { override def classes: String = "has-success" }
-    case object Warning extends ValidationState { override def classes: String = "has-warning" }
-    case object Error   extends ValidationState { override def classes: String = "has-error"   }
+  object BootstrapValidationStateClasses extends FormComponents.ValidationStateClasses {
+    override def success: String = "has-success"
+    override def warning: String = "has-warning"
+    override def error: String   = "has-error"
   }
-
 }
 
 trait BootstrapFormComponents extends FormComponents {
   import BootstrapFormComponents._
+
+  override def validationStateClasses = BootstrapValidationStateClasses
 
   override def formType: FormComponents.Type = Type.Vertical
 
@@ -40,7 +39,7 @@ trait BootstrapFormComponents extends FormComponents {
       inputId: Option[String],
       inputValue: Option[String],
       inputHelp: Option[String],
-      inputValidationState: Option[FormComponents.ValidationState],
+      inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair]
   ) = {

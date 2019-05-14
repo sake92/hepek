@@ -7,13 +7,12 @@ object FormComponents extends FormComponents {
 
   trait Type { def classes: String = "" }
 
-  trait ValidationState { def classes: String = "" }
-
-  object ValidationState {
-    case object Success extends ValidationState { override def classes: String = "success" }
-    case object Warning extends ValidationState { override def classes: String = "warning" }
-    case object Error   extends ValidationState { override def classes: String = "error"   }
+  trait ValidationStateClasses {
+    def success: String = "success"
+    def warning: String = "warning"
+    def error: String   = "error"
   }
+
 }
 
 trait FormComponents {
@@ -22,12 +21,33 @@ trait FormComponents {
   private val ButtonLikeTypes = Set("button", "submit", "reset")
   private val HandledAttrs    = Set("type", "name", "id", "value") // handled explicitly
 
-  private val DefaultLabel             = ""
-  private val DefaultId                = ""
-  private val DefaultValue             = ""
-  private val DefaultHelp              = ""
-  private val DefaultValidationMessage = ""
+  private val DefaultLabel = ""
+  private val DefaultId    = ""
+  private val DefaultValue = ""
+  private val DefaultHelp  = ""
 
+  /* Validation stuff */
+  def validationStateClasses: ValidationStateClasses = new ValidationStateClasses {
+    override def success: String = "success"
+    override def warning: String = "warning"
+    override def error: String   = "error"
+  }
+
+  sealed trait ValidationState { def classes: String = "" }
+
+  object ValidationState {
+    case object Success extends ValidationState {
+      override def classes = validationStateClasses.success
+    }
+    case object Warning extends ValidationState {
+      override def classes = validationStateClasses.warning
+    }
+    case object Error extends ValidationState {
+      override def classes = validationStateClasses.error
+    }
+  }
+
+  /* Form construction */
   def formType: Type = new Type {}
 
   def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
