@@ -21,7 +21,8 @@ inThisBuild(
       )
     ),
     scalaVersion := "2.12.8",
-    scalafmtOnCompile := true
+    scalafmtOnCompile := true,
+    resolvers += Resolver.sonatypeRepo("snapshots")
   )
 )
 
@@ -30,7 +31,8 @@ lazy val hepekComponents = (project in file("hepek-components"))
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "com.lihaoyi"   %% "scalatags" % "0.6.8",
+      //"com.lihaoyi"   %% "scalatags" % "0.6.8",
+      "ba.sake" %% "scalatags" % "0.6.8-SNAPSHOT",
       "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
     )
   )
