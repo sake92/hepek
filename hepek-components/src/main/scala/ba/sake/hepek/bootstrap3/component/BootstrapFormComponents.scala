@@ -66,16 +66,16 @@ trait BootstrapFormComponents extends FormComponents {
       else if (isButtonLike(inputType))
         div(cls := "form-group")(
           div(cls := s"col-sm-offset-$labelRatioBootstrap col-sm-$inputRatioBootstrap")(
-            input(cls := "btn ", commonAttrs)
+            input(cls := "btn", commonAttrs)
           )
         )
       else
-        div(cls := "form-group ", inputValidationCls)(
+        div(cls := "form-group", inputValidationCls)(
           label(cls := s"control-label col-sm-$labelRatioBootstrap", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := s"col-sm-$inputRatioBootstrap")(
-            input(cls := "form-control ", commonAttrs),
+            input(cls := "form-control", commonAttrs),
             inputMsgsFrag,
             inputHelpFrag
           )
@@ -98,18 +98,18 @@ trait BootstrapFormComponents extends FormComponents {
           )
         else if (isButtonLike(inputType))
           input(
-            cls := "btn ",
+            cls := "btn",
             commonAttrs
           )
         else
-          div(cls := "form-group ", inputValidationCls)(
+          div(cls := "form-group", inputValidationCls)(
             inputLabel match {
               case None =>
-                input(cls := "form-control ", commonAttrs)
+                input(cls := "form-control", commonAttrs)
               case Some(inputLabel) =>
                 frag(
                   label(inputId.map(`for` := _))(inputLabel),
-                  input(cls := "form-control ", commonAttrs)
+                  input(cls := "form-control", commonAttrs)
                 )
             },
             inputMsgsFrag,

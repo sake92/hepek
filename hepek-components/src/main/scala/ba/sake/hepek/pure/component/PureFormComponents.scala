@@ -51,13 +51,13 @@ trait PureFormComponents extends FormComponents {
         )
       case _ =>
         if (inputType == "checkbox")
-          label(cls := "pure-checkbox ", inputId.map(`for` := _))(
+          label(cls := "pure-checkbox", inputId.map(`for` := _))(
             input(commonAttrs),
             inputLabel
           )
         else if (isButtonLike(inputType))
           input(
-            cls := "pure-button ",
+            cls := "pure-button",
             commonAttrs
           )
         else
@@ -82,18 +82,18 @@ trait PureFormComponents extends FormComponents {
 
     if (inputType == "checkbox")
       div(cls := "pure-controls")(
-        label(cls := "pure-checkbox ", inputId.map(`for` := _))(
+        label(cls := "pure-checkbox", inputId.map(`for` := _))(
           input(commonAttrs),
           inputLabel
         )
       )
     else if (isButtonLike(inputType))
       div(cls := "pure-controls")(
-        input(cls := "pure-button ", commonAttrs)
+        input(cls := "pure-button", commonAttrs)
       )
     else
       div(cls := "pure-control-group")(
-        label(inputId.map(`for` := _), cls := s"control-label ")(inputLabel),
+        label(inputId.map(`for` := _), cls := s"control-label")(inputLabel),
         input(commonAttrs)
       )
   }

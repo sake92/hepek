@@ -279,7 +279,7 @@ object BaseCodeHighlighter {
     }
     // final result
     val classesString = classes.mkString(" ")
-    val languageClass = s"language-$lang "
+    val languageClass = s"language-$lang"
     codeSource match {
       case PlainText(text) => {
         val content: Frag = if (isMarkup) {

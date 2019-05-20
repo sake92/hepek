@@ -32,8 +32,9 @@ lazy val hepekComponents = (project in file("hepek-components"))
     name := "hepek-components",
     libraryDependencies ++= Seq(
       //"com.lihaoyi"   %% "scalatags" % "0.6.8",
-      "ba.sake" %% "scalatags" % "0.6.8-SNAPSHOT",
-      "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
+      "ba.sake"                  %% "scalatags" % "0.6.8-SNAPSHOT",
+      "com.atlassian.commonmark" % "commonmark" % "0.12.1",
+      "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
   )
 
@@ -42,14 +43,13 @@ lazy val hepekProject = (project in file("hepek"))
   .settings(
     name := "hepek",
     libraryDependencies ++= Seq(
-      "ba.sake"                  % "hepek-core"                   % "0.1.1",
-      "com.atlassian.commonmark" % "commonmark"                   % "0.12.1",
-      "org.jsoup"                % "jsoup"                        % "1.12.1",
-      "com.openhtmltopdf"        % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
-      "com.openhtmltopdf"        % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
-      "com.openhtmltopdf"        % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
-      "org.seleniumhq.selenium"  % "selenium-java"                % seleniumVersion,
-      "org.scalatest"            %% "scalatest"                   % scalaTestVersion % "test"
+      "ba.sake"                 % "hepek-core"                   % "0.1.1",
+      "org.jsoup"               % "jsoup"                        % "1.12.1",
+      "com.openhtmltopdf"       % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
+      "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
+      "com.openhtmltopdf"       % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
+      "org.seleniumhq.selenium" % "selenium-java"                % seleniumVersion,
+      "org.scalatest"           %% "scalatest"                   % scalaTestVersion % "test"
     )
   )
   .dependsOn(hepekComponents)
