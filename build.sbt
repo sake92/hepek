@@ -73,7 +73,8 @@ lazy val hepekDocs = (project in file("hepek-docs"))
     // gh pages stuff
     git.remoteRepo := "git@github.com:sake92/hepek.git",
     ghpagesNoJekyll := true,
-    siteSourceDirectory := target.value / "web" / "public" / "main" / "docs"
+    siteSourceDirectory := target.value / "web" / "public" / "main" / "docs",
+    includeFilter in makeSite := "*"
   )
   .dependsOn(hepekProject)
   .enablePlugins(HepekPlugin, SbtWeb, GhpagesPlugin)
