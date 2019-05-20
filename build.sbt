@@ -66,16 +66,17 @@ lazy val hepekPlay = (project in file("hepek-play"))
 lazy val hepekDocs = (project in file("hepek-docs"))
   .settings(
     skip in publish := true,
-    hepekTarget := baseDirectory.value / "..",
     (hepek in Compile) := {
       WebKeys.assets.value
       (hepek in Compile).value
     },
-    (WebKeys.public in Assets) := baseDirectory.value / ".." / "docs",
-    WebKeys.stagingDirectory := baseDirectory.value / ".." / "docs"
+    // gh pages stuff
+    git.remoteRepo := "git@github.com:sake92/hepek.git",
+    ghpagesNoJekyll := true,
+    siteSourceDirectory := target.value / "web" / "public" / "main" / "docs"
   )
   .dependsOn(hepekProject)
-  .enablePlugins(HepekPlugin, SbtWeb)
+  .enablePlugins(HepekPlugin, SbtWeb, GhpagesPlugin)
 
 // tests
 lazy val hepekTests = (project in file("hepek-tests"))
