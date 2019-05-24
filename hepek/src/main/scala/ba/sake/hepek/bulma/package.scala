@@ -73,4 +73,3 @@ package object component {
 
   def isActive(active: Boolean): BulmaModifier = if (active) Active else EmptyAttribute
 }
-
