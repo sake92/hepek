@@ -59,7 +59,7 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
       labela = pageCategory.getOrElse(page.pageSettings.label)
       klasa = {
         if (this.pageCategory.isEmpty) ""
-        else if (pageCategory == this.pageCategory) "active "
+        else if (pageCategory == this.pageCategory) "active"
         else ""
       }
     } yield li(cls := klasa)(a(href := page.ref)(labela))

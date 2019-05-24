@@ -2,6 +2,7 @@ package ba.sake.hepek.bootstrap3.component.classes
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.ButtonClasses
+
 object BootstrapButtonClasses extends BootstrapButtonClasses
 
 trait BootstrapButtonClasses extends ButtonClasses {
