@@ -1,11 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import utils._, Imports._
-import templates.HepekDocsPage
 
-object BlogPage extends HepekDocsPage {
+object BlogPage extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Blog page")

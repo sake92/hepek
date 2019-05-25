@@ -1,11 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import utils._, Imports._
-import templates.HepekDocsPage
 
-object PdfGenerator extends HepekDocsPage {
+object PdfGenerator extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Pdf generator")

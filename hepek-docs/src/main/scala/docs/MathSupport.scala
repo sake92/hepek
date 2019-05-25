@@ -1,12 +1,10 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import ba.sake.hepek.katex.KatexDependencies
 import utils._, Imports._
-import templates.HepekDocsPage
 
-object MathSupport extends HepekDocsPage with KatexDependencies {
+object MathSupport extends templates.HepekDocsPage with KatexDependencies {
 
   override def pageSettings =
     super.pageSettings.withTitle("Math support")

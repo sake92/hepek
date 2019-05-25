@@ -1,7 +1,6 @@
 package templates
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.prismjs
 import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}

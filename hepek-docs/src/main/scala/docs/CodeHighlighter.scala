@@ -1,11 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import utils._, Imports._
-import templates.HepekDocsPage
 
-object CodeHighlighter extends HepekDocsPage {
+object CodeHighlighter extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Code highlighter")

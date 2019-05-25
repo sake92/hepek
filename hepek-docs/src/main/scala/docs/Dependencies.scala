@@ -1,11 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import utils._, Imports._
-import templates.HepekDocsPage
 
-object Dependencies extends HepekDocsPage {
+object Dependencies extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("JS and CSS dependencies")

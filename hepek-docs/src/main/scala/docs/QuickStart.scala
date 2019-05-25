@@ -1,11 +1,9 @@
 package docs
 
-import ba.sake.hepek.implicits._
 import scalatags.Text.all._
 import utils._, Imports._
-import templates.HepekDocsPage
 
-object QuickStart extends HepekDocsPage {
+object QuickStart extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Docs")

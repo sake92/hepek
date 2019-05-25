@@ -1,14 +1,11 @@
 package docs
 
 import java.time.LocalDate
-
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import utils._
 import Imports._
-import templates.HepekDocsPage
 
-object Layout extends HepekDocsPage {
+object Layout extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Layout")

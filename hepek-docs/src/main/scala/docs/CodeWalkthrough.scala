@@ -1,11 +1,9 @@
 package docs
 
 import scalatags.Text.all._
-import ba.sake.hepek.implicits._
 import utils.Imports._
-import templates.HepekDocsPage
 
-object CodeWalkthrough extends HepekDocsPage {
+object CodeWalkthrough extends templates.HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings
