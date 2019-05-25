@@ -20,4 +20,6 @@ trait PureButtonClasses extends ButtonClasses {
   override def btnSizeMd = cls := "button-large"
   override def btnSizeSm = cls := "button-small"
   override def btnSizeXs = cls := "button-xsmall"
+
+  override def btnWidthFull = cls := "button-block" // no support in Pure..
 }

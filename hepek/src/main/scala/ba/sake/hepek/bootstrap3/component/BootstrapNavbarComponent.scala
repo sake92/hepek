@@ -39,8 +39,9 @@ object BootstrapNavbarComponent extends BootstrapNavbarComponent {
 
 trait BootstrapNavbarComponent {
   import BootstrapNavbarComponent._
+  import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses._
 
-  private val bsBtn = tag("button")(tpe := "button", cls := "btn ")
+  private val bsBtn = tag("button")(tpe := "button", btnClass)
 
   def navbarStyle: Style       = Style.Default
   def navbarPosition: Position = Position.FixedTop

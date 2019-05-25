@@ -18,4 +18,5 @@ trait ButtonClasses {
   def btnSizeSm: AttrPair
   def btnSizeXs: AttrPair
 
+  def btnWidthFull: AttrPair
 }

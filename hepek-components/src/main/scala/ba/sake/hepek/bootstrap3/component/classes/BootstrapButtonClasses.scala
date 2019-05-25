@@ -2,6 +2,7 @@ package ba.sake.hepek.bootstrap3.component.classes
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.ButtonClasses
+
 object BootstrapButtonClasses extends BootstrapButtonClasses
 
 trait BootstrapButtonClasses extends ButtonClasses {
@@ -19,4 +20,6 @@ trait BootstrapButtonClasses extends ButtonClasses {
   override def btnSizeMd = cls := "btn-md"
   override def btnSizeSm = cls := "btn-sm"
   override def btnSizeXs = cls := "btn-xs"
+
+  override def btnWidthFull = cls := "btn-block"
 }

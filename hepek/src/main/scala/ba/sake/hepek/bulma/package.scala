@@ -5,6 +5,7 @@ import scalatags.Text.all._
 
 sealed abstract class BulmaModifier(val classname: String)
 
+// TODO delete these in favor of TextClasses ...
 case object EmptyAttribute extends BulmaModifier("")
 case object Centered       extends BulmaModifier("is-centered")
 case object Left           extends BulmaModifier("is-left")
@@ -54,6 +55,8 @@ trait BulmaElement {
 
 package object component {
 
+  // TODO delete these, since I fixed the bug with multiple cls:= modifiers.. :)
+
   def enrichCssClass(currentClass: String, attribute: BulmaModifier): String =
     enrichCssClasses(currentClass, attribute)
 
@@ -69,10 +72,4 @@ package object component {
     opt.fold[String]("")(modifier => s" ${modifier.classname}")
 
   def isActive(active: Boolean): BulmaModifier = if (active) Active else EmptyAttribute
-}
-
-object Test extends App {
-  import component._
-  val str = enrichCssClass("test", Hoverable)
-  println(str)
 }
