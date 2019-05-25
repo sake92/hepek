@@ -2,7 +2,6 @@ package docs
 
 import scalatags.Text.all._
 import ba.sake.hepek.core.RelativePath
-import ba.sake.hepek.implicits._
 import utils.Site
 import utils.Imports._
 
