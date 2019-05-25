@@ -1,10 +1,4 @@
 package ba.sake.hepek
-import ba.sake.hepek.bootstrap3.component.classes.BootstrapTextClasses
-import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses
-import ba.sake.hepek.bootstrap3.component.classes.BootstrapBackgroundClasses
-import ba.sake.hepek.bulma.component.classes.BulmaTextClasses
-import ba.sake.hepek.bulma.component.classes.BulmaButtonClasses
-import ba.sake.hepek.bulma.component.classes.BulmaBackgroundClasses
 
 private[hepek] trait HepekAliases {
 
