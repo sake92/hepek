@@ -20,4 +20,6 @@ trait BootstrapButtonClasses extends ButtonClasses {
   override def btnSizeMd = cls := "btn-md"
   override def btnSizeSm = cls := "btn-sm"
   override def btnSizeXs = cls := "btn-xs"
+
+  override def btnWidthFull = cls := "btn-block"
 }

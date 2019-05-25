@@ -7,19 +7,19 @@ object BootstrapTextClasses extends BootstrapTextClasses
 
 trait BootstrapTextClasses extends TextClasses {
 
-  def txtPrimary = cls := "text-primary"
-  def txtSuccess = cls := "text-success"
-  def txtInfo    = cls := "text-info"
-  def txtWarning = cls := "text-warning"
-  def txtDanger  = cls := "text-danger"
+  override def txtPrimary = cls := "text-primary"
+  override def txtSuccess = cls := "text-success"
+  override def txtInfo    = cls := "text-info"
+  override def txtWarning = cls := "text-warning"
+  override def txtDanger  = cls := "text-danger"
 
-  def txtAlignLeft    = cls := "text-left"
-  def txtAlignCenter  = cls := "text-center"
-  def txtAlignRight   = cls := "text-right"
-  def txtAlignJustify = cls := "text-justify"
+  override def txtAlignLeft    = cls := "text-left"
+  override def txtAlignCenter  = cls := "text-center"
+  override def txtAlignRight   = cls := "text-right"
+  override def txtAlignJustify = cls := "text-justify"
 
-  def txtLowercase  = cls := "text-lowercase"
-  def txtUppercase  = cls := "text-uppercase"
-  def txtCapitalize = cls := "text-capitalize"
+  override def txtLowercase  = cls := "text-lowercase"
+  override def txtUppercase  = cls := "text-uppercase"
+  override def txtCapitalize = cls := "text-capitalize"
 
 }

@@ -20,4 +20,6 @@ trait BulmaButtonClasses extends ButtonClasses {
   override def btnSizeMd = cls := "is-medium"
   override def btnSizeSm = cls := "is-small"
   override def btnSizeXs = cls := "is-small" // no extra-small in Bulma
+
+  override def btnWidthFull = cls := "is-fullwidth"
 }

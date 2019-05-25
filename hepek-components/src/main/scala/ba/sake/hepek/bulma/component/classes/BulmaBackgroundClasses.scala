@@ -7,9 +7,9 @@ object BulmaBackgroundClasses extends BulmaBackgroundClasses
 
 trait BulmaBackgroundClasses extends BackgroundClasses {
 
-  def bgPrimary = cls := "has-background-primary"
-  def bgSuccess = cls := "has-background-success"
-  def bgInfo    = cls := "has-background-info"
-  def bgWarning = cls := "has-background-warning"
-  def bgDanger  = cls := "has-background-danger"
+  override def bgPrimary = cls := "has-background-primary"
+  override def bgSuccess = cls := "has-background-success"
+  override def bgInfo    = cls := "has-background-info"
+  override def bgWarning = cls := "has-background-warning"
+  override def bgDanger  = cls := "has-background-danger"
 }

@@ -7,19 +7,19 @@ object BulmaTextClasses extends BulmaTextClasses
 
 trait BulmaTextClasses extends TextClasses {
 
-  def txtPrimary = cls := "has-text-primary"
-  def txtSuccess = cls := "has-text-success"
-  def txtInfo    = cls := "has-text-info"
-  def txtWarning = cls := "has-text-warning"
-  def txtDanger  = cls := "has-text-danger"
+  override def txtPrimary = cls := "has-text-primary"
+  override def txtSuccess = cls := "has-text-success"
+  override def txtInfo    = cls := "has-text-info"
+  override def txtWarning = cls := "has-text-warning"
+  override def txtDanger  = cls := "has-text-danger"
 
-  def txtAlignLeft    = cls := "has-text-left"
-  def txtAlignCenter  = cls := "has-text-centered"
-  def txtAlignRight   = cls := "has-text-right"
-  def txtAlignJustify = cls := "has-text-justified"
+  override def txtAlignLeft    = cls := "has-text-left"
+  override def txtAlignCenter  = cls := "has-text-centered"
+  override def txtAlignRight   = cls := "has-text-right"
+  override def txtAlignJustify = cls := "has-text-justified"
 
-  def txtLowercase  = cls := "is-lowercase"
-  def txtUppercase  = cls := "is-uppercase"
-  def txtCapitalize = cls := "is-capitalized"
+  override def txtLowercase  = cls := "is-lowercase"
+  override def txtUppercase  = cls := "is-uppercase"
+  override def txtCapitalize = cls := "is-capitalized"
 
 }
