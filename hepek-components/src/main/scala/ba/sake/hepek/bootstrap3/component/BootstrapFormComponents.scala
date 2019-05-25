@@ -9,12 +9,12 @@ object BootstrapFormComponents extends BootstrapFormComponents {
   object Type {
     case object Vertical extends Type
     case object Inline extends Type {
-      override def classes = "form-inline"
+      override def classes = List("form-inline")
     }
     case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
       require(labelRatio > 0, "Label ratio < 1")
       require(inputRatio > 0, "Input ratio < 1")
-      override def classes = "form-horizontal"
+      override def classes = List("form-horizontal")
     }
   }
 
@@ -48,7 +48,7 @@ trait BootstrapFormComponents extends FormComponents {
 
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
-    val inputValidationCls = inputValidationState.map(cls := _.classes)
+    val inputValidationCls = inputValidationState.map(cls := _.clazz)
 
     // helper for horizontal form
     def bsHorizontalFormGroup(labelRatioBootstrap: Int, inputRatioBootstrap: Int): Frag =

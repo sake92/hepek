@@ -5,7 +5,7 @@ import all.{form => _, _}
 
 object FormComponents extends FormComponents {
 
-  trait Type { def classes: String = "" }
+  trait Type { def classes: List[String] = List.empty }
 
   trait ValidationStateClasses {
     def success: String = "success"
@@ -33,17 +33,17 @@ trait FormComponents {
     override def error: String   = "error"
   }
 
-  sealed trait ValidationState { def classes: String = "" }
+  sealed trait ValidationState { def clazz: String = "" }
 
   object ValidationState {
     case object Success extends ValidationState {
-      override def classes = validationStateClasses.success
+      override def clazz = validationStateClasses.success
     }
     case object Warning extends ValidationState {
-      override def classes = validationStateClasses.warning
+      override def clazz = validationStateClasses.warning
     }
     case object Error extends ValidationState {
-      override def classes = validationStateClasses.error
+      override def clazz = validationStateClasses.error
     }
   }
 
@@ -51,7 +51,7 @@ trait FormComponents {
   def formType: Type = new Type {}
 
   def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
-    val formAttrs = _formAttrs :+ (cls := formType.classes)
+    val formAttrs = _formAttrs ++ formType.classes.map(cls := _)
     all.form(formAttrs)(content)
   }
 
@@ -81,7 +81,7 @@ trait FormComponents {
             inputLabel
           )
       }
-      div(inputValidationState.map(cls := _.classes))(
+      div(inputValidationState.map(cls := _.clazz))(
         inputField,
         inputMessages.map(span(_)), // first show the errors.. :)
         inputHelp.map(span(_))

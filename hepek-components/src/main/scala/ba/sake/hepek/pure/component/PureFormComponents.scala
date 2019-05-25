@@ -8,13 +8,13 @@ object PureFormComponents extends PureFormComponents {
 
   object Type {
     case object Vertical extends Type {
-      override def classes = "pure-form pure-form-stacked"
+      override def classes = List("pure-form", "pure-form-stacked")
     }
     case object Inline extends Type {
-      override def classes = "pure-form"
+      override def classes = List("pure-form")
     }
     case object Horizontal extends Type {
-      override def classes = "pure-form pure-form-aligned"
+      override def classes = List("pure-form", "pure-form-aligned")
     }
   }
 }
