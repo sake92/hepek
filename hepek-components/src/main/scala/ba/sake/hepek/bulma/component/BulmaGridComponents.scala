@@ -1,15 +1,15 @@
-package ba.sake.hepek.bootstrap3.component
+package ba.sake.hepek.bulma.grid
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.GridComponents
 
-object BootstrapGridComponents extends BootstrapGridComponents
+object BulmaGridComponents extends BulmaGridComponents
 
-trait BootstrapGridComponents extends GridComponents {
+trait BulmaGridComponents extends GridComponents {
   import GridComponents._
 
   private[hepek] override def mkRow(content: Frag*): Frag =
-    div(cls := "row")(content)
+    div(cls := "columns")(content)
 
   private[hepek] override def mkCol2(index: Int, content: Col2): Frag = {
     val classes = halfRatioClasses(index).map(cls := _)
@@ -27,7 +27,7 @@ trait BootstrapGridComponents extends GridComponents {
     val md = screenRatios.md.map(r => mdClass(r.half, index))
     val sm = screenRatios.sm.map(r => smClass(r.half, index))
     val xs = screenRatios.xs.map(r => xsClass(r.half, index))
-    List(Option(lg), md, sm, xs).flatten
+    "column" :: List(Option(lg), md, sm, xs).flatten
   }
 
   private def thirdRatioClasses(index: Int): List[String] = {
@@ -35,25 +35,27 @@ trait BootstrapGridComponents extends GridComponents {
     val md = screenRatios.md.map(r => mdClass(r.third, index))
     val sm = screenRatios.sm.map(r => smClass(r.third, index))
     val xs = screenRatios.xs.map(r => xsClass(r.third, index))
-    List(Option(lg), md, sm, xs).flatten
+    "column" :: List(Option(lg), md, sm, xs).flatten
   }
 
   private def xsClass(ratio: Ratio, index: Int): String =
-    "col-xs-" + ratioValue(ratio, index)
+    "is-" + ratioValue(ratio, index) + "-mobile"
 
   private def smClass(ratio: Ratio, index: Int): String =
-    "col-sm-" + ratioValue(ratio, index)
+    "is-" + ratioValue(ratio, index) + "-tablet"
 
   private def mdClass(ratio: Ratio, index: Int): String =
-    "col-md-" + ratioValue(ratio, index)
+    "is-" + ratioValue(ratio, index) + "-desktop"
 
+  // Bootstrap3 has only large/widescreen, but Bulma has also fullhd
+  // so we dont support fullhd for now...
   private def lgClass(ratio: Ratio, index: Int): String =
-    "col-lg-" + ratioValue(ratio, index)
+    "is-" + ratioValue(ratio, index) + "-widescreen"
 
   private def ratioValue(ratio: Ratio, index: Int): Int =
-    ratio2BS(ratio.values(index), ratio.values)
+    ratio2Bulma(ratio.values(index), ratio.values)
 
   // for args 1,1:2 => (1/3)*12 == 4
-  private def ratio2BS(ratio: Int, allRatios: List[Int]): Int =
+  private def ratio2Bulma(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 12).toInt
 }
