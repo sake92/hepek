@@ -7,6 +7,7 @@ import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponent.{Position, Style}
 import ba.sake.hepek.html.statik.StaticPage
 
+// TODO remove or extract navbar ??
 trait BootstrapStaticPage extends StaticPage with BootstrapPage {
 
   def bootstrapNavbar: Option[(Position, Style)] =

@@ -39,7 +39,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
   )
 
 // static-site-generator
-lazy val hepekProject = (project in file("hepek"))
+lazy val hepekStatic = (project in file("hepek"))
   .settings(
     name := "hepek",
     libraryDependencies ++= Seq(

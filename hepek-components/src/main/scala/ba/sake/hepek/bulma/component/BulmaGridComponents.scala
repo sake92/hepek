@@ -1,4 +1,4 @@
-package ba.sake.hepek.bulma.grid
+package ba.sake.hepek.bulma.component
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.GridComponents
