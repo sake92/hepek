@@ -12,13 +12,13 @@ trait PureGridComponents extends GridComponents {
     div(cls := "pure-g")(content)
 
   private[hepek] override def mkCol2(index: Int, content: Col2): Frag = {
-    val classes = halfRatioClasses(index)
-    div(cls := classes.mkString(" "))(content.content)
+    val classes = halfRatioClasses(index).map(cls := _)
+    div(classes)(content.content)
   }
 
   private[hepek] override def mkCol3(index: Int, content: Col3): Frag = {
-    val classes = thirdRatioClasses(index)
-    div(cls := classes.mkString(" "))(content.content)
+    val classes = thirdRatioClasses(index).map(cls := _)
+    div(classes)(content.content)
   }
 
   /* HELPERS */

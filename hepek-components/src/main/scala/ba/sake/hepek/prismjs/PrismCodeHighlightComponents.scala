@@ -278,7 +278,6 @@ object BaseCodeHighlighter {
       attrs += (data.start := lineNumsStart.toString)
     }
     // final result
-    val classesString = classes.mkString(" ")
     val languageClass = s"language-$lang"
     codeSource match {
       case PlainText(text) => {
@@ -289,20 +288,20 @@ object BaseCodeHighlighter {
         } else {
           text
         }
-        pre(cls := classesString, attrs)(
+        pre(classes.map(cls := _), attrs)(
           code(cls := languageClass)(content)
         )
       }
       case AJAX(url) => {
         attrs += (data.src := url)
-        pre(cls := (languageClass + classesString), attrs)
+        pre(cls := languageClass, classes.map(cls := _), attrs)
       }
       case JSONP(url, fileName) => {
         attrs += (data.jsonp := url)
         fileName.foreach { fn =>
           attrs += (data.filename := fn)
         }
-        pre(cls := (languageClass + classesString), attrs)
+        pre(cls := languageClass, classes.map(cls := _), attrs)
       }
     }
   }

@@ -57,7 +57,7 @@ trait PureStaticPage extends StaticPage with PurePage {
       klasa = {
         if (this.pageCategory.isEmpty) ""
         else if (page.pageCategory == this.pageCategory)
-          "pure-menu-selected "
+          "pure-menu-selected"
         else ""
       }
     } yield menuItem()(
