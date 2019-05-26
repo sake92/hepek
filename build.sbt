@@ -76,7 +76,7 @@ lazy val hepekDocs = (project in file("hepek-docs"))
     siteSourceDirectory := target.value / "web" / "public" / "main" / "docs",
     includeFilter in makeSite := "*"
   )
-  .dependsOn(hepekProject)
+  .dependsOn(hepekStatic)
   .enablePlugins(HepekPlugin, SbtWeb, GhpagesPlugin)
 
 // tests
@@ -93,5 +93,5 @@ lazy val hepekTests = (project in file("hepek-tests"))
       "org.scalatest"           %% "scalatest"    % scalaTestVersion % "test"
     )
   )
-  .dependsOn(hepekProject)
+  .dependsOn(hepekStatic)
   .enablePlugins(HepekPlugin, SbtWeb)

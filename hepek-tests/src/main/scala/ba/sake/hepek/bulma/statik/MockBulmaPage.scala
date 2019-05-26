@@ -1,7 +1,7 @@
 package ba.sake.hepek.bulma.statik
 
 import ba.sake.hepek.bulma.component._
-import ba.sake.hepek.bulma.grid.BulmaGridComponents
+import ba.sake.hepek.bulma.component.BulmaGridComponents
 import ba.sake.hepek.bulma.{Centered, EmptyAttribute, PrimaryColor}
 import scalatags.Text
 import scalatags.Text.all._
@@ -82,7 +82,7 @@ object MockBulmaPage extends BulmaStaticPage with BulmaGridComponents {
   )
 
   override def pageContent: Text.all.Frag = frag(
-    container(EmptyAttribute)(navBar),
+    navBar,
     breadcrumb,
     menu,
     row(
