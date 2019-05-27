@@ -18,8 +18,7 @@ object FormComponents extends FormComponents {
 trait FormComponents {
   import FormComponents._
 
-  private val ButtonLikeTypes = Set("button", "submit", "reset")
-  private val HandledAttrs    = Set("type", "name", "id", "value") // handled explicitly
+  private val HandledAttrs = Set("type", "name", "id", "value") // handled explicitly
 
   private val DefaultLabel = ""
   private val DefaultId    = ""
@@ -55,38 +54,78 @@ trait FormComponents {
     all.form(formAttrs)(content)
   }
 
-  /** general input "constructor", should override in impl */
-  def inputWithType(
+  /** normal input "constructor", should override in impl */
+  def constructInputNormal(
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
-      inputHelp: Option[String], // help text
+      inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
-      inputMessages: Seq[String], // error/warning messages
+      inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    if (isButtonLike(inputType)) {
-      // no label for buttons: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
-      input(commonAttrs)
-    } else {
-      val inputField = inputLabel match {
-        case None => input(commonAttrs)
-        case Some(inputLabel) =>
-          label(inputId.map(`for` := _))(
-            input(commonAttrs),
-            inputLabel
-          )
-      }
-      div(inputValidationState.map(cls := _.clazz))(
-        inputField,
-        inputMessages.map(span(_)), // first show the errors.. :)
-        inputHelp.map(span(_))
-      )
+    val inputField = inputLabel match {
+      case None => input(commonAttrs)
+      case Some(inputLabel) =>
+        label(inputId.map(`for` := _))(
+          input(commonAttrs),
+          inputLabel
+        )
     }
+    div(inputValidationState.map(cls := _.clazz))(
+      inputField,
+      inputMessages.map(span(_)), // first show the errors.. :)
+      inputHelp.map(span(_))
+    )
+  }
+
+  /** button input "constructor", should override in impl */
+  def constructInputButton(
+      inputType: String,
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button#Validation
+    // no label, name, validation
+    // <button> is preferred to <input type="button">
+    val commonAttrs = Seq(tpe := inputType) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    if (inputType == "button") button(commonAttrs)(inputValue)
+    else input(commonAttrs)
+  }
+
+  /** checkbox input "constructor", should override in impl */
+  def constructInputCheckbox(
+      inputType: String,
+      inputName: String,
+      inputLabel: Option[String],
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
+    // no validation
+    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val inputField = inputLabel match {
+      case None => input(commonAttrs)
+      case Some(inputLabel) =>
+        label(inputId.map(`for` := _))(
+          input(commonAttrs),
+          inputLabel
+        )
+    }
+    div(
+      inputField,
+      inputHelp.map(span(_))
+    )
   }
 
   /* inputs */
@@ -99,7 +138,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "text",
       _name,
       _label,
@@ -120,7 +159,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "password",
       _name,
       _label,
@@ -141,7 +180,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "email",
       _name,
       _label,
@@ -162,7 +201,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "url",
       _name,
       _label,
@@ -183,7 +222,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "tel",
       _name,
       _label,
@@ -200,19 +239,15 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _id: String = DefaultId,
       _value: String = DefaultValue,
-      _help: String = DefaultHelp,
-      _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _help: String = DefaultHelp
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputCheckboxCleaned(
       "checkbox",
       _name,
       _label,
       _id,
       _value,
       _help,
-      _validationState,
-      _messages,
       _inputAttrs
     )
 
@@ -225,7 +260,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "file",
       _name,
       _label,
@@ -246,7 +281,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "color",
       _name,
       _label,
@@ -267,7 +302,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "number",
       _name,
       _label,
@@ -288,7 +323,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "range",
       _name,
       _label,
@@ -309,7 +344,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "time",
       _name,
       _label,
@@ -330,7 +365,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "week",
       _name,
       _label,
@@ -351,7 +386,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "month",
       _name,
       _label,
@@ -372,7 +407,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "date",
       _name,
       _label,
@@ -393,7 +428,7 @@ trait FormComponents {
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
   ): Frag =
-    inputWithTypeCleaned(
+    constructInputNormalCleaned(
       "datetime-local",
       _name,
       _label,
@@ -407,22 +442,21 @@ trait FormComponents {
 
   /* clickables */
   // no name, errors, help
-  def inputSubmit(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("submit", "", _label, _id, "", "", None, Seq.empty, _inputAttrs)
+  def inputSubmit(_inputAttrs: AttrPair*)(_value: String, _id: String = DefaultId): Frag =
+    constructInputButtonCleaned("submit", _id, _value, _inputAttrs)
 
-  def inputButton(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("button", "", _label, _id, "", "", None, Seq.empty, _inputAttrs)
+  def inputButton(_inputAttrs: AttrPair*)(_value: String, _id: String = DefaultId): Frag =
+    constructInputButtonCleaned("button", _id, _value, _inputAttrs)
 
-  def inputReset(_inputAttrs: AttrPair*)(_label: String, _id: String = DefaultId): Frag =
-    inputWithTypeCleaned("reset", "", _label, _id, "", "", None, Seq.empty, _inputAttrs)
+  def inputReset(_inputAttrs: AttrPair*)(_value: String, _id: String = DefaultId): Frag =
+    constructInputButtonCleaned("reset", _id, _value, _inputAttrs)
 
   /* misc */
   def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
     input(tpe := "hidden", name := _name, _inputAttrs)
 
-  // delegates to inputWithType
-  // after preparing necessary attributes
-  private def inputWithTypeCleaned(
+  // delegates to constructInputNormal, after preparing necessary attributes
+  private def constructInputNormalCleaned(
       _type: String,
       _name: String,
       _label: String,
@@ -434,15 +468,12 @@ trait FormComponents {
       _attrs: Seq[AttrPair]
   ): Frag = {
     val inputLabel = getIfNotBlank(_label)
-    val inputValue =
-      if (isButtonLike(_type)) inputLabel
-      else getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
-    val inputId   = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
-    val inputHelp = getIfNotBlank(_help)
-
+    val inputValue = getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
+    val inputId    = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
+    val inputHelp  = getIfNotBlank(_help)
     // ignore handled attrs
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
-    inputWithType(
+    constructInputNormal(
       _type,
       _name,
       inputLabel,
@@ -451,6 +482,50 @@ trait FormComponents {
       inputHelp,
       _validationState,
       _messages,
+      inputAttrsFiltered
+    )
+  }
+
+  private def constructInputButtonCleaned(
+      _type: String,
+      _id: String,
+      _value: String,
+      _attrs: Seq[AttrPair]
+  ): Frag = {
+    val inputValue = getIfNotBlank(_value)
+    val inputId    = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
+    // ignore handled attrs
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
+    constructInputButton(
+      _type,
+      inputId,
+      inputValue,
+      inputAttrsFiltered
+    )
+  }
+
+  private def constructInputCheckboxCleaned(
+      _type: String,
+      _name: String,
+      _label: String,
+      _id: String,
+      _value: String,
+      _help: String,
+      _attrs: Seq[AttrPair]
+  ): Frag = {
+    val inputLabel = getIfNotBlank(_label)
+    val inputValue = getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
+    val inputId    = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
+    val inputHelp  = getIfNotBlank(_help)
+    // ignore handled attrs
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
+    constructInputCheckbox(
+      _type,
+      _name,
+      inputLabel,
+      inputId,
+      inputValue,
+      inputHelp,
       inputAttrsFiltered
     )
   }
@@ -465,7 +540,4 @@ trait FormComponents {
     val trimmed = str.trim
     if (trimmed.isEmpty) None else Some(trimmed)
   }
-
-  protected def isButtonLike(_type: String) =
-    ButtonLikeTypes.contains(_type)
 }

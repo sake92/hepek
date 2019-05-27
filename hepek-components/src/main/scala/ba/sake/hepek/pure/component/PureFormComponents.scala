@@ -2,6 +2,7 @@ package ba.sake.hepek.pure.component
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.FormComponents
+import ba.sake.hepek.pure.component.classes.PureButtonClasses
 
 object PureFormComponents extends PureFormComponents {
   sealed trait Type extends FormComponents.Type
@@ -21,10 +22,13 @@ object PureFormComponents extends PureFormComponents {
 
 trait PureFormComponents extends FormComponents {
   import PureFormComponents._
+  import PureButtonClasses._
+
+  // TODO display validation !!
 
   override def formType: FormComponents.Type = Type.Vertical
 
-  override def inputWithType(
+  override def constructInputNormal(
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
@@ -35,66 +39,71 @@ trait PureFormComponents extends FormComponents {
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair]
   ) = {
-    // TODO display validation !!
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
     formType match {
       case Type.Horizontal =>
-        pureHorizontalFormGroup(
-          inputType,
-          inputName,
-          inputLabel,
-          inputId,
-          inputValue,
-          inputAttrs
+        div(cls := "pure-control-group")(
+          label(inputId.map(`for` := _), cls := "control-label")(inputLabel),
+          input(commonAttrs)
         )
       case _ =>
-        if (inputType == "checkbox")
-          label(cls := "pure-checkbox", inputId.map(`for` := _))(
-            input(commonAttrs),
-            inputLabel
-          )
-        else if (isButtonLike(inputType))
-          input(
-            cls := "pure-button",
-            commonAttrs
-          )
-        else
-          frag(
-            label(inputId.map(`for` := _))(inputLabel),
-            input(commonAttrs)
-          )
-
+        frag(
+          label(inputId.map(`for` := _))(inputLabel),
+          input(commonAttrs)
+        )
     }
   }
 
-  private def pureHorizontalFormGroup(
+  override def constructInputButton(
+      inputType: String,
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val commonAttrs = Seq(tpe := inputType) ++
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val btnField =
+      if (inputType == "button") button(btnClass, commonAttrs)(inputValue)
+      else input(btnClass, commonAttrs)
+
+    formType match {
+      case Type.Horizontal =>
+        div(cls := "pure-controls")(
+          btnField
+        )
+      case _ =>
+        btnField
+    }
+  }
+
+  override def constructInputCheckbox(
       inputType: String,
       inputName: String,
       inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
-  ) = {
+  ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
-    if (inputType == "checkbox")
-      div(cls := "pure-controls")(
+    formType match {
+      case Type.Horizontal =>
+        div(cls := "pure-controls")(
+          label(cls := "pure-checkbox", inputId.map(`for` := _))(
+            input(commonAttrs),
+            inputLabel
+          )
+        )
+      case _ =>
         label(cls := "pure-checkbox", inputId.map(`for` := _))(
           input(commonAttrs),
           inputLabel
         )
-      )
-    else if (isButtonLike(inputType))
-      div(cls := "pure-controls")(
-        input(cls := "pure-button", commonAttrs)
-      )
-    else
-      div(cls := "pure-control-group")(
-        label(inputId.map(`for` := _), cls := s"control-label")(inputLabel),
-        input(commonAttrs)
-      )
+    }
   }
+
 }
