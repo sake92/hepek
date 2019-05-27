@@ -45,11 +45,14 @@ trait BootstrapFormComponents extends FormComponents {
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair]
   ) = {
-    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+    val commonAttrs = Seq(cls := "form-control", tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(cls := _.clazz)
+    val inputFieldContent =
+      if (inputType == "textarea") textarea(commonAttrs)(inputValue)
+      else input(commonAttrs)
 
     formType match {
       case ft: Type.Horizontal =>
@@ -59,7 +62,7 @@ trait BootstrapFormComponents extends FormComponents {
             inputLabel
           ),
           div(cls := colInput)(
-            input(cls := "form-control", commonAttrs),
+            inputFieldContent,
             inputMsgsFrag,
             inputHelpFrag
           )
@@ -67,7 +70,7 @@ trait BootstrapFormComponents extends FormComponents {
       case _ =>
         formGroup(inputValidationCls.toSeq: _*)(
           inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
-          input(cls := "form-control", commonAttrs),
+          inputFieldContent,
           inputMsgsFrag,
           inputHelpFrag
         )

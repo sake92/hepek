@@ -41,17 +41,20 @@ trait PureFormComponents extends FormComponents {
   ) = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val inputFieldContent =
+      if (inputType == "textarea") textarea(commonAttrs)(inputValue)
+      else input(commonAttrs)
 
     formType match {
       case Type.Horizontal =>
         div(cls := "pure-control-group")(
-          label(inputId.map(`for` := _), cls := "control-label")(inputLabel),
-          input(commonAttrs)
+          label(inputId.map(`for` := _))(inputLabel),
+          inputFieldContent
         )
       case _ =>
         frag(
           label(inputId.map(`for` := _))(inputLabel),
-          input(commonAttrs)
+          inputFieldContent
         )
     }
   }

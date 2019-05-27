@@ -68,11 +68,14 @@ trait FormComponents {
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val inputFieldContent =
+      if (inputType == "textarea") textarea(commonAttrs)(inputValue)
+      else input(commonAttrs)
     val inputField = inputLabel match {
-      case None => input(commonAttrs)
+      case None => inputFieldContent
       case Some(inputLabel) =>
         label(inputId.map(`for` := _))(
-          input(commonAttrs),
+          inputFieldContent,
           inputLabel
         )
     }
@@ -140,6 +143,27 @@ trait FormComponents {
   ): Frag =
     constructInputNormalCleaned(
       "text",
+      _name,
+      _label,
+      _id,
+      _value,
+      _help,
+      _validationState,
+      _messages,
+      _inputAttrs
+    )
+
+  def inputTextArea(_inputAttrs: AttrPair*)(
+      _name: String,
+      _label: String = DefaultLabel,
+      _id: String = DefaultId,
+      _value: String = DefaultValue,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _messages: Seq[String] = Seq.empty
+  ): Frag =
+    constructInputNormalCleaned(
+      "textarea",
       _name,
       _label,
       _id,
