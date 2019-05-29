@@ -268,6 +268,52 @@ trait BootstrapFormComponents extends FormComponents {
     }
   }
 
+  override def constructInputSelectGrouped(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+
+    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
+
+    val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
+      case (optGroupLabel, valueAndLabelAndAttrs) =>
+        val optionFrags = valueAndLabelAndAttrs.map {
+          case (optionValue, optionLabel, optionAttrs) =>
+            val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+            option(commonAttrs)(optionLabel)
+        }
+        optgroup(attr("label") := optGroupLabel)(optionFrags)
+    }
+    val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
+      inputId.map(id := _)
+    val selectFrag = select(selectAttrs)(optionGroupFrags)
+
+    formType match {
+      case ft: Type.Horizontal =>
+        val (colLabel, colInput) = horizontalRatioClasses(ft, true)
+        formGroup()(
+          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
+            inputLabel
+          ),
+          div(cls := colInput)(
+            selectFrag,
+            inputHelpFrag
+          )
+        )
+      case _ =>
+        formGroup()(
+          inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
+          selectFrag,
+          inputHelpFrag
+        )
+    }
+
+  }
+
   private def formGroup(attrs: AttrPair*)(contents: Frag*): Frag =
     div(cls := "form-group", attrs)(contents)
 

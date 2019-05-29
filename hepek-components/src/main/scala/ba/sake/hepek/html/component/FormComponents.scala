@@ -185,6 +185,31 @@ trait FormComponents {
     )
   }
 
+  // only possible attribute for <optgroup> is "disabled", so we dont bother...
+  def constructInputSelectGrouped(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
+      case (optGroupLabel, valueAndLabelAndAttrs) =>
+        val optionFrags = valueAndLabelAndAttrs.map {
+          case (optionValue, optionLabel, optionAttrs) =>
+            val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+            option(commonAttrs)(optionLabel)
+        }
+        optgroup(attr("label") := optGroupLabel)(optionFrags)
+    }
+    val selectAttrs = inputAttrs ++ Seq(name := inputName) ++ inputId.map(id := _)
+    div(
+      inputLabel.map(l => label(inputId.map(`for` := _))),
+      select(selectAttrs)(optionGroupFrags)
+    )
+  }
+
   /////////////////////////////////////////////////
   /* inputs */
   def inputText(_inputAttrs: AttrPair*)(
@@ -516,6 +541,19 @@ trait FormComponents {
     _inputAttrs
   )
 
+  def inputSelectGrouped(_inputAttrs: AttrPair*)(
+      _name: String,
+      _valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp
+  ): Frag = constructInputSelectGroupedCleaned(
+    _name,
+    _valueAndLabelAndAttrsGrouped,
+    _label,
+    _help,
+    _inputAttrs
+  )
+
   /* HELPERS */
   // delegates to constructInputNormal, after preparing necessary attributes
   private def constructInputNormalCleaned(
@@ -628,7 +666,7 @@ trait FormComponents {
     )
   }
 
-  def constructInputSelectCleaned(
+  private def constructInputSelectCleaned(
       _name: String,
       _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       _label: String,
@@ -647,6 +685,35 @@ trait FormComponents {
       _name,
       inputId,
       valueAndLabelAndAttrsFiltered,
+      inputLabel,
+      inputHelp,
+      inputAttrsFiltered
+    )
+  }
+
+  private def constructInputSelectGroupedCleaned(
+      _name: String,
+      _valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      _label: String,
+      _help: String,
+      _attrs: Seq[AttrPair]
+  ): Frag = {
+    val inputId    = getAttrValue(_attrs, "id")
+    val inputLabel = getIfNotBlank(_label)
+    val inputHelp  = getIfNotBlank(_help)
+    val valueAndLabelAndAttrsGroupedFiltered = _valueAndLabelAndAttrsGrouped.map {
+      case (gl, _valueAndLabelAndAttrs) =>
+        val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
+          case (v, l, inputAttrs) =>
+            (v, l, inputAttrs.filterNot(ap => HandledOptionAttrs.contains(ap.a.name)))
+        }
+        (gl, valueAndLabelAndAttrsFiltered)
+    }
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledSelectAttrs.contains(ap.a.name))
+    constructInputSelectGrouped(
+      _name,
+      inputId,
+      valueAndLabelAndAttrsGroupedFiltered,
       inputLabel,
       inputHelp,
       inputAttrsFiltered
