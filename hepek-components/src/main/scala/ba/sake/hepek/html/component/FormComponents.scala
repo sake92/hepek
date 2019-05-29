@@ -18,11 +18,14 @@ object FormComponents extends FormComponents {
 trait FormComponents {
   import FormComponents._
 
-  private val HandledAttrs = Set("type", "name", "id", "value") // handled explicitly
+  // handled explicitly
+  private val HandledAttrs         = Set("type", "name", "id", "value")
+  private val HandledCheckboxAttrs = Set("type", "name", "value")
+  private val HandledRadioAttrs    = Set("type", "name", "value", "checked")
+  private val HandledSelectAttrs   = Set("type", "name", "id", "value")
+  private val HandledOptionAttrs   = Set("type", "name", "value")
 
   private val DefaultLabel = ""
-  private val DefaultId    = ""
-  private val DefaultValue = ""
   private val DefaultHelp  = ""
 
   /* Validation stuff */
@@ -54,13 +57,19 @@ trait FormComponents {
     all.form(formAttrs)(content)
   }
 
+  def formFieldset(legendTitle: String)(content: Frag*): Frag =
+    fieldset(
+      legend(legendTitle),
+      content
+    )
+
   /** normal input "constructor", should override in impl */
   def constructInputNormal(
       inputType: String,
       inputName: String,
-      inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
@@ -71,7 +80,7 @@ trait FormComponents {
     val inputFieldContent =
       if (inputType == "textarea") textarea(commonAttrs)(inputValue)
       else input(commonAttrs)
-    val inputField = inputLabel match {
+    val inputFrag = inputLabel match {
       case None => inputFieldContent
       case Some(inputLabel) =>
         label(inputId.map(`for` := _))(
@@ -80,7 +89,7 @@ trait FormComponents {
         )
     }
     div(inputValidationState.map(cls := _.clazz))(
-      inputField,
+      inputFrag,
       inputMessages.map(span(_)), // first show the errors.. :)
       inputHelp.map(span(_))
     )
@@ -105,19 +114,18 @@ trait FormComponents {
 
   /** checkbox input "constructor", should override in impl */
   def constructInputCheckbox(
-      inputType: String,
       inputName: String,
-      inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
     // no validation
-    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+    val commonAttrs = Seq(tpe := "checkbox", name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    val inputField = inputLabel match {
+    val inputFrag = inputLabel match {
       case None => input(commonAttrs)
       case Some(inputLabel) =>
         label(inputId.map(`for` := _))(
@@ -126,17 +134,62 @@ trait FormComponents {
         )
     }
     div(
-      inputField,
+      inputFrag,
       inputHelp.map(span(_))
     )
   }
 
+  def constructInputCheckboxes(
+      inputName: String,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      isInline: Boolean
+  ): Frag =
+    valueAndLabelAndAttrs.map {
+      case (cbValue, cbLabel, inputAttrs) =>
+        val commonAttrs = Seq(tpe := "checkbox", name := inputName, value := cbValue) ++ inputAttrs
+        label(input(commonAttrs), cbLabel)
+    }
+
+  def constructInputRadio(
+      inputName: String,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      isInline: Boolean
+  ): Frag =
+    valueAndLabelAndAttrs.map {
+      case (radioValue, radioLabel, inputAttrs) =>
+        val commonAttrs = Seq(tpe := "radio", name := inputName, value := radioValue) ++ inputAttrs
+        label(input(commonAttrs), radioLabel)
+    }
+
+  def constructInputSelect(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val optionFrags = valueAndLabelAndAttrs.map {
+      case (optionValue, optionLabel, optionAttrs) =>
+        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+        option(commonAttrs)(optionLabel)
+    }
+    val selectAttrs = inputAttrs ++ Seq(name := inputName) ++ inputId.map(id := _)
+    div(
+      inputLabel.map(l => label(inputId.map(`for` := _))),
+      select(selectAttrs)(optionFrags)
+    )
+  }
+
+  /////////////////////////////////////////////////
   /* inputs */
   def inputText(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -145,8 +198,6 @@ trait FormComponents {
       "text",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -156,8 +207,6 @@ trait FormComponents {
   def inputTextArea(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -166,8 +215,6 @@ trait FormComponents {
       "textarea",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -177,8 +224,6 @@ trait FormComponents {
   def inputPassword(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -187,8 +232,6 @@ trait FormComponents {
       "password",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -198,8 +241,6 @@ trait FormComponents {
   def inputEmail(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -208,8 +249,6 @@ trait FormComponents {
       "email",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -219,8 +258,6 @@ trait FormComponents {
   def inputUrl(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -229,8 +266,6 @@ trait FormComponents {
       "url",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -240,8 +275,6 @@ trait FormComponents {
   def inputTel(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -250,36 +283,15 @@ trait FormComponents {
       "tel",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
       _inputAttrs
     )
 
-  def inputCheckbox(_inputAttrs: AttrPair*)(
-      _name: String,
-      _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
-      _help: String = DefaultHelp
-  ): Frag =
-    constructInputCheckboxCleaned(
-      "checkbox",
-      _name,
-      _label,
-      _id,
-      _value,
-      _help,
-      _inputAttrs
-    )
-
   def inputFile(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -288,8 +300,6 @@ trait FormComponents {
       "file",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -299,8 +309,6 @@ trait FormComponents {
   def inputColor(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -309,8 +317,6 @@ trait FormComponents {
       "color",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -320,8 +326,6 @@ trait FormComponents {
   def inputNumber(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -330,8 +334,6 @@ trait FormComponents {
       "number",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -341,8 +343,6 @@ trait FormComponents {
   def inputRange(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -351,8 +351,6 @@ trait FormComponents {
       "range",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -362,8 +360,6 @@ trait FormComponents {
   def inputTime(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -372,8 +368,6 @@ trait FormComponents {
       "time",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -383,8 +377,6 @@ trait FormComponents {
   def inputWeek(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -393,8 +385,6 @@ trait FormComponents {
       "week",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -404,8 +394,6 @@ trait FormComponents {
   def inputMonth(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -414,8 +402,6 @@ trait FormComponents {
       "month",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -425,8 +411,6 @@ trait FormComponents {
   def inputDate(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -435,8 +419,6 @@ trait FormComponents {
       "date",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
@@ -446,8 +428,6 @@ trait FormComponents {
   def inputDateTimeLocal(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
-      _id: String = DefaultId,
-      _value: String = DefaultValue,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
       _messages: Seq[String] = Seq.empty
@@ -456,53 +436,108 @@ trait FormComponents {
       "datetime-local",
       _name,
       _label,
-      _id,
-      _value,
       _help,
       _validationState,
       _messages,
       _inputAttrs
     )
 
-  /* clickables */
-  // no name, errors, help
-  def inputSubmit(_inputAttrs: AttrPair*)(_value: String, _id: String = DefaultId): Frag =
-    constructInputButtonCleaned("submit", _id, _value, _inputAttrs)
+  /* buttons */
+  def inputSubmit(_inputAttrs: AttrPair*)(_value: String): Frag =
+    constructInputButtonCleaned("submit", _value, _inputAttrs)
 
-  def inputButton(_inputAttrs: AttrPair*)(_value: String, _id: String = DefaultId): Frag =
-    constructInputButtonCleaned("button", _id, _value, _inputAttrs)
+  def inputButton(_inputAttrs: AttrPair*)(_value: String): Frag =
+    constructInputButtonCleaned("button", _value, _inputAttrs)
 
-  def inputReset(_inputAttrs: AttrPair*)(_value: String, _id: String = DefaultId): Frag =
-    constructInputButtonCleaned("reset", _id, _value, _inputAttrs)
+  def inputReset(_inputAttrs: AttrPair*)(_value: String): Frag =
+    constructInputButtonCleaned("reset", _value, _inputAttrs)
 
-  /* misc */
+  /* hidden */
   def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
     input(tpe := "hidden", name := _name, _inputAttrs)
 
+  /* checkboxes */
+  def inputCheckbox(_inputAttrs: AttrPair*)(
+      _name: String,
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp
+  ): Frag =
+    constructInputCheckboxCleaned(
+      _name,
+      _label,
+      _help,
+      _inputAttrs
+    )
+
+  def inputCheckboxes(
+      _name: String,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp,
+      _isInline: Boolean = true
+  ): Frag =
+    constructInputCheckboxesCleaned(
+      _name,
+      _valueAndLabelAndAttrs,
+      _label,
+      _help,
+      _isInline
+    )
+
+  /* radios */
+  def inputRadio(
+      _name: String,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp,
+      _isInline: Boolean = true,
+      _checkedValue: String = ""
+  ): Frag =
+    constructInputRadioCleaned(
+      _name,
+      _valueAndLabelAndAttrs,
+      _label,
+      _help,
+      _isInline,
+      _checkedValue
+    )
+
+  /* selects */
+  def inputSelect(_inputAttrs: AttrPair*)(
+      _name: String,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp
+  ): Frag = constructInputSelectCleaned(
+    _name,
+    _valueAndLabelAndAttrs,
+    _label,
+    _help,
+    _inputAttrs
+  )
+
+  /* HELPERS */
   // delegates to constructInputNormal, after preparing necessary attributes
   private def constructInputNormalCleaned(
       _type: String,
       _name: String,
       _label: String,
-      _id: String,
-      _value: String,
       _help: String,
       _validationState: Option[ValidationState],
       _messages: Seq[String],
       _attrs: Seq[AttrPair]
   ): Frag = {
-    val inputLabel = getIfNotBlank(_label)
-    val inputValue = getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
-    val inputId    = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
-    val inputHelp  = getIfNotBlank(_help)
-    // ignore handled attrs
+    val inputId            = getAttrValue(_attrs, "id")
+    val inputValue         = getAttrValue(_attrs, "value")
+    val inputLabel         = getIfNotBlank(_label)
+    val inputHelp          = getIfNotBlank(_help)
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputNormal(
       _type,
       _name,
-      inputLabel,
       inputId,
       inputValue,
+      inputLabel,
       inputHelp,
       _validationState,
       _messages,
@@ -512,13 +547,11 @@ trait FormComponents {
 
   private def constructInputButtonCleaned(
       _type: String,
-      _id: String,
       _value: String,
       _attrs: Seq[AttrPair]
   ): Frag = {
-    val inputValue = getIfNotBlank(_value)
-    val inputId    = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
-    // ignore handled attrs
+    val inputValue         = getIfNotBlank(_value)
+    val inputId            = getAttrValue(_attrs, "id")
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputButton(
       _type,
@@ -529,26 +562,92 @@ trait FormComponents {
   }
 
   private def constructInputCheckboxCleaned(
-      _type: String,
       _name: String,
       _label: String,
-      _id: String,
-      _value: String,
       _help: String,
       _attrs: Seq[AttrPair]
   ): Frag = {
-    val inputLabel = getIfNotBlank(_label)
-    val inputValue = getIfNotBlank(_value) orElse getAttrValue(_attrs, "value")
-    val inputId    = getIfNotBlank(_id) orElse getAttrValue(_attrs, "id")
-    val inputHelp  = getIfNotBlank(_help)
-    // ignore handled attrs
+    val inputId            = getAttrValue(_attrs, "id")
+    val inputValue         = getAttrValue(_attrs, "value")
+    val inputLabel         = getIfNotBlank(_label)
+    val inputHelp          = getIfNotBlank(_help)
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputCheckbox(
-      _type,
       _name,
-      inputLabel,
       inputId,
       inputValue,
+      inputLabel,
+      inputHelp,
+      inputAttrsFiltered
+    )
+  }
+
+  private def constructInputCheckboxesCleaned(
+      _name: String,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _label: String,
+      _help: String,
+      _isInline: Boolean
+  ): Frag = {
+    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
+      case (v, l, inputAttrs) =>
+        (v, l, inputAttrs.filterNot(ap => HandledCheckboxAttrs.contains(ap.a.name)))
+    }
+    val inputLabel = getIfNotBlank(_label)
+    val inputHelp  = getIfNotBlank(_help)
+    constructInputCheckboxes(
+      _name,
+      valueAndLabelAndAttrsFiltered,
+      inputLabel,
+      inputHelp,
+      _isInline
+    )
+  }
+
+  private def constructInputRadioCleaned(
+      _name: String,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _label: String,
+      _help: String,
+      _isInline: Boolean,
+      _checkedValue: String
+  ): Frag = {
+    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
+      case (v, l, inputAttrs) =>
+        val isChecked = getIfNotBlank(_checkedValue).filter(_ == v).map(_ => checked)
+        (v, l, inputAttrs.filterNot(ap => HandledRadioAttrs.contains(ap.a.name)) ++ isChecked)
+    }
+    val inputLabel = getIfNotBlank(_label)
+    val inputHelp  = getIfNotBlank(_help)
+    constructInputRadio(
+      _name,
+      valueAndLabelAndAttrsFiltered,
+      inputLabel,
+      inputHelp,
+      _isInline
+    )
+  }
+
+  def constructInputSelectCleaned(
+      _name: String,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _label: String,
+      _help: String,
+      _attrs: Seq[AttrPair]
+  ): Frag = {
+    val inputId    = getAttrValue(_attrs, "id")
+    val inputLabel = getIfNotBlank(_label)
+    val inputHelp  = getIfNotBlank(_help)
+    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
+      case (v, l, inputAttrs) =>
+        (v, l, inputAttrs.filterNot(ap => HandledOptionAttrs.contains(ap.a.name)))
+    }
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledSelectAttrs.contains(ap.a.name))
+    constructInputSelect(
+      _name,
+      inputId,
+      valueAndLabelAndAttrsFiltered,
+      inputLabel,
       inputHelp,
       inputAttrsFiltered
     )

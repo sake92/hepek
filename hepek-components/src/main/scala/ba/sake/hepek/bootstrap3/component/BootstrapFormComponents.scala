@@ -37,9 +37,9 @@ trait BootstrapFormComponents extends FormComponents {
   override def constructInputNormal(
       inputType: String,
       inputName: String,
-      inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
@@ -50,7 +50,7 @@ trait BootstrapFormComponents extends FormComponents {
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(cls := _.clazz)
-    val inputFieldContent =
+    val inputFieldFrag =
       if (inputType == "textarea") textarea(commonAttrs)(inputValue)
       else input(commonAttrs)
 
@@ -62,7 +62,7 @@ trait BootstrapFormComponents extends FormComponents {
             inputLabel
           ),
           div(cls := colInput)(
-            inputFieldContent,
+            inputFieldFrag,
             inputMsgsFrag,
             inputHelpFrag
           )
@@ -70,7 +70,7 @@ trait BootstrapFormComponents extends FormComponents {
       case _ =>
         formGroup(inputValidationCls.toSeq: _*)(
           inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
-          inputFieldContent,
+          inputFieldFrag,
           inputMsgsFrag,
           inputHelpFrag
         )
@@ -85,7 +85,7 @@ trait BootstrapFormComponents extends FormComponents {
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    val btnField =
+    val btnFrag =
       if (inputType == "button") button(btnClass, commonAttrs)(inputValue)
       else input(btnClass, commonAttrs)
 
@@ -94,25 +94,25 @@ trait BootstrapFormComponents extends FormComponents {
         val (colLabel, colInput) = horizontalRatioClasses(ft, false)
         formGroup()(
           div(cls := s"$colLabel $colInput")(
-            btnField
+            btnFrag
           )
         )
       case _ =>
-        btnField
+        btnFrag
     }
   }
 
   override def constructInputCheckbox(
-      inputType: String,
       inputName: String,
-      inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+    val commonAttrs = Seq(tpe := "checkbox", name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
     formType match {
       case ft: Type.Horizontal =>
@@ -123,7 +123,8 @@ trait BootstrapFormComponents extends FormComponents {
               label(inputId.map(`for` := _))(
                 input(commonAttrs),
                 inputLabel
-              )
+              ),
+              inputHelpFrag
             )
           )
         )
@@ -132,7 +133,137 @@ trait BootstrapFormComponents extends FormComponents {
           label(inputId.map(`for` := _))(
             input(commonAttrs),
             inputLabel
+          ),
+          inputHelpFrag
+        )
+    }
+  }
+
+  override def constructInputCheckboxes(
+      inputName: String,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      isInline: Boolean
+  ): Frag = {
+
+    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
+
+    def renderCheckBox(cbLabel: String, attrs: Seq[AttrPair]) =
+      if (isInline)
+        label(cls := "checkbox-inline")(input(attrs), cbLabel)
+      else
+        div(cls := "checkbox")(
+          label(input(attrs), cbLabel)
+        )
+
+    val checkboxFrags = valueAndLabelAndAttrs.map {
+      case (cbValue, cbLabel, inputAttrs) =>
+        val commonAttrs = Seq(tpe := "checkbox", name := inputName, value := cbValue) ++ inputAttrs
+        renderCheckBox(cbLabel, commonAttrs)
+    }
+
+    formType match {
+      case ft: Type.Horizontal =>
+        val (colLabel, colInput) = horizontalRatioClasses(ft, true)
+        formGroup()(
+          label(cls := s"control-label $colLabel")(
+            inputLabel
+          ),
+          div(cls := colInput)(
+            checkboxFrags,
+            inputHelpFrag
           )
+        )
+      case _ =>
+        formGroup()(
+          inputLabel.map(lbl => label(lbl)),
+          checkboxFrags,
+          inputHelpFrag
+        )
+    }
+  }
+
+  override def constructInputRadio(
+      inputName: String,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      isInline: Boolean
+  ): Frag = {
+    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
+
+    def renderRadio(radioLabel: String, attrs: Seq[AttrPair]) =
+      if (isInline)
+        label(cls := "radio-inline")(input(attrs), radioLabel)
+      else
+        div(cls := "radio")(
+          label(input(attrs), radioLabel)
+        )
+
+    val radioFrags = valueAndLabelAndAttrs.map {
+      case (radioValue, radioLabel, inputAttrs) =>
+        val commonAttrs = Seq(tpe := "radio", name := inputName, value := radioValue) ++ inputAttrs
+        renderRadio(radioLabel, commonAttrs)
+    }
+
+    formType match {
+      case ft: Type.Horizontal =>
+        val (colLabel, colInput) = horizontalRatioClasses(ft, true)
+        formGroup()(
+          label(cls := s"control-label $colLabel")(
+            inputLabel
+          ),
+          div(cls := colInput)(
+            radioFrags,
+            inputHelpFrag
+          )
+        )
+      case _ =>
+        formGroup()(
+          inputLabel.map(lbl => label(lbl)),
+          radioFrags,
+          inputHelpFrag
+        )
+    }
+  }
+
+  override def constructInputSelect(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
+
+    val optionFrags = valueAndLabelAndAttrs.map {
+      case (optionValue, optionLabel, optionAttrs) =>
+        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+        option(commonAttrs)(optionLabel)
+    }
+    val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
+      inputId.map(id := _)
+    val selectFrag = select(selectAttrs)(optionFrags)
+
+    formType match {
+      case ft: Type.Horizontal =>
+        val (colLabel, colInput) = horizontalRatioClasses(ft, true)
+        formGroup()(
+          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
+            inputLabel
+          ),
+          div(cls := colInput)(
+            selectFrag,
+            inputHelpFrag
+          )
+        )
+      case _ =>
+        formGroup()(
+          inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
+          selectFrag,
+          inputHelpFrag
         )
     }
   }

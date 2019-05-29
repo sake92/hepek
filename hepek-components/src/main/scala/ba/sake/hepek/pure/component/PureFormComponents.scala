@@ -25,15 +25,16 @@ trait PureFormComponents extends FormComponents {
   import PureButtonClasses._
 
   // TODO display validation !!
+  // TODO implement checkbox, radio etc
 
   override def formType: FormComponents.Type = Type.Vertical
 
   override def constructInputNormal(
       inputType: String,
       inputName: String,
-      inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
@@ -82,15 +83,14 @@ trait PureFormComponents extends FormComponents {
   }
 
   override def constructInputCheckbox(
-      inputType: String,
       inputName: String,
-      inputLabel: Option[String],
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
+    val commonAttrs = Seq(tpe := "checkbox", name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
     formType match {
