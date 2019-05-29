@@ -38,13 +38,12 @@ trait HepekPlayForm {
     val labell        = getIfNotBlank(label) getOrElse f.label
     val (state, msgs) = stateAndMessages(f, validationState, validationMessage)
     val inputAttrsFiltered = constraintAttrPairs(f, attrs) ++
-      attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
+      attrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++
+      Seq(id := f.id) ++ f.value.map(value := _)
 
     fc.inputText(inputAttrsFiltered: _*)(
       f.name,
       labell,
-      f.id,
-      f.value.getOrElse(""),
       help,
       state,
       msgs
@@ -60,7 +59,10 @@ trait HepekPlayForm {
       implicit messages: Messages
   ): Frag = {
     val (state, msgs) = stateAndMessages(f, validationState, validationMessage)
-    fc.inputPassword(attrs: _*)(f.name, f.label, f.id, f.value.getOrElse(""), help, state, msgs)
+    val inputAttrsFiltered = constraintAttrPairs(f, attrs) ++
+      attrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++
+      Seq(id := f.id) ++ f.value.map(value := _)
+    fc.inputPassword(inputAttrsFiltered: _*)(f.name, f.label, help, state, msgs)
   }
 
   private def stateAndMessages(
