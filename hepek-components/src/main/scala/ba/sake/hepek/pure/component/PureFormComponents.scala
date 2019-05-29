@@ -38,7 +38,8 @@ trait PureFormComponents extends FormComponents {
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
-      inputAttrs: Seq[AttrPair]
+      inputAttrs: Seq[AttrPair],
+      inputTransform: Frag => Frag
   ) = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
@@ -64,12 +65,13 @@ trait PureFormComponents extends FormComponents {
       inputType: String,
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val btnField =
-      if (inputType == "button") button(btnClass, commonAttrs)(inputValue)
+      if (inputType == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
 
     formType match {

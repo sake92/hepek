@@ -28,6 +28,8 @@ trait FormComponents {
   private val DefaultLabel = ""
   private val DefaultHelp  = ""
 
+  private val DefaultTransform: Frag => Frag = identity
+
   /* Validation stuff */
   def validationStateClasses: ValidationStateClasses = new ValidationStateClasses {
     override def success: String = "success"
@@ -73,24 +75,26 @@ trait FormComponents {
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
-      inputAttrs: Seq[AttrPair]
+      inputAttrs: Seq[AttrPair],
+      inputTransform: Frag => Frag
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    val inputFieldContent =
+    val inputFrag =
       if (inputType == "textarea") textarea(commonAttrs)(inputValue)
       else input(commonAttrs)
-    val inputFrag = inputLabel match {
-      case None => inputFieldContent
+    val inputFragTransformed = inputTransform(inputFrag)
+    val inputContentFrag = inputLabel match {
+      case None => inputFragTransformed
       case Some(inputLabel) =>
         label(inputId.map(`for` := _))(
-          inputFieldContent,
+          inputFragTransformed,
           inputLabel
         )
     }
     div(inputValidationState.map(cls := _.clazz))(
       inputFrag,
-      inputMessages.map(span(_)), // first show the errors.. :)
+      inputMessages.map(span(_)),
       inputHelp.map(span(_))
     )
   }
@@ -100,6 +104,7 @@ trait FormComponents {
       inputType: String,
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Frag, // <button> can have e.g. glyphs as content...
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
@@ -108,7 +113,7 @@ trait FormComponents {
     // <button> is preferred to <input type="button">
     val commonAttrs = Seq(tpe := inputType) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    if (inputType == "button") button(commonAttrs)(inputValue)
+    if (inputType == "button") button(commonAttrs)(inputLabel)
     else input(commonAttrs)
   }
 
@@ -217,7 +222,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "text",
@@ -226,7 +232,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputTextArea(_inputAttrs: AttrPair*)(
@@ -234,7 +241,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "textarea",
@@ -243,7 +251,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputPassword(_inputAttrs: AttrPair*)(
@@ -251,7 +260,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "password",
@@ -260,7 +270,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputEmail(_inputAttrs: AttrPair*)(
@@ -268,7 +279,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "email",
@@ -277,7 +289,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputUrl(_inputAttrs: AttrPair*)(
@@ -285,7 +298,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "url",
@@ -294,7 +308,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputTel(_inputAttrs: AttrPair*)(
@@ -302,7 +317,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "tel",
@@ -311,7 +327,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputFile(_inputAttrs: AttrPair*)(
@@ -319,7 +336,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "file",
@@ -328,7 +346,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputColor(_inputAttrs: AttrPair*)(
@@ -336,7 +355,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "color",
@@ -345,7 +365,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputNumber(_inputAttrs: AttrPair*)(
@@ -353,7 +374,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "number",
@@ -362,7 +384,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputRange(_inputAttrs: AttrPair*)(
@@ -370,7 +393,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "range",
@@ -379,7 +403,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputTime(_inputAttrs: AttrPair*)(
@@ -387,7 +412,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "time",
@@ -396,7 +422,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputWeek(_inputAttrs: AttrPair*)(
@@ -404,7 +431,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "week",
@@ -413,7 +441,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputMonth(_inputAttrs: AttrPair*)(
@@ -421,7 +450,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "month",
@@ -430,7 +460,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputDate(_inputAttrs: AttrPair*)(
@@ -438,7 +469,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "date",
@@ -447,7 +479,8 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   def inputDateTimeLocal(_inputAttrs: AttrPair*)(
@@ -455,7 +488,8 @@ trait FormComponents {
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
-      _messages: Seq[String] = Seq.empty
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
       "datetime-local",
@@ -464,18 +498,19 @@ trait FormComponents {
       _help,
       _validationState,
       _messages,
-      _inputAttrs
+      _inputAttrs,
+      _transform
     )
 
   /* buttons */
   def inputSubmit(_inputAttrs: AttrPair*)(_value: String): Frag =
-    constructInputButtonCleaned("submit", _value, _inputAttrs)
+    constructInputButtonCleaned("submit", _value, _value, _inputAttrs)
 
-  def inputButton(_inputAttrs: AttrPair*)(_value: String): Frag =
-    constructInputButtonCleaned("button", _value, _inputAttrs)
+  def inputButton(_inputAttrs: AttrPair*)(_value: String, _label: Frag): Frag =
+    constructInputButtonCleaned("button", _value, _label, _inputAttrs)
 
   def inputReset(_inputAttrs: AttrPair*)(_value: String): Frag =
-    constructInputButtonCleaned("reset", _value, _inputAttrs)
+    constructInputButtonCleaned("reset", _value, _value, _inputAttrs)
 
   /* hidden */
   def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
@@ -563,7 +598,8 @@ trait FormComponents {
       _help: String,
       _validationState: Option[ValidationState],
       _messages: Seq[String],
-      _attrs: Seq[AttrPair]
+      _attrs: Seq[AttrPair],
+      _transform: Frag => Frag
   ): Frag = {
     val inputId            = getAttrValue(_attrs, "id")
     val inputValue         = getAttrValue(_attrs, "value")
@@ -579,13 +615,15 @@ trait FormComponents {
       inputHelp,
       _validationState,
       _messages,
-      inputAttrsFiltered
+      inputAttrsFiltered,
+      _transform
     )
   }
 
   private def constructInputButtonCleaned(
       _type: String,
       _value: String,
+      _label: Frag,
       _attrs: Seq[AttrPair]
   ): Frag = {
     val inputValue         = getIfNotBlank(_value)
@@ -595,6 +633,7 @@ trait FormComponents {
       _type,
       inputId,
       inputValue,
+      _label,
       inputAttrsFiltered
     )
   }

@@ -44,7 +44,8 @@ trait BulmaFormComponents extends FormComponents {
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
-      inputAttrs: Seq[AttrPair]
+      inputAttrs: Seq[AttrPair],
+      inputTransform: Frag => Frag
   ) = {
     val inputCls = if (inputType == "textarea") "textarea" else "input"
     val commonAttrs = Seq(cls := inputCls, tpe := inputType, name := inputName) ++
@@ -52,9 +53,10 @@ trait BulmaFormComponents extends FormComponents {
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help")(m))
     val inputValidationCls = inputValidationState.map(cls := _.clazz)
-    val inputFieldContent =
+    val inputFrag =
       if (inputType == "textarea") textarea(commonAttrs, inputValidationCls)(inputValue)
       else input(commonAttrs, inputValidationCls)
+    val inputFragTransformed = inputTransform(inputFrag)
 
     val bulmaField =
       div(cls := "field")(
@@ -62,7 +64,7 @@ trait BulmaFormComponents extends FormComponents {
           .filterNot(_ => formType == Type.Horizontal) // ignore if horizontal
           .map(l => label(cls := "label", inputId.map(`for` := _))(inputLabel)),
         div(cls := "control")(
-          inputFieldContent
+          inputFragTransformed
         ),
         inputMsgsFrag,
         inputHelpFrag
@@ -90,12 +92,13 @@ trait BulmaFormComponents extends FormComponents {
       inputType: String,
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val btnField =
-      if (inputType == "button") button(btnClass, commonAttrs)(inputValue)
+      if (inputType == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
 
     val bulmaField =

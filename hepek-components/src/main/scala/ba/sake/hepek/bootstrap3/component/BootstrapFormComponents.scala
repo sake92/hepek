@@ -43,16 +43,18 @@ trait BootstrapFormComponents extends FormComponents {
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
       inputMessages: Seq[String],
-      inputAttrs: Seq[AttrPair]
+      inputAttrs: Seq[AttrPair],
+      inputTransform: Frag => Frag
   ) = {
     val commonAttrs = Seq(cls := "form-control", tpe := inputType, name := inputName) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(cls := _.clazz)
-    val inputFieldFrag =
+    val inputFrag =
       if (inputType == "textarea") textarea(commonAttrs)(inputValue)
       else input(commonAttrs)
+    val inputFragTransformed = inputTransform(inputFrag)
 
     formType match {
       case ft: Type.Horizontal =>
@@ -62,7 +64,7 @@ trait BootstrapFormComponents extends FormComponents {
             inputLabel
           ),
           div(cls := colInput)(
-            inputFieldFrag,
+            inputFragTransformed,
             inputMsgsFrag,
             inputHelpFrag
           )
@@ -70,7 +72,7 @@ trait BootstrapFormComponents extends FormComponents {
       case _ =>
         formGroup(inputValidationCls.toSeq: _*)(
           inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
-          inputFieldFrag,
+          inputFragTransformed,
           inputMsgsFrag,
           inputHelpFrag
         )
@@ -81,12 +83,13 @@ trait BootstrapFormComponents extends FormComponents {
       inputType: String,
       inputId: Option[String],
       inputValue: Option[String],
+      inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := inputType) ++
       inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val btnFrag =
-      if (inputType == "button") button(btnClass, commonAttrs)(inputValue)
+      if (inputType == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
 
     formType match {
