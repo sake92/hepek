@@ -18,6 +18,10 @@ trait HepekPlayForm {
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
 
+  private val DefaultLabel                   = ""
+  private val DefaultHelp                    = ""
+  private val DefaultTransform: Frag => Frag = identity
+
   def form(attrPairs: AttrPair*)(
       action: Call,
       method: String = "POST"
@@ -27,52 +31,369 @@ trait HepekPlayForm {
   }
 
   def inputText(attrs: AttrPair*)(
-      f: Field,
-      label: String = "",
-      help: String = "",
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
       validationState: Option[fc.ValidationState] = None,
-      validationMessage: Option[String] = None
-  )(
-      implicit messages: Messages
-  ): Frag = {
-    val labell        = getIfNotBlank(label) getOrElse f.label
-    val (state, msgs) = stateAndMessages(f, validationState, validationMessage)
-    val inputAttrsFiltered = constraintAttrPairs(f, attrs) ++
-      attrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++
-      Seq(id := f.id) ++ f.value.map(value := _)
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputText(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
 
-    fc.inputText(inputAttrsFiltered: _*)(
-      f.name,
-      labell,
-      help,
-      state,
-      msgs
+  def inputTextArea(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputTextArea(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
     )
   }
 
   def inputPassword(attrs: AttrPair*)(
-      f: Field,
-      help: String = "",
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
       validationState: Option[fc.ValidationState] = None,
-      validationMessage: Option[String] = None
-  )(
-      implicit messages: Messages
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputPassword(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputEmail(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputEmail(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputUrl(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputUrl(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputTel(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputTel(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputFile(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputFile(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputColor(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputColor(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputNumber(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputNumber(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputRange(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputRange(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputTime(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputTime(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputWeek(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputWeek(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputMonth(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputMonth(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputDate(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputDate(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputDateTimeLocal(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      validationState: Option[fc.ValidationState] = None,
+      messages: Seq[String] = Seq.empty,
+      transform: Frag => Frag = DefaultTransform
+  )(implicit playMsgs: Messages): Frag = {
+    val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
+    fc.inputDateTimeLocal(attrs: _*)(
+      params.name,
+      params.label,
+      params.help,
+      params.validationState,
+      params.messages
+    )
+  }
+
+  def inputCheckbox(attrs: AttrPair*)(
+      field: Field,
+      label: String = DefaultLabel,
+      help: String = DefaultHelp
   ): Frag = {
-    val (state, msgs) = stateAndMessages(f, validationState, validationMessage)
-    val inputAttrsFiltered = constraintAttrPairs(f, attrs) ++
+    val labell = getIfNotBlank(label) getOrElse field.label
+    fc.inputCheckbox(attrs: _*)(field.name, labell, help)
+  }
+
+  def inputCheckboxes(
+      field: Field,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      isInline: Boolean = true
+  ): Frag = {
+    val labell = getIfNotBlank(label) getOrElse field.label
+    fc.inputCheckboxes(field.name, valueAndLabelAndAttrs, labell, help, isInline)
+  }
+
+  def inputRadio(
+      field: Field,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      label: String = DefaultLabel,
+      help: String = DefaultHelp,
+      isInline: Boolean = true,
+      checkedValue: String = ""
+  ): Frag = {
+    val labell = getIfNotBlank(label) getOrElse field.label
+    fc.inputRadio(field.name, valueAndLabelAndAttrs, labell, help, isInline, checkedValue)
+  }
+
+  def inputSelect(attrs: AttrPair*)(
+      field: Field,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      label: String = DefaultLabel,
+      help: String = DefaultHelp
+  ): Frag = {
+    val labell = getIfNotBlank(label) getOrElse field.label
+    fc.inputSelect(attrs: _*)(field.name, valueAndLabelAndAttrs, labell, help)
+  }
+
+  def inputSelectGrouped(attrs: AttrPair*)(
+      field: Field,
+      valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      label: String = DefaultLabel,
+      help: String = DefaultHelp
+  ): Frag = {
+    val labell = getIfNotBlank(label) getOrElse field.label
+    fc.inputSelectGrouped(attrs: _*)(field.name, valueAndLabelAndAttrsGrouped, labell, help)
+  }
+
+  /* helpers */
+  private[hepek] case class HepekInputNormalParams(
+      name: String,
+      label: String,
+      help: String,
+      validationState: Option[fc.ValidationState],
+      messages: Seq[String],
+      transform: Frag => Frag
+  )
+
+  private def getNormalParams(
+      field: Field,
+      label: String,
+      help: String,
+      validationState: Option[fc.ValidationState],
+      messages: Seq[String],
+      transform: Frag => Frag,
+      attrs: Seq[AttrPair]
+  )(implicit playMsgs: Messages): HepekInputNormalParams = {
+    val labell        = getIfNotBlank(label) getOrElse field.label
+    val (state, msgs) = stateAndMessages(field, validationState, messages)
+    val inputAttrsFiltered = constraintAttrPairs(field, attrs) ++
       attrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++
-      Seq(id := f.id) ++ f.value.map(value := _)
-    fc.inputPassword(inputAttrsFiltered: _*)(f.name, f.label, help, state, msgs)
+      Seq(id := field.id) ++ field.value.map(value := _)
+    HepekInputNormalParams(
+      field.name,
+      labell,
+      help,
+      state,
+      msgs,
+      transform
+    )
   }
 
   private def stateAndMessages(
-      f: Field,
-      validationState: Option[fc.ValidationState] = None,
-      validationMessage: Option[String] = None
-  )(implicit messages: Messages): (Option[fc.ValidationState], Seq[String]) = {
+      field: Field,
+      validationState: Option[fc.ValidationState],
+      messages: Seq[String]
+  )(implicit playMsgs: Messages): (Option[fc.ValidationState], Seq[String]) = {
     val maybeValidationState = validationState orElse
-      (if (f.hasErrors) Some(fc.ValidationState.Error) else None)
-    val inputMessages = f.errors.map(_.format) ++ validationMessage.toSeq
+      (if (field.hasErrors) Some(fc.ValidationState.Error) else None)
+    val inputMessages = field.errors.map(_.format) ++ messages
     (maybeValidationState, inputMessages)
   }
 

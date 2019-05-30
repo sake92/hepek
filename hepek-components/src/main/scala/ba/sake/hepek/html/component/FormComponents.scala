@@ -25,9 +25,8 @@ trait FormComponents {
   private val HandledSelectAttrs   = Set("type", "name", "id", "value")
   private val HandledOptionAttrs   = Set("type", "name", "value")
 
-  private val DefaultLabel = ""
-  private val DefaultHelp  = ""
-
+  private val DefaultLabel                   = ""
+  private val DefaultHelp                    = ""
   private val DefaultTransform: Frag => Frag = identity
 
   /* Validation stuff */
