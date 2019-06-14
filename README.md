@@ -26,7 +26,7 @@ These are some of the features:
 
 ---
 ## Hepek
-Static site generator for developers. 
+Static site generator for developers.  
 Adds these on top of Hepek-Components:
 - automatic relative paths
 - incremental rendering
