@@ -57,10 +57,10 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
   private def navbarLiTags: List[Frag] =
     for {
       page <- staticSiteSettings.mainPages
-      labela = pageCategory.getOrElse(page.pageSettings.label)
+      labela = page.pageCategory.getOrElse(page.pageSettings.label)
       klasa = {
         if (this.pageCategory.isEmpty) ""
-        else if (pageCategory == this.pageCategory) "active"
+        else if (page.pageCategory == this.pageCategory) "active"
         else ""
       }
     } yield li(cls := klasa)(a(href := page.ref)(labela))
