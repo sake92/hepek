@@ -1,6 +1,8 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.4.0
+- Play framework support
 
 ## 0.3.1
 - `half1`, `half2` are now `half`. Same for `third1` etc.
