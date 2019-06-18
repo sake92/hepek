@@ -8,7 +8,7 @@ import utils._
 import Imports._
 import resources._
 
-trait HepekDocsPage
+trait HepekDocsAbstractPage
     extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
@@ -19,8 +19,6 @@ trait HepekDocsPage
     super.prismSettings
       .withTheme(prismjs.Themes.Okaidia)
       .withLanguages(prismjs.PrismConsts.languages filter hlLangs.contains)
-
-  override def categoryPosts = Site.pages
 
   override def tocSettings = super.tocSettings.copy(
     tocType = Some(TocType.Scrollspy(45))
@@ -40,7 +38,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
   override def staticSiteSettings =
     super.staticSiteSettings
       .withIndexPage(docs.Index)
-      .withMainPages(docs.QuickStart)
+      .withMainPages(docs.hepek.components.Index, docs.hepek.Index, docs.hepek.play.Index)
 
   // CSS
   override def styleURLs = super.styleURLs ++ List(
@@ -54,20 +52,18 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
 
   override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
 
-  override def pageContent =
+  override def pageContent = {
+    import classes._
     frag(
       super.pageContent,
-      footer(cls := "text-center")(
-        hr,
-        div(cls := "btn-group btn-group-lg")(
-          hyperlink("https://github.com/sake92/hepek", cls := "btn")(
-            faBrand("github")
-          ),
-          hyperlink("https://gitter.im/sake92/hepek", cls := "btn")(
-            faBrand("gitter")
-          )
+      footer(txtAlignCenter, bgInfo, cls := "navbar-fixed-bottom")(
+        hyperlink("https://github.com/sake92/hepek", btnClass)(
+          faBrand("github")
+        ),
+        hyperlink("https://gitter.im/sake92/hepek", btnClass)(
+          faBrand("gitter")
         )
       )
     )
-
+  }
 }

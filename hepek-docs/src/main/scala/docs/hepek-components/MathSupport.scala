@@ -1,10 +1,10 @@
-package docs
+package docs.hepek.components
 
 import scalatags.Text.all._
 import ba.sake.hepek.katex.KatexDependencies
 import utils._, Imports._
 
-object MathSupport extends templates.HepekDocsPage with KatexDependencies {
+object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
 
   override def pageSettings =
     super.pageSettings.withTitle("Math support")
@@ -12,14 +12,13 @@ object MathSupport extends templates.HepekDocsPage with KatexDependencies {
   override def blogSettings =
     super.blogSettings.withSections(mathSection)
 
-  /* CONTENT */
   val mathSection = Section(
     "Math support",
     frag(
-      md("""
+      """
         Hepek has support for KaTeX and MathJax.  
         Preferred library is KaTeX because it is faster and lighter than MathJax.  
-        Also, hepek supports PDF rendering only with KaTeX!
+        Also, Hepek SSG supports PDF rendering only with KaTeX!
 
         KaTeX supports only LaTeX syntax, but you'll get used to it quickly.  
         Of course, you need to extend [`KatexDependencies`](${links.KatexDependenciesUrl}).
@@ -44,7 +43,7 @@ object MathSupport extends templates.HepekDocsPage with KatexDependencies {
         You need to be careful with Scala's character escaping, e.g. when you want to type
         `\notin` Scala will try to parse `\n` as newline...
         So you'll get into that with trial and error. xD
-      """)
+      """.md
     )
   )
 

@@ -1,9 +1,9 @@
-package docs
+package docs.hepek.components
 
 import scalatags.Text.all._
 import utils._, Imports._
 
-object Dependencies extends templates.HepekDocsPage {
+object Dependencies extends HepekComponentsDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("JS and CSS dependencies")
@@ -11,7 +11,6 @@ object Dependencies extends templates.HepekDocsPage {
   override def blogSettings =
     super.blogSettings.withSections(depsSection)
 
-  /* CONTENT */
   val depsSection = Section(
     "JS/CSS dependencies",
     frag(
@@ -26,6 +25,8 @@ object Dependencies extends templates.HepekDocsPage {
 
           def scriptURLs: List[String]    = List.empty
           def scriptsInline: List[String] = List.empty
+
+          def components: List[(BaseComponentSettings, ComponentDependencies)] = List.empty
         }
       """),
       s"""
@@ -33,14 +34,13 @@ object Dependencies extends templates.HepekDocsPage {
         But sometimes you need to inject some inline JS and CSS. 
           Those have corresponding settings also.  
         
-        When you extend `SomeLibraryDependencies`, 
-          these library dependencies are added to the final list of dependencies.  
+        You can override any of these to filter/add/change dependencies. :)  
         E.g. `override def scriptURLs = super.scriptURLs ++ "http://whatever/jquery.min.js"`  
-        These `scriptURLs` are appended as scripts at the end of body.  
-        Then the `scriptsInline` are added after those.
-
-        ---
-        Of course, you can also override these to filter/add/change dependencies. :)
+        
+        Last method, `def components` is used by framework dependencies.  
+        E.g. if you want to include Katex, just extend the `KatexDependencies` trait.  
+        In it you can override Katex-specific properties.  
+        No need to fiddle with its dependencies and config on your own. :)
       """.md
     )
   )

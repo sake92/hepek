@@ -1,9 +1,9 @@
-package docs
+package docs.hepek
 
 import scalatags.Text.all._
 import utils._, Imports._
 
-object PdfGenerator extends templates.HepekDocsPage {
+object PdfGenerator extends HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Pdf generator")
@@ -12,7 +12,6 @@ object PdfGenerator extends templates.HepekDocsPage {
     pdfGeneratorSection
   )
 
-  /* CONTENT */
   val pdfGeneratorSection = Section(
     "Pdf generator",
     frag(

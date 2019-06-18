@@ -1,12 +1,12 @@
-package docs
+package docs.hepek
 
 import scalatags.Text.all._
 import utils._, Imports._
 
-object QuickStart extends templates.HepekDocsPage {
+object QuickStart extends HepekDocsPage {
 
   override def pageSettings =
-    super.pageSettings.withTitle("Docs")
+    super.pageSettings.withTitle("Quick start")
 
   override def blogSettings = super.blogSettings.withSections(
     installationSection,
@@ -14,7 +14,6 @@ object QuickStart extends templates.HepekDocsPage {
     servingSection
   )
 
-  /* CONTENT */
   val installationSection = Section(
     "Installation",
     """
@@ -27,16 +26,17 @@ object QuickStart extends templates.HepekDocsPage {
     "Using",
     s"""
       Just type `sbt new sake92/hepek-starter.g8` to generate a project.  
-      Or you can the starter project from [here](${links.StarterProjectURL}).  
+      Or you can clone the starter project from [here](${links.StarterProjectURL}).  
 
       Start up sbt console and type `hepek`.  
       Voila, that's it! :)
 
-      You can also make sbt **watch for file changes**.
-      Just type `~hepek` and you'll see changes in matter of a second.
+      You can also make sbt **watch for file changes**.  
+      Just type `~hepek` and you'll see changes applied.
 
       > HTML/CSS or whatever you're rendering will be in `/target/web/public/main/site` folder.  
       > You can make an sbt task for copying these to a more desirable location.  
+      > Or you can use `sbt-ghpages` for even faster deployment!
     """.md
   )
 

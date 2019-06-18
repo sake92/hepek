@@ -1,22 +1,21 @@
-package docs
+package docs.hepek.components
 
 import java.time.LocalDate
 import scalatags.Text.all._
 import utils._
 import Imports._
 
-object Layout extends templates.HepekDocsPage {
+object GridSupport extends HepekComponentsDocsPage {
 
   override def pageSettings =
-    super.pageSettings.withTitle("Layout")
+    super.pageSettings.withTitle("Grid")
 
   override def blogSettings =
-    super.blogSettings.withSections(layoutSection)
+    super.blogSettings.withSections(gridSection)
 
-  /* CONTENT */
-  def layoutSection = Section(
-    "Layout support",
-    "Let's see what Hepek has to offer regarding layouts.",
+  def gridSection = Section(
+    "Grid support",
+    "Let's see what Hepek has to offer regarding grids.",
     List(problemSection, hepekGridSection)
   )
 
@@ -24,11 +23,11 @@ object Layout extends templates.HepekDocsPage {
     "Problem",
     frag(
       s"""
-        Most static site generators have themes with predefined layout.  
+        Most SSGs and template engines have themes with predefined layout.  
         What if you just want to position an image to the right? Not so fast!  
-        Then you mix in some inline HTML in your beautiful markdown and get a real mess...
+        You need to mix in some inline HTML in your beautiful markdown and get a real mess...
         
-        It's not hard to forget that sum of columns in a Bootstrap row must be 12.
+        Also, it's easy to forget that sum of columns in a Bootstrap row must be 12.
         For example:
       """.md,
       chl.markup("""
@@ -46,6 +45,7 @@ object Layout extends templates.HepekDocsPage {
     frag(
       s"""
         Hepek has `row` abstraction, with these types of arguments:
+          - arbitrary HTML (Scalatags `Frag`s)
           - halves, constructed with `half`
           - thirds, constructed with `third`
         
@@ -53,6 +53,10 @@ object Layout extends templates.HepekDocsPage {
         So, in a nutshell, these will compile:
       """.md,
       chl.scala("""
+        object grid extends Grid // override settings if needed
+        import grid._
+
+        row(div(), p(), "text"), // normal HTML
         row(
           half( /* content */  ),
           half(...)
@@ -90,22 +94,28 @@ object Layout extends templates.HepekDocsPage {
         Example:
       """),
       chl.scala("""
-        val lgHalfRatio  = Ratio(5, 7)    // 5:7
-        val lgThirdRatio = Ratio(4, 3, 5) // 4:3:5
+        val lgSingleRatio = Ratio(1, 4, 1) // 1:4:1
+        val lgHalfRatio   = Ratio(5, 7)    // 5:7
+        val lgThirdRatio  = Ratio(4, 3, 5) // 4:3:5
 
-        val mdHalfRatio  = Ratio(8, 4)    // 8:4
-        val mdThirdRatio = Ratio(6, 4, 2) // 6:4:2
+        val mdSingleRatio = Ratio(1, 1, 1) // 1:1:1
+        val mdHalfRatio   = Ratio(8, 4)    // 8:4
+        val mdThirdRatio  = Ratio(6, 4, 2) // 6:4:2
 
         override def screenRatios = super.screenRatios
-          .withLg(Ratios(lgHalfRatio, lgThirdRatio))
-          .withMd(Ratios(mdHalfRatio, mdThirdRatio))
+          .withLg(Ratios(lgSingleRatio, lgHalfRatio, lgThirdRatio))
+          .withMd(Ratios(mdSingleRatio, mdHalfRatio, mdThirdRatio))
           .withSm(None)
           .withXs(None)
       """),
       s"""
         These are pretty self-explanatory. For large screens, halves have 5:7 ratio.  
-        So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class.  
+        So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class (when using Bootstrap3).  
         Same pattern follows for thirds etc.
+
+        Ratio for `row`s with arbitrary HTML is specified in `singleRatio`s.  
+        First value is padding left, then the column, and then right padding.  
+        Padding can be zero, of course.
 
         Notice that `sm` and `xs` have `None` as value. These won't be filled at all.  
         This means that on small and extra-small screens these columns will stack like divs normally do.

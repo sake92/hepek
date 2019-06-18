@@ -5,7 +5,7 @@ import ba.sake.hepek.core.RelativePath
 import utils.Site
 import utils.Imports._
 
-object NotFound extends templates.HepekDocsPage {
+object NotFound extends templates.HepekDocsAbstractPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Doesn't exist")

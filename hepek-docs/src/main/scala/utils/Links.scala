@@ -9,6 +9,7 @@ object links {
 
   val StarterProjectURL = "https://github.com/sake92/hepek-starter"
 
+  val HtmlPageUrl         = hepekUrl + "HtmlPage"
   val StaticPageUrl       = hepekUrl + "/html/structure/StaticPage.scala"
   val BlogPostPageUrl     = hepekUrl + "/html/structure/blog/BlogPostPage.scala"
   val PageDependenciesUrl = hepekUrl + "/html/structure/PageDependencies.scala"

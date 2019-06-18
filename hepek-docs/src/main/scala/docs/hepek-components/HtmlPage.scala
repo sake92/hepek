@@ -1,12 +1,12 @@
-package docs
+package docs.hepek.components
 
 import scalatags.Text.all._
 import utils._, Imports._
 
-object StaticPage extends templates.HepekDocsPage {
+object HtmlPage extends HepekComponentsDocsPage {
 
   override def pageSettings =
-    super.pageSettings.withTitle("Static page")
+    super.pageSettings.withTitle("Html page")
 
   override def blogSettings = super.blogSettings.withSections(
     basicSettingsSection,
@@ -16,14 +16,7 @@ object StaticPage extends templates.HepekDocsPage {
 
   val siteSettingsProps = List(
     ClassProperty("name", "Option[String]", "Name of this site", Some("None")),
-    ClassProperty("indexPage", "Option[StaticPage]", "Home page", Some("None")),
-    ClassProperty(
-      "mainPages",
-      "List[StaticPage]",
-      "Pages to display in navbar",
-      Some("List.empty")
-    ),
-    ClassProperty("faviconNormal", "Option[String]", "Favicon of the site", Some("None")),
+    ClassProperty("faviconNormal", "Option[String]", "Favicon of this site", Some("None")),
     ClassProperty(
       "faviconInverted",
       "Option[String]",
@@ -36,12 +29,6 @@ object StaticPage extends templates.HepekDocsPage {
     ClassProperty("title", "String", "Title of this page", Some("changeme")),
     ClassProperty("label", "String", "Label used for link to this page", Some("<same as title>")),
     ClassProperty("language", "String", "Language of this page", Some("en")),
-    ClassProperty(
-      "category",
-      "Option[String]",
-      "Page category, used for grouping pages",
-      Some("None")
-    ),
     ClassProperty("description", "Option[String]", "Description of page content", Some("None"))
   )
 
@@ -50,20 +37,19 @@ object StaticPage extends templates.HepekDocsPage {
     "Basic settings",
     frag(
       s"""
-        When you extend [`StaticPage`](${links.StaticPageUrl}) you get basic support for HTML page.  
+        When you extend [`HtmlPage`](${links.HtmlPageUrl}) you get basic support for a HTML page.  
          
-        First we'll define a template for all our static pages.  
+        First we'll define a template for all our pages.  
         Here we can put site-wide settings, include common JS and CSS dependencies.  
-        For basic site settings you override `def siteSettings: SiteSettings`. It has the following fields:
+        For basic site settings you override `def siteSettings`. It has the following fields:
       """.md,
       renderClassProps(siteSettingsProps),
       "`SiteSettings` are usually defined in a common trait, for example:".md,
       chl.scala("""
-        trait MySiteTemplate extends StaticPage {
+        trait MyPageTemplate extends HtmlPage {
           override def siteSettings =
             super.siteSettings
               .withName("example.com")
-              .withIndexPage(site.Index)
               .withFaviconNormal(images.ico("favicon").ref)
         }
       """),
@@ -77,17 +63,13 @@ object StaticPage extends templates.HepekDocsPage {
       chl.scala("""
         package site
         
-        object Index extends MySiteTemplate {
+        object Index extends MyPageTemplate {
           override def pageSettings =
-            PageSettings("Welcome!") // title
+            super.pageSettings
+              .withTitle("Welcome!")
               .withDescription("My cool site")
         }
-      """),
-      """
-        You can get a relative link to `Index` page with `ref` method.  
-        E.g. if you have a page in `site.posts` package (notice that `Index` is in the `site` package), 
-          `Index.ref` will give you a string "../index.html"
-      """.md
+      """)
     )
   )
 
@@ -96,8 +78,7 @@ object StaticPage extends templates.HepekDocsPage {
     s"""
       Next up is the `def bodyContent: List[Frag]` method.  
       You guessed it, it is the `<body>` of your HTML page. :)  
-      Here you type Scalatags and get it rendered in the body of your page.  
-      By default it is empty list.
+      Here you type content to be rendered in the body of your page.  
     """.md
   )
 

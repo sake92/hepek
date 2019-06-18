@@ -1,9 +1,9 @@
-package docs
+package docs.hepek.components
 
 import scalatags.Text.all._
 import utils._, Imports._
 
-object CodeHighlighter extends templates.HepekDocsPage {
+object CodeHighlighter extends HepekComponentsDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Code highlighter")
@@ -11,7 +11,6 @@ object CodeHighlighter extends templates.HepekDocsPage {
   override def blogSettings =
     super.blogSettings.withSections(codeHighlighterSection)
 
-  /* CONTENT */
   def codeHighlighterSection = Section(
     "Code highlighter",
     frag(
@@ -45,7 +44,7 @@ object CodeHighlighter extends templates.HepekDocsPage {
       s"""
         ---
         There is support for all PrismJS languages.  
-        Also, most of PrismJS are expressed as methods:
+        Also, most of PrismJS features are expressed as methods:
         - `chl.<language>.ajax("some.url")` fetches file via AJAX
         - `chl.<language>.github("TheAdnan", "focustube", "index.js")` fetches file from Github
         - `chl.<language>.gist("65a82e76597f2fb6c2af", Option("Brick.ts")` fetches from Gist

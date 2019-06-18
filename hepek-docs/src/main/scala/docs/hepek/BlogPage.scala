@@ -1,9 +1,9 @@
-package docs
+package docs.hepek
 
 import scalatags.Text.all._
 import utils._, Imports._
 
-object BlogPage extends templates.HepekDocsPage {
+object BlogPage extends HepekDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Blog page")
@@ -31,9 +31,9 @@ object BlogPage extends templates.HepekDocsPage {
     "Blog post settings",
     frag(
       s"""
-        When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a blog post page.  
+        When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a static blog post page.  
         For a Bootstrap-themed page extend [`HepekBootstrap3BlogPage`](${links.HepekBootstrap3BlogPagesUrl}).  
-        You can override `def blogSettings: BlogSettings` method with following fields:
+        You can override `def blogSettings` method with following fields:
       """.md,
       renderClassProps(blogPageSettingsProps)
     )
@@ -43,9 +43,10 @@ object BlogPage extends templates.HepekDocsPage {
     "Sections",
     frag(
       """
+        Instead of overriding `pageContent`, here you specify `withSections` on `blogSettings`.  
         A blog post is made of **sections**, so you can render a nice TOC, sitemap.xml, or even a PDF...  
         `Section`s are tree-like, they can contain other sections.  
-        Every section has a name (title), content, and optionally child sections.  
+        Every section has a name, content, and optionally child sections.  
         Code usually looks similar to this:
       """.md,
       chl.scala("""
@@ -77,7 +78,7 @@ object BlogPage extends templates.HepekDocsPage {
     """
       There is also `def categoryPosts: List[BlogPostPage]` method.  
       It is used for grouping posts, posts that belong to same "category".  
-      Also, it can be used for a sidebar with related posts links.  
+      It can be used for a sidebar with related posts links (like the one you can see on the left).  
 
       *Example*: Let's say you are writing math tutorials.  
       You'll have separate templates for different topics: 

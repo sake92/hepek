@@ -1,17 +1,15 @@
 package docs
 
+import java.time.LocalDate
 import scalatags.Text.all._
 import utils.Imports._
 import templates.HepekDocsStaticPage
-import java.time.LocalDate
 
 object grid extends Grid {
-  override def screenRatios =
-    super.screenRatios
-      .withSm(None)
-      .withXs(None)
-      .withLg(Ratios(Ratio(1, 1), Ratio(1, 4, 1)))
-      .withMd(Ratios(Ratio(1, 1), Ratio(1, 4, 1)))
+  override def screenRatios = {
+    val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
+    super.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
+  }
 }
 
 object Index extends HepekDocsStaticPage {
@@ -30,39 +28,20 @@ object Index extends HepekDocsStaticPage {
         h1("Welcome!")
       ),
       row(
-        third(),
-        third(
-          s"""
-            Hepek turns Scala `object`s into files.
-            Everything you can `println` to screen *Hepek* can write to a file.
+        s"""
+          Hepek is a collection of useful projects for typesafe HTML construction:
+          - [components](${hepek.components.Index.ref})
+          - [static site generator](${hepek.Index.ref})
+          - [Play framework integration](${hepek.play.Index.ref})
 
-            It contains lots of useful functions for *rendering stuff*, 
-              like blogging support, css layout, code highlighting.  
-            There is no special new markup/template language to learn, just plain old **Scala**.  
-            `Ctrl` + `Space` and you get all the help needed.
-            You can use Scalatags, Markdown or whatever syntax **you** find useful.
-            
-            ## So what?
-            Say goodbye to emmet snippets and regex find-and-replace...
-            Now you can use functions, for loops, data abstractions etc. What more do you need really?  
+          Components can be used in any project. It only depends on Scalatags and Commonmark.  
+          If you need typesafe grid, form inputs, markdown and lots more, 
+          this is the library you're looking for.
 
-            Also, since content is just a Scala `object`, you can use it directly
-              to construct table of contents, RSS feed, `sitemap.xml`, PDF and Word docs.  
+          SSG has support for automatic relative links, PDF rendering and lots more.
 
-            Sick of rewriting relative urls all over the place, like `my/folder/../styles.....`?  
-            Me too, the year is ${currYear.getYear()}, we can do better!  
-            Just use `.ref` method and you're done! Hepek figures out path instead of you.
-
-            Hepek uses *incremental rendering* by default.  
-            If you change an object, it only renders objects which depend on it. Neat!
-
-            Linux, OSX, Windows supported? Of course. Thanks JVM!  
-
-            And, yes, this site is built with Hepek.
-
-          """.md
-        ),
-        third()
+          Hepek-Play seamlessly integrates components with Play framework.
+        """.md
       ),
       super.pageContent
     )
