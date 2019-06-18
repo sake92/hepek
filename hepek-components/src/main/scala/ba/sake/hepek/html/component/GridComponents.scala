@@ -5,11 +5,18 @@ import scalatags.Text.all._
 trait GridComponents {
   import GridComponents._
 
+  // utility for making a row with a single column
+  private[hepek] def mkRowSingleCol(content: Seq[Frag]): Frag
+
   private[hepek] def mkRow(content: Frag*): Frag
+
   private[hepek] def mkCol2(index: Int, content: Col2): Frag
   private[hepek] def mkCol3(index: Int, content: Col3): Frag
 
   // ROW
+  def row(content: Frag*): Frag =
+    mkRowSingleCol(content)
+
   def row(c1: Col2, c2: Col2): Frag =
     mkRow(
       mkCol2(0, c1),
@@ -39,8 +46,8 @@ trait GridComponents {
 
 object GridComponents {
 
-  case class Col2(content: List[Frag])
-  case class Col3(content: List[Frag])
+  case class Col2(content: List[Frag]) // 2 parts
+  case class Col3(content: List[Frag]) // 3 parts
 
   case class Ratio(values: List[Int])
 
@@ -49,11 +56,18 @@ object GridComponents {
   }
 
   case class Ratios(
+      single: Ratio = Ratios.DefaultSingle,
       half: Ratio = Ratios.DefaultHalf,
       third: Ratio = Ratios.DefaultThird
   ) {
-    require(half.values.length == 2, "Halves ratios must contain exactly 2 values.")
-    require(third.values.length == 3, "Thirds ratios must contain exactly 3 values.")
+    require(
+      half.values.length == 2,
+      s"Halves ratios must contain exactly 2 values. Actual: ${half.values}"
+    )
+    require(
+      third.values.length == 3,
+      s"Thirds ratios must contain exactly 3 values. Actual: ${third.values}"
+    )
     def withHalf(r: Ratio)  = copy(half = r)
     def withThird(r: Ratio) = copy(third = r)
   }
@@ -75,8 +89,9 @@ object GridComponents {
   }
 
   object Ratios {
-    val DefaultHalf  = Ratio(1, 1)
-    val DefaultThird = Ratio(1, 1, 1)
-    val Default      = Ratios(DefaultHalf, DefaultThird)
+    val DefaultSingle = Ratio(0, 1, 0) // 0:1:0, no padding
+    val DefaultHalf   = Ratio(1, 1)
+    val DefaultThird  = Ratio(1, 1, 1)
+    val Default       = Ratios(DefaultSingle, DefaultHalf, DefaultThird)
   }
 }

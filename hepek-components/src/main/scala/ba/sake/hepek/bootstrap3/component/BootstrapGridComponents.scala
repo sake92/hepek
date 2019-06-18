@@ -11,6 +11,17 @@ trait BootstrapGridComponents extends GridComponents {
   private[hepek] override def mkRow(content: Frag*): Frag =
     div(cls := "row")(content)
 
+  private[hepek] def mkRowSingleCol(content: Seq[Frag]): Frag = {
+    val classes1 = singleRatioClasses(0).map(cls := _)
+    val classes2 = singleRatioClasses(1).map(cls := _)
+    val classes3 = singleRatioClasses(2).map(cls := _)
+    mkRow(
+      div(classes1),
+      div(classes2)(content),
+      div(classes3)
+    )
+  }
+
   private[hepek] override def mkCol2(index: Int, content: Col2): Frag = {
     val classes = halfRatioClasses(index).map(cls := _)
     div(classes)(content.content)
@@ -22,6 +33,14 @@ trait BootstrapGridComponents extends GridComponents {
   }
 
   /* HELPERS */
+  private def singleRatioClasses(index: Int): List[String] = {
+    val lg = lgClass(screenRatios.lg.single, index)
+    val md = screenRatios.md.map(r => mdClass(r.single, index))
+    val sm = screenRatios.sm.map(r => smClass(r.single, index))
+    val xs = screenRatios.xs.map(r => xsClass(r.single, index))
+    List(Option(lg), md, sm, xs).flatten
+  }
+
   private def halfRatioClasses(index: Int): List[String] = {
     val lg = lgClass(screenRatios.lg.half, index)
     val md = screenRatios.md.map(r => mdClass(r.half, index))
