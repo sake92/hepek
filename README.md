@@ -4,55 +4,37 @@ Motivation? Typesafe HTML, but not too much.
 See this post also: [Why templates are dead](https://codeburst.io/80-of-my-coding-is-doing-this-or-why-templates-are-dead-b640fc149e22)
 
 ## Projects
-- **Hepek-Components**, typesafe helpers built around Scalatags and various HTML/CSS/JS frameworks/libraries
+- **Hepek-Components**, typesafe helpers for templates, grid, forms etc. (supports Bootstrap3, Bulma, PureCSS)
 - **Hepek**, static site generator
 - **Hepek-Play**, Play framework integration
 
 ---
 ## Hepek-Components
-Bunch of Scalatags helpers.  
 Used in Hepek and Hepek-Play.  
-Can be used in a standalone projects also:  
+For standalone use:  
 `"ba.sake" %% "hepek-components" % "0.4.0"`
-
-These are some of the features:
-- typesafe templates
-- typesafe grids
-- typesafe form inputs
-- markdown
-- code highlighting
-- math
 
 
 ---
 ## Hepek
 Static site generator for developers.  
-Adds these on top of Hepek-Components:
-- automatic relative paths
-- incremental rendering
-- PDF rendering
-
 You can start with cloning the [starter template](https://github.com/sake92/hepek-starter),  
 or fork && deploy with Netlify (yes, for free) in just a few clicks:  
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
 
-### Docs and examples
-- [docs](https://sake92.github.io/hepek)
+### Examples
 - [examples](https://github.com/sake92/hepek-examples)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 
 
 ---
 ## Hepek-Play
-Adds these on top of Hepek-Components:
-- writeable `HtmlPage`
-- support for Play's `Field`s
+Play framework integration.
 
 ## TODO
 - ScalaJS components
-- integrate more CSS and JS libraries/frameworks
-
+- server-side rendering
 
 
 
