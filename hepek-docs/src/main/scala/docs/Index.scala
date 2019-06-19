@@ -30,8 +30,8 @@ object Index extends HepekDocsStaticPage {
       row(
         s"""
           Hepek is a collection of useful projects for typesafe HTML construction:
-          - [components](${hepek.components.Index.ref})
-          - [static site generator](${hepek.Index.ref})
+          - [Components](${hepek.components.Index.ref})
+          - [Static site generator](${hepek.Index.ref})
           - [Play framework integration](${hepek.play.Index.ref})
 
           Components can be used in any project. It only depends on Scalatags and Commonmark.  
@@ -40,7 +40,7 @@ object Index extends HepekDocsStaticPage {
 
           SSG has support for automatic relative links, PDF rendering and lots more.
 
-          Hepek-Play seamlessly integrates components with Play framework.
+          Hepek Play seamlessly integrates components with Play framework.
         """.md
       ),
       super.pageContent

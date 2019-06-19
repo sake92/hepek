@@ -7,18 +7,18 @@ object Index extends HepekComponentsDocsPage {
 
   override def pageSettings =
     super.pageSettings
-      .withTitle("Hepek components")
-      .withDescription("Hepek components")
+      .withTitle("Hepek Components")
+      .withDescription("Hepek Components")
 
   override def blogSettings = super.blogSettings.withSections(
     introSection
   )
 
   val introSection = Section(
-    "Hepek components",
+    "Hepek Components",
     frag(
       s"""
-          Hepek components contain the core components of Hepek SSG and Hepek Play.  
+          Hepek Components contain the core components of Hepek SSG and Hepek Play.  
           These are mostly wrappers around Scalatags.  
 
           Components are interface-based so we can compose them easily and replace with no effort.  

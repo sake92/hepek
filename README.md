@@ -4,13 +4,13 @@ Motivation? Typesafe HTML, but not too much.
 See this post also: [Why templates are dead](https://codeburst.io/80-of-my-coding-is-doing-this-or-why-templates-are-dead-b640fc149e22)
 
 ## Projects
-- **Hepek-Components**, typesafe helpers for templates, grid, forms etc. (supports Bootstrap3, Bulma, PureCSS)
-- **Hepek**, static site generator
-- **Hepek-Play**, Play framework integration
+- [**Hepek Components**](https://sake92.github.io/hepek/hepek/components/index.html), typesafe templates, grid, forms etc. (supports Bootstrap3, Bulma, PureCSS)
+- [**Hepek**](https://sake92.github.io/hepek/hepek/index.html), static site generator
+- [**Hepek Play**](https://sake92.github.io/hepek/hepek/play/index.html), Play framework integration
 
 ---
-## Hepek-Components
-Used in Hepek and Hepek-Play.  
+## Hepek Components
+Used in Hepek and Hepek Play.  
 For standalone use:  
 `"ba.sake" %% "hepek-components" % "0.4.0"`
 
@@ -29,8 +29,9 @@ or fork && deploy with Netlify (yes, for free) in just a few clicks:
 
 
 ---
-## Hepek-Play
+## Hepek Play
 Play framework integration.
+- [examples](https://github.com/sake92/play-hepek-example)
 
 ## TODO
 - ScalaJS components
