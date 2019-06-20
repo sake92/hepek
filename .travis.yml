@@ -25,6 +25,7 @@ jobs:
     - stage: test
     - env: TEST="all"
       script: sbt ++$TRAVIS_SCALA_VERSION "test"
+      script: sonar-scanner
     - stage: release
       script: sbt ci-release
     
@@ -32,5 +33,11 @@ notifications:
   email:
     - sakib@sake.ba
 
+
+addons:
+  sonarcloud:
+    organization: "sake92-github"
+    token:
+      secure: $SONAR_TOKEN
 
 
