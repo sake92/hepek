@@ -5,7 +5,9 @@ import ba.sake.hepek.html.statik.BlogPostPage
 trait HepekPlayDocsPage extends templates.HepekDocsAbstractPage {
 
   override def categoryPosts: List[BlogPostPage] = List(
-    Index
+    Index,
+    PlayBundle,
+    Form
   )
 
   override def pageCategory = Some(Index.pageSettings.label)

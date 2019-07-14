@@ -20,7 +20,8 @@ object Index extends HepekPlayDocsPage {
       s"""
         Hepek Play integrates Hepek components with Play framework.
 
-        TODO
+        It contains basic machinery needed to render Hepek's `HtmlPage`.  
+        This enables you to use Hepek's higher level abstractions or plain old Scalatags HTML.
 
       """.md
     )
