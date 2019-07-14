@@ -2,6 +2,7 @@
 body {
   font-size: 19px;
   padding-bottom: 33px;
+  padding-top: 55px; /* fixed top navbar */
 }
 
 /* default SVG maximum height */

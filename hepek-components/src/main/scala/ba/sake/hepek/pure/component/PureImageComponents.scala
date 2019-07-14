@@ -1,13 +1,11 @@
 package ba.sake.hepek.pure.component
 
 import scalatags.Text.all.{caption => _, _}
+import ba.sake.hepek.html.component.ImageComponents
 
-object PureImageComponents extends PureImageComponents
+trait PureImageComponents extends ImageComponents {
 
-trait PureImageComponents {
-
-  /** Renders a pretty image with optional caption text */
-  def image(source: String, caption: String = "") =
+  override def image(source: String, caption: String = "") =
     frag(
       img(src := source, cls := "pure-img", alt := caption), {
         if (caption.trim.isEmpty) frag()
@@ -15,8 +13,7 @@ trait PureImageComponents {
       }
     )
 
-  /** Renders a pretty bootstrapy SVG image with optional caption text */
-  def svg(source: String, captionn: String = "") =
+  override def svg(source: String, captionn: String = "") =
     frag(
       tag("object")(tpe := "image/svg+xml", cls := "embed-responsive-item", data := source)(
         "Problem with rendering SVG..."

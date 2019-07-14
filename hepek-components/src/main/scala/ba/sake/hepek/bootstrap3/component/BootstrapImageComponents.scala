@@ -1,13 +1,11 @@
 package ba.sake.hepek.bootstrap3.component
 
 import scalatags.Text.all.{caption => _, _}
+import ba.sake.hepek.html.component.ImageComponents
 
-object BootstrapImageComponents extends BootstrapImageComponents
+trait BootstrapImageComponents extends ImageComponents {
 
-trait BootstrapImageComponents {
-
-  /** Renders a pretty image with optional caption text */
-  def image(source: String, caption: String = "") =
+  override def image(source: String, caption: String = "") =
     if (caption.trim.isEmpty) {
       img(src := source, cls := "img-responsive", alt := caption)
     } else {
@@ -17,8 +15,7 @@ trait BootstrapImageComponents {
       )
     }
 
-  /** Renders a pretty bootstrapy SVG image with optional caption text */
-  def svg(source: String, caption: String = "") =
+  override def svg(source: String, caption: String = "") =
     if (caption.trim.isEmpty) {
       tag("object")(tpe := "image/svg+xml", cls := "embed-responsive-item", data := source)(
         "Problem with rendering SVG..."
