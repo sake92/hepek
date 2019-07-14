@@ -13,4 +13,6 @@ trait HepekComponentsDocsPage extends templates.HepekDocsAbstractPage {
     CodeHighlighter,
     MathSupport
   )
+
+  override def pageCategory = Some(Index.pageSettings.label)
 }

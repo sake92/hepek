@@ -12,4 +12,6 @@ trait HepekDocsPage extends templates.HepekDocsAbstractPage {
     BlogPage,
     PdfGenerator
   )
+
+  override def pageCategory = Some(Index.pageSettings.label)
 }

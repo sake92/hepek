@@ -7,4 +7,6 @@ trait HepekPlayDocsPage extends templates.HepekDocsAbstractPage {
   override def categoryPosts: List[BlogPostPage] = List(
     Index
   )
+
+  override def pageCategory = Some(Index.pageSettings.label)
 }
