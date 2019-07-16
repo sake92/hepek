@@ -24,8 +24,9 @@ jobs:
   include:
     - stage: test
     - env: TEST="all"
-      script: sbt ++$TRAVIS_SCALA_VERSION "test"
-      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sonar-scanner; fi']
+      script: 
+      - sbt ++$TRAVIS_SCALA_VERSION "test"
+      - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sonar-scanner; fi'] # dont sonar PRs
     - stage: release
       script: sbt ci-release
     
