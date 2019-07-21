@@ -16,7 +16,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage 
 
   override def render: String = {
     val rawContent = contents
-    // optionally XHTML-ify and pretty-fy
+    // optionally XHTML-ify and pretty-fly (for a white guy)
     if (renderXhtml || renderPretty) {
       val document = org.jsoup.Jsoup.parse(rawContent)
       document

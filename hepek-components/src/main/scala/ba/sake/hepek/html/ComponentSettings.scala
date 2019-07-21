@@ -1,5 +1,6 @@
 package ba.sake.hepek.html
 
+/** Some libraries have its specific props. These are minimum they have to provide. */
 abstract class BaseComponentSettings(
     val version: String,
     val pkg: String,

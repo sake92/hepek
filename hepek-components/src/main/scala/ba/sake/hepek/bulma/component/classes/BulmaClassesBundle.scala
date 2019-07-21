@@ -9,3 +9,4 @@ trait BulmaClassesBundle
     with BulmaBackgroundClasses
     with BulmaTextClasses
     with BulmaButtonClasses
+    with BulmaTableClasses

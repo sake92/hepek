@@ -9,3 +9,4 @@ trait BootstrapClassesBundle
     with BootstrapBackgroundClasses
     with BootstrapTextClasses
     with BootstrapButtonClasses
+    with BootstrapTableClasses

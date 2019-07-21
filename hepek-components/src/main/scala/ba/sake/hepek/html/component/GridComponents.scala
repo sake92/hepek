@@ -68,6 +68,8 @@ object GridComponents {
       third.values.length == 3,
       s"Thirds ratios must contain exactly 3 values. Actual: ${third.values}"
     )
+    
+    def withSingle(r: Ratio)  = copy(single = r)
     def withHalf(r: Ratio)  = copy(half = r)
     def withThird(r: Ratio) = copy(third = r)
   }

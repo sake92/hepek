@@ -4,6 +4,8 @@ import scalatags.Text.all._
 
 trait NavbarComponents {
 
+  // TODO nested links... :D
+
   def navbar(
       brandUrl: String,
       brandName: Option[String] = None,
