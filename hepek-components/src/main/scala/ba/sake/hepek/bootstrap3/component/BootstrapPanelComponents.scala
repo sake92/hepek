@@ -23,14 +23,14 @@ trait BootstrapPanelComponents extends PanelComponents {
   override type PanelType = Type
 
   def panel(
-      tpe: PanelType,
+      panelType: PanelType,
       body: Frag,
       header: Option[Frag] = None,
       footer: Option[Frag] = None
   ) =
-    div(cls := "panel", tpe.classes)(
-      div(cls := "panel-heading")(header),
+    div(cls := "panel", panelType.classes.map(cls := _))(
+      header.map(h => div(cls := "panel-heading")(h)),
       div(cls := "panel-body")(body),
-      div(cls := "panel-footer")(footer)
+      footer.map(f => div(cls := "panel-footer")(f))
     )
 }

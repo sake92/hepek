@@ -23,14 +23,14 @@ trait W3CssPanelComponents extends PanelComponents {
   override type PanelType = Type
 
   def panel(
-      tpe: PanelType,
+      panelType: PanelType,
       body: Frag,
       header: Option[Frag] = None,
       footer: Option[Frag] = None
   ) =
     div(cls := "w3-panel w3-border")(
-      all.header(cls := "w3-container", tpe.classes)(header),
+      header.map(h => all.header(cls := "w3-container", panelType.classes)(h)),
       div(cls := "w3-container")(body),
-      all.footer(cls := "w3-container", cls := "w3-teal")(footer)
+      footer.map(f => all.footer(cls := "w3-container", cls := "w3-teal")(f))
     )
 }
