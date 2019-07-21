@@ -16,9 +16,9 @@ trait BootstrapGridComponents extends GridComponents {
     val classes2 = singleRatioClasses(1).map(cls := _)
     val classes3 = singleRatioClasses(2).map(cls := _)
     mkRow(
-      div(classes1),
+      div(classes1, cls := "invisible"), // set invisible because of borders etc.
       div(classes2)(content),
-      div(classes3)
+      div(classes3, cls := "invisible")
     )
   }
 

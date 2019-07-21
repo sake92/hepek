@@ -61,6 +61,10 @@ object GridComponents {
       third: Ratio = Ratios.DefaultThird
   ) {
     require(
+      single.values.length == 3,
+      s"Single ratios must contain exactly 3 values (padding-left, content, padding-right). Actual: ${half.values}"
+    )
+    require(
       half.values.length == 2,
       s"Halves ratios must contain exactly 2 values. Actual: ${half.values}"
     )
@@ -69,9 +73,14 @@ object GridComponents {
       s"Thirds ratios must contain exactly 3 values. Actual: ${third.values}"
     )
 
-    def withSingle(r: Ratio) = copy(single = r)
-    def withHalf(r: Ratio)   = copy(half = r)
-    def withThird(r: Ratio)  = copy(third = r)
+    def withSingle(r: Ratio): Ratios                  = copy(single = r)
+    def withSingle(r1: Int, r2: Int, r3: Int): Ratios = withSingle(Ratio(r1, r2, r3))
+
+    def withHalf(r: Ratio): Ratios         = copy(half = r)
+    def withHalf(r1: Int, r2: Int): Ratios = withHalf(Ratio(r1, r2))
+
+    def withThird(r: Ratio): Ratios                  = copy(third = r)
+    def withThird(r1: Int, r2: Int, r3: Int): Ratios = withThird(Ratio(r1, r2, r3))
   }
 
   case class ScreenRatios(
