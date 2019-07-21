@@ -12,7 +12,7 @@ trait PanelComponents {
   type PanelType <: Type
 
   def panel(
-     tpe: PanelType,
+      tpe: PanelType,
       body: Frag,
       header: Option[Frag] = None,
       footer: Option[Frag] = None

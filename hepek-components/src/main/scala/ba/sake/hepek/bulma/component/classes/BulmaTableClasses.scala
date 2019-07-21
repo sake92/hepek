@@ -7,10 +7,10 @@ object BulmaTableClasses extends BulmaTableClasses
 
 trait BulmaTableClasses extends TableClasses {
 
-  override def tableClass     = cls := "table"
-  override def tableStriped   = cls := "is-striped"
-  override def tableBordered  = cls := "is-bordered"
-  override def tableHoverable = cls := "is-hoverable"
+  override def tableClass      = cls := "table"
+  override def tableStriped    = cls := "is-striped"
+  override def tableBordered   = cls := "is-bordered"
+  override def tableHoverable  = cls := "is-hoverable"
   override def tableResponsive = cls := "table-container" // must wrap table in this...
 
   override def tableRowSuccess = cls := "is-success"

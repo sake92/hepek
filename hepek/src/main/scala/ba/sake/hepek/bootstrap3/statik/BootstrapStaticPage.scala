@@ -21,7 +21,7 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
   private def maybeNavbar =
     navbar.map { bsNav =>
       bsNav.navbar(
-        brandUrl = staticSiteSettings.indexPage.get.ref,
+        brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
         brandName = siteSettings.name.map(" " + _),
         brandIconUrl = siteSettings.faviconInverted,
         right = navbarLiTags

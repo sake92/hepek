@@ -20,10 +20,10 @@ object BootstrapPanelComponents extends BootstrapPanelComponents {
 trait BootstrapPanelComponents extends PanelComponents {
   import BootstrapPanelComponents._
 
-  override type PanelType = Type 
+  override type PanelType = Type
 
   def panel(
-     tpe: PanelType,
+      tpe: PanelType,
       body: Frag,
       header: Option[Frag] = None,
       footer: Option[Frag] = None
