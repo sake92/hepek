@@ -34,7 +34,7 @@
 <p>First we'll define a template for all our pages.<br />
 Here we can put site-wide settings, include common JS and CSS dependencies.<br />
 For basic site settings you override <code>def siteSettings</code>. It has the following fields:</p>
-<table class="table table-hover"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>name</td><td>No</td><td>Option[String]</td><td>None</td><td>Name of this site</td></tr><tr><td>faviconNormal</td><td>No</td><td>Option[String]</td><td>None</td><td>Favicon of this site</td></tr><tr><td>faviconInverted</td><td>No</td><td>Option[String]</td><td>None</td><td>Favicon with alternative color, can be used in navbar for example</td></tr></table><p><code>SiteSettings</code> are usually defined in a common trait, for example:</p>
+<table class="table table-hover table-responsive"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>name</td><td>No</td><td>Option[String]</td><td>None</td><td>Name of this site</td></tr><tr><td>faviconNormal</td><td>No</td><td>Option[String]</td><td>None</td><td>Favicon of this site</td></tr><tr><td>faviconInverted</td><td>No</td><td>Option[String]</td><td>None</td><td>Favicon with alternative color, can be used in navbar for example</td></tr></table><p><code>SiteSettings</code> are usually defined in a common trait, for example:</p>
 <pre class="line-numbers" data-start="1"><code class="language-scala">
         trait MyPageTemplate extends HtmlPage {
           override def siteSettings =
@@ -45,7 +45,7 @@ For basic site settings you override <code>def siteSettings</code>. It has the f
       </code></pre><hr />
 <p>Per-page settings are contained in the <code>def pageSettings</code>.<br />
 <code>PageSettings</code> has the following fields:</p>
-<table class="table table-hover"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>title</td><td>No</td><td>String</td><td>changeme</td><td>Title of this page</td></tr><tr><td>label</td><td>No</td><td>String</td><td>&lt;same as title&gt;</td><td>Label used for link to this page</td></tr><tr><td>language</td><td>No</td><td>String</td><td>en</td><td>Language of this page</td></tr><tr><td>description</td><td>No</td><td>Option[String]</td><td>None</td><td>Description of page content</td></tr></table>Example of page definition:<pre class="line-numbers" data-start="1"><code class="language-scala">
+<table class="table table-hover table-responsive"><tr><th>Name</th><th>Mandatory</th><th>Type</th><th>Default value</th><th>Description</th></tr><tr><td>title</td><td>No</td><td>String</td><td>changeme</td><td>Title of this page</td></tr><tr><td>label</td><td>No</td><td>String</td><td>&lt;same as title&gt;</td><td>Label used for link to this page</td></tr><tr><td>language</td><td>No</td><td>String</td><td>en</td><td>Language of this page</td></tr><tr><td>description</td><td>No</td><td>Option[String]</td><td>None</td><td>Description of page content</td></tr></table>Example of page definition:<pre class="line-numbers" data-start="1"><code class="language-scala">
         package site
         
         object Index extends MyPageTemplate {
