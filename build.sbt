@@ -70,6 +70,7 @@ lazy val hepekDocs = (project in file("hepek-docs"))
       WebKeys.assets.value
       (hepek in Compile).value
     },
+    openIndexPage := openIndexPageTask.value,
     // gh pages stuff
     git.remoteRepo := "git@github.com:sake92/hepek.git",
     ghpagesNoJekyll := true,
@@ -95,3 +96,12 @@ lazy val hepekTests = (project in file("hepek-tests"))
   )
   .dependsOn(hepekStatic)
   .enablePlugins(HepekPlugin, SbtWeb)
+
+val openIndexPage = taskKey[Unit]("Opens index.html")
+val openIndexPageTask = Def.taskDyn {
+  Def.task {
+    java.awt.Desktop
+      .getDesktop()
+      .browse(new File(hepekTarget.value + "/docs/index.html").toURI)
+  }
+}

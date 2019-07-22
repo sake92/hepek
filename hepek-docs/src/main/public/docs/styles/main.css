@@ -24,3 +24,11 @@ object[type="image/svg+xml"] {
 pre[class*="language-"] {
   border-width: 0.3rem !important;
 }
+
+/* anchor offset when clicking it :) https://stackoverflow.com/a/22655654/4496364 */
+:target:before {
+  content: "";
+  display: block;
+  height: 50px;
+  margin: -50px 0 0;
+}

@@ -29,7 +29,7 @@ trait W3CssPanelComponents extends PanelComponents {
       footer: Option[Frag] = None
   ) =
     div(cls := "w3-panel w3-border")(
-      header.map(h => all.header(cls := "w3-container", panelType.classes)(h)),
+      header.map(h => all.header(cls := "w3-container", panelType.classes.map(cls := _))(h)),
       div(cls := "w3-container")(body),
       footer.map(f => all.footer(cls := "w3-container", cls := "w3-teal")(f))
     )

@@ -5,7 +5,7 @@ import docs._
 
 object Site {
 
-  val url  = "http://sake92.github.io/hepek"
+  val url  = "https://sake92.github.io/hepek"
   val name = "hepek"
 
 }

@@ -6,8 +6,8 @@ import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 
 trait BootstrapBundle extends Bundle with BootstrapComponentsBundle {
 
-  type ClassesBundle = BootstrapClassesBundle
-  val classes = BootstrapClassesBundle
+  override type ClassesBundle = BootstrapClassesBundle
+  override type HtmlPage      = BootstrapPage
 
-  override type HtmlPage = BootstrapPage
+  override val classes = BootstrapClassesBundle
 }
