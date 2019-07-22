@@ -6,9 +6,12 @@ See these posts also:
 - [Modern Type-Safe Template Engines](https://dzone.com/articles/modern-type-safe-template-engines)
 
 ## Projects
-- [**Hepek Components**](https://sake92.github.io/hepek/hepek/components/index.html), typesafe templates, grid, forms etc. (supports Bootstrap3, Bulma, PureCSS)
+- [**Hepek Components**](https://sake92.github.io/hepek/hepek/components/index.html), typesafe templates, grid, forms etc.
 - [**Hepek**](https://sake92.github.io/hepek/hepek/index.html), static site generator
 - [**Hepek Play**](https://sake92.github.io/hepek/hepek/play/index.html), Play framework integration
+
+> Fully supported frameworks are: Bootstrap3, W3Css  
+> Partially supported frameworks are: Bulma, PureCSS
 
 ---
 ## Hepek Components
