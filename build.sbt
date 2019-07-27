@@ -1,6 +1,6 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
-val openhtmltopdfVersion = "0.0.1-RC20"
+val openhtmltopdfVersion = "1.0.0"
 val seleniumVersion      = "2.52.0"
 val scalaTestVersion     = "3.0.7"
 
@@ -98,6 +98,7 @@ lazy val hepekTests = (project in file("hepek-tests"))
   .enablePlugins(HepekPlugin, SbtWeb)
 
 val openIndexPage = taskKey[Unit]("Opens index.html")
+
 val openIndexPageTask = Def.taskDyn {
   Def.task {
     java.awt.Desktop

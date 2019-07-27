@@ -22,9 +22,11 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage 
       document
         .outputSettings()
         .prettyPrint(renderPretty)
+        .outline(true)
       if (renderXhtml) {
         document
           .outputSettings()
+          .escapeMode(org.jsoup.nodes.Entities.EscapeMode.xhtml)
           .syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml)
       }
       document.html

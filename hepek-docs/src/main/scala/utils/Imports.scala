@@ -28,18 +28,19 @@ object Imports extends BootstrapStaticBundle with BasicComponents {
   import classes._
 
   def renderClassProps(props: List[ClassProperty]) =
-    table(tableClass, tableHoverable, tableResponsive)(
-      tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
-      props.map {
-        case ClassProperty(name, tpe, desc, defaultValue) =>
-          tr(
-            td(name),
-            td(if (defaultValue.isDefined) "No" else "Yes"),
-            td(tpe),
-            td(defaultValue),
-            td(desc)
-          )
-      }
+    div(tableResponsive)(
+      table(tableClass, tableHoverable)(
+        tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
+        props.map {
+          case ClassProperty(name, tpe, desc, defaultValue) =>
+            tr(
+              td(name),
+              td(if (defaultValue.isDefined) "No" else "Yes"),
+              td(tpe),
+              td(defaultValue),
+              td(desc)
+            )
+        }
+      )
     )
-
 }
