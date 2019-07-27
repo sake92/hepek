@@ -86,7 +86,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
           font-size: .7em;
       }
       
-      /* turn off affix on screens < md */
+      /* turn off affix on screens less than md */
       @media (max-width: 992px) { 
           .affix { position: static; }
       }

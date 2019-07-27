@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.support.ui.WebDriverWait
+import ba.sake.hepek.html.HtmlUtils
 
 case class Font(
     file: File,
@@ -132,7 +133,10 @@ if (svgs.length < 1) {
       val asyncRes = driver.executeAsyncScript(inlineSvgsScript)
       waitForLoad(driver, loadJsConditions) // this is essential! :D
       val pageHtmlAfterJs = driver.getPageSource
-      builder.withHtmlContent(pageHtmlAfterJs, pageUri)
+
+      // MUST BE XHTML!
+      val pageXhtml = HtmlUtils.process(pageHtmlAfterJs, xhtml = true, pretty = true)
+      builder.withHtmlContent(pageXhtml, pageUri)
       val renderer = builder.buildPdfRenderer()
       renderer.createPDFWithoutClosing()
       renderer.close()

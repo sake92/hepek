@@ -14,26 +14,9 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage 
   def renderPretty = false
   def renderXhtml  = false
 
-  override def render: String = {
-    val rawContent = contents
+  override def render: String =
     // optionally XHTML-ify and pretty-fly (for a white guy)
-    if (renderXhtml || renderPretty) {
-      val document = org.jsoup.Jsoup.parse(rawContent)
-      document
-        .outputSettings()
-        .prettyPrint(renderPretty)
-        .outline(true)
-      if (renderXhtml) {
-        document
-          .outputSettings()
-          .escapeMode(org.jsoup.nodes.Entities.EscapeMode.xhtml)
-          .syntax(org.jsoup.nodes.Document.OutputSettings.Syntax.xml)
-      }
-      document.html
-    } else {
-      rawContent
-    }
-  }
+    HtmlUtils.process(contents, xhtml = renderXhtml, pretty = renderPretty)
 }
 
 case class StaticSiteSettings(
