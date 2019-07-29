@@ -12,7 +12,7 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
 
   override def bodyContent: Frag =
     div(cls := bootstrapContainer)(
-      maybeNavbar,
+      div(cls := "hidden-print")(maybeNavbar),
       pageContent
     )
 
