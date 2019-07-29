@@ -34,7 +34,7 @@ object StringUtils {
   /** Trims leading whitespace while maintaining indentation. */
   def unindent(str: String): String = {
     var minWhitespaceLength = Int.MaxValue
-    str.lines.foreach { line =>
+    str.linesIterator.foreach { line =>
       val currLength = line.takeWhile(c => c == ' ' || c == '\t').length
       // IF NOT EMPTY! (blank, wspace..)
       if (currLength < minWhitespaceLength && !line.matches("^\\s*$")) {
@@ -44,7 +44,7 @@ object StringUtils {
     // drop minWhitespaceLength characters
     // be that a SPACE or TAB, doesn't matter...
     // uglyyyyyyyyyy :/
-    str.lines
+    str.linesIterator
       .map { line =>
         val res = line.zipWithIndex
           .dropWhile { case (_, index) => index < minWhitespaceLength }

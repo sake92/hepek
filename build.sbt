@@ -2,7 +2,7 @@ import com.typesafe.sbt.web.Import.WebKeys
 
 val openhtmltopdfVersion = "1.0.0"
 val seleniumVersion      = "2.52.0"
-val scalaTestVersion     = "3.0.7"
+val scalaTestVersion     = "3.0.8"
 
 inThisBuild(
   List(
@@ -33,7 +33,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
     libraryDependencies ++= Seq(
       //"com.lihaoyi"   %% "scalatags" % "0.6.8",
       "ba.sake"                  %% "scalatags" % "0.6.8-SNAPSHOT",
-      "com.atlassian.commonmark" % "commonmark" % "0.12.1",
+      "com.atlassian.commonmark" % "commonmark" % "0.13.0",
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
   )
@@ -56,9 +56,7 @@ lazy val hepekStatic = (project in file("hepek"))
 
 // play
 lazy val hepekPlay = (project in file("hepek-play"))
-  .settings(
-    name := "hepek-play"
-  )
+  .settings(    name := "hepek-play"  )
   .dependsOn(hepekComponents)
   .enablePlugins(PlayScala)
 

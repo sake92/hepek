@@ -134,8 +134,8 @@ if (svgs.length < 1) {
       waitForLoad(driver, loadJsConditions) // this is essential! :D
       val pageHtmlAfterJs = driver.getPageSource
 
-      // MUST BE XHTML!
-      val pageXhtml = HtmlUtils.process(pageHtmlAfterJs, xhtml = true, pretty = true)
+      // MUST BE XHTML! MUST NOT PRETTY-PRINT (<pre> tags get messed)
+      val pageXhtml = HtmlUtils.process(pageHtmlAfterJs, xhtml = true, pretty = false)
       builder.withHtmlContent(pageXhtml, pageUri)
       val renderer = builder.buildPdfRenderer()
       renderer.createPDFWithoutClosing()
@@ -157,14 +157,10 @@ if (svgs.length < 1) {
   // wait page to load, max time is 10 seconds
   // see example2 @ https://www.testingexcellence.com/webdriver-wait-page-load-example-java/
   private def waitForLoad(driver: WebDriver, loadJsConditions: List[String]) {
-    var jsConditions = "document.readyState == 'complete'"
-    if (loadJsConditions.nonEmpty) {
-      jsConditions += " && " + loadJsConditions.mkString(" && ")
-    }
-    jsConditions = "return (" + jsConditions + ");"
+    val jsConditions = ("document.readyState == 'complete'" :: loadJsConditions).mkString(" && ")
     val pageLoadCondition: ExpectedCondition[Boolean] = d => {
       val jsEx                  = d.asInstanceOf[JavascriptExecutor]
-      val jsConditionsSatisfied = jsEx.executeScript(jsConditions)
+      val jsConditionsSatisfied = jsEx.executeScript("return (" + jsConditions + ");")
       jsConditionsSatisfied.toString.equals("true")
     }
     val wait = new WebDriverWait(driver, 10)
