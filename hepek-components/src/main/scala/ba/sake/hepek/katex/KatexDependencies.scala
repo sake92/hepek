@@ -4,7 +4,7 @@ import ba.sake.hepek.html._
 
 trait KatexDependencies extends PageDependencies {
 
-  def katexSettings: KatexSettings = KatexSettings("0.10.0-rc.1", "KaTeX")
+  def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
 
   def katexDependencies =
     ComponentDependencies()

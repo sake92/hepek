@@ -75,4 +75,20 @@ trait BootstrapNavbarComponents extends NavbarComponents {
       )
     )
 
+  override def navbarNestedLink(
+      title: Frag,
+      links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+  ): Frag =
+    li(cls := "dropdown")(
+      a(cls := "dropdown-toggle", data.toggle := "dropdown", href := "#")(
+        title
+      ),
+      ul(cls := "dropdown-menu")(
+        links.map {
+          case (item, liMods) =>
+            li(liMods)(item)
+        }
+      )
+    )
+
 }

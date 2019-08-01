@@ -7,6 +7,8 @@ object W3CssNavbarComponents extends W3CssNavbarComponents
 
 trait W3CssNavbarComponents extends NavbarComponents {
 
+  private val DefaultNestedLinksAttrs = List(cls := "w3-bar-item w3-button")
+
   override def navbar(
       brandUrl: String,
       brandName: Option[String] = None,
@@ -14,23 +16,31 @@ trait W3CssNavbarComponents extends NavbarComponents {
       left: Seq[(Frag, Seq[AttrPair])] = Seq.empty,
       right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =
-    div(cls := "w3-bar")(
-      div(
-        a(href := brandUrl)(
-          brandIconUrl.map(url => span(img(src := url))),
-          brandName
-        )
+    div(cls := "w3-bar w3-light-grey")(
+      a(cls := "w3-bar-item", href := brandUrl)(
+        brandIconUrl.map(url => span(img(src := url))),
+        brandName
       ),
-      ul(cls := s"nav navbar-nav navbar-left")(
-        left.map {
+      left.map {
+        case (item, liMods) =>
+          div(cls := "w3-bar-item", liMods)(item)
+      },
+      right.map {
+        case (item, liMods) =>
+          div(cls := "w3-bar-item w3-right", liMods)(item)
+      }
+    )
+
+  override def navbarNestedLink(
+      title: Frag,
+      links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+  ): Frag =
+    div(cls := "w3-dropdown-hover")(
+      button(cls := "w3-button")(title),
+      div(cls := "w3-dropdown-content w3-bar-block w3-card")(
+        links.map {
           case (item, liMods) =>
-            li(cls := "w3-bar-item", liMods)(item)
-        }
-      ),
-      ul(cls := s"w3-right")(
-        right.map {
-          case (item, liMods) =>
-            li(cls := "w3-bar-item", liMods)(item)
+            div(DefaultNestedLinksAttrs ++ liMods)(item)
         }
       )
     )

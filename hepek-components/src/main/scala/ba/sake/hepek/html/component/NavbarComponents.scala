@@ -14,4 +14,8 @@ trait NavbarComponents {
       right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag
 
+  def navbarNestedLink(
+      title: Frag,
+      links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+  ): Frag
 }
