@@ -27,6 +27,8 @@ case class Font(
 object PdfGenerator {
 
   // TODO put this in a file..
+  // SVGs are rendered small!? wtf
+  // use <img> for now... -_-
   private val inlineSvgsScript =
     """
 // callback to notify ChromeDriver that this script is finished :)
@@ -57,8 +59,6 @@ if (svgs.length < 1) {
                     svg.setAttribute('class', imgClass + ' replaced-svg');
                 }
                 svg.removeAttribute('xmlns:a');
-                svg.removeAttribute('width');
-                svg.removeAttribute('height');
 
                 el.parentNode.replaceChild(svg, el);
 
@@ -97,66 +97,85 @@ if (svgs.length < 1) {
     if (outputFile.getParentFile != null) {
       outputFile.getParentFile().mkdirs()
     }
+    // special thx to @danfickle:
+    // https://github.com/danfickle/openhtmltopdf/issues/214
+
     // Chrome driver for loading pages
     val options = new ChromeOptions()
     options.addArguments("headless") // don't open Chrome window...
     options.addArguments("window-size=1200x600")
     options.addArguments("disable-web-security") // Ajax doesn't work without this !!!
-
     val driver = new ChromeDriver(options)
-    driver
-      .manage()
-      .timeouts()
-      .setScriptTimeout(7, java.util.concurrent.TimeUnit.SECONDS)
+    driver.manage().timeouts().setScriptTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
 
-    // special thx to @danfickle:
-    // https://github.com/danfickle/openhtmltopdf/issues/214
-    val doc          = new PDDocument()
     val os           = new FileOutputStream(outputFile)
+    val doc          = new PDDocument()
     val mathMlDrawer = new MathMLDrawer()
     val svgDrawer    = new BatikSVGDrawer()
 
-    for (page <- pages) {
-      val pagePath = targetFolder + "/" + page.relPath
-      val pageUri  = new File(pagePath).toURI.toString
-      // let chrome execute JS and stuff
-      // e.g. PrismJs, MathJax
-      // then we use that final HTML to render PDF
-      driver.get(pageUri)
-      val builder = new PdfRendererBuilder()
-      builder.usePDDocument(doc)
-      builder.useMathMLDrawer(mathMlDrawer)
-      builder.useSVGDrawer(svgDrawer)
-      fonts.foreach { f =>
-        builder.useFont(f.file, f.family)
+    try {
+      for (page <- pages) {
+        val pdfRendererBuilder = getPdfRendererBuilder(doc, mathMlDrawer, svgDrawer)
+        renderHtmlPage(page, targetFolder, driver, pdfRendererBuilder, fonts, loadJsConditions)
       }
-      val asyncRes = driver.executeAsyncScript(inlineSvgsScript)
-      waitForLoad(driver, loadJsConditions) // this is essential! :D
-      val pageHtmlAfterJs = driver.getPageSource
-
-      // MUST BE XHTML! MUST NOT PRETTY-PRINT (<pre> tags get messed)
-      val pageXhtml = HtmlUtils.process(pageHtmlAfterJs, xhtml = true, pretty = false)
-      builder.withHtmlContent(pageXhtml, pageUri)
-      val renderer = builder.buildPdfRenderer()
-      renderer.createPDFWithoutClosing()
-      renderer.close()
+    } finally {
+      doc.save(os)
+      doc.close()
+      os.close()
+      driver.close()
     }
 
-    doc.save(os)
-    doc.close()
-    os.close()
-    driver.close()
+    println("*" * 77)
+    val pagesCount = doc.getPages.getCount
+    println(s"PDF with $pagesCount pages rendered to file: ${outputFile.getAbsoluteFile}")
+    println("*" * 77)
+  }
 
-    println("*" * 77)
-    println(
-      "PDF with " + doc.getPages.getCount + " pages rendered to file: " + outputFile.getAbsoluteFile
-    )
-    println("*" * 77)
+  private def renderHtmlPage(
+      page: Renderable,
+      targetFolder: String,
+      driver: ChromeDriver,
+      builder: PdfRendererBuilder,
+      fonts: List[Font],
+      loadJsConditions: List[String]
+  ): Unit = {
+    val pagePath = targetFolder + "/" + page.relPath
+    val pageUri  = new File(pagePath).toURI.toString
+    // let chrome execute JS and stuff
+    // e.g. PrismJs, MathJax
+    // then we use that final HTML to render PDF
+    driver.get(pageUri)
+    fonts.foreach { f =>
+      builder.useFont(f.file, f.family)
+    }
+    driver.executeAsyncScript(inlineSvgsScript)
+    waitForLoad(driver, loadJsConditions) // this is essential! :D
+    val pageHtmlAfterJs = driver.getPageSource
+
+    // MUST BE XHTML
+    // MUST NOT PRETTY-PRINT (<pre> tags get messed)
+    val pageXhtml = HtmlUtils.process(pageHtmlAfterJs, xhtml = true, pretty = false)
+    builder.withHtmlContent(pageXhtml, pageUri)
+    val renderer = builder.buildPdfRenderer()
+    renderer.createPDFWithoutClosing()
+    renderer.close()
+  }
+
+  private def getPdfRendererBuilder(
+      doc: PDDocument,
+      mathMlDrawer: MathMLDrawer,
+      svgDrawer: BatikSVGDrawer
+  ): PdfRendererBuilder = {
+    val builder = new PdfRendererBuilder()
+    builder.usePDDocument(doc)
+    builder.useMathMLDrawer(mathMlDrawer)
+    builder.useSVGDrawer(svgDrawer)
+    builder
   }
 
   // wait page to load, max time is 10 seconds
   // see example2 @ https://www.testingexcellence.com/webdriver-wait-page-load-example-java/
-  private def waitForLoad(driver: WebDriver, loadJsConditions: List[String]) {
+  private def waitForLoad(driver: WebDriver, loadJsConditions: List[String]): Unit = {
     val jsConditions = ("document.readyState == 'complete'" :: loadJsConditions).mkString(" && ")
     val pageLoadCondition: ExpectedCondition[Boolean] = d => {
       val jsEx                  = d.asInstanceOf[JavascriptExecutor]
