@@ -37,9 +37,3 @@ or fork && deploy with Netlify (yes, for free) in just a few clicks:
 Play framework integration.
 - [examples](https://github.com/sake92/play-hepek-example)
 
-## TODO
-- ScalaJS components
-- server-side rendering
-
-
-
