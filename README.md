@@ -28,7 +28,6 @@ or fork && deploy with Netlify (yes, for free) in just a few clicks:
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
 
-### Examples
 - [examples](https://github.com/sake92/hepek-examples)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 
