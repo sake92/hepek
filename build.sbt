@@ -1,6 +1,6 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
-val openhtmltopdfVersion = "1.0.0"
+val openhtmltopdfVersion = "1.0.1"
 val seleniumVersion      = "2.52.0"
 val scalaTestVersion     = "3.0.8"
 
