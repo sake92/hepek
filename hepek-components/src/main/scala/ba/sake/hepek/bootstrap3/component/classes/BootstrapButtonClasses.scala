@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.ButtonClasses
 object BootstrapButtonClasses extends BootstrapButtonClasses
 
 trait BootstrapButtonClasses extends ButtonClasses {
-
   override def btnClass   = cls := "btn"
   override def btnPrimary = cls := "btn-primary"
   override def btnSuccess = cls := "btn-success"

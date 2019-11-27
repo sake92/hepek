@@ -13,7 +13,6 @@ trait HepekDocsAbstractPage
     extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
-
   val hlLangs = List("core", "clike", "scala", "java", "markup")
 
   override def prismSettings =
@@ -48,6 +47,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
     styles.css("main").ref,
     "https://use.fontawesome.com/releases/v5.0.12/css/all.css"
   )
+
   override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
     Dependencies()
       .withDeps(Dependency("yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))

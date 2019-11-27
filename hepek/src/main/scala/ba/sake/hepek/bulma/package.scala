@@ -54,7 +54,6 @@ trait BulmaElement {
 }
 
 package object component {
-
   // TODO delete these, since I fixed the bug with multiple cls:= modifiers.. :)
 
   def enrichCssClass(currentClass: String, attribute: BulmaModifier): String =

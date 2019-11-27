@@ -6,6 +6,7 @@ import ba.sake.hepek.bulma.{BulmaElement}
 object DropdownComponents extends DropdownComponents
 
 case class DropdownTrigger(triggerLabel: String) extends BulmaElement {
+
   override def content =
     div(cls := "dropdown-trigger ")(
       button(cls := "button ", aria.haspopup := true, aria.controls := "dropdown-menu")(
@@ -28,6 +29,7 @@ case object DropdownDivider extends DropdownElement {
 }
 
 case class DropdownMenu(elements: DropdownElement*) extends BulmaElement {
+
   override def content = div(cls := "dropdown-menu ", role := "menu")(
     div(cls := "dropdown-content ")(for {
       elem <- elements

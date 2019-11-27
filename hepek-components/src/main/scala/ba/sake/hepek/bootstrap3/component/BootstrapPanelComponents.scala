@@ -4,7 +4,6 @@ import scalatags.Text.all._
 import ba.sake.hepek.html.component.PanelComponents
 
 object BootstrapPanelComponents extends BootstrapPanelComponents {
-
   trait Type extends PanelComponents.Type
 
   object Type {

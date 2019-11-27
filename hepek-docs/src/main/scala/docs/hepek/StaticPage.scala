@@ -52,5 +52,4 @@ object StaticPage extends HepekDocsPage {
       """.md
     )
   )
-
 }

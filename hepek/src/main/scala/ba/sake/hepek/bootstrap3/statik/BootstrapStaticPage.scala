@@ -7,7 +7,6 @@ import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponents
 
 trait BootstrapStaticPage extends StaticPage with BootstrapPage {
-
   def navbar: Option[BootstrapNavbarComponents] = None
 
   override def bodyContent: Frag =

@@ -3,7 +3,6 @@ package ba.sake.hepek.html.component.classes
 import scalatags.Text.all._
 
 trait ButtonClasses {
-
   def btnClass: AttrPair // base class
   def btnPrimary: AttrPair
   def btnSuccess: AttrPair

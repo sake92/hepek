@@ -27,5 +27,4 @@ trait W3CssImageComponents extends ImageComponents {
         ),
         div(cls := "w3-container", txtAlignCenter)(p(caption))
       )
-
 }

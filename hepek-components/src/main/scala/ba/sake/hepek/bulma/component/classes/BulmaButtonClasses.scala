@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.ButtonClasses
 object BulmaButtonClasses extends BulmaButtonClasses
 
 trait BulmaButtonClasses extends ButtonClasses {
-
   override def btnClass   = cls := "button"
   override def btnPrimary = cls := "is-primary"
   override def btnSuccess = cls := "is-success"

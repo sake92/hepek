@@ -3,7 +3,6 @@ package ba.sake.hepek.html.component.classes
 import scalatags.Text.all._
 
 trait TableClasses {
-
   def tableClass: AttrPair
   def tableStriped: AttrPair
   def tableBordered: AttrPair
@@ -21,5 +20,4 @@ trait TableClasses {
   def tableDataWarning: AttrPair
   def tableDataDanger: AttrPair
   def tableDataActive: AttrPair
-
 }

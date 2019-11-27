@@ -3,7 +3,6 @@ package ba.sake.hepek.html
 package component
 
 trait ComponentsBundle {
-
   type Form <: FormComponents
   type Grid <: GridComponents
   type Image <: ImageComponents

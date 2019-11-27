@@ -11,6 +11,7 @@ case class Pagination(
     previous: Option[String] = Some("previous"),
     next: Option[String] = Some("next")
 ) extends PaginationElement {
+
   override def content = frag(
     previous.map(a(cls := "pagination-previous")(_)),
     next.map(a(cls := "pagination-next")(_))
@@ -22,6 +23,7 @@ case object PaginationEllipsis extends PaginationElement {
 }
 
 case class PaginationNumber(number: Integer, isCurrent: Boolean = false) extends PaginationElement {
+
   override def content = {
     val current: BulmaModifier = if (isCurrent) Current else EmptyAttribute
     li(a(cls := enrichCssClass("pagination-link", current), number.toString()))
@@ -38,5 +40,4 @@ trait PaginationComponents {
     tag("nav")(cls := "pagination ", role := "navigation", aria.label := "pagination")(
       elements.map(_.content)
     )
-
 }

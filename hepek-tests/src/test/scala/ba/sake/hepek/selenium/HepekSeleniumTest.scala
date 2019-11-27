@@ -7,7 +7,6 @@ import org.scalatest.concurrent.Eventually
 import org.scalatest.selenium.HtmlUnit
 
 trait HepekSeleniumTest extends FlatSpec with Matchers with HtmlUnit with Eventually {
-
   java.util.logging.Logger
     .getLogger("com.gargoylesoftware.htmlunit")
     .setLevel(java.util.logging.Level.OFF) // disable annoying HtmlUnit warnings
@@ -19,5 +18,4 @@ trait HepekSeleniumTest extends FlatSpec with Matchers with HtmlUnit with Eventu
     val path     = Paths.get(pagePath)
     path.toUri.toString
   }
-
 }

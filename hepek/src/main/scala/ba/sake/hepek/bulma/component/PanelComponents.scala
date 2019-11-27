@@ -12,9 +12,11 @@ sealed trait PanelElement extends BulmaElement {
 case class PanelTab(fragments: Frag*) extends PanelElement {
   override def content = p(cls := "panel-tabs ")(fragments)
 }
+
 case class PanelHeading(fragments: Frag*) extends PanelElement {
   override def content = p(cls := "panel-heading ")(fragments)
 }
+
 case class PanelBlock(fragments: Frag*) extends PanelElement {
   override def content = div(cls := "panel-block ")(fragments)
 }

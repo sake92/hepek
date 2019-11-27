@@ -1,6 +1,6 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
-val openhtmltopdfVersion = "1.0.0"
+val openhtmltopdfVersion = "1.0.1"
 val seleniumVersion      = "2.52.0"
 val scalaTestVersion     = "3.0.8"
 
@@ -20,7 +20,7 @@ inThisBuild(
         url("http://sake.ba")
       )
     ),
-    scalaVersion := "2.12.8",
+    scalaVersion := "2.13.1",
     crossScalaVersions := Seq("2.12.8", "2.13.1"),
     scalafmtOnCompile := true,
     useCoursier := false, // temporarily until Travis is ok...
@@ -34,7 +34,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
     name := "hepek-components",
     libraryDependencies ++= Seq(
       "com.lihaoyi"              %% "scalatags" % "0.7.0",
-      "com.atlassian.commonmark" % "commonmark" % "0.13.0",
+      "com.atlassian.commonmark" % "commonmark" % "0.13.1",
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
   )

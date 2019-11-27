@@ -4,7 +4,6 @@ import scalatags.Text.all
 import all.{form => _, _}
 
 object FormComponents extends FormComponents {
-
   trait Type { def classes: List[String] = List.empty }
 
   trait ValidationStateClasses {
@@ -12,7 +11,6 @@ object FormComponents extends FormComponents {
     def warning: String = "warning"
     def error: String   = "error"
   }
-
 }
 
 trait FormComponents {
@@ -39,12 +37,15 @@ trait FormComponents {
   sealed trait ValidationState { def clazz: String = "" }
 
   object ValidationState {
+
     case object Success extends ValidationState {
       override def clazz = validationStateClasses.success
     }
+
     case object Warning extends ValidationState {
       override def clazz = validationStateClasses.warning
     }
+
     case object Error extends ValidationState {
       override def clazz = validationStateClasses.error
     }

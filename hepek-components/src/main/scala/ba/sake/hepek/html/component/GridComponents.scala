@@ -45,7 +45,6 @@ trait GridComponents {
 }
 
 object GridComponents {
-
   case class Col2(content: List[Frag]) // 2 parts
   case class Col3(content: List[Frag]) // 3 parts
 

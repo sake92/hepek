@@ -4,6 +4,7 @@ object links {
 
   private val hepekUrl =
     "https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek"
+
   private val hepekExamplesUrl =
     "https://github.com/sake92/hepek-examples/blob/master/examples"
 
@@ -25,5 +26,4 @@ object links {
   val HepekBootstrap3BlogPagesUrl = hepekUrl + "/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
 
   val BrowsersyncUrl = "https://browsersync.io/"
-
 }

@@ -34,5 +34,4 @@ class CardComponentsSpec extends FlatSpec with Matchers with HepekMatchers {
         |</footer></div>""".stripMargin
         .replaceAll("\n", "")
   }
-
 }

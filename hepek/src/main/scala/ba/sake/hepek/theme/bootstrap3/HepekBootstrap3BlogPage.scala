@@ -10,6 +10,7 @@ trait TocType
 
 object TocType {
   object Togglable extends TocType
+
   case class Scrollspy(
       offset: Int = 10,
       affixOffset: Int = 10
@@ -22,7 +23,6 @@ case class TocSettings(
 )
 
 trait HepekBootstrap3BlogPage extends BlogPostPage with BootstrapStaticPage {
-
   // avoid polluting user's namespace
   import BootstrapGridComponents._
   import HepekBootstrap3SectionUtils._

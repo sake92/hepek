@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.NavbarComponents
 object W3CssNavbarComponents extends W3CssNavbarComponents
 
 trait W3CssNavbarComponents extends NavbarComponents {
-
   private val DefaultNestedLinksAttrs = List(cls := "w3-bar-item w3-button")
 
   override def navbar(
@@ -44,5 +43,4 @@ trait W3CssNavbarComponents extends NavbarComponents {
         }
       )
     )
-
 }

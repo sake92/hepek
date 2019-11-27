@@ -4,11 +4,13 @@ import ba.sake.hepek.bulma.BulmaElement
 import scalatags.Text.all._
 
 case class BulmaTitle(inner: Frag, size: Int = 3) extends BulmaElement {
+
   override def content: Frag =
     h1(cls := s"title is-$size ")(inner)
 }
 
 case class BulmaSubtitle(inner: Frag, size: Int = 5) extends BulmaElement {
+
   override def content: Frag =
     h2(cls := s"subtitle is-$size ")(inner)
 }
@@ -22,5 +24,4 @@ trait TitleElements {
 
   def subtitle(content: Frag, size: Int = 5) =
     BulmaSubtitle(content, size).content
-
 }

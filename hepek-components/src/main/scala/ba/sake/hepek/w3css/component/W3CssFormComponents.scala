@@ -8,6 +8,7 @@ object W3CssFormComponents extends W3CssFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
+
     case object Default extends Type {
       override def classes = List("w3-container")
     }
@@ -56,7 +57,6 @@ trait W3CssFormComponents extends FormComponents {
       inputMsgsFrag,
       inputHelpFrag
     )
-
   }
 
   override def constructInputButton(
@@ -92,7 +92,6 @@ trait W3CssFormComponents extends FormComponents {
       ),
       inputHelpFrag
     )
-
   }
 
   override def constructInputCheckboxes(
@@ -102,7 +101,6 @@ trait W3CssFormComponents extends FormComponents {
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
     val checkboxFrags = valueAndLabelAndAttrs.map {
@@ -117,7 +115,6 @@ trait W3CssFormComponents extends FormComponents {
       checkboxFrags,
       inputHelpFrag
     )
-
   }
 
   override def constructInputRadio(
@@ -178,7 +175,6 @@ trait W3CssFormComponents extends FormComponents {
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
     val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
@@ -203,5 +199,4 @@ trait W3CssFormComponents extends FormComponents {
 
   private def formGroup(attrs: AttrPair*)(contents: Frag*): Frag =
     div(attrs)(contents)
-
 }

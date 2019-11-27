@@ -8,12 +8,15 @@ object PureFormComponents extends PureFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
+
     case object Vertical extends Type {
       override def classes = List("pure-form", "pure-form-stacked")
     }
+
     case object Inline extends Type {
       override def classes = List("pure-form")
     }
+
     case object Horizontal extends Type {
       override def classes = List("pure-form", "pure-form-aligned")
     }
@@ -110,5 +113,4 @@ trait PureFormComponents extends FormComponents {
         )
     }
   }
-
 }

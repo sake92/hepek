@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.CodeHighlightComponents
 import ba.sake.hepek.html.component.CodeHighlighter
 
 object PrismCodeHighlightComponents extends PrismCodeHighlightComponents {
-
   sealed trait CodeSource
 
   object CodeSource {
@@ -17,15 +16,16 @@ object PrismCodeHighlightComponents extends PrismCodeHighlightComponents {
 }
 
 trait PrismCodeHighlightComponents extends CodeHighlightComponents {
-
   def showLineNumbers: Boolean = true
 
   override def abap = PrismCodeHighlighter("abap", showLineNumbers)
+
   override def actionscript =
     PrismCodeHighlighter("actionscript", showLineNumbers)
   override def ada        = PrismCodeHighlighter("ada", showLineNumbers)
   override def apacheconf = PrismCodeHighlighter("apacheconf", showLineNumbers)
   override def apl        = PrismCodeHighlighter("apl", showLineNumbers)
+
   override def applescript =
     PrismCodeHighlighter("applescript", showLineNumbers)
   override def arduino    = PrismCodeHighlighter("arduino", showLineNumbers)
@@ -42,6 +42,7 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def bro        = PrismCodeHighlighter("bro", showLineNumbers)
   override def c          = PrismCodeHighlighter("c", showLineNumbers)
   override def clike      = PrismCodeHighlighter("clike", showLineNumbers)
+
   override def coffeescript =
     PrismCodeHighlighter("coffeescript", showLineNumbers)
   override def cpp        = PrismCodeHighlighter("cpp", showLineNumbers)
@@ -159,7 +160,6 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def xeora      = PrismCodeHighlighter("xeora", showLineNumbers)
   override def xojo       = PrismCodeHighlighter("xojo", showLineNumbers)
   override def yaml       = PrismCodeHighlighter("yaml", showLineNumbers)
-
 }
 
 /* "normal" code highlighter */
@@ -231,7 +231,6 @@ case class PrismCmdHighlighter(
     this.copy(
       commandLine = commandLine.copy(outputLines = Option(cmdOutputLines))
     )
-
 }
 
 object BaseCodeHighlighter {
@@ -288,20 +287,20 @@ object BaseCodeHighlighter {
         } else {
           text
         }
-        pre(classes.map(cls := _), attrs)(
+        pre(classes.map(cls := _).toSeq, attrs.toSeq)(
           code(cls := languageClass)(content)
         )
       }
       case AJAX(url) => {
         attrs += (data.src := url)
-        pre(cls := languageClass, classes.map(cls := _), attrs)
+        pre(cls := languageClass, classes.map(cls := _).toSeq, attrs.toSeq)
       }
       case JSONP(url, fileName) => {
         attrs += (data.jsonp := url)
         fileName.foreach { fn =>
           attrs += (data.filename := fn)
         }
-        pre(cls := languageClass, classes.map(cls := _), attrs)
+        pre(cls := languageClass, classes.map(cls := _).toSeq, attrs.toSeq)
       }
     }
   }
@@ -369,7 +368,6 @@ abstract class BaseCodeHighlighter(
     */
   def github(user: String, repo: String, filePath: String): Frag =
     jsonp(s"https://api.github.com/repos/$user/$repo/contents/$filePath")
-
 }
 
 case class CommandLineOptions(

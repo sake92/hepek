@@ -9,6 +9,7 @@ object MenuComponents extends MenuComponents
 trait MenuElement extends BulmaElement
 
 case class MenuList(elements: Frag*) extends MenuElement {
+
   override def content: Text.all.Frag =
     ul(cls := "menu-list ")(for {
       item <- elements

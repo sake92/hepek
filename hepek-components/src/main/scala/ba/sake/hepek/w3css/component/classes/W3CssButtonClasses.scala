@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.ButtonClasses
 object W3CssButtonClasses extends W3CssButtonClasses
 
 trait W3CssButtonClasses extends ButtonClasses {
-
   override def btnClass   = cls := "w3-btn"
   override def btnPrimary = cls := "w3-teal"
   override def btnSuccess = cls := "w3-green"

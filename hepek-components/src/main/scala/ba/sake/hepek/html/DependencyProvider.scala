@@ -17,6 +17,7 @@ object DependencyProvider {
 }
 
 case class WebjarsDependencyProvider(webjarsPath: String) extends DependencyProvider {
+
   override def depPath(dep: Dependency) =
     s"$webjarsPath/${dep.pkg}/${dep.file}${dep.queryParams}"
 }

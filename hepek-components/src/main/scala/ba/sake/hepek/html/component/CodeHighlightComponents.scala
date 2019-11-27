@@ -5,7 +5,6 @@ import scalatags.Text.all._
 object CodeHighlightComponents {}
 
 trait CodeHighlightComponents {
-
   // taken from prismjs
   def abap: CodeHighlighter
   def actionscript: CodeHighlighter
@@ -146,7 +145,6 @@ trait CodeHighlightComponents {
 }
 
 trait CodeHighlighter {
-
   def lang: String
 
   def apply(text: String): Frag

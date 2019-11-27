@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.BackgroundClasses
 object BulmaBackgroundClasses extends BulmaBackgroundClasses
 
 trait BulmaBackgroundClasses extends BackgroundClasses {
-
   override def bgPrimary = cls := "has-background-primary"
   override def bgSuccess = cls := "has-background-success"
   override def bgInfo    = cls := "has-background-info"

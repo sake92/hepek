@@ -1,7 +1,6 @@
 package ba.sake.hepek.html
 
 private[hepek] trait HepekAliases {
-
   val SiteSettings = ba.sake.hepek.html.SiteSettings
   type SiteSettings = ba.sake.hepek.html.SiteSettings
 

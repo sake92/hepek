@@ -6,15 +6,18 @@ import scalatags.Text.all._
 import ba.sake.hepek.html.component._
 
 object PureMenuComponents extends PureMenuComponents {
+
   sealed trait Type {
     def classes: String = "pure-menu"
   }
 
   object Type {
+
     case object Vertical extends Type {
       // pure-menu-vertical is NOT FROM PURECSS, it's added to style the width of menu
       override def classes = super.classes + "pure-menu-vertical"
     }
+
     case object Horizontal extends Type {
       override def classes = super.classes + "pure-menu-horizontal"
     }
@@ -52,5 +55,4 @@ trait PureMenuComponents extends LinkComponents {
     val allAttrs = (cls := "pure-menu-link") +: attrs
     hyperlink(hreff, allAttrs: _*)(content)
   }
-
 }

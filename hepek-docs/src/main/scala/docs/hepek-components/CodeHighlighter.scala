@@ -62,5 +62,4 @@ object CodeHighlighter extends HepekComponentsDocsPage {
       """.md
     )
   )
-
 }

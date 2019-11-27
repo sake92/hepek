@@ -44,5 +44,4 @@ object Dependencies extends HepekComponentsDocsPage {
       """.md
     )
   )
-
 }

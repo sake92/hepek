@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.TableClasses
 object BulmaTableClasses extends BulmaTableClasses
 
 trait BulmaTableClasses extends TableClasses {
-
   override def tableClass      = cls := "table"
   override def tableStriped    = cls := "is-striped"
   override def tableBordered   = cls := "is-bordered"
@@ -24,5 +23,4 @@ trait BulmaTableClasses extends TableClasses {
   override def tableDataWarning = cls := "is-warning"
   override def tableDataDanger  = cls := "is-danger"
   override def tableDataActive  = cls := "is-active"
-
 }

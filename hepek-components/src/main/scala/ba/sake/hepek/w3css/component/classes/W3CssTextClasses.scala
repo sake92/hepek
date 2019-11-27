@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.TextClasses
 object W3CssTextClasses extends W3CssTextClasses
 
 trait W3CssTextClasses extends TextClasses {
-
   override def txtPrimary = cls := "w3-teal"
   override def txtSuccess = cls := "w3-green"
   override def txtInfo    = cls := "w3-blue"
@@ -21,5 +20,4 @@ trait W3CssTextClasses extends TextClasses {
   override def txtLowercase  = cls := "w3-lowercase"  // TODO implement yourself...
   override def txtUppercase  = cls := "w3-uppercase"  // TODO implement yourself...
   override def txtCapitalize = cls := "w3-capitalize" // TODO implement yourself...
-
 }

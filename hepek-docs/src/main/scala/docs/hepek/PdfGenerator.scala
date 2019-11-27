@@ -41,5 +41,4 @@ object PdfGenerator extends HepekDocsPage {
       """.md
     )
   )
-
 }

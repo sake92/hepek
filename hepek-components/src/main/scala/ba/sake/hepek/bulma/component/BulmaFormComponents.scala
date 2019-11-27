@@ -159,7 +159,6 @@ trait BulmaFormComponents extends FormComponents {
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-
     val inputHelpFrag = inputHelp.map(h => span(cls := "help")(h))
 
     def renderCheckBox(cbLabel: String, attrs: Seq[AttrPair]) =
@@ -224,5 +223,4 @@ trait BulmaFormComponents extends FormComponents {
         bulmaField
     }
   }
-
 }

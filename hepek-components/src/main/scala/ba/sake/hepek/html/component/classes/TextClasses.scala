@@ -3,7 +3,6 @@ package ba.sake.hepek.html.component.classes
 import scalatags.Text.all._
 
 trait TextClasses {
-
   def txtPrimary: AttrPair
   def txtSuccess: AttrPair
   def txtInfo: AttrPair
@@ -18,5 +17,4 @@ trait TextClasses {
   def txtLowercase: AttrPair
   def txtUppercase: AttrPair
   def txtCapitalize: AttrPair
-
 }

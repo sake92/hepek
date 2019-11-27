@@ -4,7 +4,6 @@ import ba.sake.hepek.html._
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 
 trait PrismDependencies extends ClipboardjsDependencies {
-
   def prismSettings: PrismSettings = PrismSettings("1.16.0", "prism", DependencyProvider.cdnjs)
 
   def prismDependencies: ComponentDependencies = {
@@ -46,7 +45,6 @@ trait PrismDependencies extends ClipboardjsDependencies {
       if (prismSettings.showLanguage) Option("show-language"        -> false) else None,
       if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
     ).flatten
-
 }
 
 object Themes {

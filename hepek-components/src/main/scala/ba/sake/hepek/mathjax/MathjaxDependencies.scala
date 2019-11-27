@@ -3,7 +3,6 @@ package ba.sake.hepek.mathjax
 import ba.sake.hepek.html._
 
 trait MathjaxDependencies extends PageDependencies {
-
   def mathjaxConfig: String = "TeX-MML-AM_CHTML"
 
   def mathjaxSettings: ComponentSettings =

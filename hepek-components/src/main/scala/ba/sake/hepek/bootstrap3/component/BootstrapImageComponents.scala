@@ -27,5 +27,4 @@ trait BootstrapImageComponents extends ImageComponents {
         ),
         div(cls := "caption", txtAlignCenter)(p(caption))
       )
-
 }

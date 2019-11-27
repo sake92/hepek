@@ -3,7 +3,6 @@ package ba.sake.hepek.html
 import scalatags.Text.all._
 
 trait HtmlPage extends PageDependencies {
-
   def siteSettings: SiteSettings = SiteSettings()
 
   def pageSettings: PageSettings = PageSettings()
@@ -74,7 +73,6 @@ trait HtmlPage extends PageDependencies {
   def bodyContent: Frag = pageContent
 
   def pageContent: Frag = frag()
-
 }
 
 case class SiteSettings(

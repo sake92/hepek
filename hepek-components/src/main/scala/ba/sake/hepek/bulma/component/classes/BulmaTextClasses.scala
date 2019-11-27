@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.TextClasses
 object BulmaTextClasses extends BulmaTextClasses
 
 trait BulmaTextClasses extends TextClasses {
-
   override def txtPrimary = cls := "has-text-primary"
   override def txtSuccess = cls := "has-text-success"
   override def txtInfo    = cls := "has-text-info"
@@ -21,5 +20,4 @@ trait BulmaTextClasses extends TextClasses {
   override def txtLowercase  = cls := "is-lowercase"
   override def txtUppercase  = cls := "is-uppercase"
   override def txtCapitalize = cls := "is-capitalized"
-
 }

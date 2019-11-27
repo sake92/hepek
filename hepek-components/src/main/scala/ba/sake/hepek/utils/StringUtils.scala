@@ -3,7 +3,6 @@ package ba.sake.hepek.utils
 import java.text.Normalizer
 
 object StringUtils {
-
   private val UnsafeURLCharsRegex = """[& +$,:;=?@"#{}|^~\[`%!'\]./()*\\]"""
 
   /**

@@ -32,5 +32,4 @@ object Index extends HepekComponentsDocsPage {
         """.md
     )
   )
-
 }

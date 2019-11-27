@@ -26,5 +26,4 @@ object Index extends HepekPlayDocsPage {
       """.md
     )
   )
-
 }

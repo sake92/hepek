@@ -13,7 +13,6 @@ trait ListComponents {
 
   def item(inner: Frag, to: Option[String] = None, selected: Boolean = false): ListItem =
     ListItem(inner, to, selected)
-
 }
 
 case class ListItem(inner: Frag, to: Option[String], selected: Boolean) extends BulmaElement {
@@ -24,5 +23,4 @@ case class ListItem(inner: Frag, to: Option[String], selected: Boolean) extends 
     val linked      = to.fold(base)(l => base(href := l))
     linked(inner)
   }
-
 }

@@ -9,6 +9,7 @@ object NavbarComponents extends NavbarComponents
 trait NavbarElement extends BulmaElement
 
 case class NavbarHamburger(active: Boolean = false) extends NavbarElement {
+
   override def content =
     a(
       cls := enrichCssClass("navbar-burger", isActive(active)),
@@ -25,14 +26,17 @@ case class NavbarHamburger(active: Boolean = false) extends NavbarElement {
 trait NavbarItem extends NavbarElement
 
 case class AnchorNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
+
   override def content: Text.all.Frag =
     a(cls := enrichCssClasses("navbar-item", modifiers: _*))(elements)
 }
 
 case class DivNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
+
   override def content: Text.all.Frag =
     div(cls := enrichCssClasses("navbar-item", modifiers: _*))(elements)
 }
+
 case class PlainAnchorNavbarItem(elements: Frag*) extends NavbarItem {
   override def content: Text.all.Frag = a(cls := "navbar-item ")(elements)
 }
@@ -43,6 +47,7 @@ case class PlainDivNavbarItem(elements: Frag*) extends NavbarItem {
 
 case class NavbarBrand(hamburger: Option[NavbarHamburger], items: NavbarItem*)
     extends NavbarElement {
+
   override def content: Text.all.Frag = div(cls := "navbar-brand ")(
     items.map(_.content),
     optionalElementContent(hamburger)
@@ -50,6 +55,7 @@ case class NavbarBrand(hamburger: Option[NavbarHamburger], items: NavbarItem*)
 }
 
 case class NavbarDropdown(items: NavbarItem*) extends NavbarElement {
+
   override def content: Text.all.Frag = div(cls := "navbar-dropdown ")(
     items.map(_.content)
   )
@@ -57,6 +63,7 @@ case class NavbarDropdown(items: NavbarItem*) extends NavbarElement {
 
 case class NavbarMenu(active: Boolean = false)(startItems: NavbarItem*)(endItems: NavbarItem*)
     extends NavbarElement {
+
   override def content: Text.all.Frag = div(cls := enrichCssClass("navbar-menu", isActive(active)))(
     div(cls := "navbar-start ")(startItems.map(_.content)),
     div(cls := "navbar-end ")(endItems.map(_.content))

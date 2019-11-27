@@ -4,7 +4,6 @@ import scalatags.Text.all._
 import ba.sake.hepek.html.component.NavbarComponents
 
 object BootstrapNavbarComponents extends BootstrapNavbarComponents {
-
   sealed trait Position { def classes: String }
 
   object Position {
@@ -90,5 +89,4 @@ trait BootstrapNavbarComponents extends NavbarComponents {
         }
       )
     )
-
 }

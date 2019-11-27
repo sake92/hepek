@@ -3,7 +3,6 @@ package ba.sake.hepek.html.structure
 import ba.sake.hepek.selenium.HepekSeleniumTest
 
 class StaticPageTest extends HepekSeleniumTest {
-
   "Static page" should "have the correct title, favicon etc." in {
     val p = SimpleStaticPage
     go to filePath(p)
@@ -19,5 +18,4 @@ class StaticPageTest extends HepekSeleniumTest {
     val lang = find(cssSelector("html"))
     lang.get.attribute("lang").get should endWith(p.pageSettings.language)
   }
-
 }

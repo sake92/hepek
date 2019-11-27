@@ -17,5 +17,4 @@ trait PanelComponents {
       header: Option[Frag] = None,
       footer: Option[Frag] = None
   ): Frag
-
 }

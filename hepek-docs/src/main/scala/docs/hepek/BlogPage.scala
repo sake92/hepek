@@ -86,5 +86,4 @@ object BlogPage extends HepekDocsPage {
       In each template you populate `categoryPosts` list and you'll get a nice sidebar. :)
     """.md
   )
-
 }

@@ -1,5 +1,6 @@
-addSbtPlugin("com.geirsson"  % "sbt-ci-release" % "1.3.1")
-addSbtPlugin("org.scalameta" % "sbt-scalafmt"   % "2.0.4")
+
+addSbtPlugin("com.geirsson"  % "sbt-ci-release" % "1.4.31")
+addSbtPlugin("org.scalameta" % "sbt-scalafmt"   % "2.2.1")
 
 addSbtPlugin("com.typesafe.sbt"  % "sbt-web"     % "1.4.4")
 addSbtPlugin("com.typesafe.play" % "sbt-plugin"  % "2.7.3")

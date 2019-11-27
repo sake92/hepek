@@ -44,7 +44,6 @@ case class Section(
 )(
     implicit owner: RelativePath
 ) {
-
   def withChildren(children: Section*) = copy(children = children.toList)
 
   def id: String = StringUtils.urlify(name)

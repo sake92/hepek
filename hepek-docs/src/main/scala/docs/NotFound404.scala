@@ -22,5 +22,4 @@ object NotFound extends templates.HepekDocsAbstractPage {
       Click [here](${Site.url}) to go back
       """.md
     )
-
 }

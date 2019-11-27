@@ -114,5 +114,4 @@ object MockBulmaPage extends BulmaStaticPage with BulmaGridComponents {
     ),
     modal
   )
-
 }

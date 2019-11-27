@@ -30,5 +30,4 @@ class BreadcrumbComponentsSpec extends FlatSpec with Matchers with HepekMatchers
     BreadcrumbComponentPage.centeredContent.toString shouldBe
       """<nav class="breadcrumb is-centered "><ul><li><a>Content</a></li><li><a>Content 2</a></li></ul></nav>"""
   }
-
 }

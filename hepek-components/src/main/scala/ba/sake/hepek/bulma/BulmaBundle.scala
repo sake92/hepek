@@ -5,7 +5,6 @@ import ba.sake.hepek.bulma.component.BulmaComponentsBundle
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 
 trait BulmaBundle extends Bundle with BulmaComponentsBundle {
-
   type ClassesBundle = BulmaClassesBundle
   val classes = BulmaClassesBundle
 

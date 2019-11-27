@@ -86,5 +86,4 @@ object Form extends HepekPlayDocsPage {
       """.md
     )
   )
-
 }

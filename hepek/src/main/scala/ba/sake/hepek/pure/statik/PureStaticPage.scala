@@ -8,7 +8,6 @@ import ba.sake.hepek.html.component.GridComponents._
 import component.PureMenuComponents._
 
 trait PureStaticPage extends StaticPage with PurePage {
-
   def withPureMenu: Boolean = true
 
   override def bodyContent =
@@ -31,6 +30,7 @@ trait PureStaticPage extends StaticPage with PurePage {
 
   // grid for layout with sidebar
   private object grid extends component.PureGridComponents {
+
     override def screenRatios = super.screenRatios.copy(
       lg = Ratios(Ratio(1, 5), Ratio(1, 1, 1))
     )
@@ -63,5 +63,4 @@ trait PureStaticPage extends StaticPage with PurePage {
     } yield menuItem()(
       menuLink(page.ref)(labela)
     )
-
 }

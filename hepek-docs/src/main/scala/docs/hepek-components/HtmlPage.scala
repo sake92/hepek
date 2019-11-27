@@ -90,5 +90,4 @@ object HtmlPage extends HepekComponentsDocsPage {
       It has some defaults, you can see them in source code or inspect it in browser.
     """.md
   )
-
 }

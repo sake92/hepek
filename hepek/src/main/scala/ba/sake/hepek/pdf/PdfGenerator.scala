@@ -185,5 +185,4 @@ if (svgs.length < 1) {
     val wait = new WebDriverWait(driver, 10)
     wait.until(pageLoadCondition)
   }
-
 }

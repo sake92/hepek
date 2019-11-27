@@ -46,5 +46,4 @@ object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
       """.md
     )
   )
-
 }

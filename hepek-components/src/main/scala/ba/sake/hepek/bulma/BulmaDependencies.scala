@@ -3,7 +3,6 @@ package ba.sake.hepek.bulma
 import ba.sake.hepek.html._
 
 trait BulmaDependencies extends PageDependencies {
-
   val bulmaFilename: String = "bulma"
 
   def bulmaSettings: ComponentSettings =

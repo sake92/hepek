@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.TableClasses
 object W3CssTableClasses extends W3CssTableClasses
 
 trait W3CssTableClasses extends TableClasses {
-
   override def tableClass      = cls := "w3-table"
   override def tableStriped    = cls := "w3-striped"
   override def tableBordered   = cls := "w3-bordered"
@@ -24,5 +23,4 @@ trait W3CssTableClasses extends TableClasses {
   override def tableDataWarning = cls := "w3-yellow"
   override def tableDataDanger  = cls := "w3-red"
   override def tableDataActive  = cls := "active"
-
 }

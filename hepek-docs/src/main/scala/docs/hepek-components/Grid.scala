@@ -122,5 +122,4 @@ object GridSupport extends HepekComponentsDocsPage {
       """.md
     )
   )
-
 }

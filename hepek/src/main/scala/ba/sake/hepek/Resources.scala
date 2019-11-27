@@ -11,7 +11,6 @@ case class Resource(fileName: String) extends RelativePath with RelativePathAddo
 object Resources extends Resources
 
 trait Resources {
-
   def siteRootPath: String = "site"
 
   def resource(fileName: String): Resource =

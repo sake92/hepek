@@ -3,7 +3,6 @@ package ba.sake.hepek.html.component
 import scalatags.Text.all._
 
 trait NavbarComponents {
-
   // TODO nested links... :D
 
   def navbar(

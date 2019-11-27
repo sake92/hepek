@@ -9,7 +9,6 @@ import ba.sake.hepek.core.RelativePath
   * in `my.company` package renders to `my/company/mypage.html`
   */
 trait PackageRelativePath extends RelativePath with RelativePathAddons {
-
   /** Name of the rendered file. */
   def fileName: String
 

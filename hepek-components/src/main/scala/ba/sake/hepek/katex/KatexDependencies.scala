@@ -3,7 +3,6 @@ package ba.sake.hepek.katex
 import ba.sake.hepek.html._
 
 trait KatexDependencies extends PageDependencies {
-
   def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
 
   def katexDependencies =
@@ -55,5 +54,4 @@ case class KatexSettings(
   def withDelimitersBlock(delimitersBlock: (String, String)) =
     copy(delimitersBlock = delimitersBlock)
   def withIgnoredTags(ignoredTags: List[String]) = copy(ignoredTags = ignoredTags)
-
 }

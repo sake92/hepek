@@ -26,5 +26,4 @@ class BulmaStaticPageSpec extends HepekSeleniumTest {
       find(className("card-content")).get.underlying.findElement(By.tagName("p")).getText
     cardContent shouldBe "hello"
   }
-
 }

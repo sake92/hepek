@@ -55,5 +55,4 @@ object QuickStart extends HepekDocsPage {
       """.md
     )
   )
-
 }

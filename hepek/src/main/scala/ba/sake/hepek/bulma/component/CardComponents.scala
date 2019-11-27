@@ -26,11 +26,13 @@ case class CenteredHeader(title: String, iconClass: Option[String] = None) exten
 object DefaultHeader {
   def apply(title: String) = new DefaultHeader(title, None)
 }
+
 case class DefaultHeader(title: String, iconClass: Option[String]) extends CardHeader {
   override def content = contentBuilder(EmptyAttribute)(title, iconClass)
 }
 
 case class CardImage(imagePath: String) extends BulmaElement {
+
   override def content =
     div(cls := "card-image ")(
       tag("figure")(cls := "image is-4by3 ")(img(src := imagePath))
@@ -42,6 +44,7 @@ case class CardContent(fragments: Frag*) extends BulmaElement {
 }
 
 case class CardFooter(items: Frag*) extends BulmaElement {
+
   override def content =
     footer(cls := "card-footer ")(
       for {
@@ -64,5 +67,4 @@ trait CardComponents {
       cardContent.content,
       optionalElementContent(footer)
     )
-
 }

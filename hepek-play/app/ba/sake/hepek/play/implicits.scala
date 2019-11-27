@@ -13,5 +13,4 @@ package object implicits {
 
   implicit def contentTypeHtmlPage(implicit codec: Codec): ContentTypeOf[HtmlPage] =
     ContentTypeOf(Some(ContentTypes.HTML))
-
 }

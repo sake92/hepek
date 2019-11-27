@@ -11,7 +11,6 @@ case class BreadcrumbItem(label: String) extends BulmaElement {
 }
 
 trait BreadcrumbComponents {
-
   def breadcrumb(content: BreadcrumbItem*)         = customBreadcrumb(List())(content: _*)
   def centeredBreadcrumb(content: BreadcrumbItem*) = customBreadcrumb(List(Centered))(content: _*)
   def leftBreadcrumb(content: BreadcrumbItem*)     = customBreadcrumb(List(Left))(content: _*)
@@ -23,5 +22,4 @@ trait BreadcrumbComponents {
 
   def customBreadcrumb(attributes: List[BulmaModifier])(items: BreadcrumbItem*) =
     tag("nav")(cls := enrichCssClasses("breadcrumb", attributes: _*))(ul(items.map(_.content)))
-
 }

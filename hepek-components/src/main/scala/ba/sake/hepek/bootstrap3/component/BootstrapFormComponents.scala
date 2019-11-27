@@ -9,9 +9,11 @@ object BootstrapFormComponents extends BootstrapFormComponents {
 
   object Type {
     case object Vertical extends Type
+
     case object Inline extends Type {
       override def classes = List("form-inline")
     }
+
     case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
       require(labelRatio > 0, "Label ratio < 1")
       require(inputRatio > 0, "Input ratio < 1")
@@ -149,7 +151,6 @@ trait BootstrapFormComponents extends FormComponents {
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
     def renderCheckBox(cbLabel: String, attrs: Seq[AttrPair]) =
@@ -279,7 +280,6 @@ trait BootstrapFormComponents extends FormComponents {
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
     val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
@@ -314,7 +314,6 @@ trait BootstrapFormComponents extends FormComponents {
           inputHelpFrag
         )
     }
-
   }
 
   private def formGroup(attrs: AttrPair*)(contents: Frag*): Frag =
@@ -329,5 +328,4 @@ trait BootstrapFormComponents extends FormComponents {
     val lblCls     = if (hasLabel) "col-sm" else "col-sm-offset"
     s"$lblCls-$labelRatio" -> s"col-sm-$inputRatio"
   }
-
 }

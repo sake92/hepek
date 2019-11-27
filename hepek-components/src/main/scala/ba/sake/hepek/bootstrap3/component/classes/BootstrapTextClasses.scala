@@ -6,7 +6,6 @@ import ba.sake.hepek.html.component.classes.TextClasses
 object BootstrapTextClasses extends BootstrapTextClasses
 
 trait BootstrapTextClasses extends TextClasses {
-
   override def txtPrimary = cls := "text-primary"
   override def txtSuccess = cls := "text-success"
   override def txtInfo    = cls := "text-info"
@@ -21,5 +20,4 @@ trait BootstrapTextClasses extends TextClasses {
   override def txtLowercase  = cls := "text-lowercase"
   override def txtUppercase  = cls := "text-uppercase"
   override def txtCapitalize = cls := "text-capitalize"
-
 }

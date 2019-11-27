@@ -4,7 +4,6 @@ import scalatags.Text.all, all._
 import ba.sake.hepek.html.component.PanelComponents
 
 object W3CssPanelComponents extends W3CssPanelComponents {
-
   trait Type extends PanelComponents.Type
 
   object Type {

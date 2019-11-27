@@ -10,7 +10,6 @@ import ba.sake.hepek.utils.StringUtils
   * So the final path will be "my/package/my-class.html" ("urlify"-ed also, prefixed with PackageRelativePath)
   */
 trait ClassPackageRelativePath extends PackageRelativePath {
-
   def fileExtension: String = "html"
 
   override def fileName: String = {

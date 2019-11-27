@@ -6,7 +6,6 @@ import scalatags.Text.all._
 object MessageComponents extends MessageComponents
 
 trait MessageComponents {
-
   def messageHeader(content: Frag*) = div(cls := "message-header ")(content)
 
   def messageBody(content: Frag*) = div(cls := "message-body ")(content)
@@ -21,5 +20,4 @@ trait MessageComponents {
       case _ => tag("article")(cls := cssClassValues, messageHeader(header), messageBody(body))
     }
   }
-
 }
