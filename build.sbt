@@ -23,6 +23,7 @@ inThisBuild(
     scalaVersion := "2.12.8",
     crossScalaVersions := Seq("2.12.8", "2.13.1"),
     scalafmtOnCompile := true,
+    useCoursier := false, // temporarily until Travis is ok...
     resolvers += Resolver.sonatypeRepo("snapshots")
   )
 )
@@ -32,7 +33,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "com.lihaoyi"   %% "scalatags" % "0.7.0",
+      "com.lihaoyi"              %% "scalatags" % "0.7.0",
       "com.atlassian.commonmark" % "commonmark" % "0.13.0",
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
@@ -56,7 +57,7 @@ lazy val hepekStatic = (project in file("hepek"))
 
 // play
 lazy val hepekPlay = (project in file("hepek-play"))
-  .settings(    name := "hepek-play"  )
+  .settings(name := "hepek-play")
   .dependsOn(hepekComponents)
   .enablePlugins(PlayScala)
 
