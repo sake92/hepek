@@ -21,6 +21,7 @@ inThisBuild(
       )
     ),
     scalaVersion := "2.12.8",
+    crossScalaVersions := Seq("2.12.8", "2.13.1"),
     scalafmtOnCompile := true,
     resolvers += Resolver.sonatypeRepo("snapshots")
   )
