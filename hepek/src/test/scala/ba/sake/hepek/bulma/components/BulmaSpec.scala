@@ -2,9 +2,10 @@ package ba.sake.hepek.bulma.components
 
 import ba.sake.hepek.bulma.{EmptyAttribute, Hoverable, Transparent}
 import ba.sake.hepek.matchers.HepekMatchers
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class BulmaSpec extends FlatSpec with Matchers with HepekMatchers {
+class BulmaSpec extends AnyFlatSpec with Matchers with HepekMatchers {
   "enriched css class" should "end with an empty space" in {
     import ba.sake.hepek.bulma.component._
     enrichCssClass("test", Hoverable) shouldBe "test is-hoverable "

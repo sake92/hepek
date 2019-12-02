@@ -2,8 +2,9 @@ package ba.sake.hepek.bulma.components
 
 import ba.sake.hepek.bulma.component._
 import ba.sake.hepek.matchers.HepekMatchers
-import org.scalatest.{FlatSpec, Matchers}
 import scalatags.Text.all._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 object BulmaCardPage extends CardComponents {
   def header = DefaultHeader("Component")
@@ -21,7 +22,7 @@ object BulmaCardPage extends CardComponents {
   def cardExample = card(Some(header), Some(image), contentData, Some(footer))
 }
 
-class CardComponentsSpec extends FlatSpec with Matchers with HepekMatchers {
+class CardComponentsSpec extends AnyFlatSpec with Matchers with HepekMatchers {
   "simple Card" should "have the following structure" in {
     BulmaCardPage.cardExample.toString shouldBe
       """<div class="card ">

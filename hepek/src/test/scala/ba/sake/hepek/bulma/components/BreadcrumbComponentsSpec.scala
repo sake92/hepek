@@ -2,9 +2,10 @@ package ba.sake.hepek.bulma.components
 
 import ba.sake.hepek.bulma.component.{BreadcrumbComponents, BreadcrumbItem}
 import ba.sake.hepek.matchers.HepekMatchers
-import org.scalatest.{FlatSpec, Matchers}
 import scalatags.Text
 import scalatags.Text.all._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 object BreadcrumbComponentPage extends BreadcrumbComponents {
 
@@ -20,7 +21,7 @@ object BreadcrumbComponentPage extends BreadcrumbComponents {
     )
 }
 
-class BreadcrumbComponentsSpec extends FlatSpec with Matchers with HepekMatchers {
+class BreadcrumbComponentsSpec extends AnyFlatSpec with Matchers with HepekMatchers {
   "simple Breadcrumb" should "have class 'breadcrumb'" in {
     BreadcrumbComponentPage.simpleContent.toString shouldBe
       """<nav class="breadcrumb "><ul><li><a>This is a big paragraph of text</a></li></ul></nav>"""
