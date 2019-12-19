@@ -33,7 +33,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "com.lihaoyi"              %% "scalatags" % "0.7.0",
+      "com.lihaoyi"              %% "scalatags" % "0.8.1",
       "com.atlassian.commonmark" % "commonmark" % "0.13.1",
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
