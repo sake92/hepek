@@ -3,6 +3,7 @@ import com.typesafe.sbt.web.Import.WebKeys
 val openhtmltopdfVersion = "1.0.1"
 val seleniumVersion      = "2.52.0"
 val scalaTestVersion     = "3.0.8"
+val hepekCoreVersion = "0.2.0"
 
 inThisBuild(
   List(
@@ -44,7 +45,7 @@ lazy val hepekStatic = (project in file("hepek"))
   .settings(
     name := "hepek",
     libraryDependencies ++= Seq(
-      "ba.sake"                 % "hepek-core"                   % "0.1.1",
+      "ba.sake"                 % "hepek-core"                   % hepekCoreVersion,
       "org.jsoup"               % "jsoup"                        % "1.12.1",
       "com.openhtmltopdf"       % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
       "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
