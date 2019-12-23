@@ -1,4 +1,4 @@
-# Hepek [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.12.svg?style=flat-square&label=Scala+2.12)](https://mvnrepository.com/artifact/ba.sake/hepek) [![Build Status](	https://img.shields.io/travis/sake92/hepek/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/sake92/hepek) [![Gitter](https://img.shields.io/gitter/room/sake92/hepek.svg?style=flat-square)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Sonar code quality](https://img.shields.io/sonar/https/sonarcloud.io/sake92_hepek/quality_gate.svg?style=flat-square)](https://sonarcloud.io/dashboard/index/sake92_hepek)
+# Hepek [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek) [![Build Status](	https://img.shields.io/travis/sake92/hepek/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/sake92/hepek) [![Gitter](https://img.shields.io/gitter/room/sake92/hepek.svg?style=flat-square)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Sonar code quality](https://img.shields.io/sonar/https/sonarcloud.io/sake92_hepek/quality_gate.svg?style=flat-square)](https://sonarcloud.io/dashboard/index/sake92_hepek)
 
 Motivation? Typesafe HTML, but not too much.  
 See these posts also: 
@@ -17,7 +17,7 @@ See these posts also:
 ## Hepek Components
 Used in Hepek and Hepek Play.  
 For standalone use:  
-`"ba.sake" %% "hepek-components" % "0.4.0"`
+`"ba.sake" %% "hepek-components" % "0.5.0"`
 
 
 ---
