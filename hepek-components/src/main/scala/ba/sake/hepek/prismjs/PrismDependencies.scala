@@ -58,7 +58,7 @@ object Themes {
   val Twilight       = "prism-twilight"
 }
 
-case class PrismSettings(
+final case class PrismSettings(
     override val version: String,
     override val pkg: String,
     override val depsProvider: DependencyProvider = DependencyProvider.cdnjs,

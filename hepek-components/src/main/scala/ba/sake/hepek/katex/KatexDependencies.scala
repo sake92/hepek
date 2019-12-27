@@ -36,7 +36,7 @@ trait KatexDependencies extends PageDependencies {
     super.components :+ (katexSettings, katexDependencies)
 }
 
-case class KatexSettings(
+final case class KatexSettings(
     override val version: String,
     override val pkg: String,
     override val depsProvider: DependencyProvider = DependencyProvider.cdnjs,

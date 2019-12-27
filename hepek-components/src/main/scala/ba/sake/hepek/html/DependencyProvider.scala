@@ -16,7 +16,7 @@ object DependencyProvider {
     s"https://cdnjs.cloudflare.com/ajax/libs/${dep.pkg}/${dep.version}/${dep.file}${dep.queryParams}"
 }
 
-case class WebjarsDependencyProvider(webjarsPath: String) extends DependencyProvider {
+final case class WebjarsDependencyProvider(webjarsPath: String) extends DependencyProvider {
 
   override def depPath(dep: Dependency) =
     s"$webjarsPath/${dep.pkg}/${dep.file}${dep.queryParams}"

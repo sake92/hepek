@@ -9,9 +9,9 @@ object PrismCodeHighlightComponents extends PrismCodeHighlightComponents {
   sealed trait CodeSource
 
   object CodeSource {
-    case class PlainText(text: String)                      extends CodeSource
-    case class AJAX(url: String)                            extends CodeSource // any file on the web
-    case class JSONP(url: String, fileName: Option[String]) extends CodeSource // Github, Gist, Bitbucket
+    final case class PlainText(text: String)                      extends CodeSource
+    final case class AJAX(url: String)                            extends CodeSource // any file on the web
+    final case class JSONP(url: String, fileName: Option[String]) extends CodeSource // Github, Gist, Bitbucket
   }
 }
 
@@ -175,7 +175,7 @@ object PrismCodeHighlighter {
   }
 }
 
-case class PrismCodeHighlighter(
+final case class PrismCodeHighlighter(
     lang: String,
     lineNumbers: Option[Int],
     lineHighlight: Option[(String, Int)],
@@ -206,7 +206,7 @@ object PrismCmdHighlighter {
     )
 }
 
-case class PrismCmdHighlighter(
+final case class PrismCmdHighlighter(
     lang: String,
     lineHighlight: Option[(String, Int)],
     commandLine: CommandLineOptions
@@ -370,7 +370,7 @@ abstract class BaseCodeHighlighter(
     jsonp(s"https://api.github.com/repos/$user/$repo/contents/$filePath")
 }
 
-case class CommandLineOptions(
+final case class CommandLineOptions(
     outputLines: Option[String],
     prefix: Either[(String, String), String] // (user,host) or custom
 )

@@ -11,13 +11,13 @@ trait TocType
 object TocType {
   object Togglable extends TocType
 
-  case class Scrollspy(
+  final case class Scrollspy(
       offset: Int = 10,
       affixOffset: Int = 10
   ) extends TocType
 }
 
-case class TocSettings(
+final case class TocSettings(
     title: String = "Table of Contents",
     tocType: Option[TocType] = Some(TocType.Scrollspy())
 )

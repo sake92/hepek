@@ -15,7 +15,7 @@ import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.support.ui.WebDriverWait
 import ba.sake.hepek.html.HtmlUtils
 
-case class Font(
+final case class Font(
     file: File,
     family: String
 )

@@ -14,7 +14,7 @@ object BootstrapFormComponents extends BootstrapFormComponents {
       override def classes = List("form-inline")
     }
 
-    case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
+    final case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
       require(labelRatio > 0, "Label ratio < 1")
       require(inputRatio > 0, "Input ratio < 1")
       override def classes = List("form-horizontal")

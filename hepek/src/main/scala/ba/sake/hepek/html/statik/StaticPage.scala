@@ -19,7 +19,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage 
     HtmlUtils.process(contents, xhtml = renderXhtml, pretty = renderPretty)
 }
 
-case class StaticSiteSettings(
+final case class StaticSiteSettings(
     indexPage: Option[StaticPage] = None,
     mainPages: List[StaticPage] = List.empty
 ) {

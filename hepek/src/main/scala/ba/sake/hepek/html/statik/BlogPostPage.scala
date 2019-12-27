@@ -11,7 +11,7 @@ trait BlogPostPage extends StaticPage {
   def categoryPosts: List[BlogPostPage] = List.empty
 }
 
-case class BlogSettings(
+final case class BlogSettings(
     author: Option[String] = None,
     createDate: Option[LocalDate] = None,
     sections: List[Section] = List.empty,
@@ -37,7 +37,7 @@ object BlogSettings {
   * Handy class for sectioning a page (usually blog post). <br>
   * Also useful for generating a TOC (Table Of Contents).
   */
-case class Section(
+final case class Section(
     name: String,
     content: Frag,
     children: List[Section] = List.empty

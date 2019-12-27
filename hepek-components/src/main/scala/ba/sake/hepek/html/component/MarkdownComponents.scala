@@ -8,7 +8,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 trait MarkdownComponents { self =>
   def md(str: String): Frag
 
-  implicit class MarkdownComponentOps(str: String) {
+  implicit class MarkdownComponentOps(private val str: String) {
     def md: Frag = self.md(str)
   }
 }

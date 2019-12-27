@@ -4,7 +4,7 @@ import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.path.RelativePathAddons
 import java.nio.file.Paths
 
-case class Resource(fileName: String) extends RelativePath with RelativePathAddons {
+final case class Resource(fileName: String) extends RelativePath with RelativePathAddons {
   override def relPath = Paths.get(fileName)
 }
 

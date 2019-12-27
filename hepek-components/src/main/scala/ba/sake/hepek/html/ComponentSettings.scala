@@ -7,7 +7,7 @@ abstract class BaseComponentSettings(
     val depsProvider: DependencyProvider
 )
 
-case class ComponentSettings(
+final case class ComponentSettings(
     override val version: String,
     override val pkg: String,
     override val depsProvider: DependencyProvider = DependencyProvider.cdnjs
@@ -17,7 +17,7 @@ case class ComponentSettings(
   def withDepsProvider(depsProvider: DependencyProvider) = copy(depsProvider = depsProvider)
 }
 
-case class ComponentDependencies(
+final case class ComponentDependencies(
     cssDependencies: Dependencies = Dependencies(),
     jsDependencies: Dependencies = Dependencies()
 ) {

@@ -75,7 +75,7 @@ trait HtmlPage extends PageDependencies {
   def pageContent: Frag = frag()
 }
 
-case class SiteSettings(
+final case class SiteSettings(
     name: Option[String] = None,
     faviconNormal: Option[String] = None,
     faviconInverted: Option[String] = None
@@ -88,7 +88,7 @@ case class SiteSettings(
   def withFaviconInverted(fav: Option[String]) = copy(faviconInverted = fav)
 }
 
-case class PageSettings(
+final case class PageSettings(
     title: String,
     label: String,
     language: String,

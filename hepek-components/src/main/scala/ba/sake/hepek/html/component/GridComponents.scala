@@ -45,16 +45,16 @@ trait GridComponents {
 }
 
 object GridComponents {
-  case class Col2(content: List[Frag]) // 2 parts
-  case class Col3(content: List[Frag]) // 3 parts
+  final case class Col2(content: List[Frag]) // 2 parts
+  final case class Col3(content: List[Frag]) // 3 parts
 
-  case class Ratio(values: List[Int])
+  final case class Ratio(values: List[Int])
 
   object Ratio {
     def apply(values: Int*): Ratio = new Ratio(values.toList)
   }
 
-  case class Ratios(
+  final case class Ratios(
       single: Ratio = Ratios.DefaultSingle,
       half: Ratio = Ratios.DefaultHalf,
       third: Ratio = Ratios.DefaultThird
@@ -82,7 +82,7 @@ object GridComponents {
     def withThird(r1: Int, r2: Int, r3: Int): Ratios = withThird(Ratio(r1, r2, r3))
   }
 
-  case class ScreenRatios(
+  final case class ScreenRatios(
       lg: Ratios,
       md: Option[Ratios] = None,
       sm: Option[Ratios] = None,

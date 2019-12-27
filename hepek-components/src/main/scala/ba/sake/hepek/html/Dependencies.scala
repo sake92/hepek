@@ -1,6 +1,6 @@
 package ba.sake.hepek.html
 
-case class Dependency(
+final case class Dependency(
     file: String,
     version: String,
     pkg: String,
@@ -10,7 +10,7 @@ case class Dependency(
   def queryParams: String = qParams.map(q => "?" + q).getOrElse("")
 }
 
-case class Dependencies(
+final case class Dependencies(
     urls: List[String] = List.empty,
     inlines: List[String] = List.empty,
     deps: List[Dependency] = List.empty
