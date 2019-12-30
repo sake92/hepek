@@ -25,8 +25,23 @@ inThisBuild(
     crossScalaVersions := Seq("2.12.8", "2.13.1"),
     scalafmtOnCompile := true,
     useCoursier := false, // temporarily until Travis is ok...
-    resolvers += Resolver.sonatypeRepo("snapshots")
+    resolvers += Resolver.sonatypeRepo("snapshots"),
   )
+)
+
+lazy val macroSettings = Seq(
+  libraryDependencies ++= {
+    CrossVersion.partialVersion(scalaVersion.value) match {
+      case Some((2, n)) if n >= 13 => Nil
+      case _ =>List(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full))
+    }
+  },
+  Compile / scalacOptions ++= {
+    CrossVersion.partialVersion(scalaVersion.value) match {
+      case Some((2, n)) if n >= 13 => List("-Ymacro-annotations")
+      case _                       => Nil
+    }
+  }
 )
 
 // components
@@ -34,11 +49,13 @@ lazy val hepekComponents = (project in file("hepek-components"))
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
+      "ba.sake" %% "stone-macros" % "0.0.2",
       "com.lihaoyi"              %% "scalatags" % "0.7.0",
       "com.atlassian.commonmark" % "commonmark" % "0.13.1",
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
   )
+  .settings(macroSettings: _*)
 
 // static-site-generator
 lazy val hepekStatic = (project in file("hepek"))
@@ -54,11 +71,13 @@ lazy val hepekStatic = (project in file("hepek"))
       "org.scalatest"           %% "scalatest"                   % scalaTestVersion % "test"
     )
   )
+  .settings(macroSettings: _*)
   .dependsOn(hepekComponents)
 
 // play
 lazy val hepekPlay = (project in file("hepek-play"))
   .settings(name := "hepek-play")
+  .settings(macroSettings: _*)
   .dependsOn(hepekComponents)
   .enablePlugins(PlayScala)
 

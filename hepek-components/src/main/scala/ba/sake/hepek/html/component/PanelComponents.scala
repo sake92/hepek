@@ -1,9 +1,12 @@
 package ba.sake.hepek.html.component
 
-import scalatags.Text.all, all._
+import scalatags.Text.all.Frag
 
 object PanelComponents {
-  trait Type { def classes: List[String] = List.empty }
+
+  trait Type {
+    def classes: List[String] = List.empty
+  }
 }
 
 trait PanelComponents {
