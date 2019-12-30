@@ -2,6 +2,7 @@ package ba.sake.hepek.prismjs
 
 import ba.sake.hepek.html._
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
+import ba.sake.stone.Wither
 
 trait PrismDependencies extends ClipboardjsDependencies {
   def prismSettings: PrismSettings = PrismSettings("1.16.0", "prism", DependencyProvider.cdnjs)
@@ -58,10 +59,11 @@ object Themes {
   val Twilight       = "prism-twilight"
 }
 
+@Wither
 final case class PrismSettings(
-    override val version: String,
-    override val pkg: String,
-    override val depsProvider: DependencyProvider = DependencyProvider.cdnjs,
+    version: String,
+    pkg: String,
+    depsProvider: DependencyProvider = DependencyProvider.cdnjs,
     theme: String = Themes.Okaidia,
     languages: List[String] = PrismConsts.languages,
     plugins: List[(String, Boolean)] = PrismConsts.plugins,
@@ -69,17 +71,7 @@ final case class PrismSettings(
     showLanguage: Boolean = true,
     copyToClipboard: Boolean = true,
     keepMarkup: Boolean = true
-) extends BaseComponentSettings(version, pkg, depsProvider) {
-  def withVersion(version: String)                       = copy(version = version)
-  def withPkg(pkg: String)                               = copy(pkg = pkg)
-  def withDepsProvider(depsProvider: DependencyProvider) = copy(depsProvider = depsProvider)
-  def withLanguages(languages: List[String])             = copy(languages = languages)
-  def withTheme(theme: String)                           = copy(theme = theme)
-  def withShowInvisibles(showInvisibles: Boolean)        = copy(showInvisibles = showInvisibles)
-  def withShowLanguage(showLanguage: Boolean)            = copy(showLanguage = showLanguage)
-  def withCopyToClipboard(copyToClipboard: Boolean)      = copy(copyToClipboard = copyToClipboard)
-  def withKeepMarkup(keepMarkup: Boolean)                = copy(keepMarkup = keepMarkup)
-}
+) extends BaseComponentSettings
 
 object PrismConsts {
 

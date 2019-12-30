@@ -9,9 +9,8 @@ trait HtmlPage extends PageDependencies {
   def pageSettings: PageSettings = PageSettings()
 
   def metaSettings: MetaSettings =
-    MetaSettings().copy( // TODO fill all defaults
-      ogTitle = Some(pageSettings.title)
-    )
+    MetaSettings() // TODO fill all defaults
+      .withOgTitle(pageSettings.title)
 
   def contents: String = {
     // inline css

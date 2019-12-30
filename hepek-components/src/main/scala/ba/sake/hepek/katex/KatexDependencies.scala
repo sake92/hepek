@@ -1,6 +1,7 @@
 package ba.sake.hepek.katex
 
 import ba.sake.hepek.html._
+import ba.sake.stone.Wither
 
 trait KatexDependencies extends PageDependencies {
   def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
@@ -36,22 +37,12 @@ trait KatexDependencies extends PageDependencies {
     super.components :+ (katexSettings, katexDependencies)
 }
 
+@Wither
 final case class KatexSettings(
-    override val version: String,
-    override val pkg: String,
-    override val depsProvider: DependencyProvider = DependencyProvider.cdnjs,
+    version: String,
+    pkg: String,
+    depsProvider: DependencyProvider = DependencyProvider.cdnjs,
     delimitersInline: (String, String) = ("´", "´"),
     delimitersBlock: (String, String) = ("$$", "$$"),
     ignoredTags: List[String] = List("script", "noscript", "style", "textarea", "pre", "code")
-) extends BaseComponentSettings(version, pkg, depsProvider) {
-  def withVersion(version: String)                       = copy(version = version)
-  def withPkg(pkg: String)                               = copy(pkg = pkg)
-  def withDepsProvider(depsProvider: DependencyProvider) = copy(depsProvider = depsProvider)
-
-  def withDelimitersInline(delimitersInline: (String, String)) =
-    copy(delimitersInline = delimitersInline)
-
-  def withDelimitersBlock(delimitersBlock: (String, String)) =
-    copy(delimitersBlock = delimitersBlock)
-  def withIgnoredTags(ignoredTags: List[String]) = copy(ignoredTags = ignoredTags)
-}
+) extends BaseComponentSettings

@@ -5,26 +5,22 @@ import java.time.LocalDate
 import scalatags.Text.all._
 import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.utils.StringUtils
+import ba.sake.stone.Wither
 
 trait BlogPostPage extends StaticPage {
   def blogSettings: BlogSettings        = BlogSettings()
   def categoryPosts: List[BlogPostPage] = List.empty
 }
 
+@Wither
 final case class BlogSettings(
     author: Option[String] = None,
     createDate: Option[LocalDate] = None,
     sections: List[Section] = List.empty,
     dateFormat: DateTimeFormatter = BlogSettings.DefaultDateFormat
 ) {
-  def withAuthor(author: String)                    = copy(author = Some(author))
-  def withAuthor(author: Option[String])            = copy(author = author)
-  def withCreateDate(createDate: LocalDate)         = copy(createDate = Some(createDate))
-  def withCreateDate(createDate: Option[LocalDate]) = copy(createDate = createDate)
-  def withSections(sections: List[Section])         = copy(sections = sections)
-  def withSections(sections: Section*)              = copy(sections = sections.toList)
-  def withDateFormat(df: DateTimeFormatter)         = copy(dateFormat = df)
-  def withDateFormat(df: String)                    = copy(dateFormat = DateTimeFormatter.ofPattern(df))
+  def withDateFormat(df: DateTimeFormatter) = copy(dateFormat = df)
+  def withDateFormat(df: String)            = copy(dateFormat = DateTimeFormatter.ofPattern(df))
 }
 
 object BlogSettings {
