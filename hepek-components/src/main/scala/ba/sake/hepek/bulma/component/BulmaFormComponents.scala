@@ -3,6 +3,7 @@ package ba.sake.hepek.bulma.component
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
+import ba.sake.hepek.plain.component.PlainFormComponents
 import scalatags.Text
 
 object BulmaFormComponents extends BulmaFormComponents {
@@ -20,7 +21,7 @@ object BulmaFormComponents extends BulmaFormComponents {
   }
 }
 
-trait BulmaFormComponents extends FormComponents {
+trait BulmaFormComponents extends PlainFormComponents {
   import BulmaFormComponents._
   import BulmaClassesBundle._
 

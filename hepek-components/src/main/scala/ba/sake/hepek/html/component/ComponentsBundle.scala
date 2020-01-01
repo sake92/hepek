@@ -2,7 +2,8 @@ package ba.sake.hepek.html
 
 package component
 
-trait ComponentsBundle {
+trait ComponentsBundle { // TODO self: BasicComponents =>
+
   type Form <: FormComponents
   type Grid <: GridComponents
   type Image <: ImageComponents
@@ -10,6 +11,7 @@ trait ComponentsBundle {
   type Panel <: PanelComponents
 
   val Form: Form
+  //val Image: ImageComponents
   val Navbar: Navbar
   val Panel: Panel
 }

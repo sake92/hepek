@@ -3,7 +3,7 @@ package ba.sake.hepek.html.component
 import scalatags.Text.all
 import all.{form => _, _}
 
-object FormComponents extends FormComponents {
+object FormComponents {
   trait Type { def classes: List[String] = List.empty }
 
   trait ValidationStateClasses {
@@ -28,11 +28,7 @@ trait FormComponents {
   private val DefaultTransform: Frag => Frag = identity
 
   /* Validation stuff */
-  def validationStateClasses: ValidationStateClasses = new ValidationStateClasses {
-    override def success: String = "success"
-    override def warning: String = "warning"
-    override def error: String   = "error"
-  }
+  def validationStateClasses: ValidationStateClasses
 
   sealed trait ValidationState { def clazz: String = "" }
 
@@ -77,27 +73,7 @@ trait FormComponents {
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
-  ): Frag = {
-    val commonAttrs = Seq(tpe := inputType, name := inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    val inputFrag =
-      if (inputType == "textarea") textarea(commonAttrs)(inputValue)
-      else input(commonAttrs)
-    val inputFragTransformed = inputTransform(inputFrag)
-    val inputContentFrag = inputLabel match {
-      case None => inputFragTransformed
-      case Some(inputLabel) =>
-        label(inputId.map(`for` := _))(
-          inputFragTransformed,
-          inputLabel
-        )
-    }
-    div(inputValidationState.map(cls := _.clazz))(
-      inputFrag,
-      inputMessages.map(span(_)),
-      inputHelp.map(span(_))
-    )
-  }
+  ): Frag
 
   /** button input "constructor", should override in impl */
   def constructInputButton(
@@ -106,16 +82,7 @@ trait FormComponents {
       inputValue: Option[String],
       inputLabel: Frag, // <button> can have e.g. glyphs as content...
       inputAttrs: Seq[AttrPair]
-  ): Frag = {
-    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
-    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button#Validation
-    // no label, name, validation
-    // <button> is preferred to <input type="button">
-    val commonAttrs = Seq(tpe := inputType) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    if (inputType == "button") button(commonAttrs)(inputLabel)
-    else input(commonAttrs)
-  }
+  ): Frag
 
   /** checkbox input "constructor", should override in impl */
   def constructInputCheckbox(
@@ -125,24 +92,7 @@ trait FormComponents {
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
-  ): Frag = {
-    // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
-    // no validation
-    val commonAttrs = Seq(tpe := "checkbox", name := inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
-    val inputFrag = inputLabel match {
-      case None => input(commonAttrs)
-      case Some(inputLabel) =>
-        label(inputId.map(`for` := _))(
-          input(commonAttrs),
-          inputLabel
-        )
-    }
-    div(
-      inputFrag,
-      inputHelp.map(span(_))
-    )
-  }
+  ): Frag
 
   def constructInputCheckboxes(
       inputName: String,
@@ -150,12 +100,7 @@ trait FormComponents {
       inputLabel: Option[String],
       inputHelp: Option[String],
       isInline: Boolean
-  ): Frag =
-    valueAndLabelAndAttrs.map {
-      case (cbValue, cbLabel, inputAttrs) =>
-        val commonAttrs = Seq(tpe := "checkbox", name := inputName, value := cbValue) ++ inputAttrs
-        label(input(commonAttrs), cbLabel)
-    }
+  ): Frag
 
   def constructInputRadio(
       inputName: String,
@@ -163,12 +108,7 @@ trait FormComponents {
       inputLabel: Option[String],
       inputHelp: Option[String],
       isInline: Boolean
-  ): Frag =
-    valueAndLabelAndAttrs.map {
-      case (radioValue, radioLabel, inputAttrs) =>
-        val commonAttrs = Seq(tpe := "radio", name := inputName, value := radioValue) ++ inputAttrs
-        label(input(commonAttrs), radioLabel)
-    }
+  ): Frag
 
   def constructInputSelect(
       inputName: String,
@@ -177,18 +117,7 @@ trait FormComponents {
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
-  ): Frag = {
-    val optionFrags = valueAndLabelAndAttrs.map {
-      case (optionValue, optionLabel, optionAttrs) =>
-        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
-        option(commonAttrs)(optionLabel)
-    }
-    val selectAttrs = inputAttrs ++ Seq(name := inputName) ++ inputId.map(id := _)
-    div(
-      inputLabel.map(l => label(inputId.map(`for` := _))),
-      select(selectAttrs)(optionFrags)
-    )
-  }
+  ): Frag
 
   // only possible attribute for <optgroup> is "disabled", so we dont bother...
   def constructInputSelectGrouped(
@@ -198,22 +127,7 @@ trait FormComponents {
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
-  ): Frag = {
-    val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
-      case (optGroupLabel, valueAndLabelAndAttrs) =>
-        val optionFrags = valueAndLabelAndAttrs.map {
-          case (optionValue, optionLabel, optionAttrs) =>
-            val commonAttrs = Seq(value := optionValue) ++ optionAttrs
-            option(commonAttrs)(optionLabel)
-        }
-        optgroup(attr("label") := optGroupLabel)(optionFrags)
-    }
-    val selectAttrs = inputAttrs ++ Seq(name := inputName) ++ inputId.map(id := _)
-    div(
-      inputLabel.map(l => label(inputId.map(`for` := _))),
-      select(selectAttrs)(optionGroupFrags)
-    )
-  }
+  ): Frag
 
   /////////////////////////////////////////////////
   /* inputs */
