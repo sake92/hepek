@@ -7,7 +7,6 @@ import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}
 import utils._
 import Imports._
 import resources._
-import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponents
 
 trait HepekDocsAbstractPage
     extends HepekBootstrap3BlogPage
@@ -40,7 +39,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
       .withIndexPage(docs.Index)
       .withMainPages(docs.hepek.components.Index, docs.hepek.Index, docs.hepek.play.Index)
 
-  override def navbar = Some(BootstrapNavbarComponents)
+  override def navbar = Some(Navbar)
 
   // CSS
   override def styleURLs = super.styleURLs ++ List(
