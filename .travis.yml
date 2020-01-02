@@ -25,19 +25,10 @@ jobs:
     - env: TEST="all"
       script: 
         - sbt ++$TRAVIS_SCALA_VERSION "test"
-        - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sonar-scanner; fi' # dont sonar PRs
     - stage: release
       script: sbt ci-release
     
 notifications:
   email:
     - sakib@sake.ba
-
-
-addons:
-  sonarcloud:
-    organization: "sake92-github"
-    token:
-      secure: $SONAR_TOKEN
-
 
