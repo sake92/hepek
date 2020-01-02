@@ -2,7 +2,7 @@ package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.ComponentsBundle
 
-trait PlainComponentsBundle extends ComponentsBundle {
+trait PlainComponentsBundle extends ComponentsBundle with PlainBasicComponents {
   override type Form   = PlainFormComponents
   override type Grid   = PlainGridComponents
   override type Image  = PlainImageComponents

@@ -2,7 +2,9 @@ package ba.sake.hepek.html
 
 package component
 
-trait ComponentsBundle { // TODO self: BasicComponents =>
+// we mixin BasicComponents cause they should be globally available
+// things like "".md, hyperlink etc.
+trait ComponentsBundle { self: BasicComponents =>
 
   type Form <: FormComponents
   type Grid <: GridComponents

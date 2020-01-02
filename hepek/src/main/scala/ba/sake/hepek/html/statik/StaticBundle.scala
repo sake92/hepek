@@ -1,6 +1,8 @@
 package ba.sake.hepek.html
 
-trait StaticBundle extends Bundle {
+import ba.sake.hepek.html.component.BasicComponents
+
+trait StaticBundle extends Bundle { self: BasicComponents =>
   type StaticPage <: statik.StaticPage // override in impls
 
   /* handy aliases */

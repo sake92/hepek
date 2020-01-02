@@ -1,8 +1,9 @@
 package ba.sake.hepek.w3css.component
 
 import ba.sake.hepek.html.component.ComponentsBundle
+import ba.sake.hepek.plain.component.PlainBasicComponents
 
-trait W3CssComponentsBundle extends ComponentsBundle {
+trait W3CssComponentsBundle extends ComponentsBundle with PlainBasicComponents {
   override type Form   = W3CssFormComponents
   override type Grid   = W3CssGridComponents
   override type Image  = W3CssImageComponents

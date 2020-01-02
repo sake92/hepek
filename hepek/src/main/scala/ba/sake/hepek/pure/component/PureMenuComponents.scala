@@ -4,6 +4,7 @@ package component
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component._
+import ba.sake.hepek.plain.component.PlainLinkComponents
 
 object PureMenuComponents extends PureMenuComponents {
 
@@ -24,7 +25,7 @@ object PureMenuComponents extends PureMenuComponents {
   }
 }
 
-trait PureMenuComponents extends LinkComponents {
+trait PureMenuComponents extends PlainLinkComponents {
   import PureMenuComponents._
 
   def menuType: Type = Type.Vertical

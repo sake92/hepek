@@ -1,3 +1,8 @@
 package ba.sake.hepek.plain.component
 
-// TODO trait PlainBasicComponents extends BasicComponents with LinkComponents with CommonmarkComponents
+import ba.sake.hepek.html.component.BasicComponents
+
+trait PlainBasicComponents
+    extends BasicComponents
+    with PlainLinkComponents
+    with PlainMarkdownComponents
