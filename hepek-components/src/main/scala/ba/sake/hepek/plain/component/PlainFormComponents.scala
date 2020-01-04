@@ -3,9 +3,10 @@ package ba.sake.hepek.plain.component
 import scalatags.Text.all
 import all.{form => _, _}
 import ba.sake.hepek.html.component.FormComponents
+import ba.sake.stone.Wither
 
-object PlainFormComponents extends PlainFormComponents {
-  trait Type { def classes: List[String] = List.empty }
+object PlainFormComponents {
+  val DefaultType = new FormComponents.Type {}
 
   trait ValidationStateClasses {
     def success: String = "success"
@@ -14,7 +15,13 @@ object PlainFormComponents extends PlainFormComponents {
   }
 }
 
-trait PlainFormComponents extends FormComponents {
+@Wither
+case class PlainFormComponents(
+    formType: FormComponents.Type = PlainFormComponents.DefaultType
+) extends PlainFormComponentsImpl
+
+// handy to extend for INCOMPLETE frameworks (see Pure, Bulma..)
+private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   import FormComponents._
 
   /* Validation stuff */

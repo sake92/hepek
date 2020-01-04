@@ -5,7 +5,7 @@ import ba.sake.hepek.plain.component.PlainBasicComponents
 import ba.sake.hepek.w3css.component.classes.W3CssClassesBundle
 
 trait W3CssComponentsBundle extends ComponentsBundle with PlainBasicComponents {
-  override val Form    = W3CssFormComponents
+  override val Form    = W3CssFormComponents()
   override val Grid    = W3CssGridComponents()
   override val Navbar  = W3CssNavbarComponents
   override val Panel   = W3CssPanelComponents

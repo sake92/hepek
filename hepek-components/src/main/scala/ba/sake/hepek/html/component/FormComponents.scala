@@ -27,6 +27,8 @@ trait FormComponents {
   private val DefaultHelp                    = ""
   private val DefaultTransform: Frag => Frag = identity
 
+  def formType: Type
+
   /* Validation stuff */
   def validationStateClasses: ValidationStateClasses
 
@@ -48,7 +50,6 @@ trait FormComponents {
   }
 
   /* Form construction */
-  def formType: Type = new Type {}
 
   def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
     val formAttrs = _formAttrs ++ formType.classes.map(cls := _)

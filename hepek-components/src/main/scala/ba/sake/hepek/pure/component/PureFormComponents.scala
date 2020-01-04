@@ -3,7 +3,7 @@ package ba.sake.hepek.pure.component
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.pure.component.classes.PureButtonClasses
-import ba.sake.hepek.plain.component.PlainFormComponents
+import ba.sake.hepek.plain.component.PlainFormComponentsImpl
 import scalatags.Text
 
 object PureFormComponents extends PureFormComponents {
@@ -25,7 +25,7 @@ object PureFormComponents extends PureFormComponents {
   }
 }
 
-trait PureFormComponents extends PlainFormComponents {
+trait PureFormComponents extends PlainFormComponentsImpl {
   import PureFormComponents._
   import PureButtonClasses._
 

@@ -1,10 +1,11 @@
 package ba.sake.hepek.w3css.component
 
 import scalatags.Text.all._
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 
-object W3CssFormComponents extends W3CssFormComponents {
+object W3CssFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
@@ -14,20 +15,21 @@ object W3CssFormComponents extends W3CssFormComponents {
     }
   }
 
-  object BootstrapValidationStateClasses extends FormComponents.ValidationStateClasses {
+  object W3CssValidationStateClasses extends FormComponents.ValidationStateClasses {
     override def success: String = "has-success"
     override def warning: String = "has-warning"
     override def error: String   = "has-error"
   }
 }
 
-trait W3CssFormComponents extends FormComponents {
+@Wither
+case class W3CssFormComponents(
+    formType: FormComponents.Type = W3CssFormComponents.Type.Default
+) extends FormComponents {
   import W3CssFormComponents._
   import BootstrapClassesBundle._
 
-  override def validationStateClasses = BootstrapValidationStateClasses
-
-  override def formType: FormComponents.Type = Type.Default
+  override def validationStateClasses = W3CssValidationStateClasses
 
   override def constructInputNormal(
       inputType: String,

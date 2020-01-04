@@ -1,10 +1,11 @@
 package ba.sake.hepek.bootstrap3.component
 
 import scalatags.Text.all._
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 
-object BootstrapFormComponents extends BootstrapFormComponents {
+object BootstrapFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
@@ -28,13 +29,14 @@ object BootstrapFormComponents extends BootstrapFormComponents {
   }
 }
 
-trait BootstrapFormComponents extends FormComponents {
+@Wither
+case class BootstrapFormComponents(
+    formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
+) extends FormComponents {
   import BootstrapFormComponents._
   import BootstrapClassesBundle._
 
   override def validationStateClasses = BootstrapValidationStateClasses
-
-  override def formType: FormComponents.Type = Type.Vertical
 
   override def constructInputNormal(
       inputType: String,

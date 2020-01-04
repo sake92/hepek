@@ -1,18 +1,19 @@
 package ba.sake.hepek.bulma.component
 
 import scalatags.Text.all._
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
-import ba.sake.hepek.plain.component.PlainFormComponents
-import scalatags.Text
+import ba.sake.hepek.plain.component.PlainFormComponentsImpl
 
-object BulmaFormComponents extends BulmaFormComponents {
+object BulmaFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
     case object Vertical   extends Type
     case object Horizontal extends Type
   }
+  val DefaultType = Type.Vertical
 
   object BulmaValidationStateClasses extends FormComponents.ValidationStateClasses {
     override def success: String = "is-success"
@@ -21,13 +22,14 @@ object BulmaFormComponents extends BulmaFormComponents {
   }
 }
 
-trait BulmaFormComponents extends PlainFormComponents {
+@Wither
+case class BulmaFormComponents(
+    formType: FormComponents.Type = BulmaFormComponents.DefaultType
+) extends PlainFormComponentsImpl {
   import BulmaFormComponents._
   import BulmaClassesBundle._
 
   override def validationStateClasses = BulmaValidationStateClasses
-
-  override def formType: FormComponents.Type = Type.Vertical
 
   // https://github.com/jgthms/bulma/issues/886#issuecomment-335584165
   override def formFieldset(legendTitle: String)(content: Frag*) =
