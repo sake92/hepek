@@ -35,8 +35,7 @@ private class BulmaAttributeProvider extends AttributeProvider {
   ): Unit =
     node match {
       case h: Heading =>
-        attributes.put("class", "title")
-        attributes.put("class", s"is-${h.getLevel()}")
+        attributes.put("class", s"title is-${h.getLevel()}")
       case _ =>
     }
 }

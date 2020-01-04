@@ -12,6 +12,7 @@ class BulmaMarkdownComponentsTest extends HepekSeleniumTest {
     for (i <- 1 to 6) {
       val header = mdDiv.underlying.findElement(By.tagName(s"h$i"))
       header.getAttribute("class") should include(s"is-$i")
+      header.getAttribute("class") should include("title")
     }
   }
 }
