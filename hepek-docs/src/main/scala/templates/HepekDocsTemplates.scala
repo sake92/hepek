@@ -55,7 +55,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
   override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
 
   override def pageContent = {
-    import classes._
+    import Classes._
     frag(
       super.pageContent,
       footer(txtAlignCenter, bgInfo, cls := "navbar-fixed-bottom")(

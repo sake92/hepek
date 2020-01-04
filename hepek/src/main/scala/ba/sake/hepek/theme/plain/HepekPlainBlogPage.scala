@@ -5,16 +5,19 @@ import ba.sake.hepek.plain.statik.PlainStaticPage
 import ba.sake.hepek.plain.component.PlainGridComponents
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
+import ba.sake.hepek.plain.statik.PlainStaticBundle
 
-trait HepekPlainBlogPage extends BlogPostPage with PlainStaticPage {
+import PlainStaticBundle._
+
+trait HepekPlainBlogPage extends BlogPostPage with StaticPage {
   // avoid polluting user's namespace
-  import PlainGridComponents._
+  import Grid._
 
   // TODO add header
 
   override def pageContent: Frag =
     frag(
-      mkRow(
+      row(
         div(cls := "col-lg-2 col-md-3  hidden-print")(
           renderSidebar
         ),

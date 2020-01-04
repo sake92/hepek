@@ -12,9 +12,7 @@ import scalatags.Text.all, all._
 trait HepekPlayForm {
   import FormComponents._
 
-  type FormImpl <: FormComponents
-
-  val fc: FormImpl
+  val fc: FormComponents
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
 

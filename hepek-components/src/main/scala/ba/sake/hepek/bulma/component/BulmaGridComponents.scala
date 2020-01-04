@@ -2,10 +2,13 @@ package ba.sake.hepek.bulma.component
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.GridComponents
+import ba.sake.hepek.html.component.GridComponents.ScreenRatios
+import ba.sake.stone.Wither
 
-object BulmaGridComponents extends BulmaGridComponents
-
-trait BulmaGridComponents extends GridComponents {
+@Wither
+case class BulmaGridComponents(
+    screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
+) extends GridComponents {
   import GridComponents._
 
   private[hepek] override def mkRow(content: Frag*): Frag =

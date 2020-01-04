@@ -1,19 +1,13 @@
-package ba.sake.hepek.html
+package ba.sake.hepek.html.component
 
-package component
+import ba.sake.hepek.html.HepekAliases
+import ba.sake.hepek.html.component.classes.ClassesBundle
 
-// we mixin BasicComponents cause they should be globally available
-// things like "".md, hyperlink etc.
-trait ComponentsBundle { self: BasicComponents =>
-
-  type Form <: FormComponents
-  type Grid <: GridComponents
-  type Image <: ImageComponents
-  type Navbar <: NavbarComponents
-  type Panel <: PanelComponents
-
-  val Form: Form
+trait ComponentsBundle extends BasicComponents with HepekAliases {
+  val Form: FormComponents
+  val Grid: GridComponents
   //val Image: ImageComponents
-  val Navbar: Navbar
-  val Panel: Panel
+  val Navbar: NavbarComponents
+  val Panel: PanelComponents
+  val Classes: ClassesBundle
 }

@@ -2,6 +2,7 @@ package ba.sake.hepek.html
 
 import scalatags.Text.all._
 import ba.sake.stone.Wither
+import ba.sake.hepek.html.pwa.WebAppManifest
 
 trait HtmlPage extends PageDependencies {
   def siteSettings: SiteSettings = SiteSettings()
@@ -11,6 +12,13 @@ trait HtmlPage extends PageDependencies {
   def metaSettings: MetaSettings =
     MetaSettings() // TODO fill all defaults
       .withOgTitle(pageSettings.title)
+
+  def manifest: WebAppManifest = WebAppManifest(
+    name = siteSettings.name.getOrElse(""),
+    lang = Some(pageSettings.language),
+    display = "minimal-ui", // upickle doesnt serialize default params... :(
+    startUrl = "."
+  )
 
   def contents: String = {
     // inline css

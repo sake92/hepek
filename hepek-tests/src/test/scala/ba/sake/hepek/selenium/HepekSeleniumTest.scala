@@ -1,10 +1,10 @@
 package ba.sake.hepek.selenium
 
 import java.nio.file.Paths
-import ba.sake.hepek.core.Renderable
 import org.scalatest._
 import org.scalatest.concurrent.Eventually
 import org.scalatest.selenium.HtmlUnit
+import ba.sake.hepek.core.Renderable
 
 trait HepekSeleniumTest extends FlatSpec with Matchers with HtmlUnit with Eventually {
   java.util.logging.Logger

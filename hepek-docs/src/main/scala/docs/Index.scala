@@ -5,15 +5,12 @@ import scalatags.Text.all._
 import utils.Imports._
 import templates.HepekDocsStaticPage
 
-object grid extends Grid {
-
-  override def screenRatios = {
-    val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
-    super.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
-  }
-}
-
 object Index extends HepekDocsStaticPage {
+  val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
+
+  val grid = Grid.withScreenRatios(
+    Grid.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
+  )
   import grid._
 
   override def pageSettings =

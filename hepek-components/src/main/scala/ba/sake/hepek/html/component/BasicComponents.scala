@@ -1,5 +1,3 @@
 package ba.sake.hepek.html.component
 
-trait BasicComponents {
-  self: LinkComponents with MarkdownComponents =>
-}
+trait BasicComponents extends LinkComponents with MarkdownComponents

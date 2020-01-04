@@ -24,8 +24,9 @@ inThisBuild(
     scalaVersion := "2.13.1",
     crossScalaVersions := Seq("2.12.8", "2.13.1"),
     scalafmtOnCompile := true,
+    useSuperShell := false,
     useCoursier := false, // temporarily until Travis is ok...
-    resolvers += Resolver.sonatypeRepo("snapshots"),
+    resolvers += Resolver.sonatypeRepo("snapshots")
   )
 )
 
@@ -33,7 +34,8 @@ lazy val macroSettings = Seq(
   libraryDependencies ++= {
     CrossVersion.partialVersion(scalaVersion.value) match {
       case Some((2, n)) if n >= 13 => Nil
-      case _ =>List(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full))
+      case _ =>
+        List(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full))
     }
   },
   Compile / scalacOptions ++= {
@@ -49,10 +51,11 @@ lazy val hepekComponents = (project in file("hepek-components"))
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake" %% "stone-macros" % "0.0.2",
-      "com.lihaoyi"              %% "scalatags" % "0.7.0",
-      "com.atlassian.commonmark" % "commonmark" % "0.13.1",
-      "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
+      "ba.sake"                  %% "stone-macros" % "0.0.2",
+      "com.lihaoyi"              %% "scalatags"    % "0.7.0",
+      "com.lihaoyi"              %% "upickle"      % "0.9.5",
+      "com.atlassian.commonmark" % "commonmark"    % "0.13.1",
+      "org.scalatest"            %% "scalatest"    % scalaTestVersion % "test"
     )
   )
   .settings(macroSettings: _*)

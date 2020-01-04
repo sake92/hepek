@@ -6,7 +6,7 @@ import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 import scalatags.Text.all._
 
-object Imports extends BootstrapStaticBundle with BasicComponents {
+object Imports extends BootstrapStaticBundle {
 
   object resources extends Resources {
     override def siteRootPath = "docs"
@@ -25,7 +25,7 @@ object Imports extends BootstrapStaticBundle with BasicComponents {
       defaultValue: Option[String] = None
   )
 
-  import classes._
+  import Classes._
 
   def renderClassProps(props: List[ClassProperty]) =
     div(tableResponsive)(

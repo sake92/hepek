@@ -2,10 +2,13 @@ package ba.sake.hepek.w3css.component
 
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.GridComponents
+import ba.sake.hepek.html.component.GridComponents.ScreenRatios
+import ba.sake.stone.Wither
 
-object W3CssGridComponents extends W3CssGridComponents
-
-trait W3CssGridComponents extends GridComponents {
+@Wither
+case class W3CssGridComponents(
+    screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
+) extends GridComponents {
   import GridComponents._
 
   private[hepek] override def mkRow(content: Frag*): Frag =

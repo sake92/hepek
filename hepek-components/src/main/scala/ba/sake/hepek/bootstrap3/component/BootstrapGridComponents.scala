@@ -1,11 +1,14 @@
 package ba.sake.hepek.bootstrap3.component
 
 import scalatags.Text.all._
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.GridComponents
+import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 
-object BootstrapGridComponents extends BootstrapGridComponents
-
-trait BootstrapGridComponents extends GridComponents {
+@Wither
+case class BootstrapGridComponents(
+    screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
+) extends GridComponents {
   import GridComponents._
 
   private[hepek] override def mkRow(content: Frag*): Frag =

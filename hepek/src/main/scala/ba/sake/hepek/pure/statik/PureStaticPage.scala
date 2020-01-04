@@ -6,8 +6,16 @@ import scalatags.Text.all._
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.html.component.GridComponents._
 import component.PureMenuComponents._
+import ba.sake.hepek.pure.component.PureGridComponents
 
 trait PureStaticPage extends StaticPage with PurePage {
+  private val Grid = PureGridComponents()
+
+  // grid for layout with sidebar
+  val grid = Grid.withScreenRatios(
+    Grid.screenRatios.copy(lg = Ratios(Ratio(1, 5), Ratio(1, 1, 1)))
+  )
+
   def withPureMenu: Boolean = true
 
   override def bodyContent =
@@ -26,14 +34,6 @@ trait PureStaticPage extends StaticPage with PurePage {
       }
     """) else List()
     super.stylesInline ++ maybeInlineStyles
-  }
-
-  // grid for layout with sidebar
-  private object grid extends component.PureGridComponents {
-
-    override def screenRatios = super.screenRatios.copy(
-      lg = Ratios(Ratio(1, 5), Ratio(1, 1, 1))
-    )
   }
 
   /* SIDEBAR */

@@ -16,7 +16,7 @@ object NotFound extends templates.HepekDocsAbstractPage {
     Site.url + "/" + super.relTo(other)
 
   override def pageContent =
-    div(classes.txtAlignCenter)(
+    div(Classes.txtAlignCenter)(
       s"""
       This page does not exist... :/  
       Click [here](${Site.url}) to go back

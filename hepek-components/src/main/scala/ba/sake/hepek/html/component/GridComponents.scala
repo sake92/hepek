@@ -5,6 +5,8 @@ import scalatags.Text.all._
 trait GridComponents {
   import GridComponents._
 
+  val screenRatios: ScreenRatios
+
   // utility for making a row with a single column
   private[hepek] def mkRowSingleCol(content: Seq[Frag]): Frag
 
@@ -13,7 +15,7 @@ trait GridComponents {
   private[hepek] def mkCol2(index: Int, content: Col2): Frag
   private[hepek] def mkCol3(index: Int, content: Col3): Frag
 
-  // ROW
+  // API
   def row(content: Frag*): Frag =
     mkRowSingleCol(content)
 
@@ -33,18 +35,18 @@ trait GridComponents {
   def half(content: Frag*): Col2 = Col2(content.toList)
 
   def third(content: Frag*): Col3 = Col3(content.toList)
+}
 
-  /** Same on all screens, by default */
+object GridComponents {
+
+  // Same on all screens
   // lg is not optional, need to have at least one ratio...
-  def screenRatios: ScreenRatios = ScreenRatios(
+  val DefaultScreenRatios = ScreenRatios(
     Ratios.Default,
     Option(Ratios.Default),
     Option(Ratios.Default),
     Option(Ratios.Default)
   )
-}
-
-object GridComponents {
   final case class Col2(content: List[Frag]) // 2 parts
   final case class Col3(content: List[Frag]) // 3 parts
 
