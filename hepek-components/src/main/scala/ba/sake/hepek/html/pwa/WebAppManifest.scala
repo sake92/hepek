@@ -2,7 +2,7 @@ package ba.sake.hepek.html.pwa
 
 import upickle.default.{ReadWriter => RW, macroRW}
 import ba.sake.stone.Wither
-import ba.sake.hepek.html.upickle.OptionPickler._
+import ba.sake.hepek.html.upickle.HepekPickler._
 
 @Wither
 case class WebAppManifest(

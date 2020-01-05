@@ -1,9 +1,10 @@
 package ba.sake.hepek.bootstrap3.component
 
-import scalatags.Text.all._
+import scalatags.Text.all.{style => _, Style => _, _}
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.NavbarComponents
 
-object BootstrapNavbarComponents extends BootstrapNavbarComponents {
+object BNC {
   sealed trait Position { def classes: String }
 
   object Position {
@@ -19,21 +20,21 @@ object BootstrapNavbarComponents extends BootstrapNavbarComponents {
   }
 }
 
-trait BootstrapNavbarComponents extends NavbarComponents {
-  import BootstrapNavbarComponents._
+@Wither
+case class BootstrapNavbarComponents(
+    style: BNC.Style = BNC.Style.Default,
+    position: BNC.Position = BNC.Position.FixedTop,
+    collapseId: String = "main-navbar"
+) extends NavbarComponents {
   import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses._
 
   private val bsBtn = tag("button")(tpe := "button", btnClass)
-
-  def navbarCollapseId: String = "main-navbar"
-  def navbarStyle: Style       = Style.Default
-  def navbarPosition: Position = Position.FixedTop
 
   def toggle =
     bsBtn(
       cls := "navbar-toggle collapsed",
       data.toggle := "collapse",
-      data.target := s"#$navbarCollapseId"
+      data.target := s"#$collapseId"
     )(
       span(cls := "sr-only")("Toggle navigation"),
       span(cls := "icon-bar"),
@@ -48,7 +49,7 @@ trait BootstrapNavbarComponents extends NavbarComponents {
       left: Seq[(Frag, Seq[AttrPair])] = Seq.empty,
       right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =
-    tag("nav")(cls := s"navbar ${navbarStyle.classes} ${navbarPosition.classes}")(
+    tag("nav")(cls := s"navbar ${style.classes} ${position.classes}")(
       div(cls := "container-fluid")(
         div(cls := "navbar-header")(
           toggle,
@@ -57,7 +58,7 @@ trait BootstrapNavbarComponents extends NavbarComponents {
             brandName
           )
         ),
-        div(cls := "collapse navbar-collapse", id := navbarCollapseId)(
+        div(cls := "collapse navbar-collapse", id := collapseId)(
           ul(cls := s"nav navbar-nav navbar-left")(
             left.map {
               case (item, liMods) =>

@@ -9,7 +9,7 @@ object BootstrapComponentsBundle extends BootstrapComponentsBundle
 trait BootstrapComponentsBundle extends ComponentsBundle with PlainBasicComponents {
   override val Form   = BootstrapFormComponents()
   override val Grid   = BootstrapGridComponents()
-  override val Navbar = BootstrapNavbarComponents
+  override val Navbar = BootstrapNavbarComponents()
   override val Panel  = BootstrapPanelComponents
 
   override val Classes = BootstrapClassesBundle

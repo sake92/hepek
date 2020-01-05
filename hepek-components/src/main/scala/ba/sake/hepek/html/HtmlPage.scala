@@ -81,7 +81,6 @@ trait HtmlPage extends PageDependencies {
       metaSettings.geoPosition.map(c => meta(name := "geo.position", content := c)),
       metaSettings.geoRegion.map(c => meta(name := "geo.region", content := c)),
       metaSettings.geoPlacename.map(c => meta(name := "geo.placename", content := c)),
-      metaSettings.me.map(c => meta(name := "me", content := c)),
       // google
       metaSettings.googleSiteVerification
         .map(c => meta(name := "google-site-verification", content := c)),
@@ -89,15 +88,15 @@ trait HtmlPage extends PageDependencies {
         id =>
           raw(
             s"""
-          <!-- Global Site Tag (gtag.js) - Google Analytics -->
-          <script async src="https://www.googletagmanager.com/gtag/js?id=$id"></script>
-          <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', '$id');
-          </script>
-        """
+            <!-- Global Site Tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=$id"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', '$id');
+            </script>
+            """
           )
       ),
       // open graph
@@ -161,7 +160,6 @@ final case class MetaSettings(
     xuaCompatible: String = "ie=edge",
     viewport: String = "width=device-width, initial-scale=1",
     themeColor: String = "#000",
-    me: List[String] = Nil,
     // page
     subject: Option[String] = None,
     first: Option[String] = None,

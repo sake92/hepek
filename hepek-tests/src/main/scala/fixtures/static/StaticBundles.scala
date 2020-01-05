@@ -11,6 +11,7 @@ import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.w3css.statik.W3CssStaticBundle
+import ba.sake.hepek.html.MetaSettings
 
 object StaticPages {
   val all = List(Plain, Bootstrap3, Bulma, W3Css)
@@ -44,9 +45,7 @@ trait SimpleStaticPage extends StaticPage {
     super.siteSettings
       .withName("Site name")
       .withFaviconNormal("site-favicon.png")
-
-  override def pageCategory =
-    Some("Page category")
+      .withGoogleAnalyticsTrackingId("g-123")
 
   override def pageSettings =
     super.pageSettings
@@ -54,6 +53,33 @@ trait SimpleStaticPage extends StaticPage {
       .withLabel("Page link label")
       .withDescription("Page description")
       .withLanguage("bs")
+
+  override def metaSettings =
+    super.metaSettings
+      .withCharset("charset")
+      .withXuaCompatible("xuaCompatible")
+      .withViewport("viewport")
+      .withThemeColor("themeColor")
+      .withSubject("subject")
+      .withFirst("first")
+      .withLast("last")
+      .withPrev("prev")
+      .withNext("next")
+      .withEditURI("editURI")
+      .withGeoICBM("geoICBM")
+      .withGeoPosition("geoPosition")
+      .withGeoRegion("geoRegion")
+      .withGeoPlacename("geoPlacename")
+      .withGoogleSiteVerification("googleSiteVerification")
+      .withOgUrl("ogUrl")
+      .withOgType("ogType")
+      .withOgTitle("ogTitle")
+      .withOgImage("ogImage")
+      .withOgImageAlt("ogImageAlt")
+      .withOgDescription("ogDescription")
+      .withOgSiteName("ogSiteName")
+      .withOgLocale("ogLocale")
+      .withArticleAuthor("articleAuthor")
 
   override def pageContent =
     frag(
