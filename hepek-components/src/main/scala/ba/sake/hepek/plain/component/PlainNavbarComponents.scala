@@ -59,7 +59,7 @@ trait PlainNavbarComponents extends NavbarComponents {
       )
     )
 
-  override def nestedLink(
+  override def fullNestedLink(
       title: Frag,
       links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =

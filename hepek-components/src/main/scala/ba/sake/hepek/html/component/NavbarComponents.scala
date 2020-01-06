@@ -21,8 +21,14 @@ trait NavbarComponents {
   ): Frag =
     full(brandUrl, brandName, brandIconUrl, left.map(_ -> Seq.empty), right.map(_ -> Seq.empty))
 
-  def nestedLink(
+  def fullNestedLink(
       title: Frag,
       links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag
+
+  def simpleNestedLink(
+      title: Frag,
+      links: Seq[Frag] = Seq.empty
+  ): Frag =
+    fullNestedLink(title, links.map(_ -> Seq.empty))
 }
