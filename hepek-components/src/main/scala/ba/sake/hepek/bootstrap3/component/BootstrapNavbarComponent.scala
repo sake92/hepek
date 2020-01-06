@@ -28,6 +28,8 @@ case class BootstrapNavbarComponents(
 ) extends NavbarComponents {
   import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses._
 
+  val Companion = BNC
+
   private val bsBtn = tag("button")(tpe := "button", btnClass)
 
   def toggle =
@@ -42,7 +44,7 @@ case class BootstrapNavbarComponents(
       span(cls := "icon-bar")
     )
 
-  override def navbar(
+  override def full(
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
@@ -75,7 +77,7 @@ case class BootstrapNavbarComponents(
       )
     )
 
-  override def navbarNestedLink(
+  override def nestedLink(
       title: Frag,
       links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =

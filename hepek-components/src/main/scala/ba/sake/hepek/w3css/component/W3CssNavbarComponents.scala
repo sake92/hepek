@@ -8,7 +8,7 @@ object W3CssNavbarComponents extends W3CssNavbarComponents
 trait W3CssNavbarComponents extends NavbarComponents {
   private val DefaultNestedLinksAttrs = List(cls := "w3-bar-item w3-button")
 
-  override def navbar(
+  override def full(
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
@@ -30,7 +30,7 @@ trait W3CssNavbarComponents extends NavbarComponents {
       }
     )
 
-  override def navbarNestedLink(
+  override def nestedLink(
       title: Frag,
       links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =

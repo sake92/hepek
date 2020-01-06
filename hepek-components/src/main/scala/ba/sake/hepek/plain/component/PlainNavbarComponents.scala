@@ -5,6 +5,7 @@ import ba.sake.hepek.html.component.NavbarComponents
 
 object PlainNavbarComponents extends PlainNavbarComponents {}
 
+// TODO this is just copied from Bootstrap...
 trait PlainNavbarComponents extends NavbarComponents {
   import PlainNavbarComponents._
   import ba.sake.hepek.plain.component.classes.PlainButtonClasses._
@@ -25,7 +26,7 @@ trait PlainNavbarComponents extends NavbarComponents {
       span(cls := "icon-bar")
     )
 
-  override def navbar(
+  override def full(
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
@@ -58,7 +59,7 @@ trait PlainNavbarComponents extends NavbarComponents {
       )
     )
 
-  override def navbarNestedLink(
+  override def nestedLink(
       title: Frag,
       links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =
