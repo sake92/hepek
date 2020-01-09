@@ -10,6 +10,7 @@ trait HepekDocsPage extends templates.HepekDocsAbstractPage {
     StaticBundle,
     StaticPage,
     BlogPage,
+    MultiPage,
     PdfGenerator
   )
 
