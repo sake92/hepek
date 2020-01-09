@@ -29,6 +29,8 @@ case class W3CssFormComponents(
   import W3CssFormComponents._
   import BootstrapClassesBundle._
 
+  val Companion = W3CssFormComponents
+
   override def validationStateClasses = W3CssValidationStateClasses
 
   override def constructInputNormal(

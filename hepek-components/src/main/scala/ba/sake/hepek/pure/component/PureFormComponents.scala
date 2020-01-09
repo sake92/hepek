@@ -6,7 +6,7 @@ import ba.sake.hepek.pure.component.classes.PureButtonClasses
 import ba.sake.hepek.plain.component.PlainFormComponentsImpl
 import scalatags.Text
 
-object PureFormComponents extends PureFormComponents {
+object PureFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
@@ -28,6 +28,8 @@ object PureFormComponents extends PureFormComponents {
 trait PureFormComponents extends PlainFormComponentsImpl {
   import PureFormComponents._
   import PureButtonClasses._
+
+  val Companion = PureFormComponents
 
   // TODO display validation !!
   // TODO implement checkbox, radio etc

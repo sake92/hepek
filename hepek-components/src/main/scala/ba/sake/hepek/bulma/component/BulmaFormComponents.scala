@@ -29,6 +29,8 @@ case class BulmaFormComponents(
   import BulmaFormComponents._
   import BulmaClassesBundle._
 
+  val Companion = BulmaFormComponents
+
   override def validationStateClasses = BulmaValidationStateClasses
 
   // https://github.com/jgthms/bulma/issues/886#issuecomment-335584165

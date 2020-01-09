@@ -36,6 +36,8 @@ case class BootstrapFormComponents(
   import BootstrapFormComponents._
   import BootstrapClassesBundle._
 
+  val Companion = BootstrapFormComponents
+
   override def validationStateClasses = BootstrapValidationStateClasses
 
   override def constructInputNormal(

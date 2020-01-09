@@ -19,6 +19,8 @@ object PlainPanelComponents {
 case class PlainPanelComponents() extends PanelComponents {
   import PlainPanelComponents._
 
+  val Companion = PlainPanelComponents
+
   override type PanelType = Type
 
   def panel(

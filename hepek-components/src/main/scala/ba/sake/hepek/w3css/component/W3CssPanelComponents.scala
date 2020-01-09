@@ -3,7 +3,7 @@ package ba.sake.hepek.w3css.component
 import scalatags.Text.all, all._
 import ba.sake.hepek.html.component.PanelComponents
 
-object W3CssPanelComponents extends W3CssPanelComponents {
+object W3CssPanelComponents {
   trait Type extends PanelComponents.Type
 
   object Type {
@@ -16,8 +16,10 @@ object W3CssPanelComponents extends W3CssPanelComponents {
   }
 }
 
-trait W3CssPanelComponents extends PanelComponents {
+case class W3CssPanelComponents() extends PanelComponents {
   import W3CssPanelComponents._
+
+  val Companion = W3CssPanelComponents
 
   override type PanelType = Type
 

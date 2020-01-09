@@ -19,6 +19,8 @@ object BootstrapPanelComponents {
 case class BootstrapPanelComponents() extends PanelComponents {
   import BootstrapPanelComponents._
 
+  val Companion = BootstrapPanelComponents
+
   override type PanelType = Type
 
   def panel(

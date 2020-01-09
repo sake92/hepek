@@ -9,6 +9,6 @@ trait W3CssComponentsBundle extends ComponentsBundle with PlainBasicComponents {
   override val Grid    = W3CssGridComponents()
   override val Image   = W3CssImageComponents()
   override val Navbar  = W3CssNavbarComponents
-  override val Panel   = W3CssPanelComponents
+  override val Panel   = W3CssPanelComponents()
   override val Classes = W3CssClassesBundle
 }
