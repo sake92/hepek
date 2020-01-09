@@ -4,7 +4,7 @@ import scalatags.Text.all.{style => _, Style => _, _}
 import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.NavbarComponents
 
-object BNC {
+object BootstrapNavbarComponents {
   sealed trait Position { def classes: String }
 
   object Position {
@@ -22,13 +22,13 @@ object BNC {
 
 @Wither
 case class BootstrapNavbarComponents(
-    style: BNC.Style = BNC.Style.Default,
-    position: BNC.Position = BNC.Position.FixedTop,
+    style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
+    position: BootstrapNavbarComponents.Position = BootstrapNavbarComponents.Position.FixedTop,
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
   import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses._
 
-  val Companion = BNC
+  val Companion = BootstrapNavbarComponents
 
   private val bsBtn = tag("button")(tpe := "button", btnClass)
 
