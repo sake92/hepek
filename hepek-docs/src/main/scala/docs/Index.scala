@@ -2,7 +2,7 @@ package docs
 
 import java.time.LocalDate
 import scalatags.Text.all._
-import utils.Imports._
+import utils.Imports._, Classes._
 import templates.HepekDocsStaticPage
 
 object Index extends HepekDocsStaticPage {
@@ -22,7 +22,7 @@ object Index extends HepekDocsStaticPage {
 
   override def pageContent =
     frag(
-      div(cls := "page-header text-center")(
+      div(cls := "page-header", txtAlignCenter)(
         h1("Welcome!")
       ),
       row(

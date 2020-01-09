@@ -6,7 +6,7 @@ import utils._, Imports._
 object Dependencies extends HepekComponentsDocsPage {
 
   override def pageSettings =
-    super.pageSettings.withTitle("JS and CSS dependencies")
+    super.pageSettings.withTitle("JS and CSS deps")
 
   override def blogSettings =
     super.blogSettings.withSections(depsSection)
@@ -16,7 +16,8 @@ object Dependencies extends HepekComponentsDocsPage {
     frag(
       s"""
         Every framework has its dependencies, JS and/or CSS.  
-        These are expressed with [`PageDependencies`](${links.PageDependenciesUrl}) trait:
+        The `HtmlPage` extends [`PageDependencies`](${links.PageDependenciesUrl}) 
+        so you can add/remove deps as you like:
       """.md,
       chl.scala("""
         trait PageDependencies {

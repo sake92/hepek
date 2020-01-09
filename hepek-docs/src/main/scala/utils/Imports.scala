@@ -1,10 +1,10 @@
 package utils
 
+import scalatags.Text.all._
 import ba.sake.hepek.Resources
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
-import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
-import scalatags.Text.all._
+import ba.sake.hepek.fontawesome5
 
 object Imports extends BootstrapStaticBundle {
 
@@ -15,7 +15,7 @@ object Imports extends BootstrapStaticBundle {
   object chl extends PrismCodeHighlightComponents
 
   // FontAwesome 5 brand
-  def faBrand(name: String) = i(cls := s"fab fa-$name")
+  val FA = fontawesome5.FA
 
   // class field/method description
   case class ClassProperty(

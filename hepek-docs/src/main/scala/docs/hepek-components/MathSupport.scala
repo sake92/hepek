@@ -21,7 +21,7 @@ object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
         Also, Hepek SSG supports PDF rendering only with KaTeX!
 
         KaTeX supports only LaTeX syntax, but you'll get used to it quickly.  
-        Of course, you need to extend [`KatexDependencies`](${links.KatexDependenciesUrl}).
+        Of course, you need to extend `KatexDependencies`.
 
         Since Hepek supports Markdown, it is hard to find an unused delimiter character.  
         Hepek chose acute accent mark ("forward-tick"), `´` for inline math. 

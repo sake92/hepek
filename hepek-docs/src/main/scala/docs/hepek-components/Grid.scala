@@ -53,8 +53,7 @@ object GridSupport extends HepekComponentsDocsPage {
         So, in a nutshell, these will compile:
       """.md,
       chl.scala("""
-        object grid extends Grid // override settings if needed
-        import grid._
+        import Imports.Grid._
 
         row(div(), p(), "text"), // normal HTML
         row(
@@ -89,24 +88,26 @@ object GridSupport extends HepekComponentsDocsPage {
       md("""
         Halves and thirds use the `screenRatios` configuration. 
         Defaults are same width columns, as expected.  
-        You can configure each screen size separately, just like in Bootstrap 3: 
+        You can configure each screen size separately: 
           `lg`,`md`, `sm` and `xs`.
         Example:
       """),
       chl.scala("""
-        val lgSingleRatio = Ratio(1, 4, 1) // 1:4:1
-        val lgHalfRatio   = Ratio(5, 7)    // 5:7
-        val lgThirdRatio  = Ratio(4, 3, 5) // 4:3:5
+        val customRatios = Ratios()
+          .withSingle(1, 4, 1)
+          .withHalf(5, 7)     // 5:7
+          .withThird(4, 3, 5) // 4:3:5
 
-        val mdSingleRatio = Ratio(1, 1, 1) // 1:1:1
-        val mdHalfRatio   = Ratio(8, 4)    // 8:4
-        val mdThirdRatio  = Ratio(6, 4, 2) // 6:4:2
+        val customGrid = Grid.withScreenRatios(
+          Grid.screenRatios
+            .withLg(customRatios)
+            .withMd(customRatios)
+            .withSm(None) // stack on small
+            .withXs(None) // and extra-small screens
+        )
 
-        override def screenRatios = super.screenRatios
-          .withLg(Ratios(lgSingleRatio, lgHalfRatio, lgThirdRatio))
-          .withMd(Ratios(mdSingleRatio, mdHalfRatio, mdThirdRatio))
-          .withSm(None)
-          .withXs(None)
+        import customGrid._
+        row(half("left"), half(right)) // will be 5:7
       """),
       s"""
         These are pretty self-explanatory. For large screens, halves have 5:7 ratio.  

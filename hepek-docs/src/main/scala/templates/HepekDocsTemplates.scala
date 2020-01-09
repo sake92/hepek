@@ -3,6 +3,7 @@ package templates
 import scalatags.Text.all._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.prismjs
+import ba.sake.hepek.fontawesome5.FADependencies
 import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}
 import utils._
 import Imports._
@@ -26,7 +27,7 @@ trait HepekDocsAbstractPage
   override def pageHeader = None
 }
 
-trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
+trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADependencies {
 
   override def siteSettings =
     super.siteSettings
@@ -42,10 +43,8 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
   override def navbar = Some(Navbar)
 
   // CSS
-  override def styleURLs = super.styleURLs ++ List(
-    styles.css("main").ref,
-    "https://use.fontawesome.com/releases/v5.0.12/css/all.css"
-  )
+  override def styleURLs =
+    super.styleURLs ++ List(styles.css("main").ref)
 
   override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
     Dependencies()
@@ -60,10 +59,10 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
       super.pageContent,
       footer(txtAlignCenter, bgInfo, cls := "navbar-fixed-bottom")(
         hyperlink("https://github.com/sake92/hepek", btnClass)(
-          faBrand("github")
+          FA.github()
         ),
         hyperlink("https://gitter.im/sake92/hepek", btnClass)(
-          faBrand("gitter")
+          FA.gitter()
         )
       )
     )
