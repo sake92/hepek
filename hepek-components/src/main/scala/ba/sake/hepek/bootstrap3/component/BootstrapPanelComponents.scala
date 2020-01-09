@@ -3,7 +3,7 @@ package ba.sake.hepek.bootstrap3.component
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.PanelComponents
 
-object BootstrapPanelComponents extends BootstrapPanelComponents {
+object BootstrapPanelComponents {
   trait Type extends PanelComponents.Type
 
   object Type {
@@ -16,7 +16,7 @@ object BootstrapPanelComponents extends BootstrapPanelComponents {
   }
 }
 
-trait BootstrapPanelComponents extends PanelComponents {
+case class BootstrapPanelComponents() extends PanelComponents {
   import BootstrapPanelComponents._
 
   override type PanelType = Type

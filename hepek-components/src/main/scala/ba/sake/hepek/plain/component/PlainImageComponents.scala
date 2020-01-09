@@ -4,7 +4,7 @@ import scalatags.Text.all.{caption => _, _}
 import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.plain.component.classes.PlainTextClasses._
 
-trait PlainImageComponents extends ImageComponents {
+case class PlainImageComponents() extends ImageComponents {
 
   override def image(source: String, caption: String = "") =
     if (caption.trim.isEmpty)

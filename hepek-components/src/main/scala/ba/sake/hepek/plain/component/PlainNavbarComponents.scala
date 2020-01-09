@@ -3,10 +3,10 @@ package ba.sake.hepek.plain.component
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.NavbarComponents
 
-object PlainNavbarComponents extends PlainNavbarComponents {}
+object PlainNavbarComponents
 
 // TODO this is just copied from Bootstrap...
-trait PlainNavbarComponents extends NavbarComponents {
+case class PlainNavbarComponents() extends NavbarComponents {
   import PlainNavbarComponents._
   import ba.sake.hepek.plain.component.classes.PlainButtonClasses._
 
