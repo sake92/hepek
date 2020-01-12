@@ -52,7 +52,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
     name := "hepek-components",
     libraryDependencies ++= Seq(
       "ba.sake"                  %% "stone-macros" % "0.0.3",
-      "com.lihaoyi"              %% "scalatags"    % "0.7.0",
+      "com.lihaoyi"              %% "scalatags"    % "0.8.4",
       "com.lihaoyi"              %% "upickle"      % "0.9.5",
       "com.atlassian.commonmark" % "commonmark"    % "0.13.1",
       "org.scalatest"            %% "scalatest"    % scalaTestVersion % "test"
