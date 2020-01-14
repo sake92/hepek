@@ -11,7 +11,7 @@ trait HtmlPage extends PageDependencies {
 
   def metaSettings: MetaSettings =
     MetaSettings() // TODO fill all defaults
-      .withOgTitle(pageSettings.title)
+      .withOgTitle(siteSettings.name)
 
   def manifest: WebAppManifest = WebAppManifest(
     name = siteSettings.name.getOrElse(""),

@@ -1,4 +1,4 @@
-package ba.sake.hepek.html.upickle
+package ba.sake.hepek.html.utils
 
 object HepekPickler extends upickle.AttributeTagged {
 
