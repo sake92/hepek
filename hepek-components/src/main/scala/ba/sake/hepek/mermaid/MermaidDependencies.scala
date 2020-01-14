@@ -5,7 +5,7 @@ import ba.sake.stone.Wither
 import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW, macroRW, write}
 
 trait MermaidDependencies extends PageDependencies {
-  //def mermaidConfig: MermaidConfig = MermaidConfig()
+  def mermaidConfig: MermaidConfig = MermaidConfig()
 
   def mermaidSettings: ComponentSettings =
     ComponentSettings("8.4.4", "mermaid", DependencyProvider.cdnjs)
@@ -16,16 +16,16 @@ trait MermaidDependencies extends PageDependencies {
     )
   )
 
-  /*override def scriptsInline =
+  override def scriptsInline =
     super.scriptsInline :+ {
       val conf = write(mermaidConfig)
       s"mermaid.initialize($conf);"
-    }*/
+    }
 
   override def components =
     super.components :+ (mermaidSettings, mermaidDependencies)
 }
-/*
+
 @Wither
 case class MermaidConfig(
     theme: String = "default",
@@ -90,4 +90,3 @@ case class MermaidGanttchartConfig(
 object MermaidGanttchartConfig {
   implicit val rw: RW[MermaidGanttchartConfig] = macroRW
 }
-*/

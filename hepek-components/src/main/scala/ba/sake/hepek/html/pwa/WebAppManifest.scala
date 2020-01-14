@@ -26,13 +26,14 @@ case class WebAppManifest(
     preferRelatedApplications: Boolean = false,
     @upickle.implicits.key("related_applications")
     relatedApplications: List[WebAppRelatedApplication] = List.empty,
-    screenshots: List[WebAppRelatedApplication] = List.empty
+    screenshots: List[WebAppScreenshot] = List.empty
 )
 
 object WebAppManifest {
   implicit val rw: RW[WebAppManifest] = macroRW
 }
 
+@Wither
 case class WebAppManifestIcon(
     src: String,
     sizes: String,
@@ -45,6 +46,7 @@ object WebAppManifestIcon {
   implicit val rw: RW[WebAppManifestIcon] = macroRW
 }
 
+@Wither
 case class WebAppRelatedApplication(
     platform: String,
     url: String,
@@ -55,6 +57,7 @@ object WebAppRelatedApplication {
   implicit val rw: RW[WebAppRelatedApplication] = macroRW
 }
 
+@Wither
 case class WebAppScreenshot(
     src: String,
     sizes: String,
@@ -66,12 +69,13 @@ object WebAppScreenshot {
   implicit val rw: RW[WebAppScreenshot] = macroRW
 }
 
+@Wither
 case class WebAppServiceWorker(
     src: String,
     scope: Option[String] = None,
     @upickle.implicits.key("type")
     tpe: Option[String] = None,
-    @upickle.implicits.key("hehehe") updateViaCache: Option[String] = None
+    @upickle.implicits.key("update_via_cache") updateViaCache: Option[String] = None
 )
 
 object WebAppServiceWorker {

@@ -1,6 +1,7 @@
 package ba.sake.hepek.html.utils
 
 object HepekPickler extends upickle.AttributeTagged {
+  override def serializeDefaults = true // important!
 
   override implicit def OptionWriter[T: Writer]: Writer[Option[T]] =
     implicitly[Writer[T]].comap[Option[T]] {
