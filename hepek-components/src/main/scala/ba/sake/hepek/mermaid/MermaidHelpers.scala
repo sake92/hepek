@@ -2,6 +2,8 @@ package ba.sake.hepek.mermaid
 
 import scalatags.Text.all._
 
+object MermaidHelpers extends MermaidHelpers
+
 trait MermaidHelpers {
 
   // maybe looks stupid, user could type this by himself,

@@ -13,6 +13,7 @@ case class WebAppManifest(
     themeColor: Option[String] = None,
     @upickle.implicits.key("background_color")
     backgroundColor: Option[String] = None,
+    icons: List[WebAppManifestIcon] = List.empty,
     display: String = "minimal-ui", // fullscreen, browser, standalone, minimal-ui
     orientation: Option[String] = None,
     @upickle.implicits.key("start_url")
