@@ -55,7 +55,7 @@ lazy val hepekComponents = (project in file("hepek-components"))
       "com.lihaoyi"              %% "scalatags"    % "0.7.0",
       "com.lihaoyi"              %% "upickle"      % "0.9.8",
       "com.atlassian.commonmark" % "commonmark"    % "0.13.1",
-      "net.sourceforge.plantuml" % "plantuml"      % "1.2020.0",
+      "net.sourceforge.plantuml" % "plantuml"      % "1.2020.3",
       "org.scalatest"            %% "scalatest"    % scalaTestVersion % "test"
     )
   )
