@@ -8,5 +8,5 @@ import ba.sake.hepek.core._
 trait ScalaMultiRenderable extends MultiRenderable {
   def rends: Seq[Renderable]
 
-  def renderables = rends.asJava
+  override def renderables = rends.asJava
 }

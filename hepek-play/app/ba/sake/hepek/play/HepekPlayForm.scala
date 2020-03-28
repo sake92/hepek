@@ -4,15 +4,15 @@ import play.api.data.Form
 import play.api.data.Field
 import play.api.i18n.Messages
 import play.api.mvc.Call
+import play.api.mvc.Request
+import play.filters.csrf.CSRF
 import ba.sake.hepek.play
 import ba.sake.hepek.html.component.FormComponents
 
 import scalatags.Text.all, all._
 
-trait HepekPlayForm {
+class HepekPlayForm(val fc: FormComponents) {
   import FormComponents._
-
-  val fc: FormComponents
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
 
@@ -23,9 +23,11 @@ trait HepekPlayForm {
   def form(attrPairs: AttrPair*)(
       action: Call,
       method: String = "POST"
-  )(content: Frag*): Frag = {
-    val allAttrPairs = Seq(all.action := action.url, all.method := method) ++ attrPairs
-    fc.form(allAttrPairs: _*)(content)
+  )(content: Frag*)(implicit request: Request[_]): Frag = {
+    val allAttrPairs    = Seq(all.action := action.url, all.method := method) ++ attrPairs
+    val csrf            = CSRF.getToken.map(token => fc.inputHidden(value := token.value)(token.name))
+    val contentWithCsrf = frag(content, csrf)
+    fc.form(allAttrPairs: _*)(contentWithCsrf)
   }
 
   def inputText(attrs: AttrPair*)(
@@ -392,7 +394,11 @@ trait HepekPlayForm {
     val maybeValidationState = validationState orElse
       (if (field.hasErrors) Some(fc.ValidationState.Error) else None)
     val inputMessages = field.errors.map(_.format) ++ messages
-    (maybeValidationState, inputMessages)
+    val prettyInputMessages = inputMessages.map { m =>
+      val trimmed = m.trim // append ". ", prettier when msgs are displayed inline
+      trimmed + (if (trimmed.endsWith(".")) " " else ". ")
+    }
+    (maybeValidationState, prettyInputMessages)
   }
 
   private def getIfNotBlank(str: String): Option[String] = {
