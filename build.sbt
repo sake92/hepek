@@ -67,7 +67,7 @@ lazy val hepekStatic = (project in file("hepek"))
     name := "hepek",
     libraryDependencies ++= Seq(
       "ba.sake"                 % "hepek-core"                   % hepekCoreVersion,
-      "org.jsoup"               % "jsoup"                        % "1.12.2",
+      "org.jsoup"               % "jsoup"                        % "1.13.1",
       "com.openhtmltopdf"       % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
       "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
       "com.openhtmltopdf"       % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
