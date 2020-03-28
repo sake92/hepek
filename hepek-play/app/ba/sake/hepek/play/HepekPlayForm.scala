@@ -39,7 +39,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputText(attrs: _*)(
+    fc.inputText(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -57,7 +57,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputTextArea(attrs: _*)(
+    fc.inputTextArea(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -75,7 +75,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputPassword(attrs: _*)(
+    fc.inputPassword(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -93,7 +93,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputEmail(attrs: _*)(
+    fc.inputEmail(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -111,7 +111,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputUrl(attrs: _*)(
+    fc.inputUrl(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -129,7 +129,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputTel(attrs: _*)(
+    fc.inputTel(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -147,7 +147,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputFile(attrs: _*)(
+    fc.inputFile(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -165,7 +165,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputColor(attrs: _*)(
+    fc.inputColor(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -183,7 +183,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputNumber(attrs: _*)(
+    fc.inputNumber(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -201,7 +201,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputRange(attrs: _*)(
+    fc.inputRange(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -219,7 +219,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputTime(attrs: _*)(
+    fc.inputTime(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -237,7 +237,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputWeek(attrs: _*)(
+    fc.inputWeek(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -255,7 +255,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputMonth(attrs: _*)(
+    fc.inputMonth(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -273,7 +273,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputDate(attrs: _*)(
+    fc.inputDate(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -291,7 +291,7 @@ class HepekPlayForm(val fc: FormComponents) {
       transform: Frag => Frag = DefaultTransform
   )(implicit playMsgs: Messages): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
-    fc.inputDateTimeLocal(attrs: _*)(
+    fc.inputDateTimeLocal(params.attrs: _*)(
       params.name,
       params.label,
       params.help,
@@ -359,7 +359,8 @@ class HepekPlayForm(val fc: FormComponents) {
       help: String,
       validationState: Option[fc.ValidationState],
       messages: Seq[String],
-      transform: Frag => Frag
+      transform: Frag => Frag,
+      attrs: Seq[AttrPair]
   )
 
   private def getNormalParams(
@@ -382,7 +383,8 @@ class HepekPlayForm(val fc: FormComponents) {
       help,
       state,
       msgs,
-      transform
+      transform,
+      inputAttrsFiltered
     )
   }
 
