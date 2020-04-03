@@ -19,9 +19,9 @@ case class W3CssGridComponents(
     val classes2 = singleRatioClasses(1).map(cls := _)
     val classes3 = singleRatioClasses(2).map(cls := _)
     mkRow(
-      div(classes1, cls := "w3-col"),
+      div(classes1, cls := "w3-col")(raw("&nbsp;")), // BUG in w3css, https://github.com/vitorlans/w3-css/issues/13
       div(classes2, cls := "w3-col")(content),
-      div(classes3, cls := "w3-col")
+      div(classes3, cls := "w3-col")(raw("&nbsp;"))
     )
   }
 

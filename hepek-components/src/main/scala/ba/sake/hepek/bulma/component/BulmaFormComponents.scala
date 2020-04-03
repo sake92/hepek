@@ -10,8 +10,8 @@ object BulmaFormComponents {
   sealed trait Type extends FormComponents.Type
 
   object Type {
-    case object Vertical   extends Type
-    case object Horizontal extends Type
+    case object Vertical                                            extends Type
+    case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type
   }
   val DefaultType = Type.Vertical
 
@@ -66,7 +66,7 @@ case class BulmaFormComponents(
     val bulmaField =
       div(cls := "field")(
         inputLabel
-          .filterNot(_ => formType == Type.Horizontal) // ignore if horizontal
+          .filterNot(_ => formType.isInstanceOf[Type.Horizontal]) // ignore if horizontal
           .map(l => label(cls := "label", inputId.map(`for` := _))(inputLabel)),
         div(cls := "control")(
           inputFragTransformed
@@ -76,7 +76,7 @@ case class BulmaFormComponents(
       )
 
     formType match {
-      case Type.Horizontal =>
+      case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")(
             // ignore label if checkbox
@@ -114,7 +114,7 @@ case class BulmaFormComponents(
       )
 
     formType match {
-      case Type.Horizontal =>
+      case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")( /* empty */ ),
           div(cls := "field-body")(bulmaField)
@@ -147,7 +147,7 @@ case class BulmaFormComponents(
       )
 
     formType match {
-      case Type.Horizontal =>
+      case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")( /* empty */ ),
           div(cls := "field-body")(bulmaField)
@@ -183,7 +183,7 @@ case class BulmaFormComponents(
     )
 
     formType match {
-      case Type.Horizontal =>
+      case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")( /* empty */ ),
           div(cls := "field-body")(bulmaField)
@@ -219,7 +219,7 @@ case class BulmaFormComponents(
     )
 
     formType match {
-      case Type.Horizontal =>
+      case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")( /* empty */ ),
           div(cls := "field-body")(bulmaField)

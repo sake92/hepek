@@ -5,7 +5,6 @@ import ba.sake.hepek.bulma.statik.BulmaStaticPage
 import ba.sake.hepek.bulma.statik.BulmaStaticBundle
 import ba.sake.hepek.html.StaticBundle
 
-import ba.sake.hepek.html.component.BasicComponents
 import ba.sake.hepek.html.component.MarkdownComponents
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
@@ -38,7 +37,7 @@ object ids {
 }
 
 trait SimpleStaticPage extends StaticPage {
-  val bundle: StaticBundle with BasicComponents
+  val bundle: StaticBundle
   import bundle._
 
   override def siteSettings =

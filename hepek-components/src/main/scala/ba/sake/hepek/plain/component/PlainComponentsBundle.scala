@@ -3,7 +3,10 @@ package ba.sake.hepek.plain.component
 import ba.sake.hepek.html.component.ComponentsBundle
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
 
-trait PlainComponentsBundle extends ComponentsBundle with PlainBasicComponents {
+trait PlainComponentsBundle
+    extends ComponentsBundle
+    with PlainLinkComponents
+    with PlainMarkdownComponents {
   override val Form    = PlainFormComponents()
   override val Grid    = PlainGridComponents()
   override val Image   = PlainImageComponents()

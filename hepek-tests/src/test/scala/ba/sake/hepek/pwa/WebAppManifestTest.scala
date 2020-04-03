@@ -37,7 +37,7 @@ class WebAppManifestTest extends FlatSpec with Matchers {
       .withScreenshots(WebAppScreenshot("screenshot.webp", "1280x720", "image/webp"))
 
     val manifestJson = write(manifest)
-    val serManifest = read[WebAppManifest](manifestJson)
+    val serManifest  = read[WebAppManifest](manifestJson)
     serManifest shouldBe manifest
   }
 }

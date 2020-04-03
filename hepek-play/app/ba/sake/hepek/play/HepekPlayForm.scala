@@ -11,7 +11,7 @@ import ba.sake.hepek.html.component.FormComponents
 
 import scalatags.Text.all, all._
 
-class HepekPlayForm(val fc: FormComponents) {
+final case class HepekPlayForm(val fc: FormComponents) {
   import FormComponents._
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
