@@ -12,11 +12,11 @@ object BootstrapNavbarComponents {
     case object FixedBottom extends Position { def classes = "navbar-fixed-bottom" }
   }
 
-  sealed trait Width { def klasa: String }
+  sealed trait Width { def classes: String }
 
   object Width {
-    case object Fixed extends Width { def klasa = "container"       }
-    case object Fluid extends Width { def klasa = "container-fluid" }
+    case object Fixed extends Width { def classes = "container"       }
+    case object Fluid extends Width { def classes = "container-fluid" }
   }
 
   sealed trait Style { def classes: String }
@@ -60,7 +60,7 @@ case class BootstrapNavbarComponents(
       right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
   ): Frag =
     tag("nav")(cls := s"navbar ${style.classes} ${position.classes}")(
-      div(cls := width.klasa)(
+      div(cls := width.classes)(
         div(cls := "navbar-header")(
           toggle,
           a(cls := "navbar-brand", href := brandUrl)(

@@ -8,7 +8,7 @@ trait BulmaComponentsBundle extends ComponentsBundle with BulmaBasicComponents {
   override val Form    = BulmaFormComponents()
   override val Grid    = BulmaGridComponents()
   override val Image   = PlainImageComponents()
-  override val Navbar  = PlainNavbarComponents()
+  override val Navbar  = BulmaNavbarComponent()
   override val Panel   = PlainPanelComponents()
   override val Classes = BulmaClassesBundle
 }
