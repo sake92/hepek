@@ -3,8 +3,6 @@ package ba.sake.hepek.bootstrap3.component.classes
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.TextClasses
 
-object BootstrapTextClasses extends BootstrapTextClasses
-
 trait BootstrapTextClasses extends TextClasses {
   override def txtPrimary = cls := "text-primary"
   override def txtSuccess = cls := "text-success"

@@ -2,8 +2,6 @@ package ba.sake.hepek.html.component
 
 import scalatags.Text.all._
 
-object CodeHighlightComponents {}
-
 trait CodeHighlightComponents {
   // taken from prismjs
   def abap: CodeHighlighter

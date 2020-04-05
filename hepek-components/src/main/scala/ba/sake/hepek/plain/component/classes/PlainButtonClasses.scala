@@ -3,8 +3,6 @@ package ba.sake.hepek.plain.component.classes
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.ButtonClasses
 
-object PlainButtonClasses extends PlainButtonClasses
-
 trait PlainButtonClasses extends ButtonClasses {
   override def btnClass   = cls := "btn"
   override def btnPrimary = cls := "btn-primary"

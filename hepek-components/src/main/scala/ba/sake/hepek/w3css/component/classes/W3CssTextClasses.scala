@@ -3,8 +3,6 @@ package ba.sake.hepek.w3css.component.classes
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.TextClasses
 
-object W3CssTextClasses extends W3CssTextClasses
-
 trait W3CssTextClasses extends TextClasses {
   override def txtPrimary = cls := "w3-teal"
   override def txtSuccess = cls := "w3-green"

@@ -8,6 +8,7 @@ trait TableClasses {
   def tableBordered: AttrPair
   def tableHoverable: AttrPair
   def tableResponsive: AttrPair
+  def tableWidthFull: AttrPair
 
   def tableRowSuccess: AttrPair
   def tableRowInfo: AttrPair

@@ -3,8 +3,6 @@ package ba.sake.hepek.plain.component.classes
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.TextClasses
 
-object PlainTextClasses extends PlainTextClasses
-
 trait PlainTextClasses extends TextClasses {
   override def txtPrimary = cls := "txt-primary"
   override def txtSuccess = cls := "txt-success"

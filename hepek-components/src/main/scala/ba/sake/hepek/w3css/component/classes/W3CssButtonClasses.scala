@@ -3,8 +3,6 @@ package ba.sake.hepek.w3css.component.classes
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.ButtonClasses
 
-object W3CssButtonClasses extends W3CssButtonClasses
-
 trait W3CssButtonClasses extends ButtonClasses {
   override def btnClass   = cls := "w3-btn"
   override def btnPrimary = cls := "w3-teal"

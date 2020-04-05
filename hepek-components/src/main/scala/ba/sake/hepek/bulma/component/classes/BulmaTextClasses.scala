@@ -3,8 +3,6 @@ package ba.sake.hepek.bulma.component.classes
 import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.TextClasses
 
-object BulmaTextClasses extends BulmaTextClasses
-
 trait BulmaTextClasses extends TextClasses {
   override def txtPrimary = cls := "has-text-primary"
   override def txtSuccess = cls := "has-text-success"
