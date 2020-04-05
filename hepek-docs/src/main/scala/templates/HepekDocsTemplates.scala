@@ -5,8 +5,9 @@ import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.prismjs
 import ba.sake.hepek.fontawesome5.FADependencies
 import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}
+import utils.Imports.Bundle._
+import utils.Imports._
 import utils._
-import Imports._
 import resources._
 
 trait HepekDocsAbstractPage

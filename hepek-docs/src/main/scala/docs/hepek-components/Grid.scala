@@ -2,8 +2,8 @@ package docs.hepek.components
 
 import java.time.LocalDate
 import scalatags.Text.all._
-import utils._
-import Imports._
+import utils.Imports.Bundle._
+import utils.Imports._
 
 object GridSupport extends HepekComponentsDocsPage {
 

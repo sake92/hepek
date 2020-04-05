@@ -1,7 +1,7 @@
 package docs.hepek.components
 
 import scalatags.Text.all._
-import utils.Imports._
+import utils.Imports.Bundle._
 
 object Index extends HepekComponentsDocsPage {
 

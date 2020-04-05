@@ -4,9 +4,9 @@ import scalatags.Text.all._
 import ba.sake.hepek.Resources
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
-import ba.sake.hepek.fontawesome5
 
-object Imports extends BootstrapStaticBundle {
+object Imports {
+  val Bundle = BootstrapStaticBundle()
 
   object resources extends Resources {
     override def siteRootPath = "docs"
@@ -14,8 +14,7 @@ object Imports extends BootstrapStaticBundle {
 
   object chl extends PrismCodeHighlightComponents
 
-  // FontAwesome 5 brand
-  val FA = fontawesome5.FA
+  val FA = ba.sake.hepek.fontawesome5.FA
 
   // class field/method description
   case class ClassProperty(
@@ -25,7 +24,7 @@ object Imports extends BootstrapStaticBundle {
       defaultValue: Option[String] = None
   )
 
-  import Classes._
+  import Bundle.Classes._
 
   def renderClassProps(props: List[ClassProperty]) =
     div(tableResponsive)(

@@ -1,9 +1,21 @@
 package ba.sake.hepek.bulma
 
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.Bundle
-import ba.sake.hepek.bulma.component.BulmaComponentsBundle
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
+import ba.sake.hepek.bulma.component._
+import ba.sake.hepek.plain.component._
 
-trait BulmaBundle extends Bundle with BulmaComponentsBundle {
+@Wither
+case class BulmaBundle(
+    Form: BulmaFormComponents = BulmaFormComponents(),
+    Grid: BulmaGridComponents = BulmaGridComponents(),
+    Image: PlainImageComponents = PlainImageComponents(),
+    Navbar: BulmaNavbarComponent = BulmaNavbarComponent(),
+    Panel: PlainPanelComponents = PlainPanelComponents(),
+    Classes: BulmaClassesBundle = BulmaClassesBundle
+) extends Bundle
+    with PlainLinkComponents
+    with BulmaMarkdownComponents {
   override type HtmlPage = BulmaPage
 }

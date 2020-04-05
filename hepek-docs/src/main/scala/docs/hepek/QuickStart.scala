@@ -1,7 +1,9 @@
 package docs.hepek
 
 import scalatags.Text.all._
-import utils._, Imports._
+import utils.Imports.Bundle._
+import utils.Imports._
+import utils._
 
 object QuickStart extends HepekDocsPage {
 

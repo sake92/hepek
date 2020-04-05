@@ -2,7 +2,7 @@ package docs
 
 import java.time.LocalDate
 import scalatags.Text.all._
-import utils.Imports._, Classes._
+import utils.Imports.Bundle._, Classes._
 import templates.HepekDocsStaticPage
 
 object Index extends HepekDocsStaticPage {

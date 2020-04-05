@@ -1,7 +1,9 @@
 package docs.hepek.components
 
 import scalatags.Text.all._
-import utils._, Imports._
+import utils.Imports.Bundle._
+import utils.Imports._
+import utils._
 
 object CodeHighlighter extends HepekComponentsDocsPage {
 

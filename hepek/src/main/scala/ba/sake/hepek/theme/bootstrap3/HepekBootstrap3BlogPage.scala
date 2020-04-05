@@ -3,7 +3,7 @@ package ba.sake.hepek.theme.bootstrap3
 import scalatags.Text.all._
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
-import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle._
+import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 
 trait TocType
 
@@ -21,8 +21,12 @@ final case class TocSettings(
     tocType: Option[TocType] = Some(TocType.Scrollspy())
 )
 
+object HepekBootstrap3BlogPage {
+  val Bundle = BootstrapStaticBundle()
+}
+import HepekBootstrap3BlogPage.Bundle._
+
 trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
-  // avoid polluting user's namespace
   import Grid._
   import HepekBootstrap3SectionUtils._
 

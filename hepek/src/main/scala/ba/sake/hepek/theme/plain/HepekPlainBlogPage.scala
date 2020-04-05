@@ -7,10 +7,12 @@ import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 
-import PlainStaticBundle._
+object HepekPlainBlogPage {
+  val Bundle = PlainStaticBundle()
+}
+import HepekPlainBlogPage.Bundle._
 
 trait HepekPlainBlogPage extends BlogPostPage with StaticPage {
-  // avoid polluting user's namespace
   import Grid._
 
   // TODO add header

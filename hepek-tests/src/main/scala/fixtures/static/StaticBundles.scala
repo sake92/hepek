@@ -17,19 +17,19 @@ object StaticPages {
 }
 
 object Plain extends SimpleStaticPage {
-  val bundle = PlainStaticBundle
+  val bundle = PlainStaticBundle()
 }
 
 object Bootstrap3 extends SimpleStaticPage {
-  val bundle = BootstrapStaticBundle
+  val bundle = BootstrapStaticBundle()
 }
 
 object Bulma extends SimpleStaticPage {
-  val bundle = BulmaStaticBundle
+  val bundle = BulmaStaticBundle()
 }
 
 object W3Css extends SimpleStaticPage {
-  val bundle = W3CssStaticBundle
+  val bundle = W3CssStaticBundle()
 }
 
 object ids {

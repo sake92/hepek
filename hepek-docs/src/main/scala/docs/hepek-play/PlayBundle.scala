@@ -1,7 +1,8 @@
 package docs.hepek.play
 
 import scalatags.Text.all._
-import utils._, Imports._
+import utils.Imports.Bundle._
+import utils.Imports._
 
 object PlayBundle extends HepekPlayDocsPage {
 

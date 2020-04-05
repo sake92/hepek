@@ -3,7 +3,7 @@ package docs
 import scalatags.Text.all._
 import ba.sake.hepek.core.RelativePath
 import utils.Site
-import utils.Imports._
+import utils.Imports.Bundle._
 
 object NotFound extends templates.HepekDocsAbstractPage {
 

@@ -1,7 +1,7 @@
 package docs.hepek.play
 
 import scalatags.Text.all._
-import utils.Imports._
+import utils.Imports.Bundle._
 
 object Form extends HepekPlayDocsPage {
 

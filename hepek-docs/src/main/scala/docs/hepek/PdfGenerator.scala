@@ -1,7 +1,8 @@
 package docs.hepek
 
 import scalatags.Text.all._
-import utils._, Imports._
+import utils.Imports.Bundle._
+import utils.Imports._
 
 object PdfGenerator extends HepekDocsPage {
 
