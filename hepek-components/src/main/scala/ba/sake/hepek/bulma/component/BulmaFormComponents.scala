@@ -4,7 +4,6 @@ import scalatags.Text.all._
 import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
-import ba.sake.hepek.plain.component.PlainFormComponentsImpl
 
 object BulmaFormComponents {
   sealed trait Type extends FormComponents.Type
@@ -25,7 +24,7 @@ object BulmaFormComponents {
 @Wither
 case class BulmaFormComponents(
     formType: FormComponents.Type = BulmaFormComponents.DefaultType
-) extends PlainFormComponentsImpl {
+) extends ba.sake.hepek.plain.component.PlainFormComponentsImpl {
   import BulmaFormComponents._
   import BulmaClassesBundle._
 
@@ -228,4 +227,6 @@ case class BulmaFormComponents(
         bulmaField
     }
   }
+
+  // TODO constructInputSelectGrouped..
 }

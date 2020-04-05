@@ -91,7 +91,8 @@ case class BootstrapNavbarComponents(
   ): Frag =
     li(cls := "dropdown")(
       a(cls := "dropdown-toggle", data.toggle := "dropdown", href := "#")(
-        title
+        title,
+        raw(" <span class='caret'></span>")
       ),
       ul(cls := "dropdown-menu")(
         links.map {
