@@ -1,5 +1,6 @@
 package ba.sake.hepek.w3css.component.classes
 
+import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.ClassesBundle
 
 object W3CssClassesBundle extends W3CssClassesBundle
@@ -9,4 +10,7 @@ trait W3CssClassesBundle
     with W3CssBackgroundClasses
     with W3CssTextClasses
     with W3CssButtonClasses
-    with W3CssTableClasses
+    with W3CssTableClasses {
+  override def clsContainer      = cls := "w3-container"
+  override def clsContainerFluid = cls := "w3-container"
+}

@@ -2,7 +2,7 @@ package ba.sake.hepek.plain.component
 
 import scalatags.Text.all.{caption => _, _}
 import ba.sake.hepek.html.component.ImageComponents
-import ba.sake.hepek.plain.component.classes.PlainTextClasses._
+import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
 case class PlainImageComponents() extends ImageComponents {
 

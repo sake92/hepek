@@ -34,7 +34,7 @@ case class BootstrapNavbarComponents(
     position: BootstrapNavbarComponents.Position = BootstrapNavbarComponents.Position.FixedTop,
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
-  import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses._
+  import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
 
   val Companion = BootstrapNavbarComponents
 

@@ -27,7 +27,7 @@ object PureFormComponents {
 
 trait PureFormComponents extends PlainFormComponentsImpl {
   import PureFormComponents._
-  import PureButtonClasses._
+  import classes.PureClassesBundle._
 
   val Companion = PureFormComponents
 

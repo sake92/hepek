@@ -9,7 +9,7 @@ trait W3CssTableClasses extends TableClasses {
   override def tableBordered   = cls := "w3-bordered"
   override def tableHoverable  = cls := "w3-hoverable"
   override def tableResponsive = cls := "w3-responsive"
-  override def tableWidthFull= cls := ""
+  override def tableWidthFull  = cls := ""
 
   override def tableRowSuccess = cls := "w3-green"
   override def tableRowInfo    = cls := "w3-blue"

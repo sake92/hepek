@@ -1,5 +1,6 @@
 package ba.sake.hepek.bootstrap3.component.classes
 
+import scalatags.Text.all._
 import ba.sake.hepek.html.component.classes.ClassesBundle
 
 object BootstrapClassesBundle extends BootstrapClassesBundle
@@ -9,4 +10,7 @@ trait BootstrapClassesBundle
     with BootstrapBackgroundClasses
     with BootstrapTextClasses
     with BootstrapButtonClasses
-    with BootstrapTableClasses
+    with BootstrapTableClasses {
+  override def clsContainer      = cls := "container"
+  override def clsContainerFluid = cls := "container-fluid"
+}

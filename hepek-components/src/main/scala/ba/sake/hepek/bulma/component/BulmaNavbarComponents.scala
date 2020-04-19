@@ -28,7 +28,7 @@ case class BulmaNavbarComponent(
     position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
-  import ba.sake.hepek.bootstrap3.component.classes.BootstrapButtonClasses._
+  import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle._
 
   val Companion = BulmaNavbarComponent
 

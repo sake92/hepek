@@ -9,7 +9,7 @@ trait BootstrapTableClasses extends TableClasses {
   override def tableBordered   = cls := "table-bordered"
   override def tableHoverable  = cls := "table-hover"
   override def tableResponsive = cls := "table-responsive"
-  override def tableWidthFull = cls := ""
+  override def tableWidthFull  = cls := ""
 
   override def tableRowSuccess = cls := "success"
   override def tableRowInfo    = cls := "info"

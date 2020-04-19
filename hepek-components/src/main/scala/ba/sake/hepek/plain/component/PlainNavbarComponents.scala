@@ -8,7 +8,7 @@ object PlainNavbarComponents
 // TODO this is just copied from Bootstrap...
 case class PlainNavbarComponents() extends NavbarComponents {
   import PlainNavbarComponents._
-  import ba.sake.hepek.plain.component.classes.PlainButtonClasses._
+  import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
   private val bsBtn = tag("button")(tpe := "button", btnClass)
 

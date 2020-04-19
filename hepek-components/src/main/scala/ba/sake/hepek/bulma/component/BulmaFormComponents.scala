@@ -24,7 +24,7 @@ object BulmaFormComponents {
 @Wither
 case class BulmaFormComponents(
     formType: FormComponents.Type = BulmaFormComponents.DefaultType
-) extends ba.sake.hepek.plain.component.PlainFormComponentsImpl {
+) extends FormComponents {
   import BulmaFormComponents._
   import BulmaClassesBundle._
 
@@ -228,5 +228,77 @@ case class BulmaFormComponents(
     }
   }
 
-  // TODO constructInputSelectGrouped..
+  override def constructInputSelect(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val optionFrags = valueAndLabelAndAttrs.map {
+      case (optionValue, optionLabel, optionAttrs) =>
+        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+        option(commonAttrs)(optionLabel)
+    }
+    val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
+      inputId.map(id := _)
+    val selectFrag = select(selectAttrs)(optionFrags)
+
+    formType match {
+      case _: Type.Horizontal =>
+        div(cls := "field is-horizontal")(
+          div(cls := "field-label")(
+            label(cls := "label", inputId.map(`for` := _))(
+              inputLabel
+            )
+          ),
+          div(cls := "field-body")(
+            div(cls := "select")(selectFrag)
+          )
+        )
+      case Type.Vertical =>
+        div(cls := "select")(selectFrag)
+    }
+  }
+
+  override def constructInputSelectGrouped(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
+
+    val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
+      case (optGroupLabel, valueAndLabelAndAttrs) =>
+        val optionFrags = valueAndLabelAndAttrs.map {
+          case (optionValue, optionLabel, optionAttrs) =>
+            val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+            option(commonAttrs)(optionLabel)
+        }
+        optgroup(attr("label") := optGroupLabel)(optionFrags)
+    }
+    val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
+      inputId.map(id := _)
+    val selectFrag = select(selectAttrs)(optionGroupFrags)
+
+    formType match {
+      case _: Type.Horizontal =>
+        div(cls := "field is-horizontal")(
+          div(cls := "field-label")(
+            label(cls := "label", inputId.map(`for` := _))(
+              inputLabel
+            )
+          ),
+          div(cls := "field-body")(
+            div(cls := "select")(selectFrag)
+          )
+        )
+      case Type.Vertical =>
+        div(cls := "select")(selectFrag)
+    }
+  }
 }

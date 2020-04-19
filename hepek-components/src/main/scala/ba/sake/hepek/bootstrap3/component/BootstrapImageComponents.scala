@@ -2,7 +2,7 @@ package ba.sake.hepek.bootstrap3.component
 
 import scalatags.Text.all.{caption => _, _}
 import ba.sake.hepek.html.component.ImageComponents
-import ba.sake.hepek.bootstrap3.component.classes.BootstrapTextClasses._
+import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
 
 case class BootstrapImageComponents() extends ImageComponents {
 

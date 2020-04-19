@@ -2,7 +2,7 @@ package ba.sake.hepek.w3css.component
 
 import scalatags.Text.all.{caption => _, _}
 import ba.sake.hepek.html.component.ImageComponents
-import ba.sake.hepek.w3css.component.classes.W3CssTextClasses._
+import ba.sake.hepek.w3css.component.classes.W3CssClassesBundle._
 
 case class W3CssImageComponents() extends ImageComponents {
 
