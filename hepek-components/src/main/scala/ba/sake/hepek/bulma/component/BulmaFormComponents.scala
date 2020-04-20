@@ -244,6 +244,7 @@ case class BulmaFormComponents(
     val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
       inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionFrags)
+    val bulmaFrag  = div(cls := "select is-fullwidth")(selectFrag)
 
     formType match {
       case _: Type.Horizontal =>
@@ -253,12 +254,10 @@ case class BulmaFormComponents(
               inputLabel
             )
           ),
-          div(cls := "field-body")(
-            div(cls := "select")(selectFrag)
-          )
+          div(cls := "field-body")(bulmaFrag)
         )
       case Type.Vertical =>
-        div(cls := "select")(selectFrag)
+        bulmaFrag
     }
   }
 
@@ -284,6 +283,7 @@ case class BulmaFormComponents(
     val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
       inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionGroupFrags)
+    val bulmaFrag  = div(cls := "select is-fullwidth")(selectFrag)
 
     formType match {
       case _: Type.Horizontal =>
@@ -293,12 +293,10 @@ case class BulmaFormComponents(
               inputLabel
             )
           ),
-          div(cls := "field-body")(
-            div(cls := "select")(selectFrag)
-          )
+          div(cls := "field-body")(bulmaFrag)
         )
       case Type.Vertical =>
-        div(cls := "select")(selectFrag)
+        bulmaFrag
     }
   }
 }

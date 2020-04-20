@@ -6,7 +6,7 @@ trait BulmaDependencies extends PageDependencies {
   val bulmaFilename: String = "bulma"
 
   def bulmaSettings: ComponentSettings =
-    ComponentSettings("0.7.4", bulmaFilename, DependencyProvider.cdnjs)
+    ComponentSettings("0.8.2", bulmaFilename, DependencyProvider.cdnjs)
 
   def bulmaDependencies = ComponentDependencies().withCssDependencies(
     Dependencies().withDeps(

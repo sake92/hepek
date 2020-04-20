@@ -12,7 +12,7 @@ case class BulmaBundle(
     Grid: BulmaGridComponents = BulmaGridComponents(),
     Image: PlainImageComponents = PlainImageComponents(),
     Navbar: BulmaNavbarComponent = BulmaNavbarComponent(),
-    Panel: PlainPanelComponents = PlainPanelComponents(),
+    Panel: BulmaPanelComponents = BulmaPanelComponents(),
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends Bundle
     with PlainLinkComponents

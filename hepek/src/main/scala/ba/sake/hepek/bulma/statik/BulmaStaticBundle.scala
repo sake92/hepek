@@ -15,7 +15,7 @@ case class BulmaStaticBundle(
     Grid: BulmaGridComponents = BulmaGridComponents(),
     Image: PlainImageComponents = PlainImageComponents(),
     Navbar: BulmaNavbarComponent = BulmaNavbarComponent(),
-    Panel: PlainPanelComponents = PlainPanelComponents(),
+    Panel: BulmaPanelComponents = BulmaPanelComponents(),
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends StaticBundle
     with PlainLinkComponents
