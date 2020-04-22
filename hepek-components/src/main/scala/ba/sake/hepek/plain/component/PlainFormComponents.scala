@@ -16,7 +16,7 @@ object PlainFormComponents {
 }
 
 @Wither
-case class PlainFormComponents(
+final case class PlainFormComponents(
     formType: FormComponents.Type = PlainFormComponents.DefaultType
 ) extends PlainFormComponentsImpl
 

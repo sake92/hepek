@@ -8,7 +8,7 @@ import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.plain.component.PlainMarkdownComponents
 
 @Wither
-case class W3CssBundle(
+final case class W3CssBundle(
     Form: W3CssFormComponents = W3CssFormComponents(),
     Grid: W3CssGridComponents = W3CssGridComponents(),
     Image: W3CssImageComponents = W3CssImageComponents(),

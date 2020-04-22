@@ -23,7 +23,7 @@ object BulmaNavbarComponent {
 }
 
 @Wither
-case class BulmaNavbarComponent(
+final case class BulmaNavbarComponent(
     style: Option[BulmaNavbarComponent.Style] = None,
     position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),
     collapseId: String = "main-navbar"

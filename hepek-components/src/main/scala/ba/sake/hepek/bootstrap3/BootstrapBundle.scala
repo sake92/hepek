@@ -8,7 +8,7 @@ import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.plain.component.PlainMarkdownComponents
 
 @Wither
-case class BootstrapBundle(
+final case class BootstrapBundle(
     Form: BootstrapFormComponents = BootstrapFormComponents(),
     Grid: BootstrapGridComponents = BootstrapGridComponents(),
     Image: BootstrapImageComponents = BootstrapImageComponents(),

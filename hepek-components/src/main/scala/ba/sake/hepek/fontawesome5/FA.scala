@@ -1411,7 +1411,7 @@ object FA {
 }
 
 @Wither
-case class FA5Icon(
+final case class FA5Icon(
     name: String,
     tpe: FA5Icon.Type = FA5Icon.Type.Solid,
     size: Option[FA5Icon.Size] = None,

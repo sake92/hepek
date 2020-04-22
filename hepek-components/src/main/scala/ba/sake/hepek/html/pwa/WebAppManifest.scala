@@ -4,7 +4,7 @@ import ba.sake.stone.Wither
 import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW, _}
 
 @Wither
-case class WebAppManifest(
+final case class WebAppManifest(
     name: String,
     @upickle.implicits.key("short_name")
     shortName: Option[String] = None,
@@ -35,7 +35,7 @@ object WebAppManifest {
 }
 
 @Wither
-case class WebAppManifestIcon(
+final case class WebAppManifestIcon(
     src: String,
     sizes: String,
     @upickle.implicits.key("type")
@@ -48,7 +48,7 @@ object WebAppManifestIcon {
 }
 
 @Wither
-case class WebAppRelatedApplication(
+final case class WebAppRelatedApplication(
     platform: String,
     url: String,
     id: String
@@ -59,7 +59,7 @@ object WebAppRelatedApplication {
 }
 
 @Wither
-case class WebAppScreenshot(
+final case class WebAppScreenshot(
     src: String,
     sizes: String,
     @upickle.implicits.key("type")
@@ -71,7 +71,7 @@ object WebAppScreenshot {
 }
 
 @Wither
-case class WebAppServiceWorker(
+final case class WebAppServiceWorker(
     src: String,
     scope: Option[String] = None,
     @upickle.implicits.key("type")

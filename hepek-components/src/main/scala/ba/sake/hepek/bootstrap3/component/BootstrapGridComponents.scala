@@ -6,7 +6,7 @@ import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 
 @Wither
-case class BootstrapGridComponents(
+final case class BootstrapGridComponents(
     screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {
   import GridComponents._

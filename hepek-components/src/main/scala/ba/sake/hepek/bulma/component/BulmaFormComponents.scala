@@ -22,7 +22,7 @@ object BulmaFormComponents {
 }
 
 @Wither
-case class BulmaFormComponents(
+final case class BulmaFormComponents(
     formType: FormComponents.Type = BulmaFormComponents.DefaultType
 ) extends FormComponents {
   import BulmaFormComponents._
@@ -241,7 +241,7 @@ case class BulmaFormComponents(
         val commonAttrs = Seq(value := optionValue) ++ optionAttrs
         option(commonAttrs)(optionLabel)
     }
-    val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
+    val selectAttrs = inputAttrs ++ Seq(name := inputName) ++
       inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionFrags)
     val bulmaFrag  = div(cls := "select is-fullwidth")(selectFrag)
@@ -269,7 +269,6 @@ case class BulmaFormComponents(
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
     val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
       case (optGroupLabel, valueAndLabelAndAttrs) =>
@@ -280,7 +279,7 @@ case class BulmaFormComponents(
         }
         optgroup(attr("label") := optGroupLabel)(optionFrags)
     }
-    val selectAttrs = inputAttrs ++ Seq(name := inputName, cls := "form-control") ++
+    val selectAttrs = inputAttrs ++ Seq(name := inputName) ++
       inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionGroupFrags)
     val bulmaFrag  = div(cls := "select is-fullwidth")(selectFrag)

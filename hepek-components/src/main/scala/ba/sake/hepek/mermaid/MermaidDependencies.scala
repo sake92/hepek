@@ -43,7 +43,7 @@ object MermaidConfig {
 }
 
 @Wither
-case class MermaidFlowchartConfig(
+final case class MermaidFlowchartConfig(
     htmlLabels: Boolean = true,
     curve: String = "linear"
 )
@@ -53,7 +53,7 @@ object MermaidFlowchartConfig {
 }
 
 @Wither
-case class MermaidSequencechartConfig(
+final case class MermaidSequencechartConfig(
     diagramMarginX: Int = 50,
     diagramMarginY: Int = 10,
     actorMargin: Int = 50,
@@ -74,7 +74,7 @@ object MermaidSequencechartConfig {
   implicit val rw: RW[MermaidSequencechartConfig] = macroRW
 }
 
-case class MermaidGanttchartConfig(
+final case class MermaidGanttchartConfig(
     titleTopMargin: Int = 25,
     barHeight: Int = 20,
     barGap: Int = 4,

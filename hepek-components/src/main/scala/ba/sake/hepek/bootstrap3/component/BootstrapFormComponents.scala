@@ -30,7 +30,7 @@ object BootstrapFormComponents {
 }
 
 @Wither
-case class BootstrapFormComponents(
+final case class BootstrapFormComponents(
     formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
 ) extends FormComponents {
   import BootstrapFormComponents._

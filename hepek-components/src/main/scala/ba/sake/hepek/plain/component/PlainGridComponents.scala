@@ -6,7 +6,7 @@ import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.stone.Wither
 
 @Wither
-case class PlainGridComponents(
+final case class PlainGridComponents(
     screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {
   import GridComponents._

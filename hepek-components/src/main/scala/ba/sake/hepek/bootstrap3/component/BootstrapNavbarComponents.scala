@@ -28,7 +28,7 @@ object BootstrapNavbarComponents {
 }
 
 @Wither
-case class BootstrapNavbarComponents(
+final case class BootstrapNavbarComponents(
     style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
     width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
     position: BootstrapNavbarComponents.Position = BootstrapNavbarComponents.Position.FixedTop,

@@ -23,7 +23,7 @@ object W3CssFormComponents {
 }
 
 @Wither
-case class W3CssFormComponents(
+final case class W3CssFormComponents(
     formType: FormComponents.Type = W3CssFormComponents.Type.Default
 ) extends FormComponents {
   import W3CssFormComponents._

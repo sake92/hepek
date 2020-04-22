@@ -1,11 +1,11 @@
 package ba.sake.hepek.play
 
+import ba.sake.stone.Wither
 import ba.sake.hepek.html.Bundle
 
-trait PlayBundle extends Bundle {
-  def HPF: HepekPlayForm
-}
-
+@Wither
 case class PlayBundleImpl(
-    HPF: HepekPlayForm
-)
+    val Bundle: Bundle
+) {
+  val HPF: HepekPlayForm = HepekPlayForm(Bundle.Form)
+}
