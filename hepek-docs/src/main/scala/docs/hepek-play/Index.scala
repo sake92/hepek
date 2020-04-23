@@ -18,7 +18,8 @@ object Index extends HepekPlayDocsPage {
     "Hepek Play",
     frag(
       s"""
-        Hepek Play integrates Hepek components with Play framework.
+        Hepek Play integrates Hepek components with Play framework.  
+        [Here](${utils.links.PlayExampleUrl}) is an example to get you started.
 
         It contains basic machinery needed to render Hepek's `HtmlPage`.  
         This enables you to use Hepek's higher level abstractions or plain old Scalatags HTML.

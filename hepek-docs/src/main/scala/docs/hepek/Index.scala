@@ -30,7 +30,8 @@ object Index extends HepekDocsPage {
         You can use Scalatags, Markdown or whatever syntax **you** find useful.
         
         ---
-        You may ask maybe, so what?  
+        You can ask maybe, so what?  
+        This is yet another SSG, what makes it so special?  
         So, say goodbye to emmet snippets and regex find-and-replace...
         Now you can use functions, for loops, data abstractions etc. What more do you need really?  
 

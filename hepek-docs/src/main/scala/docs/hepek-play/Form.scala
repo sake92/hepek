@@ -21,7 +21,7 @@ object Form extends HepekPlayDocsPage {
       Hepek Play forms build upon basic `FormComponents`.  
       Since Play's `Field` abstraction gives us basic data needed to render a field,
         we leverage that information to render it.  
-      It contains field `name`, `id`, `label` and validation messages, so we don't have to worry about those.
+      It contains field's `name`, `id`, `label` and validation messages, so we don't have to worry about those.
 
       Most of the `input*` field helpers have a similar signature:
       ```scala
@@ -33,9 +33,12 @@ object Form extends HepekPlayDocsPage {
           messages: Seq[String] = Seq.empty,
           transform: Frag => Frag = DefaultTransform
       )(implicit playMsgs: Messages): Frag
+      ```
 
+      Example usage:
+      ```scala
       val myForm: Form[MyData] = ???
-      inputEmail()(myForm("email"), help = "Please enter your email")) // example usage
+      inputEmail()(myForm("email"), help = "Please enter your email"))
       ```
 
       Only the `field` is mandatory, of course. 

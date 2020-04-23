@@ -16,9 +16,9 @@ object PlayBundle extends HepekPlayDocsPage {
     "Play bundle",
     frag(
       """
-      `PlayBundle` extends the general `Bundle` with Play HTML components.  
-      Recommended usage is to create an `Imports` object which extends one of the predefined bundles.  
-      Then you `import utils.Imports._` in every other page/template you make.  
+      You use `Bundle` in the same way as in the hepek-components!
+
+      The `PlayBundleImpl` contains Play-specific helpers, like forms.
       """.md,
       chl.scala("""
       package utils
@@ -26,28 +26,13 @@ object PlayBundle extends HepekPlayDocsPage {
       import ba.sake.hepek.play.PlayBundle
       import ba.sake.hepek.bootstrap3.BootstrapBundle
 
-      object Imports extends PlayBundle with BootstrapBundle
-      """),
-      """
-      ---
-      `PlayBundle` adds a new helper called  `hf`, short for "hepek form".  
-      You can override the `hf` and use a custom form implementation:
-      """.md,
-      chl.scala("""
-      object Imports extends PlayBundle with BootstrapBundle {
-
-        object customForm extends Form { // customize your form components :)
-          override def formType = Form.Type.Horizontal()
-        }
-      
-        override val hf = new HepekPlayForm {
-          override type FormImpl = Form
-          val fc = customForm
-        }
+      object Imports {
+        val Bundle = BootstrapBundle()
+        val PlayBundle = PlayBundleImpl(Bundle)
       }
       """),
       """
-      You can access the underlying form implementation through `hf.fc` field (fc is short for form components).
+      `PlayBundle` adds a new helper called  `HPF`, short for "Hepek Play Form".
       """.md
     )
   )

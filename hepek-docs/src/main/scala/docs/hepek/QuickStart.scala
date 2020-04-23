@@ -27,9 +27,7 @@ object QuickStart extends HepekDocsPage {
   val usingSection = Section(
     "Using",
     s"""
-      Just type `sbt new sake92/hepek-starter.g8` to generate a project.  
-      Or you can clone the starter project from [here](${links.StarterProjectURL}).  
-
+      Clone the starter project from [here](${links.StarterProjectURL}) and you're ready.  
       Start up sbt console and type `hepek`.  
       Voila, that's it! :)
 

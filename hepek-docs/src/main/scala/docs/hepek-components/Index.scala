@@ -21,11 +21,10 @@ object Index extends HepekComponentsDocsPage {
           Hepek Components contain the core components of Hepek SSG and Hepek Play.  
           These are mostly wrappers around Scalatags.  
 
-          Components are interface-based so we can compose them easily and replace with no effort.  
-          In a nutshell, this means you can easily swap Bootstrap3 backend with Bulma, and vice versa.  
-          This is achieved just by extending a different `trait`!
+          Components are *interface-based* so we can compose them easily and replace with no effort.  
+          In a nutshell, this means you can **choose HTML framework implementation**: Bootstrap3/Bulma/W3Css.  
 
-          In order to group these, Hepek has a concept of `Bundle`.  
+          In order to group components, Hepek has a concept of `Bundle`.  
           Every framework fills it with its own implementations of components.  
           Proceed to [next page](${Bundle.ref}) for more detailed explanation.
   

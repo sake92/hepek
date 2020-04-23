@@ -6,9 +6,9 @@ import utils.Imports.Bundle._, Classes._
 import templates.HepekDocsStaticPage
 
 object Index extends HepekDocsStaticPage {
-  val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
+  private val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
 
-  val grid = Grid.withScreenRatios(
+  private val grid = Grid.withScreenRatios(
     Grid.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
   )
   import grid._
@@ -32,8 +32,8 @@ object Index extends HepekDocsStaticPage {
           - [Static site generator](${hepek.Index.ref})
           - [Play framework integration](${hepek.play.Index.ref})
 
-          Components can be used in any project. It only depends on Scalatags and Commonmark.  
-          If you need typesafe grid, form inputs, markdown and lots more, 
+          Components can be used in **any project**. It only depends on Scalatags and Commonmark.  
+          If you need typesafe grid, form inputs, panels, navbars, markdown, maths and lots more, 
           this is the library you're looking for.
 
           SSG has support for automatic relative links, PDF rendering and lots more.

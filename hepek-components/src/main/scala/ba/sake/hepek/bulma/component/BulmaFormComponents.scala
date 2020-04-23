@@ -269,7 +269,6 @@ final case class BulmaFormComponents(
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-
     val optionGroupFrags = valueAndLabelAndAttrsGrouped.map {
       case (optGroupLabel, valueAndLabelAndAttrs) =>
         val optionFrags = valueAndLabelAndAttrs.map {

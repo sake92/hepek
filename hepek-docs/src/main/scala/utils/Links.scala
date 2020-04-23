@@ -1,32 +1,43 @@
 package utils
 
 object links {
-
-  private val hepekUrl =
-    "https://github.com/sake92/hepek/blob/master/src/main/scala/ba/sake/hepek"
+  private val hepekGhUrl         = "https://github.com/sake92/hepek"
+  private val hepekSsgUrl        = s"$hepekGhUrl/tree/master/hepek/src/main/scala"
+  private val hepekComponentsUrl = s"$hepekGhUrl/tree/master/hepek-components/src/main/scala"
 
   private val hepekExamplesUrl =
-    "https://github.com/sake92/hepek-examples/blob/master"
+    "https://github.com/sake92/hepek-examples/tree/master/src/main/scala"
 
   val StarterProjectURL = "https://github.com/sake92/hepek-starter"
 
-  val HtmlPageUrl         = hepekUrl + "HtmlPage"
-  val StaticPageUrl       = hepekUrl + "/html/structure/StaticPage.scala"
-  val BlogPostPageUrl     = hepekUrl + "/html/structure/blog/BlogPostPage.scala"
-  val PageDependenciesUrl = hepekUrl + "/html/structure/PageDependencies.scala"
+  val HtmlPageUrl = s"$hepekComponentsUrl/ba/sake/hepek/html/HtmlPage.scala"
+
+  val PageDependenciesUrl =
+    s"$hepekComponentsUrl/ba/sake/hepek/html/PageDependencies.scala"
+  val StaticPageUrl   = s"$hepekSsgUrl/ba/sake/hepek/html/statik/StaticPage.scala"
+  val BlogPostPageUrl = s"$hepekSsgUrl/ba/sake/hepek/html/statik/BlogPostPage.scala"
+
   // bootstrap
-  val BootstrapGridComponentsUrl = hepekUrl + "/bootstrap3/component/BootstrapGridComponents.scala"
-  val BootstrapStaticPageUrl     = hepekUrl + "/bootstrap3/statik/BootstrapStaticPage.scala"
+  val BootstrapGridComponentsUrl =
+    s"$hepekComponentsUrl/ba/sake/hepek/bootstrap3/component/BootstrapGridComponents.scala"
+
+  val BootstrapStaticPageUrl =
+    s"$hepekSsgUrl/ba/sake/hepek/bootstrap3/statik/BootstrapStaticPage.scala"
   // wordpress
-  val WpExampleUrl = hepekExamplesUrl + "/src/main/scala/examples/multi/wordpress"
+  val WpExampleUrl = s"$hepekExamplesUrl/examples/multi/wordpress"
 
   // prismJs
-  val PrismCodeHighlightComponentsUrl = hepekUrl + "/prismjs/PrismCodeHighlightComponents.scala"
-  val PrismJSExampleUrl               = hepekExamplesUrl + "/src/main/scala/examples/prismjs/PrismJSExample.scala"
+  val PrismCodeHighlightComponentsUrl =
+    s"$hepekComponentsUrl/ba/sake/hepek/prismjs/PrismCodeHighlightComponents.scala"
+  val PrismJSExampleUrl = s"$hepekExamplesUrl/examples/prismjs/PrismJSExample.scala"
   // katex
-  val KatexDependenciesUrl = hepekUrl + "/katex/KatexDependencies.scala"
+  val KatexDependenciesUrl = s"$hepekComponentsUrl/ba/sake/hepek/katex/KatexDependencies.scala"
+
   // themes
-  val HepekBootstrap3BlogPagesUrl = hepekUrl + "/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
+  val HepekBootstrap3BlogPagesUrl =
+    s"$hepekSsgUrl/ba/sake/hepek/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
+
+  val PlayExampleUrl = "https://github.com/sake92/play-hepek-example"
 
   val BrowsersyncUrl = "https://browsersync.io/"
 }

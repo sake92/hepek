@@ -49,6 +49,7 @@ object GridSupport extends HepekComponentsDocsPage {
           - halves, constructed with `half`
           - thirds, constructed with `third`
         
+        By default, columns have same width, as expected.  
         You just need to extend `Grid` from your favorite `Bundle`.  
         So, in a nutshell, these will compile:
       """.md,
@@ -87,7 +88,6 @@ object GridSupport extends HepekComponentsDocsPage {
     frag(
       md("""
         Halves and thirds use the `screenRatios` configuration. 
-        Defaults are same width columns, as expected.  
         You can configure each screen size separately: 
           `lg`,`md`, `sm` and `xs`.
         Example:

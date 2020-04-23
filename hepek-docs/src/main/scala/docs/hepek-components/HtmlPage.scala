@@ -52,12 +52,12 @@ object HtmlPage extends HepekComponentsDocsPage {
           override def siteSettings =
             super.siteSettings
               .withName("example.com")
-              .withFaviconNormal(images.ico("favicon").ref)
+              .withFaviconNormal("favicon.jpg")
         }
       """),
       """
         ---
-        Per-page settings are contained in the `def pageSettings`.  
+        Per-page settings are in the `def pageSettings`.  
         `PageSettings` has the following fields:
       """.md,
       renderClassProps(pageSettingsProps),
