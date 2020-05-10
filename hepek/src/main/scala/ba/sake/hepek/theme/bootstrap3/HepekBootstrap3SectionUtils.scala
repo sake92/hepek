@@ -3,9 +3,7 @@ package ba.sake.hepek.theme.bootstrap3
 import scalatags.Text.all._
 import ba.sake.hepek.html.statik.Section
 
-object HepekBootstrap3SectionUtils extends HepekBootstrap3SectionUtils
-
-trait HepekBootstrap3SectionUtils {
+private[bootstrap3] object HepekBootstrap3SectionUtils {
 
   /** Renders the sections. */
   def renderSections(secs: List[Section], depth: Int = 2): List[Frag] =

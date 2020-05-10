@@ -5,13 +5,14 @@ package statik
 import scalatags.Text.all._
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponents
+import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
 
 trait BootstrapStaticPage extends StaticPage with BootstrapPage {
   def navbar: Option[BootstrapNavbarComponents] = None
 
   override def bodyContent: Frag =
     div(bootstrapContainer)(
-      div(cls := "hidden-print")(maybeNavbar),
+      div(clsNoPrint)(maybeNavbar),
       pageContent
     )
 

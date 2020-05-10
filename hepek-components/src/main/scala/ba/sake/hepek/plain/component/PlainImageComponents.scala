@@ -4,6 +4,7 @@ import scalatags.Text.all.{caption => _, _}
 import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
+// TODO copied from BS..
 case class PlainImageComponents() extends ImageComponents {
 
   override def image(source: String, caption: String = "") =

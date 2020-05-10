@@ -11,8 +11,7 @@ import ba.sake.hepek.html.component.FormComponents
 
 import scalatags.Text.all, all._
 
-// TODO only in constructor? (implicit playMsgs: Messages)
-final case class HepekPlayForm(fc: FormComponents) {
+final case class HepekPlayForm(fc: FormComponents)(implicit playMsgs: Messages) {
   import FormComponents._
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
@@ -38,7 +37,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputText(params.attrs: _*)(
       params.name,
@@ -56,7 +55,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputTextArea(params.attrs: _*)(
       params.name,
@@ -74,7 +73,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputPassword(params.attrs: _*)(
       params.name,
@@ -92,7 +91,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputEmail(params.attrs: _*)(
       params.name,
@@ -110,7 +109,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputUrl(params.attrs: _*)(
       params.name,
@@ -128,7 +127,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputTel(params.attrs: _*)(
       params.name,
@@ -146,7 +145,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputFile(params.attrs: _*)(
       params.name,
@@ -164,7 +163,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputColor(params.attrs: _*)(
       params.name,
@@ -182,7 +181,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputNumber(params.attrs: _*)(
       params.name,
@@ -200,7 +199,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputRange(params.attrs: _*)(
       params.name,
@@ -218,7 +217,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputTime(params.attrs: _*)(
       params.name,
@@ -236,7 +235,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputWeek(params.attrs: _*)(
       params.name,
@@ -254,7 +253,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputMonth(params.attrs: _*)(
       params.name,
@@ -272,7 +271,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputDate(params.attrs: _*)(
       params.name,
@@ -290,7 +289,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       validationState: Option[fc.ValidationState] = None,
       messages: Seq[String] = Seq.empty,
       transform: Frag => Frag = DefaultTransform
-  )(implicit playMsgs: Messages): Frag = {
+  ): Frag = {
     val params = getNormalParams(field, label, help, validationState, messages, transform, attrs)
     fc.inputDateTimeLocal(params.attrs: _*)(
       params.name,
@@ -372,7 +371,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       messages: Seq[String],
       transform: Frag => Frag,
       attrs: Seq[AttrPair]
-  )(implicit playMsgs: Messages): HepekInputNormalParams = {
+  ): HepekInputNormalParams = {
     val labell        = getIfNotBlank(label) getOrElse field.label
     val (state, msgs) = stateAndMessages(field, validationState, messages)
     val inputAttrsFiltered = constraintAttrPairs(field, attrs) ++
@@ -393,7 +392,7 @@ final case class HepekPlayForm(fc: FormComponents) {
       field: Field,
       validationState: Option[fc.ValidationState],
       messages: Seq[String]
-  )(implicit playMsgs: Messages): (Option[fc.ValidationState], Seq[String]) = {
+  ): (Option[fc.ValidationState], Seq[String]) = {
     val maybeValidationState = validationState orElse
       (if (field.hasErrors) Some(fc.ValidationState.Error) else None)
     val inputMessages = field.errors.map(_.format) ++ messages

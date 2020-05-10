@@ -13,4 +13,6 @@ trait BulmaClassesBundle
     with BulmaTableClasses {
   override def clsContainer      = cls := "container"
   override def clsContainerFluid = cls := "container"
+
+  override def clsNoPrint = cls := "is-hidden-print"
 }

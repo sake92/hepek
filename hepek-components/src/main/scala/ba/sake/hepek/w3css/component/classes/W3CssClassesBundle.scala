@@ -13,4 +13,6 @@ trait W3CssClassesBundle
     with W3CssTableClasses {
   override def clsContainer      = cls := "w3-container"
   override def clsContainerFluid = cls := "w3-container"
+
+  override def clsNoPrint = cls := "hidden-print"
 }

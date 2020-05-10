@@ -5,13 +5,14 @@ package statik
 import scalatags.Text.all._
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.component.PlainNavbarComponents
+import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
 trait PlainStaticPage extends StaticPage with PlainPage {
   def navbar: Option[PlainNavbarComponents] = None
 
   override def bodyContent: Frag =
     div(
-      div(cls := "hidden-print")(maybeNavbar),
+      div(clsNoPrint)(maybeNavbar),
       pageContent
     )
 

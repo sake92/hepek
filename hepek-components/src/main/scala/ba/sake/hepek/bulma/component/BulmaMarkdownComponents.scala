@@ -9,6 +9,7 @@ import java.{util => ju}
 import org.commonmark.node.Node
 import org.commonmark.node.Heading
 
+/* Bulma is a special snowflake, requiring classes for headers... */
 trait BulmaMarkdownComponents extends MarkdownComponents {
 
   def md(str: String): Frag = {

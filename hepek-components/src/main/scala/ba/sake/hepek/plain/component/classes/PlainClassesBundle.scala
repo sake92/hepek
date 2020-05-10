@@ -13,4 +13,6 @@ trait PlainClassesBundle
     with PlainTableClasses {
   override def clsContainer      = cls := "container"
   override def clsContainerFluid = cls := "container"
+
+  override def clsNoPrint = cls := "hidden-print"
 }
