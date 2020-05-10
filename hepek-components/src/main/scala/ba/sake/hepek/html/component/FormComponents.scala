@@ -1,7 +1,6 @@
 package ba.sake.hepek.html.component
 
-import scalatags.Text.all
-import all.{form => _, _}
+import scalatags.Text.all.{form => _, _}
 
 object FormComponents {
   trait Type { def classes: List[String] = List.empty }
@@ -23,37 +22,17 @@ trait FormComponents {
   private val HandledSelectAttrs   = Set("type", "name", "id", "value")
   private val HandledOptionAttrs   = Set("type", "name", "value")
 
-  private val DefaultLabel                   = ""
-  private val DefaultHelp                    = ""
-  private val DefaultTransform: Frag => Frag = identity
+  private val DefaultLabel                     = ""
+  private val DefaultHelp                      = ""
+  private val DefaultTransform: (Frag => Frag) = identity
+
+  def validationStateClasses: ValidationStateClasses
 
   def formType: Type
 
-  /* Validation stuff */
-  def validationStateClasses: ValidationStateClasses
-
-  sealed trait ValidationState { def clazz: String = "" }
-
-  object ValidationState {
-
-    case object Success extends ValidationState {
-      override def clazz = validationStateClasses.success
-    }
-
-    case object Warning extends ValidationState {
-      override def clazz = validationStateClasses.warning
-    }
-
-    case object Error extends ValidationState {
-      override def clazz = validationStateClasses.error
-    }
-  }
-
-  /* Form construction */
-
   def form(_formAttrs: AttrPair*)(content: Frag*): Frag = {
     val formAttrs = _formAttrs ++ formType.classes.map(cls := _)
-    all.form(formAttrs)(content)
+    scalatags.Text.all.form(formAttrs)(content)
   }
 
   def formFieldset(legendTitle: String)(content: Frag*): Frag =
@@ -62,76 +41,6 @@ trait FormComponents {
       content
     )
 
-  /** normal input "constructor", should override in impl */
-  def constructInputNormal(
-      inputType: String,
-      inputName: String,
-      inputId: Option[String],
-      inputValue: Option[String],
-      inputLabel: Option[String],
-      inputHelp: Option[String],
-      inputValidationState: Option[ValidationState],
-      inputMessages: Seq[String],
-      inputAttrs: Seq[AttrPair],
-      inputTransform: Frag => Frag
-  ): Frag
-
-  /** button input "constructor", should override in impl */
-  def constructInputButton(
-      inputType: String,
-      inputId: Option[String],
-      inputValue: Option[String],
-      inputLabel: Frag, // <button> can have e.g. glyphs as content...
-      inputAttrs: Seq[AttrPair]
-  ): Frag
-
-  /** checkbox input "constructor", should override in impl */
-  def constructInputCheckbox(
-      inputName: String,
-      inputId: Option[String],
-      inputValue: Option[String],
-      inputLabel: Option[String],
-      inputHelp: Option[String],
-      inputAttrs: Seq[AttrPair]
-  ): Frag
-
-  def constructInputCheckboxes(
-      inputName: String,
-      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
-      inputLabel: Option[String],
-      inputHelp: Option[String],
-      isInline: Boolean
-  ): Frag
-
-  def constructInputRadio(
-      inputName: String,
-      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
-      inputLabel: Option[String],
-      inputHelp: Option[String],
-      isInline: Boolean
-  ): Frag
-
-  def constructInputSelect(
-      inputName: String,
-      inputId: Option[String],
-      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
-      inputLabel: Option[String],
-      inputHelp: Option[String],
-      inputAttrs: Seq[AttrPair]
-  ): Frag
-
-  // only possible attribute for <optgroup> is "disabled", so we dont bother...
-  def constructInputSelectGrouped(
-      inputName: String,
-      inputId: Option[String],
-      valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
-      inputLabel: Option[String],
-      inputHelp: Option[String],
-      inputAttrs: Seq[AttrPair]
-  ): Frag
-
-  /////////////////////////////////////////////////
-  /* inputs */
   def inputText(_inputAttrs: AttrPair*)(
       _name: String,
       _label: String = DefaultLabel,
@@ -427,10 +336,6 @@ trait FormComponents {
   def inputReset(_inputAttrs: AttrPair*)(_value: String): Frag =
     constructInputButtonCleaned("reset", _value, _value, _inputAttrs)
 
-  /* hidden */
-  def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
-    input(tpe := "hidden", name := _name, _inputAttrs)
-
   /* checkboxes */
   def inputCheckbox(_inputAttrs: AttrPair*)(
       _name: String,
@@ -504,8 +409,87 @@ trait FormComponents {
     _inputAttrs
   )
 
+  /* hidden */
+  def inputHidden(_inputAttrs: AttrPair*)(_name: String): Frag =
+    input(tpe := "hidden", name := _name, _inputAttrs)
+
+  /* CONSTRUCTORS */
+  protected def constructInputNormal(
+      inputType: String,
+      inputName: String,
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputValidationState: Option[ValidationState],
+      inputMessages: Seq[String],
+      inputAttrs: Seq[AttrPair],
+      inputTransform: Frag => Frag
+  ): Frag
+
+  protected def constructInputButton(
+      inputType: String,
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputLabel: Frag, // <button> can have e.g. glyphs as content...
+      inputAttrs: Seq[AttrPair]
+  ): Frag
+
+  protected def constructInputCheckbox(
+      inputName: String,
+      inputId: Option[String],
+      inputValue: Option[String],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag
+
+  protected def constructInputCheckboxes(
+      inputName: String,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      isInline: Boolean
+  ): Frag
+
+  protected def constructInputRadio(
+      inputName: String,
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      isInline: Boolean
+  ): Frag
+
+  protected def constructInputSelect(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag
+
+  protected def constructInputSelectGrouped(
+      inputName: String,
+      inputId: Option[String],
+      valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      inputLabel: Option[String],
+      inputHelp: Option[String],
+      inputAttrs: Seq[AttrPair]
+  ): Frag
+
   /* HELPERS */
-  // delegates to constructInputNormal, after preparing necessary attributes
+  protected def getAttrValue(
+      _inputAttrs: Seq[AttrPair],
+      attrName: String
+  ): Option[String] =
+    _inputAttrs.find(_.a.name == attrName).map(_.v)
+
+  protected def getIfNotBlank(str: String): Option[String] = {
+    val trimmed = str.trim
+    if (trimmed.isEmpty) None else Some(trimmed)
+  }
+
   private def constructInputNormalCleaned(
       _type: String,
       _name: String,
@@ -674,14 +658,20 @@ trait FormComponents {
     )
   }
 
-  protected def getAttrValue(
-      _inputAttrs: Seq[AttrPair],
-      attrName: String
-  ): Option[String] =
-    _inputAttrs.find(_.a.name == attrName).map(_.v)
+  sealed trait ValidationState { def clazz: String = "" }
 
-  protected def getIfNotBlank(str: String): Option[String] = {
-    val trimmed = str.trim
-    if (trimmed.isEmpty) None else Some(trimmed)
+  object ValidationState {
+
+    case object Success extends ValidationState {
+      override def clazz = validationStateClasses.success
+    }
+
+    case object Warning extends ValidationState {
+      override def clazz = validationStateClasses.warning
+    }
+
+    case object Error extends ValidationState {
+      override def clazz = validationStateClasses.error
+    }
   }
 }

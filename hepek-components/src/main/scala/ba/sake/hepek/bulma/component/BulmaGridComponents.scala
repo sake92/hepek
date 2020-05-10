@@ -11,10 +11,10 @@ final case class BulmaGridComponents(
 ) extends GridComponents {
   import GridComponents._
 
-  private[hepek] override def mkRow(content: Frag*): Frag =
+  protected override def mkRow(content: Frag*): Frag =
     div(cls := "columns")(content)
 
-  private[hepek] def mkRowSingleCol(content: Seq[Frag]): Frag = {
+  protected override def mkRowSingleCol(content: Seq[Frag]): Frag = {
     val classes1 = singleRatioClasses(0).map(cls := _)
     val classes2 = singleRatioClasses(1).map(cls := _)
     val classes3 = singleRatioClasses(2).map(cls := _)
@@ -25,12 +25,12 @@ final case class BulmaGridComponents(
     )
   }
 
-  private[hepek] override def mkCol2(index: Int, content: Col2): Frag = {
+  protected override def mkCol2(index: Int, content: Col2): Frag = {
     val classes = halfRatioClasses(index).map(cls := _)
     div(classes)(content.content)
   }
 
-  private[hepek] override def mkCol3(index: Int, content: Col3): Frag = {
+  protected override def mkCol3(index: Int, content: Col3): Frag = {
     val classes = thirdRatioClasses(index).map(cls := _)
     div(classes)(content.content)
   }
@@ -69,8 +69,6 @@ final case class BulmaGridComponents(
   private def mdClass(ratio: Ratio, index: Int): String =
     "is-" + ratioValue(ratio, index) + "-desktop"
 
-  // Bootstrap3 has only large/widescreen, but Bulma has also fullhd
-  // so we dont support fullhd for now...
   private def lgClass(ratio: Ratio, index: Int): String =
     "is-" + ratioValue(ratio, index) + "-widescreen"
 

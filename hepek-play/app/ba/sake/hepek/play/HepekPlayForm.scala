@@ -11,6 +11,7 @@ import ba.sake.hepek.html.component.FormComponents
 
 import scalatags.Text.all, all._
 
+// TODO only in constructor? (implicit playMsgs: Messages) 
 final case class HepekPlayForm(fc: FormComponents) {
   import FormComponents._
 

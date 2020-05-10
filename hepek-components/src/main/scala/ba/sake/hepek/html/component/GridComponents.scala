@@ -8,12 +8,12 @@ trait GridComponents {
   val screenRatios: ScreenRatios
 
   // utility for making a row with a single column
-  private[hepek] def mkRowSingleCol(content: Seq[Frag]): Frag
+  protected def mkRowSingleCol(content: Seq[Frag]): Frag
 
-  private[hepek] def mkRow(content: Frag*): Frag
+  protected def mkRow(content: Frag*): Frag
 
-  private[hepek] def mkCol2(index: Int, content: Col2): Frag
-  private[hepek] def mkCol3(index: Int, content: Col3): Frag
+  protected def mkCol2(index: Int, content: Col2): Frag
+  protected def mkCol3(index: Int, content: Col3): Frag
 
   // API
   def row(content: Frag*): Frag =
