@@ -3,7 +3,6 @@ package ba.sake.hepek.html
 import ba.sake.hepek.html.component.classes.ClassesBundle
 import ba.sake.hepek.html.component._
 
-// no self-types pls!!!
 trait Bundle extends LinkComponents with MarkdownComponents with HepekAliases {
   def Form: FormComponents
   def Grid: GridComponents

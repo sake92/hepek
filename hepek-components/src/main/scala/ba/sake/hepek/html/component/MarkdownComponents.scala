@@ -1,6 +1,6 @@
 package ba.sake.hepek.html.component
 
-import scalatags.Text.all._
+import scalatags.Text.all.Frag
 
 trait MarkdownComponents { self =>
   def md(str: String): Frag

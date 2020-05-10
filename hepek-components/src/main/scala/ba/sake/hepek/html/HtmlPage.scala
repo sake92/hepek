@@ -21,10 +21,9 @@ trait HtmlPage extends PageDependencies {
   )
 
   def contents: String = {
-    // inline css
+    // css
     val compStyleInlines = components.flatMap { _._2.cssDependencies.inlines }
     val allStyleInlines  = compStyleInlines ++ stylesInline
-    // urls css
     val compStyleUrls = components.flatMap {
       case (cs, cd) =>
         cd.cssDependencies.urls ++
@@ -32,10 +31,9 @@ trait HtmlPage extends PageDependencies {
     }
     val allStyleURLs = compStyleUrls ++ styleURLs
 
-    // inline js
+    // js
     val compScriptInlines = components.flatMap { _._2.jsDependencies.inlines }
     val allScriptInlines  = compScriptInlines ++ scriptsInline
-    // urls js
     val compScriptUrls = components.flatMap {
       case (cs, cd) =>
         cd.jsDependencies.urls ++
@@ -43,7 +41,6 @@ trait HtmlPage extends PageDependencies {
     }
     val allScriptURLs = compScriptUrls ++ scriptURLs
 
-    // CONTENT
     "<!DOCTYPE html>" +
       html(lang := pageSettings.language)(
         head(

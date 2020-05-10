@@ -17,15 +17,12 @@ final case class Dependencies(
     inlines: List[String] = List.empty,
     deps: List[Dependency] = List.empty
 ) {
-  /* URLs */
-  def appendURLs(addUrls: List[String]) = copy(urls = urls ++ addUrls)
-  def appendURLs(addUrls: String*)      = copy(urls = urls ++ addUrls.toList)
+  def plusURLs(addUrls: List[String]) = copy(urls = urls ++ addUrls)
+  def plusURLs(addUrls: String*)      = copy(urls = urls ++ addUrls.toList)
 
-  /* inline styles/scripts */
-  def appendInlines(addInlines: List[String]) = copy(inlines = inlines ++ addInlines)
-  def appendInlines(addInlines: String*)      = copy(inlines = inlines ++ addInlines.toList)
+  def plusInlines(addInlines: List[String]) = copy(inlines = inlines ++ addInlines)
+  def plusInlines(addInlines: String*)      = copy(inlines = inlines ++ addInlines.toList)
 
-  /* CDN deps */
-  def appendDeps(addDeps: List[Dependency]) = copy(deps = deps ++ addDeps)
-  def appendDeps(addDeps: Dependency*)      = copy(deps = deps ++ addDeps.toList)
+  def plusDeps(addDeps: List[Dependency]) = copy(deps = deps ++ addDeps)
+  def plusDeps(addDeps: Dependency*)      = copy(deps = deps ++ addDeps.toList)
 }

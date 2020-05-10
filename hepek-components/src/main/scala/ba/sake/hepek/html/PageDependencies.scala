@@ -9,6 +9,6 @@ trait PageDependencies {
   def scriptURLs: List[String]    = List.empty
   def scriptsInline: List[String] = List.empty
 
-  // dependencies of components
+  // component (3rd party) dependencies
   def components: List[(BaseComponentSettings, ComponentDependencies)] = List.empty
 }
