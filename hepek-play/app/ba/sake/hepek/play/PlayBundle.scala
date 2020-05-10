@@ -6,7 +6,7 @@ import ba.sake.hepek.html.Bundle
 
 case class PlayBundleImpl(
     val Bundle: Bundle
-)(implicit playMsgs: Messages) {
+) {
   val HPF: HepekPlayForm = HepekPlayForm(Bundle.Form)
 
   def withBundle(bundle: Bundle) = copy(Bundle = bundle)
