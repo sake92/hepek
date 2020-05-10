@@ -26,7 +26,7 @@ trait FormComponents {
   private val DefaultHelp                      = ""
   private val DefaultTransform: (Frag => Frag) = identity
 
-  def validationStateClasses: ValidationStateClasses
+  protected def validationStateClasses: ValidationStateClasses
 
   def formType: Type
 

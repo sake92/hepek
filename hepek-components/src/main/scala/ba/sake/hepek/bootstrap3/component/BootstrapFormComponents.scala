@@ -38,9 +38,9 @@ final case class BootstrapFormComponents(
 
   val Companion = BootstrapFormComponents
 
-  override def validationStateClasses = BootstrapValidationStateClasses
+  protected override def validationStateClasses = BootstrapValidationStateClasses
 
-  override def constructInputNormal(
+  protected override def constructInputNormal(
       inputType: String,
       inputName: String,
       inputId: Option[String],
@@ -85,7 +85,7 @@ final case class BootstrapFormComponents(
     }
   }
 
-  override def constructInputButton(
+  protected override def constructInputButton(
       inputType: String,
       inputId: Option[String],
       inputValue: Option[String],
@@ -111,7 +111,7 @@ final case class BootstrapFormComponents(
     }
   }
 
-  override def constructInputCheckbox(
+  protected override def constructInputCheckbox(
       inputName: String,
       inputId: Option[String],
       inputValue: Option[String],
@@ -148,7 +148,7 @@ final case class BootstrapFormComponents(
     }
   }
 
-  override def constructInputCheckboxes(
+  protected override def constructInputCheckboxes(
       inputName: String,
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       inputLabel: Option[String],
@@ -192,7 +192,7 @@ final case class BootstrapFormComponents(
     }
   }
 
-  override def constructInputRadio(
+  protected override def constructInputRadio(
       inputName: String,
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       inputLabel: Option[String],
@@ -236,7 +236,7 @@ final case class BootstrapFormComponents(
     }
   }
 
-  override def constructInputSelect(
+  protected override def constructInputSelect(
       inputName: String,
       inputId: Option[String],
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
@@ -276,7 +276,7 @@ final case class BootstrapFormComponents(
     }
   }
 
-  override def constructInputSelectGrouped(
+  protected override def constructInputSelectGrouped(
       inputName: String,
       inputId: Option[String],
       valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
