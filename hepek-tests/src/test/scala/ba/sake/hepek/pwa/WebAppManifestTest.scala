@@ -3,8 +3,10 @@ package ba.sake.hepek.pwa
 import org.scalatest._
 import ba.sake.hepek.html.pwa._
 import ba.sake.hepek.html.utils.HepekPickler._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class WebAppManifestTest extends FlatSpec with Matchers {
+class WebAppManifestTest extends AnyFlatSpec with Matchers {
   "WebAppManifest" should "serialize the default correctly" in {
     val manifest     = WebAppManifest("My site")
     val manifestJson = write(manifest)
