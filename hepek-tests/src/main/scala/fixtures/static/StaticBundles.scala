@@ -37,7 +37,7 @@ object ids {
 }
 
 trait SimpleStaticPage extends StaticPage {
-  val bundle: StaticBundle
+  val bundle: StaticBundle with MarkdownComponents
   import bundle._
 
   override def siteSettings =

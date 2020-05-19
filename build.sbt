@@ -47,19 +47,26 @@ lazy val macroSettings = Seq(
 )
 
 // components
-lazy val hepekComponents = (project in file("hepek-components"))
+lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
+  .in(file("hepek-components"))
   .settings(
     name := "hepek-components",
+    version := "0.1-SNAPSHOT",
     libraryDependencies ++= Seq(
-      "ba.sake"                  %% "stone-macros" % "0.0.3",
-      "com.lihaoyi"              %% "scalatags"    % "0.8.6",
-      "com.lihaoyi"              %% "upickle"      % "0.9.9",
-      "com.atlassian.commonmark" % "commonmark"    % "0.14.0",
-      "net.sourceforge.plantuml" % "plantuml"      % "1.2020.3",
-      "org.scalatest"            %% "scalatest"    % scalaTestVersion % "test"
+      "ba.sake"     %%% "stone-macros" % "0.1.0",
+      "com.lihaoyi" %%% "scalatags"    % "0.8.6",
+      "com.lihaoyi" %%% "upickle"      % "0.9.9"
     )
   )
   .settings(macroSettings: _*)
+  .jvmSettings(
+    libraryDependencies ++= Seq(
+      "com.atlassian.commonmark" % "commonmark" % "0.14.0",
+      "net.sourceforge.plantuml" % "plantuml"   % "1.2020.3",
+      "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
+    )
+  )
+  .jsSettings(    )
 
 // static-site-generator
 lazy val hepekStatic = (project in file("hepek"))
@@ -76,13 +83,13 @@ lazy val hepekStatic = (project in file("hepek"))
     )
   )
   .settings(macroSettings: _*)
-  .dependsOn(hepekComponents)
+  .dependsOn(hepekComponents.jvm)
 
 // play
 lazy val hepekPlay = (project in file("hepek-play"))
   .settings(name := "hepek-play")
   .settings(macroSettings: _*)
-  .dependsOn(hepekComponents)
+  .dependsOn(hepekComponents.jvm)
   .enablePlugins(PlayScala)
 
 // docs
