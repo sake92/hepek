@@ -51,7 +51,6 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .in(file("hepek-components"))
   .settings(
     name := "hepek-components",
-    version := "0.1-SNAPSHOT",
     libraryDependencies ++= Seq(
       "ba.sake"     %%% "stone-macros" % "0.1.0",
       "com.lihaoyi" %%% "scalatags"    % "0.8.6",
@@ -66,7 +65,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
   )
-  .jsSettings(    )
+  .jsSettings()
 
 // static-site-generator
 lazy val hepekStatic = (project in file("hepek"))
