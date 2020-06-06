@@ -61,7 +61,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .jvmSettings(
     libraryDependencies ++= Seq(
       "com.atlassian.commonmark" % "commonmark" % "0.14.0",
-      "net.sourceforge.plantuml" % "plantuml"   % "1.2020.3",
+      "net.sourceforge.plantuml" % "plantuml"   % "1.2020.12",
       "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
     )
   )
