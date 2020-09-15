@@ -1,6 +1,6 @@
 # Hepek  [![Build Status](	https://img.shields.io/travis/sake92/hepek/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/sake92/hepek) [![Gitter](https://img.shields.io/gitter/room/sake92/hepek.svg?style=flat-square)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Motivation? Typesafe HTML, but not too much.  
+The goal is **typesafe HTML**, but not too much.  
 See these posts also: 
 - [Why templates are dead](https://codeburst.io/80-of-my-coding-is-doing-this-or-why-templates-are-dead-b640fc149e22)
 - [Modern Type-Safe Template Engines](https://dzone.com/articles/modern-type-safe-template-engines)
