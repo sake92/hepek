@@ -7,16 +7,16 @@ See these posts also:
 
 ## Projects:
 
-### [Hepek Components](https://sake92.github.io/hepek/hepek/components/index.html)
+### [Hepek Components](https://sake92.github.io/hepek/hepek/components/index.html) [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-components_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek-components)
 Typesafe templates, grids, forms, code highlighting, markdown etc.  
 Used in Hepek and Hepek Play.  
 For standalone use:  
 <code>
-"ba.sake" %% "hepek-components" % "[![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.13.svg?style=flat-square&label=)](https://mvnrepository.com/artifact/ba.sake/hepek)"
+"ba.sake" %% "hepek-components" % VERSION
 </code>
 
 ---
-### [Hepek](https://sake92.github.io/hepek/hepek/index.html)
+### [Hepek](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek)
 Static site generator for developers.  
 You can make your own webpage and deploy it with Netlify (yes, for free) in just a few clicks:  
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
@@ -27,7 +27,7 @@ You can make your own webpage and deploy it with Netlify (yes, for free) in just
 
 
 ---
-### [Hepek Play](https://sake92.github.io/hepek/hepek/play/index.html)
+### [Hepek Play](https://sake92.github.io/hepek/hepek/play/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-play_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek-play)
 Play framework integration.
 - [examples](https://github.com/sake92/play-hepek-example)
 
