@@ -15,7 +15,6 @@ final case class BulmaBundle(
     Panel: BulmaPanelComponents = BulmaPanelComponents(),
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends Bundle
-    with PlainLinkComponents
-    with BulmaMarkdownComponents {
+    with PlainLinkComponents {
   override type HtmlPage = BulmaPage
 }

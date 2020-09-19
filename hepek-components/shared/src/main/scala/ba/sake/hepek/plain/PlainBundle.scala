@@ -14,7 +14,6 @@ final case class PlainBundle(
     Panel: PlainPanelComponents = PlainPanelComponents(),
     Classes: PlainClassesBundle = PlainClassesBundle
 ) extends Bundle
-    with PlainLinkComponents
-    with PlainMarkdownComponents {
+    with PlainLinkComponents {
   override type HtmlPage = PlainPage
 }

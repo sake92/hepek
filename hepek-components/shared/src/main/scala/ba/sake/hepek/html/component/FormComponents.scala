@@ -365,6 +365,17 @@ trait FormComponents {
       _isInline
     )
 
+  def inputCheckboxesSimple(
+      _name: String,
+      _valueAndLabels: Seq[(String, String)],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp,
+      _isInline: Boolean = true
+  ): Frag = {
+    val _valueAndLabelAndAttrs = _valueAndLabels.map { case (v, l) => (v, l, Nil) }
+    inputCheckboxes(_name, _valueAndLabelAndAttrs, _label, _help, _isInline)
+  }
+
   /* radios */
   def inputRadio(
       _name: String,
@@ -383,6 +394,18 @@ trait FormComponents {
       _checkedValue
     )
 
+  def inputRadioSimple(
+      _name: String,
+      _valueAndLabels: Seq[(String, String)],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp,
+      _isInline: Boolean = true,
+      _checkedValue: String = ""
+  ): Frag = {
+    val _valueAndLabelAndAttrs = _valueAndLabels.map { case (v, l) => (v, l, Nil) }
+    inputRadio(_name, _valueAndLabelAndAttrs, _label, _help, _isInline)
+  }
+
   /* selects */
   def inputSelect(_inputAttrs: AttrPair*)(
       _name: String,
@@ -396,6 +419,16 @@ trait FormComponents {
     _help,
     _inputAttrs
   )
+
+  def inputSelectSimple(
+      _name: String,
+      _valueAndLabels: Seq[(String, String)],
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp
+  ): Frag = {
+    val _valueAndLabelAndAttrs = _valueAndLabels.map { case (v, l) => (v, l, Nil) }
+    inputSelect()(_name, _valueAndLabelAndAttrs, _label, _help)
+  }
 
   def inputSelectGrouped(_inputAttrs: AttrPair*)(
       _name: String,

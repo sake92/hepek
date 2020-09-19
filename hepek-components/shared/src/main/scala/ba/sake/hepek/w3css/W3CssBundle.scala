@@ -5,7 +5,6 @@ import ba.sake.hepek.html.Bundle
 import ba.sake.hepek.w3css.component.classes.W3CssClassesBundle
 import ba.sake.hepek.w3css.component._
 import ba.sake.hepek.plain.component.PlainLinkComponents
-import ba.sake.hepek.plain.component.PlainMarkdownComponents
 
 @Wither
 final case class W3CssBundle(
@@ -16,7 +15,6 @@ final case class W3CssBundle(
     Panel: W3CssPanelComponents = W3CssPanelComponents(),
     Classes: W3CssClassesBundle = W3CssClassesBundle
 ) extends Bundle
-    with PlainLinkComponents
-    with PlainMarkdownComponents {
+    with PlainLinkComponents {
   override type HtmlPage = W3CssPage
 }
