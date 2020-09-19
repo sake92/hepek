@@ -17,7 +17,6 @@ trait HtmlPage extends PageDependencies {
   def manifest: WebAppManifest = WebAppManifest(
     name = siteSettings.name.getOrElse(""),
     lang = Some(pageSettings.language),
-    display = "minimal-ui", // upickle doesnt serialize default params... :(
     startUrl = "."
   )
 

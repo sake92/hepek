@@ -11,6 +11,7 @@ src_managed/
 project/boot/
 project/plugins/project/
 project/project/
+project/metals.sbt
 target/
 bin/
 
@@ -19,6 +20,7 @@ bin/
 
 .bloop/
 .metals/
+.vscode/
 
 null/
 
