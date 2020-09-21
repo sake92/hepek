@@ -1,10 +1,5 @@
 import com.typesafe.sbt.web.Import.WebKeys
 
-val openhtmltopdfVersion = "1.0.2"
-val seleniumVersion      = "2.52.0"
-val scalaTestVersion     = "3.0.8"
-val hepekCoreVersion     = "0.2.0"
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -21,29 +16,15 @@ inThisBuild(
         url("http://sake.ba")
       )
     ),
-    scalaVersion := "2.13.1",
-    crossScalaVersions := Seq("2.12.8", "2.13.1"),
+    scalaVersion := "2.13.3",
     scalafmtOnCompile := true,
     useSuperShell := false,
-    useCoursier := false, // temporarily until Travis is ok...
-    resolvers += Resolver.sonatypeRepo("snapshots")
+    //useCoursier := false, // temporarily until Travis is ok...
   )
 )
 
 lazy val macroSettings = Seq(
-  libraryDependencies ++= {
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, n)) if n >= 13 => Nil
-      case _ =>
-        List(compilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full))
-    }
-  },
-  Compile / scalacOptions ++= {
-    CrossVersion.partialVersion(scalaVersion.value) match {
-      case Some((2, n)) if n >= 13 => List("-Ymacro-annotations")
-      case _                       => Nil
-    }
-  }
+  Compile / scalacOptions ++= List("-Ymacro-annotations")
 )
 
 // components
@@ -52,17 +33,17 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake"     %%% "stone-macros" % "0.1.0",
-      "com.lihaoyi" %%% "scalatags"    % "0.9.1",
-      "com.lihaoyi" %%% "upickle"      % "0.9.9"
+      "ba.sake"     %%% "stone-macros" % V.stone,
+      "com.lihaoyi" %%% "scalatags"    % V.scalaTags,
+      "com.lihaoyi" %%% "upickle"      % V.upickle
     )
   )
   .settings(macroSettings: _*)
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.atlassian.commonmark" % "commonmark" % "0.14.0",
-      "net.sourceforge.plantuml" % "plantuml"   % "1.2020.3",
-      "org.scalatest"            %% "scalatest" % scalaTestVersion % "test"
+      "com.atlassian.commonmark" % "commonmark" % V.commonMark,
+      "net.sourceforge.plantuml" % "plantuml"   % V.plantUml,
+      "org.scalatest"            %% "scalatest" % V.scalaTest % "test"
     )
   )
   .jsSettings()
@@ -72,13 +53,13 @@ lazy val hepekStatic = (project in file("hepek"))
   .settings(
     name := "hepek",
     libraryDependencies ++= Seq(
-      "ba.sake"                 % "hepek-core"                   % hepekCoreVersion,
-      "org.jsoup"               % "jsoup"                        % "1.12.2",
-      "com.openhtmltopdf"       % "openhtmltopdf-pdfbox"         % openhtmltopdfVersion,
-      "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % openhtmltopdfVersion,
-      "com.openhtmltopdf"       % "openhtmltopdf-mathml-support" % openhtmltopdfVersion,
-      "org.seleniumhq.selenium" % "selenium-java"                % seleniumVersion,
-      "org.scalatest"           %% "scalatest"                   % scalaTestVersion % "test"
+      "ba.sake"                 % "hepek-core"                   % V.hepekCore,
+      "org.jsoup"               % "jsoup"                        % V.jsoup,
+      "com.openhtmltopdf"       % "openhtmltopdf-pdfbox"         % V.openHtmlToPdf,
+      "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % V.openHtmlToPdf,
+      "com.openhtmltopdf"       % "openhtmltopdf-mathml-support" % V.openHtmlToPdf,
+      "org.seleniumhq.selenium" % "selenium-java"                % V.selenium,
+      "org.scalatest"           %% "scalatest"                   % V.scalaTest % "test"
     )
   )
   .settings(macroSettings: _*)
@@ -119,8 +100,8 @@ lazy val hepekTests = (project in file("hepek-tests"))
       (test in Test).value
     },
     libraryDependencies ++= Seq(
-      "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion  % "test",
-      "org.scalatest"           %% "scalatest"    % scalaTestVersion % "test"
+      "org.seleniumhq.selenium" % "selenium-java" % V.selenium  % "test",
+      "org.scalatest"           %% "scalatest"    % V.scalaTest % "test"
     )
   )
   .dependsOn(hepekStatic)
