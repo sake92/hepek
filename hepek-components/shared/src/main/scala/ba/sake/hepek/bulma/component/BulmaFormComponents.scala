@@ -43,8 +43,8 @@ final case class BulmaFormComponents(
   protected override def constructInputNormal(
       inputType: AttrPair,
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -54,7 +54,7 @@ final case class BulmaFormComponents(
   ) = {
     val inputCls = if (inputType.v == "textarea") "textarea" else "input"
     val commonAttrs = Seq(cls := inputCls, inputType, inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help")(m))
     val inputValidationCls = inputValidationState.map(_.clazz)
@@ -95,13 +95,13 @@ final case class BulmaFormComponents(
 
   protected override def constructInputButton(
       inputType: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val btnField =
       if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
@@ -126,14 +126,14 @@ final case class BulmaFormComponents(
 
   protected override def constructInputCheckbox(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := "checkbox", inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
     // TODO check nesting needed... !!?
     val bulmaField =
@@ -231,7 +231,7 @@ final case class BulmaFormComponents(
 
   protected override def constructInputSelect(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -243,7 +243,7 @@ final case class BulmaFormComponents(
         option(commonAttrs)(optionLabel)
     }
     val selectAttrs = inputAttrs ++ Seq(inputName) ++
-      inputId
+      inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionFrags)
     val bulmaFrag  = div(cls := "select is-fullwidth")(selectFrag)
 
@@ -264,7 +264,7 @@ final case class BulmaFormComponents(
 
   protected override def constructInputSelectGrouped(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -279,7 +279,7 @@ final case class BulmaFormComponents(
         }
         optgroup(attr("label") := optGroupLabel)(optionFrags)
     }
-    val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId
+    val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId.map(id := _)
     val selectFrag  = select(selectAttrs)(optionGroupFrags)
     val bulmaFrag   = div(cls := "select is-fullwidth")(selectFrag)
 

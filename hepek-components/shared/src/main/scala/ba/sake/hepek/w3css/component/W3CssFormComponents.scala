@@ -37,8 +37,8 @@ final case class W3CssFormComponents(
   protected override def constructInputNormal(
       inputType: AttrPair,
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -47,7 +47,7 @@ final case class W3CssFormComponents(
       inputTransform: Frag => Frag
   ) = {
     val commonAttrs = Seq(cls := "w3-input", inputType, inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(_.clazz)
@@ -66,13 +66,13 @@ final case class W3CssFormComponents(
 
   protected override def constructInputButton(
       inputType: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val btnFrag =
       if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
@@ -81,14 +81,14 @@ final case class W3CssFormComponents(
 
   protected override def constructInputCheckbox(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := "checkbox", cls := "w3-check", inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
     div(
       label(inputId.map(`for` := _.v))(
@@ -148,7 +148,7 @@ final case class W3CssFormComponents(
 
   protected override def constructInputSelect(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -162,7 +162,7 @@ final case class W3CssFormComponents(
         option(commonAttrs)(optionLabel)
     }
     val selectAttrs = inputAttrs ++ Seq(inputName, cls := "w3-select") ++
-      inputId
+      inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionFrags)
 
     formGroup()(
@@ -174,7 +174,7 @@ final case class W3CssFormComponents(
 
   protected override def constructInputSelectGrouped(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
       inputLabel: Option[String],
       inputHelp: Option[String],

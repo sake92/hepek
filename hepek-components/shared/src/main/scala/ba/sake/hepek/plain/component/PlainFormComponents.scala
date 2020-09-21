@@ -37,8 +37,8 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   protected override def constructInputNormal(
       inputType: AttrPair,
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -47,7 +47,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       inputTransform: Frag => Frag
   ): Frag = {
     val commonAttrs = Seq(inputType, inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputFrag =
       if (inputType.v == "textarea") textarea(commonAttrs)(inputValue)
       else input(commonAttrs)
@@ -70,8 +70,8 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   /** button input "constructor", should override in impl */
   protected override def constructInputButton(
       inputType: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Frag, // <button> can have e.g. glyphs as content...
       inputAttrs: Seq[AttrPair]
   ): Frag = {
@@ -80,7 +80,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     // no label, name, validation
     // <button> is preferred to <input type="button">
     val commonAttrs = Seq(inputType) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(id := _) ++ inputAttrs
     if (inputType.v == "button") button(commonAttrs)(inputLabel)
     else input(commonAttrs)
   }
@@ -88,8 +88,8 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   /** checkbox input "constructor", should override in impl */
   protected override def constructInputCheckbox(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -97,7 +97,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
     // no validation
     val commonAttrs = Seq(tpe := "checkbox", inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputFrag = inputLabel match {
       case None => input(commonAttrs)
       case Some(inputLabel) =>
@@ -140,7 +140,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
 
   protected override def constructInputSelect(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -151,7 +151,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
         val commonAttrs = Seq(value := optionValue) ++ optionAttrs
         option(commonAttrs)(optionLabel)
     }
-    val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId
+    val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId.map(id := _)
     div(
       inputLabel.map(l => label(inputId.map(`for` := _.v))),
       select(selectAttrs)(optionFrags)
@@ -161,7 +161,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   // only possible attribute for <optgroup> is "disabled", so we dont bother...
   protected override def constructInputSelectGrouped(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -176,7 +176,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
         }
         optgroup(attr("label") := optGroupLabel)(optionFrags)
     }
-    val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId
+    val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId.map(id := _)
     div(
       inputLabel.map(l => label(inputId.map(`for` := _.v))),
       select(selectAttrs)(optionGroupFrags)

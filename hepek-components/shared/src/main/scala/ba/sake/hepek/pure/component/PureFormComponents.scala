@@ -40,8 +40,8 @@ trait PureFormComponents extends PlainFormComponentsImpl {
   override def constructInputNormal(
       inputType: AttrPair,
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -50,7 +50,7 @@ trait PureFormComponents extends PlainFormComponentsImpl {
       inputTransform: Frag => Frag
   ) = {
     val commonAttrs = Seq(inputType, inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val inputFieldContent =
       if (inputType.v == "textarea") textarea(commonAttrs)(inputValue)
       else input(commonAttrs)
@@ -71,13 +71,13 @@ trait PureFormComponents extends PlainFormComponentsImpl {
 
   override def constructInputButton(
       inputType: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
     val btnField =
       if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
@@ -94,25 +94,25 @@ trait PureFormComponents extends PlainFormComponentsImpl {
 
   override def constructInputCheckbox(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := "checkbox", inputName) ++
-      inputId ++ inputValue ++ inputAttrs
+      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
 
     formType match {
       case Type.Horizontal =>
         div(cls := "pure-controls")(
-          label(cls := "pure-checkbox", inputId.map(`for` := _.v))(
+          label(cls := "pure-checkbox", inputId.map(`for` := _))(
             input(commonAttrs),
             inputLabel
           )
         )
       case _ =>
-        label(cls := "pure-checkbox", inputId.map(`for` := _.v))(
+        label(cls := "pure-checkbox", inputId.map(`for` := _))(
           input(commonAttrs),
           inputLabel
         )

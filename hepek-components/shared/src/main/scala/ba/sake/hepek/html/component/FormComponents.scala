@@ -451,8 +451,8 @@ trait FormComponents {
   protected def constructInputNormal(
       inputType: AttrPair,
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -463,16 +463,16 @@ trait FormComponents {
 
   protected def constructInputButton(
       inputType: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Frag, // <button> can have e.g. glyphs as content...
       inputAttrs: Seq[AttrPair]
   ): Frag
 
   protected def constructInputCheckbox(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
-      inputValue: Option[AttrPair],
+      inputId: Option[String],
+      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -496,7 +496,7 @@ trait FormComponents {
 
   protected def constructInputSelect(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -505,7 +505,7 @@ trait FormComponents {
 
   protected def constructInputSelectGrouped(
       inputName: AttrPair,
-      inputId: Option[AttrPair],
+      inputId: Option[String],
       valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
       inputLabel: Option[String],
       inputHelp: Option[String],
@@ -516,8 +516,8 @@ trait FormComponents {
   protected def getAttrValue(
       _inputAttrs: Seq[AttrPair],
       attrName: String
-  ): Option[AttrPair] =
-    _inputAttrs.find(_.a.name == attrName) //.map(_.v)
+  ): Option[String] =
+    _inputAttrs.find(_.a.name == attrName).map(_.toString)
 
   protected def getIfNotBlank(str: String): Option[String] = {
     val trimmed = str.trim
@@ -565,7 +565,7 @@ trait FormComponents {
     constructInputButton(
       tpe := _type,
       inputId,
-      inputValue.map(value := _),
+      inputValue,
       _label,
       inputAttrsFiltered
     )
