@@ -1,5 +1,5 @@
 object V {
-  val stone     = "0.1.0"
+  val stone     = "0.4.0"
   val scalaTags = "0.9.1"
   val upickle   = "1.2.0"
 
