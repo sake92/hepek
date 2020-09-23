@@ -7,7 +7,7 @@ import ba.sake.hepek.bulma.component._
 import ba.sake.hepek.plain.component._
 
 @Wither
-final case class BulmaBundle(
+case class BulmaBundle(
     Form: BulmaFormComponents = BulmaFormComponents(),
     Grid: BulmaGridComponents = BulmaGridComponents(),
     Image: PlainImageComponents = PlainImageComponents(),

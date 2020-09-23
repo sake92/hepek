@@ -7,7 +7,7 @@ import ba.sake.hepek.bootstrap3.component._
 import ba.sake.hepek.plain.component.PlainLinkComponents
 
 @Wither
-final case class BootstrapBundle(
+case class BootstrapBundle(
     Form: BootstrapFormComponents = BootstrapFormComponents(),
     Grid: BootstrapGridComponents = BootstrapGridComponents(),
     Image: BootstrapImageComponents = BootstrapImageComponents(),

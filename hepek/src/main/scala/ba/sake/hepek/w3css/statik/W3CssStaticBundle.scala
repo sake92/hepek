@@ -11,7 +11,7 @@ import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.plain.component.PlainMarkdownComponents
 
 @Wither
-final case class W3CssStaticBundle(
+case class W3CssStaticBundle(
     Form: W3CssFormComponents = W3CssFormComponents(),
     Grid: W3CssGridComponents = W3CssGridComponents(),
     Image: W3CssImageComponents = W3CssImageComponents(),

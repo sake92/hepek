@@ -9,7 +9,7 @@ import ba.sake.hepek.plain.component._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
 
 @Wither
-final case class PlainStaticBundle(
+case class PlainStaticBundle(
     Form: PlainFormComponents = PlainFormComponents(),
     Grid: PlainGridComponents = PlainGridComponents(),
     Image: PlainImageComponents = PlainImageComponents(),
