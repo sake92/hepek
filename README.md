@@ -13,7 +13,7 @@ JVM and ScalaJS supported!
 Used by Hepek SSG and Hepek Play.
 
 ---
-### [Hepek](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek)
+### [Hepek SSG](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek)
 Static site generator for developers.  
 Make your own website and deploy it with Netlify (yes, for free) in just a few clicks:  
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
