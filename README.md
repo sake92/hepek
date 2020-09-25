@@ -10,11 +10,7 @@ See these posts for motivation:
 ### [Hepek Components](https://sake92.github.io/hepek/hepek/components/index.html) [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-components_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek-components)
 Typesafe templates, grids, forms, code highlighting, markdown etc.  
 JVM and ScalaJS supported!  
-Used by Hepek SSG and Hepek Play.  
-For standalone use:  
-<code>
-"ba.sake" %% "hepek-components" % VERSION
-</code>
+Used by Hepek SSG and Hepek Play.
 
 ---
 ### [Hepek](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_2.13.svg?style=flat-square&label=Scala+2.13)](https://mvnrepository.com/artifact/ba.sake/hepek)
