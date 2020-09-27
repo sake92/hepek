@@ -517,7 +517,7 @@ trait FormComponents {
       _inputAttrs: Seq[AttrPair],
       attrName: String
   ): Option[String] =
-    _inputAttrs.find(_.a.name == attrName).map(_.toString)
+    _inputAttrs.find(_.a.name == attrName).map(_.v.toString)
 
   protected def getIfNotBlank(str: String): Option[String] = {
     val trimmed = str.trim

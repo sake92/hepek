@@ -13,7 +13,7 @@ inThisBuild(
         "sake92",
         "Sakib Hadžiavdić",
         "sakib@sake.ba",
-        url("http://sake.ba")
+        url("https://sake.ba")
       )
     ),
     scalaVersion := "2.13.3",
