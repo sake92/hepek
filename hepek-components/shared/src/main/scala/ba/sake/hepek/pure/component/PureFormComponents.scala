@@ -41,7 +41,6 @@ trait PureFormComponents extends PlainFormComponentsImpl {
       inputType: AttrPair,
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -50,9 +49,9 @@ trait PureFormComponents extends PlainFormComponentsImpl {
       inputTransform: Frag => Frag
   ) = {
     val commonAttrs = Seq(inputType, inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
     val inputFieldContent =
-      if (inputType.v == "textarea") textarea(commonAttrs)(inputValue)
+      if (inputType.v == "textarea") textarea(commonAttrs)("")
       else input(commonAttrs)
 
     formType match {
@@ -72,12 +71,11 @@ trait PureFormComponents extends PlainFormComponentsImpl {
   override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
     val btnField =
       if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
@@ -95,13 +93,12 @@ trait PureFormComponents extends PlainFormComponentsImpl {
   override def constructInputCheckbox(
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := "checkbox", inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
 
     formType match {
       case Type.Horizontal =>

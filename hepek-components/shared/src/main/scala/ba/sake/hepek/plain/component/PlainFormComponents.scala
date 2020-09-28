@@ -38,7 +38,6 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       inputType: AttrPair,
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -46,10 +45,9 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
   ): Frag = {
-    val commonAttrs = Seq(inputType, inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val commonAttrs = Seq(inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputFrag =
-      if (inputType.v == "textarea") textarea(commonAttrs)(inputValue)
+      if (inputType.v == "textarea") textarea(commonAttrs)("")
       else input(commonAttrs)
     val inputFragTransformed = inputTransform(inputFrag)
     val inputContentFrag = inputLabel match {
@@ -71,8 +69,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   protected override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
-      inputLabel: Frag, // <button> can have e.g. glyphs as content...
+      inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
@@ -80,7 +77,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     // no label, name, validation
     // <button> is preferred to <input type="button">
     val commonAttrs = Seq(inputType) ++
-      inputId.map(id := _) ++ inputValue.map(id := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
     if (inputType.v == "button") button(commonAttrs)(inputLabel)
     else input(commonAttrs)
   }
@@ -89,7 +86,6 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   protected override def constructInputCheckbox(
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -97,7 +93,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
     // no validation
     val commonAttrs = Seq(tpe := "checkbox", inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
     val inputFrag = inputLabel match {
       case None => input(commonAttrs)
       case Some(inputLabel) =>

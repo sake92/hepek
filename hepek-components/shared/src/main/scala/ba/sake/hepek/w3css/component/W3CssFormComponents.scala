@@ -38,7 +38,6 @@ final case class W3CssFormComponents(
       inputType: AttrPair,
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -46,13 +45,12 @@ final case class W3CssFormComponents(
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
   ) = {
-    val commonAttrs = Seq(cls := "w3-input", inputType, inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+    val commonAttrs        = Seq(cls := "w3-input", inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(_.clazz)
     val inputFrag =
-      if (inputType.v == "textarea") textarea(commonAttrs)(inputValue)
+      if (inputType.v == "textarea") textarea(commonAttrs)("")
       else input(commonAttrs)
     val inputFragTransformed = inputTransform(inputFrag)
 
@@ -67,12 +65,11 @@ final case class W3CssFormComponents(
   protected override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
     val btnFrag =
       if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
       else input(btnClass, commonAttrs)
@@ -82,13 +79,12 @@ final case class W3CssFormComponents(
   protected override def constructInputCheckbox(
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(tpe := "checkbox", cls := "w3-check", inputName) ++
-      inputId.map(id := _) ++ inputValue.map(value := _) ++ inputAttrs
+      inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
     div(
       label(inputId.map(`for` := _.v))(

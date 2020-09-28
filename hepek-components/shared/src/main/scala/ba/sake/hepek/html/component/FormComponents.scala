@@ -16,13 +16,11 @@ object FormComponents {
 trait FormComponents {
   import FormComponents._
 
-  // handled explicitly
-  private val HandledAttrs         = Set("type", "name", "id", "value")
-  private val HandledCheckboxAttrs = Set("type", "name", "value")
-  private val HandledRadioAttrs    = Set("type", "name", "value", "checked")
-  private val HandledSelectAttrs   = Set("type", "name", "id", "value")
-  private val HandledOptionAttrs   = Set("type", "name", "value")
+  // TODO maybe add idCounter
+  // for automatic labels and stuff..
 
+  // handled explicitly
+  private val HandledAttrs                     = Set("type", "name", "id")
   private val DefaultLabel                     = ""
   private val DefaultHelp                      = ""
   private val DefaultTransform: (Frag => Frag) = identity
@@ -328,14 +326,14 @@ trait FormComponents {
     )
 
   /* buttons */
-  def inputSubmit(_inputAttrs: AttrPair*)(_value: String): Frag =
-    constructInputButtonCleaned("submit", _value, _value, _inputAttrs)
+  def inputSubmit(_inputAttrs: AttrPair*)(_label: String): Frag =
+    constructInputButtonCleaned("submit", _label, _inputAttrs)
 
-  def inputButton(_inputAttrs: AttrPair*)(_value: String, _label: Frag): Frag =
-    constructInputButtonCleaned("button", _value, _label, _inputAttrs)
+  def inputReset(_inputAttrs: AttrPair*)(_label: String): Frag =
+    constructInputButtonCleaned("reset", _label, _inputAttrs)
 
-  def inputReset(_inputAttrs: AttrPair*)(_value: String): Frag =
-    constructInputButtonCleaned("reset", _value, _value, _inputAttrs)
+  def inputButton(_inputAttrs: AttrPair*)(_label: Frag): Frag =
+    constructInputButtonCleaned("button", _label, _inputAttrs)
 
   /* checkboxes */
   def inputCheckbox(_inputAttrs: AttrPair*)(
@@ -452,7 +450,6 @@ trait FormComponents {
       inputType: AttrPair,
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputValidationState: Option[ValidationState],
@@ -464,7 +461,6 @@ trait FormComponents {
   protected def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Frag, // <button> can have e.g. glyphs as content...
       inputAttrs: Seq[AttrPair]
   ): Frag
@@ -472,7 +468,6 @@ trait FormComponents {
   protected def constructInputCheckbox(
       inputName: AttrPair,
       inputId: Option[String],
-      inputValue: Option[String],
       inputLabel: Option[String],
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
@@ -535,7 +530,6 @@ trait FormComponents {
       _transform: Frag => Frag
   ): Frag = {
     val inputId            = getAttrValue(_attrs, "id")
-    val inputValue         = getAttrValue(_attrs, "value")
     val inputLabel         = getIfNotBlank(_label)
     val inputHelp          = getIfNotBlank(_help)
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
@@ -543,7 +537,6 @@ trait FormComponents {
       _type,
       _name,
       inputId,
-      inputValue,
       inputLabel,
       inputHelp,
       _validationState,
@@ -555,17 +548,15 @@ trait FormComponents {
 
   private def constructInputButtonCleaned(
       _type: String,
-      _value: String,
       _label: Frag,
       _attrs: Seq[AttrPair]
   ): Frag = {
-    val inputValue         = getIfNotBlank(_value)
     val inputId            = getAttrValue(_attrs, "id")
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
+    val inputAttrs         = inputAttrsFiltered.appended(value := _label.render.toString)
     constructInputButton(
       tpe := _type,
       inputId,
-      inputValue,
       _label,
       inputAttrsFiltered
     )
@@ -578,14 +569,12 @@ trait FormComponents {
       _attrs: Seq[AttrPair]
   ): Frag = {
     val inputId            = getAttrValue(_attrs, "id")
-    val inputValue         = getAttrValue(_attrs, "value")
     val inputLabel         = getIfNotBlank(_label)
     val inputHelp          = getIfNotBlank(_help)
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputCheckbox(
       name := _name,
       inputId,
-      inputValue,
       inputLabel,
       inputHelp,
       inputAttrsFiltered
@@ -601,7 +590,7 @@ trait FormComponents {
   ): Frag = {
     val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
       case (v, l, inputAttrs) =>
-        (v, l, inputAttrs.filterNot(ap => HandledCheckboxAttrs.contains(ap.a.name)))
+        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
     }
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
@@ -626,7 +615,7 @@ trait FormComponents {
       case (v, l, inputAttrs) =>
         val isChecked: Option[AttrPair] =
           getIfNotBlank(_checkedValue).filter(_ == v).map(_ => attr("checked") := "checked")
-        (v, l, inputAttrs.filterNot(ap => HandledRadioAttrs.contains(ap.a.name)) ++ isChecked)
+        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++ isChecked)
     }
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
@@ -651,9 +640,9 @@ trait FormComponents {
     val inputHelp  = getIfNotBlank(_help)
     val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
       case (v, l, inputAttrs) =>
-        (v, l, inputAttrs.filterNot(ap => HandledOptionAttrs.contains(ap.a.name)))
+        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
     }
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledSelectAttrs.contains(ap.a.name))
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputSelect(
       name := _name,
       inputId,
@@ -678,11 +667,11 @@ trait FormComponents {
       case (gl, _valueAndLabelAndAttrs) =>
         val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
           case (v, l, inputAttrs) =>
-            (v, l, inputAttrs.filterNot(ap => HandledOptionAttrs.contains(ap.a.name)))
+            (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
         }
         (gl, valueAndLabelAndAttrsFiltered)
     }
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledSelectAttrs.contains(ap.a.name))
+    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputSelectGrouped(
       name := _name,
       inputId,
