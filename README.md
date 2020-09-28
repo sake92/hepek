@@ -1,4 +1,4 @@
-# Hepek  [![Build Status](	https://img.shields.io/travis/sake92/hepek/master.svg?logo=travis&style=flat-square)](https://travis-ci.org/sake92/hepek) [![Gitter](https://img.shields.io/gitter/room/sake92/hepek.svg?style=flat-square)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Hepek  [![Build Status](	https://img.shields.io/travis/sake92/hepek/master.svg?logo=travis&style=flat-square)](https://travis-ci.com/sake92/hepek) [![Gitter](https://img.shields.io/gitter/room/sake92/hepek.svg?style=flat-square)](https://gitter.im/sake92/hepek?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 The main theme of Hepek projects is **typesafe but flexible HTML**.  
 See these posts for motivation: 
