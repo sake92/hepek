@@ -17,8 +17,7 @@ jobs:
 
       - name: Install and Build 🔧
         uses: olafurpg/setup-scala@v5
-        run: |
-          sbt "clean; hepekDocs/hepek"
+        run: sbt "clean; hepekDocs/hepek"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
