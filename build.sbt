@@ -80,15 +80,10 @@ lazy val hepekDocs = (project in file("hepek-docs"))
       WebKeys.assets.value
       (hepek in Compile).value
     },
-    openIndexPage := openIndexPageTask.value,
-    // gh pages stuff
-    git.remoteRepo := "git@github.com:sake92/hepek.git",
-    ghpagesNoJekyll := true,
-    siteSourceDirectory := target.value / "web" / "public" / "main" / "docs",
-    includeFilter in makeSite := "*"
+    openIndexPage := openIndexPageTask.value
   )
   .dependsOn(hepekStatic)
-  .enablePlugins(HepekPlugin, SbtWeb, GhpagesPlugin)
+  .enablePlugins(HepekPlugin, SbtWeb)
 
 // tests
 lazy val hepekTests = (project in file("hepek-tests"))
