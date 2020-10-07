@@ -18,7 +18,7 @@ object NotFound extends templates.HepekDocsAbstractPage {
   override def pageContent =
     div(Classes.txtAlignCenter)(
       s"""
-      This page does not exist... :/  
+      This page does not exist... :///  
       Click [here](${Site.url}) to go back
       """.md
     )
