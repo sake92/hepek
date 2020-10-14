@@ -16,11 +16,12 @@ object FormComponents {
 trait FormComponents {
   import FormComponents._
 
-  // TODO maybe add idCounter
-  // for automatic labels and stuff..
+  // TODO maybe add idCounter for automatic labels
 
   // handled explicitly
-  private val HandledAttrs                     = Set("type", "name", "id")
+  private val HandledAttrs = Set("type", "name", "id")
+
+  private val DefaultName                      = ""
   private val DefaultLabel                     = ""
   private val DefaultHelp                      = ""
   private val DefaultTransform: (Frag => Frag) = identity
@@ -41,7 +42,7 @@ trait FormComponents {
     )
 
   def inputText(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -60,7 +61,7 @@ trait FormComponents {
     )
 
   def inputTextArea(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -79,7 +80,7 @@ trait FormComponents {
     )
 
   def inputPassword(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -98,7 +99,7 @@ trait FormComponents {
     )
 
   def inputEmail(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -117,7 +118,7 @@ trait FormComponents {
     )
 
   def inputUrl(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -136,7 +137,7 @@ trait FormComponents {
     )
 
   def inputTel(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -155,7 +156,7 @@ trait FormComponents {
     )
 
   def inputFile(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -174,7 +175,7 @@ trait FormComponents {
     )
 
   def inputColor(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -193,7 +194,7 @@ trait FormComponents {
     )
 
   def inputNumber(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -212,7 +213,7 @@ trait FormComponents {
     )
 
   def inputRange(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -231,7 +232,7 @@ trait FormComponents {
     )
 
   def inputTime(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -250,7 +251,7 @@ trait FormComponents {
     )
 
   def inputWeek(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -269,7 +270,7 @@ trait FormComponents {
     )
 
   def inputMonth(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -288,7 +289,7 @@ trait FormComponents {
     )
 
   def inputDate(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -307,7 +308,7 @@ trait FormComponents {
     )
 
   def inputDateTimeLocal(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _validationState: Option[ValidationState] = None,
@@ -337,7 +338,7 @@ trait FormComponents {
 
   /* checkboxes */
   def inputCheckbox(_inputAttrs: AttrPair*)(
-      _name: String,
+      _name: String = DefaultName,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp
   ): Frag =
@@ -349,8 +350,8 @@ trait FormComponents {
     )
 
   def inputCheckboxes(
-      _name: String,
-      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _name: String = DefaultName,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _isInline: Boolean = true
@@ -364,8 +365,8 @@ trait FormComponents {
     )
 
   def inputCheckboxesSimple(
-      _name: String,
-      _valueAndLabels: Seq[(String, String)],
+      _name: String = DefaultName,
+      _valueAndLabels: Seq[(String, String)] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _isInline: Boolean = true
@@ -376,8 +377,8 @@ trait FormComponents {
 
   /* radios */
   def inputRadio(
-      _name: String,
-      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _name: String = DefaultName,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _isInline: Boolean = true,
@@ -393,8 +394,8 @@ trait FormComponents {
     )
 
   def inputRadioSimple(
-      _name: String,
-      _valueAndLabels: Seq[(String, String)],
+      _name: String = DefaultName,
+      _valueAndLabels: Seq[(String, String)] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp,
       _isInline: Boolean = true,
@@ -406,8 +407,8 @@ trait FormComponents {
 
   /* selects */
   def inputSelect(_inputAttrs: AttrPair*)(
-      _name: String,
-      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])],
+      _name: String = DefaultName,
+      _valueAndLabelAndAttrs: Seq[(String, String, Seq[AttrPair])] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp
   ): Frag = constructInputSelectCleaned(
@@ -419,8 +420,8 @@ trait FormComponents {
   )
 
   def inputSelectSimple(
-      _name: String,
-      _valueAndLabels: Seq[(String, String)],
+      _name: String = DefaultName,
+      _valueAndLabels: Seq[(String, String)] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp
   ): Frag = {
@@ -429,8 +430,8 @@ trait FormComponents {
   }
 
   def inputSelectGrouped(_inputAttrs: AttrPair*)(
-      _name: String,
-      _valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])],
+      _name: String = DefaultName,
+      _valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])] = Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp
   ): Frag = constructInputSelectGroupedCleaned(
