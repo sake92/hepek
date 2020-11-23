@@ -1,6 +1,6 @@
 object V {
   val stone     = "0.1.0"
-  val scalaTags = "0.9.2-rx"
+  val scalaTags = "0.9.2-rx2"
   val upickle   = "1.2.1"
 
   val hepekCore     = "0.2.0"
