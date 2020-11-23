@@ -34,7 +34,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     name := "hepek-components",
     libraryDependencies ++= Seq(
       "ba.sake"     %%% "stone-macros" % V.stone,
-      "com.lihaoyi" %%% "scalatags"    % V.scalaTags,
+      "ba.sake" %%% "scalatags"    % V.scalaTags,
       "com.lihaoyi" %%% "upickle"      % V.upickle
     )
   )
