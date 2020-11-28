@@ -4,7 +4,7 @@ import scalatags.Text.all._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.prismjs
 import ba.sake.hepek.fontawesome5.FADependencies
-import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocType}
+import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocSettings, TocType}
 import utils.Imports.Bundle._
 import utils.Imports._
 import utils._
@@ -21,9 +21,12 @@ trait HepekDocsAbstractPage
       .withTheme(prismjs.Themes.Okaidia)
       .withLanguages(prismjs.PrismConsts.languages filter hlLangs.contains)
 
-  override def tocSettings = super.tocSettings.copy(
-    tocType = Some(TocType.Scrollspy(45))
-  )
+  override def tocSettings =
+    Some(
+      TocSettings(
+        tocType = TocType.Scrollspy(45)
+      )
+    )
 
   override def pageHeader = None
 }
