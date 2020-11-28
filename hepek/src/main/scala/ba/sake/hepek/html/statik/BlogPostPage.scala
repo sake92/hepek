@@ -15,7 +15,8 @@ trait BlogPostPage extends StaticPage {
 @Wither
 final case class BlogSettings(
     author: Option[String] = None,
-    createDate: Option[LocalDate] = None,
+    createdDate: Option[LocalDate] = None,
+    updatedDate: Option[LocalDate] = None,
     sections: List[Section] = List.empty,
     dateFormat: DateTimeFormatter = BlogSettings.DefaultDateFormat
 ) {

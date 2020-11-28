@@ -4,6 +4,7 @@ import scalatags.Text.all._
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
+import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
 
 trait TocType
 
@@ -18,7 +19,7 @@ object TocType {
 
 final case class TocSettings(
     title: String = "Table of Contents",
-    tocType: Option[TocType] = Some(TocType.Scrollspy())
+    tocType: TocType = TocType.Scrollspy()
 )
 
 object HepekBootstrap3BlogPage {
@@ -26,34 +27,41 @@ object HepekBootstrap3BlogPage {
 }
 import HepekBootstrap3BlogPage.Bundle._
 
+// NOTE: scrollspy will NOT WORK if the page is NOT SCROLLABE (not enough content..)
 trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
   import Grid._
   import HepekBootstrap3SectionUtils._
 
-  def tocSettings: TocSettings = TocSettings()
+  // optional TOC
+  def tocSettings: Option[TocSettings] = Some(TocSettings())
 
-  /**
-    * @return Optional page header with page title.
-    */
+  // optional page header with page title
   def pageHeader: Option[Frag] = Some(
-    div(cls := "page-header text-center hidden-print")(h1(pageSettings.title))
+    div(cls := "page-header", txtAlignCenter, clsNoPrint)(
+      h1(pageSettings.title)
+    )
   )
 
   override def pageContent: Frag = {
-    val maybeScrollspy = tocSettings.tocType.collect {
+    val maybeScrollspy = tocSettings.map(_.tocType).collect {
       case _: TocType.Scrollspy =>
         renderScrollspyTOC(blogSettings.sections)
     }
 
+    val (w1, w2, w3) =
+      if (categoryPosts.nonEmpty && tocSettings.nonEmpty) (3, 6, 3)
+      else if (categoryPosts.isEmpty) (1, 8, 3)
+      else (3, 8, 1)
+
     frag(
       pageHeader,
-      row(
-        div(cls := "col-lg-2 col-lg-offset-1  col-md-3  hidden-print")(
+      div(cls := "row")(
+        div(cls := s"col-md-$w1", clsNoPrint)(
           renderSidebar
         ),
-        div(cls := "col-lg-6                  col-md-6")(
-          div(cls := "hidden-print")(
-            blogSettings.createDate.map(
+        div(cls := s"col-md-$w2")(
+          div(clsNoPrint)(
+            blogSettings.createdDate.map(
               cd =>
                 div(
                   span(cls := "glyphicon glyphicon-time"),
@@ -65,9 +73,9 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
             )
           ),
           tag("article")(renderTocAndSections(blogSettings.sections)),
-          div(id := "disqus_thread", cls := "hidden-print")
+          div(id := "disqus_thread", clsNoPrint)
         ),
-        div(cls := "col-lg-3                  col-md-3  hidden-print hidden-sm hidden-xs")(
+        div(cls := s"col-md-$w3 hidden-sm hidden-xs", clsNoPrint)(
           maybeScrollspy
         )
       )
@@ -90,14 +98,10 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
       }
       
       /* turn off affix on screens less than md */
-      @media (max-width: 992px) { 
+      @media (max-width: 991px) { 
           .affix { position: static; }
       }
-      @media (min-width: 1200px) {
-          /* col-2 is 16.666% but it's nicer like this */
-          .affix { width: 15%; }
-      }
-      @media (min-width: 992px) and (max-width: 1199px) {
+      @media (min-width: 992px) {
           /* col-3 is 25% but it's nicer like this */
           .affix { width: 23%; }
       }
@@ -107,11 +111,13 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
               height: 85%; /* nicer if not full height */
           }
       }
+      .affix { padding-left: 2em; }
     """
   )
 
   override def scriptsInline = {
-    val maybeScrollSpy = tocSettings.tocType
+    val maybeScrollSpy = tocSettings
+      .map(_.tocType)
       .collect {
         case TocType.Scrollspy(offset, affixOffset) =>
           List(s"""
@@ -132,13 +138,13 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
   }
 
   /* CONTENT*/
-  private def renderTocAndSections(secs: List[Section]): Frag = tocSettings.tocType match {
-    case Some(TocType.Togglable) =>
+  private def renderTocAndSections(secs: List[Section]): Frag = tocSettings.map { ts =>
+    if (ts.tocType == TocType.Togglable)
       frag(
-        togglableTOC(tocSettings.title, secs),
+        togglableTOC(ts.title, secs),
         div(renderSections(secs))
       )
-    case _ => div(renderSections(secs))
+    else div(renderSections(secs))
   }
 
   // related pages

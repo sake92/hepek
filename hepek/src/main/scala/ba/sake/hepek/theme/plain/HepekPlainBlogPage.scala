@@ -25,7 +25,7 @@ trait HepekPlainBlogPage extends BlogPostPage with StaticPage {
         ),
         div(cls := "col-lg-6 col-md-6")(
           div(cls := "hidden-print")(
-            blogSettings.createDate.map(cd => div(cd.format(blogSettings.dateFormat))),
+            blogSettings.createdDate.map(cd => div(cd.format(blogSettings.dateFormat))),
             blogSettings.author.map(author => div(author))
           ),
           tag("article")(renderTocAndSections(blogSettings.sections))
