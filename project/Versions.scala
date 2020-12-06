@@ -5,7 +5,7 @@ object V {
 
   val hepekCore     = "0.2.0"
   val commonMark    = "0.15.2"
-  val plantUml      = "1.2020.18"
+  val plantUml      = "1.2020.22"
   val jsoup         = "1.12.2"
   val openHtmlToPdf = "1.0.2"
 
