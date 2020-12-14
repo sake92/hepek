@@ -1,13 +1,11 @@
 package ba.sake.hepek.html.statik
 
-import ba.sake.hepek.html._
+import ba.sake.stone.Wither
 import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.path.ClassPackageRelativePath
-import ba.sake.stone.Wither
+import ba.sake.hepek.html._
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage {
-  import scalatags.Text.all._
-
   def staticSiteSettings: StaticSiteSettings = StaticSiteSettings()
 
   def pageCategory: Option[String] = None

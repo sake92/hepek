@@ -105,8 +105,7 @@ val openIndexPage = taskKey[Unit]("Opens index.html")
 
 val openIndexPageTask = Def.taskDyn {
   Def.task {
-    java.awt.Desktop
-      .getDesktop()
+    java.awt.Desktop.getDesktop
       .browse(new File(hepekTarget.value + "/docs/index.html").toURI)
   }
 }

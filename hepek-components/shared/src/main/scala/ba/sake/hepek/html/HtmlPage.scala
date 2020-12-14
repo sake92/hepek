@@ -16,8 +16,7 @@ trait HtmlPage extends PageDependencies {
 
   def manifest: WebAppManifest = WebAppManifest(
     name = siteSettings.name.getOrElse(""),
-    lang = Some(pageSettings.language),
-    startUrl = "."
+    lang = Some(pageSettings.language)
   )
 
   def contents: String = {
@@ -57,36 +56,34 @@ trait HtmlPage extends PageDependencies {
   }
 
   // <head>
-  def headContent: Frag =
-    frag(
-      meta(charset := metaSettings.charset),
-      meta(attr("http-equiv") := "X-UA-Compatible", content := metaSettings.xuaCompatible),
-      meta(name := "viewport", content := metaSettings.viewport),
-      meta(name := "generator", content := "hepek"),
-      meta(name := "theme-color", content := metaSettings.themeColor),
-      meta(name := "mobile-web-app-capable", content := "yes"),
-      // page
-      pageSettings.description.map(c => meta(name := "description", content := c)),
-      metaSettings.first.map(c => meta(name := "first", content := c)),
-      metaSettings.last.map(c => meta(name := "last", content := c)),
-      metaSettings.prev.map(c => meta(name := "prev", content := c)),
-      metaSettings.next.map(c => meta(name := "next", content := c)),
-      metaSettings.editURI.map(c => meta(name := "EditURI", content := c)),
-      metaSettings.subject.map(c => meta(name := "subject", content := c)),
-      // geo
-      metaSettings.geoICBM.map(c => meta(name := "ICBM", content := c)),
-      metaSettings.geoPosition.map(c => meta(name := "geo.position", content := c)),
-      metaSettings.geoRegion.map(c => meta(name := "geo.region", content := c)),
-      metaSettings.geoPlacename.map(c => meta(name := "geo.placename", content := c)),
-      // google
-      metaSettings.googleSiteVerification
-        .map(c => meta(name := "google-site-verification", content := c)),
-      siteSettings.googleAnalyticsTrackingId
-        .map(
-          id =>
-            p( // ugly hack! :D
-              raw(
-                s"""
+  def headContent: Seq[Frag] = Seq(
+    meta(charset := metaSettings.charset),
+    meta(attr("http-equiv") := "X-UA-Compatible", content := metaSettings.xuaCompatible),
+    meta(name := "viewport", content := metaSettings.viewport),
+    meta(name := "generator", content := "hepek"),
+    meta(name := "theme-color", content := metaSettings.themeColor),
+    meta(name := "mobile-web-app-capable", content := "yes"),
+    // page
+    pageSettings.description.map(c => meta(name := "description", content := c)),
+    metaSettings.first.map(c => meta(name := "first", content := c)),
+    metaSettings.last.map(c => meta(name := "last", content := c)),
+    metaSettings.prev.map(c => meta(name := "prev", content := c)),
+    metaSettings.next.map(c => meta(name := "next", content := c)),
+    metaSettings.editURI.map(c => meta(name := "EditURI", content := c)),
+    metaSettings.subject.map(c => meta(name := "subject", content := c)),
+    // geo
+    metaSettings.geoICBM.map(c => meta(name := "ICBM", content := c)),
+    metaSettings.geoPosition.map(c => meta(name := "geo.position", content := c)),
+    metaSettings.geoRegion.map(c => meta(name := "geo.region", content := c)),
+    metaSettings.geoPlacename.map(c => meta(name := "geo.placename", content := c)),
+    // google
+    metaSettings.googleSiteVerification
+      .map(c => meta(name := "google-site-verification", content := c)),
+    siteSettings.googleAnalyticsTrackingId
+      .map(
+        id =>
+          raw(
+            s"""
             <!-- Global Site Tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=$id"></script>
             <script>
@@ -96,27 +93,26 @@ trait HtmlPage extends PageDependencies {
               gtag('config', '$id');
             </script>
             """
-              )
-            )
-        ),
-      // open graph
-      metaSettings.ogUrl.map(c => meta(name := "og:url", content := c)),
-      metaSettings.ogType.map(c => meta(name := "og:type", content := c)),
-      metaSettings.ogTitle.map(c => meta(name := "og:title", content := c)),
-      metaSettings.ogImage.map(c => meta(name := "og:image", content := c)),
-      metaSettings.ogImageAlt.map(c => meta(name := "og:image:alt", content := c)),
-      metaSettings.ogDescription.map(c => meta(name := "og:description", content := c)),
-      metaSettings.ogSiteName.map(c => meta(name := "og:site_name", content := c)),
-      metaSettings.ogLocale.map(c => meta(name := "og:locale", content := c)),
-      metaSettings.articleAuthor.map(c => meta(name := "article:author", content := c)),
-      // other
-      tag("title")(
-        pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
+          )
       ),
-      siteSettings.faviconNormal.map { fav =>
-        link(rel := "shortcut icon", href := fav, tpe := "image/x-icon")
-      }
-    )
+    // open graph
+    metaSettings.ogUrl.map(c => meta(name := "og:url", content := c)),
+    metaSettings.ogType.map(c => meta(name := "og:type", content := c)),
+    metaSettings.ogTitle.map(c => meta(name := "og:title", content := c)),
+    metaSettings.ogImage.map(c => meta(name := "og:image", content := c)),
+    metaSettings.ogImageAlt.map(c => meta(name := "og:image:alt", content := c)),
+    metaSettings.ogDescription.map(c => meta(name := "og:description", content := c)),
+    metaSettings.ogSiteName.map(c => meta(name := "og:site_name", content := c)),
+    metaSettings.ogLocale.map(c => meta(name := "og:locale", content := c)),
+    metaSettings.articleAuthor.map(c => meta(name := "article:author", content := c)),
+    // other
+    tag("title")(
+      pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
+    ),
+    siteSettings.faviconNormal.map { fav =>
+      link(rel := "shortcut icon", href := fav, tpe := "image/x-icon")
+    }
+  )
 
   // <body>
   def bodyContent: Frag = pageContent
