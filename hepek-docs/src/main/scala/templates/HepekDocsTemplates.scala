@@ -14,7 +14,7 @@ trait HepekDocsAbstractPage
     extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
-      // dont have to remember ordering of these.. filter below!
+  // dont have to remember ordering of these.. filter below!
   val hlLangs = List("core", "clike", "scala", "java", "markup")
 
   override def prismSettings =

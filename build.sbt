@@ -18,8 +18,7 @@ inThisBuild(
     ),
     scalaVersion := "2.13.3",
     scalafmtOnCompile := true,
-    useSuperShell := false,
-    //useCoursier := false, // temporarily until Travis is ok...
+    useSuperShell := false
   )
 )
 
@@ -34,7 +33,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     name := "hepek-components",
     libraryDependencies ++= Seq(
       "ba.sake"     %%% "stone-macros" % V.stone,
-      "ba.sake" %%% "scalatags"    % V.scalaTags,
+      "ba.sake"     %%% "scalatags"    % V.scalaTags,
       "com.lihaoyi" %%% "upickle"      % V.upickle
     )
   )
