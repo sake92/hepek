@@ -56,7 +56,7 @@ trait HtmlPage extends PageDependencies {
   }
 
   // <head>
-  def headContent: Seq[Frag] = Seq(
+  def headContent: Frag = frag(
     meta(charset := metaSettings.charset),
     meta(attr("http-equiv") := "X-UA-Compatible", content := metaSettings.xuaCompatible),
     meta(name := "viewport", content := metaSettings.viewport),
