@@ -72,7 +72,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
               author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
             )
           ),
-          tag("article")(renderTocAndSections(blogSettings.sections)),
+          renderTocAndSections(blogSettings.sections),
           div(id := "disqus_thread", clsNoPrint)
         ),
         div(cls := s"col-md-$w3 hidden-sm hidden-xs", clsNoPrint)(

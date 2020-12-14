@@ -7,8 +7,7 @@ import com.openhtmltopdf.pdfboxout.PdfRendererBuilder
 import com.openhtmltopdf.mathmlsupport.MathMLDrawer
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer
 import org.apache.pdfbox.pdmodel.PDDocument
-import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.chrome.ChromeOptions
+import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.ExpectedCondition
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.JavascriptExecutor
@@ -21,10 +20,11 @@ final case class Font(
 )
 
 /**
-  * You must have Chrome WebDriver installed and its path added to 'webdriver.chrome.driver' environment variable, e.g.
+  * You must have a WebDriver installed. <br>
+  * For example if you use Chrome, add its path to 'webdriver.chrome.driver' environment variable, e.g.
   * <code>System.setProperty("webdriver.chrome.driver", """C:\selenium\chromedriver.exe""")</code>
   */
-object PdfGenerator {
+class PdfGenerator(driver: RemoteWebDriver) {
 
   // TODO put this in a file..
   // SVGs are rendered small!? wtf
@@ -95,18 +95,10 @@ if (svgs.length < 1) {
     }
     // create folder if doesn't exist
     if (outputFile.getParentFile != null) {
-      outputFile.getParentFile().mkdirs()
+      outputFile.getParentFile.mkdirs()
     }
     // special thx to @danfickle:
     // https://github.com/danfickle/openhtmltopdf/issues/214
-
-    // Chrome driver for loading pages
-    val options = new ChromeOptions()
-    options.addArguments("headless") // don't open Chrome window...
-    options.addArguments("window-size=1200x600")
-    options.addArguments("disable-web-security") // Ajax doesn't work without this !!!
-    val driver = new ChromeDriver(options)
-    driver.manage().timeouts().setScriptTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
 
     val os           = new FileOutputStream(outputFile)
     val doc          = new PDDocument()
@@ -134,7 +126,7 @@ if (svgs.length < 1) {
   private def renderHtmlPage(
       page: Renderable,
       targetFolder: String,
-      driver: ChromeDriver,
+      driver: RemoteWebDriver,
       builder: PdfRendererBuilder,
       fonts: List[Font],
       loadJsConditions: List[String]
