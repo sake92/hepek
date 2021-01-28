@@ -1,7 +1,7 @@
 object V {
   val stone     = "0.1.0"
   val scalaTags = "0.9.2-rx3.0"
-  val upickle   = "1.2.1"
+  val upickle   = "1.2.3"
 
   val hepekCore     = "0.2.0"
   val commonMark    = "0.15.2"
