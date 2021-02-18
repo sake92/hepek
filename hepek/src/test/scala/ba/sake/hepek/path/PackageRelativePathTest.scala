@@ -2,9 +2,10 @@ package ba.sake.hepek.path
 
 import java.nio.file.Paths
 
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class PackageRelativePathTest extends FlatSpec with Matchers {
+class PackageRelativePathTest extends AnyFlatSpec with Matchers {
   "PackageRelativePath" should "make path based on package" in {
     val obj = PackageRelativeObject1
     obj.relPath shouldBe Paths.get("ba/sake/hepek/path/abc.txt")
