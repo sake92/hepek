@@ -16,7 +16,7 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion := "2.13.3",
+    scalaVersion := "2.13.5",
     scalafmtOnCompile := true,
     useSuperShell := false
   )
