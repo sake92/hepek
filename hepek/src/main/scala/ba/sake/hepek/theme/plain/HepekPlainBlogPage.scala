@@ -6,7 +6,7 @@ import ba.sake.hepek.html.statik.Section
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 
 object HepekPlainBlogPage {
-  val Bundle: PlainStaticBundle = PlainStaticBundle()
+  val Bundle = PlainStaticBundle()
 }
 import HepekPlainBlogPage.Bundle._
 

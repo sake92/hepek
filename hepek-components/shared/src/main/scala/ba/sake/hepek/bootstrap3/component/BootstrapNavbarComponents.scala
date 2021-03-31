@@ -40,7 +40,7 @@ final case class BootstrapNavbarComponents(
 
   private val bsBtn = tag("button")(tpe := "button", btnClass)
 
-  def toggle: ba.sake.hepek.scalatags.TypedTag[String] =
+  def toggle =
     bsBtn(
       cls := "navbar-toggle collapsed",
       data.toggle := "collapse",

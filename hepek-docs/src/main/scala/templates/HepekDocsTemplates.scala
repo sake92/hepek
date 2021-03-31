@@ -9,23 +9,20 @@ import utils.Imports.Bundle._
 import utils.Imports._
 import utils._
 import resources._
-import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponents
-import ba.sake.hepek.html.ComponentDependencies
-import scalatags.text.Builder
 
 trait HepekDocsAbstractPage
     extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
   // dont have to remember ordering of these.. filter below!
-  val hlLangs: List[String] = List("core", "clike", "scala", "java", "markup")
+  val hlLangs = List("core", "clike", "scala", "java", "markup")
 
-  override def prismSettings: prismjs.PrismSettings =
+  override def prismSettings =
     super.prismSettings
       .withTheme(prismjs.Themes.Okaidia)
       .withLanguages(prismjs.PrismConsts.languages filter hlLangs.contains)
 
-  override def tocSettings: Some[TocSettings] =
+  override def tocSettings =
     Some(
       TocSettings(
         tocType = TocType.Scrollspy(45)
@@ -37,31 +34,31 @@ trait HepekDocsAbstractPage
 
 trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADependencies {
 
-  override def siteSettings: SiteSettings =
+  override def siteSettings =
     super.siteSettings
       .withName(Site.name)
       .withFaviconNormal(images.ico("favicon").ref)
       .withFaviconInverted(images.ico("favicon-small").ref)
 
-  override def staticSiteSettings: StaticSiteSettings =
+  override def staticSiteSettings =
     super.staticSiteSettings
       .withIndexPage(docs.Index)
       .withMainPages(docs.hepek.components.Index, docs.hepek.Index, docs.hepek.play.Index)
 
-  override def navbar: Some[BootstrapNavbarComponents] = Some(Navbar)
+  override def navbar = Some(Navbar)
 
   // CSS
-  override def styleURLs: List[String] =
+  override def styleURLs =
     super.styleURLs ++ List(styles.css("main").ref)
 
-  override def bootstrapDependencies: ComponentDependencies = super.bootstrapDependencies.withCssDependencies(
+  override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
     Dependencies()
       .withDeps(Dependency("yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
   )
 
-  override def scriptURLs: List[String] = super.scriptURLs :+ scripts.js("main").ref
+  override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
 
-  override def pageContent: Frag[Builder,String] = {
+  override def pageContent = {
     import Classes._
     frag(
       super.pageContent,

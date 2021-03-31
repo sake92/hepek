@@ -36,7 +36,7 @@ trait PrismDependencies extends ClipboardjsDependencies {
       )
   }
 
-  override def components: List[(BaseComponentSettings, ComponentDependencies)] =
+  override def components =
     super.components :+ (prismSettings, prismDependencies)
 
   private def optionalPluginDeps: List[(String, Boolean)] =

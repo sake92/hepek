@@ -7,13 +7,13 @@ import utils._
 
 object Dependencies extends HepekComponentsDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("JS and CSS deps")
 
-  override def blogSettings: BlogSettings =
+  override def blogSettings =
     super.blogSettings.withSections(depsSection)
 
-  val depsSection: Section = Section(
+  val depsSection = Section(
     "JS/CSS dependencies",
     frag(
       s"""

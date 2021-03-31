@@ -4,7 +4,6 @@ import java.time.LocalDate
 import scalatags.Text.all._
 import utils.Imports.Bundle._, Classes._
 import templates.HepekDocsStaticPage
-import scalatags.text.Builder
 
 object Index extends HepekDocsStaticPage {
   private val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
@@ -14,14 +13,14 @@ object Index extends HepekDocsStaticPage {
   )
   import grid._
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings
       .withTitle("Welcome!")
       .withDescription("Hepek docs")
 
-  val currYear: LocalDate = LocalDate.now()
+  val currYear = LocalDate.now()
 
-  override def pageContent: Frag[Builder,String] =
+  override def pageContent =
     frag(
       div(cls := "page-header", txtAlignCenter)(
         h1("Welcome!")

@@ -6,13 +6,13 @@ import utils.Imports.Bundle._
 
 object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("Math support")
 
-  override def blogSettings: BlogSettings =
+  override def blogSettings =
     super.blogSettings.withSections(mathSection)
 
-  val mathSection: Section = Section(
+  val mathSection = Section(
     "Math support",
     frag(
       """

@@ -7,14 +7,14 @@ import utils._
 
 object MultiPage extends HepekDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("Multi page").withDescription("Headless CMS, blog, generator")
 
-  override def blogSettings: BlogSettings = super.blogSettings.withSections(
+  override def blogSettings = super.blogSettings.withSections(
     multiPageSection
   )
 
-  val multiPageSection: Section = Section(
+  val multiPageSection = Section(
     "Multi-page",
     frag(
       s"""

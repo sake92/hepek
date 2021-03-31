@@ -8,11 +8,11 @@ trait BulmaDependencies extends PageDependencies {
   def bulmaSettings: ComponentSettings =
     ComponentSettings("0.8.2", bulmaFilename, DependencyProvider.cdnjs)
 
-  def bulmaDependencies: ComponentDependencies = ComponentDependencies().withCssDependencies(
+  def bulmaDependencies = ComponentDependencies().withCssDependencies(
     Dependencies().withDeps(
       Dependency(s"css/$bulmaFilename.min.css", bulmaSettings.version, bulmaSettings.pkg)
     )
   )
 
-  override def components: List[(BaseComponentSettings, ComponentDependencies)] = super.components :+ (bulmaSettings, bulmaDependencies)
+  override def components = super.components :+ (bulmaSettings, bulmaDependencies)
 }

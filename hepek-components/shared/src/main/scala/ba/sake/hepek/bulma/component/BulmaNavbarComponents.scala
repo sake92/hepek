@@ -34,7 +34,7 @@ final case class BulmaNavbarComponent(
 
   private val bsBtn = tag("button")(tpe := "button", btnClass)
 
-  def toggle: ba.sake.hepek.scalatags.TypedTag[String] =
+  def toggle =
     a(
       cls := "navbar-burger burger",
       data.target := collapseId,

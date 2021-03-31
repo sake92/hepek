@@ -10,5 +10,5 @@ trait HepekPlayDocsPage extends templates.HepekDocsAbstractPage {
     Form
   )
 
-  override def pageCategory: Some[String] = Some(Index.pageSettings.label)
+  override def pageCategory = Some(Index.pageSettings.label)
 }

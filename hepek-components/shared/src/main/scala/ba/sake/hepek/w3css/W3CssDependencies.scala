@@ -19,6 +19,6 @@ trait W3CssDependencies extends PageDependencies {
         )
       )
 
-  override def components: List[(BaseComponentSettings, ComponentDependencies)] =
+  override def components =
     super.components :+ (w3cssSettings, w3cssDependencies)
 }

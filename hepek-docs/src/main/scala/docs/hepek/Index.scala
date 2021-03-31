@@ -2,22 +2,21 @@ package docs.hepek
 
 import scalatags.Text.all._
 import utils.Imports.Bundle._
-import java.time.LocalDate
 
 object Index extends HepekDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings
       .withTitle("Hepek SSG")
       .withDescription("Hepek SSG")
 
-  val currYear: LocalDate = java.time.LocalDate.now()
+  val currYear = java.time.LocalDate.now()
 
-  override def blogSettings: BlogSettings = super.blogSettings.withSections(
+  override def blogSettings = super.blogSettings.withSections(
     introSection
   )
 
-  val introSection: Section = Section(
+  val introSection = Section(
     "Hepek, static site generator",
     frag(
       s"""

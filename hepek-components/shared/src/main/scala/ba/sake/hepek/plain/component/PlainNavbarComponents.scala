@@ -13,7 +13,7 @@ case class PlainNavbarComponents() extends NavbarComponents {
 
   def navbarCollapseId: String = "main-navbar"
 
-  def toggle: ba.sake.hepek.scalatags.TypedTag[String] =
+  def toggle =
     bsBtn(
       cls := "nvbr-toggle collapsed",
       data.toggle := "collapse",

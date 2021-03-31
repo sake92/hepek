@@ -6,19 +6,19 @@ import utils.Imports._
 
 object GridSupport extends HepekComponentsDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("Grid")
 
-  override def blogSettings: BlogSettings =
+  override def blogSettings =
     super.blogSettings.withSections(gridSection)
 
-  def gridSection: Section = Section(
+  def gridSection = Section(
     "Grid support",
     "Let's see what Hepek has to offer regarding grids.",
     List(problemSection, hepekGridSection)
   )
 
-  def problemSection: Section = Section(
+  def problemSection = Section(
     "Problem",
     frag(
       s"""
@@ -39,7 +39,7 @@ object GridSupport extends HepekComponentsDocsPage {
     )
   )
 
-  def hepekGridSection: Section = Section(
+  def hepekGridSection = Section(
     "Hepek grid",
     frag(
       s"""
@@ -82,7 +82,7 @@ object GridSupport extends HepekComponentsDocsPage {
     List(hepekGridConfigSection)
   )
 
-  def hepekGridConfigSection: Section = Section(
+  def hepekGridConfigSection = Section(
     "Configuration",
     frag(
       md("""

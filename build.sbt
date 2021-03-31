@@ -21,8 +21,7 @@ inThisBuild(
     useSuperShell := false,
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    scalacOptions ++= Seq("-Ywarn-unused"),
-    scalafixScalaBinaryVersion := scalaBinaryVersion.value
+    scalacOptions ++= Seq("-Ywarn-unused")
   )
 )
 

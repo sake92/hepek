@@ -5,16 +5,16 @@ import utils.Imports.Bundle._
 
 object Form extends HepekPlayDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings
       .withTitle("Play forms")
       .withDescription("Hepek Play forms")
 
-  override def blogSettings: BlogSettings = super.blogSettings.withSections(
+  override def blogSettings = super.blogSettings.withSections(
     introSection
   )
 
-  def introSection: Section = Section(
+  def introSection = Section(
     "Play forms",
     frag(
       s"""
@@ -68,7 +68,7 @@ object Form extends HepekPlayDocsPage {
     List(multiInputsSection)
   )
 
-  def multiInputsSection: Section = Section(
+  def multiInputsSection = Section(
     "Multi-inputs",
     frag(
       s"""

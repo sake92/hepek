@@ -16,7 +16,7 @@ trait MermaidDependencies extends PageDependencies {
     )
   )
 
-  override def scriptsInline: List[String] =
+  override def scriptsInline =
     super.scriptsInline :+ {
       val conf = write(mermaidConfig)
       s"mermaid.initialize($conf);"

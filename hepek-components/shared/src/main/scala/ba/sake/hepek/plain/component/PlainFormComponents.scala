@@ -6,7 +6,7 @@ import ba.sake.hepek.html.component.FormComponents
 import ba.sake.stone.Wither
 
 object PlainFormComponents {
-  val DefaultType: FormComponents.Type = new FormComponents.Type {}
+  val DefaultType = new FormComponents.Type {}
 
   trait ValidationStateClasses {
     def success: String = "success"

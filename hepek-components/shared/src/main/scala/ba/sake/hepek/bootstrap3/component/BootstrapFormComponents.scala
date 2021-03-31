@@ -12,13 +12,13 @@ object BootstrapFormComponents {
     case object Vertical extends Type
 
     case object Inline extends Type {
-      override def classes: List[String] = List("form-inline")
+      override def classes = List("form-inline")
     }
 
     final case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type {
       require(labelRatio > 0, "Label ratio < 1")
       require(inputRatio > 0, "Input ratio < 1")
-      override def classes: List[String] = List("form-horizontal")
+      override def classes = List("form-horizontal")
     }
   }
 
@@ -50,7 +50,7 @@ final case class BootstrapFormComponents(
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
-  ): Frag = {
+  ) = {
     val commonAttrs        = Seq(cls := "form-control", inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))

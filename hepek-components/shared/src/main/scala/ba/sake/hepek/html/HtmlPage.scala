@@ -135,7 +135,7 @@ final case class PageSettings(
     description: Option[String]
 ) {
 
-  def withTitle(t: String): PageSettings =
+  def withTitle(t: String) =
     if (label.isEmpty || label == PageSettings.DefaultTitle)
       copy(title = t, label = t) // set label also, if not set
     else copy(title = t)

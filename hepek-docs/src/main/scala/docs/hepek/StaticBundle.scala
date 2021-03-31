@@ -6,13 +6,13 @@ import utils.Imports._
 
 object StaticBundle extends HepekDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("Static bundle")
 
-  override def blogSettings: BlogSettings =
+  override def blogSettings =
     super.blogSettings.withSections(bundleSection)
 
-  val bundleSection: Section = Section(
+  val bundleSection = Section(
     "Static bundle",
     frag(
       """

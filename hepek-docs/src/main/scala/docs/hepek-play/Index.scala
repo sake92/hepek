@@ -5,16 +5,16 @@ import utils.Imports.Bundle._
 
 object Index extends HepekPlayDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings
       .withTitle("Hepek Play")
       .withDescription("Hepek Play")
 
-  override def blogSettings: BlogSettings = super.blogSettings.withSections(
+  override def blogSettings = super.blogSettings.withSections(
     introSection
   )
 
-  val introSection: Section = Section(
+  val introSection = Section(
     "Hepek Play",
     frag(
       s"""

@@ -14,5 +14,5 @@ trait HepekComponentsDocsPage extends templates.HepekDocsAbstractPage {
     MathSupport
   )
 
-  override def pageCategory: Some[String] = Some(Index.pageSettings.label)
+  override def pageCategory = Some(Index.pageSettings.label)
 }

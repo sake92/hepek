@@ -7,16 +7,16 @@ import utils._
 
 object HtmlPage extends HepekComponentsDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("Html page")
 
-  override def blogSettings: BlogSettings = super.blogSettings.withSections(
+  override def blogSettings = super.blogSettings.withSections(
     basicSettingsSection,
     bodyContentSection,
     headContentSection
   )
 
-  val siteSettingsProps: List[ClassProperty] = List(
+  val siteSettingsProps = List(
     ClassProperty("name", "Option[String]", "Name of this site", Some("None")),
     ClassProperty("faviconNormal", "Option[String]", "Favicon of this site", Some("None")),
     ClassProperty(
@@ -27,7 +27,7 @@ object HtmlPage extends HepekComponentsDocsPage {
     )
   )
 
-  val pageSettingsProps: List[ClassProperty] = List(
+  val pageSettingsProps = List(
     ClassProperty("title", "String", "Title of this page", Some("changeme")),
     ClassProperty("label", "String", "Label used for link to this page", Some("<same as title>")),
     ClassProperty("language", "String", "Language of this page", Some("en")),
@@ -35,7 +35,7 @@ object HtmlPage extends HepekComponentsDocsPage {
   )
 
   /* CONTENT */
-  val basicSettingsSection: Section = Section(
+  val basicSettingsSection = Section(
     "Basic settings",
     frag(
       s"""
@@ -75,7 +75,7 @@ object HtmlPage extends HepekComponentsDocsPage {
     )
   )
 
-  val bodyContentSection: Section = Section(
+  val bodyContentSection = Section(
     "Body content",
     s"""
       Next up is the `def bodyContent: List[Frag]` method.  
@@ -84,7 +84,7 @@ object HtmlPage extends HepekComponentsDocsPage {
     """.md
   )
 
-  val headContentSection: Section = Section(
+  val headContentSection = Section(
     "Head content",
     s"""
       Next up is the `def headContent: List[Frag]` method.  

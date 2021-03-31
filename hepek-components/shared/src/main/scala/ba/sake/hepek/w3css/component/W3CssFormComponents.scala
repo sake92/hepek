@@ -11,7 +11,7 @@ object W3CssFormComponents {
   object Type {
 
     case object Default extends Type {
-      override def classes: List[String] = List("w3-container")
+      override def classes = List("w3-container")
     }
   }
 
@@ -43,7 +43,7 @@ final case class W3CssFormComponents(
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
-  ): Frag = {
+  ) = {
     val commonAttrs        = Seq(cls := "w3-input", inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))

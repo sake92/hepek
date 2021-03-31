@@ -18,6 +18,6 @@ trait AnchorjsDependencies extends PageDependencies {
       )
     )
 
-  override def components: List[(BaseComponentSettings, ComponentDependencies)] =
+  override def components =
     super.components :+ (anchorjsSettings, anchorjsDependencies)
 }

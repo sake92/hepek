@@ -29,6 +29,6 @@ trait PlainDependencies extends JQueryDependencies {
     """
   }
 
-  override def stylesInline: List[String] =
+  override def stylesInline =
     super.stylesInline ++ List(gridStyles)
 }

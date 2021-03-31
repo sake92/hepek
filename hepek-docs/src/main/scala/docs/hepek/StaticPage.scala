@@ -7,12 +7,12 @@ import utils._
 
 object StaticPage extends HepekDocsPage {
 
-  override def pageSettings: PageSettings =
+  override def pageSettings =
     super.pageSettings.withTitle("Static page")
 
-  override def blogSettings: BlogSettings = super.blogSettings.withSections(basicSettingsSection)
+  override def blogSettings = super.blogSettings.withSections(basicSettingsSection)
 
-  val staticSiteSettingsProps: List[ClassProperty] = List(
+  val staticSiteSettingsProps = List(
     ClassProperty("indexPage", "Option[StaticPage]", "Home page", Some("None")),
     ClassProperty(
       "mainPages",
@@ -23,7 +23,7 @@ object StaticPage extends HepekDocsPage {
   )
 
   /* CONTENT */
-  val basicSettingsSection: Section = Section(
+  val basicSettingsSection = Section(
     "Basic settings",
     frag(
       s"""
