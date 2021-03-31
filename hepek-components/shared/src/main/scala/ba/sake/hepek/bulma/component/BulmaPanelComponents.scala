@@ -1,8 +1,7 @@
 package ba.sake.hepek.bulma.component
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.PanelComponents
+import ba.sake.hepek.scalatags.all._
 
 object BulmaPanelComponents {
   trait Type extends PanelComponents.Type

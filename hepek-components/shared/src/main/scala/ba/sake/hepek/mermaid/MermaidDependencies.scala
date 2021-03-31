@@ -1,8 +1,10 @@
 package ba.sake.hepek.mermaid
 
 import ba.sake.hepek.html._
+import ba.sake.hepek.html.utils.HepekPickler.macroRW
+import ba.sake.hepek.html.utils.HepekPickler.write
+import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW}
 import ba.sake.stone.Wither
-import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW, macroRW, write}
 
 trait MermaidDependencies extends PageDependencies {
   def mermaidConfig: MermaidConfig = MermaidConfig()

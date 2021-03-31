@@ -1,9 +1,8 @@
 package docs.hepek.components
 
-import scalatags.Text.all._
 import ba.sake.hepek.katex.KatexDependencies
+import ba.sake.hepek.scalatags.all._
 import utils.Imports.Bundle._
-import utils.Imports._
 
 object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
 

@@ -1,12 +1,10 @@
 package ba.sake.hepek.plain.statik
 
-import ba.sake.stone.Wither
 import ba.sake.hepek.html.StaticBundle
-import ba.sake.hepek.html.Bundle
-import ba.sake.hepek.plain.PlainBundle
 import ba.sake.hepek.plain.PlainPage
 import ba.sake.hepek.plain.component._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
+import ba.sake.stone.Wither
 
 @Wither
 case class PlainStaticBundle(

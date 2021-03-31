@@ -1,10 +1,9 @@
 package ba.sake.hepek.bootstrap3.component
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
-import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
+import ba.sake.hepek.scalatags.all._
+import ba.sake.stone.Wither
 
 @Wither
 final case class BootstrapGridComponents(

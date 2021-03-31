@@ -1,6 +1,6 @@
 package docs.hepek
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import utils.Imports.Bundle._
 
 object Index extends HepekDocsPage {

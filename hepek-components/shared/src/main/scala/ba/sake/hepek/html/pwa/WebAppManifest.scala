@@ -1,8 +1,9 @@
 package ba.sake.hepek.html.pwa
 
 import upickle.implicits.key
-import ba.sake.stone.Wither
+
 import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW, _}
+import ba.sake.stone.Wither
 
 @Wither
 final case class WebAppManifest(

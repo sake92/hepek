@@ -2,9 +2,8 @@ package ba.sake.hepek.pure
 
 package component
 
-import scalatags.Text.all._
-import ba.sake.hepek.html.component._
 import ba.sake.hepek.plain.component.PlainLinkComponents
+import ba.sake.hepek.scalatags.all._
 
 object PureMenuComponents extends PureMenuComponents {
 

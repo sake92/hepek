@@ -1,7 +1,6 @@
 package docs.hepek.components
 
-import java.time.LocalDate
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import utils.Imports.Bundle._
 import utils.Imports._
 

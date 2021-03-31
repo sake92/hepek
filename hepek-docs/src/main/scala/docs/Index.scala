@@ -1,9 +1,12 @@
 package docs
 
 import java.time.LocalDate
-import scalatags.Text.all._
-import utils.Imports.Bundle._, Classes._
+
+import ba.sake.hepek.scalatags.all._
 import templates.HepekDocsStaticPage
+import utils.Imports.Bundle._
+
+import Classes._
 
 object Index extends HepekDocsStaticPage {
   private val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))

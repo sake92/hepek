@@ -1,10 +1,10 @@
 package ba.sake.hepek.theme.bootstrap3
 
-import scalatags.Text.all._
+import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
+import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
-import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
-import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
+import ba.sake.hepek.scalatags.all._
 
 trait TocType
 
@@ -29,7 +29,6 @@ import HepekBootstrap3BlogPage.Bundle._
 
 // NOTE: scrollspy will NOT WORK if the page is NOT SCROLLABE (not enough content..)
 trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
-  import Grid._
   import HepekBootstrap3SectionUtils._
 
   // optional TOC

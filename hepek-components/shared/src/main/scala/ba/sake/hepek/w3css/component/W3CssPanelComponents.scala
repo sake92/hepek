@@ -1,7 +1,9 @@
 package ba.sake.hepek.w3css.component
 
-import ba.sake.hepek.scalatags.all, all._
 import ba.sake.hepek.html.component.PanelComponents
+import ba.sake.hepek.scalatags.all
+
+import all._
 
 object W3CssPanelComponents {
   trait Type extends PanelComponents.Type

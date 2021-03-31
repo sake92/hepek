@@ -1,13 +1,16 @@
 package templates
 
-import scalatags.Text.all._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
-import ba.sake.hepek.prismjs
 import ba.sake.hepek.fontawesome5.FADependencies
-import ba.sake.hepek.theme.bootstrap3.{HepekBootstrap3BlogPage, TocSettings, TocType}
+import ba.sake.hepek.prismjs
+import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
+import ba.sake.hepek.theme.bootstrap3.TocSettings
+import ba.sake.hepek.theme.bootstrap3.TocType
 import utils.Imports.Bundle._
 import utils.Imports._
 import utils._
+
 import resources._
 
 trait HepekDocsAbstractPage

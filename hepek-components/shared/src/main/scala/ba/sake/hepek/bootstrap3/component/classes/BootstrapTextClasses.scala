@@ -1,8 +1,7 @@
 package ba.sake.hepek.bootstrap3.component.classes
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.classes.TextClasses
+import ba.sake.hepek.scalatags.all._
 
 trait BootstrapTextClasses extends TextClasses {
   override def txtPrimary = cls := "text-primary"

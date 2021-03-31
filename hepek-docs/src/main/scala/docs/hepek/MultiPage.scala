@@ -1,6 +1,6 @@
 package docs.hepek
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import utils.Imports.Bundle._
 import utils.Imports._
 import utils._
@@ -27,7 +27,7 @@ object MultiPage extends HepekDocsPage {
       """.md,
       chl.scala("""
         import java.nio.file.Paths
-        import scalatags.Text.all._
+        import ba.sake.hepek.scalatags.all._
         import ba.sake.hepek.path.ScalaMultiRenderable
         import examples.Imports._
         

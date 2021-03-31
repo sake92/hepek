@@ -1,11 +1,9 @@
 package ba.sake.hepek.theme.plain
 
-import scalatags.Text.all._
-import ba.sake.hepek.plain.statik.PlainStaticPage
-import ba.sake.hepek.plain.component.PlainGridComponents
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
 import ba.sake.hepek.plain.statik.PlainStaticBundle
+import ba.sake.hepek.scalatags.all._
 
 object HepekPlainBlogPage {
   val Bundle = PlainStaticBundle()

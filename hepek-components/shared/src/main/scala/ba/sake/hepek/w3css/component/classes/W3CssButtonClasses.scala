@@ -1,8 +1,7 @@
 package ba.sake.hepek.w3css.component.classes
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.classes.ButtonClasses
+import ba.sake.hepek.scalatags.all._
 
 trait W3CssButtonClasses extends ButtonClasses {
   override def btnClass   = cls := "w3-btn"

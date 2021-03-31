@@ -2,11 +2,12 @@ package ba.sake.hepek.pure
 
 package statik
 
-import scalatags.Text.all._
-import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.html.component.GridComponents._
-import component.PureMenuComponents._
+import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.pure.component.PureGridComponents
+import ba.sake.hepek.scalatags.all._
+
+import component.PureMenuComponents._
 
 trait PureStaticPage extends StaticPage with PurePage {
   private val Grid = PureGridComponents()

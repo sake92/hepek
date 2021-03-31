@@ -1,8 +1,7 @@
 package ba.sake.hepek.bulma.component.classes
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.classes.ButtonClasses
+import ba.sake.hepek.scalatags.all._
 
 trait BulmaButtonClasses extends ButtonClasses {
   override def btnClass   = cls := "button"

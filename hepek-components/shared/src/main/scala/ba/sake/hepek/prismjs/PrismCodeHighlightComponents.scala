@@ -1,10 +1,10 @@
 package ba.sake.hepek.prismjs
 
 import scala.collection.mutable.ListBuffer
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
+
 import ba.sake.hepek.html.component.CodeHighlightComponents
 import ba.sake.hepek.html.component.CodeHighlighter
+import ba.sake.hepek.scalatags.all._
 
 object PrismCodeHighlightComponents extends PrismCodeHighlightComponents {
   sealed trait CodeSource

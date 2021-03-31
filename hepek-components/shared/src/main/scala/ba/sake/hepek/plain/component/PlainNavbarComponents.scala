@@ -1,14 +1,12 @@
 package ba.sake.hepek.plain.component
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.NavbarComponents
+import ba.sake.hepek.scalatags.all._
 
 object PlainNavbarComponents
 
 // TODO this is just copied from Bootstrap...
 case class PlainNavbarComponents() extends NavbarComponents {
-  import PlainNavbarComponents._
   import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
   private val bsBtn = tag("button")(tpe := "button", btnClass)

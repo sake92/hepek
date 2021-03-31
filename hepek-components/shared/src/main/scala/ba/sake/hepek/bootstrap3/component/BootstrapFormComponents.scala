@@ -1,10 +1,9 @@
 package ba.sake.hepek.bootstrap3.component
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
-import ba.sake.stone.Wither
-import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
+import ba.sake.hepek.html.component.FormComponents
+import ba.sake.hepek.scalatags.all._
+import ba.sake.stone.Wither
 
 object BootstrapFormComponents {
   sealed trait Type extends FormComponents.Type

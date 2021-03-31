@@ -2,10 +2,10 @@ package ba.sake.hepek.plain
 
 package statik
 
-import scalatags.Text.all._
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.component.PlainNavbarComponents
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
+import ba.sake.hepek.scalatags.all._
 
 trait PlainStaticPage extends StaticPage with PlainPage {
   def navbar: Option[PlainNavbarComponents] = None

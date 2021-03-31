@@ -1,7 +1,6 @@
 package ba.sake.hepek.fontawesome5
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.stone.Wither
 
 object FA {

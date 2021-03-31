@@ -1,8 +1,8 @@
 package ba.sake.hepek.bootstrap3.component
 
-import ba.sake.hepek.scalatags.all.{style => _, Style => _, _}
-import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.NavbarComponents
+import ba.sake.hepek.scalatags.all.{Style => _, style => _, _}
+import ba.sake.stone.Wither
 
 object BootstrapNavbarComponents {
   sealed trait Position { def classes: String }
