@@ -1,6 +1,6 @@
 package ba.sake.hepek.theme.bootstrap3
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.statik.Section
 
 private[bootstrap3] object HepekBootstrap3SectionUtils {

@@ -1,6 +1,6 @@
 package templates
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.prismjs
 import ba.sake.hepek.fontawesome5.FADependencies

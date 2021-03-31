@@ -1,6 +1,6 @@
 package ba.sake.hepek.theme.plain
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
 import ba.sake.hepek.plain.statik.PlainStaticBundle

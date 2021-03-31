@@ -2,7 +2,7 @@ package ba.sake.hepek.bootstrap3
 
 package statik
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._

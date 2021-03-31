@@ -2,7 +2,7 @@ package ba.sake.hepek.html.statik
 
 import java.time.format.DateTimeFormatter
 import java.time.LocalDate
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.utils.StringUtils
 import ba.sake.stone.Wither

@@ -1,6 +1,6 @@
 package fixtures.static
 
-import scalatags.Text.all._
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.bulma.statik.BulmaStaticBundle
 import ba.sake.hepek.html.StaticBundle
 

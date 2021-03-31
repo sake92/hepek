@@ -6,7 +6,7 @@ import play.api.mvc.Call
 import play.api.mvc.Request
 import play.filters.csrf.CSRF
 import ba.sake.hepek.html.component.FormComponents
-import scalatags.Text.all, all._
+import ba.sake.hepek.scalatags.all, all._
 
 final case class HepekPlayForm(fc: FormComponents) {
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
