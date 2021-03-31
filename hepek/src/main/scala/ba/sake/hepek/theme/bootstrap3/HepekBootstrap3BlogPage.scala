@@ -29,7 +29,6 @@ import HepekBootstrap3BlogPage.Bundle._
 
 // NOTE: scrollspy will NOT WORK if the page is NOT SCROLLABE (not enough content..)
 trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
-  import Grid._
   import HepekBootstrap3SectionUtils._
 
   // optional TOC

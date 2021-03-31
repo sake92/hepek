@@ -1,7 +1,6 @@
 package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.PanelComponents
 
 object PlainPanelComponents {

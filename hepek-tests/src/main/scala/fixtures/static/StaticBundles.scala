@@ -1,7 +1,6 @@
 package fixtures.static
 
 import scalatags.Text.all._
-import ba.sake.hepek.bulma.statik.BulmaStaticPage
 import ba.sake.hepek.bulma.statik.BulmaStaticBundle
 import ba.sake.hepek.html.StaticBundle
 
@@ -10,7 +9,6 @@ import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.w3css.statik.W3CssStaticBundle
-import ba.sake.hepek.html.MetaSettings
 
 object StaticPages {
   val all = List(Plain, Bootstrap3, Bulma, W3Css)

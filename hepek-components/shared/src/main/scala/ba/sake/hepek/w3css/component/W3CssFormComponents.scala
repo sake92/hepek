@@ -1,7 +1,6 @@
 package ba.sake.hepek.w3css.component
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.stone.Wither
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle

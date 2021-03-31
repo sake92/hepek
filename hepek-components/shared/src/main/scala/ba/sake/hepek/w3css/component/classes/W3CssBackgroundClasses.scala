@@ -1,7 +1,6 @@
 package ba.sake.hepek.w3css.component.classes
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.classes.BackgroundClasses
 
 trait W3CssBackgroundClasses extends BackgroundClasses {

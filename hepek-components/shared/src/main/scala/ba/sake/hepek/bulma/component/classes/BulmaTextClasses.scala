@@ -1,7 +1,6 @@
 package ba.sake.hepek.bulma.component.classes
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.classes.TextClasses
 
 trait BulmaTextClasses extends TextClasses {

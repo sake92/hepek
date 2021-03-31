@@ -16,9 +16,12 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion := "2.13.3",
+    scalaVersion := "2.13.5",
     scalafmtOnCompile := true,
-    useSuperShell := false
+    useSuperShell := false,
+    semanticdbEnabled := true,
+    semanticdbVersion := scalafixSemanticdb.revision,
+    scalacOptions ++= Seq("-Ywarn-unused")
   )
 )
 

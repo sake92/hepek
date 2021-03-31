@@ -1,7 +1,6 @@
 package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all.{form => _, _}
-import ba.sake.hepek._
 
 object FormComponents {
   trait Type { def classes: List[String] = List.empty }
@@ -554,7 +553,7 @@ trait FormComponents {
   ): Frag = {
     val inputId            = getAttrValue(_attrs, "id")
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
-    val inputAttrs         = inputAttrsFiltered.appended(value := _label.render.toString)
+    inputAttrsFiltered.appended(value := _label.render.toString)
     constructInputButton(
       tpe := _type,
       inputId,

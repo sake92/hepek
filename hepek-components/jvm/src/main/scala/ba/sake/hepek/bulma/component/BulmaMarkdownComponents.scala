@@ -1,7 +1,6 @@
 package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek._
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html._
 import ba.sake.hepek.html.component.MarkdownComponents

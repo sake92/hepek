@@ -2,7 +2,6 @@ package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.scalatags.all
 import all.{form => _, _}
-import ba.sake.hepek._
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.stone.Wither
 
@@ -50,7 +49,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       if (inputType.v == "textarea") textarea(commonAttrs)("")
       else input(commonAttrs)
     val inputFragTransformed = inputTransform(inputFrag)
-    val inputContentFrag = inputLabel match {
+    inputLabel match {
       case None => inputFragTransformed
       case Some(inputLabel) =>
         label(inputId.map(`for` := _.v))(
