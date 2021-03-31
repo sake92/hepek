@@ -1,9 +1,10 @@
 package ba.sake.hepek.plain.component
 
-import ba.sake.hepek.scalatags.all._
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
+
 import ba.sake.hepek.html.component.MarkdownComponents
+import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
 
 trait PlainMarkdownComponents extends MarkdownComponents {

@@ -1,10 +1,10 @@
 package ba.sake.hepek.play
 
+import ba.sake.hepek.html.HtmlPage
 import play.api.http.ContentTypeOf
 import play.api.http.ContentTypes
 import play.api.http.Writeable
 import play.api.mvc.Codec
-import ba.sake.hepek.html.HtmlPage
 
 package object implicits {
 

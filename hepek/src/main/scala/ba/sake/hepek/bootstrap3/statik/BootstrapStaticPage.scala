@@ -2,10 +2,10 @@ package ba.sake.hepek.bootstrap3
 
 package statik
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.bootstrap3.component.BootstrapNavbarComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
+import ba.sake.hepek.html.statik.StaticPage
+import ba.sake.hepek.scalatags.all._
 
 trait BootstrapStaticPage extends StaticPage with BootstrapPage {
   def navbar: Option[BootstrapNavbarComponents] = None

@@ -2,16 +2,19 @@ package ba.sake.hepek.pdf
 
 import java.io.File
 import java.io.FileOutputStream
-import ba.sake.hepek.core.Renderable
-import com.openhtmltopdf.pdfboxout.PdfRendererBuilder
+
 import com.openhtmltopdf.mathmlsupport.MathMLDrawer
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer
+
 import org.apache.pdfbox.pdmodel.PDDocument
+import org.openqa.selenium.JavascriptExecutor
+import org.openqa.selenium.WebDriver
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.ExpectedCondition
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.support.ui.WebDriverWait
+
+import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.html.HtmlUtils
 
 final case class Font(

@@ -1,7 +1,7 @@
 package ba.sake.hepek.w3css.component.classes
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.classes.BackgroundClasses
+import ba.sake.hepek.scalatags.all._
 
 trait W3CssBackgroundClasses extends BackgroundClasses {
   override def bgPrimary = cls := "w3-white"

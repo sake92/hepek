@@ -1,7 +1,7 @@
 package ba.sake.hepek.bulma.component.classes
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.classes.TextClasses
+import ba.sake.hepek.scalatags.all._
 
 trait BulmaTextClasses extends TextClasses {
   override def txtPrimary = cls := "has-text-primary"

@@ -1,7 +1,7 @@
 package ba.sake.hepek.w3css.component.classes
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.classes.TextClasses
+import ba.sake.hepek.scalatags.all._
 
 trait W3CssTextClasses extends TextClasses {
   override def txtPrimary = cls := "w3-teal"

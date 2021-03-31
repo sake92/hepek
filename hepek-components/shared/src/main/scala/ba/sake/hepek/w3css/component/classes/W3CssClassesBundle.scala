@@ -1,7 +1,7 @@
 package ba.sake.hepek.w3css.component.classes
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.classes.ClassesBundle
+import ba.sake.hepek.scalatags.all._
 
 object W3CssClassesBundle extends W3CssClassesBundle
 

@@ -1,7 +1,7 @@
 package ba.sake.hepek.plain.component
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.NavbarComponents
+import ba.sake.hepek.scalatags.all._
 
 object PlainNavbarComponents
 

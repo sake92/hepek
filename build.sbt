@@ -17,11 +17,10 @@ inThisBuild(
       )
     ),
     scalaVersion := "2.13.5",
-    scalafmtOnCompile := true,
+    scalacOptions ++= Seq("-Ywarn-unused"),
     useSuperShell := false,
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    scalacOptions ++= Seq("-Ywarn-unused"),
     scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
   )
 )

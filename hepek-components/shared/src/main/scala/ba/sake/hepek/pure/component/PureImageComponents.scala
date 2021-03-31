@@ -1,7 +1,7 @@
 package ba.sake.hepek.pure.component
 
-import ba.sake.hepek.scalatags.all.{caption => _, _}
 import ba.sake.hepek.html.component.ImageComponents
+import ba.sake.hepek.scalatags.all.{caption => _, _}
 
 trait PureImageComponents extends ImageComponents {
 

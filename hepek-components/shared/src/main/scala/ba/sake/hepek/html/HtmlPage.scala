@@ -1,8 +1,8 @@
 package ba.sake.hepek.html
 
+import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
 import ba.sake.stone.Wither
-import ba.sake.hepek.html.pwa.WebAppManifest
 
 trait HtmlPage extends PageDependencies {
   def siteSettings: SiteSettings = SiteSettings()

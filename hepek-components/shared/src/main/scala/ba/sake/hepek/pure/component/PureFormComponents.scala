@@ -1,8 +1,8 @@
 package ba.sake.hepek.pure.component
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.plain.component.PlainFormComponentsImpl
+import ba.sake.hepek.scalatags.all._
 
 object PureFormComponents {
   sealed trait Type extends FormComponents.Type

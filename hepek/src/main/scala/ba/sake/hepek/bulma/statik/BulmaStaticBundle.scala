@@ -1,11 +1,11 @@
 package ba.sake.hepek.bulma.statik
 
-import ba.sake.stone.Wither
-import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.bulma.BulmaPage
-import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.bulma.component._
+import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
+import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.component._
+import ba.sake.stone.Wither
 
 @Wither
 case class BulmaStaticBundle(

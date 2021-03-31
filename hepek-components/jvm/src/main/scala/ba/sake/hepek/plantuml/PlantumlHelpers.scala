@@ -2,10 +2,11 @@ package ba.sake.hepek.plantuml
 
 import java.io.ByteArrayOutputStream
 import java.nio.charset.StandardCharsets
+
 import ba.sake.hepek.scalatags.all._
-import net.sourceforge.plantuml.SourceStringReader
-import net.sourceforge.plantuml.FileFormatOption
 import net.sourceforge.plantuml.FileFormat
+import net.sourceforge.plantuml.FileFormatOption
+import net.sourceforge.plantuml.SourceStringReader
 
 object PlantumlHelpers extends PlantumlHelpers
 

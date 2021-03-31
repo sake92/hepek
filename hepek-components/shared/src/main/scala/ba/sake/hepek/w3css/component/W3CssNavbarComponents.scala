@@ -1,7 +1,7 @@
 package ba.sake.hepek.w3css.component
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.NavbarComponents
+import ba.sake.hepek.scalatags.all._
 
 object W3CssNavbarComponents extends W3CssNavbarComponents
 

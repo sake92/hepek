@@ -1,8 +1,8 @@
 package ba.sake.hepek.bulma
 
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.html._
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle._
+import ba.sake.hepek.html._
+import ba.sake.hepek.scalatags.all._
 
 trait BulmaPage extends HtmlPage with BulmaDependencies {
 

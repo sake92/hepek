@@ -1,8 +1,8 @@
 package ba.sake.hepek.bootstrap3.component
 
-import ba.sake.hepek.scalatags.all.{caption => _, _}
-import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
+import ba.sake.hepek.html.component.ImageComponents
+import ba.sake.hepek.scalatags.all.{caption => _, _}
 
 case class BootstrapImageComponents() extends ImageComponents {
 

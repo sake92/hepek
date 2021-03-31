@@ -1,7 +1,7 @@
 package ba.sake.hepek.w3css.component.classes
 
-import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.html.component.classes.TableClasses
+import ba.sake.hepek.scalatags.all._
 
 trait W3CssTableClasses extends TableClasses {
   override def tableClass      = cls := "w3-table"

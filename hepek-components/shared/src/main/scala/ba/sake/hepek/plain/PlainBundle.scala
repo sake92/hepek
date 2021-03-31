@@ -1,9 +1,9 @@
 package ba.sake.hepek.plain
 
-import ba.sake.stone.Wither
 import ba.sake.hepek.html.Bundle
 import ba.sake.hepek.plain.component._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
+import ba.sake.stone.Wither
 
 @Wither
 case class PlainBundle(
