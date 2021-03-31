@@ -17,12 +17,12 @@ final case class Dependencies(
     inlines: List[String] = List.empty,
     deps: List[Dependency] = List.empty
 ) {
-  def plusURLs(addUrls: List[String]) = copy(urls = urls ++ addUrls)
-  def plusURLs(addUrls: String*)      = copy(urls = urls ++ addUrls.toList)
+  def plusURLs(addUrls: List[String]): Dependencies = copy(urls = urls ++ addUrls)
+  def plusURLs(addUrls: String*): Dependencies      = copy(urls = urls ++ addUrls.toList)
 
-  def plusInlines(addInlines: List[String]) = copy(inlines = inlines ++ addInlines)
-  def plusInlines(addInlines: String*)      = copy(inlines = inlines ++ addInlines.toList)
+  def plusInlines(addInlines: List[String]): Dependencies = copy(inlines = inlines ++ addInlines)
+  def plusInlines(addInlines: String*): Dependencies      = copy(inlines = inlines ++ addInlines.toList)
 
-  def plusDeps(addDeps: List[Dependency]) = copy(deps = deps ++ addDeps)
-  def plusDeps(addDeps: Dependency*)      = copy(deps = deps ++ addDeps.toList)
+  def plusDeps(addDeps: List[Dependency]): Dependencies = copy(deps = deps ++ addDeps)
+  def plusDeps(addDeps: Dependency*): Dependencies      = copy(deps = deps ++ addDeps.toList)
 }

@@ -42,7 +42,7 @@ object GridComponents {
 
   // Same on all screens
   // lg is not optional, need to have at least one ratio...
-  val DefaultScreenRatios = ScreenRatios(
+  val DefaultScreenRatios: ScreenRatios = ScreenRatios(
     Ratios.Default,
     Option(Ratios.Default),
     Option(Ratios.Default),
@@ -98,9 +98,9 @@ object GridComponents {
   }
 
   object Ratios {
-    val DefaultSingle = Ratio(0, 1, 0) // no padding
-    val DefaultHalf   = Ratio(1, 1)
-    val DefaultThird  = Ratio(1, 1, 1)
-    val Default       = Ratios(DefaultSingle, DefaultHalf, DefaultThird)
+    val DefaultSingle: Ratio = Ratio(0, 1, 0) // no padding
+    val DefaultHalf: Ratio   = Ratio(1, 1)
+    val DefaultThird: Ratio  = Ratio(1, 1, 1)
+    val Default: Ratios       = Ratios(DefaultSingle, DefaultHalf, DefaultThird)
   }
 }

@@ -20,14 +20,14 @@ final case class BlogSettings(
     sections: List[Section] = List.empty,
     dateFormat: DateTimeFormatter = BlogSettings.DefaultDateFormat
 ) {
-  def withDateFormat(df: DateTimeFormatter) = copy(dateFormat = df)
-  def withDateFormat(df: String)            = copy(dateFormat = DateTimeFormatter.ofPattern(df))
+  def withDateFormat(df: DateTimeFormatter): BlogSettings = copy(dateFormat = df)
+  def withDateFormat(df: String): BlogSettings            = copy(dateFormat = DateTimeFormatter.ofPattern(df))
 }
 
 object BlogSettings {
   val DefaultDateFormatPattern = "dd.MM.yyyy"
 
-  val DefaultDateFormat = DateTimeFormatter.ofPattern(DefaultDateFormatPattern)
+  val DefaultDateFormat: DateTimeFormatter = DateTimeFormatter.ofPattern(DefaultDateFormatPattern)
 }
 
 /**
@@ -41,7 +41,7 @@ final case class Section(
 )(
     implicit owner: RelativePath
 ) {
-  def withChildren(children: Section*) = copy(children = children.toList)
+  def withChildren(children: Section*): Section = copy(children = children.toList)
 
   def id: String = StringUtils.urlify(name)
 

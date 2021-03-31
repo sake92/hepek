@@ -33,7 +33,7 @@ final case class BulmaFormComponents(
   protected override def validationStateClasses = BulmaValidationStateClasses
 
   // https://github.com/jgthms/bulma/issues/886#issuecomment-335584165
-  override def formFieldset(legendTitle: String)(content: Frag*) =
+  override def formFieldset(legendTitle: String)(content: Frag*): ba.sake.hepek.scalatags.TypedTag[org.scalajs.dom.html.FieldSet] =
     fieldset(cls := "box")(
       legend(cls := "label has-text-centered")(legendTitle),
       content
@@ -49,7 +49,7 @@ final case class BulmaFormComponents(
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
-  ) = {
+  ): Frag = {
     val inputCls           = if (inputType.v == "textarea") "textarea" else "input"
     val commonAttrs        = Seq(cls := inputCls, inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help")(h))

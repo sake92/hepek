@@ -6,13 +6,13 @@ import utils.Imports._
 
 object PlayBundle extends HepekPlayDocsPage {
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings.withTitle("Play bundle")
 
-  override def blogSettings =
+  override def blogSettings: BlogSettings =
     super.blogSettings.withSections(bundleSection)
 
-  val bundleSection = Section(
+  val bundleSection: Section = Section(
     "Play bundle",
     frag(
       """

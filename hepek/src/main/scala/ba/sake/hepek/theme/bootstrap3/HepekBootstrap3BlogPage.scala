@@ -23,7 +23,7 @@ final case class TocSettings(
 )
 
 object HepekBootstrap3BlogPage {
-  val Bundle = BootstrapStaticBundle()
+  val Bundle: BootstrapStaticBundle = BootstrapStaticBundle()
 }
 import HepekBootstrap3BlogPage.Bundle._
 
@@ -81,7 +81,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
     )
   }
 
-  override def stylesInline = super.stylesInline ++ List(
+  override def stylesInline: List[String] = super.stylesInline ++ List(
     """
       /* scrollspy stuff */
       nav#tocScrollspy  .nav>li>a {
@@ -114,7 +114,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
     """
   )
 
-  override def scriptsInline = {
+  override def scriptsInline: List[String] = {
     val maybeScrollSpy = tocSettings
       .map(_.tocType)
       .collect {

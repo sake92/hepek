@@ -15,11 +15,11 @@ object PureMenuComponents extends PureMenuComponents {
 
     case object Vertical extends Type {
       // pure-menu-vertical is NOT FROM PURECSS, it's added to style the width of menu
-      override def classes = super.classes + "pure-menu-vertical"
+      override def classes: String = super.classes + "pure-menu-vertical"
     }
 
     case object Horizontal extends Type {
-      override def classes = super.classes + "pure-menu-horizontal"
+      override def classes: String = super.classes + "pure-menu-horizontal"
     }
   }
 }

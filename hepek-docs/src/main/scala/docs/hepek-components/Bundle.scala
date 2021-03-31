@@ -6,13 +6,13 @@ import utils.Imports._
 
 object Bundle extends HepekComponentsDocsPage {
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings.withTitle("Bundle")
 
-  override def blogSettings =
+  override def blogSettings: BlogSettings =
     super.blogSettings.withSections(bundleSection)
 
-  val bundleSection = Section(
+  val bundleSection: Section = Section(
     "Bundle",
     frag(
       """

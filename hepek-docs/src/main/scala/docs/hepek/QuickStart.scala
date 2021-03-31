@@ -7,16 +7,16 @@ import utils._
 
 object QuickStart extends HepekDocsPage {
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings.withTitle("Quick start")
 
-  override def blogSettings = super.blogSettings.withSections(
+  override def blogSettings: BlogSettings = super.blogSettings.withSections(
     installationSection,
     usingSection,
     servingSection
   )
 
-  val installationSection = Section(
+  val installationSection: Section = Section(
     "Installation",
     """
       You need to have Java 8 installed and sbt version 1 or greater.  
@@ -24,7 +24,7 @@ object QuickStart extends HepekDocsPage {
     """.md
   )
 
-  val usingSection = Section(
+  val usingSection: Section = Section(
     "Using",
     s"""
       Clone the starter project from [here](${links.StarterProjectURL}) and you're ready.  
@@ -40,7 +40,7 @@ object QuickStart extends HepekDocsPage {
     """.md
   )
 
-  val servingSection = Section(
+  val servingSection: Section = Section(
     "Serving",
     div(
       s"""

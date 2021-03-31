@@ -10,15 +10,15 @@ object PureFormComponents {
   object Type {
 
     case object Vertical extends Type {
-      override def classes = List("pure-form", "pure-form-stacked")
+      override def classes: List[String] = List("pure-form", "pure-form-stacked")
     }
 
     case object Inline extends Type {
-      override def classes = List("pure-form")
+      override def classes: List[String] = List("pure-form")
     }
 
     case object Horizontal extends Type {
-      override def classes = List("pure-form", "pure-form-aligned")
+      override def classes: List[String] = List("pure-form", "pure-form-aligned")
     }
   }
 }
@@ -44,7 +44,7 @@ trait PureFormComponents extends PlainFormComponentsImpl {
       inputMessages: Seq[String],
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
-  ) = {
+  ): Frag = {
     val commonAttrs = Seq(inputType, inputName) ++
       inputId.map(id := _) ++ inputAttrs
     val inputFieldContent =

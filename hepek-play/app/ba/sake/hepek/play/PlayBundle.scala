@@ -7,5 +7,5 @@ case class PlayBundleImpl(
 ) {
   val HPF: HepekPlayForm = HepekPlayForm(Bundle.Form)
 
-  def withBundle(bundle: Bundle) = copy(Bundle = bundle)
+  def withBundle(bundle: Bundle): PlayBundleImpl = copy(Bundle = bundle)
 }

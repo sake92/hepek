@@ -6,14 +6,14 @@ import utils.Imports._
 
 object PdfGenerator extends HepekDocsPage {
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings.withTitle("Pdf generator")
 
-  override def blogSettings = super.blogSettings.withSections(
+  override def blogSettings: BlogSettings = super.blogSettings.withSections(
     pdfGeneratorSection
   )
 
-  val pdfGeneratorSection = Section(
+  val pdfGeneratorSection: Section = Section(
     "Pdf generator",
     frag(
       s"""

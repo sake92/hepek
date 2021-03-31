@@ -6,7 +6,7 @@ import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
 
 case class BootstrapImageComponents() extends ImageComponents {
 
-  override def image(source: String, caption: String = "") =
+  override def image(source: String, caption: String = ""): Frag =
     if (caption.trim.isEmpty)
       img(src := source, cls := "img-responsive", alt := caption)
     else
@@ -15,7 +15,7 @@ case class BootstrapImageComponents() extends ImageComponents {
         div(cls := "caption", txtAlignCenter)(p(caption))
       )
 
-  override def svg(source: String, caption: String = "") =
+  override def svg(source: String, caption: String = ""): Frag =
     if (caption.trim.isEmpty)
       tag("object")(tpe := "image/svg+xml", cls := "embed-responsive-item", data := source)(
         "Problem with rendering SVG..."

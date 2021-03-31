@@ -6,7 +6,7 @@ import ba.sake.hepek.w3css.component.classes.W3CssClassesBundle._
 
 case class W3CssImageComponents() extends ImageComponents {
 
-  override def image(source: String, caption: String = "") =
+  override def image(source: String, caption: String = ""): Frag =
     if (caption.trim.isEmpty)
       img(src := source, cls := "w3-border", alt := caption)
     else
@@ -15,7 +15,7 @@ case class W3CssImageComponents() extends ImageComponents {
         div(cls := "w3-container", txtAlignCenter)(p(caption))
       )
 
-  override def svg(source: String, caption: String = "") =
+  override def svg(source: String, caption: String = ""): Frag =
     if (caption.trim.isEmpty)
       tag("object")(tpe := "image/svg+xml", data := source)(
         "Problem with rendering SVG..."

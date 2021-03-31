@@ -9,25 +9,27 @@ import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.w3css.statik.W3CssStaticBundle
+import ba.sake.hepek.html.MetaSettings
+import scalatags.text.Builder
 
 object StaticPages {
-  val all = List(Plain, Bootstrap3, Bulma, W3Css)
+  val all: List[SimpleStaticPage] = List(Plain, Bootstrap3, Bulma, W3Css)
 }
 
 object Plain extends SimpleStaticPage {
-  val bundle = PlainStaticBundle()
+  val bundle: PlainStaticBundle = PlainStaticBundle()
 }
 
 object Bootstrap3 extends SimpleStaticPage {
-  val bundle = BootstrapStaticBundle()
+  val bundle: BootstrapStaticBundle = BootstrapStaticBundle()
 }
 
 object Bulma extends SimpleStaticPage {
-  val bundle = BulmaStaticBundle()
+  val bundle: BulmaStaticBundle = BulmaStaticBundle()
 }
 
 object W3Css extends SimpleStaticPage {
-  val bundle = W3CssStaticBundle()
+  val bundle: W3CssStaticBundle = W3CssStaticBundle()
 }
 
 object ids {
@@ -38,20 +40,20 @@ trait SimpleStaticPage extends StaticPage {
   val bundle: StaticBundle with MarkdownComponents
   import bundle._
 
-  override def siteSettings =
+  override def siteSettings: SiteSettings =
     super.siteSettings
       .withName("Site name")
       .withFaviconNormal("site-favicon.png")
       .withGoogleAnalyticsTrackingId("g-123")
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings
       .withTitle("Page title")
       .withLabel("Page link label")
       .withDescription("Page description")
       .withLanguage("bs")
 
-  override def metaSettings =
+  override def metaSettings: MetaSettings =
     super.metaSettings
       .withCharset("charset")
       .withXuaCompatible("xuaCompatible")
@@ -78,7 +80,7 @@ trait SimpleStaticPage extends StaticPage {
       .withOgLocale("ogLocale")
       .withArticleAuthor("articleAuthor")
 
-  override def pageContent =
+  override def pageContent: Frag[Builder,String] =
     frag(
       div(id := ids.md)(
         """

@@ -20,6 +20,6 @@ trait FADependencies extends PageDependencies {
         )
       )
 
-  override def components =
+  override def components: List[(BaseComponentSettings, ComponentDependencies)] =
     super.components :+ (faSettings, faDependencies)
 }

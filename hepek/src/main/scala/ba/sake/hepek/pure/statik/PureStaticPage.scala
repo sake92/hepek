@@ -12,13 +12,13 @@ trait PureStaticPage extends StaticPage with PurePage {
   private val Grid = PureGridComponents()
 
   // grid for layout with sidebar
-  val grid = Grid.withScreenRatios(
+  val grid: PureGridComponents = Grid.withScreenRatios(
     Grid.screenRatios.copy(lg = Ratios(Ratio(1, 5), Ratio(1, 1, 1)))
   )
 
   def withPureMenu: Boolean = true
 
-  override def bodyContent =
+  override def bodyContent: Frag =
     if (withPureMenu) {
       import grid._
       row(
@@ -27,7 +27,7 @@ trait PureStaticPage extends StaticPage with PurePage {
       )
     } else pageContent
 
-  override def stylesInline = {
+  override def stylesInline: List[String] = {
     val maybeInlineStyles = if (withPureMenu) List("""
       .pure-menu-vertical {
         display: inline-block;

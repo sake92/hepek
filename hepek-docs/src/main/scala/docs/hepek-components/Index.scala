@@ -5,16 +5,16 @@ import utils.Imports.Bundle._
 
 object Index extends HepekComponentsDocsPage {
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings
       .withTitle("Hepek Components")
       .withDescription("Hepek Components")
 
-  override def blogSettings = super.blogSettings.withSections(
+  override def blogSettings: BlogSettings = super.blogSettings.withSections(
     introSection
   )
 
-  val introSection = Section(
+  val introSection: Section = Section(
     "Hepek Components",
     frag(
       s"""

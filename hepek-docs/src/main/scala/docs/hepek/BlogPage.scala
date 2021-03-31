@@ -7,16 +7,16 @@ import utils._
 
 object BlogPage extends HepekDocsPage {
 
-  override def pageSettings =
+  override def pageSettings: PageSettings =
     super.pageSettings.withTitle("Blog page")
 
-  override def blogSettings = super.blogSettings.withSections(
+  override def blogSettings: BlogSettings = super.blogSettings.withSections(
     blogPostSettingsSection,
     sectionsSection,
     relatedPostsSection
   )
 
-  val blogPageSettingsProps = List(
+  val blogPageSettingsProps: List[ClassProperty] = List(
     ClassProperty("author", "Option[String]", "Author of this post", Some("None")),
     ClassProperty(
       "createDate",
@@ -29,7 +29,7 @@ object BlogPage extends HepekDocsPage {
   )
 
   /* CONTENT */
-  val blogPostSettingsSection = Section(
+  val blogPostSettingsSection: Section = Section(
     "Blog post settings",
     frag(
       s"""
@@ -41,7 +41,7 @@ object BlogPage extends HepekDocsPage {
     )
   )
 
-  val sectionsSection = Section(
+  val sectionsSection: Section = Section(
     "Sections",
     frag(
       """
@@ -75,7 +75,7 @@ object BlogPage extends HepekDocsPage {
     )
   )
 
-  val relatedPostsSection = Section(
+  val relatedPostsSection: Section = Section(
     "Related posts",
     """
       There is also `def categoryPosts: List[BlogPostPage]` method.  

@@ -4,9 +4,10 @@ import scalatags.Text.all._
 import ba.sake.hepek.Resources
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
+import scalatags.Text
 
 object Imports {
-  val Bundle = BootstrapStaticBundle()
+  val Bundle: BootstrapStaticBundle = BootstrapStaticBundle()
 
   object resources extends Resources {
     override def siteRootPath = "docs"
@@ -26,7 +27,7 @@ object Imports {
 
   import Bundle.Classes._
 
-  def renderClassProps(props: List[ClassProperty]) =
+  def renderClassProps(props: List[ClassProperty]): Text.TypedTag[String] =
     div(tableResponsive)(
       table(tableClass, tableHoverable)(
         tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
