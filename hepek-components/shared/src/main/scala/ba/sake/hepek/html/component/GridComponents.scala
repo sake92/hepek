@@ -1,7 +1,7 @@
 package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 trait GridComponents {
   import GridComponents._
@@ -94,7 +94,26 @@ object GridComponents {
       sm: Option[Ratios] = None,
       xs: Option[Ratios] = None
   ) {
-    def withAll(r: Ratios) = withLg(r).withMd(r).withSm(r).withXs(r)
+    def withAll(r: Ratios)               = withLg(r).withMd(r).withSm(r).withXs(r)
+    def withLg(lg: Ratios): ScreenRatios = new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+
+    def withMd(md: Option[Ratios]): ScreenRatios =
+      new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+
+    def withMd(md: Ratios): ScreenRatios =
+      new ScreenRatios(lg = lg, sm = sm, xs = xs, md = Option(md))
+
+    def withSm(sm: Option[Ratios]): ScreenRatios =
+      new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+
+    def withSm(sm: Ratios): ScreenRatios =
+      new ScreenRatios(lg = lg, md = md, xs = xs, sm = Option(sm))
+
+    def withXs(xs: Option[Ratios]): ScreenRatios =
+      new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+
+    def withXs(xs: Ratios): ScreenRatios =
+      new ScreenRatios(lg = lg, md = md, sm = sm, xs = Option(xs))
   }
 
   object Ratios {

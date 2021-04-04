@@ -5,7 +5,7 @@ import ba.sake.hepek.bulma.component._
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.component._
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 @Wither
 case class BulmaStaticBundle(
@@ -20,4 +20,64 @@ case class BulmaStaticBundle(
     with BulmaMarkdownComponents {
   override type HtmlPage   = BulmaPage
   override type StaticPage = BulmaStaticPage
+
+  def withForm(Form: BulmaFormComponents): BulmaStaticBundle =
+    new BulmaStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withGrid(Grid: BulmaGridComponents): BulmaStaticBundle =
+    new BulmaStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withImage(Image: PlainImageComponents): BulmaStaticBundle =
+    new BulmaStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withNavbar(Navbar: BulmaNavbarComponent): BulmaStaticBundle =
+    new BulmaStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withPanel(Panel: BulmaPanelComponents): BulmaStaticBundle =
+    new BulmaStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withClasses(Classes: BulmaClassesBundle): BulmaStaticBundle =
+    new BulmaStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
 }

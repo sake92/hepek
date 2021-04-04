@@ -3,7 +3,7 @@ package ba.sake.hepek.w3css.component
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 @Wither
 final case class W3CssGridComponents(
@@ -78,4 +78,7 @@ final case class W3CssGridComponents(
   // for args 1,1:2 => (1/3)*12 == 4
   private def ratio2W3Css(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 12).toInt
+
+  def withScreenRatios(screenRatios: ScreenRatios): W3CssGridComponents =
+    new W3CssGridComponents(screenRatios = screenRatios)
 }

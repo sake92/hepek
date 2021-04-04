@@ -17,16 +17,16 @@ inThisBuild(
       )
     ),
     scalaVersion := "2.13.5",
-    scalacOptions ++= Seq("-Ywarn-unused"),
+    scalafixScalaBinaryVersion := "2.13",
+    scalacOptions ++= Seq("-Ywarn-unused", "-deprecation"),
     useSuperShell := false,
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
+    scalafixDependencies ++= Seq(
+      "com.github.liancheng" %% "organize-imports" % "0.5.0",
+      "ba.sake" %% "kalem-rules" % V.kalem
+    )
   )
-)
-
-lazy val macroSettings = Seq(
-  Compile / scalacOptions ++= List("-Ymacro-annotations")
 )
 
 // components
@@ -35,12 +35,11 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake"     %%% "stone-macros" % V.stone,
+      "ba.sake"     %%% "kalem-core"   % V.kalem,
       "ba.sake"     %%% "scalatags"    % V.scalaTags,
       "com.lihaoyi" %%% "upickle"      % V.upickle
     )
   )
-  .settings(macroSettings: _*)
   .jvmSettings(
     libraryDependencies ++= Seq(
       "com.atlassian.commonmark" % "commonmark" % V.commonMark,
@@ -64,13 +63,11 @@ lazy val hepekStatic = (project in file("hepek"))
       "org.scalatest"           %% "scalatest"                   % V.scalaTest % "test"
     )
   )
-  .settings(macroSettings: _*)
   .dependsOn(hepekComponents.jvm)
 
 // play
 lazy val hepekPlay = (project in file("hepek-play"))
   .settings(name := "hepek-play")
-  .settings(macroSettings: _*)
   .dependsOn(hepekComponents.jvm)
   .enablePlugins(PlayScala)
 

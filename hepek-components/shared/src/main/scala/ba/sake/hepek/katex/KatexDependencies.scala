@@ -1,7 +1,7 @@
 package ba.sake.hepek.katex
 
 import ba.sake.hepek.html._
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 trait KatexDependencies extends PageDependencies {
   def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
@@ -45,4 +45,75 @@ final case class KatexSettings(
     delimitersInline: (String, String) = ("´", "´"),
     delimitersBlock: (String, String) = ("$$", "$$"),
     ignoredTags: List[String] = List("script", "noscript", "style", "textarea", "pre", "code")
-) extends BaseComponentSettings
+) extends BaseComponentSettings {
+
+  def withVersion(version: String): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags
+    )
+
+  def withPkg(pkg: String): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags
+    )
+
+  def withDepsProvider(depsProvider: DependencyProvider): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags
+    )
+
+  def withDelimitersInline(delimitersInline: (String, String)): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags
+    )
+
+  def withDelimitersBlock(delimitersBlock: (String, String)): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags
+    )
+
+  def withIgnoredTags(ignoredTags: List[String]): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags
+    )
+
+  def withIgnoredTags(ignoredTags: String*): KatexSettings =
+    new KatexSettings(
+      version = version,
+      pkg = pkg,
+      depsProvider = depsProvider,
+      delimitersInline = delimitersInline,
+      delimitersBlock = delimitersBlock,
+      ignoredTags = ignoredTags.toList
+    )
+}

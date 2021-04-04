@@ -2,7 +2,7 @@ package ba.sake.hepek.html
 
 import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 trait HtmlPage extends PageDependencies {
   def siteSettings: SiteSettings = SiteSettings()
@@ -125,7 +125,72 @@ final case class SiteSettings(
     faviconNormal: Option[String] = None,
     faviconInverted: Option[String] = None,
     googleAnalyticsTrackingId: Option[String] = None
-)
+) {
+
+  def withName(name: Option[String]): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconNormal = faviconNormal,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId
+    )
+
+  def withName(name: String): SiteSettings =
+    new SiteSettings(
+      faviconNormal = faviconNormal,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId,
+      name = Option(name)
+    )
+
+  def withFaviconNormal(faviconNormal: Option[String]): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconNormal = faviconNormal,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId
+    )
+
+  def withFaviconNormal(faviconNormal: String): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId,
+      faviconNormal = Option(faviconNormal)
+    )
+
+  def withFaviconInverted(faviconInverted: Option[String]): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconNormal = faviconNormal,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId
+    )
+
+  def withFaviconInverted(faviconInverted: String): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconNormal = faviconNormal,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId,
+      faviconInverted = Option(faviconInverted)
+    )
+
+  def withGoogleAnalyticsTrackingId(googleAnalyticsTrackingId: Option[String]): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconNormal = faviconNormal,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = googleAnalyticsTrackingId
+    )
+
+  def withGoogleAnalyticsTrackingId(googleAnalyticsTrackingId: String): SiteSettings =
+    new SiteSettings(
+      name = name,
+      faviconNormal = faviconNormal,
+      faviconInverted = faviconInverted,
+      googleAnalyticsTrackingId = Option(googleAnalyticsTrackingId)
+    )
+}
 
 @Wither
 final case class PageSettings(
@@ -139,6 +204,23 @@ final case class PageSettings(
     if (label.isEmpty || label == PageSettings.DefaultTitle)
       copy(title = t, label = t) // set label also, if not set
     else copy(title = t)
+
+  def withLabel(label: String): PageSettings =
+    new PageSettings(title = title, label = label, language = language, description = description)
+
+  def withLanguage(language: String): PageSettings =
+    new PageSettings(title = title, label = label, language = language, description = description)
+
+  def withDescription(description: Option[String]): PageSettings =
+    new PageSettings(title = title, label = label, language = language, description = description)
+
+  def withDescription(description: String): PageSettings =
+    new PageSettings(
+      title = title,
+      label = label,
+      language = language,
+      description = Option(description)
+    )
 }
 
 object PageSettings {
@@ -180,4 +262,1237 @@ final case class MetaSettings(
     ogSiteName: Option[String] = None,
     ogLocale: Option[String] = None,
     articleAuthor: Option[String] = None
-)
+) {
+
+  def withCharset(charset: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withXuaCompatible(xuaCompatible: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withViewport(viewport: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withThemeColor(themeColor: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withSubject(subject: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withSubject(subject: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      subject = Option(subject)
+    )
+
+  def withFirst(first: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withFirst(first: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      first = Option(first)
+    )
+
+  def withLast(last: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withLast(last: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      last = Option(last)
+    )
+
+  def withPrev(prev: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withPrev(prev: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      prev = Option(prev)
+    )
+
+  def withNext(next: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withNext(next: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      next = Option(next)
+    )
+
+  def withEditURI(editURI: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withEditURI(editURI: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      editURI = Option(editURI)
+    )
+
+  def withGeoICBM(geoICBM: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withGeoICBM(geoICBM: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      geoICBM = Option(geoICBM)
+    )
+
+  def withGeoPosition(geoPosition: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withGeoPosition(geoPosition: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      geoPosition = Option(geoPosition)
+    )
+
+  def withGeoRegion(geoRegion: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withGeoRegion(geoRegion: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      geoRegion = Option(geoRegion)
+    )
+
+  def withGeoPlacename(geoPlacename: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withGeoPlacename(geoPlacename: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      geoPlacename = Option(geoPlacename)
+    )
+
+  def withGoogleSiteVerification(googleSiteVerification: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withGoogleSiteVerification(googleSiteVerification: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      googleSiteVerification = Option(googleSiteVerification)
+    )
+
+  def withOgUrl(ogUrl: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgUrl(ogUrl: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogUrl = Option(ogUrl)
+    )
+
+  def withOgType(ogType: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgType(ogType: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogType = Option(ogType)
+    )
+
+  def withOgTitle(ogTitle: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgTitle(ogTitle: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogTitle = Option(ogTitle)
+    )
+
+  def withOgImage(ogImage: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgImage(ogImage: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogImage = Option(ogImage)
+    )
+
+  def withOgImageAlt(ogImageAlt: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgImageAlt(ogImageAlt: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogImageAlt = Option(ogImageAlt)
+    )
+
+  def withOgDescription(ogDescription: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgDescription(ogDescription: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogDescription = Option(ogDescription)
+    )
+
+  def withOgSiteName(ogSiteName: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgSiteName(ogSiteName: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor,
+      ogSiteName = Option(ogSiteName)
+    )
+
+  def withOgLocale(ogLocale: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withOgLocale(ogLocale: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      articleAuthor = articleAuthor,
+      ogLocale = Option(ogLocale)
+    )
+
+  def withArticleAuthor(articleAuthor: Option[String]): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = articleAuthor
+    )
+
+  def withArticleAuthor(articleAuthor: String): MetaSettings =
+    new MetaSettings(
+      charset = charset,
+      xuaCompatible = xuaCompatible,
+      viewport = viewport,
+      themeColor = themeColor,
+      subject = subject,
+      first = first,
+      last = last,
+      prev = prev,
+      next = next,
+      editURI = editURI,
+      geoICBM = geoICBM,
+      geoPosition = geoPosition,
+      geoRegion = geoRegion,
+      geoPlacename = geoPlacename,
+      googleSiteVerification = googleSiteVerification,
+      ogUrl = ogUrl,
+      ogType = ogType,
+      ogTitle = ogTitle,
+      ogImage = ogImage,
+      ogImageAlt = ogImageAlt,
+      ogDescription = ogDescription,
+      ogSiteName = ogSiteName,
+      ogLocale = ogLocale,
+      articleAuthor = Option(articleAuthor)
+    )
+}

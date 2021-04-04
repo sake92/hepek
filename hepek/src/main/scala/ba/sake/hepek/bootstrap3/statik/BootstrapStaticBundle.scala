@@ -6,7 +6,7 @@ import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.plain.component.PlainMarkdownComponents
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 @Wither
 case class BootstrapStaticBundle(
@@ -21,4 +21,64 @@ case class BootstrapStaticBundle(
     with PlainMarkdownComponents {
   override type HtmlPage   = BootstrapPage
   override type StaticPage = BootstrapStaticPage
+
+  def withForm(Form: BootstrapFormComponents): BootstrapStaticBundle =
+    new BootstrapStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withGrid(Grid: BootstrapGridComponents): BootstrapStaticBundle =
+    new BootstrapStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withImage(Image: BootstrapImageComponents): BootstrapStaticBundle =
+    new BootstrapStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withNavbar(Navbar: BootstrapNavbarComponents): BootstrapStaticBundle =
+    new BootstrapStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withPanel(Panel: BootstrapPanelComponents): BootstrapStaticBundle =
+    new BootstrapStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withClasses(Classes: BootstrapClassesBundle): BootstrapStaticBundle =
+    new BootstrapStaticBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
 }

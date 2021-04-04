@@ -2,7 +2,7 @@ package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 import all.{form => _, _}
 
