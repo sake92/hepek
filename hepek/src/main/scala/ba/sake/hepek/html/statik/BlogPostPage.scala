@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter
 import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 trait BlogPostPage extends StaticPage {
   def blogSettings: BlogSettings        = BlogSettings()
@@ -23,6 +23,78 @@ final case class BlogSettings(
 ) {
   def withDateFormat(df: DateTimeFormatter) = copy(dateFormat = df)
   def withDateFormat(df: String)            = copy(dateFormat = DateTimeFormatter.ofPattern(df))
+
+  def withAuthor(author: Option[String]): BlogSettings =
+    new BlogSettings(
+      author = author,
+      createdDate = createdDate,
+      updatedDate = updatedDate,
+      sections = sections,
+      dateFormat = dateFormat
+    )
+
+  def withAuthor(author: String): BlogSettings =
+    new BlogSettings(
+      createdDate = createdDate,
+      updatedDate = updatedDate,
+      sections = sections,
+      dateFormat = dateFormat,
+      author = Option(author)
+    )
+
+  def withCreatedDate(createdDate: Option[LocalDate]): BlogSettings =
+    new BlogSettings(
+      author = author,
+      createdDate = createdDate,
+      updatedDate = updatedDate,
+      sections = sections,
+      dateFormat = dateFormat
+    )
+
+  def withCreatedDate(createdDate: LocalDate): BlogSettings =
+    new BlogSettings(
+      author = author,
+      updatedDate = updatedDate,
+      sections = sections,
+      dateFormat = dateFormat,
+      createdDate = Option(createdDate)
+    )
+
+  def withUpdatedDate(updatedDate: Option[LocalDate]): BlogSettings =
+    new BlogSettings(
+      author = author,
+      createdDate = createdDate,
+      updatedDate = updatedDate,
+      sections = sections,
+      dateFormat = dateFormat
+    )
+
+  def withUpdatedDate(updatedDate: LocalDate): BlogSettings =
+    new BlogSettings(
+      author = author,
+      createdDate = createdDate,
+      sections = sections,
+      dateFormat = dateFormat,
+      updatedDate = Option(updatedDate)
+    )
+
+  def withSections(sections: List[Section]): BlogSettings =
+    new BlogSettings(
+      author = author,
+      createdDate = createdDate,
+      updatedDate = updatedDate,
+      sections = sections,
+      dateFormat = dateFormat
+    )
+
+  def withSections(sections: Section*): BlogSettings =
+    new BlogSettings(
+      author = author,
+      createdDate = createdDate,
+      updatedDate = updatedDate,
+      dateFormat = dateFormat,
+      sections = sections.toList
+    )
 }
 
 object BlogSettings {

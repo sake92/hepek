@@ -1,7 +1,7 @@
 package ba.sake.hepek.fontawesome5
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 object FA {
   val ad                               = FA5Icon("ad")
@@ -1433,6 +1433,106 @@ final case class FA5Icon(
       rotate.toList.flatMap(_.classes)
     i(allClasses.map(cls := _))()
   }
+
+  def withName(name: String): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = rotate
+    )
+
+  def withTpe(tpe: FA5Icon.Type): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = rotate
+    )
+
+  def withSize(size: Option[FA5Icon.Size]): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = rotate
+    )
+
+  def withSize(size: FA5Icon.Size): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      animation = animation,
+      flip = flip,
+      rotate = rotate,
+      size = Option(size)
+    )
+
+  def withAnimation(animation: Option[FA5Icon.Animation]): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = rotate
+    )
+
+  def withAnimation(animation: FA5Icon.Animation): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      flip = flip,
+      rotate = rotate,
+      animation = Option(animation)
+    )
+
+  def withFlip(flip: Option[FA5Icon.Flip]): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = rotate
+    )
+
+  def withFlip(flip: FA5Icon.Flip): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      rotate = rotate,
+      flip = Option(flip)
+    )
+
+  def withRotate(rotate: Option[FA5Icon.Rotate]): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = rotate
+    )
+
+  def withRotate(rotate: FA5Icon.Rotate): FA5Icon =
+    new FA5Icon(
+      name = name,
+      tpe = tpe,
+      size = size,
+      animation = animation,
+      flip = flip,
+      rotate = Option(rotate)
+    )
 }
 
 object FA5Icon {

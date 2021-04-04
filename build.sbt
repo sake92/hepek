@@ -17,11 +17,15 @@ inThisBuild(
       )
     ),
     scalaVersion := "2.13.5",
+    scalafixScalaBinaryVersion := "2.13",
     scalacOptions ++= Seq("-Ywarn-unused"),
     useSuperShell := false,
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
-    scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.5.0"
+    scalafixDependencies ++= Seq(
+      "com.github.liancheng" %% "organize-imports" % "0.5.0",
+      "ba.sake" %% "kalem-rules" % V.kalem
+    )
   )
 )
 
@@ -35,7 +39,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake"     %%% "stone-macros" % V.stone,
+      "ba.sake"     %%% "kalem-core"   % V.kalem,
       "ba.sake"     %%% "scalatags"    % V.scalaTags,
       "com.lihaoyi" %%% "upickle"      % V.upickle
     )

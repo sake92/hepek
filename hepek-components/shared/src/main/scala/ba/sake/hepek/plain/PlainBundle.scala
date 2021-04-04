@@ -3,7 +3,7 @@ package ba.sake.hepek.plain
 import ba.sake.hepek.html.Bundle
 import ba.sake.hepek.plain.component._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 @Wither
 case class PlainBundle(
@@ -16,4 +16,64 @@ case class PlainBundle(
 ) extends Bundle
     with PlainLinkComponents {
   override type HtmlPage = PlainPage
+
+  def withForm(Form: PlainFormComponents): PlainBundle =
+    new PlainBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withGrid(Grid: PlainGridComponents): PlainBundle =
+    new PlainBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withImage(Image: PlainImageComponents): PlainBundle =
+    new PlainBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withNavbar(Navbar: PlainNavbarComponents): PlainBundle =
+    new PlainBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withPanel(Panel: PlainPanelComponents): PlainBundle =
+    new PlainBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
+
+  def withClasses(Classes: PlainClassesBundle): PlainBundle =
+    new PlainBundle(
+      Form = Form,
+      Grid = Grid,
+      Image = Image,
+      Navbar = Navbar,
+      Panel = Panel,
+      Classes = Classes
+    )
 }

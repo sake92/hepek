@@ -1,5 +1,5 @@
 package ba.sake.hepek.html
-import ba.sake.stone.Wither
+import ba.sake.kalem.Wither
 
 final case class Dependency(
     file: String,
@@ -25,4 +25,22 @@ final case class Dependencies(
 
   def plusDeps(addDeps: List[Dependency]) = copy(deps = deps ++ addDeps)
   def plusDeps(addDeps: Dependency*)      = copy(deps = deps ++ addDeps.toList)
+
+  def withUrls(urls: List[String]): Dependencies =
+    new Dependencies(urls = urls, inlines = inlines, deps = deps)
+
+  def withUrls(urls: String*): Dependencies =
+    new Dependencies(inlines = inlines, deps = deps, urls = urls.toList)
+
+  def withInlines(inlines: List[String]): Dependencies =
+    new Dependencies(urls = urls, inlines = inlines, deps = deps)
+
+  def withInlines(inlines: String*): Dependencies =
+    new Dependencies(urls = urls, deps = deps, inlines = inlines.toList)
+
+  def withDeps(deps: List[Dependency]): Dependencies =
+    new Dependencies(urls = urls, inlines = inlines, deps = deps)
+
+  def withDeps(deps: Dependency*): Dependencies =
+    new Dependencies(urls = urls, inlines = inlines, deps = deps.toList)
 }
