@@ -137,7 +137,7 @@ case class MermaidConfig(
 }
 
 object MermaidConfig {
-  implicit val rw: JsonValueCodec[MermaidConfig] = JsonCodecMaker.make
+  implicit val rw: JsonValueCodec[MermaidConfig] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 @Wither
@@ -154,7 +154,7 @@ final case class MermaidFlowchartConfig(
 }
 
 object MermaidFlowchartConfig {
-  implicit val rw: JsonValueCodec[MermaidFlowchartConfig] = JsonCodecMaker.make
+  implicit val rw: JsonValueCodec[MermaidFlowchartConfig] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 @Wither
@@ -429,7 +429,7 @@ final case class MermaidSequencechartConfig(
 }
 
 object MermaidSequencechartConfig {
-  implicit val rw: JsonValueCodec[MermaidSequencechartConfig] = JsonCodecMaker.make
+  implicit val rw: JsonValueCodec[MermaidSequencechartConfig] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 final case class MermaidGanttchartConfig(
@@ -446,5 +446,5 @@ final case class MermaidGanttchartConfig(
 )
 
 object MermaidGanttchartConfig {
-  implicit val rw: JsonValueCodec[MermaidGanttchartConfig] = JsonCodecMaker.make
+  implicit val rw: JsonValueCodec[MermaidGanttchartConfig] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
