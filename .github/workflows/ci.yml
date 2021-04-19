@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches:
+      - [master, main]
+  pull_request:
+jobs:
+  test:
+    name: ${{ matrix.command }} ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        java: [adopt@1.8, adopt@1.11]
+        command:
+          - "'++2.13.5 test'"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v10
+        with:
+          java-version: ${{ matrix.java }}
+      - run: sbt ${{ matrix.command }}
