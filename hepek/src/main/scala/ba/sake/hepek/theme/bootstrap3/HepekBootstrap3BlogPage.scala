@@ -93,7 +93,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
           padding-top: 1px;
           padding-bottom: 1px;
           padding-left: 3em;
-          font-size: .7em;
+          font-size: .8em;
       }
       
       /* turn off affix on screens less than md */

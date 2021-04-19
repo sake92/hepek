@@ -6,7 +6,7 @@ import ba.sake.hepek.jquery.JQueryDependencies
 trait BootstrapDependencies extends JQueryDependencies {
 
   def bootstrapSettings: ComponentSettings =
-    ComponentSettings("3.3.7", "bootstrap", DependencyProvider.unpkg)
+    ComponentSettings("3.4.1", "bootstrap", DependencyProvider.unpkg)
 
   def bootstrapDependencies: ComponentDependencies =
     ComponentDependencies()

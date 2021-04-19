@@ -24,7 +24,7 @@ inThisBuild(
     semanticdbVersion := scalafixSemanticdb.revision,
     scalafixDependencies ++= Seq(
       "com.github.liancheng" %% "organize-imports" % "0.5.0",
-      "ba.sake" %% "kalem-rules" % V.kalem
+      "ba.sake"              %% "kalem-rules"      % V.kalem
     )
   )
 )
@@ -35,9 +35,10 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake"     %%% "kalem-core"   % V.kalem,
-      "ba.sake"     %%% "scalatags"    % V.scalaTags,
-      "com.lihaoyi" %%% "upickle"      % V.upickle
+      "ba.sake"                               %%% "kalem-core"            % V.kalem,
+      "ba.sake"                               %%% "scalatags"             % V.scalaTags,
+      "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-core"   % V.jsoniter,
+      "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-macros" % V.jsoniter % "compile-internal"
     )
   )
   .jvmSettings(
