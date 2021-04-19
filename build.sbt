@@ -17,6 +17,7 @@ inThisBuild(
       )
     ),
     scalaVersion := "2.13.5",
+    publish / skip := true,
     scalafixScalaBinaryVersion := "2.13",
     scalacOptions ++= Seq("-Ywarn-unused", "-deprecation"),
     useSuperShell := false,
@@ -33,6 +34,7 @@ inThisBuild(
 lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .in(file("hepek-components"))
   .settings(
+    publish / skip := false,
     name := "hepek-components",
     libraryDependencies ++= Seq(
       "ba.sake"                               %%% "kalem-core"            % V.kalem,
@@ -54,6 +56,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
 lazy val hepekStatic = (project in file("hepek"))
   .settings(
     name := "hepek",
+    publish / skip := false,
     libraryDependencies ++= Seq(
       "ba.sake"                 % "hepek-core"                   % V.hepekCore,
       "org.jsoup"               % "jsoup"                        % V.jsoup,
@@ -68,17 +71,16 @@ lazy val hepekStatic = (project in file("hepek"))
 
 // play
 lazy val hepekPlay = (project in file("hepek-play"))
-  .settings(name := "hepek-play")
+  .settings(name := "hepek-play", publish / skip := false)
   .dependsOn(hepekComponents.jvm)
   .enablePlugins(PlayScala)
 
 // docs
 lazy val hepekDocs = (project in file("hepek-docs"))
   .settings(
-    skip in publish := true,
-    (hepek in Compile) := {
+    (Compile / hepek) := {
       WebKeys.assets.value
-      (hepek in Compile).value
+      (Compile / hepek).value
     },
     openIndexPage := openIndexPageTask.value
   )
@@ -88,11 +90,10 @@ lazy val hepekDocs = (project in file("hepek-docs"))
 // tests
 lazy val hepekTests = (project in file("hepek-tests"))
   .settings(
-    skip in publish := true,
-    (test in Test) := {
+    (Test / test) := {
       WebKeys.assets.value
-      (hepek in Compile).value // run hepek before tests
-      (test in Test).value
+      (Compile / hepek).value // run hepek before tests
+      (Test / test).value
     },
     libraryDependencies ++= Seq(
       "org.seleniumhq.selenium" % "selenium-java" % V.selenium  % "test",
