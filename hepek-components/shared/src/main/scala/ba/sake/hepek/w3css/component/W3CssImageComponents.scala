@@ -13,7 +13,8 @@ case class W3CssImageComponents() extends ImageComponents {
       title: String = "",
       alt: String = ""
   ): Frag = {
-    val imgTag = img(src := source, cls := "w3-border", all.alt := alt)
+    val imgTag = img(src := source, cls := "w3-border", all.alt := alt,widthA := width,
+      heightA := height)
     if (title.trim.isEmpty) imgTag
     else
       div(

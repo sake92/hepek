@@ -64,7 +64,7 @@ final case class BootstrapNavbarComponents(
         div(cls := "navbar-header")(
           toggle,
           a(cls := "navbar-brand", href := brandUrl)(
-            brandIconUrl.map(url => span(img(src := url, alt := "logo", all.width := 32.px))),
+            brandIconUrl.map(url => span(img(src := url, alt := "logo", widthA := 32, heightA := 32))),
             brandName
           )
         ),

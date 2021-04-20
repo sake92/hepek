@@ -17,15 +17,15 @@ case class BootstrapImageComponents() extends ImageComponents {
       src := source,
       cls := "img-responsive",
       all.alt := alt,
-      all.width := width,
-      all.height := height
+      widthA := width,
+      heightA := height
     )
     if (title.trim.isEmpty)
       imgTag
     else
       div(cls := "thumbnail")(
         imgTag,
-        div(cls := "caption", txtAlignCenter)(p(title))
+        div(cls := "caption", txtAlignCenter)(title)
       )
   }
 
@@ -39,7 +39,7 @@ case class BootstrapImageComponents() extends ImageComponents {
     else
       div(cls := "thumbnail")(
         objectTag,
-        div(cls := "caption", txtAlignCenter)(p(title))
+        div(cls := "caption", txtAlignCenter)(title)
       )
   }
 }

@@ -13,7 +13,7 @@ case class PlainImageComponents() extends ImageComponents {
       alt: String = ""
   ): Frag =
     figure(
-      img(src := source, all.alt := alt, all.width := width, all.height := height),
+      img(src := source, all.alt := alt, widthA := width, heightA := height),
       figcaption(title)
     )
 

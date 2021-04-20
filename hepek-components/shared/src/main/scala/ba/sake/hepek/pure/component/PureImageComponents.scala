@@ -12,7 +12,8 @@ trait PureImageComponents extends ImageComponents {
       title: String = "",
       alt: String = ""
   ): Frag =
-    div(img(src := source, cls := "pure-img", all.alt := alt), {
+    div(img(src := source, cls := "pure-img", all.alt := alt,widthA := width,
+      heightA := height), {
       if (title.trim.isEmpty) frag()
       else div(cls := "caption text-center")(p(title))
     })
