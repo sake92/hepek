@@ -1,9 +1,13 @@
-package ba.sake.hepek.html
+package ba.sake.hepek
+
+package html
 
 import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
 import ba.sake.kalem.Wither
 
+// TODO move to SSG
+// not much of a benefit in ScalaJS world?
 trait HtmlPage extends PageDependencies {
   def siteSettings: SiteSettings = SiteSettings()
 
@@ -109,7 +113,7 @@ trait HtmlPage extends PageDependencies {
       pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
     ),
     siteSettings.faviconNormal.map { fav =>
-      link(rel := "shortcut icon", href := fav, tpe := "image/x-icon")
+      link(rel := "shortcut icon", href := fav, tpe := guessMimeType(fav))
     }
   )
 

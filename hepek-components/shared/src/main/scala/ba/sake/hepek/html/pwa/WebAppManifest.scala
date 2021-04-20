@@ -663,7 +663,9 @@ final case class WebAppManifest(
 }
 
 object WebAppManifest {
-  implicit val rw: JsonValueCodec[WebAppManifest] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
+
+  implicit val rw: JsonValueCodec[WebAppManifest] =
+    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 @Wither
@@ -692,7 +694,9 @@ final case class WebAppManifestIcon(
 }
 
 object WebAppManifestIcon {
-  implicit val rw: JsonValueCodec[WebAppManifestIcon] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
+
+  implicit val rw: JsonValueCodec[WebAppManifestIcon] =
+    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 @Wither
@@ -713,7 +717,9 @@ final case class WebAppRelatedApplication(
 }
 
 object WebAppRelatedApplication {
-  implicit val rw: JsonValueCodec[WebAppRelatedApplication] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
+
+  implicit val rw: JsonValueCodec[WebAppRelatedApplication] =
+    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 @Wither
@@ -735,7 +741,9 @@ final case class WebAppScreenshot(
 }
 
 object WebAppScreenshot {
-  implicit val rw: JsonValueCodec[WebAppScreenshot] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
+
+  implicit val rw: JsonValueCodec[WebAppScreenshot] =
+    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }
 
 @Wither
@@ -785,5 +793,7 @@ final case class WebAppServiceWorker(
 }
 
 object WebAppServiceWorker {
-  implicit val rw: JsonValueCodec[WebAppServiceWorker] = JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
+
+  implicit val rw: JsonValueCodec[WebAppServiceWorker] =
+    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }

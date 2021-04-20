@@ -1,7 +1,7 @@
 package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.html.component.NavbarComponents
-import ba.sake.hepek.scalatags.all.{Style => _, style => _, _}
+import ba.sake.hepek.scalatags.all, all.{Style => _, style => _, _}
 import ba.sake.kalem.Wither
 
 object BootstrapNavbarComponents {
@@ -64,7 +64,7 @@ final case class BootstrapNavbarComponents(
         div(cls := "navbar-header")(
           toggle,
           a(cls := "navbar-brand", href := brandUrl)(
-            brandIconUrl.map(url => span(img(src := url, alt := ""))),
+            brandIconUrl.map(url => span(img(src := url, alt := "logo", all.width := 32.px))),
             brandName
           )
         ),
