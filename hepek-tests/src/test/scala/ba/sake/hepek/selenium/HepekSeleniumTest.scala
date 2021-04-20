@@ -1,14 +1,24 @@
 package ba.sake.hepek.selenium
 
 import java.nio.file.Paths
-import org.scalatest._
+/*import org.scalatest._
 import org.scalatest.concurrent.Eventually
 import org.scalatest.selenium.HtmlUnit
 import ba.sake.hepek.core.Renderable
 import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
 
-trait HepekSeleniumTest extends AnyFlatSpec with Matchers with HtmlUnit with Eventually {
+*/
+import org.scalatest._
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.selenium._
+import org.openqa.selenium.WebDriver
+import org.openqa.selenium.htmlunit.HtmlUnitDriver
+import ba.sake.hepek.core.Renderable
+
+trait HepekSeleniumTest extends flatspec.AnyFlatSpec with Matchers with WebBrowser {
+
+  implicit val webDriver: WebDriver = new HtmlUnitDriver
+
   java.util.logging.Logger
     .getLogger("com.gargoylesoftware.htmlunit")
     .setLevel(java.util.logging.Level.OFF) // disable annoying HtmlUnit warnings
