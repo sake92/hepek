@@ -1,25 +1,29 @@
 package ba.sake.hepek.pure.component
 
 import ba.sake.hepek.html.component.ImageComponents
-import ba.sake.hepek.scalatags.all.{caption => _, _}
+import ba.sake.hepek.scalatags.all, all.{caption => _, _}
 
 trait PureImageComponents extends ImageComponents {
 
-  override def image(source: String, caption: String = "") =
-    frag(
-      img(src := source, cls := "pure-img", alt := caption), {
-        if (caption.trim.isEmpty) frag()
-        else div(cls := "caption text-center")(p(caption))
-      }
-    )
+  override def image(
+      source: String,
+      width: Int,
+      height: Int,
+      title: String = "",
+      alt: String = ""
+  ): Frag =
+    div(img(src := source, cls := "pure-img", all.alt := alt), {
+      if (title.trim.isEmpty) frag()
+      else div(cls := "caption text-center")(p(title))
+    })
 
-  override def svg(source: String, captionn: String = "") =
-    frag(
+  override def svg(source: String, title: String = "") =
+    div(
       tag("object")(tpe := "image/svg+xml", cls := "embed-responsive-item", data := source)(
         "Problem with rendering SVG..."
       ), {
-        if (captionn.trim.isEmpty) frag()
-        else div(cls := "caption text-center")(p(captionn))
+        if (title.trim.isEmpty) frag()
+        else div(cls := "caption text-center")(p(title))
       }
     )
 }
