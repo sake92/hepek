@@ -1,13 +1,6 @@
 package ba.sake.hepek.selenium
 
 import java.nio.file.Paths
-/*import org.scalatest._
-import org.scalatest.concurrent.Eventually
-import org.scalatest.selenium.HtmlUnit
-import ba.sake.hepek.core.Renderable
-import org.scalatest.flatspec.AnyFlatSpec
-
-*/
 import org.scalatest._
 import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.selenium._

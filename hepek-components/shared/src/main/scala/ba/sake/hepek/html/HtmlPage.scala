@@ -2,6 +2,7 @@ package ba.sake.hepek
 
 package html
 
+import ba.sake.hepek.utils.MimeTypes
 import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
 import ba.sake.kalem.Wither
@@ -113,7 +114,7 @@ trait HtmlPage extends PageDependencies {
       pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
     ),
     siteSettings.faviconNormal.map { fav =>
-      link(rel := "shortcut icon", href := fav, tpe := guessMimeType(fav))
+      link(rel := "shortcut icon", href := fav, tpe := MimeTypes.guess(fav))
     }
   )
 
