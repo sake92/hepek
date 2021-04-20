@@ -35,9 +35,10 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .settings(
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake"     %%% "kalem-core"   % V.kalem,
-      "ba.sake"     %%% "scalatags"    % V.scalaTags,
-      "com.lihaoyi" %%% "upickle"      % V.upickle
+      "ba.sake"                               %%% "kalem-core"            % V.kalem,
+      "ba.sake"                               %%% "scalatags"             % V.scalaTags,
+      "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-core"   % V.`jsoniter-scala`,
+      "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-macros" % V.`jsoniter-scala` % Provided,
     )
   )
   .jvmSettings(

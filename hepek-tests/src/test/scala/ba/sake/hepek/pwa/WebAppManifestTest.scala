@@ -2,13 +2,13 @@ package ba.sake.hepek.pwa
 
 import org.scalatest._
 import ba.sake.hepek.html.pwa._
-import ba.sake.hepek.html.utils.HepekPickler._
+import com.github.plokhotnyuk.jsoniter_scala.core._
 
 class WebAppManifestTest extends FlatSpec with Matchers {
   "WebAppManifest" should "serialize the default correctly" in {
     val manifest     = WebAppManifest("My site")
-    val manifestJson = write(manifest)
-    val serManifest  = read[WebAppManifest](manifestJson) // roundtrip to validate.. :)
+    val manifestJson = writeToString(manifest)
+    val serManifest  = readFromString[WebAppManifest](manifestJson) // roundtrip to validate.. :)
     manifest.display shouldBe "minimal-ui"
     serManifest shouldBe manifest
   }
@@ -36,8 +36,8 @@ class WebAppManifestTest extends FlatSpec with Matchers {
       )
       .withScreenshots(WebAppScreenshot("screenshot.webp", "1280x720", "image/webp"))
 
-    val manifestJson = write(manifest)
-    val serManifest  = read[WebAppManifest](manifestJson)
+    val manifestJson = writeToString(manifest)
+    val serManifest  = readFromString[WebAppManifest](manifestJson)
     serManifest shouldBe manifest
   }
 }

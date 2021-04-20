@@ -1,33 +1,29 @@
 package ba.sake.hepek.html.pwa
 
-import upickle.implicits.key
-
-import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW, _}
 import ba.sake.kalem.Wither
+import com.github.plokhotnyuk.jsoniter_scala.core._
+import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker._
+import com.github.plokhotnyuk.jsoniter_scala.macros._
 
 @Wither
 final case class WebAppManifest(
     name: String,
-    @key("short_name")
-    shortName: Option[String] = None,
+    @named("short_name") shortName: Option[String] = None,
     description: Option[String] = None,
-    @key("theme_color")
-    themeColor: Option[String] = None,
-    @key("background_color")
+    @named("theme_color") themeColor: Option[String] = None,
     backgroundColor: Option[String] = None,
     icons: List[WebAppManifestIcon] = List.empty,
     display: String = "minimal-ui", // fullscreen, browser, standalone, minimal-ui
     orientation: Option[String] = None,
-    @key("start_url")
-    startUrl: String = ".",
+    @named("start_url") startUrl: String = ".",
     scope: Option[String] = None,
     serviceworker: Option[WebAppServiceWorker] = None,
     categories: List[String] = List.empty,
     dir: Option[String] = None, // rtl, ltr, auto
     lang: Option[String] = None,
-    @key("prefer_related_applications")
+    @named("prefer_related_applications")
     preferRelatedApplications: Boolean = false,
-    @key("related_applications")
+    @named("related_applications")
     relatedApplications: List[WebAppRelatedApplication] = List.empty,
     screenshots: List[WebAppScreenshot] = List.empty
 ) {
@@ -664,15 +660,14 @@ final case class WebAppManifest(
 }
 
 object WebAppManifest {
-  implicit val rw: RW[WebAppManifest] = macroRW
+  implicit val codec: JsonValueCodec[WebAppManifest] = make
 }
 
 @Wither
 final case class WebAppManifestIcon(
     src: String,
     sizes: String,
-    @key("type")
-    tpe: String,
+    @named("type") tpe: String,
     purpose: Option[String] = None
 ) {
 
@@ -693,7 +688,7 @@ final case class WebAppManifestIcon(
 }
 
 object WebAppManifestIcon {
-  implicit val rw: RW[WebAppManifestIcon] = macroRW
+  implicit val codec: JsonValueCodec[WebAppManifestIcon] = make
 }
 
 @Wither
@@ -714,15 +709,14 @@ final case class WebAppRelatedApplication(
 }
 
 object WebAppRelatedApplication {
-  implicit val rw: RW[WebAppRelatedApplication] = macroRW
+  implicit val codec: JsonValueCodec[WebAppRelatedApplication] = make
 }
 
 @Wither
 final case class WebAppScreenshot(
     src: String,
     sizes: String,
-    @key("type")
-    tpe: String
+    @named("type") tpe: String
 ) {
 
   def withSrc(src: String): WebAppScreenshot =
@@ -736,16 +730,15 @@ final case class WebAppScreenshot(
 }
 
 object WebAppScreenshot {
-  implicit val rw: RW[WebAppScreenshot] = macroRW
+  implicit val codec: JsonValueCodec[WebAppScreenshot] = make
 }
 
 @Wither
 final case class WebAppServiceWorker(
     src: String,
     scope: Option[String] = None,
-    @key("type")
-    tpe: Option[String] = None,
-    @key("update_via_cache") updateViaCache: Option[String] = None
+    @named("type") tpe: Option[String] = None,
+    @named("update_via_cache") updateViaCache: Option[String] = None
 ) {
 
   def withSrc(src: String): WebAppServiceWorker =
@@ -786,5 +779,5 @@ final case class WebAppServiceWorker(
 }
 
 object WebAppServiceWorker {
-  implicit val rw: RW[WebAppServiceWorker] = macroRW
+  implicit val codec: JsonValueCodec[WebAppServiceWorker] = make
 }

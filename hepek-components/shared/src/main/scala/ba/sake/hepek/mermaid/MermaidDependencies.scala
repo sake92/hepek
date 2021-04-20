@@ -1,10 +1,9 @@
 package ba.sake.hepek.mermaid
 
 import ba.sake.hepek.html._
-import ba.sake.hepek.html.utils.HepekPickler.macroRW
-import ba.sake.hepek.html.utils.HepekPickler.write
-import ba.sake.hepek.html.utils.HepekPickler.{ReadWriter => RW}
 import ba.sake.kalem.Wither
+import com.github.plokhotnyuk.jsoniter_scala.core._
+import com.github.plokhotnyuk.jsoniter_scala.macros.JsonCodecMaker._
 
 trait MermaidDependencies extends PageDependencies {
   def mermaidConfig: MermaidConfig = MermaidConfig()
@@ -20,7 +19,7 @@ trait MermaidDependencies extends PageDependencies {
 
   override def scriptsInline =
     super.scriptsInline :+ {
-      val conf = write(mermaidConfig)
+      val conf = writeToString[MermaidConfig](mermaidConfig)
       s"mermaid.initialize($conf);"
     }
 
@@ -138,7 +137,7 @@ case class MermaidConfig(
 }
 
 object MermaidConfig {
-  implicit val rw: RW[MermaidConfig] = macroRW
+  implicit val codec: JsonValueCodec[MermaidConfig] = make
 }
 
 @Wither
@@ -155,7 +154,7 @@ final case class MermaidFlowchartConfig(
 }
 
 object MermaidFlowchartConfig {
-  implicit val rw: RW[MermaidFlowchartConfig] = macroRW
+  implicit val codec: JsonValueCodec[MermaidFlowchartConfig] = make
 }
 
 @Wither
@@ -430,7 +429,7 @@ final case class MermaidSequencechartConfig(
 }
 
 object MermaidSequencechartConfig {
-  implicit val rw: RW[MermaidSequencechartConfig] = macroRW
+  implicit val codec: JsonValueCodec[MermaidSequencechartConfig] = make
 }
 
 final case class MermaidGanttchartConfig(
@@ -447,5 +446,5 @@ final case class MermaidGanttchartConfig(
 )
 
 object MermaidGanttchartConfig {
-  implicit val rw: RW[MermaidGanttchartConfig] = macroRW
+  implicit val codec: JsonValueCodec[MermaidGanttchartConfig] = make
 }
