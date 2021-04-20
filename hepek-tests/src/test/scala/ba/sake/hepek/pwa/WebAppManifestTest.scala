@@ -3,8 +3,10 @@ package ba.sake.hepek.pwa
 import com.github.plokhotnyuk.jsoniter_scala.core._
 import org.scalatest._
 import ba.sake.hepek.html.pwa._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class WebAppManifestTest extends FlatSpec with Matchers {
+class WebAppManifestTest extends AnyFlatSpec with Matchers {
   "WebAppManifest" should "serialize the default correctly" in {
     val manifest     = WebAppManifest("My site")
     val manifestJsonString = writeToString(manifest)
