@@ -1,7 +1,7 @@
 object V {
   val kalem     = "0.0.1"
   val scalaTags = "0.9.2-rx3.0"
-  val jsoniter  = "2.7.3"
+  val jsoniter  = "2.7.2"
 
   val hepekCore     = "0.2.0"
   val commonMark    = "0.15.2"
