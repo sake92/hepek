@@ -16,7 +16,7 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion := "2.13.5",
+    scalaVersion := "2.13.6",
     publish / skip := true,
     scalafixScalaBinaryVersion := "2.13",
     scalacOptions ++= Seq("-Ywarn-unused", "-deprecation"),
