@@ -23,6 +23,7 @@ Make your own website and deploy it with Netlify (yes, for free) in just a few c
 - [starter template](https://github.com/sake92/hepek-starter)
 - [examples](https://github.com/sake92/hepek-examples)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
+- [source code](https://github.com/sake92/sake-ba-blog-source) of blog.sake.ba (code examples, math snippets etc.)
 
 
 ---
