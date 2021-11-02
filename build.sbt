@@ -16,7 +16,7 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion := "2.13.5",
+    scalaVersion := "2.13.7",
     publish / skip := true,
     scalafixScalaBinaryVersion := "2.13",
     scalacOptions ++= Seq("-Ywarn-unused", "-deprecation"),
@@ -96,9 +96,9 @@ lazy val hepekTests = (project in file("hepek-tests"))
       (Test / test).value
     },
     libraryDependencies ++= Seq(
-      "org.seleniumhq.selenium" % "selenium-java" % V.selenium  % "test",
-      "org.scalatest"           %% "scalatest"    % V.scalaTest % "test",
-      "org.scalatestplus" %% "selenium-3-141" % "3.2.8.0" % "test"
+      "org.seleniumhq.selenium" % "selenium-java"   % V.selenium  % "test",
+      "org.scalatest"           %% "scalatest"      % V.scalaTest % "test",
+      "org.scalatestplus"       %% "selenium-3-141" % "3.2.8.0"   % "test"
     )
   )
   .dependsOn(hepekStatic)
