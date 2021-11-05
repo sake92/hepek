@@ -24,7 +24,7 @@ inThisBuild(
     semanticdbEnabled := true,
     semanticdbVersion := scalafixSemanticdb.revision,
     scalafixDependencies ++= Seq(
-      "com.github.liancheng" %% "organize-imports" % "0.5.0",
+      "com.github.liancheng" %% "organize-imports" % "0.6.0",
       "ba.sake"              %% "kalem-rules"      % V.kalem
     )
   )
@@ -96,9 +96,9 @@ lazy val hepekTests = (project in file("hepek-tests"))
       (Test / test).value
     },
     libraryDependencies ++= Seq(
-      "org.seleniumhq.selenium" % "selenium-java" % V.selenium  % "test",
-      "org.scalatest"           %% "scalatest"    % V.scalaTest % "test",
-      "org.scalatestplus" %% "selenium-3-141" % "3.2.8.0" % "test"
+      "org.seleniumhq.selenium" % "selenium-java"   % V.selenium  % "test",
+      "org.scalatest"           %% "scalatest"      % V.scalaTest % "test",
+      "org.scalatestplus"       %% "selenium-3-141" % "3.2.8.0"   % "test"
     )
   )
   .dependsOn(hepekStatic)
