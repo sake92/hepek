@@ -7,12 +7,10 @@ import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
 
-
 trait BlogPostPage extends StaticPage {
   def blogSettings: BlogSettings        = BlogSettings()
   def categoryPosts: List[BlogPostPage] = List.empty
 }
-
 
 final case class BlogSettings(
     author: Option[String] = None,

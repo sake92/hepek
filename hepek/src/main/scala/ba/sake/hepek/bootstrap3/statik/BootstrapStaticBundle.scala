@@ -7,7 +7,6 @@ import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.plain.component.PlainMarkdownComponents
 
-
 case class BootstrapStaticBundle(
     Form: BootstrapFormComponents = BootstrapFormComponents(),
     Grid: BootstrapGridComponents = BootstrapGridComponents(),

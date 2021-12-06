@@ -8,7 +8,6 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import ba.sake.hepek.core.Renderable
 
 trait HepekSeleniumTest extends flatspec.AnyFlatSpec with Matchers {
-
   implicit val webDriver: WebDriver = new HtmlUnitDriver
 
   java.util.logging.Logger
@@ -24,5 +23,5 @@ trait HepekSeleniumTest extends flatspec.AnyFlatSpec with Matchers {
   }
 
   //def getByCss(selector: String): Option[Element] =
-    //find(cssSelector(selector))
+  //find(cssSelector(selector))
 }

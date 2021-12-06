@@ -1,4 +1,6 @@
-addSbtPlugin("com.geirsson"  % "sbt-ci-release" % "1.5.2")
+
+addSbtPlugin("com.github.sbt" % "sbt-ci-release" % "1.5.9")
+
 addSbtPlugin("org.scalameta" % "sbt-scalafmt"   % "2.4.5")
 
 addSbtPlugin("com.typesafe.sbt"  % "sbt-web"    % "1.4.4")

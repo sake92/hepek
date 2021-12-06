@@ -18,7 +18,9 @@ inThisBuild(
     ),
     scalaVersion := "3.1.0",
     publish / skip := true,
-    scalacOptions ++= Seq("-deprecation")
+    scalacOptions ++= Seq("-deprecation"),
+    resolvers +=
+  "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
 )
 
@@ -30,7 +32,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     name := "hepek-components",
     libraryDependencies ++= Seq(
       "com.lihaoyi"                               %%% "scalatags"             % V.scalaTags,
-      "ba.sake" %%% "tupson"   % V.tupson,
+      "ba.sake" %%% "tupson"   % V.tupson changing(),
     )
   )
   .jvmSettings(
