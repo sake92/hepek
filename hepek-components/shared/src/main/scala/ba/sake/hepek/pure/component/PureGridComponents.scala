@@ -3,9 +3,7 @@ package ba.sake.hepek.pure.component
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
-import ba.sake.kalem.Wither
 
-@Wither
 final case class PureGridComponents(
     screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {

@@ -1,7 +1,7 @@
 package ba.sake.hepek.katex
 
 import ba.sake.hepek.html._
-import ba.sake.kalem.Wither
+
 
 trait KatexDependencies extends PageDependencies {
   def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
@@ -37,7 +37,7 @@ trait KatexDependencies extends PageDependencies {
     super.components :+ (katexSettings, katexDependencies)
 }
 
-@Wither
+
 final case class KatexSettings(
     version: String,
     pkg: String,

@@ -5,7 +5,7 @@ package html
 import ba.sake.hepek.utils.MimeTypes
 import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
-import ba.sake.kalem.Wither
+
 
 // TODO move to SSG
 // not much of a benefit in ScalaJS world?
@@ -124,7 +124,7 @@ trait HtmlPage extends PageDependencies {
   def pageContent: Frag = frag()
 }
 
-@Wither
+
 final case class SiteSettings(
     name: Option[String] = None,
     faviconNormal: Option[String] = None,
@@ -197,7 +197,7 @@ final case class SiteSettings(
     )
 }
 
-@Wither
+
 final case class PageSettings(
     title: String,
     label: String,
@@ -236,7 +236,7 @@ object PageSettings {
     PageSettings(title, title, DefaultLanguage, None)
 }
 
-@Wither
+
 final case class MetaSettings(
     charset: String = "utf-8",
     xuaCompatible: String = "ie=edge",

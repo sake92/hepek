@@ -2,7 +2,7 @@ package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all
-import ba.sake.kalem.Wither
+
 
 import all.{form => _, _}
 
@@ -16,7 +16,7 @@ object PlainFormComponents {
   }
 }
 
-@Wither
+
 final case class PlainFormComponents(
     formType: FormComponents.Type = PlainFormComponents.DefaultType
 ) extends PlainFormComponentsImpl
@@ -53,7 +53,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     inputLabel match {
       case None => inputFragTransformed
       case Some(inputLabel) =>
-        label(inputId.map(`for` := _.v))(
+        label(inputId.map(`for` := _))(
           inputFragTransformed,
           inputLabel
         )
@@ -97,7 +97,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     val inputFrag = inputLabel match {
       case None => input(commonAttrs)
       case Some(inputLabel) =>
-        label(inputId.map(`for` := _.v))(
+        label(inputId.map(`for` := _))(
           input(commonAttrs),
           inputLabel
         )
@@ -149,7 +149,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     }
     val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId.map(id := _)
     div(
-      inputLabel.map(l => label(inputId.map(`for` := _.v))),
+      inputLabel.map(l => label(inputId.map(`for` := _))),
       select(selectAttrs)(optionFrags)
     )
   }
@@ -174,7 +174,7 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     }
     val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId.map(id := _)
     div(
-      inputLabel.map(l => label(inputId.map(`for` := _.v))),
+      inputLabel.map(l => label(inputId.map(`for` := _))),
       select(selectAttrs)(optionGroupFrags)
     )
   }

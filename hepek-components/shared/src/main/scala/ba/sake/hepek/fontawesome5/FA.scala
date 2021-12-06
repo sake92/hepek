@@ -1,7 +1,7 @@
 package ba.sake.hepek.fontawesome5
 
 import ba.sake.hepek.scalatags.all._
-import ba.sake.kalem.Wither
+
 
 object FA {
   val ad                               = FA5Icon("ad")
@@ -1410,7 +1410,7 @@ object FA {
   val zhihu                       = FA5Icon("zhihu", FA5Icon.Type.Brand)
 }
 
-@Wither
+
 final case class FA5Icon(
     name: String,
     tpe: FA5Icon.Type = FA5Icon.Type.Solid,

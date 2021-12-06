@@ -2,7 +2,7 @@ package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all.{Style => _, style => _, _}
-import ba.sake.kalem.Wither
+
 
 object BulmaNavbarComponent {
   sealed trait Position { def classes: String }
@@ -22,7 +22,7 @@ object BulmaNavbarComponent {
   case class Style(classes: String)
 }
 
-@Wither
+
 final case class BulmaNavbarComponent(
     style: Option[BulmaNavbarComponent.Style] = None,
     position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),

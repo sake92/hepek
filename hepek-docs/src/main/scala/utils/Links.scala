@@ -37,7 +37,5 @@ object links {
   val HepekBootstrap3BlogPagesUrl =
     s"$hepekSsgUrl/ba/sake/hepek/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
 
-  val PlayExampleUrl = "https://github.com/sake92/play-hepek-example"
-
   val BrowsersyncUrl = "https://browsersync.io/"
 }

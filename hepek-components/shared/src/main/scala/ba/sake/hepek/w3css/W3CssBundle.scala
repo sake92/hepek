@@ -4,9 +4,7 @@ import ba.sake.hepek.html.Bundle
 import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.w3css.component._
 import ba.sake.hepek.w3css.component.classes.W3CssClassesBundle
-import ba.sake.kalem.Wither
 
-@Wither
 case class W3CssBundle(
     Form: W3CssFormComponents = W3CssFormComponents(),
     Grid: W3CssGridComponents = W3CssGridComponents(),

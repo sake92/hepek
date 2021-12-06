@@ -1,5 +1,5 @@
 package ba.sake.hepek.html
-import ba.sake.kalem.Wither
+
 
 final case class Dependency(
     file: String,
@@ -11,7 +11,7 @@ final case class Dependency(
   def queryParams: String = qParams.map(q => "?" + q).getOrElse("")
 }
 
-@Wither
+
 final case class Dependencies(
     urls: List[String] = List.empty,
     inlines: List[String] = List.empty,

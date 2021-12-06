@@ -3,7 +3,7 @@ package ba.sake.hepek.bootstrap3.component
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
-import ba.sake.kalem.Wither
+
 
 object BootstrapFormComponents {
   sealed trait Type extends FormComponents.Type
@@ -29,7 +29,7 @@ object BootstrapFormComponents {
   }
 }
 
-@Wither
+
 final case class BootstrapFormComponents(
     formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
 ) extends FormComponents {
@@ -64,7 +64,7 @@ final case class BootstrapFormComponents(
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup(inputValidationCls.toSeq: _*)(
-          label(cls := s"control-label $colLabel", inputId.map(`for` := _.v))(
+          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
@@ -75,7 +75,7 @@ final case class BootstrapFormComponents(
         )
       case _ =>
         formGroup(inputValidationCls.toSeq: _*)(
-          inputLabel.map(lbl => label(inputId.map(`for` := _.v))(lbl)),
+          inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
           inputFragTransformed,
           inputMsgsFrag,
           inputHelpFrag
@@ -124,7 +124,7 @@ final case class BootstrapFormComponents(
         formGroup()(
           div(cls := s"$colLabel $colInput")(
             div(cls := "checkbox")(
-              label(inputId.map(`for` := _.v))(
+              label(inputId.map(`for` := _))(
                 input(commonAttrs),
                 inputLabel
               ),
@@ -134,7 +134,7 @@ final case class BootstrapFormComponents(
         )
       case _ =>
         div(cls := "checkbox")(
-          label(inputId.map(`for` := _.v))(
+          label(inputId.map(`for` := _))(
             input(commonAttrs),
             inputLabel
           ),
@@ -254,7 +254,7 @@ final case class BootstrapFormComponents(
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel", inputId.map(`for` := _.v))(
+          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
@@ -264,7 +264,7 @@ final case class BootstrapFormComponents(
         )
       case _ =>
         formGroup()(
-          inputLabel.map(lbl => label(inputId.map(`for` := _.v))(lbl)),
+          inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
           selectFrag,
           inputHelpFrag
         )
@@ -298,7 +298,7 @@ final case class BootstrapFormComponents(
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel", inputId.map(`for` := _.v))(
+          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
@@ -308,7 +308,7 @@ final case class BootstrapFormComponents(
         )
       case _ =>
         formGroup()(
-          inputLabel.map(lbl => label(inputId.map(`for` := _.v))(lbl)),
+          inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
           selectFrag,
           inputHelpFrag
         )

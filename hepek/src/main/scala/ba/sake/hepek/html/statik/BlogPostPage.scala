@@ -6,14 +6,14 @@ import java.time.format.DateTimeFormatter
 import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
-import ba.sake.kalem.Wither
+
 
 trait BlogPostPage extends StaticPage {
   def blogSettings: BlogSettings        = BlogSettings()
   def categoryPosts: List[BlogPostPage] = List.empty
 }
 
-@Wither
+
 final case class BlogSettings(
     author: Option[String] = None,
     createdDate: Option[LocalDate] = None,

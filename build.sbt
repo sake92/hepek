@@ -16,17 +16,9 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion := "2.13.5",
+    scalaVersion := "3.1.0",
     publish / skip := true,
-    scalafixScalaBinaryVersion := "2.13",
-    scalacOptions ++= Seq("-Ywarn-unused", "-deprecation"),
-    useSuperShell := false,
-    semanticdbEnabled := true,
-    semanticdbVersion := scalafixSemanticdb.revision,
-    scalafixDependencies ++= Seq(
-      "com.github.liancheng" %% "organize-imports" % "0.5.0",
-      "ba.sake"              %% "kalem-rules"      % V.kalem
-    )
+    scalacOptions ++= Seq("-deprecation")
   )
 )
 
@@ -37,10 +29,8 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     publish / skip := false,
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "ba.sake"                               %%% "kalem-core"            % V.kalem,
-      "ba.sake"                               %%% "scalatags"             % V.scalaTags,
-      "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-core"   % V.jsoniter,
-      "com.github.plokhotnyuk.jsoniter-scala" %%% "jsoniter-scala-macros" % V.jsoniter % "compile-internal"
+      "com.lihaoyi"                               %%% "scalatags"             % V.scalaTags,
+      "ba.sake" %%% "tupson"   % V.tupson,
     )
   )
   .jvmSettings(
@@ -69,12 +59,6 @@ lazy val hepekStatic = (project in file("hepek"))
   )
   .dependsOn(hepekComponents.jvm)
 
-// play
-lazy val hepekPlay = (project in file("hepek-play"))
-  .settings(name := "hepek-play", publish / skip := false)
-  .dependsOn(hepekComponents.jvm)
-  .enablePlugins(PlayScala)
-
 // docs
 lazy val hepekDocs = (project in file("hepek-docs"))
   .settings(
@@ -97,8 +81,7 @@ lazy val hepekTests = (project in file("hepek-tests"))
     },
     libraryDependencies ++= Seq(
       "org.seleniumhq.selenium" % "selenium-java" % V.selenium  % "test",
-      "org.scalatest"           %% "scalatest"    % V.scalaTest % "test",
-      "org.scalatestplus" %% "selenium-3-141" % "3.2.8.0" % "test"
+      "org.scalatest"           %% "scalatest"    % V.scalaTest % "test"
     )
   )
   .dependsOn(hepekStatic)

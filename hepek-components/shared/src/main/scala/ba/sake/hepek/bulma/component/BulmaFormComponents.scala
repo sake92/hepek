@@ -3,7 +3,7 @@ package ba.sake.hepek.bulma.component
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
-import ba.sake.kalem.Wither
+
 
 object BulmaFormComponents {
   sealed trait Type extends FormComponents.Type
@@ -21,7 +21,7 @@ object BulmaFormComponents {
   }
 }
 
-@Wither
+
 final case class BulmaFormComponents(
     formType: FormComponents.Type = BulmaFormComponents.DefaultType
 ) extends FormComponents {
@@ -64,7 +64,7 @@ final case class BulmaFormComponents(
       div(cls := "field")(
         inputLabel
           .filterNot(_ => formType.isInstanceOf[Type.Horizontal]) // ignore if horizontal
-          .map(l => label(cls := "label", inputId.map(`for` := _.v))(inputLabel)),
+          .map(l => label(cls := "label", inputId.map(`for` := _))(inputLabel)),
         div(cls := "control")(
           inputFragTransformed
         ),
@@ -77,7 +77,7 @@ final case class BulmaFormComponents(
         div(cls := "field is-horizontal")(
           div(cls := "field-label")(
             // ignore label if checkbox
-            label(cls := "label", inputId.map(`for` := _.v))(
+            label(cls := "label", inputId.map(`for` := _))(
               inputLabel.filterNot(_ => inputType.v == "checkbox")
             )
           ),
@@ -246,7 +246,7 @@ final case class BulmaFormComponents(
       case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")(
-            label(cls := "label", inputId.map(`for` := _.v))(
+            label(cls := "label", inputId.map(`for` := _))(
               inputLabel
             )
           ),
@@ -282,7 +282,7 @@ final case class BulmaFormComponents(
       case _: Type.Horizontal =>
         div(cls := "field is-horizontal")(
           div(cls := "field-label")(
-            label(cls := "label", inputId.map(`for` := _.v))(
+            label(cls := "label", inputId.map(`for` := _))(
               inputLabel
             )
           ),

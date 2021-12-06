@@ -54,12 +54,12 @@ trait PureFormComponents extends PlainFormComponentsImpl {
     formType match {
       case Type.Horizontal =>
         div(cls := "pure-control-group")(
-          label(inputId.map(`for` := _.v))(inputLabel),
+          label(inputId.map(`for` := _))(inputLabel),
           inputFieldContent
         )
       case _ =>
         frag(
-          label(inputId.map(`for` := _.v))(inputLabel),
+          label(inputId.map(`for` := _))(inputLabel),
           inputFieldContent
         )
     }

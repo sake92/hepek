@@ -1,7 +1,7 @@
 object V {
   val kalem     = "0.0.1"
-  val scalaTags = "0.9.2-rx3.0"
-  val jsoniter  = "2.7.2"
+  val scalaTags = "0.11.0"
+  val tupson  = "0.0.1-SNAPSHOT"
 
   val hepekCore     = "0.2.0"
   val commonMark    = "0.15.2"
@@ -10,5 +10,5 @@ object V {
   val openHtmlToPdf = "1.0.2"
 
   val selenium  = "2.52.0"
-  val scalaTest = "3.2.8"
+  val scalaTest = "3.2.10"
 }

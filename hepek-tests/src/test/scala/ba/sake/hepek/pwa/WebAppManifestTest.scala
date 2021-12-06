@@ -1,20 +1,14 @@
 package ba.sake.hepek.pwa
 
-import com.github.plokhotnyuk.jsoniter_scala.core._
 import org.scalatest._
-import ba.sake.hepek.html.pwa._
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import ba.sake.tupson.JsonWriter.toJson
+import ba.sake.hepek.html.pwa._
+
 
 class WebAppManifestTest extends AnyFlatSpec with Matchers {
-  "WebAppManifest" should "serialize the default correctly" in {
-    val manifest           = WebAppManifest("My site")
-    val manifestJsonString = writeToString(manifest)
-    val deserManifest      = readFromString[WebAppManifest](manifestJsonString) // roundtrip to validate.. :)
-    deserManifest.display shouldBe "minimal-ui"
-    deserManifest shouldBe manifest
-  }
-  it should "serialize custom manifest correctly" in {
+  "WebAppManifest" should "serialize manifest correctly" in {
     val manifest = WebAppManifest("myName")
       .withShortName("myShortName")
       .withDescription("desc")
@@ -38,8 +32,8 @@ class WebAppManifestTest extends AnyFlatSpec with Matchers {
       )
       .withScreenshots(WebAppScreenshot("screenshot.webp", "1280x720", "image/webp"))
 
-    val manifestJsonString = writeToString(manifest)
-    val deserManifest      = readFromString[WebAppManifest](manifestJsonString)
-    deserManifest shouldBe manifest
+    val manifestJsonString = manifest.toJson
+    
+    manifestJsonString shouldBe """{"name": "myName", "short_name": "myShortName", "description": "desc", "theme_color": "#fff", "background_color": "#000", "icons": [], "display": "fullscreen", "orientation": "portrait-primary", "start_url": "https://example.com", "scope": "/app/", "serviceworker": {"src": "./serviceworker.js", "scope": null, "type": null, "update_via_cache": null}, "categories": ["a","b"], "dir": "rtl", "lang": "bs", "prefer_related_applications": true, "related_applications": [{"platform": "play", "url": "https://play.google.com/store/apps/details?id=com.example.app1", "id": "com.example.app1"}], "screenshots": [{"src": "screenshot.webp", "sizes": "1280x720", "type": "image/webp"}]}"""
   }
 }

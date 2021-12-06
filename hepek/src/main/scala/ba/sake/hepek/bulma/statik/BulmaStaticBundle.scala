@@ -5,9 +5,7 @@ import ba.sake.hepek.bulma.component._
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.component._
-import ba.sake.kalem.Wither
 
-@Wither
 case class BulmaStaticBundle(
     Form: BulmaFormComponents = BulmaFormComponents(),
     Grid: BulmaGridComponents = BulmaGridComponents(),

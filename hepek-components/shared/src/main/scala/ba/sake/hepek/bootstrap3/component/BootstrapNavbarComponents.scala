@@ -2,7 +2,7 @@ package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all, all.{Style => _, style => _, _}
-import ba.sake.kalem.Wither
+
 
 object BootstrapNavbarComponents {
   sealed trait Position { def classes: String }
@@ -27,7 +27,7 @@ object BootstrapNavbarComponents {
   }
 }
 
-@Wither
+
 final case class BootstrapNavbarComponents(
     style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
     width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,

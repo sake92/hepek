@@ -1,32 +1,29 @@
 package ba.sake.hepek.html.pwa
 
-import com.github.plokhotnyuk.jsoniter_scala.macros._
-import com.github.plokhotnyuk.jsoniter_scala.core._
-import ba.sake.kalem.Wither
+import ba.sake.tupson.JsonProperty
 
-@Wither
 final case class WebAppManifest(
     name: String,
-    @named("short_name")
+    @JsonProperty("short_name")
     shortName: Option[String] = None,
     description: Option[String] = None,
-    @named("theme_color")
+    @JsonProperty("theme_color")
     themeColor: Option[String] = None,
-    @named("background_color")
+    @JsonProperty("background_color")
     backgroundColor: Option[String] = None,
     icons: List[WebAppManifestIcon] = List.empty,
     display: String = "minimal-ui", // fullscreen, browser, standalone, minimal-ui
     orientation: Option[String] = None,
-    @named("start_url")
+    @JsonProperty("start_url")
     startUrl: String = ".",
     scope: Option[String] = None,
     serviceworker: Option[WebAppServiceWorker] = None,
     categories: List[String] = List.empty,
     dir: Option[String] = None, // rtl, ltr, auto
     lang: Option[String] = None,
-    @named("prefer_related_applications")
+    @JsonProperty("prefer_related_applications")
     preferRelatedApplications: Boolean = false,
-    @named("related_applications")
+    @JsonProperty("related_applications")
     relatedApplications: List[WebAppRelatedApplication] = List.empty,
     screenshots: List[WebAppScreenshot] = List.empty
 ) {
@@ -662,17 +659,11 @@ final case class WebAppManifest(
     )
 }
 
-object WebAppManifest {
 
-  implicit val rw: JsonValueCodec[WebAppManifest] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
-
-@Wither
 final case class WebAppManifestIcon(
     src: String,
     sizes: String,
-    @named("type")
+    @JsonProperty("type")
     tpe: String,
     purpose: Option[String] = None
 ) {
@@ -693,13 +684,7 @@ final case class WebAppManifestIcon(
     new WebAppManifestIcon(src = src, sizes = sizes, tpe = tpe, purpose = Option(purpose))
 }
 
-object WebAppManifestIcon {
 
-  implicit val rw: JsonValueCodec[WebAppManifestIcon] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
-
-@Wither
 final case class WebAppRelatedApplication(
     platform: String,
     url: String,
@@ -716,17 +701,13 @@ final case class WebAppRelatedApplication(
     new WebAppRelatedApplication(platform = platform, url = url, id = id)
 }
 
-object WebAppRelatedApplication {
 
-  implicit val rw: JsonValueCodec[WebAppRelatedApplication] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
 
-@Wither
+
 final case class WebAppScreenshot(
     src: String,
     sizes: String,
-    @named("type")
+    @JsonProperty("type")
     tpe: String
 ) {
 
@@ -740,19 +721,14 @@ final case class WebAppScreenshot(
     new WebAppScreenshot(src = src, sizes = sizes, tpe = tpe)
 }
 
-object WebAppScreenshot {
 
-  implicit val rw: JsonValueCodec[WebAppScreenshot] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
 
-@Wither
 final case class WebAppServiceWorker(
     src: String,
     scope: Option[String] = None,
-    @named("type")
+    @JsonProperty("type")
     tpe: Option[String] = None,
-    @named("update_via_cache") updateViaCache: Option[String] = None
+    @JsonProperty("update_via_cache") updateViaCache: Option[String] = None
 ) {
 
   def withSrc(src: String): WebAppServiceWorker =
@@ -790,10 +766,4 @@ final case class WebAppServiceWorker(
       tpe = tpe,
       updateViaCache = Option(updateViaCache)
     )
-}
-
-object WebAppServiceWorker {
-
-  implicit val rw: JsonValueCodec[WebAppServiceWorker] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
 }

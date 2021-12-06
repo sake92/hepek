@@ -3,7 +3,7 @@ package ba.sake.hepek.w3css.component
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
-import ba.sake.kalem.Wither
+
 
 object W3CssFormComponents {
   sealed trait Type extends FormComponents.Type
@@ -22,7 +22,7 @@ object W3CssFormComponents {
   }
 }
 
-@Wither
+
 final case class W3CssFormComponents(
     formType: FormComponents.Type = W3CssFormComponents.Type.Default
 ) extends FormComponents {
@@ -54,7 +54,7 @@ final case class W3CssFormComponents(
     val inputFragTransformed = inputTransform(inputFrag)
 
     formGroup(inputValidationCls.toSeq: _*)(
-      inputLabel.map(lbl => label(inputId.map(`for` := _.v))(lbl)),
+      inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
       inputFragTransformed,
       inputMsgsFrag,
       inputHelpFrag
@@ -86,7 +86,7 @@ final case class W3CssFormComponents(
       inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
     div(
-      label(inputId.map(`for` := _.v))(
+      label(inputId.map(`for` := _))(
         input(commonAttrs),
         inputLabel
       ),
@@ -161,7 +161,7 @@ final case class W3CssFormComponents(
     val selectFrag = select(selectAttrs)(optionFrags)
 
     formGroup()(
-      inputLabel.map(lbl => label(inputId.map(`for` := _.v))(lbl)),
+      inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
       selectFrag,
       inputHelpFrag
     )
@@ -187,11 +187,11 @@ final case class W3CssFormComponents(
         optgroup(attr("label") := optGroupLabel)(optionFrags)
     }
     val selectAttrs = inputAttrs ++ Seq(inputName, cls := "w3-select") ++
-      inputId.map(id := _.v)
+      inputId.map(id := _)
     val selectFrag = select(selectAttrs)(optionGroupFrags)
 
     formGroup()(
-      inputLabel.map(lbl => label(inputId.map(`for` := _.v))(lbl)),
+      inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
       selectFrag,
       inputHelpFrag
     )

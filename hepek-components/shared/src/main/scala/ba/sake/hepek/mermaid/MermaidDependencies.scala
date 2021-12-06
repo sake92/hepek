@@ -1,9 +1,8 @@
 package ba.sake.hepek.mermaid
 
-import com.github.plokhotnyuk.jsoniter_scala.macros._
-import com.github.plokhotnyuk.jsoniter_scala.core._
+
+import ba.sake.tupson.JsonWriter.toJson
 import ba.sake.hepek.html._
-import ba.sake.kalem.Wither
 
 trait MermaidDependencies extends PageDependencies {
   def mermaidConfig: MermaidConfig = MermaidConfig()
@@ -18,8 +17,8 @@ trait MermaidDependencies extends PageDependencies {
   )
 
   override def scriptsInline =
-    super.scriptsInline :+ {
-      val conf = writeToString(mermaidConfig)
+    super.scriptsInline.appended {
+      val conf = mermaidConfig.toJson
       s"mermaid.initialize($conf);"
     }
 
@@ -27,7 +26,7 @@ trait MermaidDependencies extends PageDependencies {
     super.components :+ (mermaidSettings, mermaidDependencies)
 }
 
-@Wither
+
 case class MermaidConfig(
     theme: String = "default",
     logLevel: String = "fatal",
@@ -136,13 +135,9 @@ case class MermaidConfig(
     )
 }
 
-object MermaidConfig {
 
-  implicit val rw: JsonValueCodec[MermaidConfig] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
 
-@Wither
+
 final case class MermaidFlowchartConfig(
     htmlLabels: Boolean = true,
     curve: String = "linear"
@@ -155,13 +150,9 @@ final case class MermaidFlowchartConfig(
     new MermaidFlowchartConfig(htmlLabels = htmlLabels, curve = curve)
 }
 
-object MermaidFlowchartConfig {
 
-  implicit val rw: JsonValueCodec[MermaidFlowchartConfig] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
 
-@Wither
+
 final case class MermaidSequencechartConfig(
     diagramMarginX: Int = 50,
     diagramMarginY: Int = 10,
@@ -432,11 +423,7 @@ final case class MermaidSequencechartConfig(
     )
 }
 
-object MermaidSequencechartConfig {
 
-  implicit val rw: JsonValueCodec[MermaidSequencechartConfig] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}
 
 final case class MermaidGanttchartConfig(
     titleTopMargin: Int = 25,
@@ -450,9 +437,3 @@ final case class MermaidGanttchartConfig(
     numberSectionStyles: Int = 4,
     axisFormat: String = "%Y-%m-%d"
 )
-
-object MermaidGanttchartConfig {
-
-  implicit val rw: JsonValueCodec[MermaidGanttchartConfig] =
-    JsonCodecMaker.make(CodecMakerConfig.withTransientDefault(false))
-}

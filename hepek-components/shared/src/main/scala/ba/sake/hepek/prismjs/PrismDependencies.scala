@@ -2,7 +2,7 @@ package ba.sake.hepek.prismjs
 
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 import ba.sake.hepek.html._
-import ba.sake.kalem.Wither
+
 
 trait PrismDependencies extends ClipboardjsDependencies {
   def prismSettings: PrismSettings = PrismSettings("1.16.0", "prism", DependencyProvider.cdnjs)
@@ -59,7 +59,7 @@ object Themes {
   val Twilight       = "prism-twilight"
 }
 
-@Wither
+
 final case class PrismSettings(
     version: String,
     pkg: String,

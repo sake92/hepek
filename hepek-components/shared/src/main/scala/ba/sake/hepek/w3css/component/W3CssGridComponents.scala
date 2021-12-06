@@ -3,9 +3,7 @@ package ba.sake.hepek.w3css.component
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
-import ba.sake.kalem.Wither
 
-@Wither
 final case class W3CssGridComponents(
     screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {

@@ -3,7 +3,7 @@ package ba.sake.hepek.html.statik
 import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.html._
 import ba.sake.hepek.path.ClassPackageRelativePath
-import ba.sake.kalem.Wither
+
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage {
   def staticSiteSettings: StaticSiteSettings = StaticSiteSettings()
@@ -18,7 +18,7 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage 
     HtmlUtils.process(contents, xhtml = renderXhtml, pretty = renderPretty)
 }
 
-@Wither
+
 final case class StaticSiteSettings(
     indexPage: Option[StaticPage] = None,
     mainPages: List[StaticPage] = List.empty
