@@ -19,6 +19,7 @@ inThisBuild(
     scalaVersion := "3.1.0",
     publish / skip := true,
     scalacOptions ++= Seq("-deprecation"),
+    scalacOptions ++= Seq("-Xmax-inlines", "64"),
     resolvers +=
       "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
@@ -31,15 +32,15 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     publish / skip := false,
     name := "hepek-components",
     libraryDependencies ++= Seq(
-      "com.lihaoyi" %%% "scalatags"     % V.scalaTags,
-      "ba.sake"    %%% "tupson" % V.tupson
+      "com.lihaoyi" %%% "scalatags" % V.scalaTags,
+      "ba.sake"     %%% "tupson"    % V.tupson
     )
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
       "com.atlassian.commonmark" % "commonmark" % V.commonMark,
       "net.sourceforge.plantuml" % "plantuml"   % V.plantUml,
-      "org.scalameta" %%% "munit" % V.munit % Test
+      "org.scalameta"            %%% "munit"    % V.munit % Test
     )
   )
   .jsSettings()
@@ -56,7 +57,7 @@ lazy val hepekStatic = (project in file("hepek"))
       "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % V.openHtmlToPdf,
       "com.openhtmltopdf"       % "openhtmltopdf-mathml-support" % V.openHtmlToPdf,
       "org.seleniumhq.selenium" % "selenium-java"                % V.selenium,
-      "org.scalameta" %%% "munit" % V.munit % Test
+      "org.scalameta"           %%% "munit"                      % V.munit % Test
     )
   )
   .dependsOn(hepekComponents.jvm)
@@ -82,8 +83,8 @@ lazy val hepekTests = (project in file("hepek-tests"))
       (Test / test).value
     },
     libraryDependencies ++= Seq(
-      "org.seleniumhq.selenium" % "selenium-java" % V.selenium  % "test",
-      "org.scalameta" %%% "munit" % V.munit % Test
+      "org.seleniumhq.selenium" % "selenium-java" % V.selenium % "test",
+      "org.scalameta"           %%% "munit"       % V.munit    % Test
     )
   )
   .dependsOn(hepekStatic)

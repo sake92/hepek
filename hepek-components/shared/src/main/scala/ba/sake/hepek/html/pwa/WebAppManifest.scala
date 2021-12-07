@@ -1,5 +1,7 @@
 package ba.sake.hepek.html.pwa
 
+import ba.sake.tupson.JsonRW
+
 final case class WebAppManifest(
     name: String,
     short_name: Option[String] = None,
@@ -18,7 +20,7 @@ final case class WebAppManifest(
     prefer_related_applications: Boolean = false,
     related_applications: List[WebAppRelatedApplication] = List.empty,
     screenshots: List[WebAppScreenshot] = List.empty
-)
+) derives JsonRW
 
 final case class WebAppManifestIcon(
     src: String,

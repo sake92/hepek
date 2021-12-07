@@ -1,6 +1,7 @@
 package ba.sake.hepek.mermaid
 
 import ba.sake.tupson.JsonRW.toJson
+import ba.sake.tupson.JsonRW
 import ba.sake.hepek.html._
 
 trait MermaidDependencies extends PageDependencies {
@@ -35,7 +36,7 @@ case class MermaidConfig(
     flowchart: MermaidFlowchartConfig = MermaidFlowchartConfig(),
     sequence: MermaidSequencechartConfig = MermaidSequencechartConfig(),
     gantt: MermaidGanttchartConfig = MermaidGanttchartConfig()
-) 
+) derives JsonRW
 
 
 final case class MermaidFlowchartConfig(
