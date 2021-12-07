@@ -1,10 +1,9 @@
 package ba.sake.hepek.utils
 
-import org.scalatest.FlatSpec
 
-class StringUtilsTest extends FlatSpec {
+class StringUtilsTest extends munit.FunSuite {
 
-  "StringUtils" should "`urlify` strings to make URL safe strings" in {
+  test ("`urlify` strings to make URL safe strings") in {
     val inExpected: List[(String, String)] = List(
       "aB"                       -> "a-b", // kebab
       "myPage"                   -> "my-page",
@@ -20,11 +19,11 @@ class StringUtilsTest extends FlatSpec {
 
     inExpected.foreach {
       case (input, expected) =>
-        assert(StringUtils.urlify(input) == expected)
+        assertEquals(StringUtils.urlify(input), expected)
     }
   }
 
-  it should "`unindent` text correctly" in {
+  test("`unindent` text correctly") {
     val inExpected: List[(String, String)] = List(
       """
         this 
@@ -44,7 +43,7 @@ multiline
 
     inExpected.foreach {
       case (input, expected) =>
-        assert(StringUtils.unindent(input) == expected)
+        assertEquals(StringUtils.unindent(input), expected)
     }
   }
 

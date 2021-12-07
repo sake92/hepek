@@ -1,13 +1,11 @@
 package ba.sake.hepek.selenium
 
 import java.nio.file.Paths
-import org.scalatest._
-import org.scalatest.matchers.should.Matchers
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import ba.sake.hepek.core.Renderable
 
-trait HepekSeleniumTest extends flatspec.AnyFlatSpec with Matchers {
+trait HepekSeleniumTest extends munit.FunSuite {
   implicit val webDriver: WebDriver = new HtmlUnitDriver
 
   java.util.logging.Logger

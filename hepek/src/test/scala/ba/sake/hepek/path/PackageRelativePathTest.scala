@@ -2,17 +2,14 @@ package ba.sake.hepek.path
 
 import java.nio.file.Paths
 
-import org.scalatest.flatspec.AnyFlatSpec
-import org.scalatest.matchers.should.Matchers
-
-class PackageRelativePathTest extends AnyFlatSpec with Matchers {
-  "PackageRelativePath" should "make path based on package" in {
+class PackageRelativePathTest extends munit.FunSuite {
+  test("make path based on package") {
     val obj = PackageRelativeObject1
-    obj.relPath shouldBe Paths.get("ba/sake/hepek/path/abc.txt")
+    assertEquals(obj.relPath, Paths.get("ba/sake/hepek/path/abc.txt"))
   }
-  it should "make path based on inner package" in {
+  test("make path based on inner package") {
     val obj = testme.PackageRelativeObject2
-    obj.relPath shouldBe Paths.get("ba/sake/hepek/path/testme/index.html")
+    assertEquals(obj.relPath, Paths.get("ba/sake/hepek/path/testme/index.html"))
   }
 }
 

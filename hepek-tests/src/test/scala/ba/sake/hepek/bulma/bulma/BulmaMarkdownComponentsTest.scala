@@ -5,7 +5,7 @@ import fixtures.static._
 import org.openqa.selenium.By
 
 class BulmaMarkdownComponentsTest extends HepekSeleniumTest {
-  "BulmaMarkdownComponents" should "render markdown properly" in {
+  test("render markdown properly") {
     /* go to filePath(Bulma)
 
     val mdDiv = find(ids.md).get
