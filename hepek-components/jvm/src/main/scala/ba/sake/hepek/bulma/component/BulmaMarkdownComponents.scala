@@ -14,7 +14,7 @@ import ba.sake.hepek.utils.StringUtils
 /* Bulma is a special snowflake, requiring classes for headers... */
 trait BulmaMarkdownComponents extends MarkdownComponents {
 
-  def md(str: String): Frag = {
+  extension (str: String) def md: Frag = {
     val parser   = Parser.builder().build()
     val document = parser.parse(StringUtils.unindent(str))
     val renderer = HtmlRenderer

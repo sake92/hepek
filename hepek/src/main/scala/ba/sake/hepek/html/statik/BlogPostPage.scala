@@ -110,14 +110,14 @@ final case class Section(
     content: Frag,
     children: List[Section] = List.empty
 )(
-    implicit owner: RelativePath
+    using owner: RelativePath
 ) {
   def withChildren(children: Section*) = copy(children = children.toList)
 
   def id: String = StringUtils.urlify(name)
 
   /** Refer to section only by its path, e.g. Index.mySection.ref */
-  def ref(implicit caller: RelativePath): String =
+  def ref(using caller: RelativePath): String =
     if (owner == caller) "#" + id
     else caller.relTo(owner) + "#" + id
 }

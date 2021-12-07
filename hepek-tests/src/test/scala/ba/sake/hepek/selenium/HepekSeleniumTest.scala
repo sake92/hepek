@@ -6,7 +6,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver
 import ba.sake.hepek.core.Renderable
 
 trait HepekSeleniumTest extends munit.FunSuite {
-  implicit val webDriver: WebDriver = new HtmlUnitDriver
+  given webDriver: WebDriver = new HtmlUnitDriver
 
   java.util.logging.Logger
     .getLogger("com.gargoylesoftware.htmlunit")

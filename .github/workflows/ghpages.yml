@@ -10,7 +10,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: olafurpg/setup-scala@v10
+      - uses: olafurpg/setup-scala@v13
 
       - name: Checkout
         uses: actions/checkout@v2.3.1

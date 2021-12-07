@@ -9,7 +9,7 @@ import ba.sake.hepek.utils.StringUtils
 
 trait PlainMarkdownComponents extends MarkdownComponents {
 
-  def md(str: String): Frag = {
+  extension (str: String) def md: Frag = {
     val parser   = Parser.builder().build()
     val document = parser.parse(StringUtils.unindent(str))
     val renderer = HtmlRenderer.builder().build()
