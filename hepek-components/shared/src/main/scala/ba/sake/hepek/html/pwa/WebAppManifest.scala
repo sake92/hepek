@@ -7,7 +7,7 @@ final case class WebAppManifest(
     theme_color: Option[String] = None,
     background_color: Option[String] = None,
     icons: List[WebAppManifestIcon] = List.empty,
-    display: "fullscreen" | "browser" | "standalone" | "minimal-ui" = "minimal-ui",
+    display: String = "minimal-ui", // "fullscreen", "browser",  "standalone", "minimal-ui"
     orientation: Option[String] = None,
     start_url: String = ".",
     scope: Option[String] = None,

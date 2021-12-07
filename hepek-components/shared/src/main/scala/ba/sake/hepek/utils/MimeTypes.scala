@@ -7,7 +7,7 @@ object MimeTypes {
 
   def guess(filename: String): String = {
     val indexOfDot = filename.lastIndexOf(".")
-    MimeTypes.Mappings(filename.substring(indexOfDot))
+    MappingsNormalized(filename.substring(indexOfDot))
   }
 
   private val Mappings = Map(
@@ -637,4 +637,8 @@ object MimeTypes {
     (".tgz"                                         -> "application/x-tar"),
     (".tar"                                         -> "application/x-tar")
   )
+
+  private val MappingsNormalized = Mappings.map { (keyString, v) =>
+    keyString.split(",").filterNot(_.isBlank).map(k => k -> v)
+  }.flatten.toMap
 }
