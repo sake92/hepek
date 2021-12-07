@@ -639,6 +639,6 @@ object MimeTypes {
   )
 
   private val MappingsNormalized = Mappings.map { (keyString, v) =>
-    keyString.split(",").filterNot(_.isBlank).map(k => k -> v)
+    keyString.split(",").filterNot(_.trim.isEmpty).map(k => k -> v)
   }.flatten.toMap
 }
