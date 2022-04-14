@@ -38,7 +38,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.atlassian.commonmark" % "commonmark" % V.commonMark,
+      "com.vladsch.flexmark" % "flexmark-all" % V.flexmark,
       "net.sourceforge.plantuml" % "plantuml"   % V.plantUml,
       "org.scalameta"            %%% "munit"    % V.munit % Test
     )

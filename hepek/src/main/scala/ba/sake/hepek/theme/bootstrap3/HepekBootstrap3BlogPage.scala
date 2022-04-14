@@ -102,15 +102,13 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
       }
       @media (min-width: 992px) {
           /* col-3 is 25% but it's nicer like this */
-          .affix { width: 23%; }
-      }
-      @media (min-width: 992px) {
           .affix {
-              overflow-y: auto;
-              height: 85%; /* nicer if not full height */
+            width: 23%;
+            padding-left: 2em;
+            overflow-y: auto;
+            height: 85%; /* nicer if not full height */
           }
       }
-      .affix { padding-left: 2em; }
     """
   )
 
