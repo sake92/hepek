@@ -16,7 +16,7 @@ case class BootstrapStaticBundle(
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
 ) extends StaticBundle
     with PlainLinkComponents
-    with PlainMarkdownComponents {
+    with Bootstrap3MarkdownComponents {
   override type HtmlPage   = BootstrapPage
   override type StaticPage = BootstrapStaticPage
 

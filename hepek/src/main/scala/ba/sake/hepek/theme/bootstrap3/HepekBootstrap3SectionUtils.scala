@@ -9,7 +9,7 @@ private[bootstrap3] object HepekBootstrap3SectionUtils {
   def renderSections(secs: List[Section], depth: Int = 2): List[Frag] =
     secs.map { s =>
       // h2, h3...
-      val hTag = tag("h" + (depth + 1))
+      val hTag = tag("h" + depth)
       tag("section")(
         hTag(id := s.id)(s.name),
         s.content,

@@ -16,6 +16,8 @@ import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
 import com.vladsch.flexmark.ext.gitlab.GitLabExtension
 
+// TODO add markdownSettings
+// sa tableClasses, h1 class etc
 trait PlainMarkdownComponents extends MarkdownComponents {
 
   extension (str: String) def md: Frag = {
@@ -26,13 +28,13 @@ trait PlainMarkdownComponents extends MarkdownComponents {
         TablesExtension.create(),
         StrikethroughExtension.create(),
         GitLabExtension.create()
-
       ).asJava: Collection[Extension]
     )
+    .toImmutable()
 
     val parser   = Parser.builder(options).build()
     val document = parser.parse(StringUtils.unindent(str))
-    val renderer = HtmlRenderer.builder().build()
+    val renderer = HtmlRenderer.builder(options).build()
     val result   = renderer.render(document)
     raw(result)
   }

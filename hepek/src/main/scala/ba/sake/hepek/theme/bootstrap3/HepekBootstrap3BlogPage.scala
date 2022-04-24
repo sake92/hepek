@@ -53,7 +53,6 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
       else (3, 8, 1)
 
     frag(
-      pageHeader,
       div(cls := "row")(
         div(cls := s"col-md-$w1", clsNoPrint)(
           renderSidebar
@@ -71,6 +70,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
               author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
             )
           ),
+          pageHeader,
           renderTocAndSections(blogSettings.sections),
           div(id := "disqus_thread", clsNoPrint)
         ),

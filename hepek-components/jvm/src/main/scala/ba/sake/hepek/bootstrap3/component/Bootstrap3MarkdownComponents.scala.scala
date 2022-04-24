@@ -1,4 +1,4 @@
-package ba.sake.hepek.bulma.component
+package ba.sake.hepek.bootstrap3.component
 
 import java.{util => ju}
 
@@ -16,14 +16,14 @@ import ba.sake.hepek.html.component.MarkdownComponents
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
 import com.vladsch.flexmark.ast.Heading
+import com.vladsch.flexmark.ext.tables.TableBlock
 import com.vladsch.flexmark.html.renderer.AttributablePart
 import com.vladsch.flexmark.util.html.MutableAttributes
 import com.vladsch.flexmark.ext.attributes.internal.AttributesAttributeProvider
 import com.vladsch.flexmark.html.renderer.LinkResolverContext
 
 
-/* Bulma is a special snowflake, requiring classes for headers... */
-trait BulmaMarkdownComponents extends MarkdownComponents {
+trait Bootstrap3MarkdownComponents extends MarkdownComponents {
 
   extension (str: String) def md: Frag = {
     val options = new MutableDataSet()
@@ -59,8 +59,8 @@ private class BulmaAttributeProvider(context: LinkResolverContext) extends Attri
   ): Unit =
     super.setAttributes(node, part, attributes)
     node match {
-      case h: Heading =>
-        attributes.addValue("class", s"title is-${h.getLevel()}")
+      case h: TableBlock =>
+        attributes.addValue("class", s"table")
       case _ =>
     }
 }

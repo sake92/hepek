@@ -32,7 +32,7 @@ trait HepekDocsAbstractPage
       )
     )
 
-  override def pageHeader = None
+
 }
 
 trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADependencies {
