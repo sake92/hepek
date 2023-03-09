@@ -18,18 +18,16 @@
       }
       @media (min-width: 992px) {
           /* col-3 is 25% but it's nicer like this */
-          .affix { width: 23%; }
-      }
-      @media (min-width: 992px) {
           .affix {
-              overflow-y: auto;
-              height: 85%; /* nicer if not full height */
+            width: 23%;
+            padding-left: 2em;
+            overflow-y: auto;
+            height: 85%; /* nicer if not full height */
           }
       }
-      .affix { padding-left: 2em; }
-    </style></head><body><div class="container-fluid"><div class="hidden-print"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="../index.html"><span><img src="../images/favicon-small.ico" alt="logo" width="32" height="32" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-left"></ul><ul class="nav navbar-nav navbar-right"><li class=""><a href="components/index.html">Hepek Components</a></li><li class="active"><a href="index.html">Hepek SSG</a></li></ul></div></div></nav></div><div class="row"><div class="col-md-3 hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class=""><a href="index.html">Hepek SSG</a></li><li class="active"><a href="quick-start.html">Quick start</a></li><li class=""><a href="static-bundle.html">Static bundle</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class=""><a href="multi-page.html">Multi page</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li></ul></nav></div><div class="col-md-6"><div class="hidden-print"></div><div><section><h3 id="installation">Installation</h3><p>You need to have Java 8 installed and sbt version 1 or greater.<br />
+    </style></head><body><div class="container-fluid"><div class="hidden-print"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="../index.html"><span><img src="../images/favicon-small.ico" alt="logo" width="32" height="32" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-left"></ul><ul class="nav navbar-nav navbar-right"><li class=""><a href="components/index.html">Hepek Components</a></li><li class="active"><a href="index.html">Hepek SSG</a></li></ul></div></div></nav></div><div class="row"><div class="col-md-3 hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class=""><a href="index.html">Hepek SSG</a></li><li class="active"><a href="quick-start.html">Quick start</a></li><li class=""><a href="static-bundle.html">Static bundle</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class=""><a href="multi-page.html">Multi page</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li></ul></nav></div><div class="col-md-6"><div class="hidden-print"></div><div class="page-header text-center hidden-print"><h1>Quick start</h1></div><div><section><h2 id="installation">Installation</h2><p>You need to have Java 8 installed and sbt version 1 or greater.<br />
 It's planned to support other build tools in the future: Mill, Gradle etc.</p>
-</section><section><h3 id="using">Using</h3><p>Clone the starter project from <a href="https://github.com/sake92/hepek-starter">here</a> and you're ready.<br />
+</section><section><h2 id="using">Using</h2><p>Clone the starter project from <a href="https://github.com/sake92/hepek-starter">here</a> and you're ready.<br />
 Start up sbt console and type <code>hepek</code>.<br />
 Voila, that's it! :)</p>
 <p>You can also make sbt <strong>watch for file changes</strong>.<br />
@@ -39,7 +37,7 @@ Just type <code>~hepek</code> and you'll see changes applied.</p>
 You can make an sbt task for copying these to a more desirable location.<br />
 Or you can use <code>sbt-ghpages</code> for even faster deployment!</p>
 </blockquote>
-</section><section><h3 id="serving">Serving</h3><div><p>Great tool for developing static sites is <a href="https://browsersync.io/">Browsersync</a>.<br />
+</section><section><h2 id="serving">Serving</h2><div><p>Great tool for developing static sites is <a href="https://browsersync.io/">Browsersync</a>.<br />
 Install it, <code>cd</code> to rendered folder and type:</p>
 <pre class="command-line" data-prompt="$"><code class="language-bash">browser-sync start --server --files .</code></pre><p>Browsersync will <strong>automatically refresh page</strong> in browser when it gets changed!</p>
 <p>Deployment consists of copying the contents to your web host (e.g. Github pages).</p>

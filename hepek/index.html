@@ -18,16 +18,14 @@
       }
       @media (min-width: 992px) {
           /* col-3 is 25% but it's nicer like this */
-          .affix { width: 23%; }
-      }
-      @media (min-width: 992px) {
           .affix {
-              overflow-y: auto;
-              height: 85%; /* nicer if not full height */
+            width: 23%;
+            padding-left: 2em;
+            overflow-y: auto;
+            height: 85%; /* nicer if not full height */
           }
       }
-      .affix { padding-left: 2em; }
-    </style></head><body><div class="container-fluid"><div class="hidden-print"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="../index.html"><span><img src="../images/favicon-small.ico" alt="logo" width="32" height="32" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-left"></ul><ul class="nav navbar-nav navbar-right"><li class=""><a href="components/index.html">Hepek Components</a></li><li class="active"><a href="index.html">Hepek SSG</a></li></ul></div></div></nav></div><div class="row"><div class="col-md-3 hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class="active"><a href="index.html">Hepek SSG</a></li><li class=""><a href="quick-start.html">Quick start</a></li><li class=""><a href="static-bundle.html">Static bundle</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class=""><a href="multi-page.html">Multi page</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li></ul></nav></div><div class="col-md-6"><div class="hidden-print"></div><div><section><h3 id="hepek-static-site-generator">Hepek, static site generator</h3><p>Hepek turns Scala <code>object</code>s into files.
+    </style></head><body><div class="container-fluid"><div class="hidden-print"><nav class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button type="button" class="btn navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="../index.html"><span><img src="../images/favicon-small.ico" alt="logo" width="32" height="32" /></span> hepek</a></div><div class="collapse navbar-collapse" id="main-navbar"><ul class="nav navbar-nav navbar-left"></ul><ul class="nav navbar-nav navbar-right"><li class=""><a href="components/index.html">Hepek Components</a></li><li class="active"><a href="index.html">Hepek SSG</a></li></ul></div></div></nav></div><div class="row"><div class="col-md-3 hidden-print"><nav class="affix"><ul class="nav nav-pills nav-stacked"><li class="active"><a href="index.html">Hepek SSG</a></li><li class=""><a href="quick-start.html">Quick start</a></li><li class=""><a href="static-bundle.html">Static bundle</a></li><li class=""><a href="static-page.html">Static page</a></li><li class=""><a href="blog-page.html">Blog page</a></li><li class=""><a href="multi-page.html">Multi page</a></li><li class=""><a href="pdf-generator.html">Pdf generator</a></li></ul></nav></div><div class="col-md-6"><div class="hidden-print"></div><div class="page-header text-center hidden-print"><h1>Hepek SSG</h1></div><div><section><h2 id="hepek-static-site-generator">Hepek, static site generator</h2><p>Hepek turns Scala <code>object</code>s into files.
 Everything that you can <code>println</code>, <em>Hepek</em> can write to a file.</p>
 <p>It contains lots of useful functions for <em>rendering stuff</em>,
 like blogging support, themes, PDF rendering etc.<br />
@@ -42,7 +40,7 @@ Now you can use functions, for loops, data abstractions etc. What more do you ne
 <p>Also, since content is just a Scala <code>object</code>, you can use it directly
 to construct table of contents, RSS feed, <code>sitemap.xml</code>, PDF and Word docs.</p>
 <p>Sick of rewriting relative urls all over the place, like <code>my/folder/../styles.....</code>?<br />
-Me too, the year is 2021, we can do better!<br />
+Me too, the year is 2023, we can do better!<br />
 Just use <code>.ref</code> method and you're done! Hepek figures out path instead of you.</p>
 <p>Hepek uses <em>incremental rendering</em> by default.<br />
 If you change an object, it only renders objects which depend on it. Neat!</p>
