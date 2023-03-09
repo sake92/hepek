@@ -3,8 +3,8 @@ object V {
   val tupson    = "0.5.1"
 
   val hepekCore     = "0.2.0"
-  val flexmark    = "0.64.0"
-  val plantUml      = "1.2020.18"
+  val flexmark    = "0.62.2"
+  val plantUml      = "1.2023.2"
   val jsoup         = "1.15.4"
   val openHtmlToPdf = "1.0.2"
 
