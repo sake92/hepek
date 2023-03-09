@@ -20,6 +20,6 @@ trait HepekSeleniumTest extends munit.FunSuite {
     path.toUri.toString
   }
 
-  //def getByCss(selector: String): Option[Element] =
-  //find(cssSelector(selector))
+  // def getByCss(selector: String): Option[Element] =
+  // find(cssSelector(selector))
 }

@@ -20,22 +20,24 @@ import com.vladsch.flexmark.ext.gitlab.GitLabExtension
 // sa tableClasses, h1 class etc
 trait PlainMarkdownComponents extends MarkdownComponents {
 
-  extension (str: String) def md: Frag = {
-    val options = new MutableDataSet()
-    options.set(
-      Parser.EXTENSIONS,
-      List(
-        TablesExtension.create(),
-        StrikethroughExtension.create(),
-        GitLabExtension.create()
-      ).asJava: Collection[Extension]
-    )
-    .toImmutable()
+  extension (str: String)
+    def md: Frag = {
+      val options = new MutableDataSet()
+      options
+        .set(
+          Parser.EXTENSIONS,
+          List(
+            TablesExtension.create(),
+            StrikethroughExtension.create(),
+            GitLabExtension.create()
+          ).asJava: Collection[Extension]
+        )
+        .toImmutable()
 
-    val parser   = Parser.builder(options).build()
-    val document = parser.parse(StringUtils.unindent(str))
-    val renderer = HtmlRenderer.builder(options).build()
-    val result   = renderer.render(document)
-    raw(result)
-  }
+      val parser   = Parser.builder(options).build()
+      val document = parser.parse(StringUtils.unindent(str))
+      val renderer = HtmlRenderer.builder(options).build()
+      val result   = renderer.render(document)
+      raw(result)
+    }
 }

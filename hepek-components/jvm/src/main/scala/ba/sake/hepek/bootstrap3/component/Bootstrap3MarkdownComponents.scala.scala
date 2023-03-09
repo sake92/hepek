@@ -22,35 +22,36 @@ import com.vladsch.flexmark.util.html.MutableAttributes
 import com.vladsch.flexmark.ext.attributes.internal.AttributesAttributeProvider
 import com.vladsch.flexmark.html.renderer.LinkResolverContext
 
-
 trait Bootstrap3MarkdownComponents extends MarkdownComponents {
 
-  extension (str: String) def md: Frag = {
-    val options = new MutableDataSet()
-    options.set(
-      Parser.EXTENSIONS,
-      List(
-        TablesExtension.create(),
-        StrikethroughExtension.create()
-      ).asJava: ju.Collection[Extension]
-    )
+  extension (str: String)
+    def md: Frag = {
+      val options = new MutableDataSet()
+      options.set(
+        Parser.EXTENSIONS,
+        List(
+          TablesExtension.create(),
+          StrikethroughExtension.create()
+        ).asJava: ju.Collection[Extension]
+      )
 
-    val parser   = Parser.builder(options).build()
-    val document = parser.parse(StringUtils.unindent(str))
-    val renderer = HtmlRenderer
-      .builder(options)
-      .attributeProviderFactory(new AttributesAttributeProvider.Factory() {
-        override def apply(context: LinkResolverContext): AttributeProvider =
-          new BulmaAttributeProvider(context)
-        
-      })
-      .build()
-    val result = renderer.render(document)
-    raw(result)
-  }
+      val parser   = Parser.builder(options).build()
+      val document = parser.parse(StringUtils.unindent(str))
+      val renderer = HtmlRenderer
+        .builder(options)
+        .attributeProviderFactory(new AttributesAttributeProvider.Factory() {
+          override def apply(context: LinkResolverContext): AttributeProvider =
+            new BulmaAttributeProvider(context)
+
+        })
+        .build()
+      val result = renderer.render(document)
+      raw(result)
+    }
 }
 
-private class BulmaAttributeProvider(context: LinkResolverContext) extends AttributesAttributeProvider(context) {
+private class BulmaAttributeProvider(context: LinkResolverContext)
+    extends AttributesAttributeProvider(context) {
 
   override def setAttributes(
       node: Node,

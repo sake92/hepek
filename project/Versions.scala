@@ -1,11 +1,11 @@
 object V {
-  val scalaTags = "0.11.0"
-  val tupson    = "0.0.0+1-7647cbc0-SNAPSHOT"
+  val scalaTags = "0.11.1"
+  val tupson    = "0.5.1"
 
   val hepekCore     = "0.2.0"
   val flexmark    = "0.64.0"
   val plantUml      = "1.2020.18"
-  val jsoup         = "1.12.2"
+  val jsoup         = "1.15.4"
   val openHtmlToPdf = "1.0.2"
 
   val selenium = "2.52.0"

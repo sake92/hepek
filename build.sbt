@@ -16,12 +16,16 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion := "3.1.0",
+    scalaVersion := "3.2.2",
     publish / skip := true,
-    scalacOptions ++= Seq("-deprecation"),
-    scalacOptions ++= Seq("-Xmax-inlines", "64"),
+    scalacOptions ++= Seq(
+      "-deprecation",
+    "-Xmax-inlines", "64",
+    "-Yretain-trees"
+    ),
     resolvers +=
-      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
+      resolvers += "jitpack" at "https://jitpack.io"
   )
 )
 

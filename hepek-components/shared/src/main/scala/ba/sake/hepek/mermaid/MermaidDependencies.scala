@@ -1,8 +1,7 @@
 package ba.sake.hepek.mermaid
 
-import ba.sake.tupson.JsonRW.toJson
-import ba.sake.tupson.JsonRW
-import ba.sake.hepek.html._
+import ba.sake.tupson.*
+import ba.sake.hepek.html.*
 
 trait MermaidDependencies extends PageDependencies {
   def mermaidConfig: MermaidConfig = MermaidConfig()

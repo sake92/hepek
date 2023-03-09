@@ -32,7 +32,6 @@ trait HepekDocsAbstractPage
       )
     )
 
-
 }
 
 trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADependencies {

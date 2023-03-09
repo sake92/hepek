@@ -42,9 +42,8 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
   )
 
   override def pageContent: Frag = {
-    val maybeScrollspy = tocSettings.map(_.tocType).collect {
-      case _: TocType.Scrollspy =>
-        renderScrollspyTOC(blogSettings.sections)
+    val maybeScrollspy = tocSettings.map(_.tocType).collect { case _: TocType.Scrollspy =>
+      renderScrollspyTOC(blogSettings.sections)
     }
 
     val (w1, w2, w3) =
@@ -59,15 +58,14 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
         ),
         div(cls := s"col-md-$w2")(
           div(clsNoPrint)(
-            blogSettings.createdDate.map(
-              cd =>
-                div(
-                  span(cls := "glyphicon glyphicon-time"),
-                  " " + cd.format(blogSettings.dateFormat)
-                )
+            blogSettings.createdDate.map(cd =>
+              div(
+                span(cls := "glyphicon glyphicon-time"),
+                " " + cd.format(blogSettings.dateFormat)
+              )
             ),
-            blogSettings.author.map(
-              author => div(span(cls := "glyphicon glyphicon-user"), "  " + author)
+            blogSettings.author.map(author =>
+              div(span(cls := "glyphicon glyphicon-user"), "  " + author)
             )
           ),
           pageHeader,
@@ -115,9 +113,8 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
   override def scriptsInline = {
     val maybeScrollSpy = tocSettings
       .map(_.tocType)
-      .collect {
-        case TocType.Scrollspy(offset, affixOffset) =>
-          List(s"""
+      .collect { case TocType.Scrollspy(offset, affixOffset) =>
+        List(s"""
             // activate scrollspy on body
             $$('body').scrollspy({
                 target: '#tocScrollspy',

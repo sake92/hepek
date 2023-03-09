@@ -101,16 +101,15 @@ object BlogSettings {
   val DefaultDateFormat = DateTimeFormatter.ofPattern(DefaultDateFormatPattern)
 }
 
-/**
-  * Handy class for sectioning a page (usually blog post). <br>
-  * Also useful for generating a TOC (Table Of Contents).
+/** Handy class for sectioning a page (usually blog post). <br> Also useful for generating a TOC
+  * (Table Of Contents).
   */
 final case class Section(
     name: String,
     content: Frag,
     children: List[Section] = List.empty
-)(
-    using owner: RelativePath
+)(using
+    owner: RelativePath
 ) {
   def withChildren(children: Section*) = copy(children = children.toList)
 

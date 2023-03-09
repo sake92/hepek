@@ -2,10 +2,10 @@ package ba.sake.hepek.path
 
 import ba.sake.hepek.core.RelativePath
 
-/**
-  * RelativePath enrichments.
+/** RelativePath enrichments.
   */
 trait RelativePathAddons extends RelativePath {
+
   /** Used as context when referring to other Renderables, when creating blog sections etc. */
   given selfRef: RelativePath = this
 

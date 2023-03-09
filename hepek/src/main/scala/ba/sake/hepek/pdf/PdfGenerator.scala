@@ -22,9 +22,8 @@ final case class Font(
     family: String
 )
 
-/**
-  * You must have a WebDriver installed. <br>
-  * For example if you use Chrome, add its path to 'webdriver.chrome.driver' environment variable, e.g.
+/** You must have a WebDriver installed. <br> For example if you use Chrome, add its path to
+  * 'webdriver.chrome.driver' environment variable, e.g.
   * <code>System.setProperty("webdriver.chrome.driver", """C:\selenium\chromedriver.exe""")</code>
   */
 class PdfGenerator(driver: RemoteWebDriver) {
@@ -108,12 +107,12 @@ if (svgs.length < 1) {
     val mathMlDrawer = new MathMLDrawer()
     val svgDrawer    = new BatikSVGDrawer()
 
-    try {
+    try
       for (page <- pages) {
         val pdfRendererBuilder = getPdfRendererBuilder(doc, mathMlDrawer, svgDrawer)
         renderHtmlPage(page, targetFolder, driver, pdfRendererBuilder, fonts, loadJsConditions)
       }
-    } finally {
+    finally {
       doc.save(os)
       doc.close()
       os.close()
