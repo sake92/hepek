@@ -27,23 +27,23 @@ final case class WebAppManifestIcon(
     sizes: String,
     `type`: String,
     purpose: Option[String] = None
-)
+) derives JsonRW
 
 final case class WebAppRelatedApplication(
     platform: String,
     url: String,
     id: String
-)
+) derives JsonRW
 
 final case class WebAppScreenshot(
     src: String,
     sizes: String,
     `type`: String
-)
+) derives JsonRW
 
 final case class WebAppServiceWorker(
     src: String,
     scope: Option[String] = None,
     `type`: Option[String] = None,
     update_via_cache: Option[String] = None
-)
+) derives JsonRW

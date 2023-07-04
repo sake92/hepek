@@ -41,7 +41,7 @@ case class MermaidConfig(
 final case class MermaidFlowchartConfig(
     htmlLabels: Boolean = true,
     curve: String = "linear"
-) 
+) derives JsonRW
 
 
 
@@ -60,7 +60,7 @@ final case class MermaidSequencechartConfig(
     useMaxWidth: Boolean = true,
     rightAngles: Boolean = false,
     showSequenceNumbers: Boolean = false
-)
+)derives JsonRW
 
 
 
@@ -75,4 +75,4 @@ final case class MermaidGanttchartConfig(
     fontFamily: String = "'Open-Sans', 'sans-serif'",
     numberSectionStyles: Int = 4,
     axisFormat: String = "%Y-%m-%d"
-)
+)derives JsonRW
