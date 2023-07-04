@@ -14,7 +14,8 @@ trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage 
 
   override def render: String =
     // optionally XHTML-ify and pretty-fly (for a white guy)
-    HtmlUtils.process(contents, xhtml = renderXhtml, pretty = renderPretty)
+    val htmlText = "<!DOCTYPE html>" + contents
+    HtmlUtils.process(htmlText, xhtml = renderXhtml, pretty = renderPretty)
 }
 
 final case class StaticSiteSettings(

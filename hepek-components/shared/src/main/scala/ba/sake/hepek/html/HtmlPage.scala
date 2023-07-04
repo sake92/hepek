@@ -6,9 +6,6 @@ import ba.sake.hepek.utils.MimeTypes
 import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
 
-
-// TODO move to SSG
-// not much of a benefit in ScalaJS world?
 trait HtmlPage extends PageDependencies {
   def siteSettings: SiteSettings = SiteSettings()
 
@@ -23,7 +20,7 @@ trait HtmlPage extends PageDependencies {
     lang = Some(pageSettings.language)
   )
 
-  def contents: String = {
+  def contents: Frag = {
     // css
     val compStyleInlines = components.flatMap { _._2.cssDependencies.inlines }
     val allStyleInlines  = compStyleInlines ++ stylesInline
@@ -44,19 +41,18 @@ trait HtmlPage extends PageDependencies {
     }
     val allScriptURLs = compScriptUrls ++ scriptURLs
 
-    "<!DOCTYPE html>" +
-      htmlTag(lang := pageSettings.language)(
-        head(
-          headContent,
-          allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
-            allStyleInlines.map(s => tag("style")(raw(s)))
-        ),
-        body(
-          bodyContent,
-          allScriptURLs.map(u => script(src := u)) ++
-            allScriptInlines.map(s => script(raw(s)))
-        )
+    htmlTag(lang := pageSettings.language)(
+      head(
+        headContent,
+        allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
+          allStyleInlines.map(s => tag("style")(raw(s)))
+      ),
+      body(
+        bodyContent,
+        allScriptURLs.map(u => script(src := u)) ++
+          allScriptInlines.map(s => script(raw(s)))
       )
+    )
   }
 
   // <head>
