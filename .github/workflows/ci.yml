@@ -13,7 +13,7 @@ jobs:
       matrix:
         java: [adopt@1.8, adopt@1.11]
         command:
-          - "'++3.2.2 test'"
+          - "test"
     steps:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v14
