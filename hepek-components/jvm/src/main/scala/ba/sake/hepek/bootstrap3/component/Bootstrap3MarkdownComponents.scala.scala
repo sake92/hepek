@@ -11,16 +11,16 @@ import com.vladsch.flexmark.util.data.MutableDataSet
 import com.vladsch.flexmark.util.misc.Extension
 import com.vladsch.flexmark.ext.tables.TablesExtension
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
-
-import ba.sake.hepek.html.component.MarkdownComponents
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.utils.StringUtils
 import com.vladsch.flexmark.ast.Heading
 import com.vladsch.flexmark.ext.tables.TableBlock
 import com.vladsch.flexmark.html.renderer.AttributablePart
 import com.vladsch.flexmark.util.html.MutableAttributes
 import com.vladsch.flexmark.ext.attributes.internal.AttributesAttributeProvider
 import com.vladsch.flexmark.html.renderer.LinkResolverContext
+
+import ba.sake.hepek.html.component.MarkdownComponents
+import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.utils.StringUtils
 
 trait Bootstrap3MarkdownComponents extends MarkdownComponents {
 

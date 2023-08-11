@@ -14,7 +14,6 @@ import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
 import ba.sake.hepek.html.component.MarkdownComponents
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
-import com.vladsch.flexmark.ext.gitlab.GitLabExtension
 
 // TODO add markdownSettings
 // sa tableClasses, h1 class etc
@@ -28,8 +27,7 @@ trait PlainMarkdownComponents extends MarkdownComponents {
           Parser.EXTENSIONS,
           List(
             TablesExtension.create(),
-            StrikethroughExtension.create(),
-            GitLabExtension.create()
+            StrikethroughExtension.create()
           ).asJava: Collection[Extension]
         )
         .toImmutable()

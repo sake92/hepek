@@ -42,8 +42,10 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.vladsch.flexmark"     % "flexmark-all" % V.flexmark,
-      "net.sourceforge.plantuml" % "plantuml"     % V.plantUml,
+      "com.vladsch.flexmark"     % "flexmark" % V.flexmark,
+      "com.vladsch.flexmark"     % "flexmark-ext-attributes" % V.flexmark,
+      "com.vladsch.flexmark"     % "flexmark-ext-tables" % V.flexmark,
+      "com.vladsch.flexmark"     % "flexmark-ext-gfm-strikethrough" % V.flexmark,
       "org.scalameta"          %%% "munit"        % V.munit % Test
     )
   )
