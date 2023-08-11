@@ -10,6 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2.3.3
       - uses: olafurpg/setup-scala@v14
+        with:
+          java-version: openjdk@1.17.0
       - uses: olafurpg/setup-gpg@v3
       - run: sbt ci-release
         env:
