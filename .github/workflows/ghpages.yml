@@ -15,7 +15,7 @@ jobs:
           java-version: openjdk@1.17.0
 
       - name: Checkout
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
 
