@@ -284,7 +284,8 @@ object BaseCodeHighlighter {
         val content: Frag = if (isMarkup) {
           val unindentedMarkup =
             ba.sake.hepek.utils.StringUtils.unindent(text).trim
-          p(raw(s"<!--$unindentedMarkup-->")) // ugly hack! :D
+          // https://prismjs.com/plugins/unescaped-markup/#how-to-use
+          raw(s"<!--$unindentedMarkup-->")
         } else {
           text
         }
