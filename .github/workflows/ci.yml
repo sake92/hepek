@@ -11,12 +11,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [openjdk@1.11.0, openjdk@1.17.0]
+        java: [11, 17]
         command:
           - "test"
     steps:
       - uses: actions/checkout@v4
-      - uses: olafurpg/setup-scala@v14
         with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
           java-version: ${{ matrix.java }}
+          cache: sbt
       - run: sbt ${{ matrix.command }}
