@@ -14,8 +14,7 @@ case class BulmaStaticBundle(
     Panel: BulmaPanelComponents = BulmaPanelComponents(),
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends StaticBundle
-    with PlainLinkComponents
-    with BulmaMarkdownComponents {
+    with BulmaUtilComponents {
   override type HtmlPage   = BulmaPage
   override type StaticPage = BulmaStaticPage
 

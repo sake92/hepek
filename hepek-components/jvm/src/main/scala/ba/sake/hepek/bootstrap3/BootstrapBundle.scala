@@ -3,7 +3,6 @@ package ba.sake.hepek.bootstrap3
 import ba.sake.hepek.bootstrap3.component._
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.Bundle
-import ba.sake.hepek.plain.component.PlainLinkComponents
 
 case class BootstrapBundle(
     Form: BootstrapFormComponents = BootstrapFormComponents(),
@@ -12,29 +11,16 @@ case class BootstrapBundle(
     Navbar: BootstrapNavbarComponents = BootstrapNavbarComponents(),
     Panel: BootstrapPanelComponents = BootstrapPanelComponents(),
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
-) extends Bundle
-    with PlainLinkComponents {
+) extends Bundle with BootstrapUtilComponents {
+
   override type HtmlPage = BootstrapPage
 
   def withForm(Form: BootstrapFormComponents): BootstrapBundle =
-    new BootstrapBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
+    copy(      Form = Form
     )
 
   def withGrid(Grid: BootstrapGridComponents): BootstrapBundle =
-    new BootstrapBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    new BootstrapBundle(   Grid = Grid)
 
   def withImage(Image: BootstrapImageComponents): BootstrapBundle =
     new BootstrapBundle(

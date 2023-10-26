@@ -37,7 +37,7 @@ object Index extends HepekDocsStaticPage {
           Components can be used in **any project**. It only depends on Scalatags and Commonmark.  
           If you need typesafe grid, form inputs, panels, navbars, markdown, maths and lots more, 
           this is the library you're looking for.  
-          It supports "backends" like Bootstrap, Bulma, W3CSS etc.  
+          It supports "backends" like Bootstrap, Bulma etc.  
           You as a user write generic code, and it *compiles to Bootstrap*!  
           You can later switch it to another backend implementation or *override* parts you don't like. :)
 

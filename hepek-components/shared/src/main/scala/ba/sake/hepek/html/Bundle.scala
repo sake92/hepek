@@ -3,7 +3,9 @@ package ba.sake.hepek.html
 import ba.sake.hepek.html.component._
 import ba.sake.hepek.html.component.classes.ClassesBundle
 
-trait Bundle extends LinkComponents with HepekAliases {
+trait Bundle extends HepekAliases {
+  self: UtilComponents =>
+
   def Form: FormComponents
   def Grid: GridComponents
   def Image: ImageComponents

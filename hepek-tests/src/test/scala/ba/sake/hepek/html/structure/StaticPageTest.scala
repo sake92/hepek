@@ -1,11 +1,12 @@
 package ba.sake.hepek.html.structure
 
 import ba.sake.hepek.selenium.HepekSeleniumTest
+import fixtures.static.*
 
 class StaticPageTest extends HepekSeleniumTest {
-  // TODO
-  fixtures.static.StaticPages.all.foreach { p =>
-    /*s"Static page [${p.getClass()}]" should "have the correct title, favicon etc." in {
+  val p = new SimpleStaticPage {}
+
+  /*s"Static page [${p.getClass()}]" should "have the correct title, favicon etc." in {
       go to filePath(p)
 
       // <html lang="bs">
@@ -124,5 +125,5 @@ class StaticPageTest extends HepekSeleniumTest {
           getByCss("meta[name='article:author']").get.attribute("content").get should equal(stuff)
       )
     }*/
-  }
+
 }

@@ -11,13 +11,12 @@ import com.vladsch.flexmark.util.misc.Extension
 import com.vladsch.flexmark.ext.tables.TablesExtension
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
 
-import ba.sake.hepek.html.component.MarkdownComponents
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.utils.StringUtils
 
-// TODO add markdownSettings
-// sa tableClasses, h1 class etc
-trait PlainMarkdownComponents extends MarkdownComponents {
+import ba.sake.hepek.html.component.UtilComponents
+
+trait PlainUtilComponents extends UtilComponents {
 
   extension (str: String)
     def md: Frag = {

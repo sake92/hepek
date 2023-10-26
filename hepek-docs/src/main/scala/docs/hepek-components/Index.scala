@@ -22,7 +22,7 @@ object Index extends HepekComponentsDocsPage {
           These are mostly wrappers around Scalatags.  
 
           Components are *interface-based* so we can compose them easily and replace with no effort.  
-          In a nutshell, this means you can **choose HTML framework implementation**: Bootstrap3/Bulma/W3Css.  
+          In a nutshell, this means you can **choose HTML framework implementation**: Bootstrap3/Bulma.  
 
           In order to group components, Hepek has a concept of `Bundle`.  
           Every framework fills it with its own implementations of components.  

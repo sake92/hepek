@@ -3,39 +3,18 @@ package fixtures.static
 import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 import ba.sake.hepek.bulma.statik.BulmaStaticBundle
 import ba.sake.hepek.html.StaticBundle
-import ba.sake.hepek.html.component.MarkdownComponents
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.w3css.statik.W3CssStaticBundle
 
-object StaticPages {
-  val all = List(Plain, Bootstrap3, Bulma, W3Css)
-}
-
-object Plain extends SimpleStaticPage {
-  val bundle = PlainStaticBundle()
-}
-
-object Bootstrap3 extends SimpleStaticPage {
-  val bundle = BootstrapStaticBundle()
-}
-
-object Bulma extends SimpleStaticPage {
-  val bundle = BulmaStaticBundle()
-}
-
-object W3Css extends SimpleStaticPage {
-  val bundle = W3CssStaticBundle()
-}
+val Bundle = PlainStaticBundle()
+import Bundle.*
 
 object ids {
-  val md = "md1"
+  val markdown = "md1"
 }
 
 trait SimpleStaticPage extends StaticPage {
-  val bundle: StaticBundle with MarkdownComponents
-  import bundle._
 
   override def siteSettings =
     super.siteSettings
@@ -79,7 +58,7 @@ trait SimpleStaticPage extends StaticPage {
 
   override def pageContent =
     frag(
-      div(id := ids.md)(
+      div(id := ids.markdown)(
         """
           # Header1
           ## Header2

@@ -2,8 +2,6 @@ package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all.Frag
 
-// TODO support JS ?
-trait MarkdownComponents {
-
+trait UtilComponents {
   extension (str: String) def md: Frag
 }

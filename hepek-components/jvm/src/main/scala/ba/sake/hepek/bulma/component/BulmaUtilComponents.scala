@@ -1,4 +1,4 @@
-package ba.sake.hepek.bootstrap3.component
+package ba.sake.hepek.bulma.component
 
 import java.{util => ju}
 
@@ -11,18 +11,17 @@ import com.vladsch.flexmark.util.data.MutableDataSet
 import com.vladsch.flexmark.util.misc.Extension
 import com.vladsch.flexmark.ext.tables.TablesExtension
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
+
+import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.utils.StringUtils
 import com.vladsch.flexmark.ast.Heading
-import com.vladsch.flexmark.ext.tables.TableBlock
 import com.vladsch.flexmark.html.renderer.AttributablePart
 import com.vladsch.flexmark.util.html.MutableAttributes
 import com.vladsch.flexmark.ext.attributes.internal.AttributesAttributeProvider
 import com.vladsch.flexmark.html.renderer.LinkResolverContext
+import ba.sake.hepek.html.component.UtilComponents
 
-import ba.sake.hepek.html.component.MarkdownComponents
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.utils.StringUtils
-
-trait Bootstrap3MarkdownComponents extends MarkdownComponents {
+trait BulmaUtilComponents extends UtilComponents {
 
   extension (str: String)
     def md: Frag = {
@@ -60,8 +59,8 @@ private class BulmaAttributeProvider(context: LinkResolverContext)
   ): Unit =
     super.setAttributes(node, part, attributes)
     node match {
-      case h: TableBlock =>
-        attributes.addValue("class", s"table")
+      case h: Heading =>
+        attributes.addValue("class", s"title is-${h.getLevel()}")
       case _ =>
     }
 }

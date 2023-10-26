@@ -4,8 +4,6 @@ import ba.sake.hepek.bootstrap3.BootstrapPage
 import ba.sake.hepek.bootstrap3.component._
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.StaticBundle
-import ba.sake.hepek.plain.component.PlainLinkComponents
-import ba.sake.hepek.plain.component.PlainMarkdownComponents
 
 case class BootstrapStaticBundle(
     Form: BootstrapFormComponents = BootstrapFormComponents(),
@@ -15,8 +13,7 @@ case class BootstrapStaticBundle(
     Panel: BootstrapPanelComponents = BootstrapPanelComponents(),
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
 ) extends StaticBundle
-    with PlainLinkComponents
-    with Bootstrap3MarkdownComponents {
+    with BootstrapUtilComponents {
   override type HtmlPage   = BootstrapPage
   override type StaticPage = BootstrapStaticPage
 

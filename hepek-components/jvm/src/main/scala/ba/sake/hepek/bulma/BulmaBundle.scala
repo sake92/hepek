@@ -12,8 +12,8 @@ case class BulmaBundle(
     Navbar: BulmaNavbarComponent = BulmaNavbarComponent(),
     Panel: BulmaPanelComponents = BulmaPanelComponents(),
     Classes: BulmaClassesBundle = BulmaClassesBundle
-) extends Bundle
-    with PlainLinkComponents {
+) extends Bundle with BulmaUtilComponents {
+
   override type HtmlPage = BulmaPage
 
   def withForm(Form: BulmaFormComponents): BulmaBundle =

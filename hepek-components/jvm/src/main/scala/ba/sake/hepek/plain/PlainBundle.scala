@@ -11,8 +11,7 @@ case class PlainBundle(
     Navbar: PlainNavbarComponents = PlainNavbarComponents(),
     Panel: PlainPanelComponents = PlainPanelComponents(),
     Classes: PlainClassesBundle = PlainClassesBundle
-) extends Bundle
-    with PlainLinkComponents {
+) extends Bundle with PlainUtilComponents {
   override type HtmlPage = PlainPage
 
   def withForm(Form: PlainFormComponents): PlainBundle =

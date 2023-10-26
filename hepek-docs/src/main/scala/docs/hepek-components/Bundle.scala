@@ -17,7 +17,7 @@ object Bundle extends HepekComponentsDocsPage {
     frag(
       """
         Bundle contains all needed components provided by a CSS/JS framework.  
-        Currently, supported frameworks are Bootstrap3, Bulma and W3Css.
+        Currently, supported frameworks are Bootstrap3, Bulma.
 
         Recommended usage is to create an `Imports` object which contains one of the predefined bundles:
       """.md,

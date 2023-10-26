@@ -16,7 +16,7 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion   := "3.3.0",
+    scalaVersion   := "3.3.1",
     publish / skip := true,
     scalacOptions ++= Seq(
       "-deprecation",

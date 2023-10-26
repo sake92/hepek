@@ -2,7 +2,6 @@ package ba.sake.hepek.pure
 
 package component
 
-import ba.sake.hepek.plain.component.PlainLinkComponents
 import ba.sake.hepek.scalatags.all._
 
 object PureMenuComponents extends PureMenuComponents {
@@ -24,7 +23,7 @@ object PureMenuComponents extends PureMenuComponents {
   }
 }
 
-trait PureMenuComponents extends PlainLinkComponents {
+trait PureMenuComponents {
   import PureMenuComponents._
 
   def menuType: Type = Type.Vertical
@@ -52,7 +51,7 @@ trait PureMenuComponents extends PlainLinkComponents {
     span(cls := "pure-menu-heading", attrs)(content)
 
   def menuLink(hreff: String, attrs: AttrPair*)(content: Frag*): Frag = {
-    val allAttrs = (cls := "pure-menu-link") +: attrs
-    hyperlink(hreff, allAttrs: _*)(content)
+    val allAttrs = attrs.appended(href := hreff).appended(cls := "pure-menu-link")
+    a(allAttrs*)(content)
   }
 }

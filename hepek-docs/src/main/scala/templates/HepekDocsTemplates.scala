@@ -65,10 +65,10 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
     frag(
       super.pageContent,
       footer(txtAlignCenter, bgInfo, cls := "navbar-fixed-bottom")(
-        hyperlink("https://github.com/sake92/hepek", btnClass)(
+        a(href := "https://github.com/sake92/hepek", btnClass)(
           FA.github()
         ),
-        hyperlink("https://gitter.im/sake92/hepek", btnClass)(
+        a(href := "https://gitter.im/sake92/hepek", btnClass)(
           FA.gitter()
         )
       )

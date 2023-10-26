@@ -13,8 +13,8 @@ case class PlainStaticBundle(
     Panel: PlainPanelComponents = PlainPanelComponents(),
     Classes: PlainClassesBundle = PlainClassesBundle
 ) extends StaticBundle
-    with PlainLinkComponents
-    with PlainMarkdownComponents {
+    with PlainUtilComponents {
+
   override type HtmlPage   = PlainPage
   override type StaticPage = PlainStaticPage
 
