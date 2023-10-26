@@ -17,20 +17,13 @@ trait HepekDocsAbstractPage
     extends HepekBootstrap3BlogPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
-  // dont have to remember ordering of these.. filter below!
-  val hlLangs = List("core", "clike", "scala", "java", "markup")
 
   override def prismSettings =
     super.prismSettings
       .withTheme(prismjs.Themes.Okaidia)
-      .withLanguages(prismjs.PrismConsts.languages filter hlLangs.contains)
 
   override def tocSettings =
-    Some(
-      TocSettings(
-        tocType = TocType.Scrollspy(45)
-      )
-    )
+    Some(TocSettings(tocType = TocType.Scrollspy(45)))
 
 }
 

@@ -5,7 +5,7 @@ import ba.sake.hepek.html._
 
 
 trait PrismDependencies extends ClipboardjsDependencies {
-  def prismSettings: PrismSettings = PrismSettings("1.16.0", "prism", DependencyProvider.cdnjs)
+  def prismSettings: PrismSettings = PrismSettings("1.29.0", "prism", DependencyProvider.cdnjs)
 
   def prismDependencies: ComponentDependencies = {
     val cssPluginDeps =
