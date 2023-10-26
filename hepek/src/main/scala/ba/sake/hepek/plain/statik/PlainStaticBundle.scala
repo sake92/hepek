@@ -15,7 +15,7 @@ case class PlainStaticBundle(
 ) extends StaticBundle
     with PlainUtilComponents {
 
-  override type HtmlPage   = PlainPage
+  override type Page       = PlainPage
   override type StaticPage = PlainStaticPage
 
   def withForm(Form: PlainFormComponents): PlainStaticBundle =

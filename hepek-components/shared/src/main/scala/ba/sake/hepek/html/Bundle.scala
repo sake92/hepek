@@ -13,5 +13,5 @@ trait Bundle extends HepekAliases {
   def Panel: PanelComponents
   def Classes: ClassesBundle
 
-  type HtmlPage <: ba.sake.hepek.html.HtmlPage
+  type Page <: HtmlPage
 }

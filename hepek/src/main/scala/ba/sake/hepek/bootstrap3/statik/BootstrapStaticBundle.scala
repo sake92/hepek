@@ -14,7 +14,7 @@ case class BootstrapStaticBundle(
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
 ) extends StaticBundle
     with BootstrapUtilComponents {
-  override type HtmlPage   = BootstrapPage
+  override type Page       = BootstrapPage
   override type StaticPage = BootstrapStaticPage
 
   def withForm(Form: BootstrapFormComponents): BootstrapStaticBundle =

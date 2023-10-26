@@ -20,9 +20,8 @@ inThisBuild(
     publish / skip := true,
     scalacOptions ++= Seq(
       "-deprecation",
-      "-Xmax-inlines",
-      "64",
-      "-Yretain-trees"
+      "-Yretain-trees",
+      "-Wunused:all"
     ),
     resolvers +=
       "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"

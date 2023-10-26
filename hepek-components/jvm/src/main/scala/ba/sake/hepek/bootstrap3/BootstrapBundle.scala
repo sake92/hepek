@@ -11,16 +11,16 @@ case class BootstrapBundle(
     Navbar: BootstrapNavbarComponents = BootstrapNavbarComponents(),
     Panel: BootstrapPanelComponents = BootstrapPanelComponents(),
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
-) extends Bundle with BootstrapUtilComponents {
+) extends Bundle
+    with BootstrapUtilComponents {
 
-  override type HtmlPage = BootstrapPage
+  override type Page = BootstrapPage
 
   def withForm(Form: BootstrapFormComponents): BootstrapBundle =
-    copy(      Form = Form
-    )
+    copy(Form = Form)
 
   def withGrid(Grid: BootstrapGridComponents): BootstrapBundle =
-    new BootstrapBundle(   Grid = Grid)
+    new BootstrapBundle(Grid = Grid)
 
   def withImage(Image: BootstrapImageComponents): BootstrapBundle =
     new BootstrapBundle(

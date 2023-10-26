@@ -1,8 +1,5 @@
 package fixtures.static
 
-import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
-import ba.sake.hepek.bulma.statik.BulmaStaticBundle
-import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.scalatags.all._

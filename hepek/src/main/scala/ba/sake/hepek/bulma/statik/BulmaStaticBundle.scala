@@ -15,7 +15,7 @@ case class BulmaStaticBundle(
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends StaticBundle
     with BulmaUtilComponents {
-  override type HtmlPage   = BulmaPage
+  override type Page       = BulmaPage
   override type StaticPage = BulmaStaticPage
 
   def withForm(Form: BulmaFormComponents): BulmaStaticBundle =

@@ -32,8 +32,6 @@ final case class BulmaNavbarComponent(
 
   val Companion = BulmaNavbarComponent
 
-  private val bsBtn = tag("button")(tpe := "button", btnClass)
-
   def toggle =
     a(
       cls := "navbar-burger burger",

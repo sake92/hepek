@@ -159,7 +159,6 @@ final case class BulmaFormComponents(
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-    val inputHelpFrag = inputHelp.map(h => span(cls := "help")(h))
 
     def renderCheckBox(cbLabel: String, attrs: Seq[AttrPair]) =
       label(cls := "checkbox")(
@@ -195,7 +194,6 @@ final case class BulmaFormComponents(
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-    val inputHelpFrag = inputHelp.map(h => span(cls := "help")(h))
 
     def renderRadio(radioLabel: String, attrs: Seq[AttrPair]) =
       label(cls := "radio")(

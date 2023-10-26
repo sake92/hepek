@@ -6,7 +6,6 @@ import utils.Imports._
 
 object GridSupport extends HepekComponentsDocsPage {
 
-
   override def pageSettings =
     super.pageSettings.withTitle("Grid")
 
