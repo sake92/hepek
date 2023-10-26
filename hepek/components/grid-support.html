@@ -30,10 +30,10 @@ What if you just want to position an image to the right? Not so fast!<br />
 You need to mix in some inline HTML in your beautiful markdown and get a real mess...</p>
 <p>Also, it's easy to forget that sum of columns in a Bootstrap row must be 12.
 For example:</p>
-<pre class="line-numbers" data-start="1"><code class="language-markup"><p><!--<div class="row">
+<pre class="line-numbers" data-start="1"><code class="language-markup"><!--<div class="row">
   <div class="col-sm-6"></div>
   <div class="col-sm-7"></div>
-</div>--></p></code></pre><p>This won't yield wanted result, it will always stack the divs...</p>
+</div>--></code></pre><p>This won't yield wanted result, it will always stack the divs...</p>
 </section><section><h3 id="hepek-grid">Hepek grid</h3><p>Hepek has <code>row</code> abstraction, with these types of arguments:</p>
 <ul>
 <li>arbitrary HTML (Scalatags <code>Frag</code>s)</li>
