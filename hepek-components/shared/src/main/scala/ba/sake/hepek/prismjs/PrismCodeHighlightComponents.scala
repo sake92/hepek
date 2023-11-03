@@ -171,7 +171,7 @@ object PrismCodeHighlighter {
       showLineNumbers: Boolean,
       isMarkup: Boolean = false
   ): PrismCodeHighlighter = {
-    val lineNums = if (showLineNumbers) Option(1) else None
+    val lineNums = Option.when (showLineNumbers) (1) 
     PrismCodeHighlighter(lang, lineNums, None, isMarkup)
   }
 }

@@ -22,7 +22,7 @@ trait MermaidDependencies extends PageDependencies {
     }
 
   override def components =
-    super.components :+ (mermaidSettings, mermaidDependencies)
+    super.components .appended(mermaidSettings-> mermaidDependencies)
 }
 
 

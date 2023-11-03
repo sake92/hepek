@@ -15,5 +15,5 @@ trait ClipboardjsDependencies extends PageDependencies {
     )
 
   override def components =
-    super.components :+ (clipboardjsSettings, clipboardjsDependencies)
+    super.components.appended(clipboardjsSettings->clipboardjsDependencies)
 }

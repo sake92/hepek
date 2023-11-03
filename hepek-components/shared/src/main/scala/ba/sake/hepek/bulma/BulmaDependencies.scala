@@ -14,5 +14,5 @@ trait BulmaDependencies extends PageDependencies {
     )
   )
 
-  override def components = super.components :+ (bulmaSettings, bulmaDependencies)
+  override def components = super.components.appended(bulmaSettings -> bulmaDependencies)
 }

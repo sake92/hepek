@@ -20,5 +20,5 @@ trait MathjaxDependencies extends PageDependencies {
   )
 
   override def components =
-    super.components :+ (mathjaxSettings, mathjaxDependencies)
+    super.components .appended(mathjaxSettings -> mathjaxDependencies)
 }

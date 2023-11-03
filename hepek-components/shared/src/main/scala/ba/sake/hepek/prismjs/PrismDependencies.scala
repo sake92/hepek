@@ -34,14 +34,14 @@ trait PrismDependencies extends ClipboardjsDependencies {
   }
 
   override def components =
-    super.components :+ (prismSettings, prismDependencies)
+    super.components.appended(prismSettings -> prismDependencies)
 
   private def optionalPluginDeps: List[(String, Boolean)] =
     List(
-      if (prismSettings.keepMarkup) Option("keep-markup" -> false) else None,
-      if (prismSettings.showInvisibles) Option("show-invisibles" -> true) else None,
-      if (prismSettings.showLanguage) Option("show-language" -> false) else None,
-      if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
+      Option.when(prismSettings.keepMarkup)("keep-markup"            -> false),
+      Option.when(prismSettings.showInvisibles)("show-invisibles"    -> true),
+      Option.when(prismSettings.showLanguage)("show-language"        -> false),
+      Option.when(prismSettings.copyToClipboard)("copy-to-clipboard" -> false)
     ).flatten
 }
 

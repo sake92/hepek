@@ -33,7 +33,7 @@ trait KatexDependencies extends PageDependencies {
       )
 
   override def components =
-    super.components :+ (katexSettings, katexDependencies)
+    super.components.appended(katexSettings-> katexDependencies)
 }
 
 final case class KatexSettings(

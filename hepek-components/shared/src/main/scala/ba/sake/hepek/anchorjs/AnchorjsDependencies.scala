@@ -4,7 +4,8 @@ import ba.sake.hepek.html._
 
 /** You need to provide Anchorjs config by yourself.
   *
-  * @see https://www.bryanbraun.com/anchorjs/#basic-usage
+  * @see
+  *   https://www.bryanbraun.com/anchorjs/#basic-usage
   */
 trait AnchorjsDependencies extends PageDependencies {
 
@@ -19,5 +20,5 @@ trait AnchorjsDependencies extends PageDependencies {
     )
 
   override def components =
-    super.components :+ (anchorjsSettings, anchorjsDependencies)
+    super.components.appended(anchorjsSettings -> anchorjsDependencies)
 }

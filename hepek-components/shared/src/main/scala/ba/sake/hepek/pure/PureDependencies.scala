@@ -23,5 +23,5 @@ trait PureDependencies extends PageDependencies {
     )
   )
 
-  override def components = super.components :+ (pureSettings, pureDependencies)
+  override def components = super.components.appended(pureSettings -> pureDependencies)
 }

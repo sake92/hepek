@@ -51,7 +51,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
       .withDeps(Dependency("yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
   )
 
-  override def scriptURLs = super.scriptURLs :+ scripts.js("main").ref
+  override def scriptURLs = super.scriptURLs.appended(scripts.js("main").ref)
 
   override def pageContent = {
     import Classes._
