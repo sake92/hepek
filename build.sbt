@@ -74,6 +74,7 @@ lazy val hepekDocs = (project in file("hepek-docs"))
       WebKeys.assets.value
       (Compile / hepek).value
     },
+    hepekIncremental := false,
     openIndexPage := openIndexPageTask.value
   )
   .dependsOn(hepekStatic)

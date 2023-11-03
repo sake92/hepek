@@ -1,7 +1,7 @@
 package utils
 
 import ba.sake.hepek.Resources
-import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
+import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 import ba.sake.hepek.scalatags.all._
 

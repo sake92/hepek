@@ -1,9 +1,12 @@
-package ba.sake.hepek.theme.bootstrap3
+package ba.sake.hepek.theme.bootstrap5
 
-import ba.sake.hepek.html.statik.Section
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 
-private[bootstrap3] object HepekBootstrap3SectionUtils {
+
+private[bootstrap5] object HepekBootstrap5Utils {
+
+  val Bundle = BootstrapStaticBundle()
+  import Bundle.*, Tags.*
 
   /** Renders the sections. */
   def renderSections(secs: List[Section], depth: Int = 2): List[Frag] =
@@ -66,6 +69,6 @@ private[bootstrap3] object HepekBootstrap3SectionUtils {
         val aLink = a(href := s"#${s.id}")(s.name)
         li(aLink :: renderScrollspyTocUl(s.children, maxDepth, depth + 1))
       }
-      List(ul(cls := "nav nav-pills nav-stacked")(lis))
+      List(ul(cls := "nav nav-pills flex-column")(lis))
     }
 }

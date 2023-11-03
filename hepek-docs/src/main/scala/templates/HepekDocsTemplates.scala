@@ -3,18 +3,16 @@ package templates
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.fontawesome5.FADependencies
 import ba.sake.hepek.prismjs
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.theme.bootstrap3.HepekBootstrap3BlogPage
-import ba.sake.hepek.theme.bootstrap3.TocSettings
-import ba.sake.hepek.theme.bootstrap3.TocType
-import utils.Imports.Bundle._
-import utils.Imports._
-import utils._
-
-import resources._
+import ba.sake.hepek.theme.bootstrap5.HepekBootstrap5BlogPage
+import ba.sake.hepek.theme.bootstrap5.TocSettings
+import ba.sake.hepek.theme.bootstrap5.TocType
+import utils.*
+import utils.Imports.*
+import utils.Imports.Bundle.*, Tags.*
+import resources.*
 
 trait HepekDocsAbstractPage
-    extends HepekBootstrap3BlogPage
+    extends HepekBootstrap5BlogPage
     with HepekDocsStaticPage
     with prismjs.PrismDependencies {
 
@@ -48,20 +46,19 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
 
   override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
     Dependencies()
-      .withDeps(Dependency("yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
+      .withDeps(Dependency("dist/yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
   )
 
   override def scriptURLs = super.scriptURLs.appended(scripts.js("main").ref)
 
   override def pageContent = {
-    import Classes._
     frag(
       super.pageContent,
-      footer(txtAlignCenter, bgInfo, cls := "navbar-fixed-bottom")(
-        a(href := "https://github.com/sake92/hepek", btnClass)(
+      footer(Classes.txtAlignCenter, Classes.bgInfo, cls := "fixed-bottom")(
+        a(href := "https://github.com/sake92/hepek", Classes.btnClass)(
           FA.github()
         ),
-        a(href := "https://gitter.im/sake92/hepek", btnClass)(
+        a(href := "https://gitter.im/sake92/hepek", Classes.btnClass)(
           FA.gitter()
         )
       )

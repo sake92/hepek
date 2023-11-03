@@ -1,7 +1,7 @@
-package ba.sake.hepek.theme.bootstrap3
+package ba.sake.hepek.theme.bootstrap5
 
 import ba.sake.hepek.html.statik.BlogPostPage
-import HepekBootstrap3Utils._
+import HepekBootstrap5Utils._
 import Bundle.*, Tags.*
 
 trait TocType
@@ -20,10 +20,8 @@ final case class TocSettings(
     tocType: TocType = TocType.Scrollspy()
 )
 
-
-
-// NOTE: scrollspy will NOT WORK if the page is NOT SCROLLABE (not enough content..)
-trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
+// NOTE: scrollspy will NOT WORK if the page is NOT SCROLLABE (not enough content..
+trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
 
   // optional TOC
   def tocSettings: Option[TocSettings] = Some(TocSettings())
@@ -63,7 +61,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
             )
           ),
           pageHeader,
-          renderTocAndSections(blogSettings.sections),
+          renderTocAndSections(blogSettings.sections)
         ),
         div(cls := s"col-md-$w3 hidden-sm hidden-xs", Classes.clsNoPrint)(
           maybeScrollspy
@@ -71,7 +69,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
       )
     )
   }
-
+/*
   override def stylesInline = super.stylesInline ++ List(
     """
       /* scrollspy stuff */
@@ -86,24 +84,10 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
           padding-left: 3em;
           font-size: .8em;
       }
-      
-      /* turn off affix on screens less than md */
-      @media (max-width: 991px) { 
-          .affix { position: static; }
-      }
-      @media (min-width: 992px) {
-          /* col-3 is 25% but it's nicer like this */
-          .affix {
-            width: 23%;
-            padding-left: 2em;
-            overflow-y: auto;
-            height: 85%; /* nicer if not full height */
-          }
-      }
     """
-  )
+  )*/
 
-  override def scriptsInline = {
+  /* override def scriptsInline = {
     val maybeScrollSpy = tocSettings
       .map(_.tocType)
       .collect { case TocType.Scrollspy(offset, affixOffset) =>
@@ -113,7 +97,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
                 target: '#tocScrollspy',
                 offset: $offset // ~~ when the first heading starts...
             });
-            
+
             // fix scrollspy for current page sections
             $$('#tocScrollspy').affix({
                 offset: { top: $affixOffset } // when to start moving fixed div
@@ -122,7 +106,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
       }
       .getOrElse(Nil)
     super.scriptsInline ++ maybeScrollSpy
-  }
+  }*/
 
   /* CONTENT*/
   private def renderTocAndSections(secs: List[Section]): Frag = tocSettings.map { ts =>
@@ -139,9 +123,9 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
     val pageLiTags = for {
       p <- categoryPosts
       activeClass = if (p.relPath == relPath) "active" else ""
-    } yield li(cls := activeClass, a(href := p.ref)(p.pageSettings.label))
+    } yield li(a(href := p.ref, cls := "nav-link", cls := activeClass)(p.pageSettings.label))
     tag("nav")(cls := "affix")(
-      ul(cls := "nav nav-pills nav-stacked")(pageLiTags)
+      ul(cls := "nav nav-pills flex-column")(pageLiTags)
     )
   }
 }
