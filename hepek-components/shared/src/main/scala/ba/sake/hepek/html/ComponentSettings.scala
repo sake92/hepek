@@ -1,13 +1,11 @@
 package ba.sake.hepek.html
 
-
 /** Some libraries have its specific props. These are minimum they have to provide. */
 trait BaseComponentSettings {
   def version: String
   def pkg: String
   def depsProvider: DependencyProvider
 }
-
 
 final case class ComponentSettings(
     version: String,
@@ -16,15 +14,14 @@ final case class ComponentSettings(
 ) extends BaseComponentSettings {
 
   def withVersion(version: String): ComponentSettings =
-    new ComponentSettings(version = version, pkg = pkg, depsProvider = depsProvider)
+    copy(version = version)
 
   def withPkg(pkg: String): ComponentSettings =
-    new ComponentSettings(version = version, pkg = pkg, depsProvider = depsProvider)
+    copy(pkg = pkg)
 
   def withDepsProvider(depsProvider: DependencyProvider): ComponentSettings =
-    new ComponentSettings(version = version, pkg = pkg, depsProvider = depsProvider)
+    copy(depsProvider = depsProvider)
 }
-
 
 final case class ComponentDependencies(
     cssDependencies: Dependencies = Dependencies(),
@@ -32,8 +29,8 @@ final case class ComponentDependencies(
 ) {
 
   def withCssDependencies(cssDependencies: Dependencies): ComponentDependencies =
-    new ComponentDependencies(cssDependencies = cssDependencies, jsDependencies = jsDependencies)
+    copy(cssDependencies = cssDependencies)
 
   def withJsDependencies(jsDependencies: Dependencies): ComponentDependencies =
-    new ComponentDependencies(cssDependencies = cssDependencies, jsDependencies = jsDependencies)
+    copy(jsDependencies = jsDependencies)
 }

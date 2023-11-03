@@ -19,80 +19,35 @@ final case class BlogSettings(
     sections: List[Section] = List.empty,
     dateFormat: DateTimeFormatter = BlogSettings.DefaultDateFormat
 ) {
-  def withDateFormat(df: DateTimeFormatter) = copy(dateFormat = df)
-  def withDateFormat(df: String)            = copy(dateFormat = DateTimeFormatter.ofPattern(df))
+  def withDateFormat(df: DateTimeFormatter) =
+    copy(dateFormat = df)
+
+  def withDateFormat(df: String) =
+    copy(dateFormat = DateTimeFormatter.ofPattern(df))
 
   def withAuthor(author: Option[String]): BlogSettings =
-    new BlogSettings(
-      author = author,
-      createdDate = createdDate,
-      updatedDate = updatedDate,
-      sections = sections,
-      dateFormat = dateFormat
-    )
+    copy(author = author)
 
   def withAuthor(author: String): BlogSettings =
-    new BlogSettings(
-      createdDate = createdDate,
-      updatedDate = updatedDate,
-      sections = sections,
-      dateFormat = dateFormat,
-      author = Option(author)
-    )
+    copy(author = Option(author))
 
   def withCreatedDate(createdDate: Option[LocalDate]): BlogSettings =
-    new BlogSettings(
-      author = author,
-      createdDate = createdDate,
-      updatedDate = updatedDate,
-      sections = sections,
-      dateFormat = dateFormat
-    )
+    copy(createdDate = createdDate)
 
   def withCreatedDate(createdDate: LocalDate): BlogSettings =
-    new BlogSettings(
-      author = author,
-      updatedDate = updatedDate,
-      sections = sections,
-      dateFormat = dateFormat,
-      createdDate = Option(createdDate)
-    )
+    copy(createdDate = Option(createdDate))
 
   def withUpdatedDate(updatedDate: Option[LocalDate]): BlogSettings =
-    new BlogSettings(
-      author = author,
-      createdDate = createdDate,
-      updatedDate = updatedDate,
-      sections = sections,
-      dateFormat = dateFormat
-    )
+    copy(updatedDate = updatedDate)
 
   def withUpdatedDate(updatedDate: LocalDate): BlogSettings =
-    new BlogSettings(
-      author = author,
-      createdDate = createdDate,
-      sections = sections,
-      dateFormat = dateFormat,
-      updatedDate = Option(updatedDate)
-    )
+    copy(updatedDate = Option(updatedDate))
 
   def withSections(sections: List[Section]): BlogSettings =
-    new BlogSettings(
-      author = author,
-      createdDate = createdDate,
-      updatedDate = updatedDate,
-      sections = sections,
-      dateFormat = dateFormat
-    )
+    copy(sections = sections)
 
   def withSections(sections: Section*): BlogSettings =
-    new BlogSettings(
-      author = author,
-      createdDate = createdDate,
-      updatedDate = updatedDate,
-      dateFormat = dateFormat,
-      sections = sections.toList
-    )
+    copy(sections = sections.toList)
 }
 
 object BlogSettings {
@@ -108,15 +63,14 @@ final case class Section(
     name: String,
     content: Frag,
     children: List[Section] = List.empty
-)(using
-    owner: RelativePath
-) {
+)(using owner: RelativePath) {
+
   def withChildren(children: Section*) = copy(children = children.toList)
 
   def id: String = StringUtils.urlify(name)
 
   /** Refer to section only by its path, e.g. Index.mySection.ref */
   def ref(using caller: RelativePath): String =
-    if (owner == caller) "#" + id
-    else caller.relTo(owner) + "#" + id
+    if (owner == caller) s"#${id}"
+    else caller.relTo(owner) + s"#${id}"
 }

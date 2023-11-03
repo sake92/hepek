@@ -5,12 +5,14 @@ import ba.sake.hepek.html._
 import ba.sake.hepek.path.ClassPackageRelativePath
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage {
+
   def staticSiteSettings: StaticSiteSettings = StaticSiteSettings()
 
   def pageCategory: Option[String] = None
 
   def renderPretty: Boolean = false
-  def renderXhtml: Boolean  = false
+
+  def renderXhtml: Boolean = false
 
   override def render: String =
     // optionally XHTML-ify and pretty-fly (for a white guy)
@@ -24,14 +26,14 @@ final case class StaticSiteSettings(
 ) {
 
   def withIndexPage(indexPage: Option[StaticPage]): StaticSiteSettings =
-    new StaticSiteSettings(indexPage = indexPage, mainPages = mainPages)
+    copy(indexPage = indexPage)
 
   def withIndexPage(indexPage: StaticPage): StaticSiteSettings =
-    new StaticSiteSettings(mainPages = mainPages, indexPage = Option(indexPage))
+    copy(indexPage = Option(indexPage))
 
   def withMainPages(mainPages: List[StaticPage]): StaticSiteSettings =
-    new StaticSiteSettings(indexPage = indexPage, mainPages = mainPages)
+    copy(mainPages = mainPages)
 
   def withMainPages(mainPages: StaticPage*): StaticSiteSettings =
-    new StaticSiteSettings(indexPage = indexPage, mainPages = mainPages.toList)
+    copy(mainPages = mainPages.toList)
 }

@@ -9,6 +9,9 @@ final case class PureGridComponents(
 ) extends GridComponents {
   import GridComponents._
 
+  def withScreenRatios(screenRatios: ScreenRatios): PureGridComponents =
+    copy(screenRatios = screenRatios)
+
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "pure-g")(content)
 
@@ -79,6 +82,4 @@ final case class PureGridComponents(
   private def ratio2Pure(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 24).toInt
 
-  def withScreenRatios(screenRatios: ScreenRatios): PureGridComponents =
-    new PureGridComponents(screenRatios = screenRatios)
 }

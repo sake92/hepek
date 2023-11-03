@@ -17,7 +17,6 @@ trait SimpleStaticPage extends StaticPage {
     super.siteSettings
       .withName("Site name")
       .withFaviconNormal("site-favicon.png")
-      .withGoogleAnalyticsTrackingId("g-123")
 
   override def pageSettings =
     super.pageSettings

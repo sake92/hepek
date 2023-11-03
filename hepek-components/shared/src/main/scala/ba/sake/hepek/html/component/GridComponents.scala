@@ -2,7 +2,6 @@ package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all._
 
-
 trait GridComponents {
   import GridComponents._
 
@@ -58,7 +57,6 @@ object GridComponents {
     def apply(values: Int*): Ratio = new Ratio(values.toList)
   }
 
-  
   final case class Ratios(
       single: Ratio = Ratios.DefaultSingle,
       half: Ratio = Ratios.DefaultHalf,
@@ -87,7 +85,6 @@ object GridComponents {
     def withThird(r1: Int, r2: Int, r3: Int): Ratios = withThird(Ratio(r1, r2, r3))
   }
 
-  
   final case class ScreenRatios(
       lg: Ratios,
       md: Option[Ratios] = None,

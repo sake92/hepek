@@ -20,45 +20,17 @@ case class BootstrapBundle(
     copy(Form = Form)
 
   def withGrid(Grid: BootstrapGridComponents): BootstrapBundle =
-    new BootstrapBundle(Grid = Grid)
+    copy(Grid = Grid)
 
   def withImage(Image: BootstrapImageComponents): BootstrapBundle =
-    new BootstrapBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Image = Image)
 
   def withNavbar(Navbar: BootstrapNavbarComponents): BootstrapBundle =
-    new BootstrapBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Navbar = Navbar)
 
   def withPanel(Panel: BootstrapPanelComponents): BootstrapBundle =
-    new BootstrapBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Panel = Panel)
 
   def withClasses(Classes: BootstrapClassesBundle): BootstrapBundle =
-    new BootstrapBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Classes = Classes)
 }

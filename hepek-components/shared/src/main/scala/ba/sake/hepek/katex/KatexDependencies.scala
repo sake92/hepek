@@ -2,7 +2,6 @@ package ba.sake.hepek.katex
 
 import ba.sake.hepek.html._
 
-
 trait KatexDependencies extends PageDependencies {
   def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
 
@@ -37,7 +36,6 @@ trait KatexDependencies extends PageDependencies {
     super.components :+ (katexSettings, katexDependencies)
 }
 
-
 final case class KatexSettings(
     version: String,
     pkg: String,
@@ -48,72 +46,23 @@ final case class KatexSettings(
 ) extends BaseComponentSettings {
 
   def withVersion(version: String): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags
-    )
+    copy(version = version)
 
   def withPkg(pkg: String): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags
-    )
+    copy(pkg = pkg)
 
   def withDepsProvider(depsProvider: DependencyProvider): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags
-    )
+    copy(depsProvider = depsProvider)
 
   def withDelimitersInline(delimitersInline: (String, String)): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags
-    )
+    copy(delimitersInline = delimitersInline)
 
   def withDelimitersBlock(delimitersBlock: (String, String)): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags
-    )
+    copy(delimitersBlock = delimitersBlock)
 
   def withIgnoredTags(ignoredTags: List[String]): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags
-    )
+    copy(ignoredTags = ignoredTags)
 
   def withIgnoredTags(ignoredTags: String*): KatexSettings =
-    new KatexSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      delimitersInline = delimitersInline,
-      delimitersBlock = delimitersBlock,
-      ignoredTags = ignoredTags.toList
-    )
+    copy(ignoredTags = ignoredTags.toList)
 }

@@ -18,62 +18,20 @@ case class BulmaBundle(
   override type Page = BulmaPage
 
   def withForm(Form: BulmaFormComponents): BulmaBundle =
-    new BulmaBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Form = Form)
 
   def withGrid(Grid: BulmaGridComponents): BulmaBundle =
-    new BulmaBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Grid = Grid)
 
   def withImage(Image: PlainImageComponents): BulmaBundle =
-    new BulmaBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Image = Image)
 
   def withNavbar(Navbar: BulmaNavbarComponent): BulmaBundle =
-    new BulmaBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Navbar = Navbar)
 
   def withPanel(Panel: BulmaPanelComponents): BulmaBundle =
-    new BulmaBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Panel = Panel)
 
   def withClasses(Classes: BulmaClassesBundle): BulmaBundle =
-    new BulmaBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Classes = Classes)
 }

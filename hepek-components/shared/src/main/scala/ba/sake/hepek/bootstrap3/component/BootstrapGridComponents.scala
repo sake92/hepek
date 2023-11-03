@@ -9,6 +9,9 @@ final case class BootstrapGridComponents(
 ) extends GridComponents {
   import GridComponents._
 
+  def withScreenRatios(screenRatios: ScreenRatios): BootstrapGridComponents =
+    copy(screenRatios = screenRatios)
+
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "row")(content)
 
@@ -77,6 +80,4 @@ final case class BootstrapGridComponents(
   private def ratio2BS(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 12).toInt
 
-  def withScreenRatios(screenRatios: ScreenRatios): BootstrapGridComponents =
-    new BootstrapGridComponents(screenRatios = screenRatios)
 }

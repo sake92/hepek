@@ -34,12 +34,12 @@ object Index extends HepekDocsStaticPage {
           - [Components](${hepek.components.Index.ref})
           - [Static site generator](${hepek.Index.ref})
 
-          Components can be used in **any project**. It only depends on Scalatags and Commonmark.  
-          If you need typesafe grid, form inputs, panels, navbars, markdown, maths and lots more, 
+          Components can be used in **any project**. This project has minimal dependencies.  
+          If you need grid, form inputs, panels, navbars, markdown, code highlighting, maths rendering and lots more, 
           this is the library you're looking for.  
-          It supports "backends" like Bootstrap, Bulma etc.  
-          You as a user write generic code, and it *compiles to Bootstrap*!  
-          You can later switch it to another backend implementation or *override* parts you don't like. :)
+          It supports frameworks like Bootstrap, Bulma etc.  
+          You write generic code, and it *compiles to Bootstrap*!  
+          You can easily switch to a different framework and *override* parts you don't like. :)
 
           SSG has support for automatic relative links, PDF rendering and lots more.
         """.md

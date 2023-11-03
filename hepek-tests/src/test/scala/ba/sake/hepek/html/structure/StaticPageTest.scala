@@ -86,12 +86,7 @@ class StaticPageTest extends HepekSeleniumTest {
             .attribute("content")
             .get should equal(stuff)
       )
-      p.siteSettings.googleAnalyticsTrackingId.map(
-        stuff =>
-          getByCss("script[src^='https://www.googletagmanager.com']").get
-            .attribute("src")
-            .get should endWith(stuff)
-      )
+
       // Open Graph stuff
       p.metaSettings.ogUrl.map(
         stuff => getByCss("meta[name='og:url']").get.attribute("content").get should equal(stuff)

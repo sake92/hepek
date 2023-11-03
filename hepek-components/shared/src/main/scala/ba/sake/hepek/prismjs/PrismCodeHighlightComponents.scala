@@ -190,10 +190,10 @@ final case class PrismCodeHighlighter(
     ) {
 
   def withLineNumsStart(startFrom: Int) =
-    this.copy(lineNumbers = Option(startFrom))
+    copy(lineNumbers = Option(startFrom))
 
   def withLineHighlight(lines: String, offset: Int = 0) =
-    this.copy(lineHighlight = Option(lines -> offset))
+    copy(lineHighlight = Option(lines -> offset))
 }
 
 /* command-line code highlighter */
@@ -220,16 +220,16 @@ final case class PrismCmdHighlighter(
     ) {
 
   def withLineHighlight(lines: String, offset: Int = 0): PrismCmdHighlighter =
-    this.copy(lineHighlight = Option(lines -> offset))
+    copy(lineHighlight = Option(lines -> offset))
 
   def withUser(cmdUser: String, cmdHost: String = "localhost"): PrismCmdHighlighter =
-    this.copy(commandLine = commandLine.copy(prefix = Left(cmdUser, cmdHost)))
+    copy(commandLine = commandLine.copy(prefix = Left(cmdUser, cmdHost)))
 
   def withPrompt(cmdPrompt: String): PrismCmdHighlighter =
-    this.copy(commandLine = commandLine.copy(prefix = Right(cmdPrompt)))
+    copy(commandLine = commandLine.copy(prefix = Right(cmdPrompt)))
 
   def withOutputLines(cmdOutputLines: String): PrismCmdHighlighter =
-    this.copy(
+    copy(
       commandLine = commandLine.copy(outputLines = Option(cmdOutputLines))
     )
 }

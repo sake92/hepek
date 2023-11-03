@@ -22,22 +22,20 @@ trait HtmlPage extends PageDependencies {
 
   def contents: Frag = {
     // css
-    val compStyleInlines = components.flatMap { _._2.cssDependencies.inlines }
+    val compStyleInlines = components.flatMap(_._2.cssDependencies.inlines)
     val allStyleInlines  = compStyleInlines ++ stylesInline
-    val compStyleUrls = components.flatMap {
-      case (cs, cd) =>
-        cd.cssDependencies.urls ++
-          cd.cssDependencies.deps.map(cs.depsProvider.depPath)
+    val compStyleUrls = components.flatMap { case (cs, cd) =>
+      cd.cssDependencies.urls ++
+        cd.cssDependencies.deps.map(cs.depsProvider.depPath)
     }
     val allStyleURLs = compStyleUrls ++ styleURLs
 
     // js
-    val compScriptInlines = components.flatMap { _._2.jsDependencies.inlines }
+    val compScriptInlines = components.flatMap(_._2.jsDependencies.inlines)
     val allScriptInlines  = compScriptInlines ++ scriptsInline
-    val compScriptUrls = components.flatMap {
-      case (cs, cd) =>
-        cd.jsDependencies.urls ++
-          cd.jsDependencies.deps.map(cs.depsProvider.depPath)
+    val compScriptUrls = components.flatMap { case (cs, cd) =>
+      cd.jsDependencies.urls ++
+        cd.jsDependencies.deps.map(cs.depsProvider.depPath)
     }
     val allScriptURLs = compScriptUrls ++ scriptURLs
 
@@ -57,12 +55,12 @@ trait HtmlPage extends PageDependencies {
 
   // <head>
   def headContent: Frag = frag(
-    meta(charset := metaSettings.charset),
-    meta(attr("http-equiv") := "X-UA-Compatible", content := metaSettings.xuaCompatible),
-    meta(name := "viewport", content := metaSettings.viewport),
-    meta(name := "generator", content := "hepek"),
-    meta(name := "theme-color", content := metaSettings.themeColor),
-    meta(name := "mobile-web-app-capable", content := "yes"),
+    meta(charset            := metaSettings.charset),
+    meta(attr("http-equiv") := "X-UA-Compatible", content        := metaSettings.xuaCompatible),
+    meta(name               := "viewport", content               := metaSettings.viewport),
+    meta(name               := "generator", content              := "hepek"),
+    meta(name               := "theme-color", content            := metaSettings.themeColor),
+    meta(name               := "mobile-web-app-capable", content := "yes"),
     // page
     pageSettings.description.map(c => meta(name := "description", content := c)),
     metaSettings.first.map(c => meta(name := "first", content := c)),
@@ -79,22 +77,6 @@ trait HtmlPage extends PageDependencies {
     // google
     metaSettings.googleSiteVerification
       .map(c => meta(name := "google-site-verification", content := c)),
-    siteSettings.googleAnalyticsTrackingId
-      .map(
-        id =>
-          raw(
-            s"""
-            <!-- Global Site Tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=$id"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag() { dataLayer.push(arguments); }
-              gtag('js', new Date());
-              gtag('config', '$id');
-            </script>
-            """
-          )
-      ),
     // open graph
     metaSettings.ogUrl.map(c => meta(name := "og:url", content := c)),
     metaSettings.ogType.map(c => meta(name := "og:type", content := c)),
@@ -120,79 +102,30 @@ trait HtmlPage extends PageDependencies {
   def pageContent: Frag = frag()
 }
 
-
 final case class SiteSettings(
     name: Option[String] = None,
     faviconNormal: Option[String] = None,
-    faviconInverted: Option[String] = None,
-    googleAnalyticsTrackingId: Option[String] = None
+    faviconInverted: Option[String] = None
 ) {
 
   def withName(name: Option[String]): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconNormal = faviconNormal,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId
-    )
+    copy(name = name)
 
   def withName(name: String): SiteSettings =
-    new SiteSettings(
-      faviconNormal = faviconNormal,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId,
-      name = Option(name)
-    )
+    copy(name = Option(name))
 
   def withFaviconNormal(faviconNormal: Option[String]): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconNormal = faviconNormal,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId
-    )
+    copy(faviconNormal = faviconNormal)
 
   def withFaviconNormal(faviconNormal: String): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId,
-      faviconNormal = Option(faviconNormal)
-    )
+    copy(faviconNormal = Option(faviconNormal))
 
   def withFaviconInverted(faviconInverted: Option[String]): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconNormal = faviconNormal,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId
-    )
+    copy(faviconInverted = faviconInverted)
 
   def withFaviconInverted(faviconInverted: String): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconNormal = faviconNormal,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId,
-      faviconInverted = Option(faviconInverted)
-    )
-
-  def withGoogleAnalyticsTrackingId(googleAnalyticsTrackingId: Option[String]): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconNormal = faviconNormal,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = googleAnalyticsTrackingId
-    )
-
-  def withGoogleAnalyticsTrackingId(googleAnalyticsTrackingId: String): SiteSettings =
-    new SiteSettings(
-      name = name,
-      faviconNormal = faviconNormal,
-      faviconInverted = faviconInverted,
-      googleAnalyticsTrackingId = Option(googleAnalyticsTrackingId)
-    )
+    copy(faviconInverted = Option(faviconInverted))
 }
-
 
 final case class PageSettings(
     title: String,
@@ -231,7 +164,6 @@ object PageSettings {
   def apply(title: String = DefaultTitle): PageSettings =
     PageSettings(title, title, DefaultLanguage, None)
 }
-
 
 final case class MetaSettings(
     charset: String = "utf-8",

@@ -13,65 +13,24 @@ case class PlainBundle(
     Classes: PlainClassesBundle = PlainClassesBundle
 ) extends Bundle
     with PlainUtilComponents {
+
   override type Page = PlainPage
 
   def withForm(Form: PlainFormComponents): PlainBundle =
-    new PlainBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Form = Form)
 
   def withGrid(Grid: PlainGridComponents): PlainBundle =
-    new PlainBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Grid = Grid)
 
   def withImage(Image: PlainImageComponents): PlainBundle =
-    new PlainBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Image = Image)
 
   def withNavbar(Navbar: PlainNavbarComponents): PlainBundle =
-    new PlainBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Navbar = Navbar)
 
   def withPanel(Panel: PlainPanelComponents): PlainBundle =
-    new PlainBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Panel = Panel)
 
   def withClasses(Classes: PlainClassesBundle): PlainBundle =
-    new PlainBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Classes = Classes)
 }

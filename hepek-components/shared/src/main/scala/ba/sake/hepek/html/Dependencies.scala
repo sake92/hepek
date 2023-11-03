@@ -1,6 +1,5 @@
 package ba.sake.hepek.html
 
-
 final case class Dependency(
     file: String,
     version: String,
@@ -10,7 +9,6 @@ final case class Dependency(
 ) {
   def queryParams: String = qParams.map(q => "?" + q).getOrElse("")
 }
-
 
 final case class Dependencies(
     urls: List[String] = List.empty,
@@ -27,20 +25,20 @@ final case class Dependencies(
   def plusDeps(addDeps: Dependency*)      = copy(deps = deps ++ addDeps.toList)
 
   def withUrls(urls: List[String]): Dependencies =
-    new Dependencies(urls = urls, inlines = inlines, deps = deps)
+    copy(urls = urls)
 
   def withUrls(urls: String*): Dependencies =
-    new Dependencies(inlines = inlines, deps = deps, urls = urls.toList)
+    copy(urls = urls.toList)
 
   def withInlines(inlines: List[String]): Dependencies =
-    new Dependencies(urls = urls, inlines = inlines, deps = deps)
+    copy(inlines = inlines)
 
   def withInlines(inlines: String*): Dependencies =
-    new Dependencies(urls = urls, deps = deps, inlines = inlines.toList)
+    copy(inlines = inlines.toList)
 
   def withDeps(deps: List[Dependency]): Dependencies =
-    new Dependencies(urls = urls, inlines = inlines, deps = deps)
+    copy(deps = deps)
 
   def withDeps(deps: Dependency*): Dependencies =
-    new Dependencies(urls = urls, inlines = inlines, deps = deps.toList)
+    copy(deps = deps.toList)
 }

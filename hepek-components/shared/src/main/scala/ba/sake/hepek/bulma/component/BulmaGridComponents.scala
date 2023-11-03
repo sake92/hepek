@@ -9,6 +9,9 @@ final case class BulmaGridComponents(
 ) extends GridComponents {
   import GridComponents._
 
+  def withScreenRatios(screenRatios: ScreenRatios): BulmaGridComponents =
+    copy(screenRatios = screenRatios)
+
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "columns")(content)
 
@@ -77,6 +80,4 @@ final case class BulmaGridComponents(
   private def ratio2Bulma(ratio: Int, allRatios: List[Int]): Int =
     ((ratio / allRatios.sum.toDouble) * 12).toInt
 
-  def withScreenRatios(screenRatios: ScreenRatios): BulmaGridComponents =
-    new BulmaGridComponents(screenRatios = screenRatios)
 }

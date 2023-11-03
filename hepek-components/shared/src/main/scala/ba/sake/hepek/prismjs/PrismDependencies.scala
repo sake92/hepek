@@ -3,22 +3,19 @@ package ba.sake.hepek.prismjs
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 import ba.sake.hepek.html._
 
-
 trait PrismDependencies extends ClipboardjsDependencies {
   def prismSettings: PrismSettings = PrismSettings("1.29.0", "prism", DependencyProvider.cdnjs)
 
   def prismDependencies: ComponentDependencies = {
     val cssPluginDeps =
-      (prismSettings.plugins ++ optionalPluginDeps).filter(_._2).map {
-        case (plugin, _) =>
-          Dependency(s"plugins/$plugin/prism-$plugin.css", prismSettings.version, "prism")
+      (prismSettings.plugins ++ optionalPluginDeps).filter(_._2).map { case (plugin, _) =>
+        Dependency(s"plugins/$plugin/prism-$plugin.css", prismSettings.version, "prism")
       }
     val jsLangDeps = prismSettings.languages.map { lang =>
       Dependency(s"components/prism-$lang.min.js", prismSettings.version, "prism")
     }
-    val jsPluginDeps = (prismSettings.plugins ++ optionalPluginDeps).map {
-      case (plugin, _) =>
-        Dependency(s"plugins/$plugin/prism-$plugin.min.js", prismSettings.version, "prism")
+    val jsPluginDeps = (prismSettings.plugins ++ optionalPluginDeps).map { case (plugin, _) =>
+      Dependency(s"plugins/$plugin/prism-$plugin.min.js", prismSettings.version, "prism")
     }
 
     ComponentDependencies()
@@ -41,9 +38,9 @@ trait PrismDependencies extends ClipboardjsDependencies {
 
   private def optionalPluginDeps: List[(String, Boolean)] =
     List(
-      if (prismSettings.keepMarkup) Option("keep-markup"            -> false) else None,
-      if (prismSettings.showInvisibles) Option("show-invisibles"    -> true) else None,
-      if (prismSettings.showLanguage) Option("show-language"        -> false) else None,
+      if (prismSettings.keepMarkup) Option("keep-markup" -> false) else None,
+      if (prismSettings.showInvisibles) Option("show-invisibles" -> true) else None,
+      if (prismSettings.showLanguage) Option("show-language" -> false) else None,
       if (prismSettings.copyToClipboard) Option("copy-to-clipboard" -> false) else None
     ).flatten
 }
@@ -59,7 +56,6 @@ object Themes {
   val Twilight       = "prism-twilight"
 }
 
-
 final case class PrismSettings(
     version: String,
     pkg: String,
@@ -74,172 +70,40 @@ final case class PrismSettings(
 ) extends BaseComponentSettings {
 
   def withVersion(version: String): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(version = version)
 
   def withPkg(pkg: String): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(pkg = pkg)
 
   def withDepsProvider(depsProvider: DependencyProvider): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(depsProvider = depsProvider)
 
   def withTheme(theme: String): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(theme = theme)
 
   def withLanguages(languages: List[String]): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(languages = languages)
 
   def withLanguages(languages: String*): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup,
-      languages = languages.toList
-    )
+    copy(languages = languages.toList)
 
   def withPlugins(plugins: List[(String, Boolean)]): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(plugins = plugins)
 
   def withPlugins(plugins: (String, Boolean)*): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup,
-      plugins = plugins.toList
-    )
+    copy(plugins = plugins.toList)
 
   def withShowInvisibles(showInvisibles: Boolean): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(showInvisibles = showInvisibles)
 
   def withShowLanguage(showLanguage: Boolean): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(showLanguage = showLanguage)
 
   def withCopyToClipboard(copyToClipboard: Boolean): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(copyToClipboard = copyToClipboard)
 
   def withKeepMarkup(keepMarkup: Boolean): PrismSettings =
-    new PrismSettings(
-      version = version,
-      pkg = pkg,
-      depsProvider = depsProvider,
-      theme = theme,
-      languages = languages,
-      plugins = plugins,
-      showInvisibles = showInvisibles,
-      showLanguage = showLanguage,
-      copyToClipboard = copyToClipboard,
-      keepMarkup = keepMarkup
-    )
+    copy(keepMarkup = keepMarkup)
 }
 
 object PrismConsts {
@@ -317,7 +181,7 @@ object PrismConsts {
       "markup",
       "markup-templating",
       "aspnet", // extends markup
-      //"django", // extends markup, TODO throws error...?
+      // "django", // extends markup, TODO throws error...?
       "handlebars", // extends markup
       "jsx",        // extends markup
       "markdown",   // extends markup

@@ -15,66 +15,26 @@ case class BulmaStaticBundle(
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends StaticBundle
     with BulmaUtilComponents {
-  override type Page       = BulmaPage
+
+  override type Page = BulmaPage
+
   override type StaticPage = BulmaStaticPage
 
   def withForm(Form: BulmaFormComponents): BulmaStaticBundle =
-    new BulmaStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Form = Form)
 
   def withGrid(Grid: BulmaGridComponents): BulmaStaticBundle =
-    new BulmaStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Grid = Grid)
 
   def withImage(Image: PlainImageComponents): BulmaStaticBundle =
-    new BulmaStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Image = Image)
 
   def withNavbar(Navbar: BulmaNavbarComponent): BulmaStaticBundle =
-    new BulmaStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Navbar = Navbar)
 
   def withPanel(Panel: BulmaPanelComponents): BulmaStaticBundle =
-    new BulmaStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Panel = Panel)
 
   def withClasses(Classes: BulmaClassesBundle): BulmaStaticBundle =
-    new BulmaStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Classes = Classes)
 }

@@ -14,66 +14,26 @@ case class BootstrapStaticBundle(
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
 ) extends StaticBundle
     with BootstrapUtilComponents {
-  override type Page       = BootstrapPage
+
+  override type Page = BootstrapPage
+
   override type StaticPage = BootstrapStaticPage
 
   def withForm(Form: BootstrapFormComponents): BootstrapStaticBundle =
-    new BootstrapStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Form = Form)
 
   def withGrid(Grid: BootstrapGridComponents): BootstrapStaticBundle =
-    new BootstrapStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Grid = Grid)
 
   def withImage(Image: BootstrapImageComponents): BootstrapStaticBundle =
-    new BootstrapStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Image = Image)
 
   def withNavbar(Navbar: BootstrapNavbarComponents): BootstrapStaticBundle =
-    new BootstrapStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Navbar = Navbar)
 
   def withPanel(Panel: BootstrapPanelComponents): BootstrapStaticBundle =
-    new BootstrapStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Panel = Panel)
 
   def withClasses(Classes: BootstrapClassesBundle): BootstrapStaticBundle =
-    new BootstrapStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Classes = Classes)
 }

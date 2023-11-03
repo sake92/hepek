@@ -15,66 +15,25 @@ case class PlainStaticBundle(
 ) extends StaticBundle
     with PlainUtilComponents {
 
-  override type Page       = PlainPage
+  override type Page = PlainPage
+
   override type StaticPage = PlainStaticPage
 
   def withForm(Form: PlainFormComponents): PlainStaticBundle =
-    new PlainStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Form = Form)
 
   def withGrid(Grid: PlainGridComponents): PlainStaticBundle =
-    new PlainStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Grid = Grid)
 
   def withImage(Image: PlainImageComponents): PlainStaticBundle =
-    new PlainStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Image = Image)
 
   def withNavbar(Navbar: PlainNavbarComponents): PlainStaticBundle =
-    new PlainStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Navbar = Navbar)
 
   def withPanel(Panel: PlainPanelComponents): PlainStaticBundle =
-    new PlainStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Panel = Panel)
 
   def withClasses(Classes: PlainClassesBundle): PlainStaticBundle =
-    new PlainStaticBundle(
-      Form = Form,
-      Grid = Grid,
-      Image = Image,
-      Navbar = Navbar,
-      Panel = Panel,
-      Classes = Classes
-    )
+    copy(Classes = Classes)
 }
