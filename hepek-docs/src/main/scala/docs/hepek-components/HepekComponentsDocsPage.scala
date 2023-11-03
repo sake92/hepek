@@ -6,7 +6,7 @@ trait HepekComponentsDocsPage extends templates.HepekDocsAbstractPage {
 
   override def categoryPosts: List[BlogPostPage] = List(
     Index,
-    Bundle,
+    BundleDocs,
     HtmlPage,
     Dependencies,
     GridSupport,

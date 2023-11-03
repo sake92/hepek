@@ -1,9 +1,8 @@
 package docs.hepek
 
-import ba.sake.hepek.scalatags.all._
-import utils.Imports.Bundle._
-import utils.Imports._
-import utils._
+import utils.*
+import utils.Imports.*
+import utils.Imports.Bundle.*, Tags.*
 
 object MultiPage extends HepekDocsPage {
 

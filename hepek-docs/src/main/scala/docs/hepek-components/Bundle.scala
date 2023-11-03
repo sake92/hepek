@@ -1,10 +1,9 @@
 package docs.hepek.components
 
-import ba.sake.hepek.scalatags.all._
-import utils.Imports.Bundle._
 import utils.Imports._
+import utils.Imports.Bundle.*, Tags.*
 
-object Bundle extends HepekComponentsDocsPage {
+object BundleDocs extends HepekComponentsDocsPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Bundle")

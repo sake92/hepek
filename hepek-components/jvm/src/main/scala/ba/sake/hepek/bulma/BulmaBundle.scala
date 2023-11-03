@@ -17,6 +17,8 @@ case class BulmaBundle(
 
   override type Page = BulmaPage
 
+  val Tags = ba.sake.hepek.scalatags.all
+
   def withForm(Form: BulmaFormComponents): BulmaBundle =
     copy(Form = Form)
 

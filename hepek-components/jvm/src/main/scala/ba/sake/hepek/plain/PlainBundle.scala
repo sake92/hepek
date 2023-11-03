@@ -16,6 +16,8 @@ case class PlainBundle(
 
   override type Page = PlainPage
 
+  val Tags = ba.sake.hepek.scalatags.all
+
   def withForm(Form: PlainFormComponents): PlainBundle =
     copy(Form = Form)
 

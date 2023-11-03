@@ -19,6 +19,8 @@ case class BootstrapStaticBundle(
 
   override type StaticPage = BootstrapStaticPage
 
+  val Tags = ba.sake.hepek.scalatags.all
+
   def withForm(Form: BootstrapFormComponents): BootstrapStaticBundle =
     copy(Form = Form)
 

@@ -6,7 +6,16 @@ import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 import ba.sake.hepek.scalatags.all._
 
 object Imports {
-  val Bundle = BootstrapStaticBundle()
+  val Bundle = locally {
+    val b = BootstrapStaticBundle()
+    import b.*
+
+    val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
+    val grid = Grid.withScreenRatios(
+      Grid.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
+    )
+    b.withGrid(grid)
+  }
 
   object resources extends Resources {
     override def siteRootPath = "docs"

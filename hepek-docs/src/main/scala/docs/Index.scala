@@ -1,27 +1,13 @@
 package docs
 
-import java.time.LocalDate
+import utils.Imports.Bundle.*, Tags.*, Grid.*, Classes.*
 
-import ba.sake.hepek.scalatags.all._
-import templates.HepekDocsStaticPage
-import utils.Imports.Bundle._
-
-import Classes._
-
-object Index extends HepekDocsStaticPage {
-  private val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
-
-  private val grid = Grid.withScreenRatios(
-    Grid.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
-  )
-  import grid._
+object Index extends templates.HepekDocsStaticPage {
 
   override def pageSettings =
     super.pageSettings
       .withTitle("Welcome!")
       .withDescription("Hepek docs")
-
-  val currYear = LocalDate.now()
 
   override def pageContent =
     frag(

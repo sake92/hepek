@@ -194,7 +194,7 @@ final case class BulmaFormComponents(
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-
+    
     def renderRadio(radioLabel: String, attrs: Seq[AttrPair]) =
       label(cls := "radio")(
         input(attrs),

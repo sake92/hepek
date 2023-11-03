@@ -1,7 +1,6 @@
 package docs.hepek.components
 
-import ba.sake.hepek.scalatags.all._
-import utils.Imports.Bundle._
+import utils.Imports.Bundle.*, Tags.*
 
 object Index extends HepekComponentsDocsPage {
 
@@ -26,7 +25,7 @@ object Index extends HepekComponentsDocsPage {
 
           In order to group components, Hepek has a concept of `Bundle`.  
           Every framework fills it with its own implementations of components.  
-          Proceed to [next page](${Bundle.ref}) for more detailed explanation.
+          Proceed to [next page](${BundleDocs.ref}) for more detailed explanation.
   
         """.md
     )

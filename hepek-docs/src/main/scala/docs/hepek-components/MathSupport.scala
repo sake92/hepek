@@ -1,8 +1,7 @@
 package docs.hepek.components
 
 import ba.sake.hepek.katex.KatexDependencies
-import ba.sake.hepek.scalatags.all._
-import utils.Imports.Bundle._
+import utils.Imports.Bundle.*, Tags.*
 
 object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
 

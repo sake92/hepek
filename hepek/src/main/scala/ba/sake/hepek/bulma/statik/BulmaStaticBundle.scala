@@ -20,6 +20,8 @@ case class BulmaStaticBundle(
 
   override type StaticPage = BulmaStaticPage
 
+  val Tags = ba.sake.hepek.scalatags.all
+
   def withForm(Form: BulmaFormComponents): BulmaStaticBundle =
     copy(Form = Form)
 
