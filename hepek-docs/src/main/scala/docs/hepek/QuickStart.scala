@@ -19,7 +19,6 @@ object QuickStart extends HepekDocsPage {
     "Installation",
     """
       You need to have Java 8 installed and sbt version 1 or greater.  
-      It's planned to support other build tools in the future: Mill, Gradle etc.
     """.md
   )
 
@@ -43,14 +42,14 @@ object QuickStart extends HepekDocsPage {
     "Serving",
     div(
       s"""
-        Great tool for developing static sites is [Browsersync](${links.BrowsersyncUrl}).  
+        A great tool for developing static sites is [Browsersync](${links.BrowsersyncUrl}).  
         Install it, `cd` to rendered folder and type:  
       """.md,
       chl.bash.withPrompt("$")("browser-sync start --server --files ."),
       """
         Browsersync will **automatically refresh page** in browser when it gets changed!
   
-        Deployment consists of copying the contents to your web host (e.g. Github pages).
+        Deployment consists of copying the contents to your web host (e.g. GitHub pages).
       """.md
     )
   )

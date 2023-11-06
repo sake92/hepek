@@ -16,8 +16,8 @@ object StaticBundle extends HepekDocsPage {
     "Static bundle",
     frag(
       """
-        `StaticBundle` extends the general `Bundle` with static HTML components.  
-        It adds traits like `StaticPage` in addition to existing stuff in `Bundle`.
+        `StaticBundle` has components needed for workgin with static HTML.  
+        It contains a trait `StaticPage` you need to extend in order to get the needed dependencies and setup.
 
         Recommended usage is to create an `Imports` object which contains one of the predefined bundles.  
         Then you `import utils.Imports.Bundle._` in every other page/template you make.  
@@ -25,7 +25,7 @@ object StaticBundle extends HepekDocsPage {
       chl.scala("""
         package utils
 
-        import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
+        import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 
         object Imports {
           val Bundle = BootstrapStaticBundle()

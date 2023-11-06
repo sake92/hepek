@@ -3,7 +3,7 @@ package utils
 object links {
   private val hepekGhUrl         = "https://github.com/sake92/hepek"
   private val hepekSsgUrl        = s"$hepekGhUrl/tree/master/hepek/src/main/scala"
-  private val hepekComponentsUrl = s"$hepekGhUrl/tree/master/hepek-components/src/main/scala"
+  private val hepekComponentsUrl = s"$hepekGhUrl/tree/master/hepek-components/shared/src/main/scala"
 
   private val hepekExamplesUrl =
     "https://github.com/sake92/hepek-examples/tree/master/src/main/scala"
@@ -19,10 +19,10 @@ object links {
 
   // bootstrap
   val BootstrapGridComponentsUrl =
-    s"$hepekComponentsUrl/ba/sake/hepek/bootstrap3/component/BootstrapGridComponents.scala"
+    s"$hepekComponentsUrl/ba/sake/hepek/bootstrap5/component/BootstrapGridComponents.scala"
 
   val BootstrapStaticPageUrl =
-    s"$hepekSsgUrl/ba/sake/hepek/bootstrap3/statik/BootstrapStaticPage.scala"
+    s"$hepekSsgUrl/ba/sake/hepek/bootstrap5/statik/BootstrapStaticPage.scala"
   // wordpress
   val WpExampleUrl = s"$hepekExamplesUrl/examples/multi/wordpress"
 
@@ -34,8 +34,8 @@ object links {
   val KatexDependenciesUrl = s"$hepekComponentsUrl/ba/sake/hepek/katex/KatexDependencies.scala"
 
   // themes
-  val HepekBootstrap3BlogPagesUrl =
-    s"$hepekSsgUrl/ba/sake/hepek/theme/bootstrap3/HepekBootstrap3BlogPage.scala"
+  val HepekBootstrap5BlogPageUrl =
+    s"$hepekSsgUrl/ba/sake/hepek/theme/bootstrap5/HepekBootstrap5BlogPage.scala"
 
   val BrowsersyncUrl = "https://browsersync.io/"
 }

@@ -17,6 +17,7 @@ trait BootstrapPage extends HtmlPage with BootstrapDependencies {
     """
     .affix {
         position: fixed;
+        width: 10%;
     }
     """
   )

@@ -33,7 +33,7 @@ object BlogPage extends HepekDocsPage {
     frag(
       s"""
         When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a static blog post page.  
-        For a Bootstrap-themed page extend [`HepekBootstrap3BlogPage`](${links.HepekBootstrap3BlogPagesUrl}).  
+        For a Bootstrap-themed page extend [`HepekBootstrap5BlogPage`](${links.HepekBootstrap5BlogPageUrl}).  
         You can override `def blogSettings` method with following fields:
       """.md,
       renderClassProps(blogPageSettingsProps)

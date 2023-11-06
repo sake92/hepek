@@ -15,15 +15,12 @@ object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
     "Math support",
     frag(
       """
-        Hepek has support for KaTeX and MathJax.  
-        Preferred library is KaTeX because it is faster and lighter than MathJax.  
-        Also, Hepek SSG supports PDF rendering only with KaTeX!
-
-        KaTeX supports only LaTeX syntax, but you'll get used to it quickly.  
-        Of course, you need to extend `KatexDependencies`.
+        Hepek has support for KaTeX math library.  
+        KaTeX is using the LaTeX syntax, so it is good to familiarize yourself with it.  
+        You need to extend `KatexDependencies` to import the CSS/JS stuff.
 
         Since Hepek supports Markdown, it is hard to find an unused delimiter character.  
-        Hepek chose acute accent mark ("forward-tick"), `´` for inline math. 
+        Hepek chose acute accent mark ("forward-tick"), `´` for inline math.  
         On Windows the shortcut is <kbd>AltGr</kbd>+<kbd>9</kbd>.
 
         For block-level math double-dollar is used, `$$`.
@@ -40,8 +37,8 @@ object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
           $$A \setminus B = \\{x | x \\in A \land x \\notin B\\}$$
 
         You need to be careful with Scala's character escaping, e.g. when you want to type
-        `\notin` Scala will try to parse `\n` as newline...
-        So you'll get into that with trial and error. xD
+        `\notin` Scala will try to parse `\n` as newline...  
+        So you'll get into that with trial and error.
       """.md
     )
   )

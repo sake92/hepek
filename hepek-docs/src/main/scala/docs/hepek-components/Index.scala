@@ -17,11 +17,24 @@ object Index extends HepekComponentsDocsPage {
     "Hepek Components",
     frag(
       s"""
-          Hepek Components contain the core components of Hepek SSG and Hepek Play.  
-          These are mostly wrappers around Scalatags.  
+          Hepek Components contain the core components of Hepek SSG and can be used standalone:
+          ```scala
+          // sbt
+          libraryDependencies ++= Seq(
+            "ba.sake" %% "hepek-components" % "0.14.0"
+          )
 
-          Components are *interface-based* so we can compose them easily and replace with no effort.  
-          In a nutshell, this means you can **choose HTML framework implementation**: Bootstrap3/Bulma.  
+          // Mill
+          def ivyDeps = Agg(
+            ivy"ba.sake::hepek-components:0.14.0"
+          )
+
+          // scala-cli
+          //> using dep ba.sake::hepek-components:0.14.0
+          ```
+
+          Components are mostly *interface-based* so we can compose them easily and replace with minimal effort.  
+          In a nutshell, this means you can **choose CSS/HTML framework implementation**: Bootstrap5/Bootstrap3/Bulma.  
 
           In order to group components, Hepek has a concept of `Bundle`.  
           Every framework fills it with its own implementations of components.  

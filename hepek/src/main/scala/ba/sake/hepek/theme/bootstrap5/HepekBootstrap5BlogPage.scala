@@ -87,27 +87,6 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
     """
   )
 
-  /* override def scriptsInline = {
-    val maybeScrollSpy = tocSettings
-      .map(_.tocType)
-      .collect { case TocType.Scrollspy(offset, affixOffset) =>
-        List(s"""
-            // activate scrollspy on body
-            $$('body').scrollspy({
-                target: '#tocScrollspy',
-                offset: $offset // ~~ when the first heading starts...
-            });
-
-            // fix scrollspy for current page sections
-            $$('#tocScrollspy').affix({
-                offset: { top: $affixOffset } // when to start moving fixed div
-            });
-          """)
-      }
-      .getOrElse(Nil)
-    super.scriptsInline ++ maybeScrollSpy
-  }*/
-
   /* CONTENT*/
   private def renderTocAndSections(secs: List[Section]): Frag = tocSettings.map { ts =>
     if (ts.tocType == TocType.Togglable)

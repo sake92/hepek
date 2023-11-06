@@ -18,12 +18,12 @@ object PdfGenerator extends HepekDocsPage {
     frag(
       s"""
         You need to have chromedriver installed, click [here](http://chromedriver.chromium.org/downloads)
-          to download latest version.  
+          to download the latest version.  
         Hepek uses it to properly wait for JS to be loaded, then it takes a snapshot of your HTML,
           and renders it to PDF with openhtmltopdf.  
 
-        Rendering your PDF is just matter of calling `PdfGenerator.generate(file, targetFolder, pages)`.  
-        Hepek must now about chromedriver via `webdriver.chrome.driver` system variable.
+        Rendering your PDF is just a matter of calling `PdfGenerator.generate(file, targetFolder, pages)`.  
+        Hepek must know about the chromedriver via `webdriver.chrome.driver` system variable.  
         Example app:
       """.md,
       chl.scala("""
@@ -38,7 +38,6 @@ object PdfGenerator extends HepekDocsPage {
       """),
       """
         And then just run it!  
-        If someone wants to contribute with an sbt task for doing this, that would be awesome! :)
       """.md
     )
   )

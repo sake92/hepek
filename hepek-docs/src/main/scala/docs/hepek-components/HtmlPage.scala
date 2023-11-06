@@ -38,7 +38,7 @@ object HtmlPage extends HepekComponentsDocsPage {
     "Basic settings",
     frag(
       s"""
-        When you extend [`HtmlPage`](${links.HtmlPageUrl}) you get basic support for a HTML page.  
+        When you extend the [`HtmlPage`](${links.HtmlPageUrl}) you get basic support for a HTML page.  
          
         First we'll define a template for all our pages.  
         Here we can put site-wide settings, include common JS and CSS dependencies.  

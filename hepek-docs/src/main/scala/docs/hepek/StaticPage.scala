@@ -27,7 +27,7 @@ object StaticPage extends HepekDocsPage {
     frag(
       s"""
         When you extend [`StaticPage`](${links.StaticPageUrl}) you get support for a static HTML page.  
-        For basic settings you override `def staticSiteSettings`. It has the following fields:
+        For basic settings you can override `def staticSiteSettings`. It has the following fields:
       """.md,
       renderClassProps(staticSiteSettingsProps),
       "You usually define it in a common trait, for example:".md,
@@ -38,7 +38,7 @@ object StaticPage extends HepekDocsPage {
               .withIndexPage(site.Index)
         }
       """),
-      "Example of page definition:",
+      "Example of a page definition:",
       chl.scala("""
         package site
         
@@ -47,9 +47,9 @@ object StaticPage extends HepekDocsPage {
         }
       """),
       """
-        You can get a relative link to `Index` page with `ref` method.  
-        E.g. if you have another page in `site.posts` package (notice that `Index` is in the `site` package), 
-          `Index.ref` will give you a string "../index.html"
+        You can get a relative link to `Index` page with the `ref` method.  
+        E.g. if you have another page in `site.posts` package (notice that `Index` is in the `site` package, parent of `site.posts` package),  
+        `Index.ref` will give you a string "../index.html"
       """.md
     )
   )

@@ -43,17 +43,17 @@ object GridSupport extends HepekComponentsDocsPage {
     "Hepek grid",
     frag(
       s"""
-        Hepek has `row` abstraction, with these types of arguments:
+        Hepek has the `row` abstraction, with these overloads:
           - arbitrary HTML (Scalatags `Frag`s)
           - halves, constructed with `half`
           - thirds, constructed with `third`
         
-        By default, columns have same width, as expected.  
-        You just need to extend `Grid` from your favorite `Bundle`.  
-        So, in a nutshell, these will compile:
+        By default, columns have the same/proportional width, as expected.  
+        You just need to import the `Grid` from your favorite `Bundle`.  
+        So, in a nutshell, these will compile/work:
       """.md,
       chl.scala("""
-        import Imports.Grid._
+        import Imports.Bundle.Grid._
 
         row(div(), p(), "text"), // normal HTML
         row(
@@ -71,11 +71,11 @@ object GridSupport extends HepekComponentsDocsPage {
         row(
           half(...),
           half(...),
-          half(...) // too many halves
+          half(...) // too many halves, compile error, yay!
         ),
         row(
           third(...),
-          third(...) // missing one third
+          third(...) // missing one third, compile error!
         )
       """)
     ),
@@ -88,7 +88,7 @@ object GridSupport extends HepekComponentsDocsPage {
       md("""
         Halves and thirds use the `screenRatios` configuration. 
         You can configure each screen size separately: 
-          `lg`,`md`, `sm` and `xs`.
+          `lg`, `md`, `sm` and `xs`.  
         Example:
       """),
       chl.scala("""
@@ -110,7 +110,7 @@ object GridSupport extends HepekComponentsDocsPage {
       """),
       s"""
         These are pretty self-explanatory. For large screens, halves have 5:7 ratio.  
-        So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class (when using Bootstrap3).  
+        So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class (when using Bootstrap5).  
         Same pattern follows for thirds etc.
 
         Ratio for `row`s with arbitrary HTML is specified in `singleRatio`s.  
