@@ -51,7 +51,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
 
   override def scriptURLs = super.scriptURLs.appended(scripts.js("main").ref)
 
-  override def pageContent = {
+  override def pageContent =
     frag(
       super.pageContent,
       footer(Classes.txtAlignCenter, Classes.bgInfo, cls := "fixed-bottom")(
@@ -63,5 +63,4 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
         )
       )
     )
-  }
 }

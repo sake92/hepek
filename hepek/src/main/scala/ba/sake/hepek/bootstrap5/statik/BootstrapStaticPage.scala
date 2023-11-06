@@ -36,5 +36,5 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
         else if (page.pageCategory == this.pageCategory) "active"
         else ""
       }
-    } yield a(href := page.ref, cls := klasa, cls:="nav-link")(labela) -> Seq()
+    } yield a(href := page.ref, cls := klasa, cls := "nav-link")(labela) -> Seq()
 }

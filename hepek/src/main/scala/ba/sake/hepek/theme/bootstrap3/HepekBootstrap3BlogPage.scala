@@ -20,8 +20,6 @@ final case class TocSettings(
     tocType: TocType = TocType.Scrollspy()
 )
 
-
-
 // NOTE: scrollspy will NOT WORK if the page is NOT SCROLLABE (not enough content..)
 trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
 
@@ -63,7 +61,7 @@ trait HepekBootstrap3BlogPage extends BlogPostPage with StaticPage {
             )
           ),
           pageHeader,
-          renderTocAndSections(blogSettings.sections),
+          renderTocAndSections(blogSettings.sections)
         ),
         div(cls := s"col-md-$w3 hidden-sm hidden-xs", Classes.clsNoPrint)(
           maybeScrollspy

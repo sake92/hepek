@@ -2,7 +2,6 @@ package ba.sake.hepek.theme.bootstrap5
 
 import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 
-
 private[bootstrap5] object HepekBootstrap5Utils {
 
   val Bundle = BootstrapStaticBundle()
@@ -13,8 +12,8 @@ private[bootstrap5] object HepekBootstrap5Utils {
     secs.map { s =>
       // h2, h3...
       val hTag = tag("h" + depth)
-      tag("section")(
-        hTag(id := s.id)(s.name),
+      tag("section")(id := s.id)(
+        hTag(s.name),
         s.content,
         renderSections(s.children, depth + 1)
       )
@@ -37,7 +36,7 @@ private[bootstrap5] object HepekBootstrap5Utils {
 
   /** Renders the scrollable TOC (Table of Contents). */
   def renderScrollspyTOC(secs: List[Section]): Frag =
-    tag("nav")(id := "tocScrollspy")(
+    tag("nav")(id := "tocScrollspy", cls := "affix")(
       renderScrollspyTocUl(secs)
     )
 
@@ -51,7 +50,7 @@ private[bootstrap5] object HepekBootstrap5Utils {
       List.empty
     } else {
       val lis = secs.flatMap { s =>
-        val aLink = a(href := s"#${s.id}")(s.name)
+        val aLink = a(href := s"#${s.id}", cls := "nav-link")(s.name)
         li(aLink) :: renderTogglableTOC(s.children, maxDepth, depth + 1)
       }
       List(ul(lis))
@@ -66,7 +65,7 @@ private[bootstrap5] object HepekBootstrap5Utils {
       List.empty
     } else {
       val lis = secs.map { s =>
-        val aLink = a(href := s"#${s.id}")(s.name)
+        val aLink = a(href := s"#${s.id}", cls := "nav-link")(s.name)
         li(aLink :: renderScrollspyTocUl(s.children, maxDepth, depth + 1))
       }
       List(ul(cls := "nav nav-pills flex-column")(lis))

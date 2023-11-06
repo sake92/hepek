@@ -48,7 +48,7 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
         div(cls := s"col-md-$w1", Classes.clsNoPrint)(
           renderSidebar
         ),
-        div(cls := s"col-md-$w2")(
+        div(data.bs.spy := "scroll", data.bs.target := "#tocScrollspy", cls := s"col-md-$w2")(
           div(Classes.clsNoPrint)(
             blogSettings.createdDate.map(cd =>
               div(
@@ -69,7 +69,7 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
       )
     )
   }
-/*
+
   override def stylesInline = super.stylesInline ++ List(
     """
       /* scrollspy stuff */
@@ -85,7 +85,7 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
           font-size: .8em;
       }
     """
-  )*/
+  )
 
   /* override def scriptsInline = {
     val maybeScrollSpy = tocSettings
