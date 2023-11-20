@@ -80,9 +80,8 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
   protected override def constructButton(
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
-  ): Frag = {
+  ): Frag =
     button(inputAttrs)(inputLabel)
-  }
 
   /** checkbox input "constructor", should override in impl */
   protected override def constructInputCheckbox(

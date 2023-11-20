@@ -126,7 +126,7 @@ final case class BulmaFormComponents(
     val bulmaField =
       div(cls := "field")(
         div(cls := "control")(
-          btnField
+          btnFrag
         )
       )
 

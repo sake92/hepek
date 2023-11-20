@@ -577,10 +577,10 @@ trait FormComponents {
       _attrs: Seq[AttrPair]
   ): Frag = {
     // <button> can have type="submit", let override win
-    val btnTpe  = getAttrValue(_attrs, "type").getOrElse("button")
+    val btnTpe = getAttrValue(_attrs, "type").getOrElse("button")
     val inputAttrsFiltered = _attrs
       .filterNot(ap => HandledAttrs.contains(ap.a.name))
-      .appended(tpe:=btnTpe)
+      .appended(tpe := btnTpe)
     constructButton(
       _label,
       inputAttrsFiltered
