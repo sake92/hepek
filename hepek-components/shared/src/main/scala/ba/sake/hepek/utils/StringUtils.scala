@@ -5,9 +5,8 @@ import java.text.Normalizer
 object StringUtils {
   private val UnsafeURLCharsRegex = """[& +$,:;=?@"#{}|^~\[`%!'\]./()*\\]"""
 
-  /**
-    * Returns kebab-case, lowercased, URL-friendly string. <br>
-    * Converts all non-ASCII characters to similar ASCII characters
+  /** Returns kebab-case, lowercased, URL-friendly string. <br> Converts all non-ASCII characters to
+    * similar ASCII characters
     */
   def urlify(input: String): String = {
     // example "-Pa&geABCNešt-_o"

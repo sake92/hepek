@@ -4,7 +4,6 @@ import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
 
-
 object BootstrapFormComponents {
   sealed trait Type extends FormComponents.Type
 
@@ -29,7 +28,6 @@ object BootstrapFormComponents {
   }
 }
 
-
 final case class BootstrapFormComponents(
     formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
 ) extends FormComponents {
@@ -51,7 +49,8 @@ final case class BootstrapFormComponents(
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
   ) = {
-    val commonAttrs        = Seq(cls := "form-control", inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
+    val commonAttrs =
+      Seq(cls := "form-control", inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(_.clazz)
@@ -86,13 +85,31 @@ final case class BootstrapFormComponents(
   protected override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
+      inputLabel: String,
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val attrs   = Seq(inputType, btnClass) ++ inputId.map(id := _) ++ inputAttrs
+    val btnFrag = input(attrs)
+
+    formType match {
+      case ft: Type.Horizontal =>
+        val (colLabel, colInput) = horizontalRatioClasses(ft, false)
+        formGroup()(
+          div(cls := s"$colLabel $colInput")(
+            btnFrag
+          )
+        )
+      case _ =>
+        btnFrag
+    }
+  }
+
+  protected override def constructButton(
       inputLabel: Frag,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val commonAttrs = Seq(inputType) ++ inputId.map(id := _) ++ inputAttrs
-    val btnFrag =
-      if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
-      else input(btnClass, commonAttrs)
+    val attrs   = inputAttrs.appended(btnClass)
+    val btnFrag = button(attrs)(inputLabel)
 
     formType match {
       case ft: Type.Horizontal =>
@@ -160,10 +177,9 @@ final case class BootstrapFormComponents(
           label(input(attrs), cbLabel)
         )
 
-    val checkboxFrags = valueAndLabelAndAttrs.map {
-      case (cbValue, cbLabel, inputAttrs) =>
-        val commonAttrs = Seq[AttrPair](tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
-        renderCheckBox(cbLabel, commonAttrs)
+    val checkboxFrags = valueAndLabelAndAttrs.map { case (cbValue, cbLabel, inputAttrs) =>
+      val commonAttrs = Seq[AttrPair](tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
+      renderCheckBox(cbLabel, commonAttrs)
     }
 
     formType match {
@@ -204,10 +220,9 @@ final case class BootstrapFormComponents(
           label(input(attrs), radioLabel)
         )
 
-    val radioFrags = valueAndLabelAndAttrs.map {
-      case (radioValue, radioLabel, inputAttrs) =>
-        val commonAttrs = Seq[AttrPair](tpe := "radio", inputName, value := radioValue) ++ inputAttrs
-        renderRadio(radioLabel, commonAttrs)
+    val radioFrags = valueAndLabelAndAttrs.map { case (radioValue, radioLabel, inputAttrs) =>
+      val commonAttrs = Seq[AttrPair](tpe := "radio", inputName, value := radioValue) ++ inputAttrs
+      renderRadio(radioLabel, commonAttrs)
     }
 
     formType match {
@@ -241,10 +256,9 @@ final case class BootstrapFormComponents(
   ): Frag = {
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
-    val optionFrags = valueAndLabelAndAttrs.map {
-      case (optionValue, optionLabel, optionAttrs) =>
-        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
-        option(commonAttrs)(optionLabel)
+    val optionFrags = valueAndLabelAndAttrs.map { case (optionValue, optionLabel, optionAttrs) =>
+      val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+      option(commonAttrs)(optionLabel)
     }
     val selectAttrs = inputAttrs ++ Seq(inputName, cls := "form-control") ++
       inputId.map(id := _)

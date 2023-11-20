@@ -1,8 +1,7 @@
 package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.html.component.NavbarComponents
-import ba.sake.hepek.scalatags.all.{Style => _, style => _, _}
-
+import ba.sake.hepek.scalatags.all.{style => _, Style => _, _}
 
 object BulmaNavbarComponent {
   sealed trait Position { def classes: String }
@@ -22,7 +21,6 @@ object BulmaNavbarComponent {
   case class Style(classes: String)
 }
 
-
 final case class BulmaNavbarComponent(
     style: Option[BulmaNavbarComponent.Style] = None,
     position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),
@@ -34,9 +32,9 @@ final case class BulmaNavbarComponent(
 
   def toggle =
     a(
-      cls := "navbar-burger burger",
+      cls         := "navbar-burger burger",
       data.target := collapseId,
-      onclick := "document.querySelector('.navbar-menu').classList.toggle('is-active');"
+      onclick     := "document.querySelector('.navbar-menu').classList.toggle('is-active');"
       // ugly hack: https://github.com/jgthms/bulma/issues/856#issuecomment-502072770
     )(
       span(),
@@ -63,15 +61,13 @@ final case class BulmaNavbarComponent(
       ),
       div(cls := "navbar-menu", id := collapseId)(
         div(cls := "navbar-start")(
-          left.map {
-            case (item, liMods) =>
-              div((cls := "navbar-item") +: liMods)(item)
+          left.map { case (item, liMods) =>
+            div((cls := "navbar-item") +: liMods)(item)
           }
         ),
         div(cls := "navbar-end")(
-          right.map {
-            case (item, liMods) =>
-              div((cls := "navbar-item") +: liMods)(item)
+          right.map { case (item, liMods) =>
+            div((cls := "navbar-item") +: liMods)(item)
           }
         )
       )
@@ -86,9 +82,8 @@ final case class BulmaNavbarComponent(
         title
       ),
       div(cls := "navbar-dropdown")(
-        links.map {
-          case (item, liMods) =>
-            div((cls := "navbar-item") +: liMods)(item)
+        links.map { case (item, liMods) =>
+          div((cls := "navbar-item") +: liMods)(item)
         }
       )
     )

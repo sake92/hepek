@@ -15,7 +15,7 @@ case class PlainNavbarComponents() extends NavbarComponents {
 
   def toggle =
     bsBtn(
-      cls := "nvbr-toggle collapsed",
+      cls         := "nvbr-toggle collapsed",
       data.toggle := "collapse",
       data.target := s"#$navbarCollapseId"
     )(
@@ -43,15 +43,13 @@ case class PlainNavbarComponents() extends NavbarComponents {
         ),
         div(cls := "collapse nvbr-collapse", id := navbarCollapseId)(
           ul(cls := s"nav nvbr-nav nvbr-left")(
-            left.map {
-              case (item, liMods) =>
-                li(liMods)(item)
+            left.map { case (item, liMods) =>
+              li(liMods)(item)
             }
           ),
           ul(cls := s"nav nvbr-nav nvbr-right")(
-            right.map {
-              case (item, liMods) =>
-                li(liMods)(item)
+            right.map { case (item, liMods) =>
+              li(liMods)(item)
             }
           )
         )
@@ -67,9 +65,8 @@ case class PlainNavbarComponents() extends NavbarComponents {
         title
       ),
       ul(cls := "dropdown-menu")(
-        links.map {
-          case (item, liMods) =>
-            li(liMods)(item)
+        links.map { case (item, liMods) =>
+          li(liMods)(item)
         }
       )
     )

@@ -12,19 +12,18 @@ trait PureImageComponents extends ImageComponents {
       title: String = "",
       alt: String = ""
   ): Frag =
-    div(img(src := source, cls := "pure-img", all.alt := alt,widthA := width,
-      heightA := height), {
+    div(
+      img(src := source, cls := "pure-img", all.alt := alt, widthA := width, heightA := height),
       if (title.trim.isEmpty) frag()
       else div(cls := "caption text-center")(p(title))
-    })
+    )
 
   override def svg(source: String, title: String = "") =
     div(
       tag("object")(tpe := "image/svg+xml", cls := "embed-responsive-item", data := source)(
         "Problem with rendering SVG..."
-      ), {
-        if (title.trim.isEmpty) frag()
-        else div(cls := "caption text-center")(p(title))
-      }
+      ),
+      if (title.trim.isEmpty) frag()
+      else div(cls := "caption text-center")(p(title))
     )
 }

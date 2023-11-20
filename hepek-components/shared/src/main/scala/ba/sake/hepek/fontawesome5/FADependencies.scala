@@ -21,5 +21,5 @@ trait FADependencies extends PageDependencies {
       )
 
   override def components =
-    super.components.appended(faSettings-> faDependencies)
+    super.components.appended(faSettings -> faDependencies)
 }

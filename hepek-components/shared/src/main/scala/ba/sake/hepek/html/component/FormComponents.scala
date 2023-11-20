@@ -49,7 +49,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "text",
+      tpe  := "text",
       name := _name,
       _label,
       _help,
@@ -68,7 +68,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "textarea",
+      tpe  := "textarea",
       name := _name,
       _label,
       _help,
@@ -87,7 +87,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "password",
+      tpe  := "password",
       name := _name,
       _label,
       _help,
@@ -106,7 +106,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "email",
+      tpe  := "email",
       name := _name,
       _label,
       _help,
@@ -125,7 +125,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "url",
+      tpe  := "url",
       name := _name,
       _label,
       _help,
@@ -144,7 +144,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "tel",
+      tpe  := "tel",
       name := _name,
       _label,
       _help,
@@ -163,7 +163,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "file",
+      tpe  := "file",
       name := _name,
       _label,
       _help,
@@ -182,7 +182,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "color",
+      tpe  := "color",
       name := _name,
       _label,
       _help,
@@ -201,7 +201,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "number",
+      tpe  := "number",
       name := _name,
       _label,
       _help,
@@ -220,7 +220,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "range",
+      tpe  := "range",
       name := _name,
       _label,
       _help,
@@ -239,7 +239,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "time",
+      tpe  := "time",
       name := _name,
       _label,
       _help,
@@ -258,7 +258,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "week",
+      tpe  := "week",
       name := _name,
       _label,
       _help,
@@ -277,7 +277,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "month",
+      tpe  := "month",
       name := _name,
       _label,
       _help,
@@ -296,7 +296,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "date",
+      tpe  := "date",
       name := _name,
       _label,
       _help,
@@ -315,7 +315,7 @@ trait FormComponents {
       _transform: Frag => Frag = DefaultTransform
   ): Frag =
     constructInputNormalCleaned(
-      tpe := "datetime-local",
+      tpe  := "datetime-local",
       name := _name,
       _label,
       _help,
@@ -333,9 +333,7 @@ trait FormComponents {
     constructInputButtonCleaned("reset", _label, _inputAttrs)
 
   def inputButton(_inputAttrs: AttrPair*)(_label: Frag): Frag =
-    // <button> can have type "submit", let override win
-    val btnTpe = getAttrValue(_inputAttrs, "type").getOrElse("button")
-    constructInputButtonCleaned(btnTpe, _label, _inputAttrs)
+    constructButtonCleaned(_label, _inputAttrs)
 
   /* checkboxes */
   def inputCheckbox(_inputAttrs: AttrPair*)(
@@ -432,7 +430,8 @@ trait FormComponents {
 
   def inputSelectGrouped(_inputAttrs: AttrPair*)(
       _name: String = DefaultName,
-      _valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])] = Seq.empty,
+      _valueAndLabelAndAttrsGrouped: Seq[(String, Seq[(String, String, Seq[AttrPair])])] =
+        Seq.empty,
       _label: String = DefaultLabel,
       _help: String = DefaultHelp
   ): Frag = constructInputSelectGroupedCleaned(
@@ -460,10 +459,17 @@ trait FormComponents {
       inputTransform: Frag => Frag
   ): Frag
 
+  // submit and reset <input>s
   protected def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputLabel: Frag, // <button> can have e.g. glyphs as content...
+      inputLabel: String,
+      inputAttrs: Seq[AttrPair]
+  ): Frag
+
+  // <button>s
+  protected def constructButton(
+      inputLabel: Frag, // <button> can have anything as content...
       inputAttrs: Seq[AttrPair]
   ): Frag
 
@@ -514,12 +520,11 @@ trait FormComponents {
       _inputAttrs: Seq[AttrPair],
       attrName: String
   ): Option[String] =
-    _inputAttrs.find(_.a.name == attrName).map(_.toString)
+    _inputAttrs.find(_.a.name == attrName).map(_.v.toString)
 
-  protected def getIfNotBlank(str: String): Option[String] = {
+  protected def getIfNotBlank(str: String): Option[String] =
     val trimmed = str.trim
-    if (trimmed.isEmpty) None else Some(trimmed)
-  }
+    Option.when(trimmed.nonEmpty)(trimmed)
 
   private def constructInputNormalCleaned(
       _type: AttrPair,
@@ -548,17 +553,35 @@ trait FormComponents {
     )
   }
 
+  // submit and reset <input>s
   private def constructInputButtonCleaned(
       _type: String,
-      _label: Frag,
+      _label: String,
       _attrs: Seq[AttrPair]
   ): Frag = {
-    val inputId            = getAttrValue(_attrs, "id")
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
-    inputAttrsFiltered.appended(value := _label.render.toString)
+    val inputId = getAttrValue(_attrs, "id")
+    val inputAttrsFiltered = _attrs
+      .filterNot(ap => HandledAttrs.contains(ap.a.name))
+      .appended(value := _label.render.toString)
     constructInputButton(
       tpe := _type,
       inputId,
+      _label,
+      inputAttrsFiltered
+    )
+  }
+
+  // <button>s
+  private def constructButtonCleaned(
+      _label: Frag,
+      _attrs: Seq[AttrPair]
+  ): Frag = {
+    // <button> can have type="submit", let override win
+    val btnTpe  = getAttrValue(_attrs, "type").getOrElse("button")
+    val inputAttrsFiltered = _attrs
+      .filterNot(ap => HandledAttrs.contains(ap.a.name))
+      .appended(tpe:=btnTpe)
+    constructButton(
       _label,
       inputAttrsFiltered
     )
@@ -590,9 +613,8 @@ trait FormComponents {
       _help: String,
       _isInline: Boolean
   ): Frag = {
-    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-      case (v, l, inputAttrs) =>
-        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
+    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map { case (v, l, inputAttrs) =>
+      (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
     }
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
@@ -613,11 +635,10 @@ trait FormComponents {
       _isInline: Boolean,
       _checkedValue: String
   ): Frag = {
-    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-      case (v, l, inputAttrs) =>
-        val isChecked: Option[AttrPair] =
-          getIfNotBlank(_checkedValue).filter(_ == v).map(_ => attr("checked") := "checked")
-        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++ isChecked)
+    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map { case (v, l, inputAttrs) =>
+      val isChecked: Option[AttrPair] =
+        getIfNotBlank(_checkedValue).filter(_ == v).map(_ => attr("checked") := "checked")
+      (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++ isChecked)
     }
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
@@ -640,9 +661,8 @@ trait FormComponents {
     val inputId    = getAttrValue(_attrs, "id")
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
-    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-      case (v, l, inputAttrs) =>
-        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
+    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map { case (v, l, inputAttrs) =>
+      (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
     }
     val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputSelect(
@@ -667,9 +687,8 @@ trait FormComponents {
     val inputHelp  = getIfNotBlank(_help)
     val valueAndLabelAndAttrsGroupedFiltered = _valueAndLabelAndAttrsGrouped.map {
       case (gl, _valueAndLabelAndAttrs) =>
-        val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-          case (v, l, inputAttrs) =>
-            (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
+        val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map { case (v, l, inputAttrs) =>
+          (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
         }
         (gl, valueAndLabelAndAttrsFiltered)
     }

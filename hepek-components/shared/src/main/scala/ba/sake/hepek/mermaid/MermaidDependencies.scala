@@ -22,9 +22,8 @@ trait MermaidDependencies extends PageDependencies {
     }
 
   override def components =
-    super.components .appended(mermaidSettings-> mermaidDependencies)
+    super.components.appended(mermaidSettings -> mermaidDependencies)
 }
-
 
 case class MermaidConfig(
     theme: String = "default",
@@ -37,13 +36,10 @@ case class MermaidConfig(
     gantt: MermaidGanttchartConfig = MermaidGanttchartConfig()
 ) derives JsonRW
 
-
 final case class MermaidFlowchartConfig(
     htmlLabels: Boolean = true,
     curve: String = "linear"
 ) derives JsonRW
-
-
 
 final case class MermaidSequencechartConfig(
     diagramMarginX: Int = 50,
@@ -60,9 +56,7 @@ final case class MermaidSequencechartConfig(
     useMaxWidth: Boolean = true,
     rightAngles: Boolean = false,
     showSequenceNumbers: Boolean = false
-)derives JsonRW
-
-
+) derives JsonRW
 
 final case class MermaidGanttchartConfig(
     titleTopMargin: Int = 25,
@@ -75,4 +69,4 @@ final case class MermaidGanttchartConfig(
     fontFamily: String = "'Open-Sans', 'sans-serif'",
     numberSectionStyles: Int = 4,
     axisFormat: String = "%Y-%m-%d"
-)derives JsonRW
+) derives JsonRW

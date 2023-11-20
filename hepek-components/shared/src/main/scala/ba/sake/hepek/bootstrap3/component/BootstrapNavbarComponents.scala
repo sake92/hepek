@@ -1,8 +1,7 @@
 package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.html.component.NavbarComponents
-import ba.sake.hepek.scalatags.all, all.{Style => _, style => _, _}
-
+import ba.sake.hepek.scalatags.all, all.{style => _, Style => _, _}
 
 object BootstrapNavbarComponents {
   sealed trait Position { def classes: String }
@@ -27,7 +26,6 @@ object BootstrapNavbarComponents {
   }
 }
 
-
 final case class BootstrapNavbarComponents(
     style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
     width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
@@ -42,7 +40,7 @@ final case class BootstrapNavbarComponents(
 
   def toggle =
     bsBtn(
-      cls := "navbar-toggle collapsed",
+      cls         := "navbar-toggle collapsed",
       data.toggle := "collapse",
       data.target := s"#$collapseId"
     )(
@@ -64,21 +62,21 @@ final case class BootstrapNavbarComponents(
         div(cls := "navbar-header")(
           toggle,
           a(cls := "navbar-brand", href := brandUrl)(
-            brandIconUrl.map(url => span(img(src := url, alt := "logo", widthA := 32, heightA := 32))),
+            brandIconUrl.map(url =>
+              span(img(src := url, alt := "logo", widthA := 32, heightA := 32))
+            ),
             brandName
           )
         ),
         div(cls := "collapse navbar-collapse", id := collapseId)(
           ul(cls := s"nav navbar-nav navbar-left")(
-            left.map {
-              case (item, liMods) =>
-                li(liMods)(item)
+            left.map { case (item, liMods) =>
+              li(liMods)(item)
             }
           ),
           ul(cls := s"nav navbar-nav navbar-right")(
-            right.map {
-              case (item, liMods) =>
-                li(liMods)(item)
+            right.map { case (item, liMods) =>
+              li(liMods)(item)
             }
           )
         )
@@ -95,9 +93,8 @@ final case class BootstrapNavbarComponents(
         raw(" <span class='caret'></span>")
       ),
       ul(cls := "dropdown-menu")(
-        links.map {
-          case (item, liMods) =>
-            li(liMods)(item)
+        links.map { case (item, liMods) =>
+          li(liMods)(item)
         }
       )
     )

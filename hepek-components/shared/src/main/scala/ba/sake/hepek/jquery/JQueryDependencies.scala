@@ -19,5 +19,5 @@ trait JQueryDependencies extends PageDependencies {
   )
 
   override def components =
-    super.components.appended(jQuerySettings-> jQueryDependencies)
+    super.components.appended(jQuerySettings -> jQueryDependencies)
 }

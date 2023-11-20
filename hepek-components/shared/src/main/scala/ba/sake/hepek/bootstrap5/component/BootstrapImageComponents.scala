@@ -14,10 +14,10 @@ case class BootstrapImageComponents() extends ImageComponents {
       alt: String = ""
   ): Frag = {
     val imgTag = img(
-      src := source,
-      cls := "img-responsive",
+      src     := source,
+      cls     := "img-responsive",
       all.alt := alt,
-      widthA := width,
+      widthA  := width,
       heightA := height
     )
     if (title.trim.isEmpty)

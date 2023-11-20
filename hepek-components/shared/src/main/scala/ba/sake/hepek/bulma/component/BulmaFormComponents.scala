@@ -4,7 +4,6 @@ import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
 
-
 object BulmaFormComponents {
   sealed trait Type extends FormComponents.Type
 
@@ -20,7 +19,6 @@ object BulmaFormComponents {
     override def error: AttrPair   = cls := "is-error"
   }
 }
-
 
 final case class BulmaFormComponents(
     formType: FormComponents.Type = BulmaFormComponents.DefaultType
@@ -50,8 +48,9 @@ final case class BulmaFormComponents(
       inputAttrs: Seq[AttrPair],
       inputTransform: Frag => Frag
   ) = {
-    val inputCls           = if (inputType.v == "textarea") "textarea" else "input"
-    val commonAttrs        = Seq(cls := inputCls, inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
+    val inputCls = if (inputType.v == "textarea") "textarea" else "input"
+    val commonAttrs =
+      Seq(cls := inputCls, inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag      = inputHelp.map(h => span(cls := "help")(h))
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help")(m))
     val inputValidationCls = inputValidationState.map(_.clazz)
@@ -93,14 +92,36 @@ final case class BulmaFormComponents(
   protected override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputLabel: Frag,
+      inputLabel: String,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
       inputId.map(id := _) ++ inputAttrs
-    val btnField =
-      if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
-      else input(btnClass, commonAttrs)
+
+    val bulmaField =
+      div(cls := "field")(
+        div(cls := "control")(
+          input(btnClass, commonAttrs)
+        )
+      )
+
+    formType match {
+      case _: Type.Horizontal =>
+        div(cls := "field is-horizontal")(
+          div(cls := "field-label")( /* empty */ ),
+          div(cls := "field-body")(bulmaField)
+        )
+      case Type.Vertical =>
+        bulmaField
+    }
+  }
+
+  protected override def constructButton(
+      inputLabel: Frag,
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    val attrs   = inputAttrs.appended(btnClass)
+    val btnFrag = button(attrs)(inputLabel)
 
     val bulmaField =
       div(cls := "field")(
@@ -166,10 +187,9 @@ final case class BulmaFormComponents(
         cbLabel
       )
 
-    val checkboxFrags = valueAndLabelAndAttrs.map {
-      case (cbValue, cbLabel, inputAttrs) =>
-        val commonAttrs = Seq[AttrPair](tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
-        renderCheckBox(cbLabel, commonAttrs)
+    val checkboxFrags = valueAndLabelAndAttrs.map { case (cbValue, cbLabel, inputAttrs) =>
+      val commonAttrs = Seq[AttrPair](tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
+      renderCheckBox(cbLabel, commonAttrs)
     }
 
     val bulmaField = div(cls := "field")(
@@ -194,17 +214,16 @@ final case class BulmaFormComponents(
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag = {
-    
+
     def renderRadio(radioLabel: String, attrs: Seq[AttrPair]) =
       label(cls := "radio")(
         input(attrs),
         radioLabel
       )
 
-    val radioFrags = valueAndLabelAndAttrs.map {
-      case (radioValue, radioLabel, inputAttrs) =>
-        val commonAttrs = Seq[AttrPair](tpe := "radio", inputName, value := radioValue) ++ inputAttrs
-        renderRadio(radioLabel, commonAttrs)
+    val radioFrags = valueAndLabelAndAttrs.map { case (radioValue, radioLabel, inputAttrs) =>
+      val commonAttrs = Seq[AttrPair](tpe := "radio", inputName, value := radioValue) ++ inputAttrs
+      renderRadio(radioLabel, commonAttrs)
     }
 
     val bulmaField = div(cls := "field")(
@@ -230,10 +249,9 @@ final case class BulmaFormComponents(
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val optionFrags = valueAndLabelAndAttrs.map {
-      case (optionValue, optionLabel, optionAttrs) =>
-        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
-        option(commonAttrs)(optionLabel)
+    val optionFrags = valueAndLabelAndAttrs.map { case (optionValue, optionLabel, optionAttrs) =>
+      val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+      option(commonAttrs)(optionLabel)
     }
     val selectAttrs = inputAttrs ++ Seq(inputName) ++
       inputId.map(id := _)

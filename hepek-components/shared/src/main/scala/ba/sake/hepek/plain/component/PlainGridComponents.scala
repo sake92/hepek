@@ -9,7 +9,6 @@ final case class PlainGridComponents(
 ) extends GridComponents {
   import GridComponents._
 
-  
   def withScreenRatios(screenRatios: ScreenRatios): PlainGridComponents =
     copy(screenRatios = screenRatios)
 

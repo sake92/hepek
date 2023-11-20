@@ -3,7 +3,6 @@ package ba.sake.hepek.plain.component
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all
 
-
 import all.{form => _, _}
 
 object PlainFormComponents {
@@ -15,7 +14,6 @@ object PlainFormComponents {
     def error: String   = "error"
   }
 }
-
 
 final case class PlainFormComponents(
     formType: FormComponents.Type = PlainFormComponents.DefaultType
@@ -65,21 +63,25 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
     )
   }
 
-  /** button input "constructor", should override in impl */
   protected override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputLabel: Frag,
+      inputLabel: String,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#Buttons
     // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/button#Validation
-    // no label, name, validation
-    // <button> is preferred to <input type="button">
+    // no label, name, validation .. :/
     val commonAttrs = Seq(inputType) ++
       inputId.map(id := _) ++ inputAttrs
-    if (inputType.v == "button") button(commonAttrs)(inputLabel)
-    else input(commonAttrs)
+    input(commonAttrs)
+  }
+
+  protected override def constructButton(
+      inputLabel: Frag,
+      inputAttrs: Seq[AttrPair]
+  ): Frag = {
+    button(inputAttrs)(inputLabel)
   }
 
   /** checkbox input "constructor", should override in impl */
@@ -115,10 +117,9 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag =
-    valueAndLabelAndAttrs.map {
-      case (cbValue, cbLabel, inputAttrs) =>
-        val commonAttrs = Seq(tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
-        label(input(commonAttrs), cbLabel)
+    valueAndLabelAndAttrs.map { case (cbValue, cbLabel, inputAttrs) =>
+      val commonAttrs = Seq(tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
+      label(input(commonAttrs), cbLabel)
     }
 
   protected override def constructInputRadio(
@@ -128,10 +129,9 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       inputHelp: Option[String],
       isInline: Boolean
   ): Frag =
-    valueAndLabelAndAttrs.map {
-      case (radioValue, radioLabel, inputAttrs) =>
-        val commonAttrs = Seq(tpe := "radio", inputName, value := radioValue) ++ inputAttrs
-        label(input(commonAttrs), radioLabel)
+    valueAndLabelAndAttrs.map { case (radioValue, radioLabel, inputAttrs) =>
+      val commonAttrs = Seq(tpe := "radio", inputName, value := radioValue) ++ inputAttrs
+      label(input(commonAttrs), radioLabel)
     }
 
   protected override def constructInputSelect(
@@ -142,10 +142,9 @@ private[hepek] trait PlainFormComponentsImpl extends FormComponents {
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val optionFrags = valueAndLabelAndAttrs.map {
-      case (optionValue, optionLabel, optionAttrs) =>
-        val commonAttrs = Seq(value := optionValue) ++ optionAttrs
-        option(commonAttrs)(optionLabel)
+    val optionFrags = valueAndLabelAndAttrs.map { case (optionValue, optionLabel, optionAttrs) =>
+      val commonAttrs = Seq(value := optionValue) ++ optionAttrs
+      option(commonAttrs)(optionLabel)
     }
     val selectAttrs = inputAttrs ++ Seq(inputName) ++ inputId.map(id := _)
     div(

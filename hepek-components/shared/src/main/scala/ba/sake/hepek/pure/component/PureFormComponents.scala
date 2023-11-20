@@ -68,14 +68,13 @@ trait PureFormComponents extends PlainFormComponentsImpl {
   override def constructInputButton(
       inputType: AttrPair,
       inputId: Option[String],
-      inputLabel: Frag,
+      inputLabel: String,
       inputAttrs: Seq[AttrPair]
   ): Frag = {
     val commonAttrs = Seq(inputType) ++
       inputId.map(id := _) ++ inputAttrs
-    val btnField =
-      if (inputType.v == "button") button(btnClass, commonAttrs)(inputLabel)
-      else input(btnClass, commonAttrs)
+
+    val btnField = input(btnClass, commonAttrs)
 
     formType match {
       case Type.Horizontal =>
