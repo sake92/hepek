@@ -60,7 +60,7 @@ final case class BootstrapNavbarComponents(
               li(cls := "nav-item")(liMods)(item)
             }
           ),
-          ul(cls := "navbar-nav")(
+          ul(cls := "navbar-nav ms-auto")(
             right.map { case (item, liMods) =>
               li(cls := "nav-item")(liMods)(item)
             }

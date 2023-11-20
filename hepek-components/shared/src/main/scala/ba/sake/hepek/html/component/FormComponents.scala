@@ -17,9 +17,6 @@ trait FormComponents {
 
   // TODO maybe add idCounter for automatic labels
 
-  // handled explicitly
-  private val HandledAttrs = Set("type", "name", "id")
-
   private val DefaultName                      = ""
   private val DefaultLabel                     = ""
   private val DefaultHelp                      = ""
@@ -532,7 +529,6 @@ trait FormComponents {
     val inputId            = getAttrValue(_attrs, "id")
     val inputLabel         = getIfNotBlank(_label)
     val inputHelp          = getIfNotBlank(_help)
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputNormal(
       _type,
       _name,
@@ -541,7 +537,7 @@ trait FormComponents {
       inputHelp,
       _validationState,
       _messages,
-      inputAttrsFiltered,
+      _attrs,
       _transform
     )
   }
@@ -552,8 +548,7 @@ trait FormComponents {
       _attrs: Seq[AttrPair]
   ): Frag = {
     val inputId            = getAttrValue(_attrs, "id")
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
-    inputAttrsFiltered.appended(value := _label.render.toString)
+    val inputAttrsFiltered = List(value := _label.render) ++ _attrs
     constructInputButton(
       tpe := _type,
       inputId,
@@ -571,13 +566,12 @@ trait FormComponents {
     val inputId            = getAttrValue(_attrs, "id")
     val inputLabel         = getIfNotBlank(_label)
     val inputHelp          = getIfNotBlank(_help)
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputCheckbox(
       name := _name,
       inputId,
       inputLabel,
       inputHelp,
-      inputAttrsFiltered
+      _attrs
     )
   }
 
@@ -588,15 +582,11 @@ trait FormComponents {
       _help: String,
       _isInline: Boolean
   ): Frag = {
-    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-      case (v, l, inputAttrs) =>
-        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
-    }
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
     constructInputCheckboxes(
       name := _name,
-      valueAndLabelAndAttrsFiltered,
+      _valueAndLabelAndAttrs,
       inputLabel,
       inputHelp,
       _isInline
@@ -615,7 +605,7 @@ trait FormComponents {
       case (v, l, inputAttrs) =>
         val isChecked: Option[AttrPair] =
           getIfNotBlank(_checkedValue).filter(_ == v).map(_ => attr("checked") := "checked")
-        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)) ++ isChecked)
+        (v, l, inputAttrs ++ isChecked)
     }
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
@@ -638,18 +628,13 @@ trait FormComponents {
     val inputId    = getAttrValue(_attrs, "id")
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
-    val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-      case (v, l, inputAttrs) =>
-        (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
-    }
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputSelect(
       name := _name,
       inputId,
-      valueAndLabelAndAttrsFiltered,
+      _valueAndLabelAndAttrs,
       inputLabel,
       inputHelp,
-      inputAttrsFiltered
+      _attrs
     )
   }
 
@@ -663,22 +648,13 @@ trait FormComponents {
     val inputId    = getAttrValue(_attrs, "id")
     val inputLabel = getIfNotBlank(_label)
     val inputHelp  = getIfNotBlank(_help)
-    val valueAndLabelAndAttrsGroupedFiltered = _valueAndLabelAndAttrsGrouped.map {
-      case (gl, _valueAndLabelAndAttrs) =>
-        val valueAndLabelAndAttrsFiltered = _valueAndLabelAndAttrs.map {
-          case (v, l, inputAttrs) =>
-            (v, l, inputAttrs.filterNot(ap => HandledAttrs.contains(ap.a.name)))
-        }
-        (gl, valueAndLabelAndAttrsFiltered)
-    }
-    val inputAttrsFiltered = _attrs.filterNot(ap => HandledAttrs.contains(ap.a.name))
     constructInputSelectGrouped(
       name := _name,
       inputId,
-      valueAndLabelAndAttrsGroupedFiltered,
+      _valueAndLabelAndAttrsGrouped,
       inputLabel,
       inputHelp,
-      inputAttrsFiltered
+      _attrs
     )
   }
 

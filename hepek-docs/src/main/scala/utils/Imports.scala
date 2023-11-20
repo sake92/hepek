@@ -39,13 +39,13 @@ object Imports {
     div(tableResponsive)(
       table(tableClass, tableHoverable)(
         tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
-        props.map { case ClassProperty(name, tpe, desc, defaultValue) =>
+        props.map { cp =>
           tr(
-            td(name),
-            td(if (defaultValue.isDefined) "No" else "Yes"),
-            td(tpe),
-            td(defaultValue),
-            td(desc)
+            td(cp.name),
+            td(cp.defaultValue.map(_ => "No").getOrElse("Yes")),
+            td(cp.tpe),
+            td(cp.defaultValue),
+            td(cp.desc)
           )
         }
       )
