@@ -11,7 +11,7 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
   def navbar: Option[BootstrapNavbarComponents] = None
 
   override def bodyContent: Frag =
-    div(bootstrapContainer)(
+    div(clsContainerFluid)(
       div(clsNoPrint)(maybeNavbar),
       pageContent
     )
