@@ -9,6 +9,9 @@ object FormComponents {
     def success: AttrPair = cls := "success"
     def warning: AttrPair = cls := "warning"
     def error: AttrPair   = cls := "error"
+    def successFeedback: AttrPair = cls := "success"
+    def warningFeedback: AttrPair = cls := "warning"
+    def errorFeedback: AttrPair   = cls := "error"
   }
 }
 
@@ -703,20 +706,27 @@ trait FormComponents {
     )
   }
 
-  sealed trait ValidationState { def clazz: AttrPair }
+  sealed trait ValidationState { 
+    def clazz: AttrPair 
+    def feedbackClazz: AttrPair
+  }
 
   object ValidationState {
 
     case object Success extends ValidationState {
       override def clazz = validationStateClasses.success
+      override def feedbackClazz = validationStateClasses.successFeedback
     }
 
     case object Warning extends ValidationState {
       override def clazz = validationStateClasses.warning
+      override def feedbackClazz = validationStateClasses.warningFeedback
     }
 
     case object Error extends ValidationState {
       override def clazz = validationStateClasses.error
+      override def feedbackClazz = validationStateClasses.errorFeedback
     }
+    
   }
 }

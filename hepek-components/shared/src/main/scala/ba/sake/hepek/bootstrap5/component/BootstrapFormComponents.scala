@@ -22,9 +22,12 @@ object BootstrapFormComponents {
   }
 
   object BootstrapValidationStateClasses extends FormComponents.ValidationStateClasses {
-    override def success: AttrPair = cls := "has-success"
-    override def warning: AttrPair = cls := "has-warning"
-    override def error: AttrPair   = cls := "has-error"
+    override def success: AttrPair = cls := "is-valid"
+    override def warning: AttrPair = cls := "is-invalid"
+    override def error: AttrPair   = cls := "is-invalid"
+    override def successFeedback: AttrPair = cls := "valid-feedback"
+    override def warningFeedback: AttrPair = cls := "invalid-feedback"
+    override def errorFeedback: AttrPair   = cls := "invalid-feedback"
   }
 }
 
@@ -50,10 +53,9 @@ final case class BootstrapFormComponents(
       inputTransform: Frag => Frag
   ) = {
     val commonAttrs =
-      Seq(cls := "form-control", inputType, inputName) ++ inputId.map(id := _) ++ inputAttrs
-    val inputHelpFrag      = inputHelp.map(h => span(cls := "help-block")(h))
-    val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
-    val inputValidationCls = inputValidationState.map(_.clazz)
+      Seq(cls := "form-control", inputType, inputName) ++ inputId.map(id := _) ++ inputValidationState.map(_.clazz) ++ inputAttrs
+    val inputHelpFrag      = inputHelp.map(h => span(inputValidationState.map(_.feedbackClazz))(h))
+    val inputMsgsFrag      = inputMessages.map(m => span(inputValidationState.map(_.feedbackClazz))(m))
     val inputFrag =
       if (inputType.v == "textarea") textarea(commonAttrs)("") // TODO
       else input(commonAttrs)
@@ -62,7 +64,7 @@ final case class BootstrapFormComponents(
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
-        formGroup(inputValidationCls.toSeq: _*)(
+        formGroup()(
           label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
@@ -73,7 +75,7 @@ final case class BootstrapFormComponents(
           )
         )
       case _ =>
-        formGroup(inputValidationCls.toSeq: _*)(
+        formGroup()(
           inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
           inputFragTransformed,
           inputMsgsFrag,
