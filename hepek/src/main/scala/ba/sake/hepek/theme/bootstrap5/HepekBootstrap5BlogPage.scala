@@ -45,7 +45,7 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
 
     frag(
       div(cls := "row")(
-        div(cls := s"col-md-$w1", Classes.clsNoPrint)(
+        div(cls := s"col-md-$w1 d-flex justify-content-end", Classes.clsNoPrint)(
           renderSidebar
         ),
         div(data.bs.spy := "scroll", data.bs.target := "#tocScrollspy", cls := s"col-md-$w2")(

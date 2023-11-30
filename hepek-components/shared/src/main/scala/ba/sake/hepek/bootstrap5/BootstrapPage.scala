@@ -13,9 +13,19 @@ trait BootstrapPage extends HtmlPage with BootstrapDependencies {
 
   override def stylesInline = List(
     """
-    .affix {
-        position: fixed;
-        width: 10%;
+    nav#tocScrollspy {
+      display: none;
+    }
+
+    @media (min-width: 991px) {
+      .affix {
+          position: fixed;
+          width: 10%;
+      }
+
+      nav#tocScrollspy {
+        display: block;
+      }
     }
     """
   )
