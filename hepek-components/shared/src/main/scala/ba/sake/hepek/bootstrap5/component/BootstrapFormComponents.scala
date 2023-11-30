@@ -22,9 +22,9 @@ object BootstrapFormComponents {
   }
 
   object BootstrapValidationStateClasses extends FormComponents.ValidationStateClasses {
-    override def success: AttrPair = cls := "is-valid"
-    override def warning: AttrPair = cls := "is-invalid"
-    override def error: AttrPair   = cls := "is-invalid"
+    override def success: AttrPair         = cls := "is-valid"
+    override def warning: AttrPair         = cls := "is-invalid"
+    override def error: AttrPair           = cls := "is-invalid"
     override def successFeedback: AttrPair = cls := "valid-feedback"
     override def warningFeedback: AttrPair = cls := "invalid-feedback"
     override def errorFeedback: AttrPair   = cls := "invalid-feedback"
@@ -53,9 +53,11 @@ final case class BootstrapFormComponents(
       inputTransform: Frag => Frag
   ) = {
     val commonAttrs =
-      Seq(cls := "form-control", inputType, inputName) ++ inputId.map(id := _) ++ inputValidationState.map(_.clazz) ++ inputAttrs
-    val inputHelpFrag      = inputHelp.map(h => span(inputValidationState.map(_.feedbackClazz))(h))
-    val inputMsgsFrag      = inputMessages.map(m => span(inputValidationState.map(_.feedbackClazz))(m))
+      Seq(cls := "form-control", inputType, inputName) ++ inputId.map(
+        id    := _
+      ) ++ inputValidationState.map(_.clazz) ++ inputAttrs
+    val inputHelpFrag = inputHelp.map(h => span(inputValidationState.map(_.feedbackClazz))(h))
+    val inputMsgsFrag = inputMessages.map(m => span(inputValidationState.map(_.feedbackClazz))(m))
     val inputFrag =
       if (inputType.v == "textarea") textarea(commonAttrs)("") // TODO
       else input(commonAttrs)

@@ -1,4 +1,4 @@
-package docs.hepek.components
+package files.hepek.components
 
 import ba.sake.hepek.katex.KatexDependencies
 import utils.Imports.Bundle.*, Tags.*

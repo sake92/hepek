@@ -1,4 +1,4 @@
-package docs
+package files
 
 import ba.sake.hepek.core.RelativePath
 import ba.sake.hepek.scalatags.all._

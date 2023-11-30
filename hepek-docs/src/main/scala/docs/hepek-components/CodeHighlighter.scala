@@ -1,4 +1,4 @@
-package docs.hepek.components
+package files.hepek.components
 
 import utils.*
 import utils.Imports.*

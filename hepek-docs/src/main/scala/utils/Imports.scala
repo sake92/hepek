@@ -1,9 +1,7 @@
 package utils
 
-import ba.sake.hepek.Resources
 import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
-import ba.sake.hepek.scalatags.all._
 
 object Imports {
   val Bundle = locally {
@@ -16,10 +14,7 @@ object Imports {
     )
     b.withGrid(grid)
   }
-
-  object resources extends Resources {
-    override def siteRootPath = "docs"
-  }
+  import Bundle.Tags.*
 
   object chl extends PrismCodeHighlightComponents
 

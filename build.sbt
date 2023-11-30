@@ -1,5 +1,3 @@
-import com.typesafe.sbt.web.Import.WebKeys
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -23,12 +21,10 @@ inThisBuild(
       "-Yretain-trees",
       "-Wunused:all"
     ),
-    resolvers +=
-      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+    resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
 )
 
-// components
 lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   .in(file("hepek-components"))
   .settings(
@@ -41,19 +37,19 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
   )
   .jvmSettings(
     libraryDependencies ++= Seq(
-      "com.vladsch.flexmark"     % "flexmark" % V.flexmark,
-      "com.vladsch.flexmark"     % "flexmark-ext-attributes" % V.flexmark,
-      "com.vladsch.flexmark"     % "flexmark-ext-tables" % V.flexmark,
-      "com.vladsch.flexmark"     % "flexmark-ext-gfm-strikethrough" % V.flexmark,
-      "org.scalameta"          %%% "munit"        % V.munit % Test
+      "com.vladsch.flexmark" % "flexmark"                       % V.flexmark,
+      "com.vladsch.flexmark" % "flexmark-ext-attributes"        % V.flexmark,
+      "com.vladsch.flexmark" % "flexmark-ext-tables"            % V.flexmark,
+      "com.vladsch.flexmark" % "flexmark-ext-gfm-strikethrough" % V.flexmark,
+      "org.scalameta"      %%% "munit"                          % V.munit % Test
     )
   )
   .jsSettings()
 
-// static-site-generator
-lazy val hepekStatic = (project in file("hepek"))
+lazy val hepekSSG = (project in file("hepek"))
   .settings(
     name           := "hepek",
+    description    := "Hepek SSG",
     publish / skip := false,
     libraryDependencies ++= Seq(
       "ba.sake"                 % "hepek-core"                   % V.hepekCore,
@@ -67,40 +63,16 @@ lazy val hepekStatic = (project in file("hepek"))
   )
   .dependsOn(hepekComponents.jvm)
 
-// docs
 lazy val hepekDocs = (project in file("hepek-docs"))
-  .settings(
-    (Compile / hepek) := {
-      WebKeys.assets.value
-      (Compile / hepek).value
-    },
-    hepekIncremental := false,
-    openIndexPage := openIndexPageTask.value
-  )
-  .dependsOn(hepekStatic)
-  .enablePlugins(HepekPlugin, SbtWeb)
+  .dependsOn(hepekSSG)
+  .enablePlugins(HepekPlugin)
 
-// tests
 lazy val hepekTests = (project in file("hepek-tests"))
   .settings(
-    (Test / test) := {
-      WebKeys.assets.value
-      (Compile / hepek).value // run hepek before tests
-      (Test / test).value
-    },
     libraryDependencies ++= Seq(
       "org.seleniumhq.selenium" % "selenium-java" % V.selenium % "test",
       "org.scalameta"         %%% "munit"         % V.munit    % Test
     )
   )
-  .dependsOn(hepekStatic)
-  .enablePlugins(HepekPlugin, SbtWeb)
-
-val openIndexPage = taskKey[Unit]("Opens index.html")
-
-val openIndexPageTask = Def.taskDyn {
-  Def.task {
-    java.awt.Desktop.getDesktop
-      .browse(new File(hepekTarget.value + "/docs/index.html").toURI)
-  }
-}
+  .dependsOn(hepekSSG)
+  .enablePlugins(HepekPlugin)

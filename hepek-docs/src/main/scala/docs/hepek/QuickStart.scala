@@ -1,4 +1,4 @@
-package docs.hepek
+package files.hepek
 
 import utils.*
 import utils.Imports.*
@@ -32,7 +32,7 @@ object QuickStart extends HepekDocsPage {
       You can also make sbt **watch for file changes**.  
       Just type `~hepek` and you'll see changes applied.
 
-      > HTML/CSS or whatever you're rendering will be in `/target/web/public/main/site` folder.  
+      > HTML/CSS or whatever you're rendering will be in `hepek_files` folder.  
       > You can make an sbt task for copying these to a more desirable location.  
       > Or you can use `sbt-ghpages` for even faster deployment!
     """.md

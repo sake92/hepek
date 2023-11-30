@@ -1,4 +1,4 @@
-package docs.hepek
+package files.hepek
 
 import ba.sake.hepek.html.statik.BlogPostPage
 

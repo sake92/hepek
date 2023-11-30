@@ -9,7 +9,7 @@ import ba.sake.hepek.theme.bootstrap5.TocType
 import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
-import resources.*
+import ba.sake.hepek.Resource
 
 trait HepekDocsAbstractPage
     extends HepekBootstrap5BlogPage
@@ -30,26 +30,27 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
   override def siteSettings =
     super.siteSettings
       .withName(Site.name)
-      .withFaviconNormal(images.ico("favicon").ref)
-      .withFaviconInverted(images.ico("favicon-small").ref)
+      .withFaviconNormal(Resource("images/favicon.ico").ref)
+      .withFaviconInverted(Resource("images/favicon.ico").ref)
 
   override def staticSiteSettings =
     super.staticSiteSettings
-      .withIndexPage(docs.Index)
-      .withMainPages(docs.hepek.components.Index, docs.hepek.Index)
+      .withIndexPage(files.Index)
+      .withMainPages(files.hepek.components.Index, files.hepek.Index)
 
   override def navbar = Some(Navbar)
 
   // CSS
   override def styleURLs =
-    super.styleURLs ++ List(styles.css("main").ref)
+    super.styleURLs ++ List(Resource("styles/main.css").ref)
 
   override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
     Dependencies()
       .withDeps(Dependency("dist/yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
   )
 
-  override def scriptURLs = super.scriptURLs.appended(scripts.js("main").ref)
+  override def scriptURLs = super.scriptURLs
+    .appended(Resource("scripts/main.js").ref)
 
   override def pageContent =
     frag(
