@@ -1,7 +1,17 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="hepek" /><meta name="theme-color" content="#000" /><meta name="mobile-web-app-capable" content="yes" /><meta name="og:title" content="hepek" /><title>Quick start - hepek</title><link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootswatch@5.3.2/dist/yeti/bootstrap.min.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autolinker/prism-autolinker.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/command-line/prism-command-line.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/previewers/prism-previewers.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/unescaped-markup/prism-unescaped-markup.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/wpd/prism-wpd.css" /><link rel="stylesheet" href="../styles/main.css" /><style>
-    .affix {
-        position: fixed;
-        width: 10%;
+    nav#tocScrollspy {
+      display: none;
+    }
+
+    @media (min-width: 991px) {
+      .affix {
+          position: fixed;
+          width: 10%;
+      }
+
+      nav#tocScrollspy {
+        display: block;
+      }
     }
     </style><style>
       /* scrollspy stuff */
@@ -16,7 +26,7 @@
           padding-left: 3em;
           font-size: .8em;
       }
-    </style></head><body><nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"><div class="container-fluid"><a class="navbar-brand" href="../index.html"><span><img src="../images/favicon.ico" alt="logo" width="32" height="32" /></span> hepek</a><button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#main-navbar"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="main-navbar"><ul class="navbar-nav"></ul><ul class="navbar-nav ms-auto"><li class="nav-item"><a href="components/index.html" class=" nav-link">Hepek Components</a></li><li class="nav-item"><a href="index.html" class="active nav-link">Hepek SSG</a></li></ul></div></div></nav><div class="container-fluid"><div class="row"><div class="col-md-3 hidden-print"><nav class="affix"><ul class="nav nav-pills flex-column"><li><a href="index.html" class="nav-link ">Hepek SSG</a></li><li><a href="quick-start.html" class="nav-link active">Quick start</a></li><li><a href="static-bundle.html" class="nav-link ">Static bundle</a></li><li><a href="static-page.html" class="nav-link ">Static page</a></li><li><a href="blog-page.html" class="nav-link ">Blog page</a></li><li><a href="multi-page.html" class="nav-link ">Multi page</a></li><li><a href="pdf-generator.html" class="nav-link ">Pdf generator</a></li></ul></nav></div><div data-bs-spy="scroll" data-bs-target="#tocScrollspy" class="col-md-6"><div class="hidden-print"></div><div class="page-header text-center hidden-print"><h1>Quick start</h1></div><div><section id="installation"><h2>Installation</h2><p>You need to have Java 8 installed and sbt version 1 or greater.</p>
+    </style></head><body><nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"><div class="container-fluid"><a class="navbar-brand" href="../index.html"><span><img src="../images/favicon.ico" alt="logo" width="32" height="32" /></span> hepek</a><button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#main-navbar"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="main-navbar"><ul class="navbar-nav"></ul><ul class="navbar-nav ms-auto"><li class="nav-item"><a href="components/index.html" class=" nav-link">Hepek Components</a></li><li class="nav-item"><a href="index.html" class="active nav-link">Hepek SSG</a></li></ul></div></div></nav><div class="container-fluid"><div class="row"><div class="col-md-3 d-flex justify-content-end hidden-print"><nav class="affix"><ul class="nav nav-pills flex-column"><li><a href="index.html" class="nav-link ">Hepek SSG</a></li><li><a href="quick-start.html" class="nav-link active">Quick start</a></li><li><a href="static-bundle.html" class="nav-link ">Static bundle</a></li><li><a href="static-page.html" class="nav-link ">Static page</a></li><li><a href="blog-page.html" class="nav-link ">Blog page</a></li><li><a href="multi-page.html" class="nav-link ">Multi page</a></li><li><a href="pdf-generator.html" class="nav-link ">Pdf generator</a></li></ul></nav></div><div data-bs-spy="scroll" data-bs-target="#tocScrollspy" class="col-md-6"><div class="hidden-print"></div><div class="page-header text-center hidden-print"><h1>Quick start</h1></div><div><section id="installation"><h2>Installation</h2><p>You need to have Java 8 installed and sbt version 1 or greater.</p>
 </section><section id="using"><h2>Using</h2><p>Clone the starter project from <a href="https://github.com/sake92/hepek-starter">here</a> and you're ready.<br />
 Start up sbt console and type <code>hepek</code>.<br />
 Voila, that's it! :)</p>
