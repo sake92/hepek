@@ -15,7 +15,6 @@ project/metals.sbt
 target/
 bin/
 
-
 .idea/
 
 .bloop/
@@ -23,5 +22,7 @@ bin/
 .metals/
 .vscode/
 
-null/
+
+hepek_output/
+
 
