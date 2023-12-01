@@ -38,6 +38,7 @@ object QuickStart extends HepekDocsPage {
     """.md
   )
 
+  // TODO mention java 21 jwebserver CLI tool !
   val servingSection = Section(
     "Serving",
     div(

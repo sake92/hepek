@@ -7,3 +7,13 @@ git push origin $VERSION
 TODO napravit starter za dokumentaciju, sa gh pages npr
 
 
+TODO refaktorisat na fazon:
+https://documentation.divio.com/ 
+https://www.gatsbyjs.com/docs/
+
+- tutorials (step-by-step)
+- howtos (how do I xyZ?)
+- reference
+- concepts
+
+

@@ -11,6 +11,7 @@ import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 import ba.sake.hepek.Resource
 
+// HepekDocsAbstractBlogPage
 trait HepekDocsAbstractPage
     extends HepekBootstrap5BlogPage
     with HepekDocsStaticPage
@@ -38,7 +39,33 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
       .withIndexPage(files.Index)
       .withMainPages(files.hepek.components.Index, files.hepek.Index)
 
-  override def navbar = Some(Navbar)
+  //override def navbar = Some(Navbar)
+  // TODO nested tutorijali, howtos itd
+
+  /* 
+  override def bodyContent: Frag = frag(
+    maybeNavbar,
+    div(clsContainerFluid)(pageContent)
+  )
+
+  /* NAVBAR */
+  private def maybeNavbar =
+    navbar.map { bsNav =>
+      bsNav.full(
+        brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
+        brandName = siteSettings.name.map(" " + _),
+        brandIconUrl = siteSettings.faviconInverted,
+        right = navbarLiTags
+      )
+    }
+
+  private def navbarLiTags: Seq[(Frag, Seq[AttrPair])] =
+    for {
+      page <- staticSiteSettings.mainPages
+      labela      = page.pageCategory.getOrElse(page.pageSettings.label)
+      maybeActive = Option.when(page.pageCategory == this.pageCategory)(cls := "active")
+    } yield a(href := page.ref, maybeActive, cls := "nav-link")(labela) -> Seq()
+   */
 
   // CSS
   override def styleURLs =
