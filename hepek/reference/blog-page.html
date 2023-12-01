@@ -35,6 +35,8 @@ A blog post is made of <strong>sections</strong>, so you can render a nice TOC, 
 Every section has a name, content, and optionally child sections.<br />
 Code usually looks like this:</p>
 <pre class="line-numbers" data-start="1"><code class="language-scala">
+        package files
+
         object ExampleBlogPost extends MyBlogPostPage {
           override def blogSettings = super.blogSettings
             .withCreateDate(LocalDate.of(2018, 9, 5))
