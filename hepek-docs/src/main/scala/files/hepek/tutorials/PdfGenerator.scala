@@ -1,10 +1,10 @@
-package files.hepek
+package files.hepek.tutorials
 
 import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
-object PdfGenerator extends HepekDocsPage {
+object PdfGenerator extends HepekTutorialPage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Pdf generator")

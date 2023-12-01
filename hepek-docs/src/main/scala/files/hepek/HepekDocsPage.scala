@@ -1,18 +1,12 @@
 package files.hepek
 
-import ba.sake.hepek.html.statik.BlogPostPage
-
 trait HepekDocsPage extends templates.HepekDocsAbstractPage {
 
-  override def categoryPosts: List[BlogPostPage] = List(
+  override def categoryPosts = List(
     Index,
-    QuickStart,
-    StaticBundle,
-    StaticPage,
-    BlogPage,
-    MultiPage,
-    PdfGenerator
+    tutorials.Index,
+    reference.Index
   )
 
-  override def pageCategory = Some(Index.pageSettings.label)
+  override def pageCategory = Some("hepek-docs")
 }

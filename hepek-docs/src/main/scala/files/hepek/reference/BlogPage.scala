@@ -1,10 +1,11 @@
 package files.hepek
+package reference
 
 import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
-object BlogPage extends HepekDocsPage {
+object BlogPage extends HepekReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Blog page")
@@ -32,8 +33,9 @@ object BlogPage extends HepekDocsPage {
     "Blog post settings",
     frag(
       s"""
-        When you extend [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a static blog post page.  
-        For a Bootstrap-themed page extend [`HepekBootstrap5BlogPage`](${links.HepekBootstrap5BlogPageUrl}).  
+        When you extend a [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a static blog post page.  
+        For a Bootstrap-themed blogpost page extend [`HepekBootstrap5BlogPage`](${links.HepekBootstrap5BlogPageUrl}).
+
         You can override `def blogSettings` method with following fields:
       """.md,
       renderClassProps(blogPageSettingsProps)
@@ -48,7 +50,7 @@ object BlogPage extends HepekDocsPage {
         A blog post is made of **sections**, so you can render a nice TOC, sitemap.xml, or even a PDF...  
         `Section`s are tree-like, they can contain other sections.  
         Every section has a name, content, and optionally child sections.  
-        Code usually looks similar to this:
+        Code usually looks like this:
       """.md,
       chl.scala("""
         object ExampleBlogPost extends MyBlogPostPage {
@@ -59,17 +61,17 @@ object BlogPage extends HepekDocsPage {
           val firstSection = Section(
             "Hello world!",
             p("Welcome to my blog!"),
-            List(innerSection) // child sections, optional
-          )
-          val innerSection = Section(
-            "Goodbye!",
-            p("Thanks for visiting!")
+            List( // child sections, optional
+              Section(
+                "..."
+              )
+            )
           )
         }
       """),
       """
         You can even get a link to a section!  
-        E.g. `ExampleBlogPost.firstSection.ref` would return something like "example-blog-post.html#hello-world"
+        `ExampleBlogPost.firstSection.ref` would return "example-blog-post.html#hello-world"
       """.md
     )
   )
@@ -79,7 +81,7 @@ object BlogPage extends HepekDocsPage {
     """
       There is also `def categoryPosts: List[BlogPostPage]` method.  
       It is used for grouping posts, posts that belong to same "category".  
-      It can be used for a sidebar with related posts links (like the one you can see on the left).  
+      It can be used for a sidebar with related posts links (like the one on the left side of this page).  
 
       *Example*: Let's say you are writing math tutorials.  
       You'll have separate templates for different topics: 

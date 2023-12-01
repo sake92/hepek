@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
@@ -21,11 +18,9 @@ jobs:
           cache: sbt          
 
       - name: Build
-        run: sbt "clean; hepekDocs/hepek"
+        run: sbt "hepekDocs/hepek"
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.6.2
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: hepek-docs/hepek_output
+          folder: hepek-docs/hepek_output

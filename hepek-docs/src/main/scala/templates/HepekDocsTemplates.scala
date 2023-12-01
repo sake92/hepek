@@ -86,8 +86,8 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
         a(href := "https://github.com/sake92/hepek", Classes.btnClass)(
           FA.github()
         ),
-        a(href := "https://gitter.im/sake92/hepek", Classes.btnClass)(
-          FA.gitter()
+        a(href := "https://discord.gg/R2FtxDKyRE", Classes.btnClass)(
+          FA.discord()
         )
       )
     )

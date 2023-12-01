@@ -1,10 +1,11 @@
 package files.hepek
+package reference
 
 import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
-object StaticPage extends HepekDocsPage {
+object StaticPage extends HepekReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Static page")
@@ -32,23 +33,28 @@ object StaticPage extends HepekDocsPage {
       renderClassProps(staticSiteSettingsProps),
       "You usually define it in a common trait, for example:".md,
       chl.scala("""
+        package utils
+        import Bundle.*
+
         trait MyStaticPageTemplate extends StaticPage {
-          override def staticSiteSettings =
-            super.staticSiteSettings
-              .withIndexPage(site.Index)
+          override def staticSiteSettings = super.staticSiteSettings
+            .withIndexPage(files.Index)
         }
       """),
       "Example of a page definition:",
       chl.scala("""
-        package site
-        
+        package files
+        import utils.*
+        import Bundle.*. Tags.*
+
         object Index extends MyStaticPageTemplate {
           override def pageContent = div("content here")
         }
       """),
       """
+        ---
         You can get a relative link to `Index` page with the `ref` method.  
-        E.g. if you have another page in `site.posts` package (notice that `Index` is in the `site` package, parent of `site.posts` package),  
+        E.g. if you have another page in `files.posts` package,
         `Index.ref` will give you a string "../index.html"
       """.md
     )
