@@ -13,6 +13,8 @@ object Index extends HepekComponentsDocsPage {
     introSection
   )
 
+  val hepekComponentsV = "0.18.0"
+
   val introSection = Section(
     "Hepek Components",
     frag(
@@ -21,25 +23,23 @@ object Index extends HepekComponentsDocsPage {
           ```scala
           // sbt
           libraryDependencies ++= Seq(
-            "ba.sake" %% "hepek-components" % "0.14.0"
+            "ba.sake" %% "hepek-components" % "${hepekComponentsV}"
           )
 
           // Mill
           def ivyDeps = Agg(
-            ivy"ba.sake::hepek-components:0.14.0"
+            ivy"ba.sake::hepek-components:${hepekComponentsV}"
           )
 
           // scala-cli
-          //> using dep ba.sake::hepek-components:0.14.0
+          //> using dep ba.sake::hepek-components:${hepekComponentsV}
           ```
 
-          Components are mostly *interface-based* so we can compose them easily and replace with minimal effort.  
-          In a nutshell, this means you can **choose CSS/HTML framework implementation**: Bootstrap5/Bootstrap3/Bulma.  
+          Components are mostly *interface-based* so we can compose them and replace with minimal effort.  
+          In a nutshell, this means you can **choose CSS/HTML framework implementation**: Bootstrap5/Bulma etc.  
 
           In order to group components, Hepek has a concept of `Bundle`.  
-          Every framework fills it with its own implementations of components.  
-          Proceed to [next page](${BundleDocs.ref}) for more detailed explanation.
-  
+          Every framework fills it with its own implementations of components.   
         """.md
     )
   )

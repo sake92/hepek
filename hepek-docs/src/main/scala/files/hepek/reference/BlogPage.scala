@@ -53,6 +53,8 @@ object BlogPage extends HepekReferencePage {
         Code usually looks like this:
       """.md,
       chl.scala("""
+        package files
+
         object ExampleBlogPost extends MyBlogPostPage {
           override def blogSettings = super.blogSettings
             .withCreateDate(LocalDate.of(2018, 9, 5))

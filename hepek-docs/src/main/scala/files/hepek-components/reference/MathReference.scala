@@ -1,9 +1,9 @@
-package files.hepek.components
+package files.hepek.components.reference
 
 import ba.sake.hepek.katex.KatexDependencies
 import utils.Imports.Bundle.*, Tags.*
 
-object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
+object MathReference extends HepekComponentsReferencePage with KatexDependencies {
 
   override def pageSettings =
     super.pageSettings.withTitle("Math support")
@@ -19,8 +19,8 @@ object MathSupport extends HepekComponentsDocsPage with KatexDependencies {
         KaTeX is using the LaTeX syntax, so it is good to familiarize yourself with it.  
         You need to extend `KatexDependencies` to import the CSS/JS stuff.
 
-        Since Hepek supports Markdown, it is hard to find an unused delimiter character.  
-        Hepek chose acute accent mark ("forward-tick"), `´` for inline math.  
+        You can embed it inside Markdown snippets.  
+        Hepek is using the "acute accent mark" ("forward-tick"), `´` for inline math.  
         On Windows the shortcut is <kbd>AltGr</kbd>+<kbd>9</kbd>.
 
         For block-level math double-dollar is used, `$$`.

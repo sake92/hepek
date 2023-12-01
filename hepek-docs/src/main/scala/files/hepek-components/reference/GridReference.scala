@@ -1,10 +1,10 @@
-package files.hepek.components
+package files.hepek.components.reference
 
 import utils._
 import utils.Imports._
 import utils.Imports.Bundle.*, Tags.*
 
-object GridSupport extends HepekComponentsDocsPage {
+object GridReference extends HepekComponentsReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Grid")
@@ -14,7 +14,7 @@ object GridSupport extends HepekComponentsDocsPage {
 
   def gridSection = Section(
     "Grid support",
-    "Let's see what Hepek has to offer regarding grids.",
+    "Grids are usually a pain to work with. Let's see what Hepek has to offer.",
     List(problemSection, hepekGridSection)
   )
 
@@ -26,8 +26,8 @@ object GridSupport extends HepekComponentsDocsPage {
         What if you just want to position an image to the right? Not so fast!  
         You need to mix in some inline HTML in your beautiful markdown and get a real mess...
         
-        Also, it's easy to forget that sum of columns in a Bootstrap row must be 12.
-        For example:
+        Also, it's easy to forget that sum of columns in a Bootstrap row must be 12, for example.  
+        A buggy example:
       """.md,
       chl.markup("""
         <div class="row">
@@ -43,17 +43,17 @@ object GridSupport extends HepekComponentsDocsPage {
     "Hepek grid",
     frag(
       s"""
-        Hepek has the `row` abstraction, with these overloads:
+        Hepek has the typesafe `row` abstraction, with these overloads:
           - arbitrary HTML (Scalatags `Frag`s)
           - halves, constructed with `half`
           - thirds, constructed with `third`
         
         By default, columns have the same/proportional width, as expected.  
         You just need to import the `Grid` from your favorite `Bundle`.  
-        So, in a nutshell, these will compile/work:
+        So, in a nutshell, these will compile and work as expected:
       """.md,
       chl.scala("""
-        import Imports.Bundle.Grid._
+        import utils.Bundle.*, Grid.*
 
         row(div(), p(), "text"), // normal HTML
         row(
@@ -110,7 +110,7 @@ object GridSupport extends HepekComponentsDocsPage {
       """),
       s"""
         These are pretty self-explanatory. For large screens, halves have 5:7 ratio.  
-        So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class (when using Bootstrap5).  
+        So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class (when using BS 5).  
         Same pattern follows for thirds etc.
 
         Ratio for `row`s with arbitrary HTML is specified in `singleRatio`s.  

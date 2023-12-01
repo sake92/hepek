@@ -1,10 +1,10 @@
-package files.hepek.components
+package files.hepek.components.reference
 
 import utils._
 import utils.Imports._
 import utils.Imports.Bundle.*, Tags.*
 
-object Dependencies extends HepekComponentsDocsPage {
+object Dependencies extends HepekComponentsReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("JS and CSS deps")

@@ -1,10 +1,10 @@
-package files.hepek.components
+package files.hepek.components.reference
 
 import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
-object CodeHighlighter extends HepekComponentsDocsPage {
+object CodeHighlighter extends HepekComponentsReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Code highlighter")

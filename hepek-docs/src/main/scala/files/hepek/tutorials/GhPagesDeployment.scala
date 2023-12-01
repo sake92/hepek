@@ -20,12 +20,10 @@ object GhPagesDeployment extends HepekTutorialPage {
     """.md,
       chl.yaml("""
         name: Build and Deploy GhPages docs
-
         on:
           push:
             branches:
               - main
-
         jobs:
           build-and-deploy:
             runs-on: ubuntu-latest

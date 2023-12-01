@@ -40,9 +40,9 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
       .withMainPages(files.hepek.components.Index, files.hepek.Index)
 
   override def navbar = Some(Navbar)
-  
+
   // TODO nested tutorijali, howtos itd
-  /* 
+  /*
   override def bodyContent: Frag = frag(
     maybeNavbar,
     div(clsContainerFluid)(pageContent)

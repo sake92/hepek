@@ -1,9 +1,9 @@
-package files.hepek.components
+package files.hepek.components.reference
 
 import utils.Imports._
 import utils.Imports.Bundle.*, Tags.*
 
-object BundleDocs extends HepekComponentsDocsPage {
+object BundleReference extends HepekComponentsReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Bundle")
@@ -25,18 +25,16 @@ object BundleDocs extends HepekComponentsDocsPage {
 
         import ba.sake.hepek.bootstrap5.BootstrapBundle
 
-        object Imports {
-          val Bundle = BootstrapBundle()
-        }
+        val Bundle = BootstrapBundle()
       """),
       """
-        Then you `import utils.Imports.Bundle._` in every other page/template you make.  
-        This provides you with flexibility of changing your framework with just one line! Amazing, right!? :D
+        Then you `import utils.Bundle._` in every other page/template you make.  
+        This provides you with flexibility of changing your framework with just one line.
 
-        Every `Bundle` contains traits like `Page`, `Grid`, `Form`, `Classes`, `Tags` etc.  
-        Your code will stay the ~same no matter which framework you use! :)
+        Every `Bundle` contains utilities like `Page`, `Grid`, `Form`, `Classes`, `Tags` etc.  
+        Your code will stay the ~same no matter which framework you use.
 
-        You can **customize** the `Bundle` and its components with corresponding `with*` methods!
+        You can customize the `Bundle` and its components with corresponding `with*` methods!
       """.md
     )
   )

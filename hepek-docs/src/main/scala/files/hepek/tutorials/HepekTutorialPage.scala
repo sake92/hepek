@@ -11,4 +11,3 @@ trait HepekTutorialPage extends templates.HepekDocsAbstractPage {
 
   override def pageCategory = Some("hepek-tutorial")
 }
-

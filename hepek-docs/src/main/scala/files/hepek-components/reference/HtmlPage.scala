@@ -1,10 +1,10 @@
-package files.hepek.components
+package files.hepek.components.reference
 
 import utils._
 import utils.Imports._
 import utils.Imports.Bundle.*, Tags.*
 
-object HtmlPage extends HepekComponentsDocsPage {
+object HtmlPage extends HepekComponentsReferencePage {
 
   override def pageSettings =
     super.pageSettings.withTitle("Html page")
@@ -47,11 +47,13 @@ object HtmlPage extends HepekComponentsDocsPage {
       renderClassProps(siteSettingsProps),
       "`SiteSettings` are usually defined in a common trait, for example:".md,
       chl.scala("""
-        trait MyPageTemplate extends HtmlPage {
-          override def siteSettings =
-            super.siteSettings
-              .withName("example.com")
-              .withFaviconNormal("favicon.jpg")
+        package utils
+        import Bundle.*
+
+        trait MyPageTemplate extends Page {
+          override def siteSettings = super.siteSettings
+            .withName("example.com")
+            .withFaviconNormal("favicon.jpg")
         }
       """),
       """
@@ -62,7 +64,8 @@ object HtmlPage extends HepekComponentsDocsPage {
       renderClassProps(pageSettingsProps),
       "Example of page definition:",
       chl.scala("""
-        package site
+        package files
+        import utils.*
         
         object Index extends MyPageTemplate {
           override def pageSettings =
