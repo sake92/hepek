@@ -21,15 +21,15 @@ object Index extends HepekComponentsDocsPage {
       s"""
           Hepek Components contain the core components of Hepek SSG and can be used standalone:
           ```scala
-          // sbt
-          libraryDependencies ++= Seq(
-            "ba.sake" %% "hepek-components" % "${hepekComponentsV}"
-          )
-
-          // Mill
+          // mill
           def ivyDeps = Agg(
             ivy"ba.sake::hepek-components:${hepekComponentsV}"
           )
+          
+          // sbt
+          libraryDependencies ++= Seq(
+            "ba.sake" %% "hepek-components" % "${hepekComponentsV}"
+          )          
 
           // scala-cli
           //> using dep ba.sake::hepek-components:${hepekComponentsV}

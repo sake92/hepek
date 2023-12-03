@@ -64,6 +64,14 @@ lazy val hepekSSG = (project in file("hepek"))
   )
   .dependsOn(hepekComponents.jvm)
 
+lazy val hepekPlay = (project in file("hepek-play"))
+  .settings(
+    name           := "hepek-play",
+    publish / skip := false
+  )
+  .dependsOn(hepekComponents.jvm)
+  .enablePlugins(PlayScala)
+
 lazy val hepekDocs = (project in file("hepek-docs"))
   .dependsOn(hepekSSG)
   .enablePlugins(HepekPlugin)

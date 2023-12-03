@@ -14,7 +14,6 @@ object Imports {
     )
     b.withGrid(grid)
   }
-  import Bundle.Tags.*
 
   object chl extends PrismCodeHighlightComponents
 
@@ -28,11 +27,10 @@ object Imports {
       defaultValue: Option[String] = None
   )
 
-  import Bundle.Classes._
-
   def renderClassProps(props: List[ClassProperty]) =
-    div(tableResponsive)(
-      table(tableClass, tableHoverable)(
+    import Bundle.*, Tags.*
+    div(Classes.tableResponsive)(
+      table(Classes.tableClass, Classes.tableHoverable)(
         tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
         props.map { cp =>
           tr(

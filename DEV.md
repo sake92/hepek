@@ -4,6 +4,10 @@ git tag -a $VERSION -m "Release $VERSION"
 git push origin $VERSION
 
 
+
+
+TODO change case classes to classes where possible
+
 TODO napravit starter za dokumentaciju, sa gh pages npr
 
 
