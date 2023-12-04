@@ -19,13 +19,18 @@ object Index extends templates.HepekDocsStaticPage {
           Hepek is a collection of useful projects for making websites in Scala:
           - [Components](${hepek.components.Index.ref})
           - [Static site generator](${hepek.Index.ref})
+          - [Integrations](${integrations.Index.ref})
 
-          Components can be used in any project, they have minimal dependencies.  
+          Components is a standalone library with minimal dependencies.  
           They provide utilites for grid, form inputs, panels, navbars, markdown, code highlighting, maths rendering and lots more.  
           Components support frameworks like Bootstrap 5, Bulma etc.  
           You can switch to a different framework with minimal effort and override parts you don't like.
 
           SSG has support for automatic relative links, PDF rendering and lots more.
+
+          Integrations provide Hepek Components support for various frameworks:
+            [Sharaf](https://github.com/sake92/sharaf), 
+            [Play](https://www.playframework.com/).
         """.md
       ),
       super.pageContent

@@ -1,6 +1,7 @@
 package files.hepek.components
 
 import utils.Imports.Bundle.*, Tags.*
+import utils.Site
 
 object Index extends HepekComponentsDocsPage {
 
@@ -13,8 +14,6 @@ object Index extends HepekComponentsDocsPage {
     introSection
   )
 
-  val hepekComponentsV = "0.18.0"
-
   val introSection = Section(
     "Hepek Components",
     frag(
@@ -23,16 +22,16 @@ object Index extends HepekComponentsDocsPage {
           ```scala
           // mill
           def ivyDeps = Agg(
-            ivy"ba.sake::hepek-components:${hepekComponentsV}"
+            ivy"ba.sake::hepek-components:${Site.hepekVersion}"
           )
           
           // sbt
           libraryDependencies ++= Seq(
-            "ba.sake" %% "hepek-components" % "${hepekComponentsV}"
+            "ba.sake" %% "hepek-components" % "${Site.hepekVersion}"
           )          
 
           // scala-cli
-          //> using dep ba.sake::hepek-components:${hepekComponentsV}
+          //> using dep ba.sake::hepek-components:${Site.hepekVersion}
           ```
 
           Components are mostly *interface-based* so we can compose them and replace with minimal effort.  

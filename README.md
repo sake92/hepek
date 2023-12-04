@@ -9,7 +9,7 @@ See these posts for motivation:
 
 ### [Hepek Components](https://sake92.github.io/hepek/hepek/components/index.html) [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-components_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek-components)
 Typesafe templates, grids, forms, code highlighting, markdown etc.  
-JVM and ScalaJS supported!  
+JVM and ScalaJS supported! 
 
 ---
 ### [Hepek SSG](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek)
@@ -24,4 +24,14 @@ Resources:
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 - [source code](https://github.com/sake92/sake-ba-blog-source) of blog.sake.ba (code examples, math snippets etc.)
 
+---
+### Integrations
 
+#### [Sharaf](https://github.com/sake92/sharaf)
+Shraf integration.
+- [fullstack example](https://github.com/sake92/sharaf/tree/main/examples/fullstack)
+- [petclinic implementation](https://github.com/sake92/sharaf-petclinic)
+
+#### [Hepek Play](https://sake92.github.io/hepek/integrations/play-framework.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-play_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek-play)
+Play framework integration.
+- [fullstack example](https://github.com/sake92/play-hepek-example)

@@ -37,7 +37,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
   override def staticSiteSettings =
     super.staticSiteSettings
       .withIndexPage(files.Index)
-      .withMainPages(files.hepek.components.Index, files.hepek.Index)
+      .withMainPages(files.hepek.components.Index, files.hepek.Index, files.integrations.Index)
 
   override def navbar = Some(Navbar)
 
