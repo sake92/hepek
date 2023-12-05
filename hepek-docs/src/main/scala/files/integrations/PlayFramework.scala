@@ -32,7 +32,8 @@ object PlayFramework extends HepekIntegrationsDocsPage {
         )
         ```
 
-        See the [example repo](https://github.com/sake92/play-hepek-example)
+        Examples:
+        - [hepek-play-example](https://github.com/sake92/hepek-play-example)
       """.md
     )
   )

@@ -21,15 +21,13 @@ object BootstrapNavbarComponents {
 }
 
 final case class BootstrapNavbarComponents(
+    activeUrl: String = "",
     width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
     position: BootstrapNavbarComponents.Position = BootstrapNavbarComponents.Position.FixedTop,
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
-  import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle._
 
-  val Companion = BootstrapNavbarComponents
-
-  def toggle = tag("button")(
+  private val toggle = tag("button")(
     tpe            := "button",
     cls            := "navbar-toggler collapsed",
     data.bs.toggle := "collapse",
@@ -38,12 +36,16 @@ final case class BootstrapNavbarComponents(
     span(cls := "navbar-toggler-icon")
   )
 
-  override def full(
+  val Companion = BootstrapNavbarComponents
+
+  def withActiveUrl(activeUrl: String) = copy(activeUrl = activeUrl)
+
+  def nav(
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[(Frag, Seq[AttrPair])] = Seq.empty,
-      right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+      left: Seq[Frag] = Seq.empty,
+      right: Seq[Frag] = Seq.empty
   ): Frag =
     tag("nav")(cls := s"navbar navbar-expand-lg navbar-dark bg-dark ${position.classes}")(
       div(cls := width.classes)(
@@ -55,33 +57,34 @@ final case class BootstrapNavbarComponents(
         ),
         toggle,
         div(cls := "collapse navbar-collapse", id := collapseId)(
-          ul(cls := "navbar-nav")(
-            left.map { case (item, liMods) =>
-              li(cls := "nav-item")(liMods)(item)
-            }
-          ),
-          ul(cls := "navbar-nav ms-auto")(
-            right.map { case (item, liMods) =>
-              li(cls := "nav-item")(liMods)(item)
-            }
-          )
+          ul(cls := "navbar-nav")(left),
+          ul(cls := "navbar-nav ms-auto")(right)
         )
       )
     )
 
-  override def fullNestedLink(
-      title: Frag,
-      links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+  override def link(url: String, content: Frag): Frag =
+    li(cls := "nav-item")(
+      a(href := url, Option.when(url == activeUrl)(cls := "active"), cls := "nav-link")(content)
+    )
+
+  override def dropdown(
+      content: Frag,
+      dropdownItems: Seq[Frag] = Seq.empty
   ): Frag =
-    li(cls := "dropdown")(
-      a(cls := "dropdown-toggle", data.toggle := "dropdown", href := "#")(
-        title,
+    li(cls := "nav-item dropdown")(
+      a(cls := "nav-link dropdown-toggle", data.bs.toggle := "dropdown", href := "#")(
+        content,
         raw(" <span class='caret'></span>")
       ),
-      ul(cls := "dropdown-menu")(
-        links.map { case (item, liMods) =>
-          li(liMods)(item)
-        }
+      ul(cls := "dropdown-menu")(dropdownItems)
+    )
+
+  override def dropdownLink(url: String, content: Frag): Frag =
+    li(
+      a(href := url, Option.when(url == activeUrl)(cls := "active"), cls := "dropdown-item")(
+        content
       )
     )
+
 }

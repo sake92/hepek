@@ -1,6 +1,8 @@
 package files.hepek.components.reference
 
-trait HepekComponentsReferencePage extends templates.HepekDocsAbstractPage {
+import files.hepek.components.HepekComponentsDocsPage
+
+trait HepekComponentsReferencePage extends HepekComponentsDocsPage {
 
   override def categoryPosts = List(
     Index,

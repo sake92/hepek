@@ -72,6 +72,16 @@ lazy val hepekPlay = (project in file("hepek-play"))
   .dependsOn(hepekComponents.jvm)
   .enablePlugins(PlayScala)
 
+lazy val hepekHttp4s = (project in file("hepek-http4s"))
+  .settings(
+    name           := "hepek-http4s",
+    publish / skip := false,
+    libraryDependencies ++= Seq(
+      "org.http4s" %%% "http4s-core" % "0.23.24"
+    )
+  )
+  .dependsOn(hepekComponents.jvm)
+
 lazy val hepekDocs = (project in file("hepek-docs"))
   .dependsOn(hepekSSG)
   .enablePlugins(HepekPlugin)

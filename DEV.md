@@ -1,9 +1,11 @@
 
-$VERSION="v0.18.0"
+$VERSION="v0.19.0"
 git tag -a $VERSION -m "Release $VERSION"
 git push origin $VERSION
 
 
+TODO http4s
+TODO https://github.com/zio/zio-http/issues/1954
 
 
 TODO change case classes to classes where possible

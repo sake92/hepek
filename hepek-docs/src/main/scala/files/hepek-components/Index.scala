@@ -18,7 +18,8 @@ object Index extends HepekComponentsDocsPage {
     "Hepek Components",
     frag(
       s"""
-          Hepek Components contain the core components of Hepek SSG and can be used standalone:
+          A library for typesafe generating of boilerplate HTML.  
+          Add the dependency:
           ```scala
           // mill
           def ivyDeps = Agg(

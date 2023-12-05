@@ -1,8 +1,11 @@
 package files.integrations
 
-import files.hepek.HepekDocsPage
+import utils.Imports.Bundle.Navbar
 
-trait  HepekIntegrationsDocsPage extends HepekDocsPage {
+trait HepekIntegrationsDocsPage extends templates.HepekDocsAbstractPage {
+
+  override def navbar = Some(Navbar.withActiveUrl(files.integrations.Index.ref))
+
   override def categoryPosts = List(
     Index,
     SharafFramework,
@@ -11,4 +14,3 @@ trait  HepekIntegrationsDocsPage extends HepekDocsPage {
 
   override def pageCategory = Some(Index.pageSettings.label)
 }
-

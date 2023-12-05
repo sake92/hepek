@@ -41,32 +41,6 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
 
   override def navbar = Some(Navbar)
 
-  // TODO nested tutorijali, howtos itd
-  /*
-  override def bodyContent: Frag = frag(
-    maybeNavbar,
-    div(clsContainerFluid)(pageContent)
-  )
-
-  /* NAVBAR */
-  private def maybeNavbar =
-    navbar.map { bsNav =>
-      bsNav.full(
-        brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
-        brandName = siteSettings.name.map(" " + _),
-        brandIconUrl = siteSettings.faviconInverted,
-        right = navbarLiTags
-      )
-    }
-
-  private def navbarLiTags: Seq[(Frag, Seq[AttrPair])] =
-    for {
-      page <- staticSiteSettings.mainPages
-      labela      = page.pageCategory.getOrElse(page.pageSettings.label)
-      maybeActive = Option.when(page.pageCategory == this.pageCategory)(cls := "active")
-    } yield a(href := page.ref, maybeActive, cls := "nav-link")(labela) -> Seq()
-   */
-
   // CSS
   override def styleURLs =
     super.styleURLs ++ List(Resource("styles/main.css").ref)
@@ -83,12 +57,8 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
     frag(
       super.pageContent,
       footer(Classes.txtAlignCenter, Classes.bgInfo, cls := "fixed-bottom")(
-        a(href := "https://github.com/sake92/hepek", Classes.btnClass)(
-          FA.github()
-        ),
-        a(href := "https://discord.gg/R2FtxDKyRE", Classes.btnClass)(
-          FA.discord()
-        )
+        a(href := "https://github.com/sake92/hepek", Classes.btnClass)(FA.github()),
+        a(href := "https://discord.gg/R2FtxDKyRE", Classes.btnClass)(FA.discord())
       )
     )
 }

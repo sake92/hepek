@@ -1,8 +1,7 @@
 package files.integrations
 
-import utils.Imports._
+import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
-import utils.Site
 
 object SharafFramework extends HepekIntegrationsDocsPage {
 

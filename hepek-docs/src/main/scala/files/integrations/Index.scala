@@ -13,7 +13,6 @@ object Index extends HepekIntegrationsDocsPage {
     introSection
   )
 
-
   val introSection = Section(
     "Hepek Integrations",
     frag(

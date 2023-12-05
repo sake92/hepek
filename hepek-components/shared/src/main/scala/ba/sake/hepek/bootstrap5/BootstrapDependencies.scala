@@ -5,14 +5,14 @@ import ba.sake.hepek.html._
 trait BootstrapDependencies extends PageDependencies {
 
   def bootstrapSettings: ComponentSettings =
-    ComponentSettings("5.3.2", "bootstrap", DependencyProvider.unpkg)
+    ComponentSettings("5.3.2", "bootstrap", DependencyProvider.cdnjs)
 
   def bootstrapDependencies: ComponentDependencies =
     ComponentDependencies()
       .withJsDependencies(
         Dependencies().withDeps(
           Dependency(
-            "js/bootstrap.min.js",
+            "js/bootstrap.bundle.min.js",
             bootstrapSettings.version,
             bootstrapSettings.pkg,
             baseFolder = Option("dist/")

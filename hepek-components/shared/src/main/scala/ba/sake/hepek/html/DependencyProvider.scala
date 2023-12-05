@@ -14,6 +14,8 @@ object DependencyProvider {
 
   val cdnjs: DependencyProvider = (dep: Dependency) =>
     s"https://cdnjs.cloudflare.com/ajax/libs/${dep.pkg}/${dep.version}/${dep.file}${dep.queryParams}"
+
+  // TODO add jsdeliver and more
 }
 
 final case class WebjarsDependencyProvider(webjarsPath: String) extends DependencyProvider {

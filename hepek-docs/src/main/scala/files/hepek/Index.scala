@@ -2,7 +2,7 @@ package files.hepek
 
 import utils.Imports.Bundle.*, Tags.*
 
-object Index extends HepekDocsPage {
+object Index extends HepekSsgDocsPage {
 
   override def pageSettings =
     super.pageSettings

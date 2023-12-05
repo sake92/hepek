@@ -19,18 +19,15 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
   /* NAVBAR */
   private def maybeNavbar =
     navbar.map { bsNav =>
-      bsNav.full(
+      bsNav.nav(
         brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
         brandName = siteSettings.name.map(" " + _),
         brandIconUrl = siteSettings.faviconInverted,
-        right = navbarLiTags
+        right = for
+          page <- staticSiteSettings.mainPages
+          labela = page.pageCategory.getOrElse(page.pageSettings.label)
+        yield bsNav.link(page.ref, labela)
       )
     }
 
-  private def navbarLiTags: Seq[(Frag, Seq[AttrPair])] =
-    for {
-      page <- staticSiteSettings.mainPages
-      labela      = page.pageSettings.label
-      maybeActive = Option.when(page.pageCategory == this.pageCategory)(cls := "active")
-    } yield a(href := page.ref, maybeActive, cls := "nav-link")(labela) -> Seq()
 }

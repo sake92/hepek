@@ -2,19 +2,19 @@ package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
 object PlainNavbarComponents
 
 // TODO this is just copied from Bootstrap...
-case class PlainNavbarComponents() extends NavbarComponents {
-  import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
+case class PlainNavbarComponents(activeUrl: String = "") extends NavbarComponents {
 
-  private val bsBtn = tag("button")(tpe := "button", btnClass)
+  private val navbarCollapseId: String = "main-navbar"
 
-  def navbarCollapseId: String = "main-navbar"
-
-  def toggle =
-    bsBtn(
+  private val toggle =
+    tag("button")(
+      tpe := "button",
+      btnClass,
       cls         := "nvbr-toggle collapsed",
       data.toggle := "collapse",
       data.target := s"#$navbarCollapseId"
@@ -25,12 +25,14 @@ case class PlainNavbarComponents() extends NavbarComponents {
       span(cls := "icon-bar")
     )
 
-  override def full(
+  def withActiveUrl(activeUrl: String) = copy(activeUrl = activeUrl)
+
+  def nav(
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[(Frag, Seq[AttrPair])] = Seq.empty,
-      right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+      left: Seq[Frag] = Seq.empty,
+      right: Seq[Frag] = Seq.empty
   ): Frag =
     tag("nav")(cls := s"navbar")(
       div(cls := "container")(
@@ -43,31 +45,28 @@ case class PlainNavbarComponents() extends NavbarComponents {
         ),
         div(cls := "collapse nvbr-collapse", id := navbarCollapseId)(
           ul(cls := s"nav nvbr-nav nvbr-left")(
-            left.map { case (item, liMods) =>
-              li(liMods)(item)
-            }
+            left
           ),
           ul(cls := s"nav nvbr-nav nvbr-right")(
-            right.map { case (item, liMods) =>
-              li(liMods)(item)
-            }
+            right
           )
         )
       )
     )
 
-  override def fullNestedLink(
-      title: Frag,
-      links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+  override def link(url: String, content: Frag): Frag =
+    li(a(href := url)(content))
+
+  override def dropdown(
+      content: Frag,
+      dropdownItems: Seq[Frag] = Seq.empty
   ): Frag =
     li(cls := "dropdown")(
       a(cls := "dropdown-toggle", data.toggle := "dropdown", href := "#")(
-        title
+        content
       ),
       ul(cls := "dropdown-menu")(
-        links.map { case (item, liMods) =>
-          li(liMods)(item)
-        }
+        dropdownItems
       )
     )
 }

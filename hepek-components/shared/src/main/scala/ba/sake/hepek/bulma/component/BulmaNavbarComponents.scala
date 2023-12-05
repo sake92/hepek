@@ -22,15 +22,13 @@ object BulmaNavbarComponent {
 }
 
 final case class BulmaNavbarComponent(
+    activeUrl: String = "",
     style: Option[BulmaNavbarComponent.Style] = None,
     position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
-  import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle._
 
-  val Companion = BulmaNavbarComponent
-
-  def toggle =
+  private val toggle =
     a(
       cls         := "navbar-burger burger",
       data.target := collapseId,
@@ -42,12 +40,16 @@ final case class BulmaNavbarComponent(
       span()
     )
 
-  override def full(
+  val Companion = BulmaNavbarComponent
+
+  def withActiveUrl(activeUrl: String) = copy(activeUrl = activeUrl)
+
+  def nav(
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[(Frag, Seq[AttrPair])] = Seq.empty,
-      right: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+      left: Seq[Frag] = Seq.empty,
+      right: Seq[Frag] = Seq.empty
   ): Frag =
     tag("nav")(cls := s"""navbar ${style
       .map(_.classes)
@@ -60,31 +62,22 @@ final case class BulmaNavbarComponent(
         toggle
       ),
       div(cls := "navbar-menu", id := collapseId)(
-        div(cls := "navbar-start")(
-          left.map { case (item, liMods) =>
-            div((cls := "navbar-item") +: liMods)(item)
-          }
-        ),
-        div(cls := "navbar-end")(
-          right.map { case (item, liMods) =>
-            div((cls := "navbar-item") +: liMods)(item)
-          }
-        )
+        div(cls := "navbar-start")(left),
+        div(cls := "navbar-end")(right)
       )
     )
 
-  override def fullNestedLink(
-      title: Frag,
-      links: Seq[(Frag, Seq[AttrPair])] = Seq.empty
+  override def link(url: String, content: Frag): Frag =
+    div(cls := "navbar-item", Option.when(url == activeUrl)(cls := "active"))(content)
+
+  override def dropdown(
+      content: Frag,
+      dropdownItems: Seq[Frag] = Seq.empty
   ): Frag =
     div(cls := "navbar-item has-dropdown is-hoverable")(
-      a(cls := "navbar-link")(
-        title
-      ),
+      a(cls := "navbar-link")(content),
       div(cls := "navbar-dropdown")(
-        links.map { case (item, liMods) =>
-          div((cls := "navbar-item") +: liMods)(item)
-        }
+        dropdownItems
       )
     )
 }
