@@ -49,15 +49,15 @@ object GridComponents {
   )
 
   final class Col2(val content: List[Frag])
-  final  class Col3(val content: List[Frag])
+  final class Col3(val content: List[Frag])
 
-  final  class Ratio(val values: List[Int])
+  final class Ratio(val values: List[Int])
 
   object Ratio {
     def apply(values: Int*): Ratio = new Ratio(values.toList)
   }
 
-  final  class Ratios(
+  final class Ratios(
       val single: Ratio = Ratios.DefaultSingle,
       val half: Ratio = Ratios.DefaultHalf,
       val third: Ratio = Ratios.DefaultThird

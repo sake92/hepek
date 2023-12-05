@@ -1433,34 +1433,34 @@ final class FA5Icon(
   }
 
   def withName(name: String): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, size, animation, flip, rotate)
 
   def withTpe(tpe: FA5Icon.Type): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, size, animation, flip, rotate)
 
   def withSize(size: Option[FA5Icon.Size]): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, size, animation, flip, rotate)
 
   def withSize(size: FA5Icon.Size): FA5Icon =
-    new FA5Icon(name,    tpe,    Some(size),    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, Some(size), animation, flip, rotate)
 
   def withAnimation(animation: Option[FA5Icon.Animation]): FA5Icon =
-   new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, size, animation, flip, rotate)
 
   def withAnimation(animation: FA5Icon.Animation): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    Some(animation),    flip,    rotate)
+    new FA5Icon(name, tpe, size, Some(animation), flip, rotate)
 
   def withFlip(flip: Option[FA5Icon.Flip]): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, size, animation, flip, rotate)
 
   def withFlip(flip: FA5Icon.Flip): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    Some(flip),    rotate)
+    new FA5Icon(name, tpe, size, animation, Some(flip), rotate)
 
   def withRotate(rotate: Option[FA5Icon.Rotate]): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
+    new FA5Icon(name, tpe, size, animation, flip, rotate)
 
   def withRotate(rotate: FA5Icon.Rotate): FA5Icon =
-    new FA5Icon(name,    tpe,    size,    animation,    flip,    Some(rotate))
+    new FA5Icon(name, tpe, size, animation, flip, Some(rotate))
 }
 
 object FA5Icon {

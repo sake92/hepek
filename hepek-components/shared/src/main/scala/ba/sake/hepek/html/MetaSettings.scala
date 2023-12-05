@@ -1,6 +1,6 @@
 package ba.sake.hepek.html
 
-final class MetaSettings private(
+final class MetaSettings private (
     val charset: String,
     val xuaCompatible: String,
     val viewport: String,

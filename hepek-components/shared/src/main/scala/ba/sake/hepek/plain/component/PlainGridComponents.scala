@@ -10,7 +10,7 @@ final class PlainGridComponents(
   import GridComponents._
 
   def withScreenRatios(screenRatios: ScreenRatios): PlainGridComponents =
-    new PlainGridComponents(screenRatios )
+    new PlainGridComponents(screenRatios)
 
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "row")(content)

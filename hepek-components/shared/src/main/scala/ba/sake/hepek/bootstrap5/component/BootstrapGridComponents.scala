@@ -5,12 +5,12 @@ import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
 
 class BootstrapGridComponents(
-   val screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
+    val screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {
   import GridComponents._
 
   def withScreenRatios(screenRatios: ScreenRatios): BootstrapGridComponents =
-    new BootstrapGridComponents(screenRatios )
+    new BootstrapGridComponents(screenRatios)
 
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "row")(content)

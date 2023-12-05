@@ -4,13 +4,13 @@ import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
 
- class BulmaGridComponents(
-  val  screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
+class BulmaGridComponents(
+    val screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {
   import GridComponents._
 
   def withScreenRatios(screenRatios: ScreenRatios): BulmaGridComponents =
-    new BulmaGridComponents(screenRatios )
+    new BulmaGridComponents(screenRatios)
 
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "columns")(content)

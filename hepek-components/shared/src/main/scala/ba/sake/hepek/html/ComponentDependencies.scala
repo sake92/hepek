@@ -20,4 +20,3 @@ final class ComponentDependencies private (
 object ComponentDependencies:
   val default: ComponentDependencies =
     new ComponentDependencies(Dependencies.default, Dependencies.default)
-

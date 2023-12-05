@@ -2,9 +2,7 @@ package ba.sake.hepek.anchorjs
 
 import ba.sake.hepek.html._
 
-/** You need to provide Anchorjs config by yourself.
-  *
-  * @see
+/** @see
   *   https://www.bryanbraun.com/anchorjs/#basic-usage
   */
 trait AnchorjsDependencies extends PageDependencies {

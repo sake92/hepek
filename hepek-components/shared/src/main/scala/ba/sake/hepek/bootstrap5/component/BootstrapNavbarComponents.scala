@@ -38,7 +38,7 @@ class BootstrapNavbarComponents(
 
   val Companion = BootstrapNavbarComponents
 
-  def withActiveUrl(activeUrl: String) = new BootstrapNavbarComponents( activeUrl)
+  def withActiveUrl(activeUrl: String) = new BootstrapNavbarComponents(activeUrl)
 
   def nav(
       brandUrl: String,
