@@ -41,7 +41,6 @@ trait SimpleStaticPage extends StaticPage {
       .withGeoPosition("geoPosition")
       .withGeoRegion("geoRegion")
       .withGeoPlacename("geoPlacename")
-      .withGoogleSiteVerification("googleSiteVerification")
       .withOgUrl("ogUrl")
       .withOgType("ogType")
       .withOgTitle("ogTitle")

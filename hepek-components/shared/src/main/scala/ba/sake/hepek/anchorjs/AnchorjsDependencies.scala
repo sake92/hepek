@@ -10,11 +10,11 @@ import ba.sake.hepek.html._
 trait AnchorjsDependencies extends PageDependencies {
 
   def anchorjsSettings: ComponentSettings =
-    ComponentSettings("4.1.0", "anchor-js", DependencyProvider.cdnjs)
+    ComponentSettings("4.1.0", "anchor-js")
 
   def anchorjsDependencies: ComponentDependencies =
-    ComponentDependencies().withJsDependencies(
-      Dependencies().withDeps(
+    ComponentDependencies.default.withJsDependencies(
+      Dependencies.default.withDeps(
         Dependency("anchor.min.js", anchorjsSettings.version, anchorjsSettings.pkg)
       )
     )

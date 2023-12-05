@@ -1409,7 +1409,7 @@ object FA {
   val zhihu                       = FA5Icon("zhihu", FA5Icon.Type.Brand)
 }
 
-final case class FA5Icon(
+final class FA5Icon(
     name: String,
     tpe: FA5Icon.Type = FA5Icon.Type.Solid,
     size: Option[FA5Icon.Size] = None,
@@ -1433,34 +1433,34 @@ final case class FA5Icon(
   }
 
   def withName(name: String): FA5Icon =
-    copy(name = name)
+    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
 
   def withTpe(tpe: FA5Icon.Type): FA5Icon =
-    copy(tpe = tpe)
+    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
 
   def withSize(size: Option[FA5Icon.Size]): FA5Icon =
-    copy(size = size)
+    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
 
   def withSize(size: FA5Icon.Size): FA5Icon =
-    copy(size = Option(size))
+    new FA5Icon(name,    tpe,    Some(size),    animation,    flip,    rotate)
 
   def withAnimation(animation: Option[FA5Icon.Animation]): FA5Icon =
-    copy(animation = animation)
+   new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
 
   def withAnimation(animation: FA5Icon.Animation): FA5Icon =
-    copy(animation = Option(animation))
+    new FA5Icon(name,    tpe,    size,    Some(animation),    flip,    rotate)
 
   def withFlip(flip: Option[FA5Icon.Flip]): FA5Icon =
-    copy(flip = flip)
+    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
 
   def withFlip(flip: FA5Icon.Flip): FA5Icon =
-    copy(flip = Option(flip))
+    new FA5Icon(name,    tpe,    size,    animation,    Some(flip),    rotate)
 
   def withRotate(rotate: Option[FA5Icon.Rotate]): FA5Icon =
-    copy(rotate = rotate)
+    new FA5Icon(name,    tpe,    size,    animation,    flip,    rotate)
 
   def withRotate(rotate: FA5Icon.Rotate): FA5Icon =
-    copy(rotate = Option(rotate))
+    new FA5Icon(name,    tpe,    size,    animation,    flip,    Some(rotate))
 }
 
 object FA5Icon {

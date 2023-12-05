@@ -80,12 +80,6 @@ class StaticPageTest extends HepekSeleniumTest {
         stuff =>
           getByCss("meta[name='geo.placename']").get.attribute("content").get should equal(stuff)
       )
-      p.metaSettings.googleSiteVerification.map(
-        stuff =>
-          getByCss("meta[name='google-site-verification']").get
-            .attribute("content")
-            .get should equal(stuff)
-      )
 
       // Open Graph stuff
       p.metaSettings.ogUrl.map(

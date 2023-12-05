@@ -5,17 +5,17 @@ import ba.sake.hepek.html._
 trait FADependencies extends PageDependencies {
 
   def faSettings: ComponentSettings =
-    ComponentSettings("5.11.2", "font-awesome", DependencyProvider.cdnjs)
+    ComponentSettings("5.11.2", "font-awesome")
 
   def faDependencies: ComponentDependencies =
-    ComponentDependencies()
+    ComponentDependencies.default
       .withJsDependencies(
-        Dependencies().withDeps(
+        Dependencies.default.withDeps(
           Dependency("js/all.js", faSettings.version, faSettings.pkg)
         )
       )
       .withCssDependencies(
-        Dependencies().withDeps(
+        Dependencies.default.withDeps(
           Dependency("css/all.css", faSettings.version, faSettings.pkg)
         )
       )

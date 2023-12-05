@@ -10,7 +10,7 @@ import play.filters.csrf.CSRF
 
 import all._
 
-final class PlayForm(val fc: FormComponents) {
+class PlayFrameworkForm(val fc: FormComponents) {
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
 

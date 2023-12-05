@@ -27,7 +27,7 @@ object BootstrapNavbarComponents {
   }
 }
 
-final case class BootstrapNavbarComponents(
+class BootstrapNavbarComponents(
     activeUrl: String = "",
     style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
     width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
@@ -50,7 +50,7 @@ final case class BootstrapNavbarComponents(
 
   val Companion = BootstrapNavbarComponents
 
-  def withActiveUrl(activeUrl: String) = copy(activeUrl = activeUrl)
+  def withActiveUrl(activeUrl: String) = new BootstrapNavbarComponents(activeUrl)
 
   def nav(
       brandUrl: String,

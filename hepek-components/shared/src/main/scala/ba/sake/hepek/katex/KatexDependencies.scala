@@ -6,9 +6,9 @@ trait KatexDependencies extends PageDependencies {
   def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
 
   def katexDependencies =
-    ComponentDependencies()
+    ComponentDependencies.default
       .withJsDependencies(
-        Dependencies()
+        Dependencies.default
           .withDeps(
             Dependency("katex.min.js", katexSettings.version, katexSettings.pkg),
             Dependency("contrib/auto-render.min.js", katexSettings.version, katexSettings.pkg)
@@ -28,7 +28,7 @@ trait KatexDependencies extends PageDependencies {
           )
       )
       .withCssDependencies(
-        Dependencies()
+        Dependencies.default
           .withDeps(Dependency("katex.min.css", katexSettings.version, katexSettings.pkg))
       )
 
@@ -36,33 +36,40 @@ trait KatexDependencies extends PageDependencies {
     super.components.appended(katexSettings -> katexDependencies)
 }
 
-final case class KatexSettings(
-    version: String,
-    pkg: String,
-    depsProvider: DependencyProvider = DependencyProvider.cdnjs,
-    delimitersInline: (String, String) = ("´", "´"),
-    delimitersBlock: (String, String) = ("$$", "$$"),
-    ignoredTags: List[String] = List("script", "noscript", "style", "textarea", "pre", "code")
+class KatexSettings(
+    val version: String,
+    val pkg: String,
+    val depsProvider: DependencyProvider = DependencyProvider.cdnjs,
+    val delimitersInline: (String, String) = ("´", "´"),
+    val delimitersBlock: (String, String) = ("$$", "$$"),
+    val ignoredTags: List[String] = List("script", "noscript", "style", "textarea", "pre", "code")
 ) extends BaseComponentSettings {
 
   def withVersion(version: String): KatexSettings =
-    copy(version = version)
+    new KatexSettings(version, pkg, depsProvider, delimitersInline, delimitersBlock, ignoredTags)
 
   def withPkg(pkg: String): KatexSettings =
-    copy(pkg = pkg)
+    new KatexSettings(version, pkg, depsProvider, delimitersInline, delimitersBlock, ignoredTags)
 
   def withDepsProvider(depsProvider: DependencyProvider): KatexSettings =
-    copy(depsProvider = depsProvider)
+    new KatexSettings(version, pkg, depsProvider, delimitersInline, delimitersBlock, ignoredTags)
 
   def withDelimitersInline(delimitersInline: (String, String)): KatexSettings =
-    copy(delimitersInline = delimitersInline)
+    new KatexSettings(version, pkg, depsProvider, delimitersInline, delimitersBlock, ignoredTags)
 
   def withDelimitersBlock(delimitersBlock: (String, String)): KatexSettings =
-    copy(delimitersBlock = delimitersBlock)
+    new KatexSettings(version, pkg, depsProvider, delimitersInline, delimitersBlock, ignoredTags)
 
   def withIgnoredTags(ignoredTags: List[String]): KatexSettings =
-    copy(ignoredTags = ignoredTags)
+    new KatexSettings(version, pkg, depsProvider, delimitersInline, delimitersBlock, ignoredTags)
 
   def withIgnoredTags(ignoredTags: String*): KatexSettings =
-    copy(ignoredTags = ignoredTags.toList)
+    new KatexSettings(
+      version,
+      pkg,
+      depsProvider,
+      delimitersInline,
+      delimitersBlock,
+      ignoredTags.toList
+    )
 }

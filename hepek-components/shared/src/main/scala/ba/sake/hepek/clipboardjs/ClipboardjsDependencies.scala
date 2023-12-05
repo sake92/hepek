@@ -5,11 +5,11 @@ import ba.sake.hepek.html._
 trait ClipboardjsDependencies extends PageDependencies {
 
   def clipboardjsSettings: ComponentSettings =
-    ComponentSettings("1.7.1", "clipboard.js", DependencyProvider.cdnjs)
+    ComponentSettings("1.7.1", "clipboard.js")
 
   def clipboardjsDependencies: ComponentDependencies =
-    ComponentDependencies().withJsDependencies(
-      Dependencies().withDeps(
+    ComponentDependencies.default.withJsDependencies(
+      Dependencies.default.withDeps(
         Dependency("clipboard.min.js", clipboardjsSettings.version, clipboardjsSettings.pkg)
       )
     )

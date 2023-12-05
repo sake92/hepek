@@ -6,16 +6,15 @@ trait MathjaxDependencies extends PageDependencies {
   def mathjaxConfig: String = "TeX-MML-AM_CHTML"
 
   def mathjaxSettings: ComponentSettings =
-    ComponentSettings("2.7.2", "mathjax", DependencyProvider.cdnjs)
+    ComponentSettings("2.7.2", "mathjax")
 
-  def mathjaxDependencies = ComponentDependencies().withJsDependencies(
-    Dependencies().withDeps(
+  def mathjaxDependencies = ComponentDependencies.default.withJsDependencies(
+    Dependencies.default.withDeps(
       Dependency(
         "MathJax.js",
         mathjaxSettings.version,
-        mathjaxSettings.pkg,
-        qParams = Option(s"config=$mathjaxConfig")
-      )
+        mathjaxSettings.pkg
+      ).withQueryParams(s"config=$mathjaxConfig")
     )
   )
 

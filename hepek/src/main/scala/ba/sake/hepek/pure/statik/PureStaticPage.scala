@@ -14,7 +14,7 @@ trait PureStaticPage extends StaticPage with PurePage {
 
   // grid for layout with sidebar
   val grid = Grid.withScreenRatios(
-    Grid.screenRatios.copy(lg = Ratios(Ratio(1, 5), Ratio(1, 1, 1)))
+    Grid.screenRatios.withLg(Ratios(Ratio(1, 5), Ratio(1, 1, 1)))
   )
 
   def withPureMenu: Boolean = true

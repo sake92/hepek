@@ -4,13 +4,13 @@ import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
 
-final case class PlainGridComponents(
-    screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
+final class PlainGridComponents(
+    val screenRatios: ScreenRatios = GridComponents.DefaultScreenRatios
 ) extends GridComponents {
   import GridComponents._
 
   def withScreenRatios(screenRatios: ScreenRatios): PlainGridComponents =
-    copy(screenRatios = screenRatios)
+    new PlainGridComponents(screenRatios )
 
   protected override def mkRow(content: Frag*): Frag =
     div(cls := "row")(content)

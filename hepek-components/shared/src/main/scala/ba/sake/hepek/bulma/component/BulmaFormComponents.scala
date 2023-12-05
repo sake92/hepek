@@ -20,8 +20,8 @@ object BulmaFormComponents {
   }
 }
 
-final case class BulmaFormComponents(
-    formType: FormComponents.Type = BulmaFormComponents.DefaultType
+ class BulmaFormComponents(
+   val formType: FormComponents.Type = BulmaFormComponents.DefaultType
 ) extends FormComponents {
   import BulmaFormComponents._
   import BulmaClassesBundle._

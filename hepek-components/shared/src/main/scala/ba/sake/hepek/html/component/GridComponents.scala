@@ -48,19 +48,19 @@ object GridComponents {
     Option(Ratios.Default)
   )
 
-  final case class Col2(content: List[Frag])
-  final case class Col3(content: List[Frag])
+  final class Col2(val content: List[Frag])
+  final  class Col3(val content: List[Frag])
 
-  final case class Ratio(values: List[Int])
+  final  class Ratio(val values: List[Int])
 
   object Ratio {
     def apply(values: Int*): Ratio = new Ratio(values.toList)
   }
 
-  final case class Ratios(
-      single: Ratio = Ratios.DefaultSingle,
-      half: Ratio = Ratios.DefaultHalf,
-      third: Ratio = Ratios.DefaultThird
+  final  class Ratios(
+      val single: Ratio = Ratios.DefaultSingle,
+      val half: Ratio = Ratios.DefaultHalf,
+      val third: Ratio = Ratios.DefaultThird
   ) {
     require(
       single.values.length == 3,
@@ -75,21 +75,21 @@ object GridComponents {
       s"Thirds ratios must contain exactly 3 values. Actual: ${third.values}"
     )
 
-    def withSingle(r: Ratio): Ratios                  = copy(single = r)
+    def withSingle(r: Ratio): Ratios                  = new Ratios(single = r)
     def withSingle(r1: Int, r2: Int, r3: Int): Ratios = withSingle(Ratio(r1, r2, r3))
 
-    def withHalf(r: Ratio): Ratios         = copy(half = r)
+    def withHalf(r: Ratio): Ratios         = new Ratios(half = r)
     def withHalf(r1: Int, r2: Int): Ratios = withHalf(Ratio(r1, r2))
 
-    def withThird(r: Ratio): Ratios                  = copy(third = r)
+    def withThird(r: Ratio): Ratios                  = new Ratios(third = r)
     def withThird(r1: Int, r2: Int, r3: Int): Ratios = withThird(Ratio(r1, r2, r3))
   }
 
-  final case class ScreenRatios(
-      lg: Ratios,
-      md: Option[Ratios] = None,
-      sm: Option[Ratios] = None,
-      xs: Option[Ratios] = None
+  final class ScreenRatios(
+      val lg: Ratios,
+      val md: Option[Ratios] = None,
+      val sm: Option[Ratios] = None,
+      val xs: Option[Ratios] = None
   ) {
     def withAll(r: Ratios)               = withLg(r).withMd(r).withSm(r).withXs(r)
     def withLg(lg: Ratios): ScreenRatios = new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)

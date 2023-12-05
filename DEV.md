@@ -4,7 +4,15 @@ git tag -a $VERSION -m "Release $VERSION"
 git push origin $VERSION
 
 
-TODO http4s
+
+TODO make
+- private[hepek] wherever possible
+- private constructor
+- final class/trait
+
+
+
+
 TODO https://github.com/zio/zio-http/issues/1954
 
 

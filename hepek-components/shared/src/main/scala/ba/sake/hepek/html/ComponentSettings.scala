@@ -7,10 +7,10 @@ trait BaseComponentSettings {
   def depsProvider: DependencyProvider
 }
 
-final case class ComponentSettings(
-    version: String,
-    pkg: String,
-    depsProvider: DependencyProvider = DependencyProvider.cdnjs
+final class ComponentSettings private (
+    val version: String,
+    val pkg: String,
+    val depsProvider: DependencyProvider
 ) extends BaseComponentSettings {
 
   def withVersion(version: String): ComponentSettings =
@@ -21,16 +21,14 @@ final case class ComponentSettings(
 
   def withDepsProvider(depsProvider: DependencyProvider): ComponentSettings =
     copy(depsProvider = depsProvider)
+
+  private def copy(
+      version: String = version,
+      pkg: String = pkg,
+      depsProvider: DependencyProvider = depsProvider
+  ) = new ComponentSettings(version, pkg, depsProvider)
 }
 
-final case class ComponentDependencies(
-    cssDependencies: Dependencies = Dependencies(),
-    jsDependencies: Dependencies = Dependencies()
-) {
-
-  def withCssDependencies(cssDependencies: Dependencies): ComponentDependencies =
-    copy(cssDependencies = cssDependencies)
-
-  def withJsDependencies(jsDependencies: Dependencies): ComponentDependencies =
-    copy(jsDependencies = jsDependencies)
-}
+object ComponentSettings:
+  def apply(version: String, pkg: String): ComponentSettings =
+    new ComponentSettings(version, pkg, DependencyProvider.cdnjs)

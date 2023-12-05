@@ -8,17 +8,16 @@ trait PureDependencies extends PageDependencies {
     List("pure", "buttons", "forms", "grids-responsive", "menus", "tables")
 
   def pureSettings: ComponentSettings =
-    ComponentSettings("1.0.0", "purecss", DependencyProvider.unpkg)
+    ComponentSettings("1.0.0", "purecss").withDepsProvider(DependencyProvider.unpkg)
 
-  def pureDependencies = ComponentDependencies().withCssDependencies(
-    Dependencies().withDeps(
+  def pureDependencies = ComponentDependencies.default.withCssDependencies(
+    Dependencies.default.withDeps(
       pureModules.map { moduleName =>
         Dependency(
           s"$moduleName-min.css",
           pureSettings.version,
-          pureSettings.pkg,
-          baseFolder = Option("build/")
-        )
+          pureSettings.pkg
+        ).withBaseFolder("dist/")
       }
     )
   )

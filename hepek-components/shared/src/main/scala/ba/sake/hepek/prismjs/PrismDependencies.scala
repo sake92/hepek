@@ -18,9 +18,9 @@ trait PrismDependencies extends ClipboardjsDependencies {
       Dependency(s"plugins/$plugin/prism-$plugin.min.js", prismSettings.version, "prism")
     }
 
-    ComponentDependencies()
+    ComponentDependencies.default
       .withCssDependencies(
-        Dependencies().withDeps(
+        Dependencies.default.withDeps(
           Dependency(
             s"themes/${prismSettings.theme}.min.css",
             prismSettings.version,
@@ -29,7 +29,7 @@ trait PrismDependencies extends ClipboardjsDependencies {
         )
       )
       .withJsDependencies(
-        Dependencies().withDeps(jsLangDeps ++ jsPluginDeps)
+        Dependencies.default.withDeps(jsLangDeps ++ jsPluginDeps)
       )
   }
 

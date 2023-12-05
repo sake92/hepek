@@ -21,7 +21,7 @@ object BulmaNavbarComponent {
   case class Style(classes: String)
 }
 
-final case class BulmaNavbarComponent(
+ class BulmaNavbarComponent(
     activeUrl: String = "",
     style: Option[BulmaNavbarComponent.Style] = None,
     position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),
@@ -42,7 +42,8 @@ final case class BulmaNavbarComponent(
 
   val Companion = BulmaNavbarComponent
 
-  def withActiveUrl(activeUrl: String) = copy(activeUrl = activeUrl)
+  def withActiveUrl(activeUrl: String):BulmaNavbarComponent = 
+    new BulmaNavbarComponent(activeUrl = activeUrl)
 
   def nav(
       brandUrl: String,

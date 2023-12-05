@@ -5,16 +5,15 @@ import ba.sake.hepek.html._
 trait JQueryDependencies extends PageDependencies {
 
   def jQuerySettings: ComponentSettings =
-    ComponentSettings("3.6.0", "jquery", DependencyProvider.cdnjs)
+    ComponentSettings("3.6.0", "jquery")
 
-  def jQueryDependencies = ComponentDependencies().withJsDependencies(
-    Dependencies().withDeps(
+  def jQueryDependencies = ComponentDependencies.default.withJsDependencies(
+    Dependencies.default.withDeps(
       Dependency(
         "jquery.min.js",
         jQuerySettings.version,
-        jQuerySettings.pkg,
-        baseFolder = Option("dist/")
-      )
+        jQuerySettings.pkg
+      ).withBaseFolder("dist/")
     )
   )
 

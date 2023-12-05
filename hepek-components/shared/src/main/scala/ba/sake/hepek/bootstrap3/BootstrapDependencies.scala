@@ -6,28 +6,23 @@ import ba.sake.hepek.jquery.JQueryDependencies
 trait BootstrapDependencies extends JQueryDependencies {
 
   def bootstrapSettings: ComponentSettings =
-    ComponentSettings("3.4.1", "bootstrap", DependencyProvider.unpkg)
+    ComponentSettings("3.4.1", "bootstrap").withDepsProvider(DependencyProvider.unpkg)
 
   def bootstrapDependencies: ComponentDependencies =
-    ComponentDependencies()
+    ComponentDependencies.default
       .withJsDependencies(
-        Dependencies().withDeps(
-          Dependency(
-            "js/bootstrap.min.js",
-            bootstrapSettings.version,
-            bootstrapSettings.pkg,
-            baseFolder = Option("dist/")
-          )
+        Dependencies.default.withDeps(
+          Dependency("js/bootstrap.min.js", bootstrapSettings.version, bootstrapSettings.pkg)
+            .withBaseFolder("dist/")
         )
       )
       .withCssDependencies(
-        Dependencies().withDeps(
+        Dependencies.default.withDeps(
           Dependency(
             "css/bootstrap.min.css",
             bootstrapSettings.version,
-            bootstrapSettings.pkg,
-            baseFolder = Option("dist/")
-          )
+            bootstrapSettings.pkg
+          ).withBaseFolder("dist/")
         )
       )
 
