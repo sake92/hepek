@@ -2,12 +2,13 @@ package ba.sake.hepek.bootstrap5.component
 
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all, all.{style => _, Style => _, _}
+import BootstrapNavbarComponents.*
 
-class BootstrapNavbarComponents(
-    activeUrl: String = "",
-    width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
-    position: BootstrapNavbarComponents.Position = BootstrapNavbarComponents.Position.FixedTop,
-    collapseId: String = "main-navbar"
+final class BootstrapNavbarComponents private (
+    activeUrl: String,
+    width: Width,
+    position: Position,
+    collapseId: String
 ) extends NavbarComponents {
 
   private val toggle = tag("button")(
@@ -21,7 +22,10 @@ class BootstrapNavbarComponents(
 
   val Companion = BootstrapNavbarComponents
 
-  def withActiveUrl(activeUrl: String) = new BootstrapNavbarComponents(activeUrl)
+  def withActiveUrl(activeUrl: String): BootstrapNavbarComponents   = copy(activeUrl = activeUrl)
+  def withWidth(width: Width): BootstrapNavbarComponents            = copy(width = width)
+  def withPosition(position: Position): BootstrapNavbarComponents   = copy(position = position)
+  def withCollapseId(collapseId: String): BootstrapNavbarComponents = copy(collapseId = collapseId)
 
   def nav(
       brandUrl: String,
@@ -70,9 +74,23 @@ class BootstrapNavbarComponents(
       )
     )
 
+  private def copy(
+      activeUrl: String = activeUrl,
+      width: Width = width,
+      position: Position = position,
+      collapseId: String = collapseId
+  ) = new BootstrapNavbarComponents(activeUrl, width, position, collapseId)
+
 }
 
 object BootstrapNavbarComponents:
+
+  val default: BootstrapNavbarComponents = new BootstrapNavbarComponents(
+    activeUrl = "",
+    Width.Fluid,
+    Position.FixedTop,
+    collapseId = "main-navbar"
+  )
 
   enum Position(val classes: String):
     case FixedTop    extends Position("fixed-top")

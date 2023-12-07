@@ -3,7 +3,6 @@ package ba.sake.hepek.prismjs
 import ba.sake.hepek.html.DependencyProvider
 import ba.sake.hepek.html.BaseComponentSettings
 
-
 final class PrismSettings private (
     val version: String,
     val pkg: String,
@@ -94,4 +93,3 @@ object PrismSettings:
     copyToClipboard = true,
     keepMarkup = true
   )
-

@@ -3,12 +3,12 @@ package ba.sake.hepek.bootstrap5.component
 import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
+import BootstrapFormComponents._
+import BootstrapClassesBundle._
 
-class BootstrapFormComponents(
-    val formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
+final class BootstrapFormComponents private (
+    val formType: FormComponents.Type
 ) extends FormComponents {
-  import BootstrapFormComponents._
-  import BootstrapClassesBundle._
 
   val Companion = BootstrapFormComponents
 
@@ -322,6 +322,9 @@ class BootstrapFormComponents(
 
 object BootstrapFormComponents:
 
+  val default: BootstrapFormComponents =
+    new BootstrapFormComponents(BootstrapFormComponents.Type.Vertical)
+
   enum Type(override val classes: List[String]) extends FormComponents.Type:
     case Vertical                                             extends Type(List.empty)
     case Inline                                               extends Type(List("form-inline"))
@@ -334,4 +337,3 @@ object BootstrapFormComponents:
     override def successFeedback: AttrPair = cls := "valid-feedback"
     override def warningFeedback: AttrPair = cls := "invalid-feedback"
     override def errorFeedback: AttrPair   = cls := "invalid-feedback"
-

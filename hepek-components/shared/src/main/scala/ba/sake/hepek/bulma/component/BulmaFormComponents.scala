@@ -12,6 +12,8 @@ final class BulmaFormComponents private (
 
   val Companion = BulmaFormComponents
 
+  def withFormType(formType: FormComponents.Type) = new BulmaFormComponents(formType)
+
   protected override def validationStateClasses: FormComponents.ValidationStateClasses =
     BulmaValidationStateClasses
 
@@ -297,13 +299,12 @@ final class BulmaFormComponents private (
 
 object BulmaFormComponents:
 
-  def apply(): BulmaFormComponents =
-    new BulmaFormComponents(Type.Vertical)
+  val default: BulmaFormComponents = new BulmaFormComponents(Type.Vertical)
 
-  enum Type extends FormComponents.Type:
-    case Vertical
-    case Horizontal(val labelRatio: Int, val inputRatio: Int)
-  
+  enum Type(override val classes: List[String]) extends FormComponents.Type:
+    case Vertical                                             extends Type(List.empty)
+    case Horizontal(val labelRatio: Int, val inputRatio: Int) extends Type(List.empty)
+
   object BulmaValidationStateClasses extends FormComponents.ValidationStateClasses:
     override def success: AttrPair = cls := "is-success"
     override def warning: AttrPair = cls := "is-warning"

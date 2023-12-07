@@ -3,12 +3,13 @@ package ba.sake.hepek.bootstrap3.component
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all, all.{style => _, Style => _, _}
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
+import BootstrapNavbarComponents.*
 
-class BootstrapNavbarComponents(
+final class BootstrapNavbarComponents private (
     activeUrl: String = "",
-    style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
-    width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
-    position: BootstrapNavbarComponents.Position = BootstrapNavbarComponents.Position.FixedTop,
+    style: Style = Style.Default,
+    width: Width = Width.Fluid,
+    position: Position = Position.FixedTop,
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
 
@@ -27,7 +28,11 @@ class BootstrapNavbarComponents(
 
   val Companion = BootstrapNavbarComponents
 
-  def withActiveUrl(activeUrl: String) = new BootstrapNavbarComponents(activeUrl)
+  def withActiveUrl(activeUrl: String): BootstrapNavbarComponents   = copy(activeUrl = activeUrl)
+  def withStyle(style: Style): BootstrapNavbarComponents            = copy(style = style)
+  def withWidth(width: Width): BootstrapNavbarComponents            = copy(width = width)
+  def withPosition(position: Position): BootstrapNavbarComponents   = copy(position = position)
+  def withCollapseId(collapseId: String): BootstrapNavbarComponents = copy(collapseId = collapseId)
 
   def nav(
       brandUrl: String,
@@ -70,9 +75,25 @@ class BootstrapNavbarComponents(
       ),
       ul(cls := "dropdown-menu")(dropdownItems)
     )
+
+  private def copy(
+      activeUrl: String = activeUrl,
+      style: Style = style,
+      width: Width = width,
+      position: Position = position,
+      collapseId: String = collapseId
+  ) = new BootstrapNavbarComponents(activeUrl, style, width, position, collapseId)
 }
 
 object BootstrapNavbarComponents:
+
+  val default: BootstrapNavbarComponents = new BootstrapNavbarComponents(
+    activeUrl = "",
+    Style.Default,
+    Width.Fluid,
+    Position.FixedTop,
+    collapseId = "main-navbar"
+  )
 
   enum Position(val classes: String):
     case FixedTop    extends Position("navbar-fixed-top")

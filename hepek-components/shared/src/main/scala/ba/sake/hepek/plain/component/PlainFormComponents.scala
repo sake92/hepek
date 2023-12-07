@@ -170,7 +170,7 @@ trait PlainFormComponentsImpl extends FormComponents {
 
 object PlainFormComponents:
 
-  def apply(): PlainFormComponents = new PlainFormComponents(new FormComponents.Type() {
+  val default: PlainFormComponents = new PlainFormComponents(new FormComponents.Type() {
     override def classes: List[String] = List.empty
   })
 

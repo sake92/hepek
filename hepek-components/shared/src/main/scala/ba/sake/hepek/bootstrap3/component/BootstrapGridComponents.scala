@@ -3,11 +3,11 @@ package ba.sake.hepek.bootstrap3.component
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
+import GridComponents._
 
-class BootstrapGridComponents(
-    val screenRatios: ScreenRatios = ScreenRatios.default
+final class BootstrapGridComponents private (
+    val screenRatios: ScreenRatios
 ) extends GridComponents {
-  import GridComponents._
 
   def withScreenRatios(screenRatios: ScreenRatios): BootstrapGridComponents =
     new BootstrapGridComponents(screenRatios)
@@ -81,3 +81,6 @@ class BootstrapGridComponents(
     ((ratio / allRatios.sum.toDouble) * 12).toInt
 
 }
+
+object BootstrapGridComponents:
+  val default: BootstrapGridComponents = new BootstrapGridComponents(ScreenRatios.default)

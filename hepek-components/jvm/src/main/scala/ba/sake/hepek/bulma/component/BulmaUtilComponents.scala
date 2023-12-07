@@ -21,7 +21,7 @@ import com.vladsch.flexmark.ext.attributes.internal.AttributesAttributeProvider
 import com.vladsch.flexmark.html.renderer.LinkResolverContext
 import ba.sake.hepek.html.component.UtilComponents
 
-trait BulmaUtilComponents extends UtilComponents {
+private[hepek] trait BulmaUtilComponents extends UtilComponents {
 
   extension (str: String)
     def md: Frag = {

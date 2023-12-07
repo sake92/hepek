@@ -1,6 +1,6 @@
 package ba.sake.hepek.html
 
-final class Dependency private(
+final class Dependency private (
     val file: String,
     val version: String,
     val pkg: String,

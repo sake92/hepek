@@ -3,7 +3,7 @@ package ba.sake.hepek.bootstrap3.component
 import ba.sake.hepek.html.component.PanelComponents
 import ba.sake.hepek.scalatags.all._
 
-final class BootstrapPanelComponents private() extends PanelComponents {
+final class BootstrapPanelComponents private () extends PanelComponents {
 
   val Companion = BootstrapPanelComponents
 
@@ -24,8 +24,7 @@ final class BootstrapPanelComponents private() extends PanelComponents {
 
 object BootstrapPanelComponents:
 
-  def apply(): BootstrapPanelComponents = new BootstrapPanelComponents()
-
+  val default: BootstrapPanelComponents = new BootstrapPanelComponents()
 
   enum Type(val classes: Seq[String]):
     case Default extends Type(Seq("panel-default"))

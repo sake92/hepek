@@ -3,16 +3,16 @@ package ba.sake.hepek.bootstrap3.component
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
+import BootstrapFormComponents._
+import BootstrapClassesBundle._
 
-
-
-class BootstrapFormComponents(
-    val formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
+final class BootstrapFormComponents private (
+    val formType: FormComponents.Type
 ) extends FormComponents {
-  import BootstrapFormComponents._
-  import BootstrapClassesBundle._
 
   val Companion = BootstrapFormComponents
+
+  def withFormType(formType: FormComponents.Type) = new BootstrapFormComponents(formType)
 
   protected override def validationStateClasses = BootstrapValidationStateClasses
 
@@ -322,6 +322,9 @@ class BootstrapFormComponents(
 }
 
 object BootstrapFormComponents:
+
+  val default: BootstrapFormComponents =
+    new BootstrapFormComponents(BootstrapFormComponents.Type.Vertical)
 
   enum Type(override val classes: List[String]) extends FormComponents.Type:
     case Vertical                                             extends Type(List.empty)

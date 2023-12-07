@@ -4,7 +4,7 @@ import ba.sake.hepek.html.component.CodeHighlightComponents
 import ba.sake.hepek.scalatags.all._
 
 trait PrismCodeHighlightComponents extends CodeHighlightComponents {
-  
+
   def showLineNumbers: Boolean = true
 
   override def abap: PrismCodeHighlighter = PrismCodeHighlighter("abap", showLineNumbers)

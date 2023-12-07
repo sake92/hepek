@@ -5,7 +5,7 @@ import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
 // this is just copied from Bootstrap...
-final class PlainNavbarComponents(activeUrl: String = "") extends NavbarComponents {
+final class PlainNavbarComponents private (activeUrl: String) extends NavbarComponents {
 
   private val navbarCollapseId: String = "main-navbar"
 
@@ -68,3 +68,7 @@ final class PlainNavbarComponents(activeUrl: String = "") extends NavbarComponen
       )
     )
 }
+
+object PlainNavbarComponents:
+
+  val default: PlainNavbarComponents = new PlainNavbarComponents(activeUrl = "")

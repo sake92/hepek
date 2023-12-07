@@ -1,6 +1,5 @@
 package ba.sake.hepek.prismjs
 
-
 object PrismConsts {
 
   val languages: List[String] =
@@ -162,4 +161,3 @@ object PrismConsts {
     "wpd"                  -> true   // WebPlatform Docs
   )
 }
-

@@ -3,11 +3,11 @@ package ba.sake.hepek.bulma.component
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
+import GridComponents._
 
-class BulmaGridComponents(
-    val screenRatios: ScreenRatios = ScreenRatios.default
+final class BulmaGridComponents private (
+    val screenRatios: ScreenRatios
 ) extends GridComponents {
-  import GridComponents._
 
   def withScreenRatios(screenRatios: ScreenRatios): BulmaGridComponents =
     new BulmaGridComponents(screenRatios)
@@ -81,3 +81,5 @@ class BulmaGridComponents(
     ((ratio / allRatios.sum.toDouble) * 12).toInt
 
 }
+object BulmaGridComponents:
+  val default: BulmaGridComponents = new BulmaGridComponents(ScreenRatios.default)

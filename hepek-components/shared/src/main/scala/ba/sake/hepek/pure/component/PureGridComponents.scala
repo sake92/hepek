@@ -4,8 +4,8 @@ import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
 
-final class PureGridComponents(
-     val screenRatios: ScreenRatios = ScreenRatios.default
+final class PureGridComponents private (
+    val screenRatios: ScreenRatios
 ) extends GridComponents {
   import GridComponents._
 
@@ -77,3 +77,6 @@ final class PureGridComponents(
     ((ratio / allRatios.sum.toDouble) * 24).toInt
 
 }
+
+object PureGridComponents:
+  val default: PureGridComponents = PureGridComponents(ScreenRatios.default)

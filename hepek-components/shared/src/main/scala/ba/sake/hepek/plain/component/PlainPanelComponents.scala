@@ -3,7 +3,7 @@ package ba.sake.hepek.plain.component
 import ba.sake.hepek.html.component.PanelComponents
 import ba.sake.hepek.scalatags.all._
 
-final class PlainPanelComponents() extends PanelComponents {
+final class PlainPanelComponents private () extends PanelComponents {
 
   val Companion = PlainPanelComponents
 
@@ -23,6 +23,9 @@ final class PlainPanelComponents() extends PanelComponents {
 }
 
 object PlainPanelComponents:
+
+  val default: PlainPanelComponents = new PlainPanelComponents()
+
   enum Type(val classes: Seq[String]):
     case Default extends Type(Seq("pnl-default"))
     case Primary extends Type(Seq("pnl-primary"))

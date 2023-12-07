@@ -6,11 +6,11 @@ import ba.sake.hepek.plain.component._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
 
 case class PlainStaticBundle(
-    Form: PlainFormComponents = PlainFormComponents(),
+    Form: PlainFormComponents = PlainFormComponents.default,
     Grid: PlainGridComponents = PlainGridComponents.default,
-    Image: PlainImageComponents = PlainImageComponents(),
-    Navbar: PlainNavbarComponents = PlainNavbarComponents(),
-    Panel: PlainPanelComponents = PlainPanelComponents(),
+    Image: PlainImageComponents = PlainImageComponents.default,
+    Navbar: PlainNavbarComponents = PlainNavbarComponents.default,
+    Panel: PlainPanelComponents = PlainPanelComponents.default,
     Classes: PlainClassesBundle = PlainClassesBundle
 ) extends StaticBundle
     with PlainUtilComponents {

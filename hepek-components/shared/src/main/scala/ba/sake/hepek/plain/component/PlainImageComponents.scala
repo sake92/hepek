@@ -24,6 +24,4 @@ final class PlainImageComponents private () extends ImageComponents {
 }
 
 object PlainImageComponents:
-  def apply(): PlainImageComponents = new PlainImageComponents()
-
-  
+  val default: PlainImageComponents = new PlainImageComponents()

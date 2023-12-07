@@ -3,7 +3,7 @@ package ba.sake.hepek.prismjs
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
 import ba.sake.hepek.html._
 
-private[hepek] trait PrismDependencies extends ClipboardjsDependencies {
+trait PrismDependencies extends ClipboardjsDependencies {
 
   def prismSettings: PrismSettings = PrismSettings("1.29.0", "prism")
 

@@ -7,11 +7,11 @@ import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.component._
 
 case class BulmaStaticBundle(
-    Form: BulmaFormComponents = BulmaFormComponents(),
-    Grid: BulmaGridComponents = BulmaGridComponents(),
-    Image: PlainImageComponents = PlainImageComponents(),
-    Navbar: BulmaNavbarComponent = BulmaNavbarComponent(),
-    Panel: BulmaPanelComponents = BulmaPanelComponents(),
+    Form: BulmaFormComponents = BulmaFormComponents.default,
+    Grid: BulmaGridComponents = BulmaGridComponents.default,
+    Image: PlainImageComponents = PlainImageComponents.default,
+    Navbar: BulmaNavbarComponent = BulmaNavbarComponent.default,
+    Panel: BulmaPanelComponents = BulmaPanelComponents.default,
     Classes: BulmaClassesBundle = BulmaClassesBundle
 ) extends StaticBundle
     with BulmaUtilComponents {

@@ -1482,7 +1482,7 @@ object FA5Icon {
     // premium
     case Regular extends Type(List("far"))
 
-  enum Size( val classes: List[String]):
+  enum Size(val classes: List[String]):
     case Xs      extends Size(List("fa-xs"))
     case Sm      extends Size(List("fa-sm"))
     case lg      extends Size(List("fa-lg"))

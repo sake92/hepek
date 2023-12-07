@@ -6,11 +6,11 @@ import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.StaticBundle
 
 case class BootstrapStaticBundle(
-    Form: BootstrapFormComponents = BootstrapFormComponents(),
-    Grid: BootstrapGridComponents = BootstrapGridComponents(),
-    Image: BootstrapImageComponents = BootstrapImageComponents(),
-    Navbar: BootstrapNavbarComponents = BootstrapNavbarComponents(),
-    Panel: BootstrapPanelComponents = BootstrapPanelComponents(),
+    Form: BootstrapFormComponents = BootstrapFormComponents.default,
+    Grid: BootstrapGridComponents = BootstrapGridComponents.default,
+    Image: BootstrapImageComponents = BootstrapImageComponents.default,
+    Navbar: BootstrapNavbarComponents = BootstrapNavbarComponents.default,
+    Panel: BootstrapPanelComponents = BootstrapPanelComponents.default,
     Classes: BootstrapClassesBundle = BootstrapClassesBundle
 ) extends StaticBundle
     with BootstrapUtilComponents {

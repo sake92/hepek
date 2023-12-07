@@ -2,11 +2,12 @@ package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all.{style => _, Style => _, _}
+import BulmaNavbarComponent.*
 
-class BulmaNavbarComponent(
+final class BulmaNavbarComponent private (
     activeUrl: String = "",
-    style: Option[BulmaNavbarComponent.Style] = None,
-    position: Option[BulmaNavbarComponent.Position] = Some(BulmaNavbarComponent.Position.FixedTop),
+    style: Option[Style] = None,
+    position: Option[Position] = Some(Position.FixedTop),
     collapseId: String = "main-navbar"
 ) extends NavbarComponents {
 
@@ -24,8 +25,12 @@ class BulmaNavbarComponent(
 
   val Companion = BulmaNavbarComponent
 
-  def withActiveUrl(activeUrl: String): BulmaNavbarComponent =
-    new BulmaNavbarComponent(activeUrl = activeUrl)
+  def withActiveUrl(activeUrl: String): BulmaNavbarComponent         = copy(activeUrl = activeUrl)
+  def withStyle(style: Option[Style]): BulmaNavbarComponent          = copy(style = style)
+  def withStyle(style: Style): BulmaNavbarComponent                  = withStyle(Some(style))
+  def withPosition(position: Option[Position]): BulmaNavbarComponent = copy(position = position)
+  def withPosition(position: Position): BulmaNavbarComponent   = copy(position = Some(position))
+  def withCollapseId(collapseId: String): BulmaNavbarComponent = copy(collapseId = collapseId)
 
   def nav(
       brandUrl: String,
@@ -63,9 +68,25 @@ class BulmaNavbarComponent(
         dropdownItems
       )
     )
+
+  private def copy(
+      activeUrl: String = activeUrl,
+      style: Option[Style] = style,
+      position: Option[Position] = position,
+      collapseId: String = collapseId
+  ) = new BulmaNavbarComponent(activeUrl, style, position, collapseId)
+
 }
 
 object BulmaNavbarComponent:
+
+  val default: BulmaNavbarComponent = new BulmaNavbarComponent(
+    activeUrl = "",
+    None,
+    Some(Position.FixedTop),
+    collapseId = "main-navbar"
+  )
+
   enum Position(val classes: String):
     case FixedTop    extends Position("is-fixed-top")
     case FixedBottom extends Position("is-fixed-bottom")
