@@ -19,19 +19,23 @@ object Index extends HepekComponentsDocsPage {
     frag(
       s"""
           A library for typesafe generating of boilerplate HTML.  
-          Add the dependency:
+
+          Mill:
           ```scala
-          // mill
           def ivyDeps = Agg(
             ivy"ba.sake::hepek-components:${Site.hepekVersion}"
           )
-          
-          // sbt
+          ```
+
+          Sbt:
+          ```scala
           libraryDependencies ++= Seq(
             "ba.sake" %% "hepek-components" % "${Site.hepekVersion}"
-          )          
+          )
+          ```
 
-          // scala-cli
+          scala-cli:
+          ```scala
           //> using dep ba.sake::hepek-components:${Site.hepekVersion}
           ```
 

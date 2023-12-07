@@ -19,17 +19,23 @@ object Http4s extends HepekIntegrationsDocsPage {
     "Quick start",
     frag(
       s"""
-        Hepek Http4s integration:
+        Mill:
         ```scala
-        // mill
         def ivyDeps = Agg(
           ivy"ba.sake::hepek-http4s:${Site.hepekVersion}"
         )
-        
-        // sbt
+        ```
+
+        Sbt:
+        ```scala
         libraryDependencies ++= Seq(
           "ba.sake" %% "hepek-http4s" % "${Site.hepekVersion}"
         )
+        ```
+
+        scala-cli:
+        ```scala
+        //> using dep ba.sake::hepek-http4s:${Site.hepekVersion}
         ```
 
         Examples:

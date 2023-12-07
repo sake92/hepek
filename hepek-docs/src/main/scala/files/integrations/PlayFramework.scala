@@ -19,17 +19,23 @@ object PlayFramework extends HepekIntegrationsDocsPage {
     "Quick start",
     frag(
       s"""
-        Hepek Play Framework integration:
+        Mill:
         ```scala
-        // mill
         def ivyDeps = Agg(
           ivy"ba.sake::hepek-play:${Site.hepekVersion}"
         )
-        
-        // sbt
+        ```
+
+        Sbt:
+        ```scala
         libraryDependencies ++= Seq(
           "ba.sake" %% "hepek-play" % "${Site.hepekVersion}"
         )
+        ```
+
+        scala-cli:
+        ```scala
+        //> using dep ba.sake::hepek-play:${Site.hepekVersion}
         ```
 
         Examples:
