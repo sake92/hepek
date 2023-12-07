@@ -3,5 +3,5 @@ package utils
 object Site {
   val url          = "https://sake92.github.io/hepek"
   val name         = "hepek"
-  val hepekVersion = "0.19.0"
+  val hepekVersion = "0.20.0"
 }
