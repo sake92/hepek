@@ -12,7 +12,7 @@ final class BulmaFormComponents private (
 
   val Companion = BulmaFormComponents
 
-  def withFormType(formType: FormComponents.Type) = new BulmaFormComponents(formType)
+  def withType(formType: FormComponents.Type) = new BulmaFormComponents(formType)
 
   protected override def validationStateClasses: FormComponents.ValidationStateClasses =
     BulmaValidationStateClasses

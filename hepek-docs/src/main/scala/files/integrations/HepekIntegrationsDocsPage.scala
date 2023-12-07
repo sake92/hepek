@@ -9,7 +9,8 @@ trait HepekIntegrationsDocsPage extends templates.HepekDocsAbstractPage {
   override def categoryPosts = List(
     Index,
     SharafFramework,
-    PlayFramework
+    PlayFramework,
+    Http4s
   )
 
   override def pageCategory = Some(Index.pageSettings.label)

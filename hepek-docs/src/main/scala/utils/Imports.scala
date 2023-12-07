@@ -15,7 +15,7 @@ object Imports {
     b.withGrid(grid)
   }
 
-  object chl extends PrismCodeHighlightComponents
+  val chl = PrismCodeHighlightComponents.default
 
   val FA = ba.sake.hepek.fontawesome5.FA
 

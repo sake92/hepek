@@ -7,12 +7,13 @@ import BootstrapFormComponents.*
 import BootstrapClassesBundle.*
 
 final class BootstrapFormComponents private (
-    val formType: FormComponents.Type
+    val formType: BootstrapFormComponents.Type
 ) extends FormComponents {
 
   val Companion = BootstrapFormComponents
 
-  def withFormType(formType: FormComponents.Type) = new BootstrapFormComponents(formType)
+  def withType(formType: BootstrapFormComponents.Type): BootstrapFormComponents =
+    new BootstrapFormComponents(formType)
 
   protected override def validationStateClasses = BootstrapValidationStateClasses
 

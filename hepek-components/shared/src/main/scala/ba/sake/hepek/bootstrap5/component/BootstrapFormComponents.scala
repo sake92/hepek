@@ -7,10 +7,13 @@ import BootstrapFormComponents.*
 import BootstrapClassesBundle.*
 
 final class BootstrapFormComponents private (
-    val formType: FormComponents.Type
+    val formType: BootstrapFormComponents.Type
 ) extends FormComponents {
 
   val Companion = BootstrapFormComponents
+
+  def withType(formType: BootstrapFormComponents.Type): BootstrapFormComponents =
+    new BootstrapFormComponents(formType)
 
   protected override def validationStateClasses = BootstrapValidationStateClasses
 
@@ -40,7 +43,7 @@ final class BootstrapFormComponents private (
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
+          label(cls := s"col-form-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
@@ -108,7 +111,7 @@ final class BootstrapFormComponents private (
       inputHelp: Option[String],
       inputAttrs: Seq[AttrPair]
   ): Frag = {
-    val commonAttrs = Seq(tpe := "checkbox", inputName) ++
+    val commonAttrs = Seq(tpe := "checkbox", cls := "form-check-input", inputName) ++
       inputId.map(id := _) ++ inputAttrs
     val inputHelpFrag = inputHelp.map(h => span(cls := "help-block")(h))
 
@@ -117,7 +120,7 @@ final class BootstrapFormComponents private (
         val (colLabel, colInput) = horizontalRatioClasses(ft, false)
         formGroup()(
           div(cls := s"$colLabel $colInput")(
-            div(cls := "checkbox")(
+            div(cls := "form-check")(
               label(inputId.map(`for` := _))(
                 input(commonAttrs),
                 inputLabel
@@ -127,7 +130,7 @@ final class BootstrapFormComponents private (
           )
         )
       case _ =>
-        div(cls := "checkbox")(
+        div(cls := "form-check")(
           label(inputId.map(`for` := _))(
             input(commonAttrs),
             inputLabel
@@ -148,14 +151,19 @@ final class BootstrapFormComponents private (
 
     def renderCheckBox(cbLabel: String, attrs: Seq[AttrPair]) =
       if (isInline)
-        label(cls := "checkbox-inline")(input(attrs), cbLabel)
+        label(cls := "form-check-inline")(input(attrs), cbLabel)
       else
-        div(cls := "checkbox")(
+        div(cls := "form-check")(
           label(input(attrs), cbLabel)
         )
 
     val checkboxFrags = valueAndLabelAndAttrs.map { case (cbValue, cbLabel, inputAttrs) =>
-      val commonAttrs = Seq[AttrPair](tpe := "checkbox", inputName, value := cbValue) ++ inputAttrs
+      val commonAttrs = Seq[AttrPair](
+        tpe := "checkbox",
+        cls := "form-check-input",
+        inputName,
+        value := cbValue
+      ) ++ inputAttrs
       renderCheckBox(cbLabel, commonAttrs)
     }
 
@@ -163,7 +171,7 @@ final class BootstrapFormComponents private (
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel")(
+          label(cls := s"col-form-label $colLabel")(
             inputLabel
           ),
           div(cls := colInput)(
@@ -206,7 +214,7 @@ final class BootstrapFormComponents private (
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel")(
+          label(cls := s"col-form-label $colLabel")(
             inputLabel
           ),
           div(cls := colInput)(
@@ -245,7 +253,7 @@ final class BootstrapFormComponents private (
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
+          label(cls := s"col-form-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
@@ -289,7 +297,7 @@ final class BootstrapFormComponents private (
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
         formGroup()(
-          label(cls := s"control-label $colLabel", inputId.map(`for` := _))(
+          label(cls := s"col-form-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
@@ -307,7 +315,7 @@ final class BootstrapFormComponents private (
   }
 
   private def formGroup(attrs: AttrPair*)(contents: Frag*): Frag =
-    div(cls := "form-group", attrs)(contents)
+    div(cls := "row mb-3", attrs)(contents)
 
   private def horizontalRatioClasses(
       ht: Type.Horizontal,

@@ -3,9 +3,11 @@ package ba.sake.hepek.prismjs
 import ba.sake.hepek.html.component.CodeHighlightComponents
 import ba.sake.hepek.scalatags.all.*
 
-trait PrismCodeHighlightComponents extends CodeHighlightComponents {
+final class PrismCodeHighlightComponents private (val showLineNumbers: Boolean)
+    extends CodeHighlightComponents {
 
-  def showLineNumbers: Boolean = true
+  def withShowLineNumbers(showLineNumbers: Boolean) =
+    new PrismCodeHighlightComponents(showLineNumbers)
 
   override def abap: PrismCodeHighlighter = PrismCodeHighlighter("abap", showLineNumbers)
 
@@ -160,7 +162,9 @@ trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   override def yaml: PrismCodeHighlighter    = PrismCodeHighlighter("yaml", showLineNumbers)
 }
 
-object PrismCodeHighlightComponents extends PrismCodeHighlightComponents:
+object PrismCodeHighlightComponents:
+
+  val default: PrismCodeHighlightComponents = new PrismCodeHighlightComponents(true)
 
   private[hepek] enum CodeSource:
     case PlainText(text: String)
