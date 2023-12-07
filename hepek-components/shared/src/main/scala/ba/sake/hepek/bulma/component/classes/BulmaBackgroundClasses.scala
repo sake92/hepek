@@ -1,7 +1,7 @@
 package ba.sake.hepek.bulma.component.classes
 
 import ba.sake.hepek.html.component.classes.BackgroundClasses
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 trait BulmaBackgroundClasses extends BackgroundClasses {
   override def bgPrimary = cls := "has-background-primary"

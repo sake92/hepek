@@ -1,7 +1,7 @@
 package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.PanelComponents
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 final class PlainPanelComponents private () extends PanelComponents {
 

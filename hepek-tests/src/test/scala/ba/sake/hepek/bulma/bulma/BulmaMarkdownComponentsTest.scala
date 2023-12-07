@@ -1,7 +1,7 @@
 package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.selenium.HepekSeleniumTest
-import fixtures.static._
+import fixtures.static.*
 import org.openqa.selenium.By
 
 class BulmaMarkdownComponentsTest extends HepekSeleniumTest {

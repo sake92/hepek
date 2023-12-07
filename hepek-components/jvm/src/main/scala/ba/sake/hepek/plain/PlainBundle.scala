@@ -1,7 +1,7 @@
 package ba.sake.hepek.plain
 
 import ba.sake.hepek.html.Bundle
-import ba.sake.hepek.plain.component._
+import ba.sake.hepek.plain.component.*
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
 
 final class PlainBundle private (

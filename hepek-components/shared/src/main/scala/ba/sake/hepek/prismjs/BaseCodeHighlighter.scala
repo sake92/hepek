@@ -1,11 +1,11 @@
 package ba.sake.hepek.prismjs
 
 import scala.collection.mutable.ListBuffer
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 import ba.sake.hepek.html.component.CodeHighlighter
-import BasePrismCodeHighlighter._
-import PrismCodeHighlightComponents._
-import CodeSource._
+import BasePrismCodeHighlighter.*
+import PrismCodeHighlightComponents.*
+import CodeSource.*
 
 private[hepek] abstract class BasePrismCodeHighlighter(
     lang: String,

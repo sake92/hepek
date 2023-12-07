@@ -1,7 +1,7 @@
 package ba.sake.hepek.theme.bootstrap3
 
 import ba.sake.hepek.html.statik.BlogPostPage
-import HepekBootstrap3Utils._
+import HepekBootstrap3Utils.*
 import Bundle.*, Tags.*
 
 trait TocType

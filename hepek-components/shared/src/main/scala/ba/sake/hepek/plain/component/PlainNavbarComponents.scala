@@ -1,8 +1,8 @@
 package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.NavbarComponents
-import ba.sake.hepek.scalatags.all._
-import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
+import ba.sake.hepek.scalatags.all.*
+import ba.sake.hepek.plain.component.classes.PlainClassesBundle.*
 
 // this is just copied from Bootstrap...
 final class PlainNavbarComponents private (activeUrl: String) extends NavbarComponents {

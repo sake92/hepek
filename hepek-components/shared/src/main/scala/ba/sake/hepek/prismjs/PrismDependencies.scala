@@ -1,7 +1,7 @@
 package ba.sake.hepek.prismjs
 
 import ba.sake.hepek.clipboardjs.ClipboardjsDependencies
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait PrismDependencies extends ClipboardjsDependencies {
 

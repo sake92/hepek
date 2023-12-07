@@ -1,7 +1,7 @@
 package ba.sake.hepek.bootstrap3.statik
 
 import ba.sake.hepek.bootstrap3.BootstrapPage
-import ba.sake.hepek.bootstrap3.component._
+import ba.sake.hepek.bootstrap3.component.*
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.StaticBundle
 

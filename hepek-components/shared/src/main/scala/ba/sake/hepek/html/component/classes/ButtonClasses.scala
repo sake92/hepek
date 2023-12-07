@@ -1,6 +1,6 @@
 package ba.sake.hepek.html.component.classes
 
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 private[hepek] trait ButtonClasses:
 

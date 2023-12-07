@@ -1,8 +1,8 @@
 package ba.sake.hepek.path
 
-import scala.jdk.CollectionConverters._
+import scala.jdk.CollectionConverters.*
 
-import ba.sake.hepek.core._
+import ba.sake.hepek.core.*
 
 /** Scala wrapper for MultiRenderable
   */

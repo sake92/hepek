@@ -1,6 +1,6 @@
 package ba.sake.hepek.fontawesome5
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait FADependencies extends PageDependencies {
 

@@ -1,6 +1,6 @@
 package ba.sake.hepek.bootstrap5.component
 
-import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle._
+import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle.*
 import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.scalatags.all, all.{caption => _, _}
 

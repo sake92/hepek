@@ -1,9 +1,9 @@
 package ba.sake.hepek.bulma
 
-import ba.sake.hepek.bulma.component._
+import ba.sake.hepek.bulma.component.*
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.Bundle
-import ba.sake.hepek.plain.component._
+import ba.sake.hepek.plain.component.*
 
 final class BulmaBundle private (
     val Form: BulmaFormComponents,

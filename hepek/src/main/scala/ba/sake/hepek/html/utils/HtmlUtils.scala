@@ -1,7 +1,7 @@
 package ba.sake.hepek.html
 
 import org.jsoup.Jsoup
-import org.jsoup.nodes._
+import org.jsoup.nodes.*
 
 object HtmlUtils {
 

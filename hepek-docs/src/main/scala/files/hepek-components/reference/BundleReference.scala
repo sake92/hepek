@@ -1,6 +1,6 @@
 package files.hepek.components.reference
 
-import utils.Imports._
+import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
 object BundleReference extends HepekComponentsReferencePage {

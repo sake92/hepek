@@ -1,6 +1,6 @@
 package ba.sake.hepek.mathjax
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait MathjaxDependencies extends PageDependencies {
   def mathjaxConfig: String = "TeX-MML-AM_CHTML"

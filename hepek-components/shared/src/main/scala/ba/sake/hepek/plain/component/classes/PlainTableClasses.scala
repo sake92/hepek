@@ -1,7 +1,7 @@
 package ba.sake.hepek.plain.component.classes
 
 import ba.sake.hepek.html.component.classes.TableClasses
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 private[hepek] trait PlainTableClasses extends TableClasses:
   override def tableClass      = cls := "table"

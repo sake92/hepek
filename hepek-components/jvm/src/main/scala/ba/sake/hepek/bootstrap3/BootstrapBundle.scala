@@ -1,6 +1,6 @@
 package ba.sake.hepek.bootstrap3
 
-import ba.sake.hepek.bootstrap3.component._
+import ba.sake.hepek.bootstrap3.component.*
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.Bundle
 

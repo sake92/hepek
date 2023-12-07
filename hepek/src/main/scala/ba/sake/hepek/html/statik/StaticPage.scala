@@ -1,7 +1,7 @@
 package ba.sake.hepek.html.statik
 
 import ba.sake.hepek.core.Renderable
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 import ba.sake.hepek.path.ClassPackageRelativePath
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage {

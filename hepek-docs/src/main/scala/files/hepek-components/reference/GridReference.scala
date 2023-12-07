@@ -1,7 +1,7 @@
 package files.hepek.components.reference
 
-import utils._
-import utils.Imports._
+import utils.*
+import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
 object GridReference extends HepekComponentsReferencePage {
@@ -105,7 +105,7 @@ object GridReference extends HepekComponentsReferencePage {
             .withXs(None) // and extra-small screens
         )
 
-        import customGrid._
+        import customGrid.*
         row(half("left"), half(right)) // will be 5:7
       """),
       s"""

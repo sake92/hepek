@@ -1,7 +1,7 @@
 package ba.sake.hepek.prismjs
 
 import ba.sake.hepek.html.component.CodeHighlightComponents
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 trait PrismCodeHighlightComponents extends CodeHighlightComponents {
 

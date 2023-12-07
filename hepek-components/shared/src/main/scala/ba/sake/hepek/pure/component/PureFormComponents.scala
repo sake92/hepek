@@ -2,7 +2,7 @@ package ba.sake.hepek.pure.component
 
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.plain.component.PlainFormComponentsImpl
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 object PureFormComponents:
 
@@ -12,8 +12,8 @@ object PureFormComponents:
     case Horizontal extends Type(List("pure-form", "pure-form-aligned"))
 
 trait PureFormComponents extends PlainFormComponentsImpl {
-  import PureFormComponents._
-  import classes.PureClassesBundle._
+  import PureFormComponents.*
+  import classes.PureClassesBundle.*
 
   val Companion = PureFormComponents
 

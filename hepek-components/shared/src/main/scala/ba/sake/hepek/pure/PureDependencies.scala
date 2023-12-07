@@ -1,6 +1,6 @@
 package ba.sake.hepek.pure
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait PureDependencies extends PageDependencies {
 

@@ -15,7 +15,7 @@ object FormComponents:
     def errorFeedback: AttrPair   = cls := "error"
 
 trait FormComponents {
-  import FormComponents._
+  import FormComponents.*
 
   // TODO maybe add idCounter for automatic labels
 
@@ -705,10 +705,9 @@ trait FormComponents {
     )
   }
 
-  sealed trait ValidationState {
+  sealed trait ValidationState:
     def clazz: AttrPair
     def feedbackClazz: AttrPair
-  }
 
   object ValidationState {
 

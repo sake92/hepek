@@ -1,6 +1,6 @@
 package ba.sake.hepek.anchorjs
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 /** @see
   *   https://www.bryanbraun.com/anchorjs/#basic-usage

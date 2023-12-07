@@ -2,9 +2,9 @@ package ba.sake.hepek.bulma.component
 
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.component.FormComponents
-import ba.sake.hepek.scalatags.all._
-import BulmaFormComponents._
-import BulmaClassesBundle._
+import ba.sake.hepek.scalatags.all.*
+import BulmaFormComponents.*
+import BulmaClassesBundle.*
 
 final class BulmaFormComponents private (
     val formType: FormComponents.Type

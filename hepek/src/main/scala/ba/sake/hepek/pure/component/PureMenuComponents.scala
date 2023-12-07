@@ -2,7 +2,7 @@ package ba.sake.hepek.pure
 
 package component
 
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 object PureMenuComponents extends PureMenuComponents {
 
@@ -24,7 +24,7 @@ object PureMenuComponents extends PureMenuComponents {
 }
 
 trait PureMenuComponents {
-  import PureMenuComponents._
+  import PureMenuComponents.*
 
   def menuType: Type = Type.Vertical
 

@@ -1,7 +1,7 @@
 package ba.sake.hepek.plain.component.classes
 
 import ba.sake.hepek.html.component.classes.BackgroundClasses
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 private[hepek] trait PlainBackgroundClasses extends BackgroundClasses:
   override def bgPrimary = cls := "bg-primary"

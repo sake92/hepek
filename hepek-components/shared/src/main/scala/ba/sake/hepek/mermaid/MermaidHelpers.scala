@@ -1,6 +1,6 @@
 package ba.sake.hepek.mermaid
 
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 object MermaidHelpers extends MermaidHelpers
 

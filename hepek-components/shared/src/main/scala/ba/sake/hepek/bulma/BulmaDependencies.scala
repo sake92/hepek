@@ -1,6 +1,6 @@
 package ba.sake.hepek.bulma
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait BulmaDependencies extends PageDependencies {
   val bulmaFilename: String = "bulma"

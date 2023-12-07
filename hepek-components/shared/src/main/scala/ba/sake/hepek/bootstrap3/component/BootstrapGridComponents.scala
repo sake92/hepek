@@ -2,8 +2,8 @@ package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
-import ba.sake.hepek.scalatags.all._
-import GridComponents._
+import ba.sake.hepek.scalatags.all.*
+import GridComponents.*
 
 final class BootstrapGridComponents private (
     val screenRatios: ScreenRatios

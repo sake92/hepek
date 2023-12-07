@@ -2,12 +2,12 @@ package ba.sake.hepek.pure
 
 package statik
 
-import ba.sake.hepek.html.component.GridComponents._
+import ba.sake.hepek.html.component.GridComponents.*
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.pure.component.PureGridComponents
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
-import component.PureMenuComponents._
+import component.PureMenuComponents.*
 
 trait PureStaticPage extends StaticPage with PurePage {
 
@@ -25,7 +25,7 @@ trait PureStaticPage extends StaticPage with PurePage {
 
   override def bodyContent =
     if (withPureMenu) {
-      import grid._
+      import grid.*
       row(
         half(sidebarMenu),
         half(pageContent)

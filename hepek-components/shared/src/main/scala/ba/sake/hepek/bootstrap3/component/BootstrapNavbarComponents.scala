@@ -2,7 +2,7 @@ package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all, all.{style => _, Style => _, _}
-import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
+import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle.*
 import BootstrapNavbarComponents.*
 
 final class BootstrapNavbarComponents private (

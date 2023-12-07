@@ -1,6 +1,6 @@
 package ba.sake.hepek.clipboardjs
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait ClipboardjsDependencies extends PageDependencies {
 

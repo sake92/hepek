@@ -3,15 +3,15 @@ package ba.sake.hepek.theme.plain
 import ba.sake.hepek.html.statik.BlogPostPage
 import ba.sake.hepek.html.statik.Section
 import ba.sake.hepek.plain.statik.PlainStaticBundle
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 object HepekPlainBlogPage {
   val Bundle = PlainStaticBundle.default
 }
-import HepekPlainBlogPage.Bundle._
+import HepekPlainBlogPage.Bundle.*
 
 trait HepekPlainBlogPage extends BlogPostPage with StaticPage {
-  import Grid._
+  import Grid.*
 
   // TODO add header
 

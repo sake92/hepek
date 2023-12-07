@@ -1,6 +1,6 @@
 package ba.sake.hepek.jquery
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait JQueryDependencies extends PageDependencies {
 

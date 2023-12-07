@@ -2,7 +2,7 @@ package fixtures.static
 
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 val Bundle = PlainStaticBundle.default
 import Bundle.*

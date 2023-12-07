@@ -1,7 +1,7 @@
 package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.html.component.PanelComponents
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 final class BootstrapPanelComponents private () extends PanelComponents {
 

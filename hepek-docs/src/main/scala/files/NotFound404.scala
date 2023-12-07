@@ -1,8 +1,8 @@
 package files
 
 import ba.sake.hepek.core.RelativePath
-import ba.sake.hepek.scalatags.all._
-import utils.Imports.Bundle._
+import ba.sake.hepek.scalatags.all.*
+import utils.Imports.Bundle.*
 import utils.Site
 
 object NotFound extends templates.HepekDocsAbstractPage {

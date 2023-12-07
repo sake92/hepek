@@ -1,6 +1,6 @@
 package ba.sake.hepek.html
 
-import ba.sake.hepek.html.component._
+import ba.sake.hepek.html.component.*
 import ba.sake.hepek.html.component.classes.ClassesBundle
 
 trait Bundle extends HepekAliases {

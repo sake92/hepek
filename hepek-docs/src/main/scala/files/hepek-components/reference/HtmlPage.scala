@@ -1,7 +1,7 @@
 package files.hepek.components.reference
 
-import utils._
-import utils.Imports._
+import utils.*
+import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 
 object HtmlPage extends HepekComponentsReferencePage {

@@ -2,9 +2,9 @@ package ba.sake.hepek.bootstrap3.component
 
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
-import ba.sake.hepek.scalatags.all._
-import BootstrapFormComponents._
-import BootstrapClassesBundle._
+import ba.sake.hepek.scalatags.all.*
+import BootstrapFormComponents.*
+import BootstrapClassesBundle.*
 
 final class BootstrapFormComponents private (
     val formType: FormComponents.Type

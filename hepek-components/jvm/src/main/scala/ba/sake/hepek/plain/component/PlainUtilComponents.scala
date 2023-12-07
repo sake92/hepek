@@ -10,7 +10,7 @@ import com.vladsch.flexmark.util.misc.Extension
 import com.vladsch.flexmark.ext.tables.TablesExtension
 import com.vladsch.flexmark.ext.gfm.strikethrough.StrikethroughExtension
 
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 import ba.sake.hepek.utils.StringUtils
 
 import ba.sake.hepek.html.component.UtilComponents

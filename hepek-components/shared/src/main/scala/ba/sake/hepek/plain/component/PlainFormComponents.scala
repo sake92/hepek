@@ -11,7 +11,7 @@ final class PlainFormComponents private (
 
 // handy to extend for INCOMPLETE frameworks (see Pure, Bulma..)
 trait PlainFormComponentsImpl extends FormComponents {
-  import FormComponents._
+  import FormComponents.*
 
   /* Validation stuff */
   protected override def validationStateClasses: ValidationStateClasses =

@@ -1,10 +1,10 @@
 package ba.sake.hepek.bulma.statik
 
 import ba.sake.hepek.bulma.BulmaPage
-import ba.sake.hepek.bulma.component._
+import ba.sake.hepek.bulma.component.*
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.StaticBundle
-import ba.sake.hepek.plain.component._
+import ba.sake.hepek.plain.component.*
 
 final class BulmaStaticBundle private (
     val Form: BulmaFormComponents,

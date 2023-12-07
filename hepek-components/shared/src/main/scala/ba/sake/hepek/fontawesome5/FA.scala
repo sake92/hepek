@@ -1,6 +1,6 @@
 package ba.sake.hepek.fontawesome5
 
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 object FA {
   val ad           = FA5Icon("ad", FA5Icon.Type.Solid)

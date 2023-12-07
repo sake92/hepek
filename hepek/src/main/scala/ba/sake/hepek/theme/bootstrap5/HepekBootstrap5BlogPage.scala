@@ -1,7 +1,7 @@
 package ba.sake.hepek.theme.bootstrap5
 
 import ba.sake.hepek.html.statik.BlogPostPage
-import HepekBootstrap5Utils._
+import HepekBootstrap5Utils.*
 import Bundle.*, Tags.*
 
 trait TocType

@@ -8,7 +8,7 @@ import play.api.mvc.Call
 import play.api.mvc.Request
 import play.filters.csrf.CSRF
 
-import all._
+import all.*
 
 final class PlayFrameworkForm private (val fc: FormComponents) {
 

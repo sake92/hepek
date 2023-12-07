@@ -10,7 +10,7 @@ final class BlogSettings private (
     val sections: List[Section] = List.empty,
     val dateFormat: DateTimeFormatter = BlogSettings.DefaultDateFormat
 ) {
-    
+
   def withDateFormat(df: DateTimeFormatter) = copy(dateFormat = df)
 
   def withDateFormat(df: String) = copy(dateFormat = DateTimeFormatter.ofPattern(df))

@@ -1,6 +1,6 @@
 package ba.sake.hepek.bootstrap5
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait BootstrapDependencies extends PageDependencies {
 

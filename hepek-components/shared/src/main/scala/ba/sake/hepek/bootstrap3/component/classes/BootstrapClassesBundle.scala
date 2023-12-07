@@ -1,7 +1,7 @@
 package ba.sake.hepek.bootstrap3.component.classes
 
 import ba.sake.hepek.html.component.classes.ClassesBundle
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 object BootstrapClassesBundle extends BootstrapClassesBundle
 

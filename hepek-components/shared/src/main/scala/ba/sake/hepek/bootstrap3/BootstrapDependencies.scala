@@ -1,6 +1,6 @@
 package ba.sake.hepek.bootstrap3
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 import ba.sake.hepek.jquery.JQueryDependencies
 
 trait BootstrapDependencies extends JQueryDependencies {

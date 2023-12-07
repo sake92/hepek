@@ -2,12 +2,12 @@ package ba.sake.hepek.plain.component
 
 import ba.sake.hepek.html.component.GridComponents
 import ba.sake.hepek.html.component.GridComponents.ScreenRatios
-import ba.sake.hepek.scalatags.all._
+import ba.sake.hepek.scalatags.all.*
 
 final class PlainGridComponents private (
     val screenRatios: ScreenRatios
 ) extends GridComponents {
-  import GridComponents._
+  import GridComponents.*
 
   def withScreenRatios(screenRatios: ScreenRatios): PlainGridComponents =
     new PlainGridComponents(screenRatios)

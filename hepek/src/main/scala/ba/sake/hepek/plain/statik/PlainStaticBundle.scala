@@ -2,7 +2,7 @@ package ba.sake.hepek.plain.statik
 
 import ba.sake.hepek.html.StaticBundle
 import ba.sake.hepek.plain.PlainPage
-import ba.sake.hepek.plain.component._
+import ba.sake.hepek.plain.component.*
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle
 
 final class PlainStaticBundle private (

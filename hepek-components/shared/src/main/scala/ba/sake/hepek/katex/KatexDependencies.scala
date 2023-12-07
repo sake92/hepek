@@ -1,6 +1,6 @@
 package ba.sake.hepek.katex
 
-import ba.sake.hepek.html._
+import ba.sake.hepek.html.*
 
 trait KatexDependencies extends PageDependencies {
 
