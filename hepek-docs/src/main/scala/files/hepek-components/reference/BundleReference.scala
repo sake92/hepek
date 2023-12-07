@@ -25,7 +25,7 @@ object BundleReference extends HepekComponentsReferencePage {
 
         import ba.sake.hepek.bootstrap5.BootstrapBundle
 
-        val Bundle = BootstrapBundle()
+        val Bundle = BootstrapBundle.default
       """),
       """
         Then you `import utils.Bundle._` in every other page/template you make.  

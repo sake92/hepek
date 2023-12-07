@@ -10,6 +10,7 @@ import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 import ba.sake.hepek.Resource
+import ba.sake.hepek.html.ComponentSettings
 
 trait HepekDocsAbstractPage
     extends HepekBootstrap5BlogPage
@@ -41,6 +42,10 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
   // CSS
   override def styleURLs =
     super.styleURLs ++ List(Resource("styles/main.css").ref)
+
+  override def bootstrapSettings: ComponentSettings = super.bootstrapSettings.withDepsProvider(
+    DependencyProvider.unpkg
+  )
 
   override def bootstrapDependencies = super.bootstrapDependencies.withCssDependencies(
     Dependencies.default

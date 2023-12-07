@@ -28,7 +28,7 @@ object StaticBundle extends HepekReferencePage {
 
         import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 
-        val Bundle = BootstrapStaticBundle()
+        val Bundle = BootstrapStaticBundle.default
       """),
       """
         ---
