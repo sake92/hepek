@@ -2,7 +2,7 @@ package templates
 
 import ba.sake.hepek.anchorjs.AnchorjsDependencies
 import ba.sake.hepek.fontawesome5.FADependencies
-import ba.sake.hepek.prismjs
+import ba.sake.hepek.prismjs.*
 import ba.sake.hepek.theme.bootstrap5.HepekBootstrap5BlogPage
 import ba.sake.hepek.theme.bootstrap5.TocSettings
 import ba.sake.hepek.theme.bootstrap5.TocType
@@ -11,15 +11,12 @@ import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
 import ba.sake.hepek.Resource
 
-// HepekDocsAbstractBlogPage
 trait HepekDocsAbstractPage
     extends HepekBootstrap5BlogPage
     with HepekDocsStaticPage
-    with prismjs.PrismDependencies {
+    with PrismDependencies {
 
-  override def prismSettings =
-    super.prismSettings
-      .withTheme(prismjs.Themes.Okaidia)
+  override def prismSettings = super.prismSettings.withTheme(PrismThemes.Okaidia)
 
   override def tocSettings =
     Some(TocSettings(tocType = TocType.Scrollspy(45)))

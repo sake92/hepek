@@ -1475,14 +1475,14 @@ object FA5Icon {
     rotate = None
   )
 
-  enum Type(private[hepek] val classes: List[String]):
+  enum Type(val classes: List[String]):
     // free
     case Solid extends Type(List("fas"))
     case Brand extends Type(List("fab"))
     // premium
     case Regular extends Type(List("far"))
 
-  enum Size(private[hepek] val classes: List[String]):
+  enum Size( val classes: List[String]):
     case Xs      extends Size(List("fa-xs"))
     case Sm      extends Size(List("fa-sm"))
     case lg      extends Size(List("fa-lg"))
@@ -1490,15 +1490,15 @@ object FA5Icon {
     case Times5  extends Size(List("fa-5x"))
     case Times10 extends Size(List("fa-10x"))
 
-  enum Animation(private[hepek] val classes: List[String]):
+  enum Animation(val classes: List[String]):
     case Spin  extends Animation(List("fa-spin"))
     case Pulse extends Animation(List("fa-pulse"))
 
-  enum Flip(private[hepek] val classes: List[String]):
+  enum Flip(val classes: List[String]):
     case Horizontal extends Flip(List("fa-flip-horizontal"))
     case Vertical   extends Flip(List("fa-flip-vertical"))
 
-  enum Rotate(private[hepek] val classes: List[String]):
+  enum Rotate(val classes: List[String]):
     case Rot90  extends Rotate(List("fa-rotate-90"))
     case Rot180 extends Rotate(List("fa-rotate-180"))
     case Rot270 extends Rotate(List("fa-rotate-270"))

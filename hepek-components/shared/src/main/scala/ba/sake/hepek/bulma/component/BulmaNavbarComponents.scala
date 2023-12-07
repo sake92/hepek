@@ -18,7 +18,7 @@ object BulmaNavbarComponent {
     case object Fluid extends Width { def classes = "container-fluid" }
   }
 
-  case class Style(classes: String)
+  final class Style(val classes: String)
 }
 
 class BulmaNavbarComponent(

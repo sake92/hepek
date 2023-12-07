@@ -4,7 +4,7 @@ import ba.sake.hepek.scalatags.all.Frag
 
 trait PanelComponents:
 
-  private[hepek] type PanelType
+  type PanelType
 
   def panel(
       panelType: PanelType,

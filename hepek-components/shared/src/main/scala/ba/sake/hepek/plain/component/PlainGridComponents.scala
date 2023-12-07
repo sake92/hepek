@@ -5,7 +5,7 @@ import ba.sake.hepek.html.component.GridComponents.ScreenRatios
 import ba.sake.hepek.scalatags.all._
 
 final class PlainGridComponents(
-    private[hepek] val screenRatios: ScreenRatios
+    val screenRatios: ScreenRatios
 ) extends GridComponents {
   import GridComponents._
 

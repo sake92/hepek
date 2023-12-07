@@ -2,7 +2,7 @@ package ba.sake.hepek.utils
 
 // good enough for now..
 // https://github.com/rsdoiel/mimetype-js/blob/master/lib/v0.0.3.js
-private[hepek] object MimeTypes {
+object MimeTypes {
 
   def guess(filename: String): String = {
     val indexOfDot = filename.lastIndexOf(".")

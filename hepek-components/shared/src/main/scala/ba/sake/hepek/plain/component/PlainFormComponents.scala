@@ -20,7 +20,7 @@ final case class PlainFormComponents(
 ) extends PlainFormComponentsImpl
 
 // handy to extend for INCOMPLETE frameworks (see Pure, Bulma..)
-private[hepek] trait PlainFormComponentsImpl extends FormComponents {
+trait PlainFormComponentsImpl extends FormComponents {
   import FormComponents._
 
   /* Validation stuff */

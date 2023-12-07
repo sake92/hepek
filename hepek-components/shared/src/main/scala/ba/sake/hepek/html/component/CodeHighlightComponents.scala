@@ -2,7 +2,7 @@ package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all._
 
-private[hepek] trait CodeHighlightComponents {
+trait CodeHighlightComponents {
   // taken from prismjs
   def abap: CodeHighlighter
   def actionscript: CodeHighlighter
@@ -142,6 +142,6 @@ private[hepek] trait CodeHighlightComponents {
   def yaml: CodeHighlighter
 }
 
-private[hepek] trait CodeHighlighter:
+trait CodeHighlighter:
   def lang: String
   def apply(text: String): Frag

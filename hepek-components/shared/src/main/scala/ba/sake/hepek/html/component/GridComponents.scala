@@ -2,7 +2,7 @@ package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all._
 
-private[hepek] trait GridComponents {
+trait GridComponents {
   import GridComponents._
 
   def row(content: Frag*): Frag =
