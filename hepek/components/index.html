@@ -30,16 +30,16 @@
 Add the dependency:</p>
 <pre><code class="language-scala">// mill
 def ivyDeps = Agg(
-  ivy&quot;ba.sake::hepek-components:0.19.0&quot;
+  ivy&quot;ba.sake::hepek-components:0.20.0&quot;
 )
 
 // sbt
 libraryDependencies ++= Seq(
-  &quot;ba.sake&quot; %% &quot;hepek-components&quot; % &quot;0.19.0&quot;
+  &quot;ba.sake&quot; %% &quot;hepek-components&quot; % &quot;0.20.0&quot;
 )          
 
 // scala-cli
-//&gt; using dep ba.sake::hepek-components:0.19.0
+//&gt; using dep ba.sake::hepek-components:0.20.0
 </code></pre>
 <p>Components are mostly <em>interface-based</em> so we can compose them and replace with minimal effort.<br />
 In a nutshell, this means you can <strong>choose CSS/HTML framework implementation</strong>: Bootstrap5/Bulma etc.</p>
