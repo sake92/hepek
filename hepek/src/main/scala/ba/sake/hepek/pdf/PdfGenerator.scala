@@ -26,7 +26,7 @@ final case class Font(
   * 'webdriver.chrome.driver' environment variable, e.g.
   * <code>System.setProperty("webdriver.chrome.driver", """C:\selenium\chromedriver.exe""")</code>
   */
-class PdfGenerator(driver: RemoteWebDriver) {
+final class PdfGenerator(driver: RemoteWebDriver) {
 
   // TODO put this in a file..
   // SVGs are rendered small!? wtf

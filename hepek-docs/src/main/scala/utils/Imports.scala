@@ -5,7 +5,7 @@ import ba.sake.hepek.prismjs.PrismCodeHighlightComponents
 
 object Imports {
   val Bundle = locally {
-    val b = BootstrapStaticBundle()
+    val b = BootstrapStaticBundle.default
     import b.*
 
     val ratios = Ratios.default.withSingle(1, 4, 1).withHalf(1, 1).withThird(1, 4, 1)

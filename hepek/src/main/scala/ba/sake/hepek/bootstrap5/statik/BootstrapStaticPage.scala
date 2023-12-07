@@ -9,25 +9,23 @@ import ba.sake.hepek.scalatags.all._
 
 trait BootstrapStaticPage extends StaticPage with BootstrapPage {
 
-  def navbar: Option[BootstrapNavbarComponents] = None
+  def navbar: Option[BootstrapNavbarComponents] = Some(BootstrapNavbarComponents.default)
 
   override def bodyContent: Frag = frag(
-    maybeNavbar,
+    maybeNavbar.map(n => div(clsNoPrint)(n)),
     div(clsContainerFluid)(pageContent)
   )
 
-  /* NAVBAR */
-  private def maybeNavbar =
-    navbar.map { bsNav =>
-      bsNav.nav(
-        brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
-        brandName = siteSettings.name.map(" " + _),
-        brandIconUrl = siteSettings.faviconInverted,
-        right = for
-          page <- staticSiteSettings.mainPages
-          labela = page.pageCategory.getOrElse(page.pageSettings.label)
-        yield bsNav.link(page.ref, labela)
-      )
-    }
+  private def maybeNavbar = navbar.map { bsNav =>
+    bsNav.nav(
+      brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
+      brandName = siteSettings.name.map(" " + _),
+      brandIconUrl = siteSettings.faviconInverted,
+      right = for
+        page <- staticSiteSettings.mainPages
+        labela = page.pageCategory.getOrElse(page.pageSettings.label)
+      yield bsNav.link(page.ref, labela)
+    )
+  }
 
 }

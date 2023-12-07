@@ -6,7 +6,7 @@ import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.scalatags.all._
 
 object HepekPlainBlogPage {
-  val Bundle = PlainStaticBundle()
+  val Bundle = PlainStaticBundle.default
 }
 import HepekPlainBlogPage.Bundle._
 

@@ -4,7 +4,7 @@ import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.plain.statik.PlainStaticBundle
 import ba.sake.hepek.scalatags.all._
 
-val Bundle = PlainStaticBundle()
+val Bundle = PlainStaticBundle.default
 import Bundle.*
 
 object ids {

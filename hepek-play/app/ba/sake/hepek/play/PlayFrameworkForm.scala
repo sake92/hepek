@@ -10,7 +10,7 @@ import play.filters.csrf.CSRF
 
 import all._
 
-class PlayFrameworkForm(val fc: FormComponents) {
+final class PlayFrameworkForm private (val fc: FormComponents) {
 
   private val HandledAttrs = Set("required", "min", "max", "minlength", "maxlength", "pattern")
 
@@ -433,3 +433,6 @@ class PlayFrameworkForm(val fc: FormComponents) {
   ): AttrPair =
     _inputAttrs.find(_.a.name == attrName) getOrElse (attr(attrName) := defaultValue)
 }
+
+object PlayFrameworkForm:
+  def apply(fc: FormComponents) = new PlayFrameworkForm(fc)

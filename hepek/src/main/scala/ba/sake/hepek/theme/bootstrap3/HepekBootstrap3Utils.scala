@@ -4,7 +4,7 @@ import ba.sake.hepek.bootstrap3.statik.BootstrapStaticBundle
 
 private[bootstrap3] object HepekBootstrap3Utils {
 
-  val Bundle = BootstrapStaticBundle()
+  val Bundle = BootstrapStaticBundle.default
   import Bundle.*, Tags.*
 
   /** Renders the sections. */
