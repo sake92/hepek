@@ -3,7 +3,7 @@ package ba.sake.hepek.prismjs
 import ba.sake.hepek.html.component.CodeHighlightComponents
 import ba.sake.hepek.scalatags.all._
 
-private[hepek] trait PrismCodeHighlightComponents extends CodeHighlightComponents {
+trait PrismCodeHighlightComponents extends CodeHighlightComponents {
   
   def showLineNumbers: Boolean = true
 

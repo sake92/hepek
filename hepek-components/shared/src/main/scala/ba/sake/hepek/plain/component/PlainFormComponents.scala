@@ -5,18 +5,8 @@ import ba.sake.hepek.scalatags.all
 
 import all.{form => _, _}
 
-object PlainFormComponents {
-  val DefaultType = new FormComponents.Type {}
-
-  trait ValidationStateClasses {
-    def success: String = "success"
-    def warning: String = "warning"
-    def error: String   = "error"
-  }
-}
-
-final case class PlainFormComponents(
-    formType: FormComponents.Type = PlainFormComponents.DefaultType
+final class PlainFormComponents private (
+    val formType: FormComponents.Type
 ) extends PlainFormComponentsImpl
 
 // handy to extend for INCOMPLETE frameworks (see Pure, Bulma..)
@@ -177,3 +167,14 @@ trait PlainFormComponentsImpl extends FormComponents {
     )
   }
 }
+
+object PlainFormComponents:
+
+  def apply(): PlainFormComponents = new PlainFormComponents(new FormComponents.Type() {
+    override def classes: List[String] = List.empty
+  })
+
+  trait ValidationStateClasses:
+    def success: String = "success"
+    def warning: String = "warning"
+    def error: String   = "error"

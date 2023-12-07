@@ -3,23 +3,6 @@ package ba.sake.hepek.bootstrap5.component
 import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all, all.{style => _, Style => _, _}
 
-object BootstrapNavbarComponents {
-  sealed trait Position { def classes: String }
-
-  object Position {
-    case object FixedTop    extends Position { def classes = "fixed-top"    }
-    case object FixedBottom extends Position { def classes = "fixed-bottom" }
-  }
-
-  sealed trait Width { def classes: String }
-
-  object Width {
-    case object Fixed extends Width { def classes = "container"       }
-    case object Fluid extends Width { def classes = "container-fluid" }
-  }
-
-}
-
 class BootstrapNavbarComponents(
     activeUrl: String = "",
     width: BootstrapNavbarComponents.Width = BootstrapNavbarComponents.Width.Fluid,
@@ -88,3 +71,13 @@ class BootstrapNavbarComponents(
     )
 
 }
+
+object BootstrapNavbarComponents:
+
+  enum Position(val classes: String):
+    case FixedTop    extends Position("fixed-top")
+    case FixedBottom extends Position("fixed-bottom")
+
+  enum Width(val classes: String):
+    case Fixed extends Width("container")
+    case Fluid extends Width("container-fluid")

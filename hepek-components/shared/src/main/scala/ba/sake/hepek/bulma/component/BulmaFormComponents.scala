@@ -3,35 +3,20 @@ package ba.sake.hepek.bulma.component
 import ba.sake.hepek.bulma.component.classes.BulmaClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
+import BulmaFormComponents._
+import BulmaClassesBundle._
 
-object BulmaFormComponents {
-  sealed trait Type extends FormComponents.Type
-
-  object Type {
-    case object Vertical                                            extends Type
-    case class Horizontal(labelRatio: Int = 1, inputRatio: Int = 3) extends Type
-  }
-  val DefaultType = Type.Vertical
-
-  object BulmaValidationStateClasses extends FormComponents.ValidationStateClasses {
-    override def success: AttrPair = cls := "is-success"
-    override def warning: AttrPair = cls := "is-warning"
-    override def error: AttrPair   = cls := "is-error"
-  }
-}
-
-class BulmaFormComponents(
-    val formType: FormComponents.Type = BulmaFormComponents.DefaultType
+final class BulmaFormComponents private (
+    val formType: FormComponents.Type
 ) extends FormComponents {
-  import BulmaFormComponents._
-  import BulmaClassesBundle._
 
   val Companion = BulmaFormComponents
 
-  protected override def validationStateClasses = BulmaValidationStateClasses
+  protected override def validationStateClasses: FormComponents.ValidationStateClasses =
+    BulmaValidationStateClasses
 
   // https://github.com/jgthms/bulma/issues/886#issuecomment-335584165
-  override def formFieldset(legendTitle: String)(content: Frag*) =
+  override def formFieldset(legendTitle: String)(content: Frag*): Frag =
     fieldset(cls := "box")(
       legend(cls := "label has-text-centered")(legendTitle),
       content
@@ -309,3 +294,17 @@ class BulmaFormComponents(
     }
   }
 }
+
+object BulmaFormComponents:
+
+  def apply(): BulmaFormComponents =
+    new BulmaFormComponents(Type.Vertical)
+
+  enum Type extends FormComponents.Type:
+    case Vertical
+    case Horizontal(val labelRatio: Int, val inputRatio: Int)
+  
+  object BulmaValidationStateClasses extends FormComponents.ValidationStateClasses:
+    override def success: AttrPair = cls := "is-success"
+    override def warning: AttrPair = cls := "is-warning"
+    override def error: AttrPair   = cls := "is-error"

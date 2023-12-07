@@ -3,7 +3,7 @@ package ba.sake.hepek.bulma.component
 import ba.sake.hepek.html.component.PanelComponents
 import ba.sake.hepek.scalatags.all._
 
-final class BulmaPanelComponents() extends PanelComponents {
+final class BulmaPanelComponents private() extends PanelComponents {
 
   val Companion = BulmaPanelComponents
 
@@ -23,6 +23,9 @@ final class BulmaPanelComponents() extends PanelComponents {
 }
 
 object BulmaPanelComponents:
+
+  def apply(): BulmaPanelComponents =
+    new BulmaPanelComponents()
 
   enum Type(val classes: Seq[String]):
     case Default extends Type(Seq("is-primary"))

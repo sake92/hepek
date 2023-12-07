@@ -8,7 +8,7 @@ object Imports {
     val b = BootstrapStaticBundle()
     import b.*
 
-    val ratios = Ratios(Ratio(1, 4, 1), Ratio(1, 1), Ratio(1, 4, 1))
+    val ratios = Ratios.default.withSingle(1, 4, 1).withHalf(1, 1).withThird(1, 4, 1)
     val grid = Grid.withScreenRatios(
       Grid.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
     )

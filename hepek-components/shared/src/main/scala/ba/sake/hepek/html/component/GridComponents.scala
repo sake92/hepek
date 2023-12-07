@@ -35,19 +35,22 @@ trait GridComponents {
 
 object GridComponents {
 
-  final class Col2(val content: List[Frag])
-  final class Col3(val content: List[Frag])
+  final class Col2 private (val content: List[Frag])
+  object Col2:
+    def apply(content: List[Frag]): Col2 = new Col2(content)
 
-  final class Ratio(val values: List[Int])
+  final class Col3 private (val content: List[Frag])
+  object Col3:
+    def apply(content: List[Frag]): Col3 = new Col3(content)
 
-  object Ratio {
+  final class Ratio private (val values: List[Int])
+  object Ratio:
     def apply(values: Int*): Ratio = new Ratio(values.toList)
-  }
 
-  final class Ratios(
-      val single: Ratio = Ratios.DefaultSingle,
-      val half: Ratio = Ratios.DefaultHalf,
-      val third: Ratio = Ratios.DefaultThird
+  final class Ratios private (
+      val single: Ratio,
+      val half: Ratio,
+      val third: Ratio
   ) {
     require(
       single.values.length == 3,
@@ -62,58 +65,63 @@ object GridComponents {
       s"Thirds ratios must contain exactly 3 values. Actual: ${third.values}"
     )
 
-    def withSingle(r: Ratio): Ratios                  = new Ratios(single = r)
+    def withSingle(r: Ratio): Ratios                  = copy(single = r)
     def withSingle(r1: Int, r2: Int, r3: Int): Ratios = withSingle(Ratio(r1, r2, r3))
 
-    def withHalf(r: Ratio): Ratios         = new Ratios(half = r)
+    def withHalf(r: Ratio): Ratios         = copy(half = r)
     def withHalf(r1: Int, r2: Int): Ratios = withHalf(Ratio(r1, r2))
 
-    def withThird(r: Ratio): Ratios                  = new Ratios(third = r)
+    def withThird(r: Ratio): Ratios                  = copy(third = r)
     def withThird(r1: Int, r2: Int, r3: Int): Ratios = withThird(Ratio(r1, r2, r3))
+
+    private def copy(
+        single: Ratio = single,
+        half: Ratio = half,
+        third: Ratio = third
+    ) = new Ratios(single, half, third)
   }
 
-  final class ScreenRatios(
+  object Ratios:
+    val defaultSingle: Ratio = Ratio(0, 1, 0) // no padding
+    val defaultHalf: Ratio   = Ratio(1, 1)
+    val defaultThird: Ratio  = Ratio(1, 1, 1)
+    val default: Ratios      = new Ratios(defaultSingle, defaultHalf, defaultThird)
+
+  final class ScreenRatios private (
       val lg: Ratios,
       val md: Option[Ratios] = None,
       val sm: Option[Ratios] = None,
       val xs: Option[Ratios] = None
   ) {
-    def withAll(r: Ratios)               = withLg(r).withMd(r).withSm(r).withXs(r)
-    def withLg(lg: Ratios): ScreenRatios = new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+    def withAll(r: Ratios) = withLg(r).withMd(r).withSm(r).withXs(r)
 
-    def withMd(md: Option[Ratios]): ScreenRatios =
-      new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+    def withLg(lg: Ratios): ScreenRatios = copy(lg = lg)
 
-    def withMd(md: Ratios): ScreenRatios =
-      new ScreenRatios(lg = lg, sm = sm, xs = xs, md = Option(md))
+    def withMd(md: Option[Ratios]): ScreenRatios = copy(md = md)
+    def withMd(md: Ratios): ScreenRatios         = withMd(Option(md))
 
-    def withSm(sm: Option[Ratios]): ScreenRatios =
-      new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
+    def withSm(sm: Option[Ratios]): ScreenRatios = copy(sm = sm)
+    def withSm(sm: Ratios): ScreenRatios         = withSm(Option(sm))
 
-    def withSm(sm: Ratios): ScreenRatios =
-      new ScreenRatios(lg = lg, md = md, xs = xs, sm = Option(sm))
+    def withXs(xs: Option[Ratios]): ScreenRatios = copy(xs = xs)
+    def withXs(xs: Ratios): ScreenRatios         = withXs(Option(xs))
 
-    def withXs(xs: Option[Ratios]): ScreenRatios =
-      new ScreenRatios(lg = lg, md = md, sm = sm, xs = xs)
-
-    def withXs(xs: Ratios): ScreenRatios =
-      new ScreenRatios(lg = lg, md = md, sm = sm, xs = Option(xs))
+    private def copy(
+        lg: Ratios = lg,
+        md: Option[Ratios] = md,
+        sm: Option[Ratios] = sm,
+        xs: Option[Ratios] = xs
+    ) = new ScreenRatios(lg, md, sm, xs)
   }
 
   object ScreenRatios:
     // Same on all screens
     // lg is not optional, need to have at least one ratio...
     val default: ScreenRatios = ScreenRatios(
-      Ratios.Default,
-      Option(Ratios.Default),
-      Option(Ratios.Default),
-      Option(Ratios.Default)
+      Ratios.default,
+      Option(Ratios.default),
+      Option(Ratios.default),
+      Option(Ratios.default)
     )
 
-  object Ratios {
-    val DefaultSingle = Ratio(0, 1, 0) // no padding
-    val DefaultHalf   = Ratio(1, 1)
-    val DefaultThird  = Ratio(1, 1, 1)
-    val Default       = Ratios(DefaultSingle, DefaultHalf, DefaultThird)
-  }
 }

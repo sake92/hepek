@@ -18,7 +18,7 @@ object DependencyProvider {
   // TODO add jsdeliver and more
 }
 
-final class WebjarsDependencyProvider(webjarsPath: String) extends DependencyProvider {
+final class WebjarsDependencyProvider private(webjarsPath: String) extends DependencyProvider {
 
   override def depPath(dep: Dependency) =
     s"$webjarsPath/${dep.pkg}/${dep.file}${dep.queryParams}"

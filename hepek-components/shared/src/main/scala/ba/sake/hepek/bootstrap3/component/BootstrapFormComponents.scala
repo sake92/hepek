@@ -4,29 +4,7 @@ import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle
 import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.scalatags.all._
 
-object BootstrapFormComponents {
-  sealed trait Type extends FormComponents.Type
 
-  object Type {
-    case object Vertical extends Type
-
-    case object Inline extends Type {
-      override def classes = List("form-inline")
-    }
-
-    class Horizontal(val labelRatio: Int = 1, val inputRatio: Int = 3) extends Type {
-      require(labelRatio > 0, "Label ratio < 1")
-      require(inputRatio > 0, "Input ratio < 1")
-      override def classes = List("form-horizontal")
-    }
-  }
-
-  object BootstrapValidationStateClasses extends FormComponents.ValidationStateClasses {
-    override def success: AttrPair = cls := "has-success"
-    override def warning: AttrPair = cls := "has-warning"
-    override def error: AttrPair   = cls := "has-error"
-  }
-}
 
 class BootstrapFormComponents(
     val formType: FormComponents.Type = BootstrapFormComponents.Type.Vertical
@@ -342,3 +320,15 @@ class BootstrapFormComponents(
     s"$lblCls-$labelRatio" -> s"col-sm-$inputRatio"
   }
 }
+
+object BootstrapFormComponents:
+
+  enum Type(override val classes: List[String]) extends FormComponents.Type:
+    case Vertical                                             extends Type(List.empty)
+    case Inline                                               extends Type(List("form-inline"))
+    case Horizontal(val labelRatio: Int, val inputRatio: Int) extends Type(List("form-horizontal"))
+
+  object BootstrapValidationStateClasses extends FormComponents.ValidationStateClasses:
+    override def success: AttrPair = cls := "has-success"
+    override def warning: AttrPair = cls := "has-warning"
+    override def error: AttrPair   = cls := "has-error"

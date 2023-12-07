@@ -3,7 +3,7 @@ package ba.sake.hepek.plain.component
 import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.scalatags.all, all.{caption => _, _}
 
-final class PlainImageComponents() extends ImageComponents {
+final class PlainImageComponents private () extends ImageComponents {
 
   override def image(
       source: String,
@@ -22,3 +22,8 @@ final class PlainImageComponents() extends ImageComponents {
       "Problem with rendering SVG..."
     )
 }
+
+object PlainImageComponents:
+  def apply(): PlainImageComponents = new PlainImageComponents()
+
+  

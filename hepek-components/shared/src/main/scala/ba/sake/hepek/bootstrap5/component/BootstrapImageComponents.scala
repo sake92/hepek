@@ -4,7 +4,7 @@ import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle._
 import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.scalatags.all, all.{caption => _, _}
 
-final class BootstrapImageComponents() extends ImageComponents {
+final class BootstrapImageComponents private() extends ImageComponents {
 
   override def image(
       source: String,
@@ -43,3 +43,6 @@ final class BootstrapImageComponents() extends ImageComponents {
       )
   }
 }
+
+object BootstrapImageComponents:
+    def apply(): BootstrapImageComponents = new BootstrapImageComponents()

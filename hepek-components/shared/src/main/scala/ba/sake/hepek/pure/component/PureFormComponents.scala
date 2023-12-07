@@ -4,24 +4,12 @@ import ba.sake.hepek.html.component.FormComponents
 import ba.sake.hepek.plain.component.PlainFormComponentsImpl
 import ba.sake.hepek.scalatags.all._
 
-object PureFormComponents {
-  sealed trait Type extends FormComponents.Type
+object PureFormComponents:
 
-  object Type {
-
-    case object Vertical extends Type {
-      override def classes = List("pure-form", "pure-form-stacked")
-    }
-
-    case object Inline extends Type {
-      override def classes = List("pure-form")
-    }
-
-    case object Horizontal extends Type {
-      override def classes = List("pure-form", "pure-form-aligned")
-    }
-  }
-}
+  enum Type(override val classes: List[String]) extends FormComponents.Type:
+    case Vertical   extends Type(List("pure-form", "pure-form-stacked"))
+    case Inline     extends Type(List("pure-form"))
+    case Horizontal extends Type(List("pure-form", "pure-form-aligned"))
 
 trait PureFormComponents extends PlainFormComponentsImpl {
   import PureFormComponents._

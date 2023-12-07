@@ -10,12 +10,16 @@ import ba.sake.hepek.scalatags.all._
 import component.PureMenuComponents._
 
 trait PureStaticPage extends StaticPage with PurePage {
-  private val Grid = PureGridComponents()
 
   // grid for layout with sidebar
-  val grid = Grid.withScreenRatios(
-    Grid.screenRatios.withLg(Ratios(Ratio(1, 5), Ratio(1, 1, 1)))
-  )
+  private val grid = locally {
+    val Grid = PureGridComponents()
+    Grid.withScreenRatios(
+      Grid.screenRatios.withLg(
+        Ratios.default.withHalf(1, 5).withThird(1, 1, 1)
+      )
+    )
+  }
 
   def withPureMenu: Boolean = true
 

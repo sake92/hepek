@@ -72,32 +72,16 @@ class BootstrapNavbarComponents(
     )
 }
 
-object BootstrapNavbarComponents {
-  sealed trait Position:
-    def classes: String
+object BootstrapNavbarComponents:
 
-  object Position:
-    case object FixedTop extends Position:
-      def classes = "navbar-fixed-top"
-    case object FixedBottom extends Position:
-      def classes = "navbar-fixed-bottom"
+  enum Position(val classes: String):
+    case FixedTop    extends Position("navbar-fixed-top")
+    case FixedBottom extends Position("navbar-fixed-bottom")
 
-  sealed trait Width:
-    def classes: String
+  enum Width(val classes: String):
+    case Fixed extends Width("container")
+    case Fluid extends Width("container-fluid")
 
-  object Width:
-    case object Fixed extends Width:
-      def classes = "container"
-    case object Fluid extends Width:
-      def classes = "container-fluid"
-
-  sealed trait Style:
-    def classes: String
-
-  object Style:
-    case object Default extends Style:
-      def classes = "navbar-default"
-    case object Inverse extends Style:
-      def classes = "navbar-inverse"
-
-}
+  enum Style(val classes: String):
+    case Default extends Style("navbar-default")
+    case Inverse extends Style("navbar-inverse")
