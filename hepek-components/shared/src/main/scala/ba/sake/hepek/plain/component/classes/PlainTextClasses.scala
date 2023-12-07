@@ -3,7 +3,7 @@ package ba.sake.hepek.plain.component.classes
 import ba.sake.hepek.html.component.classes.TextClasses
 import ba.sake.hepek.scalatags.all._
 
-trait PlainTextClasses extends TextClasses {
+private[hepek] trait PlainTextClasses extends TextClasses:
   override def txtPrimary = cls := "txt-primary"
   override def txtSuccess = cls := "txt-success"
   override def txtInfo    = cls := "txt-info"
@@ -18,4 +18,3 @@ trait PlainTextClasses extends TextClasses {
   override def txtLowercase  = cls := "txt-lowercase"
   override def txtUppercase  = cls := "txt-uppercase"
   override def txtCapitalize = cls := "txt-capitalize"
-}

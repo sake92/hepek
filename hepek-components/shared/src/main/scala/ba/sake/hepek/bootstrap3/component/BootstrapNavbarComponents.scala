@@ -4,29 +4,6 @@ import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all, all.{style => _, Style => _, _}
 import ba.sake.hepek.bootstrap3.component.classes.BootstrapClassesBundle._
 
-object BootstrapNavbarComponents {
-  sealed trait Position { def classes: String }
-
-  object Position {
-    case object FixedTop    extends Position { def classes = "navbar-fixed-top"    }
-    case object FixedBottom extends Position { def classes = "navbar-fixed-bottom" }
-  }
-
-  sealed trait Width { def classes: String }
-
-  object Width {
-    case object Fixed extends Width { def classes = "container"       }
-    case object Fluid extends Width { def classes = "container-fluid" }
-  }
-
-  sealed trait Style { def classes: String }
-
-  object Style {
-    case object Default extends Style { def classes = "navbar-default" }
-    case object Inverse extends Style { def classes = "navbar-inverse" }
-  }
-}
-
 class BootstrapNavbarComponents(
     activeUrl: String = "",
     style: BootstrapNavbarComponents.Style = BootstrapNavbarComponents.Style.Default,
@@ -93,4 +70,34 @@ class BootstrapNavbarComponents(
       ),
       ul(cls := "dropdown-menu")(dropdownItems)
     )
+}
+
+object BootstrapNavbarComponents {
+  sealed trait Position:
+    def classes: String
+
+  object Position:
+    case object FixedTop extends Position:
+      def classes = "navbar-fixed-top"
+    case object FixedBottom extends Position:
+      def classes = "navbar-fixed-bottom"
+
+  sealed trait Width:
+    def classes: String
+
+  object Width:
+    case object Fixed extends Width:
+      def classes = "container"
+    case object Fluid extends Width:
+      def classes = "container-fluid"
+
+  sealed trait Style:
+    def classes: String
+
+  object Style:
+    case object Default extends Style:
+      def classes = "navbar-default"
+    case object Inverse extends Style:
+      def classes = "navbar-inverse"
+
 }

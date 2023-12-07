@@ -3,25 +3,11 @@ package ba.sake.hepek.plain.component
 import ba.sake.hepek.html.component.PanelComponents
 import ba.sake.hepek.scalatags.all._
 
-object PlainPanelComponents {
-  trait Type extends PanelComponents.Type
-
-  object Type {
-    case object Default extends Type { override def classes = List("pnl-default") }
-    case object Primary extends Type { override def classes = List("pnl-primary") }
-    case object Success extends Type { override def classes = List("pnl-success") }
-    case object Info    extends Type { override def classes = List("pnl-info")    }
-    case object Warning extends Type { override def classes = List("pnl-warning") }
-    case object Danger  extends Type { override def classes = List("pnl-danger")  }
-  }
-}
-
-case class PlainPanelComponents() extends PanelComponents {
-  import PlainPanelComponents._
+final class PlainPanelComponents() extends PanelComponents {
 
   val Companion = PlainPanelComponents
 
-  override type PanelType = Type
+  override type PanelType = PlainPanelComponents.Type
 
   def panel(
       panelType: PanelType,
@@ -35,3 +21,12 @@ case class PlainPanelComponents() extends PanelComponents {
       footer.map(f => div(cls := "pnl-footer")(f))
     )
 }
+
+object PlainPanelComponents:
+  enum Type(val classes: Seq[String]):
+    case Default extends Type(Seq("pnl-default"))
+    case Primary extends Type(Seq("pnl-primary"))
+    case Success extends Type(Seq("pnl-success"))
+    case Info    extends Type(Seq("pnl-info"))
+    case Warning extends Type(Seq("pnl-warning"))
+    case Danger  extends Type(Seq("pnl-danger"))

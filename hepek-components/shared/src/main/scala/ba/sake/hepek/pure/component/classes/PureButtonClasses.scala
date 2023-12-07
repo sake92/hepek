@@ -3,7 +3,8 @@ package ba.sake.hepek.pure.component.classes
 import ba.sake.hepek.html.component.classes.ButtonClasses
 import ba.sake.hepek.scalatags.all._
 
-trait PureButtonClasses extends ButtonClasses {
+private[hepek] trait PureButtonClasses extends ButtonClasses:
+
   override def btnClass   = cls := "pure-button"
   override def btnPrimary = cls := "pure-button-primary"
   override def btnSuccess = cls := "button-success"
@@ -19,4 +20,3 @@ trait PureButtonClasses extends ButtonClasses {
   override def btnSizeXs = cls := "button-xsmall"
 
   override def btnWidthFull = cls := "button-block" // no support in Pure..
-}

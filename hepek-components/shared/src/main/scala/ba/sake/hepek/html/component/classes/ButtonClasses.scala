@@ -2,7 +2,8 @@ package ba.sake.hepek.html.component.classes
 
 import ba.sake.hepek.scalatags.all._
 
-trait ButtonClasses {
+private[hepek] trait ButtonClasses:
+
   def btnClass: AttrPair
   def btnPrimary: AttrPair
   def btnSuccess: AttrPair
@@ -18,4 +19,3 @@ trait ButtonClasses {
   def btnSizeXs: AttrPair
 
   def btnWidthFull: AttrPair
-}

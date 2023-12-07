@@ -2,7 +2,7 @@ package ba.sake.hepek.utils
 
 import java.text.Normalizer
 
-object StringUtils {
+private[hepek] object StringUtils {
   private val UnsafeURLCharsRegex = """[& +$,:;=?@"#{}|^~\[`%!'\]./()*\\]"""
 
   /** Returns kebab-case, lowercased, URL-friendly string. <br> Converts all non-ASCII characters to

@@ -3,25 +3,11 @@ package ba.sake.hepek.bulma.component
 import ba.sake.hepek.html.component.PanelComponents
 import ba.sake.hepek.scalatags.all._
 
-object BulmaPanelComponents {
-  trait Type extends PanelComponents.Type
-
-  object Type {
-    case object Default extends Type { override def classes = List("is-primary") }
-    case object Primary extends Type { override def classes = List("is-primary") }
-    case object Success extends Type { override def classes = List("is-success") }
-    case object Info    extends Type { override def classes = List("is-info")    }
-    case object Warning extends Type { override def classes = List("is-warning") }
-    case object Danger  extends Type { override def classes = List("is-danger")  }
-  }
-}
-
-case class BulmaPanelComponents() extends PanelComponents {
-  import BulmaPanelComponents._
+final class BulmaPanelComponents() extends PanelComponents {
 
   val Companion = BulmaPanelComponents
 
-  override type PanelType = Type
+  override type PanelType = BulmaPanelComponents.Type
 
   def panel(
       panelType: PanelType,
@@ -35,3 +21,13 @@ case class BulmaPanelComponents() extends PanelComponents {
       footer.map(f => div(cls := "panel-block")(f))
     )
 }
+
+object BulmaPanelComponents:
+
+  enum Type(val classes: Seq[String]):
+    case Default extends Type(Seq("is-primary"))
+    case Primary extends Type(Seq("is-primary"))
+    case Success extends Type(Seq("is-success"))
+    case Info    extends Type(Seq("is-info"))
+    case Warning extends Type(Seq("is-warning"))
+    case Danger  extends Type(Seq("is-danger"))

@@ -2,12 +2,8 @@ package ba.sake.hepek.html.component
 
 import ba.sake.hepek.scalatags.all._
 
-trait GridComponents {
+private[hepek] trait GridComponents {
   import GridComponents._
-
-  val Companion = GridComponents
-
-  def screenRatios: ScreenRatios
 
   def row(content: Frag*): Frag =
     mkRowSingleCol(content)
@@ -38,15 +34,6 @@ trait GridComponents {
 }
 
 object GridComponents {
-
-  // Same on all screens
-  // lg is not optional, need to have at least one ratio...
-  val DefaultScreenRatios = ScreenRatios(
-    Ratios.Default,
-    Option(Ratios.Default),
-    Option(Ratios.Default),
-    Option(Ratios.Default)
-  )
 
   final class Col2(val content: List[Frag])
   final class Col3(val content: List[Frag])
@@ -112,6 +99,16 @@ object GridComponents {
     def withXs(xs: Ratios): ScreenRatios =
       new ScreenRatios(lg = lg, md = md, sm = sm, xs = Option(xs))
   }
+
+  object ScreenRatios:
+    // Same on all screens
+    // lg is not optional, need to have at least one ratio...
+    val default: ScreenRatios = ScreenRatios(
+      Ratios.Default,
+      Option(Ratios.Default),
+      Option(Ratios.Default),
+      Option(Ratios.Default)
+    )
 
   object Ratios {
     val DefaultSingle = Ratio(0, 1, 0) // no padding

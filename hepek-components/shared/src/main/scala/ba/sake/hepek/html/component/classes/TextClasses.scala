@@ -2,7 +2,8 @@ package ba.sake.hepek.html.component.classes
 
 import ba.sake.hepek.scalatags.all._
 
-trait TextClasses {
+private[hepek] trait TextClasses:
+
   def txtPrimary: AttrPair
   def txtSuccess: AttrPair
   def txtInfo: AttrPair
@@ -17,4 +18,3 @@ trait TextClasses {
   def txtLowercase: AttrPair
   def txtUppercase: AttrPair
   def txtCapitalize: AttrPair
-}

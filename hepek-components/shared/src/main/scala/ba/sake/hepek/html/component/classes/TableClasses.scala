@@ -2,7 +2,8 @@ package ba.sake.hepek.html.component.classes
 
 import ba.sake.hepek.scalatags.all._
 
-trait TableClasses {
+private[hepek] trait TableClasses:
+
   def tableClass: AttrPair
   def tableStriped: AttrPair
   def tableBordered: AttrPair
@@ -21,4 +22,3 @@ trait TableClasses {
   def tableDataWarning: AttrPair
   def tableDataDanger: AttrPair
   def tableDataActive: AttrPair
-}

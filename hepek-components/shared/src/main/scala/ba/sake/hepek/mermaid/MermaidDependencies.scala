@@ -4,6 +4,7 @@ import ba.sake.tupson.*
 import ba.sake.hepek.html.*
 
 trait MermaidDependencies extends PageDependencies {
+
   def mermaidConfig: MermaidConfig = MermaidConfig()
 
   def mermaidSettings: ComponentSettings =
@@ -18,14 +19,14 @@ trait MermaidDependencies extends PageDependencies {
   override def scriptsInline =
     super.scriptsInline.appended {
       val conf = mermaidConfig.toJson
-      s"mermaid.initialize($conf);"
+      s"mermaid.initialize(${conf});"
     }
 
   override def components =
     super.components.appended(mermaidSettings -> mermaidDependencies)
 }
 
-case class MermaidConfig(
+final case class MermaidConfig(
     theme: String = "default",
     logLevel: String = "fatal",
     securityLevel: String = "strict",

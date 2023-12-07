@@ -4,22 +4,22 @@ import ba.sake.hepek.html.component.classes.TableClasses
 import ba.sake.hepek.scalatags.all._
 
 trait BootstrapTableClasses extends TableClasses {
-  override def tableClass      = cls := "table"
-  override def tableStriped    = cls := "table-striped"
-  override def tableBordered   = cls := "table-bordered"
-  override def tableHoverable  = cls := "table-hover"
-  override def tableResponsive = cls := "table-responsive"
-  override def tableWidthFull  = cls := ""
+  override def tableClass: AttrPair      = cls := "table"
+  override def tableStriped: AttrPair    = cls := "table-striped"
+  override def tableBordered: AttrPair   = cls := "table-bordered"
+  override def tableHoverable: AttrPair  = cls := "table-hover"
+  override def tableResponsive: AttrPair = cls := "table-responsive"
+  override def tableWidthFull: AttrPair  = cls := ""
 
-  override def tableRowSuccess = cls := "success"
-  override def tableRowInfo    = cls := "info"
-  override def tableRowWarning = cls := "warning"
-  override def tableRowDanger  = cls := "danger"
-  override def tableRowActive  = cls := "active"
+  override def tableRowSuccess: AttrPair = cls := "success"
+  override def tableRowInfo: AttrPair    = cls := "info"
+  override def tableRowWarning: AttrPair = cls := "warning"
+  override def tableRowDanger: AttrPair  = cls := "danger"
+  override def tableRowActive: AttrPair  = cls := "active"
 
-  override def tableDataSuccess = cls := "success"
-  override def tableDataInfo    = cls := "info"
-  override def tableDataWarning = cls := "warning"
-  override def tableDataDanger  = cls := "danger"
-  override def tableDataActive  = cls := "active"
+  override def tableDataSuccess: AttrPair = cls := "success"
+  override def tableDataInfo: AttrPair    = cls := "info"
+  override def tableDataWarning: AttrPair = cls := "warning"
+  override def tableDataDanger: AttrPair  = cls := "danger"
+  override def tableDataActive: AttrPair  = cls := "active"
 }

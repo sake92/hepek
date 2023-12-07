@@ -4,6 +4,7 @@ git tag -a $VERSION -m "Release $VERSION"
 git push origin $VERSION
 
 
+TODO case object etc -> enum !!!
 
 TODO make
 - private[hepek] wherever possible

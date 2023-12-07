@@ -11,8 +11,9 @@ trait BootstrapClassesBundle
     with BootstrapTextClasses
     with BootstrapButtonClasses
     with BootstrapTableClasses {
-  override def clsContainer      = cls := "container"
-  override def clsContainerFluid = cls := "container-fluid"
+  override def clsContainer: AttrPair = cls := "container"
 
-  override def clsNoPrint = cls := "hidden-print"
+  override def clsContainerFluid: AttrPair = cls := "container-fluid"
+
+  override def clsNoPrint: AttrPair = cls := "hidden-print"
 }

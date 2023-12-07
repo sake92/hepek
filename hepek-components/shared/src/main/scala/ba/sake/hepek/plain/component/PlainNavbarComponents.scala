@@ -4,10 +4,8 @@ import ba.sake.hepek.html.component.NavbarComponents
 import ba.sake.hepek.scalatags.all._
 import ba.sake.hepek.plain.component.classes.PlainClassesBundle._
 
-object PlainNavbarComponents
-
-// TODO this is just copied from Bootstrap...
-case class PlainNavbarComponents(activeUrl: String = "") extends NavbarComponents {
+// this is just copied from Bootstrap...
+final class PlainNavbarComponents(activeUrl: String = "") extends NavbarComponents {
 
   private val navbarCollapseId: String = "main-navbar"
 
@@ -25,7 +23,7 @@ case class PlainNavbarComponents(activeUrl: String = "") extends NavbarComponent
       span(cls := "icon-bar")
     )
 
-  def withActiveUrl(activeUrl: String) = copy(activeUrl = activeUrl)
+  def withActiveUrl(activeUrl: String) = new PlainNavbarComponents(activeUrl = activeUrl)
 
   def nav(
       brandUrl: String,

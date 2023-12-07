@@ -3,7 +3,7 @@ package ba.sake.hepek.plain.component
 import ba.sake.hepek.html.component.ImageComponents
 import ba.sake.hepek.scalatags.all, all.{caption => _, _}
 
-case class PlainImageComponents() extends ImageComponents {
+final class PlainImageComponents() extends ImageComponents {
 
   override def image(
       source: String,

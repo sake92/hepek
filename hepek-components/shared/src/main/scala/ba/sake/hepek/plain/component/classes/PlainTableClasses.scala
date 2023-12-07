@@ -3,7 +3,7 @@ package ba.sake.hepek.plain.component.classes
 import ba.sake.hepek.html.component.classes.TableClasses
 import ba.sake.hepek.scalatags.all._
 
-trait PlainTableClasses extends TableClasses {
+private[hepek] trait PlainTableClasses extends TableClasses:
   override def tableClass      = cls := "table"
   override def tableStriped    = cls := "table-striped"
   override def tableBordered   = cls := "table-bordered"
@@ -22,4 +22,3 @@ trait PlainTableClasses extends TableClasses {
   override def tableDataWarning = cls := "warning"
   override def tableDataDanger  = cls := "danger"
   override def tableDataActive  = cls := "active"
-}

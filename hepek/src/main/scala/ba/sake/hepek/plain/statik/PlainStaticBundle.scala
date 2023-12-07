@@ -7,7 +7,7 @@ import ba.sake.hepek.plain.component.classes.PlainClassesBundle
 
 case class PlainStaticBundle(
     Form: PlainFormComponents = PlainFormComponents(),
-    Grid: PlainGridComponents = PlainGridComponents(),
+    Grid: PlainGridComponents = PlainGridComponents.default,
     Image: PlainImageComponents = PlainImageComponents(),
     Navbar: PlainNavbarComponents = PlainNavbarComponents(),
     Panel: PlainPanelComponents = PlainPanelComponents(),
