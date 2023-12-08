@@ -34,7 +34,7 @@ Shraf integration.
 
 #### [Hepek Play](https://sake92.github.io/hepek/integrations/play-framework.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-play_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek-play)
 Play framework integration.
-- [play-hepek-example](https://github.com/sake92/play-hepek-example)
+- [hepek-play-example](https://github.com/sake92/hepek-play-example)
 
 #### [Hepek Http4s](https://sake92.github.io/hepek/integrations/http4s.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek-http4s_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek-http4s)
 Http4s integration.
