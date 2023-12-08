@@ -1,5 +1,5 @@
 
-$VERSION="v0.21.0"
+$VERSION="v0.22.0"
 git tag -a $VERSION -m "Release $VERSION"
 git push origin $VERSION
 

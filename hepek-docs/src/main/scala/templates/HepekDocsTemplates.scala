@@ -9,7 +9,6 @@ import ba.sake.hepek.theme.bootstrap5.TocType
 import utils.*
 import utils.Imports.*
 import utils.Imports.Bundle.*, Tags.*
-import ba.sake.hepek.Resource
 import ba.sake.hepek.html.ComponentSettings
 
 trait HepekDocsAbstractPage
@@ -29,8 +28,8 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
   override def siteSettings =
     super.siteSettings
       .withName(Site.name)
-      .withFaviconNormal(Resource("images/favicon.ico").ref)
-      .withFaviconInverted(Resource("images/favicon.ico").ref)
+      .withFaviconNormal(files.images.`favicon.ico`.ref)
+      .withFaviconInverted(files.images.`favicon.ico`.ref)
 
   override def staticSiteSettings =
     super.staticSiteSettings
@@ -41,7 +40,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
 
   // CSS
   override def styleURLs =
-    super.styleURLs ++ List(Resource("styles/main.css").ref)
+    super.styleURLs ++ List(files.styles.`main.css`.ref)
 
   override def bootstrapSettings: ComponentSettings = super.bootstrapSettings.withDepsProvider(
     DependencyProvider.unpkg
@@ -53,7 +52,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
   )
 
   override def scriptURLs = super.scriptURLs
-    .appended(Resource("scripts/main.js").ref)
+    .appended(files.scripts.`main.js`.ref)
 
   override def pageContent =
     frag(
