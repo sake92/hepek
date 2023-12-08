@@ -33,6 +33,8 @@ object Index extends templates.HepekDocsStaticPage {
             [Play](https://www.playframework.com/),
             [Http4s](https://http4s.org),
             [ZIO Http](https://zio.dev/zio-http/).
+          
+          For any questions please use our [Discord chat](https://discord.gg/R2FtxDKyRE)
         """.md
       ),
       super.pageContent
