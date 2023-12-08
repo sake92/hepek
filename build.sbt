@@ -77,7 +77,17 @@ lazy val hepekHttp4s = (project in file("hepek-http4s"))
     name           := "hepek-http4s",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "org.http4s" %%% "http4s-core" % "0.23.24"
+      "org.http4s" %% "http4s-core" % "0.23.24"
+    )
+  )
+  .dependsOn(hepekComponents.jvm)
+
+lazy val hepekZIO = (project in file("hepek-zio"))
+  .settings(
+    name           := "hepek-zio",
+    publish / skip := false,
+    libraryDependencies ++= Seq(
+      "dev.zio" %% "zio-http" % "3.0.0-RC1"
     )
   )
   .dependsOn(hepekComponents.jvm)

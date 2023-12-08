@@ -10,7 +10,8 @@ trait HepekIntegrationsDocsPage extends templates.HepekDocsAbstractPage {
     Index,
     SharafFramework,
     PlayFramework,
-    Http4s
+    Http4s,
+    ZIO
   )
 
   override def pageCategory = Some(Index.pageSettings.label)

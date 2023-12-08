@@ -30,7 +30,9 @@ object Index extends templates.HepekDocsStaticPage {
 
           Integrations provide Hepek Components support for various frameworks:
             [Sharaf](https://github.com/sake92/sharaf), 
-            [Play](https://www.playframework.com/).
+            [Play](https://www.playframework.com/),
+            [Http4s](https://http4s.org),
+            [ZIO Http](https://zio.dev/zio-http/).
         """.md
       ),
       super.pageContent
