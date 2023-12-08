@@ -19,23 +19,25 @@ object PlayFramework extends HepekIntegrationsDocsPage {
     "Quick start",
     frag(
       s"""
+        Hepek supports Play 2.9 and 3.0 with Scala 3.
+
         Mill:
         ```scala
         def ivyDeps = Agg(
-          ivy"ba.sake::hepek-play:${Site.hepekVersion}"
+          ivy"ba.sake::hepek-play-3_0:${Site.hepekVersion}"
         )
         ```
 
         Sbt:
         ```scala
         libraryDependencies ++= Seq(
-          "ba.sake" %% "hepek-play" % "${Site.hepekVersion}"
+          "ba.sake" %% "hepek-play-3_0" % "${Site.hepekVersion}"
         )
         ```
 
         scala-cli:
         ```scala
-        //> using dep ba.sake::hepek-play:${Site.hepekVersion}
+        //> using dep ba.sake::hepek-play-3_0:${Site.hepekVersion}
         ```
 
         Examples:
