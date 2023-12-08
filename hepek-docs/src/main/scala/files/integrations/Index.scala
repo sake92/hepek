@@ -18,9 +18,11 @@ object Index extends HepekIntegrationsDocsPage {
     frag(
       s"""
         Use Hepek Components in your favorite framework:
-          - [Sharaf](${SharafFramework.ref})
-          - [Play Framework](${PlayFramework.ref})
-        """.md
+        - [Sharaf](${SharafFramework.ref})
+        - [Play Framework](${PlayFramework.ref})
+        - [Http4s](${Http4s.ref})
+        - [ZIO](${ZIO.ref})
+      """.md
     )
   )
 }

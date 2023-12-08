@@ -1,13 +1,12 @@
 package ba.sake.hepek.play
 
-import ba.sake.hepek.html.component.FormComponents
-import ba.sake.hepek.scalatags.all
 import play.api.data.Field
 import play.api.i18n.Messages
 import play.api.mvc.Call
 import play.api.mvc.Request
 import play.filters.csrf.CSRF
-
+import ba.sake.hepek.html.component.FormComponents
+import ba.sake.hepek.scalatags.all
 import all.*
 
 final class PlayFrameworkForm private (val fc: FormComponents) {

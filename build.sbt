@@ -64,13 +64,27 @@ lazy val hepekSSG = (project in file("hepek"))
   )
   .dependsOn(hepekComponents.jvm)
 
-lazy val hepekPlay = (project in file("hepek-play"))
+lazy val hepekPlay2_9 = (project in file("hepek-play-2_9"))
   .settings(
-    name           := "hepek-play",
+    name := "hepek-play-2_9",
+    libraryDependencies ++= Seq(
+      "com.typesafe.play" %% "play"                 % "2.9.0",
+      "com.typesafe.play" %% "play-filters-helpers" % "2.9.0"
+    ),
     publish / skip := false
   )
   .dependsOn(hepekComponents.jvm)
-  .enablePlugins(PlayScala)
+
+lazy val hepekPlay3_0 = (project in file("hepek-play-3_0"))
+  .settings(
+    name := "hepek-play-3_0",
+    libraryDependencies ++= Seq(
+      "org.playframework" %% "play"                 % "3.0.0",
+      "org.playframework" %% "play-filters-helpers" % "3.0.0"
+    ),
+    publish / skip := false
+  )
+  .dependsOn(hepekComponents.jvm)
 
 lazy val hepekHttp4s = (project in file("hepek-http4s"))
   .settings(
