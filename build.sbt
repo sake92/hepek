@@ -101,7 +101,7 @@ lazy val hepekZIO = (project in file("hepek-zio"))
     name           := "hepek-zio",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "dev.zio" %% "zio-http" % "3.0.0-RC1"
+      "dev.zio" %% "zio-http" % "3.0.0-RC4"
     )
   )
   .dependsOn(hepekComponents.jvm)
