@@ -14,5 +14,4 @@ trait HepekComponentsReferencePage extends HepekComponentsDocsPage {
     MathReference
   )
 
-  override def pageCategory = Some("hepek-components-reference")
 }

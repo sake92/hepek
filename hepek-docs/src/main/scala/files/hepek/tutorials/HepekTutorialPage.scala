@@ -11,5 +11,4 @@ trait HepekTutorialPage extends HepekSsgDocsPage {
     PdfGenerator
   )
 
-  override def pageCategory = Some("hepek-tutorial")
 }

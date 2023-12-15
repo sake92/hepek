@@ -17,6 +17,10 @@ trait BootstrapPage extends HtmlPage with BootstrapDependencies {
       display: none;
     }
 
+    .affix {
+      width: 100%;
+    }
+
     @media (min-width: 991px) {
       .affix {
           position: fixed;

@@ -17,13 +17,15 @@ object GhPagesDeployment extends HepekTutorialPage {
     frag(
       raw"""
       Add `.github\workflows\ghpages.yml` to your repo:
-    """.md,
+      """.md,
       chl.yaml("""
-        name: Build and Deploy GhPages docs
+        name: Deploy GhPages
         on:
           push:
             branches:
               - main
+        permissions:
+          contents: write
         jobs:
           build-and-deploy:
             runs-on: ubuntu-latest
@@ -33,7 +35,6 @@ object GhPagesDeployment extends HepekTutorialPage {
                 with:
                   distribution: temurin
                   java-version: 11
-                  cache: sbt          
 
               - name: Build
                 run: sbt hepek

@@ -11,6 +11,4 @@ trait HepekReferencePage extends HepekSsgDocsPage {
     BlogPage,
     MultiPage
   )
-
-  override def pageCategory = Some("hepek-reference")
 }
