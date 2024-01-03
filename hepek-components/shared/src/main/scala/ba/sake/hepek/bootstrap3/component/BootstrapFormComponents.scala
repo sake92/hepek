@@ -34,8 +34,11 @@ final class BootstrapFormComponents private (
     val inputMsgsFrag      = inputMessages.map(m => span(cls := "help-block")(m))
     val inputValidationCls = inputValidationState.map(_.clazz)
     val inputFrag =
-      if (inputType.v == "textarea") textarea(commonAttrs)("") // TODO
-      else input(commonAttrs)
+      if (inputType.v == "textarea") {
+        val attrsNoValue = commonAttrs.filterNot(_.a.name == "value")
+        val value        = getAttrValue(inputAttrs, "value")
+        textarea(attrsNoValue)(value)
+      } else input(commonAttrs)
     val inputFragTransformed = inputTransform(inputFrag)
 
     formType match {

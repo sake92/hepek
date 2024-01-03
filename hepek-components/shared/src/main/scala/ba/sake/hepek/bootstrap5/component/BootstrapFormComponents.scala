@@ -35,7 +35,8 @@ final class BootstrapFormComponents private (
     val inputHelpFrag = inputHelp.map(h => span(inputValidationState.map(_.feedbackClazz))(h))
     val inputMsgsFrag = inputMessages.map(m => span(inputValidationState.map(_.feedbackClazz))(m))
     val inputFrag =
-      if (inputType.v == "textarea") textarea(commonAttrs)("") // TODO
+      if (inputType.v == "textarea")
+        textarea(commonAttrs.filterNot(_.a.name == "value"))(getAttrValue(inputAttrs, "value"))
       else input(commonAttrs)
     val inputFragTransformed = inputTransform(inputFrag)
 
