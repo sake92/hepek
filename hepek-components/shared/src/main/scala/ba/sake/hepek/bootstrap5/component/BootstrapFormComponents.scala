@@ -6,6 +6,8 @@ import ba.sake.hepek.scalatags.all.*
 import BootstrapFormComponents.*
 import BootstrapClassesBundle.*
 
+// https://getbootstrap.com/docs/5.2/forms/validation/#server-side
+// TODO revisit https://getbootstrap.com/docs/5.0/forms/layout/#horizontal-form
 final class BootstrapFormComponents private (
     val formType: BootstrapFormComponents.Type
 ) extends FormComponents {
@@ -29,36 +31,40 @@ final class BootstrapFormComponents private (
       inputTransform: Frag => Frag
   ) = {
     val commonAttrs =
-      Seq(cls := "form-control", inputType, inputName) ++ inputId.map(
-        id    := _
-      ) ++ inputValidationState.map(_.clazz) ++ inputAttrs
-    val inputHelpFrag = inputHelp.map(h => span(inputValidationState.map(_.feedbackClazz))(h))
-    val inputMsgsFrag = inputMessages.map(m => span(inputValidationState.map(_.feedbackClazz))(m))
+      Seq(cls          := "form-control", inputType, inputName) ++
+        inputId.map(id := _) ++
+        inputValidationState.map(_.clazz) ++ inputAttrs
     val inputFrag =
       if (inputType.v == "textarea")
         textarea(commonAttrs.filterNot(_.a.name == "value"))(getAttrValue(inputAttrs, "value"))
       else input(commonAttrs)
     val inputFragTransformed = inputTransform(inputFrag)
+    val inputMsgsFrag = inputMessages.map(m => span(inputValidationState.map(_.feedbackClazz))(m))
+    val inputHelpFrag = inputHelp.map(h => span(inputValidationState.map(_.feedbackClazz))(h))
 
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
-        formGroup()(
+        div(cls := "mb-3")(
           label(cls := s"col-form-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
           div(cls := colInput)(
+            inputGroup()(
+              inputFragTransformed,
+              inputMsgsFrag,
+              inputHelpFrag
+            )
+          )
+        )
+      case _ =>
+        div(cls := "mb-3")(
+          inputLabel.map(lbl => label(cls := "form-label", inputId.map(`for` := _))(lbl)),
+          inputGroup()(
             inputFragTransformed,
             inputMsgsFrag,
             inputHelpFrag
           )
-        )
-      case _ =>
-        formGroup()(
-          inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
-          inputFragTransformed,
-          inputMsgsFrag,
-          inputHelpFrag
         )
     }
   }
@@ -75,7 +81,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, false)
-        formGroup()(
+        inputGroup()(
           div(cls := s"$colLabel $colInput")(
             btnFrag
           )
@@ -95,7 +101,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, false)
-        formGroup()(
+        inputGroup()(
           div(cls := s"$colLabel $colInput")(
             btnFrag
           )
@@ -119,7 +125,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, false)
-        formGroup()(
+        inputGroup()(
           div(cls := s"$colLabel $colInput")(
             div(cls := "form-check")(
               label(inputId.map(`for` := _))(
@@ -171,7 +177,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
-        formGroup()(
+        inputGroup()(
           label(cls := s"col-form-label $colLabel")(
             inputLabel
           ),
@@ -181,7 +187,7 @@ final class BootstrapFormComponents private (
           )
         )
       case _ =>
-        formGroup()(
+        inputGroup()(
           inputLabel.map(lbl => label(lbl)),
           checkboxFrags,
           inputHelpFrag
@@ -214,7 +220,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
-        formGroup()(
+        inputGroup()(
           label(cls := s"col-form-label $colLabel")(
             inputLabel
           ),
@@ -224,7 +230,7 @@ final class BootstrapFormComponents private (
           )
         )
       case _ =>
-        formGroup()(
+        inputGroup()(
           inputLabel.map(lbl => label(lbl)),
           radioFrags,
           inputHelpFrag
@@ -253,7 +259,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
-        formGroup()(
+        inputGroup()(
           label(cls := s"col-form-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
@@ -263,7 +269,7 @@ final class BootstrapFormComponents private (
           )
         )
       case _ =>
-        formGroup()(
+        inputGroup()(
           inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
           selectFrag,
           inputHelpFrag
@@ -297,7 +303,7 @@ final class BootstrapFormComponents private (
     formType match {
       case ft: Type.Horizontal =>
         val (colLabel, colInput) = horizontalRatioClasses(ft, true)
-        formGroup()(
+        inputGroup()(
           label(cls := s"col-form-label $colLabel", inputId.map(`for` := _))(
             inputLabel
           ),
@@ -307,7 +313,7 @@ final class BootstrapFormComponents private (
           )
         )
       case _ =>
-        formGroup()(
+        inputGroup()(
           inputLabel.map(lbl => label(inputId.map(`for` := _))(lbl)),
           selectFrag,
           inputHelpFrag
@@ -315,8 +321,8 @@ final class BootstrapFormComponents private (
     }
   }
 
-  private def formGroup(attrs: AttrPair*)(contents: Frag*): Frag =
-    div(cls := "row mb-3", attrs)(contents)
+  private def inputGroup(attrs: AttrPair*)(contents: Frag*): Frag =
+    div(cls := "input-group mb-3 has-validation", attrs)(contents)
 
   private def horizontalRatioClasses(
       ht: Type.Horizontal,

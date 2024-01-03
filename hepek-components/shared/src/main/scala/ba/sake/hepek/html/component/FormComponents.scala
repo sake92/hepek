@@ -79,6 +79,25 @@ trait FormComponents {
       _inputAttrs,
       _transform
     )
+  
+  def inputSearch(_inputAttrs: AttrPair*)(
+      _name: String = DefaultName,
+      _label: String = DefaultLabel,
+      _help: String = DefaultHelp,
+      _validationState: Option[ValidationState] = None,
+      _messages: Seq[String] = Seq.empty,
+      _transform: Frag => Frag = DefaultTransform
+  ): Frag =
+    constructInputNormalCleaned(
+      tpe  := "search",
+      name := _name,
+      _label,
+      _help,
+      _validationState,
+      _messages,
+      _inputAttrs,
+      _transform
+    )
 
   def inputPassword(_inputAttrs: AttrPair*)(
       _name: String = DefaultName,
