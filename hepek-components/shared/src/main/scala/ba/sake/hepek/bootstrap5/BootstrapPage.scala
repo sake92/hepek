@@ -23,8 +23,10 @@ trait BootstrapPage extends HtmlPage with BootstrapDependencies {
 
     @media (min-width: 991px) {
       .affix {
-          position: fixed;
-          width: 10%;
+        position: fixed;
+        width: 15%;
+        height: 80vh;
+        overflow: auto;
       }
 
       nav#tocScrollspy {
