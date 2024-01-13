@@ -79,8 +79,8 @@ lazy val hepekPlay3_0 = (project in file("hepek-play-3_0"))
   .settings(
     name := "hepek-play-3_0",
     libraryDependencies ++= Seq(
-      "org.playframework" %% "play"                 % "3.0.0",
-      "org.playframework" %% "play-filters-helpers" % "3.0.0"
+      "org.playframework" %% "play"                 % "3.0.1",
+      "org.playframework" %% "play-filters-helpers" % "3.0.1"
     ),
     publish / skip := false
   )
