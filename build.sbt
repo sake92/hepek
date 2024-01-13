@@ -91,7 +91,7 @@ lazy val hepekHttp4s = (project in file("hepek-http4s"))
     name           := "hepek-http4s",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "org.http4s" %% "http4s-core" % "0.23.24"
+      "org.http4s" %% "http4s-core" % "0.23.25"
     )
   )
   .dependsOn(hepekComponents.jvm)
