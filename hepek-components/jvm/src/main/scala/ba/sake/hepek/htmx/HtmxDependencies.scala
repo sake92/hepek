@@ -8,7 +8,7 @@ import ba.sake.hepek.html.*
 trait HtmxDependencies extends PageDependencies {
 
   def htmxSettings: ComponentSettings =
-    ComponentSettings("1.9.10", "anchor-js").withDepsProvider(DependencyProvider.unpkg)
+    ComponentSettings("1.9.10", "htmx.org").withDepsProvider(DependencyProvider.unpkg)
 
   def htmxDependencies: ComponentDependencies =
     ComponentDependencies.default.withJsDependencies(
