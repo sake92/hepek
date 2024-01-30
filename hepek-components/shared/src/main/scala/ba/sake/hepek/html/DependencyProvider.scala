@@ -7,12 +7,12 @@ trait DependencyProvider {
 /* Dependency providers: CDNs, Webjars etc. */
 object DependencyProvider {
 
-  val unpkg: DependencyProvider = (dep: Dependency) => {
+  val unpkg: DependencyProvider = dep => {
     val maybeBaseFolder = dep.baseFolder.getOrElse("")
     s"https://unpkg.com/${dep.pkg}@${dep.version}/${maybeBaseFolder}${dep.file}${dep.queryParams}"
   }
 
-  val cdnjs: DependencyProvider = (dep: Dependency) =>
+  val cdnjs: DependencyProvider = dep =>
     s"https://cdnjs.cloudflare.com/ajax/libs/${dep.pkg}/${dep.version}/${dep.file}${dep.queryParams}"
 
   // TODO add jsdeliver and more
