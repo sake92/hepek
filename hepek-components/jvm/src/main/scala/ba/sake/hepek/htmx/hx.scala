@@ -46,7 +46,7 @@ object hx {
   val swapOob = attr("hx-swap-oob")
 
   /** handle events with a inline scripts on elements */
-  val on = attr("hx-on")
+  def on(eventName: String) = attr(s"hx-on:${eventName}")
 
   /** add or remove progressive enhancement for links and forms */
   val boost = attr("hx-boost")
