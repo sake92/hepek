@@ -20,15 +20,15 @@ trait PlainUtilComponents extends UtilComponents {
   extension (str: String)
     def md: Frag = {
       val options = new MutableDataSet()
-      options
-        .set(
-          Parser.EXTENSIONS,
-          List(
-            TablesExtension.create(),
-            StrikethroughExtension.create()
-          ).asJava: Collection[Extension]
-        )
-        .toImmutable()
+      options.set(
+        Parser.EXTENSIONS,
+        List(
+          TablesExtension.create(),
+          StrikethroughExtension.create()
+        ).asJava: Collection[Extension]
+      )
+      options.set(HtmlRenderer.ESCAPE_HTML, escapeHTML)
+      options.set(HtmlRenderer.SUPPRESS_HTML, suppressHTML)
 
       val parser   = Parser.builder(options).build()
       val document = parser.parse(StringUtils.unindent(str))

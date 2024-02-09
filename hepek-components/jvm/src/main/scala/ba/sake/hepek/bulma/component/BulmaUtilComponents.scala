@@ -33,6 +33,8 @@ private[hepek] trait BulmaUtilComponents extends UtilComponents {
           StrikethroughExtension.create()
         ).asJava: ju.Collection[Extension]
       )
+      options.set(HtmlRenderer.ESCAPE_HTML, escapeHTML)
+      options.set(HtmlRenderer.SUPPRESS_HTML, suppressHTML)
 
       val parser   = Parser.builder(options).build()
       val document = parser.parse(StringUtils.unindent(str))
