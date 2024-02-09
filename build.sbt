@@ -20,7 +20,7 @@ inThisBuild(
       "-deprecation",
       "-Yretain-trees",
       "-Wunused:all",
-      "-Ysafe-init"
+     // "-Ysafe-init"
     ),
     resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
@@ -64,6 +64,7 @@ lazy val hepekSSG = (project in file("hepek"))
   )
   .dependsOn(hepekComponents.jvm)
 
+// scala3 only !
 lazy val hepekPlay2_9 = (project in file("hepek-play-2_9"))
   .settings(
     name := "hepek-play-2_9",

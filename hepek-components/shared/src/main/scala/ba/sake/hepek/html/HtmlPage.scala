@@ -22,6 +22,8 @@ trait HtmlPage extends PageDependencies {
     lang = Some(pageSettings.language)
   )
 
+  def bodyAttrs: Seq[AttrPair] = Seq.empty
+
   def contents: Frag = {
     // css
     val compStyleInlines = components.flatMap(_._2.cssDependencies.inlines)
@@ -47,7 +49,7 @@ trait HtmlPage extends PageDependencies {
         allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
           allStyleInlines.map(s => tag("style")(raw(s)))
       ),
-      body(
+      body(bodyAttrs)(
         bodyContent,
         allScriptURLs.map(u => script(src := u)) ++
           allScriptInlines.map(s => script(raw(s)))
