@@ -79,7 +79,7 @@ trait FormComponents {
       _inputAttrs,
       _transform
     )
-  
+
   def inputSearch(_inputAttrs: AttrPair*)(
       _name: String = DefaultName,
       _label: String = DefaultLabel,

@@ -5,6 +5,7 @@ package html
 import ba.sake.hepek.utils.MimeTypes
 import ba.sake.hepek.html.pwa.WebAppManifest
 import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
+import ba.sake.hepek.scalatags.tags2.style as styleTag
 
 trait HtmlPage extends PageDependencies {
 
@@ -12,7 +13,6 @@ trait HtmlPage extends PageDependencies {
 
   def pageSettings: PageSettings = PageSettings.default
 
-  // TODO fill all defaults
   def metaSettings: MetaSettings =
     MetaSettings.default
       .withOgTitle(siteSettings.name)
@@ -22,43 +22,35 @@ trait HtmlPage extends PageDependencies {
     lang = Some(pageSettings.language)
   )
 
-  def bodyAttrs: Seq[AttrPair] = Seq.empty
-
+  /** `<html>` and everything inside it
+    */
   def contents: Frag = {
-    // css
-    val compStyleInlines = components.flatMap(_._2.cssDependencies.inlines)
-    val allStyleInlines  = compStyleInlines ++ stylesInline
-    val compStyleUrls = components.flatMap { case (cs, cd) =>
-      cd.cssDependencies.urls ++
-        cd.cssDependencies.deps.map(cs.depsProvider.depPath)
+    // separate from headContent, because it is easier to override headContent this way:
+    // override def headContent = frag(super.headContent, ...)
+    // and stylesInline will always come last, where we usually override CSS
+    val allInlineStyles = locally {
+      val compStyleInlines = components.flatMap(_._2.cssDependencies.inlines)
+      compStyleInlines ++ stylesInline
     }
-    val allStyleURLs = compStyleUrls ++ styleURLs
-
-    // js
-    val compScriptInlines = components.flatMap(_._2.jsDependencies.inlines)
-    val allScriptInlines  = compScriptInlines ++ scriptsInline
-    val compScriptUrls = components.flatMap { case (cs, cd) =>
-      cd.jsDependencies.urls ++
-        cd.jsDependencies.deps.map(cs.depsProvider.depPath)
+    // same for scripts
+    val allInlineScripts = locally {
+      val compScriptInlines = components.flatMap(_._2.jsDependencies.inlines)
+      compScriptInlines ++ scriptsInline
     }
-    val allScriptURLs = compScriptUrls ++ scriptURLs
-
     htmlTag(lang := pageSettings.language)(
       head(
         headContent,
-        allStyleURLs.map(u => link(rel := "stylesheet", href := u)) ++
-          allStyleInlines.map(s => tag("style")(raw(s)))
+        allInlineStyles.map(s => styleTag(raw(s)))
       ),
       body(bodyAttrs)(
         bodyContent,
-        allScriptURLs.map(u => script(src := u)) ++
-          allScriptInlines.map(s => script(raw(s)))
+        allInlineScripts.map(s => script(raw(s)))
       )
     )
   }
 
-  // <head>
-  def headContent: Frag = frag(
+  //
+  def metaTags: Seq[Frag] = Seq(
     meta(charset            := metaSettings.charset),
     meta(attr("http-equiv") := "X-UA-Compatible", content        := metaSettings.xuaCompatible),
     meta(name               := "viewport", content               := metaSettings.viewport),
@@ -87,18 +79,47 @@ trait HtmlPage extends PageDependencies {
     metaSettings.ogDescription.map(c => meta(name := "og:description", content := c)),
     metaSettings.ogSiteName.map(c => meta(name := "og:site_name", content := c)),
     metaSettings.ogLocale.map(c => meta(name := "og:locale", content := c)),
-    metaSettings.articleAuthor.map(c => meta(name := "article:author", content := c)),
-    // other
-    tag("title")(
-      pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
-    ),
-    siteSettings.faviconNormal.map { fav =>
-      link(rel := "shortcut icon", href := fav, tpe := MimeTypes.guess(fav))
-    }
+    metaSettings.articleAuthor.map(c => meta(name := "article:author", content := c))
   )
 
+  // <head>
+  def headContent: Frag = {
+    val allStyleURLs = locally {
+      val compStyleUrls = components.flatMap { case (cs, cd) =>
+        cd.cssDependencies.urls ++
+          cd.cssDependencies.deps.map(cs.depsProvider.depPath)
+      }
+      compStyleUrls ++ styleURLs
+    }
+
+    frag(
+      metaTags,
+      tag("title")(
+        pageSettings.title + siteSettings.name.map(n => " - " + n).getOrElse("")
+      ),
+      siteSettings.faviconNormal.map { fav =>
+        link(rel := "shortcut icon", href := fav, tpe := MimeTypes.guess(fav))
+      },
+      allStyleURLs.map(u => link(rel := "stylesheet", href := u))
+    )
+  }
+
   // <body>
-  def bodyContent: Frag = pageContent
+  def bodyAttrs: Seq[AttrPair] = Seq.empty
+
+  def bodyContent: Frag = {
+    val allScriptURLs = locally {
+      val compScriptUrls = components.flatMap { case (cs, cd) =>
+        cd.jsDependencies.urls ++
+          cd.jsDependencies.deps.map(cs.depsProvider.depPath)
+      }
+      compScriptUrls ++ scriptURLs
+    }
+    frag(
+      pageContent,
+      allScriptURLs.map(u => script(src := u))
+    )
+  }
 
   def pageContent: Frag = frag()
 }
