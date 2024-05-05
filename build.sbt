@@ -1,4 +1,3 @@
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -20,8 +19,8 @@ inThisBuild(
     scalacOptions ++= Seq(
       "-deprecation",
       "-Yretain-trees",
-      "-Wunused:all",
-     // "-Ysafe-init"
+      "-Wunused:all"
+      // "-Ysafe-init"
     ),
     resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
@@ -93,7 +92,7 @@ lazy val hepekHttp4s = (project in file("hepek-http4s"))
     name           := "hepek-http4s",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "org.http4s" %% "http4s-core" % "0.23.25"
+      "org.http4s" %% "http4s-core" % "0.23.27"
     )
   )
   .dependsOn(hepekComponents.jvm)
