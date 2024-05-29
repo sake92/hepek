@@ -8,6 +8,7 @@ import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
 import ba.sake.hepek.scalatags.tags2.style as styleTag
 
 trait HtmlPage extends PageDependencies {
+  private val property = attr("property")
 
   def siteSettings: SiteSettings = SiteSettings.default
 
@@ -71,15 +72,15 @@ trait HtmlPage extends PageDependencies {
     metaSettings.geoRegion.map(c => meta(name := "geo.region", content := c)),
     metaSettings.geoPlacename.map(c => meta(name := "geo.placename", content := c)),
     // open graph
-    metaSettings.ogUrl.map(c => meta(name := "og:url", content := c)),
-    metaSettings.ogType.map(c => meta(name := "og:type", content := c)),
-    metaSettings.ogTitle.map(c => meta(name := "og:title", content := c)),
-    metaSettings.ogImage.map(c => meta(name := "og:image", content := c)),
-    metaSettings.ogImageAlt.map(c => meta(name := "og:image:alt", content := c)),
-    metaSettings.ogDescription.map(c => meta(name := "og:description", content := c)),
-    metaSettings.ogSiteName.map(c => meta(name := "og:site_name", content := c)),
-    metaSettings.ogLocale.map(c => meta(name := "og:locale", content := c)),
-    metaSettings.articleAuthor.map(c => meta(name := "article:author", content := c))
+    metaSettings.ogUrl.map(c => meta(property := "og:url", content := c)),
+    metaSettings.ogType.map(c => meta(property := "og:type", content := c)),
+    metaSettings.ogTitle.map(c => meta(property := "og:title", content := c)),
+    metaSettings.ogImage.map(c => meta(property := "og:image", content := c)),
+    metaSettings.ogImageAlt.map(c => meta(property := "og:image:alt", content := c)),
+    metaSettings.ogDescription.map(c => meta(property := "og:description", content := c)),
+    metaSettings.ogSiteName.map(c => meta(property := "og:site_name", content := c)),
+    metaSettings.ogLocale.map(c => meta(property := "og:locale", content := c)),
+    metaSettings.articleAuthor.map(c => meta(property := "article:author", content := c))
   )
 
   // <head>
