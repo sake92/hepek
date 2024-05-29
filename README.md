@@ -11,6 +11,10 @@ See these posts for motivation:
 Typesafe templates, grids, forms, code highlighting, markdown etc.  
 JVM and ScalaJS supported! 
 
+Support for custom attributes:
+- [HTMX](https://htmx.org/reference/#attributes)
+- [AlpineJS](https://alpinejs.dev/directives/data)
+
 ---
 ### [Hepek SSG](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek)
 Static site generator for developers.  
