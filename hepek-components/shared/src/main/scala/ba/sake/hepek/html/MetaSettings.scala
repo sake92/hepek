@@ -17,8 +17,7 @@ final class MetaSettings private (
     val geoPosition: Option[String],
     val geoRegion: Option[String],
     val geoPlacename: Option[String],
-    // open graph (fb, twitter)
-    // note: twitter falls back to OG https://developer.twitter.com/en/docs/tweets/optimize-with-cards/guides/getting-started#twitter-cards-and-open-graph
+    // open graph fb and others
     val ogUrl: Option[String],
     val ogType: Option[String],
     val ogTitle: Option[String],
@@ -27,7 +26,14 @@ final class MetaSettings private (
     val ogDescription: Option[String],
     val ogSiteName: Option[String],
     val ogLocale: Option[String],
-    val articleAuthor: Option[String]
+    val articleAuthor: Option[String],
+    // twitter card
+    val twitterCard: Option[String], // usually set to "summary_large_image"
+    val twitterSite: Option[String], // The Twitter @username of author
+    val twitterTitle: Option[String],
+    val twitterDescription: Option[String],
+    val twitterImage: Option[String],
+    val twitterImageAlt: Option[String]
 ) {
 
   def withCharset(charset: String): MetaSettings = copy(charset = charset)
@@ -121,6 +127,48 @@ final class MetaSettings private (
     Option(articleAuthor)
   )
 
+  def withTwitterCard(twitterCard: Option[String]): MetaSettings =
+    copy(twitterCard = twitterCard)
+
+  def withTwitterCard(twitterCard: String): MetaSettings = withArticleAuthor(
+    Option(twitterCard)
+  )
+
+  def withTwitterSite(twitterSite: Option[String]): MetaSettings =
+    copy(twitterSite = twitterSite)
+
+  def withTwitterSite(twitterSite: String): MetaSettings = withArticleAuthor(
+    Option(twitterSite)
+  )
+
+  def withTwitterTitle(twitterTitle: Option[String]): MetaSettings =
+    copy(twitterTitle = twitterTitle)
+
+  def withTwitterTitle(twitterTitle: String): MetaSettings = withArticleAuthor(
+    Option(twitterTitle)
+  )
+
+  def withTwitterDescription(twitterDescription: Option[String]): MetaSettings =
+    copy(twitterDescription = twitterDescription)
+
+  def withTwitterDescription(twitterDescription: String): MetaSettings = withArticleAuthor(
+    Option(twitterDescription)
+  )
+
+  def withTwitterImage(twitterImage: Option[String]): MetaSettings =
+    copy(twitterImage = twitterImage)
+
+  def withTwitterImage(twitterImage: String): MetaSettings = withArticleAuthor(
+    Option(twitterImage)
+  )
+
+  def withTwitterImageAlt(twitterImageAlt: Option[String]): MetaSettings =
+    copy(twitterImageAlt = twitterImageAlt)
+
+  def withTwitterImageAlt(twitterImageAlt: String): MetaSettings = withArticleAuthor(
+    Option(twitterImageAlt)
+  )
+
   private def copy(
       charset: String = charset,
       xuaCompatible: String = xuaCompatible,
@@ -144,7 +192,13 @@ final class MetaSettings private (
       ogDescription: Option[String] = ogDescription,
       ogSiteName: Option[String] = ogSiteName,
       ogLocale: Option[String] = ogLocale,
-      articleAuthor: Option[String] = articleAuthor
+      articleAuthor: Option[String] = articleAuthor,
+      twitterCard: Option[String] = twitterCard,
+      twitterSite: Option[String] = twitterSite,
+      twitterTitle: Option[String] = twitterTitle,
+      twitterDescription: Option[String] = twitterDescription,
+      twitterImage: Option[String] = twitterImage,
+      twitterImageAlt: Option[String] = twitterImageAlt
   ) =
     new MetaSettings(
       charset = charset,
@@ -169,7 +223,13 @@ final class MetaSettings private (
       ogDescription = ogDescription,
       ogSiteName = ogSiteName,
       ogLocale = ogLocale,
-      articleAuthor = articleAuthor
+      articleAuthor = articleAuthor,
+      twitterCard = twitterCard,
+      twitterSite = twitterSite,
+      twitterTitle = twitterTitle,
+      twitterDescription = twitterDescription,
+      twitterImage = twitterImage,
+      twitterImageAlt = twitterImageAlt
     )
 }
 
@@ -197,5 +257,11 @@ object MetaSettings:
     ogDescription = None,
     ogSiteName = None,
     ogLocale = None,
-    articleAuthor = None
+    articleAuthor = None,
+    twitterCard = Some("summary_large_image"),
+    twitterSite = None,
+    twitterTitle = None,
+    twitterDescription = None,
+    twitterImage = None,
+    twitterImageAlt = None
   )

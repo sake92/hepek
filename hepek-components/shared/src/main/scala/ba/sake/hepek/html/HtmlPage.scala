@@ -80,7 +80,14 @@ trait HtmlPage extends PageDependencies {
     metaSettings.ogDescription.map(c => meta(property := "og:description", content := c)),
     metaSettings.ogSiteName.map(c => meta(property := "og:site_name", content := c)),
     metaSettings.ogLocale.map(c => meta(property := "og:locale", content := c)),
-    metaSettings.articleAuthor.map(c => meta(property := "article:author", content := c))
+    metaSettings.articleAuthor.map(c => meta(property := "article:author", content := c)),
+    // twitter
+    metaSettings.twitterTitle.map(c => meta(name := "twitter:title", content := c)),
+    metaSettings.twitterCard.map(c => meta(name := "twitter:card", content := c)),
+    metaSettings.twitterSite.map(c => meta(name := "twitter:site", content := c)),
+    metaSettings.twitterDescription.map(c => meta(name := "twitter:description", content := c)),
+    metaSettings.twitterImage.map(c => meta(name := "twitter:image", content := c)),
+    metaSettings.twitterImageAlt.map(c => meta(name := "twitter:image:alt", content := c))
   )
 
   // <head>
