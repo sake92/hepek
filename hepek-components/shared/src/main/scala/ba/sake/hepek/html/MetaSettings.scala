@@ -130,42 +130,42 @@ final class MetaSettings private (
   def withTwitterCard(twitterCard: Option[String]): MetaSettings =
     copy(twitterCard = twitterCard)
 
-  def withTwitterCard(twitterCard: String): MetaSettings = withArticleAuthor(
+  def withTwitterCard(twitterCard: String): MetaSettings = withTwitterCard(
     Option(twitterCard)
   )
 
   def withTwitterSite(twitterSite: Option[String]): MetaSettings =
     copy(twitterSite = twitterSite)
 
-  def withTwitterSite(twitterSite: String): MetaSettings = withArticleAuthor(
+  def withTwitterSite(twitterSite: String): MetaSettings = withTwitterSite(
     Option(twitterSite)
   )
 
   def withTwitterTitle(twitterTitle: Option[String]): MetaSettings =
     copy(twitterTitle = twitterTitle)
 
-  def withTwitterTitle(twitterTitle: String): MetaSettings = withArticleAuthor(
+  def withTwitterTitle(twitterTitle: String): MetaSettings = withTwitterTitle(
     Option(twitterTitle)
   )
 
   def withTwitterDescription(twitterDescription: Option[String]): MetaSettings =
     copy(twitterDescription = twitterDescription)
 
-  def withTwitterDescription(twitterDescription: String): MetaSettings = withArticleAuthor(
+  def withTwitterDescription(twitterDescription: String): MetaSettings = withTwitterDescription(
     Option(twitterDescription)
   )
 
   def withTwitterImage(twitterImage: Option[String]): MetaSettings =
     copy(twitterImage = twitterImage)
 
-  def withTwitterImage(twitterImage: String): MetaSettings = withArticleAuthor(
+  def withTwitterImage(twitterImage: String): MetaSettings = withTwitterImage(
     Option(twitterImage)
   )
 
   def withTwitterImageAlt(twitterImageAlt: Option[String]): MetaSettings =
     copy(twitterImageAlt = twitterImageAlt)
 
-  def withTwitterImageAlt(twitterImageAlt: String): MetaSettings = withArticleAuthor(
+  def withTwitterImageAlt(twitterImageAlt: String): MetaSettings = withTwitterImageAlt(
     Option(twitterImageAlt)
   )
 
