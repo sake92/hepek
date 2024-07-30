@@ -1,4 +1,3 @@
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -20,8 +19,8 @@ inThisBuild(
     scalacOptions ++= Seq(
       "-deprecation",
       "-Yretain-trees",
-      "-Wunused:all",
-     // "-Ysafe-init"
+      "-Wunused:all"
+      // "-Ysafe-init"
     ),
     resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
@@ -81,8 +80,8 @@ lazy val hepekPlay3_0 = (project in file("hepek-play-3_0"))
   .settings(
     name := "hepek-play-3_0",
     libraryDependencies ++= Seq(
-      "org.playframework" %% "play"                 % "3.0.1",
-      "org.playframework" %% "play-filters-helpers" % "3.0.1"
+      "org.playframework" %% "play"                 % "3.0.5",
+      "org.playframework" %% "play-filters-helpers" % "3.0.5"
     ),
     publish / skip := false
   )
