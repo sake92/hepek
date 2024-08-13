@@ -8,5 +8,5 @@ object V {
   val openHtmlToPdf = "1.0.2"
 
   val selenium = "2.52.0"
-  val munit    = "1.0.0"
+  val munit    = "1.0.1"
 }
