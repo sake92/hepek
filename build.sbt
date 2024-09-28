@@ -1,4 +1,3 @@
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -15,13 +14,13 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion   := "3.3.1",
+    scalaVersion   := "3.3.4",
     publish / skip := true,
     scalacOptions ++= Seq(
       "-deprecation",
       "-Yretain-trees",
-      "-Wunused:all",
-     // "-Ysafe-init"
+      "-Wunused:all"
+      // "-Ysafe-init"
     ),
     resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
