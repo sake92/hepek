@@ -15,7 +15,7 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion   := "3.3.1",
+    scalaVersion   := "3.3.4",
     publish / skip := true,
     scalacOptions ++= Seq(
       "-deprecation",
@@ -34,7 +34,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     name           := "hepek-components",
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "scalatags" % V.scalaTags,
-      "ba.sake"     %%% "tupson"    % V.tupson
+      "ba.sake"     %%% "tupson"    % V.tupson,
     )
   )
   .jvmSettings(
@@ -43,7 +43,8 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
       "com.vladsch.flexmark" % "flexmark-ext-attributes"        % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-tables"            % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-gfm-strikethrough" % V.flexmark,
-      "org.scalameta"      %%% "munit"                          % V.munit % Test
+      "org.scalameta"      %%% "munit"                          % V.munit % Test,
+      "org.jsoup"               % "jsoup"                        % V.jsoup % Test
     )
   )
   .jsSettings()
