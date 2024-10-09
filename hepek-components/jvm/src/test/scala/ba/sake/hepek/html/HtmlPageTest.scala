@@ -2,8 +2,10 @@ package ba.sake.hepek.html
 
 import scala.jdk.CollectionConverters.*
 import org.jsoup.Jsoup
+import scalatags.Text.all.*
 import ba.sake.hepek.htmx.HtmxDependencies
 import ba.sake.hepek.bootstrap5.BootstrapDependencies
+import scalatags.Text.all
 
 class HtmlPageTest extends munit.FunSuite {
 
@@ -100,6 +102,14 @@ class HtmlPageTest extends munit.FunSuite {
       assert(elem.attr("src") == "")
     }
   }
+
+  test("<body> should have page content") {
+    val document = Jsoup.parse(TestHtmlPage.contents.render)
+    val pageElems = document.body().getElementsByTag("div").iterator().asScala.toList
+    assert(
+        pageElems.exists(_.text() == "Hello world")
+    )
+  }
 }
 
 object TestHtmlPage extends HtmlPage with HtmxDependencies with BootstrapDependencies {
@@ -108,6 +118,10 @@ object TestHtmlPage extends HtmlPage with HtmxDependencies with BootstrapDepende
 
   override def styleURLs: List[String]    = List("/mystyle.css")
   override def stylesInline: List[String] = List("div { color: white }")
+
+  override def pageContent: Frag = div(
+    "Hello world"
+  )
 
   override def scriptURLs: List[String]    = List("/myscript.js")
   override def scriptsInline: List[String] = List("console.log('inline')")
