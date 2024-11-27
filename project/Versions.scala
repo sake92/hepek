@@ -4,7 +4,7 @@ object V {
 
   val hepekCore     = "0.2.0"
   val flexmark      = "0.64.8"
-  val jsoup         = "1.18.1"
+  val jsoup         = "1.18.2"
   val openHtmlToPdf = "1.0.2"
 
   val selenium = "2.52.0"
