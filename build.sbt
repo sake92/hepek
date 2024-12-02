@@ -1,4 +1,3 @@
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -20,8 +19,8 @@ inThisBuild(
     scalacOptions ++= Seq(
       "-deprecation",
       "-Yretain-trees",
-      "-Wunused:all",
-     // "-Ysafe-init"
+      "-Wunused:all"
+      // "-Ysafe-init"
     ),
     resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
@@ -34,7 +33,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     name           := "hepek-components",
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "scalatags" % V.scalaTags,
-      "ba.sake"     %%% "tupson"    % V.tupson,
+      "ba.sake"     %%% "tupson"    % V.tupson
     )
   )
   .jvmSettings(
@@ -44,7 +43,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
       "com.vladsch.flexmark" % "flexmark-ext-tables"            % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-gfm-strikethrough" % V.flexmark,
       "org.scalameta"      %%% "munit"                          % V.munit % Test,
-      "org.jsoup"               % "jsoup"                        % V.jsoup % Test
+      "org.jsoup"            % "jsoup"                          % V.jsoup % Test
     )
   )
   .jsSettings()
@@ -82,8 +81,8 @@ lazy val hepekPlay3_0 = (project in file("hepek-play-3_0"))
   .settings(
     name := "hepek-play-3_0",
     libraryDependencies ++= Seq(
-      "org.playframework" %% "play"                 % "3.0.1",
-      "org.playframework" %% "play-filters-helpers" % "3.0.1"
+      "org.playframework" %% "play"                 % "3.0.6",
+      "org.playframework" %% "play-filters-helpers" % "3.0.6"
     ),
     publish / skip := false
   )
