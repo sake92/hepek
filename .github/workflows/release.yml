@@ -5,8 +5,11 @@ on:
     branches: [master]
     tags: ["*"]
 jobs:
+  tests:
+    uses: ./.github/workflows/ci.yml
   publish:
     runs-on: ubuntu-latest
+    needs: [tests]  # require tests to pass before deploy runs
     steps:
       - uses: actions/checkout@v4
         with:
