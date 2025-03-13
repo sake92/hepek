@@ -14,15 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 11
           cache: sbt          
-
+      - uses: sbt/setup-sbt@v1
       - name: Build
         run: sbt "hepekDocs/hepek"
-
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
