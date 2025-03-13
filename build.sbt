@@ -109,6 +109,16 @@ lazy val hepekZIO = (project in file("hepek-zio"))
   )
   .dependsOn(hepekComponents.jvm)
 
+lazy val hepekCLI = (project in file("hepek-cli"))
+  .settings(
+    name           := "hepek-cli",
+    publish / skip := false,
+    libraryDependencies ++= Seq(
+      "ba.sake" % "hepek-core" % "0.2.0",
+      "com.lihaoyi" %% "os-lib" % "0.11.4"
+    )
+  )
+
 lazy val hepekDocs = (project in file("hepek-docs"))
   .dependsOn(hepekSSG)
   .enablePlugins(HepekPlugin)
