@@ -93,9 +93,12 @@ class HepekCLI {
     clazzParent.isAssignableFrom(clazz)
 
   private def writeRenderableObject(className: String, destFolder: os.Path, relPath: JPath, content: String): Unit = {
-    val finalPath = destFolder / os.RelPath(relPath)
-    println(s"Rendering '${className}' to '${finalPath}'")
-    os.write.over(finalPath, content, createFolders = true)
+    // only write files in the "files" package
+    if relPath.startsWith("files") then {
+      val finalPath = destFolder / os.RelPath(relPath.toString.drop(6)) // remove "files/" prefix
+      println(s"Rendering '${className}' to '${finalPath}'")
+      os.write.over(finalPath, content, createFolders = true)
+    }
   }
 
 }

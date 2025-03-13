@@ -17,9 +17,11 @@ Support for custom attributes:
 
 ---
 ### [Hepek SSG](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek)
-Static site generator for developers.  
-Make your own website and deploy it with Netlify (yes, for free) in just a few clicks:  
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sake92/hepek-starter)
+Components for static site generator.  
+Use in combination with:
+- [mill-cli](./hepek-cli)
+- [mill-hepek](https://github.com/sake92/mill-hepek)
+- [sbt-hepek](https://github.com/sake92/sbt-hepek)
 
 Resources:
 - [documentation](https://sake92.github.io/hepek)
