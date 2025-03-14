@@ -11,11 +11,11 @@ trait BootstrapStaticPage extends StaticPage with BootstrapPage {
 
   def navbar: Option[BootstrapNavbarComponents] = Some(BootstrapNavbarComponents.default)
 
-  override def bodyContent: Frag =
+  /*override def bodyContent: Frag =
     div(clsContainerFluid)(
       maybeNavbar.map(n => div(clsNoPrint)(n)),
       pageContent
-    )
+    )*/
 
   /* NAVBAR */
   private def maybeNavbar = navbar.map { bsNav =>

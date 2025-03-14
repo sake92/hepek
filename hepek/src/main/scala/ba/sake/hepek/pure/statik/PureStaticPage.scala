@@ -22,7 +22,7 @@ trait PureStaticPage extends StaticPage with PurePage {
   }
 
   def withPureMenu: Boolean = true
-
+/*
   override def bodyContent =
     if (withPureMenu) {
       import grid.*
@@ -30,7 +30,7 @@ trait PureStaticPage extends StaticPage with PurePage {
         half(sidebarMenu),
         half(pageContent)
       )
-    } else pageContent
+    } else pageContent*/
 
   override def stylesInline = {
     val maybeInlineStyles = if (withPureMenu) List("""

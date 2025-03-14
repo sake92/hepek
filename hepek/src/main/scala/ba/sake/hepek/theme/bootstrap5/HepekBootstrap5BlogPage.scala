@@ -2,7 +2,7 @@ package ba.sake.hepek.theme.bootstrap5
 
 import ba.sake.hepek.html.statik.BlogPostPage
 import HepekBootstrap5Utils.*
-import Bundle.*, Tags.*
+import Bundle.*, Tags.*, Classes.*
 
 trait TocType
 
@@ -44,6 +44,8 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
       else (3, 8, 1)
 
     frag(
+      maybeNavbar.map(n => div(clsNoPrint)(n)),
+      div(clsContainerFluid)(
       div(cls := "row")(
         div(cls := s"col-md-$w1 d-flex justify-content-end", Classes.clsNoPrint)(
           renderSidebar
@@ -67,6 +69,7 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
           maybeScrollspy
         )
       )
+    )
     )
   }
 
