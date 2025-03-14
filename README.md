@@ -25,7 +25,8 @@ Use in combination with:
 
 Resources:
 - [documentation](https://sake92.github.io/hepek)
-- [starter template](https://github.com/sake92/hepek-starter)
+- [minimal example](https://github.com/sake92/hepek-scala-cli) with hepek-cli (scala-cli)
+- [starter template](https://github.com/sake92/hepek-starter) with Mill
 - [examples](https://github.com/sake92/hepek-examples)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 - [source code](https://github.com/sake92/sake-ba-blog-source) of blog.sake.ba (code examples, math snippets etc.)
