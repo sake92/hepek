@@ -19,7 +19,7 @@ Support for custom attributes:
 ### [Hepek SSG](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek)
 Components for static site generator.  
 Use in combination with:
-- [mill-cli](./hepek-cli)
+- [hepek-cli](./hepek-cli)
 - [mill-hepek](https://github.com/sake92/mill-hepek)
 - [sbt-hepek](https://github.com/sake92/sbt-hepek)
 
