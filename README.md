@@ -19,13 +19,14 @@ Support for custom attributes:
 ### [Hepek SSG](https://sake92.github.io/hepek/hepek/index.html)  [![Maven Central](https://img.shields.io/maven-central/v/ba.sake/hepek_3.svg?style=flat-square&label=Scala+3)](https://mvnrepository.com/artifact/ba.sake/hepek)
 Components for static site generator.  
 Use in combination with:
-- [mill-cli](./hepek-cli)
+- [hepek-cli](./hepek-cli)
 - [mill-hepek](https://github.com/sake92/mill-hepek)
 - [sbt-hepek](https://github.com/sake92/sbt-hepek)
 
 Resources:
 - [documentation](https://sake92.github.io/hepek)
-- [starter template](https://github.com/sake92/hepek-starter)
+- [minimal example](https://github.com/sake92/hepek-scala-cli) with hepek-cli (scala-cli)
+- [starter template](https://github.com/sake92/hepek-starter) with Mill
 - [examples](https://github.com/sake92/hepek-examples)
 - [source code](https://github.com/sake92/sake-ba-source) of sake.ba
 - [source code](https://github.com/sake92/sake-ba-blog-source) of blog.sake.ba (code examples, math snippets etc.)

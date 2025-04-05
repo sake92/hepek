@@ -1,4 +1,3 @@
-
 inThisBuild(
   List(
     organization := "ba.sake",
@@ -15,13 +14,13 @@ inThisBuild(
         url("https://sake.ba")
       )
     ),
-    scalaVersion   := "3.3.4",
+    scalaVersion   := "3.3.5",
     publish / skip := true,
     scalacOptions ++= Seq(
       "-deprecation",
       "-Yretain-trees",
-      "-Wunused:all",
-     // "-Ysafe-init"
+      "-Wunused:all"
+      // "-Ysafe-init"
     ),
     resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
   )
@@ -34,7 +33,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
     name           := "hepek-components",
     libraryDependencies ++= Seq(
       "com.lihaoyi" %%% "scalatags" % V.scalaTags,
-      "ba.sake"     %%% "tupson"    % V.tupson,
+      "ba.sake"     %%% "tupson"    % V.tupson
     )
   )
   .jvmSettings(
@@ -46,7 +45,7 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
       "org.graalvm.polyglot" % "polyglot"                % V.graalJs,
       "org.graalvm.polyglot" % "js" % V.graalJs pomOnly(),
       "org.scalameta"      %%% "munit"                          % V.munit % Test,
-      "org.jsoup"               % "jsoup"                        % V.jsoup % Test
+      "org.jsoup"            % "jsoup"                          % V.jsoup % Test
     )
   )
   .jsSettings()
@@ -116,8 +115,8 @@ lazy val hepekCLI = (project in file("hepek-cli"))
     name           := "hepek-cli",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "ba.sake" % "hepek-core" % "0.2.0",
-      "com.lihaoyi" %% "os-lib" % "0.11.4"
+      "ba.sake"      % "hepek-core" % "0.2.0",
+      "com.lihaoyi" %% "os-lib"     % "0.11.4"
     )
   )
 
