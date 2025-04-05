@@ -43,6 +43,8 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
       "com.vladsch.flexmark" % "flexmark-ext-attributes"        % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-tables"            % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-gfm-strikethrough" % V.flexmark,
+      "org.graalvm.polyglot" % "polyglot"                % V.graalJs,
+      "org.graalvm.polyglot" % "js" % V.graalJs pomOnly(),
       "org.scalameta"      %%% "munit"                          % V.munit % Test,
       "org.jsoup"               % "jsoup"                        % V.jsoup % Test
     )

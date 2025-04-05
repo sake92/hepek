@@ -6,6 +6,7 @@ object V {
   val flexmark      = "0.64.8"
   val jsoup         = "1.18.1"
   val openHtmlToPdf = "1.0.2"
+  val graalJs = "24.2.0"
 
   val selenium = "2.52.0"
   val munit    = "1.0.2"
