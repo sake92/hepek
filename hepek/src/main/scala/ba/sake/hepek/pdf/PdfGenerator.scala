@@ -2,20 +2,19 @@ package ba.sake.hepek.pdf
 
 import java.io.File
 import java.io.FileOutputStream
-
 import com.openhtmltopdf.mathmlsupport.MathMLDrawer
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder
 import com.openhtmltopdf.svgsupport.BatikSVGDrawer
-
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.ExpectedCondition
 import org.openqa.selenium.support.ui.WebDriverWait
-
 import ba.sake.hepek.core.Renderable
 import ba.sake.hepek.html.HtmlUtils
+
+import java.time.Duration
 
 final case class Font(
     file: File,
@@ -28,52 +27,7 @@ final case class Font(
   */
 final class PdfGenerator(driver: RemoteWebDriver) {
 
-  // TODO put this in a file..
-  // SVGs are rendered small!? wtf
-  // use <img> for now... -_-
-  private val inlineSvgsScript =
-    """
-// callback to notify ChromeDriver that this script is finished :)
-var callback = arguments[arguments.length - 1];
-
-var svgs = document.querySelectorAll('object[type="image/svg+xml"]');
-if (svgs.length < 1) {
-    callback("Finished SVG inlining (0 SVGs found).");
-} else {
-    var processedSvgsCount = 0;
-    svgs.forEach((el) => {
-        const imgID = el.getAttribute('id');
-        const imgClass = el.getAttribute('class');
-        const imgURL = el.getAttribute('data');
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', imgURL, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xhr.responseText, 'text/html');
-                let svg = xmlDoc.querySelector('svg');
-
-                if (typeof imgID !== 'undefined') {
-                    svg.setAttribute('id', imgID);
-                }
-                if (typeof imgClass !== 'undefined') {
-                    svg.setAttribute('class', imgClass + ' replaced-svg');
-                }
-                svg.removeAttribute('xmlns:a');
-
-                el.parentNode.replaceChild(svg, el);
-
-                processedSvgsCount++;
-                if (processedSvgsCount == svgs.length) {
-                    callback("Finished SVG inlining.");
-                }
-            }
-        };
-        xhr.send();
-    });
-}
-  """
+  
 
   def generate(
       outputFile: File,
@@ -142,7 +96,7 @@ if (svgs.length < 1) {
     fonts.foreach { f =>
       builder.useFont(f.file, f.family)
     }
-    driver.executeAsyncScript(inlineSvgsScript)
+    driver.executeAsyncScript(PdfGenerator.inlineSvgsScript)
     waitForLoad(driver, loadJsConditions) // this is essential! :D
     val pageHtmlAfterJs = driver.getPageSource
 
@@ -176,7 +130,56 @@ if (svgs.length < 1) {
       val jsConditionsSatisfied = jsEx.executeScript("return (" + jsConditions + ");")
       jsConditionsSatisfied.toString.equals("true")
     }
-    val wait = new WebDriverWait(driver, 10)
+    val wait = new WebDriverWait(driver, Duration.ofSeconds(10))
     wait.until(pageLoadCondition)
   }
+}
+
+object PdfGenerator {
+  // TODO put this in a file..
+  // SVGs are rendered small!? wtf
+  // use <img> for now... -_-
+  private[pdf] val inlineSvgsScript =
+    """
+  // callback to notify ChromeDriver that this script is finished :)
+  var callback = arguments[arguments.length - 1];
+  
+  var svgs = document.querySelectorAll('object[type="image/svg+xml"]');
+  if (svgs.length < 1) {
+      callback("Finished SVG inlining (0 SVGs found).");
+  } else {
+      var processedSvgsCount = 0;
+      svgs.forEach((el) => {
+          const imgID = el.getAttribute('id');
+          const imgClass = el.getAttribute('class');
+          const imgURL = el.getAttribute('data');
+  
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', imgURL, true);
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState == 4) {
+                  const parser = new DOMParser();
+                  const xmlDoc = parser.parseFromString(xhr.responseText, 'text/html');
+                  let svg = xmlDoc.querySelector('svg');
+  
+                  if (typeof imgID !== 'undefined') {
+                      svg.setAttribute('id', imgID);
+                  }
+                  if (typeof imgClass !== 'undefined') {
+                      svg.setAttribute('class', imgClass + ' replaced-svg');
+                  }
+                  svg.removeAttribute('xmlns:a');
+  
+                  el.parentNode.replaceChild(svg, el);
+  
+                  processedSvgsCount++;
+                  if (processedSvgsCount == svgs.length) {
+                      callback("Finished SVG inlining.");
+                  }
+              }
+          };
+          xhr.send();
+      });
+  }
+    """
 }

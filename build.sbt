@@ -42,8 +42,6 @@ lazy val hepekComponents = crossProject(JVMPlatform, JSPlatform)
       "com.vladsch.flexmark" % "flexmark-ext-attributes"        % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-tables"            % V.flexmark,
       "com.vladsch.flexmark" % "flexmark-ext-gfm-strikethrough" % V.flexmark,
-      "org.graalvm.polyglot" % "polyglot"                % V.graalJs,
-      "org.graalvm.polyglot" % "js" % V.graalJs pomOnly(),
       "org.scalameta"      %%% "munit"                          % V.munit % Test,
       "org.jsoup"            % "jsoup"                          % V.jsoup % Test
     )
@@ -72,8 +70,8 @@ lazy val hepekPlay2_9 = (project in file("hepek-play-2_9"))
   .settings(
     name := "hepek-play-2_9",
     libraryDependencies ++= Seq(
-      "com.typesafe.play" %% "play"                 % "2.9.0",
-      "com.typesafe.play" %% "play-filters-helpers" % "2.9.0"
+      "com.typesafe.play" %% "play"                 % V.play2,
+      "com.typesafe.play" %% "play-filters-helpers" % V.play2
     ),
     publish / skip := false
   )
@@ -83,8 +81,8 @@ lazy val hepekPlay3_0 = (project in file("hepek-play-3_0"))
   .settings(
     name := "hepek-play-3_0",
     libraryDependencies ++= Seq(
-      "org.playframework" %% "play"                 % "3.0.1",
-      "org.playframework" %% "play-filters-helpers" % "3.0.1"
+      "org.playframework" %% "play"                 % V.play3,
+      "org.playframework" %% "play-filters-helpers" % V.play3
     ),
     publish / skip := false
   )
@@ -95,7 +93,7 @@ lazy val hepekHttp4s = (project in file("hepek-http4s"))
     name           := "hepek-http4s",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "org.http4s" %% "http4s-core" % "0.23.25"
+      "org.http4s" %% "http4s-core" % V.http4s
     )
   )
   .dependsOn(hepekComponents.jvm)
@@ -105,7 +103,7 @@ lazy val hepekZIO = (project in file("hepek-zio"))
     name           := "hepek-zio",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "dev.zio" %% "zio-http" % "3.0.0-RC1"
+      "dev.zio" %% "zio-http" % V.zioHttp
     )
   )
   .dependsOn(hepekComponents.jvm)
