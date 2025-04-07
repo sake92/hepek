@@ -8,8 +8,10 @@ import ba.sake.hepek.theme.bootstrap5.TocSettings
 import ba.sake.hepek.theme.bootstrap5.TocType
 import utils.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
+import utils.Imports.Bundle.*
+import Tags.*
 import ba.sake.hepek.html.ComponentSettings
+import scalatags.Text
 
 trait HepekDocsAbstractPage
     extends HepekBootstrap5BlogPage
@@ -52,6 +54,8 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies with FADe
     Dependencies.default
       .withDeps(Dependency("dist/yeti/bootstrap.min.css", bootstrapSettings.version, "bootswatch"))
   )
+
+  override def bodyAttrs = Seq(cls := "match-braces")
 
   override def scriptURLs = super.scriptURLs
     .appended(files.scripts.`main.js`.ref)
