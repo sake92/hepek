@@ -13,8 +13,7 @@ final class BulmaStaticBundle private (
     val Navbar: BulmaNavbarComponent,
     val Panel: BulmaPanelComponents,
     val Classes: BulmaClassesBundle
-) extends StaticBundle
-    with BulmaUtilComponents {
+) extends StaticBundle {
 
   override type Page = BulmaPage
 

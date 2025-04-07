@@ -11,8 +11,7 @@ final class PlainBundle private (
     val Navbar: PlainNavbarComponents,
     val Panel: PlainPanelComponents,
     val Classes: PlainClassesBundle
-) extends Bundle
-    with PlainUtilComponents {
+) extends Bundle {
 
   override type Page = PlainPage
 

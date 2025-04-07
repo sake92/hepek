@@ -13,8 +13,7 @@ final class BootstrapStaticBundle private (
     val Navbar: BootstrapNavbarComponents,
     val Panel: BootstrapPanelComponents, // TODO replace with cards..
     val Classes: BootstrapClassesBundle
-) extends StaticBundle
-    with BootstrapUtilComponents {
+) extends StaticBundle {
 
   override type Page = BootstrapPage
 

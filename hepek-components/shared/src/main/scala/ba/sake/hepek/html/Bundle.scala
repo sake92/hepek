@@ -4,7 +4,8 @@ import ba.sake.hepek.html.component.*
 import ba.sake.hepek.html.component.classes.ClassesBundle
 
 trait Bundle extends HepekAliases {
-  self: UtilComponents =>
+
+  type Page <: HtmlPage
 
   def Form: FormComponents
   def Grid: GridComponents
@@ -13,5 +14,4 @@ trait Bundle extends HepekAliases {
   def Panel: PanelComponents
   def Classes: ClassesBundle
 
-  type Page <: HtmlPage
 }

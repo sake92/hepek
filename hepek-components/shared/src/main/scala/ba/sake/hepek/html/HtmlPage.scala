@@ -4,11 +4,21 @@ package html
 
 import ba.sake.hepek.utils.MimeTypes
 import ba.sake.hepek.html.pwa.WebAppManifest
-import ba.sake.hepek.scalatags.all.{html => htmlTag, _}
+import ba.sake.hepek.markdown.*
+import ba.sake.hepek.scalatags.all.{html as htmlTag, *}
 import ba.sake.hepek.scalatags.tags2.style as styleTag
 
 trait HtmlPage extends PageDependencies {
-  private val property = attr("property")
+
+  // "".md syntax support
+  def markdownHandler: MarkdownHandler   = DefaultMarkdownHandler()
+  def markdownSettings: MarkdownSettings = MarkdownSettings()
+  extension (str: String)
+    def md: Frag = markdownHandler.render(
+      str,
+      suppressHTML = markdownSettings.suppressHTML,
+      escapeHTML = markdownSettings.escapeHTML
+    )
 
   def siteSettings: SiteSettings = SiteSettings.default
 
@@ -50,7 +60,8 @@ trait HtmlPage extends PageDependencies {
     )
   }
 
-  //
+  // <meta>
+  private val property = attr("property")
   def metaTags: Seq[Frag] = Seq(
     meta(charset            := metaSettings.charset),
     meta(attr("http-equiv") := "X-UA-Compatible", content        := metaSettings.xuaCompatible),

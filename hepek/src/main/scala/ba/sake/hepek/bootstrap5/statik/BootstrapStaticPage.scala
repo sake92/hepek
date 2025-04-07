@@ -3,7 +3,6 @@ package ba.sake.hepek.bootstrap5
 package statik
 
 import ba.sake.hepek.bootstrap5.component.BootstrapNavbarComponents
-import ba.sake.hepek.bootstrap5.component.classes.BootstrapClassesBundle.*
 import ba.sake.hepek.html.statik.StaticPage
 import ba.sake.hepek.scalatags.all.*
 

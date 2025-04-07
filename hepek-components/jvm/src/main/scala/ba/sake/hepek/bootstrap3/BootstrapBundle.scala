@@ -11,8 +11,7 @@ final class BootstrapBundle private (
     val Navbar: BootstrapNavbarComponents,
     val Panel: BootstrapPanelComponents,
     val Classes: BootstrapClassesBundle
-) extends Bundle
-    with BootstrapUtilComponents {
+) extends Bundle {
 
   override type Page = BootstrapPage
 

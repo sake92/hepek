@@ -11,16 +11,6 @@ import component.PureMenuComponents.*
 
 trait PureStaticPage extends StaticPage with PurePage {
 
-  // grid for layout with sidebar
-  private val grid = locally {
-    val Grid = PureGridComponents.default
-    Grid.withScreenRatios(
-      Grid.screenRatios.withLg(
-        Ratios.default.withHalf(1, 5).withThird(1, 1, 1)
-      )
-    )
-  }
-
   def withPureMenu: Boolean = true
   /*
   override def bodyContent =
