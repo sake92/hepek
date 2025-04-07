@@ -8,7 +8,6 @@ final class PrismSettings private (
     val pkg: String,
     val depsProvider: DependencyProvider,
     val theme: String,
-    val languages: List[String],
     val plugins: List[(String, Boolean)],
     val showInvisibles: Boolean,
     val showLanguage: Boolean,
@@ -27,12 +26,6 @@ final class PrismSettings private (
 
   def withTheme(theme: String): PrismSettings =
     copy(theme = theme)
-
-  def withLanguages(languages: List[String]): PrismSettings =
-    copy(languages = languages)
-
-  def withLanguages(languages: String*): PrismSettings =
-    withLanguages(languages.toList)
 
   def withPlugins(plugins: List[(String, Boolean)]): PrismSettings =
     copy(plugins = plugins)
@@ -57,7 +50,6 @@ final class PrismSettings private (
       pkg: String = pkg,
       depsProvider: DependencyProvider = depsProvider,
       theme: String = theme,
-      languages: List[String] = languages,
       plugins: List[(String, Boolean)] = plugins,
       showInvisibles: Boolean = showInvisibles,
       showLanguage: Boolean = showLanguage,
@@ -68,7 +60,6 @@ final class PrismSettings private (
     pkg,
     depsProvider,
     theme,
-    languages,
     plugins,
     showInvisibles,
     showLanguage,
@@ -86,7 +77,6 @@ object PrismSettings:
     pkg,
     DependencyProvider.cdnjs,
     PrismThemes.Okaidia,
-    PrismConsts.languages,
     PrismConsts.plugins,
     showInvisibles = false,
     showLanguage = true,

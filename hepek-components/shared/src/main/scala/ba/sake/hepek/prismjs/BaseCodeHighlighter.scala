@@ -28,6 +28,16 @@ private[hepek] abstract class BasePrismCodeHighlighter(
 
   def inline(text: String): Frag =
     highlightInline(lang, text)
+    
+  def diff(text: String): Frag =
+    highlight(
+      lang,
+      lineNumbers,
+      lineHighlight,
+      commandLine,
+      isMarkup,
+      PlainText(text)
+    )
 
   /** Fetches a file from url via AJAX. */
   def ajax(url: String): Frag =
@@ -77,7 +87,8 @@ object BasePrismCodeHighlighter {
       lineHighlight: Option[(String, Int)],
       commandLine: Option[CommandLineOptions],
       isMarkup: Boolean, // via unescaped-markup plugin
-      codeSource: CodeSource
+      codeSource: CodeSource,
+      isDiff: Boolean = false
   ): Frag = {
     // additional classes and attributes
     val classes = ListBuffer.empty[String]
@@ -106,7 +117,7 @@ object BasePrismCodeHighlighter {
       attrs += (data.start := lineNumsStart.toString)
     }
     // final result
-    val languageClass = s"language-$lang"
+    val languageClass = if isDiff then s"language-diff-$lang diff-highlight" else s"language-$lang"
     codeSource match {
       case PlainText(text) =>
         val content: Frag = if (isMarkup) {
