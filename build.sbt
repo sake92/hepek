@@ -125,8 +125,9 @@ lazy val hepekDocs = (project in file("hepek-docs"))
 lazy val hepekTests = (project in file("hepek-tests"))
   .settings(
     libraryDependencies ++= Seq(
-      "org.seleniumhq.selenium" % "selenium-java" % V.selenium % "test",
-      "org.scalameta"         %%% "munit"         % V.munit    % Test
+      "org.seleniumhq.selenium" % "selenium-java" % V.selenium % Test, 
+      "org.seleniumhq.selenium" % "htmlunit3-driver" % V.seleniumHtmlUnitDriver % Test,
+     "org.scalameta"         %%% "munit"         % V.munit    % Test
     )
   )
   .dependsOn(hepekSSG)

@@ -7,8 +7,8 @@ extension (res: Response.type) {
   def html(data: HtmlPage, status: Status = Status.Ok): Response =
     Response
       .text("<!DOCTYPE html>" + data.contents.render)
-      .withStatus(status)
-      .withHeader(Header.ContentType(MediaType.text.html).untyped)
+      .status(status)
+      .addHeader(Header.ContentType(MediaType.text.html).untyped)
 }
 
 /* RC4

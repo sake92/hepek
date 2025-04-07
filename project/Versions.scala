@@ -6,7 +6,6 @@ object V {
   val flexmark      = "0.64.8"
   val jsoup         = "1.19.1"
   val openHtmlToPdf = "1.0.10"
-  val graalJs = "24.2.0"
   
   // no play-filters-helpers published for 2.9.7 yet
   val play2 = "2.9.6"
@@ -17,5 +16,6 @@ object V {
   val zioHttp = "3.2.0"
 
   val selenium = "4.31.0"
+  val seleniumHtmlUnitDriver = "4.30.0"
   val munit    = "1.0.2"
 }

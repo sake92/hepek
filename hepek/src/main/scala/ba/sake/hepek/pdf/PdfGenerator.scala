@@ -27,8 +27,6 @@ final case class Font(
   */
 final class PdfGenerator(driver: RemoteWebDriver) {
 
-  
-
   def generate(
       outputFile: File,
       targetFolder: String,

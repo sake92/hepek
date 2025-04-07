@@ -22,7 +22,7 @@ trait PureStaticPage extends StaticPage with PurePage {
   }
 
   def withPureMenu: Boolean = true
-/*
+  /*
   override def bodyContent =
     if (withPureMenu) {
       import grid.*

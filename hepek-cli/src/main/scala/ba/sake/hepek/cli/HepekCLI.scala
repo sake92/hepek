@@ -3,7 +3,7 @@ package ba.sake.hepek.cli
 import java.io.File
 import java.lang.reflect.Modifier
 import java.net.URLClassLoader
-import java.nio.file.{Paths, Path as JPath}
+import java.nio.file.{Path as JPath, Paths}
 import scala.jdk.CollectionConverters.*
 
 @main def HepekCliApp() =
@@ -13,39 +13,44 @@ class HepekCLI {
 
   private val destFolder = os.pwd / "hepek_output"
 
-  private val ModuleFieldName = "MODULE$"
-  private val RenderableFQN = "ba.sake.hepek.core.Renderable"
+  private val ModuleFieldName    = "MODULE$"
+  private val RenderableFQN      = "ba.sake.hepek.core.Renderable"
   private val MultiRenderableFQN = "ba.sake.hepek.core.MultiRenderable"
 
   def run(): Unit = {
     os.remove.all(destFolder)
-    
-    val fullClasspath = os.call(cmd = ("scala-cli", "compile", "--print-class-path", "."))
-      .out.text().split(File.pathSeparator).map(_.trim)
+
+    val fullClasspath = os
+      .call(cmd = ("scala-cli", "compile", "--print-class-path", "."))
+      .out
+      .text()
+      .split(File.pathSeparator)
+      .map(_.trim)
     val classloader = new URLClassLoader(fullClasspath.map(Paths.get(_).toUri.toURL))
 
     // collect only the user classes
-    val userClassFilesFolder = os.Path(fullClasspath.head) // first is always the user classes folder, I think :D
+    val userClassFilesFolder =
+      os.Path(fullClasspath.head) // first is always the user classes folder, I think :D
     val userClassFiles = if (os.exists(userClassFilesFolder)) {
       os.walk(userClassFilesFolder)
         .filter(x => os.isFile(x, followLinks = false) && x.ext == "class")
     } else Seq.empty
 
     // do rendering
-    val renderableClazz = classloader.loadClass(RenderableFQN)
+    val renderableClazz      = classloader.loadClass(RenderableFQN)
     val multiRenderableClazz = classloader.loadClass(MultiRenderableFQN)
     val userClassNames = userClassFiles
       .map(_.relativeTo(userClassFilesFolder))
       .map(
         _.toString
-          .dropRight(6) // remove ".class" suffix
+          .dropRight(6)                // remove ".class" suffix
           .replaceAll("\\\\|/", "\\.") // replace "\" and "/" with "."
       )
       .filter(_.startsWith("files.")) // only those in "files" package !!!
 
     userClassNames.foreach { className =>
-      val clazz = classloader.loadClass(className)
-      val mods = clazz.getModifiers
+      val clazz      = classloader.loadClass(className)
+      val mods       = clazz.getModifiers
       val fieldNames = clazz.getDeclaredFields.map(_.getName).toSeq
 
       val isScalaObject =
@@ -92,14 +97,17 @@ class HepekCLI {
   private def isSuperclassOf(clazzParent: Class[_], clazz: Class[_]): Boolean =
     clazzParent.isAssignableFrom(clazz)
 
-  private def writeRenderableObject(className: String, destFolder: os.Path, relPath: JPath, content: String): Unit = {
+  private def writeRenderableObject(
+      className: String,
+      destFolder: os.Path,
+      relPath: JPath,
+      content: String
+  ): Unit =
     // only write files in the "files" package
     if relPath.startsWith("files") then {
       val finalPath = destFolder / os.RelPath(relPath.toString.drop(6)) // remove "files/" prefix
       println(s"Rendering '${className}' to '${finalPath}'")
       os.write.over(finalPath, content, createFolders = true)
     }
-  }
 
 }
-

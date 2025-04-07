@@ -46,30 +46,30 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
     frag(
       maybeNavbar.map(n => div(clsNoPrint)(n)),
       div(clsContainerFluid)(
-      div(cls := "row")(
-        div(cls := s"col-md-$w1 d-flex justify-content-end", Classes.clsNoPrint)(
-          renderSidebar
-        ),
-        div(data.bs.spy := "scroll", data.bs.target := "#tocScrollspy", cls := s"col-md-$w2")(
-          div(Classes.clsNoPrint)(
-            blogSettings.createdDate.map(cd =>
-              div(
-                span(cls := "glyphicon glyphicon-time"),
-                " " + cd.format(blogSettings.dateFormat)
+        div(cls := "row")(
+          div(cls := s"col-md-$w1 d-flex justify-content-end", Classes.clsNoPrint)(
+            renderSidebar
+          ),
+          div(data.bs.spy := "scroll", data.bs.target := "#tocScrollspy", cls := s"col-md-$w2")(
+            div(Classes.clsNoPrint)(
+              blogSettings.createdDate.map(cd =>
+                div(
+                  span(cls := "glyphicon glyphicon-time"),
+                  " " + cd.format(blogSettings.dateFormat)
+                )
+              ),
+              blogSettings.author.map(author =>
+                div(span(cls := "glyphicon glyphicon-user"), "  " + author)
               )
             ),
-            blogSettings.author.map(author =>
-              div(span(cls := "glyphicon glyphicon-user"), "  " + author)
-            )
+            pageHeader,
+            renderTocAndSections(blogSettings.sections)
           ),
-          pageHeader,
-          renderTocAndSections(blogSettings.sections)
-        ),
-        div(cls := s"col-md-$w3 hidden-sm hidden-xs", Classes.clsNoPrint)(
-          maybeScrollspy
+          div(cls := s"col-md-$w3 hidden-sm hidden-xs", Classes.clsNoPrint)(
+            maybeScrollspy
+          )
         )
       )
-    )
     )
   }
 
