@@ -10,7 +10,7 @@ object Index extends templates.HepekDocsStaticPage {
       .withDescription("Hepek docs")
 
   override def pageContent =
-    div(cls:="container")(
+    div(cls := "container")(
       maybeNavbar,
       row(
         s"""

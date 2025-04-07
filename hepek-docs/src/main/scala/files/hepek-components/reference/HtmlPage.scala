@@ -116,7 +116,7 @@ object HtmlPage extends HepekComponentsReferencePage {
       Note that none of the `<meta>`, `<title>`.. will be included, you have to all by yourself!
     """.md
   )
-  
+
   val manifestSection = Section(
     "Manifest",
     s"""
@@ -128,6 +128,5 @@ object HtmlPage extends HepekComponentsReferencePage {
       println(MyPage.manifest.toJson)
       ```
     """.md
-    
   )
 }

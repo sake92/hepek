@@ -104,10 +104,10 @@ class HtmlPageTest extends munit.FunSuite {
   }
 
   test("<body> should have page content") {
-    val document = Jsoup.parse(TestHtmlPage.contents.render)
+    val document  = Jsoup.parse(TestHtmlPage.contents.render)
     val pageElems = document.body().getElementsByTag("div").iterator().asScala.toList
     assert(
-        pageElems.exists(_.text() == "Hello world")
+      pageElems.exists(_.text() == "Hello world")
     )
   }
 }
