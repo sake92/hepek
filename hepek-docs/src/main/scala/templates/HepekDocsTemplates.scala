@@ -15,6 +15,8 @@ trait HepekDocsAbstractPage
     extends HepekBootstrap5BlogPage
     with HepekDocsStaticPage
     with PrismDependencies {
+  
+  override def pageHeader = None
 
   override def prismSettings = super.prismSettings.withTheme(PrismThemes.Okaidia)
 

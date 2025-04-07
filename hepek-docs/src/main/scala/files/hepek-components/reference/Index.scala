@@ -6,17 +6,18 @@ object Index extends HepekComponentsReferencePage {
 
   override def pageSettings =
     super.pageSettings
-      .withTitle("Hepek Components reference")
+      .withTitle("Hepek Components Reference")
       .withLabel("Reference")
-      .withDescription("Hepek Components reference")
+      .withDescription("Hepek Components Reference")
 
   override def blogSettings = super.blogSettings.withSections(
     Section(
-      "Reference guide",
+      "Reference Guide",
       frag(
         s"""
-        Nitty-gritty technical descriptions of how Hepek Components works.  
-        Detailed information about Hepek Components API.
+        Hepek Components have a concept of [Bundle](${BundleReference.ref}), 
+        which is a collection of framework-specific components like grid, form, navbar, etc.  
+        These components are interface based so you can easily swap one framework instead of other (e.g. from Bootstrap to Bulma).
 
       """.md
         // TODO dodat next / prev

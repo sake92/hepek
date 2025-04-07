@@ -37,8 +37,8 @@ object GhPagesDeployment extends HepekTutorialPage {
                   java-version: 11
 
               - name: Build
-                run: sbt hepek
-                # or ./mill site.hepek
+                run: ./mill site.hepek
+                # or sbt hepek
 
               - name: Deploy
                 uses: JamesIves/github-pages-deploy-action@v4

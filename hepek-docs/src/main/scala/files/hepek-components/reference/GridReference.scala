@@ -93,7 +93,7 @@ object GridReference extends HepekComponentsReferencePage {
       """),
       chl.scala("""
         val customRatios = Ratios()
-          .withSingle(1, 4, 1)
+          .withSingle(1, 4, 1) // 1:4:1 because you usually want some padding around
           .withHalf(5, 7)     // 5:7
           .withThird(4, 3, 5) // 4:3:5
 

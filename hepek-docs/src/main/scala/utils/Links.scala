@@ -6,7 +6,7 @@ object links {
   private val hepekComponentsUrl = s"$hepekGhUrl/tree/master/hepek-components/shared/src/main/scala"
 
   private val hepekExamplesUrl =
-    "https://github.com/sake92/hepek-examples/tree/master/src/main/scala"
+    "https://github.com/sake92/hepek-examples/tree/master/examples/src/main/scala"
 
   val StarterProjectURL = "https://github.com/sake92/hepek-starter"
 
@@ -24,12 +24,12 @@ object links {
   val BootstrapStaticPageUrl =
     s"$hepekSsgUrl/ba/sake/hepek/bootstrap5/statik/BootstrapStaticPage.scala"
   // wordpress
-  val WpExampleUrl = s"$hepekExamplesUrl/examples/multi/wordpress"
+  val WpExampleUrl = s"$hepekExamplesUrl/files/multi/wordpress"
 
   // prismJs
   val PrismCodeHighlightComponentsUrl =
     s"$hepekComponentsUrl/ba/sake/hepek/prismjs/PrismCodeHighlightComponents.scala"
-  val PrismJSExampleUrl = s"$hepekExamplesUrl/examples/prismjs/PrismJSExample.scala"
+  val PrismJSExampleUrl = s"$hepekExamplesUrl/files/prismjs/PrismJSExample.scala"
   // katex
   val KatexDependenciesUrl = s"$hepekComponentsUrl/ba/sake/hepek/katex/KatexDependencies.scala"
 

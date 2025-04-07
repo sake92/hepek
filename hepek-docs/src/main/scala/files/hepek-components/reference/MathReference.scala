@@ -15,23 +15,24 @@ object MathReference extends HepekComponentsReferencePage with KatexDependencies
     "Math support",
     frag(
       """
-        Hepek has support for KaTeX math library.  
+        Hepek has support for [KaTeX](https://katex.org/) math library.  
         KaTeX is using the LaTeX syntax, so it is good to familiarize yourself with it.  
         You need to extend `KatexDependencies` to import the CSS/JS stuff.
 
-        You can embed it inside Markdown snippets.  
-        Hepek is using the "acute accent mark" ("forward-tick"), `´` for inline math.  
+        ### Inline usage
+        Easiest way is to embed it inside Markdown snippets.  
+        Hepek is using the `´` marker for inline math (called "acute accent mark" or "forward-tick").  
         On Windows the shortcut is <kbd>AltGr</kbd>+<kbd>9</kbd>.
-
-        For block-level math double-dollar is used, `$$`.
-
+        
         Example: 
           <pre>´A \setminus B = {x | x \in A \land x \notin B}´</pre>  
         becomes:  
           ´A \setminus B = \\{x | x \\in A \land x \\notin B\\}´.
 
-        ---
-        Example (block-level): 
+        ### Block usage
+        For block-level formulas use `$$` (double-dollar).
+
+        Example: 
           <pre>$$A \setminus B = {x | x \in A \land x \notin B}$$</pre>  
         becomes:  
           $$A \setminus B = \\{x | x \\in A \land x \\notin B\\}$$

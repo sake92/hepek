@@ -20,8 +20,12 @@ object CodeHighlighter extends HepekComponentsReferencePage {
         Add its dependencies by extending `PrismDependencies`.  
 
         You can use its goodies by importing the `PrismCodeHighlightComponents` trait.  
-        > Pro tip: Extend this trait as `object chl extends PrismCodeHighlightComponents`
-        > and import `chl` in your page, so later you can tweak settings in `chl`.
+        It is recommended to make a helper in the `Imports` object so you can tweak it if needed:
+        ```scala
+        object Imports:
+          ...
+          val chl = PrismCodeHighlightComponents.default
+        ```
 
         Example:
       """.md,

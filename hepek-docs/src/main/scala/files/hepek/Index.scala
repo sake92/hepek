@@ -20,14 +20,45 @@ object Index extends HepekSsgDocsPage {
     "Hepek static site generator",
     frag(
       s"""
-        Writes Scala `object`s to files.  
-        Think about `object MyPage` as a file `my-page.html`.
-
-        Hepek contains lots of utilities for *rendering stuff*: 
-          blog support, themes, PDF rendering etc.  
+        Hepek SSG writes Scala `object`s to files.  
+        An `object MyPage` is written to a file `my-page.html`.  
         There is no special new markup/template language to learn, just plain old **Scala**.  
         `Ctrl` + `Space` and you get all the help you need.  
-        Use Scalatags, Markdown or **whatever syntax you prefer**.
+        
+        Of course, instead of stitching `String`s together you use:
+        - [Scalatags](https://com-lihaoyi.github.io/scalatags/) DSL for HTML
+        - Markdown for text
+        
+        ### Scalatags
+        Example:
+        ```scala
+        def pageContent = div(
+          h1("My Page"),
+          ul(
+            li("hello"),
+            li("world")
+          )
+        )
+        ```
+        With Scalatags:
+        - it is impossible to forget closing tags
+        - you can use for loops, collections and all goodies Scala provides
+        - reuse is trivial with helper `def`s
+        
+        
+        ### Markdown
+        
+        Example:
+        ```scala
+        def pageContent = div(
+          s\"\"\"
+            ## My Page
+            - hello
+            - world  
+          \"\"\".md
+        )
+        ```
+        This makes it easy to interpolate values inside markdown, rather that using error-prone YAML front matter..
         
         ---
         How is Hepek different from other SSGs?  

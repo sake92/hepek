@@ -32,12 +32,12 @@ object Dependencies extends HepekComponentsReferencePage {
         }
       """),
       s"""
-        Some dependencies are fetched from the web, via CDNs.  
-        But sometimes you need to inject some inline JS and CSS. 
-          Those have corresponding settings also.  
+        Some dependencies are fetched from the web via CDNs, or your server.  
+        But sometimes you need to inject some inline JS and CSS.
+        Those have corresponding settings also.  
         
-        You can override any of these to filter/add/change dependencies. :)  
-        E.g. `override def scriptURLs = super.scriptURLs ++ "http://whatever/jquery.min.js"`  
+        You can override any of these to filter/add/change dependencies.  
+        E.g. `override def scriptURLs = super.scriptURLs.appended("http://whatever/jquery.min.js")`  
         
         Last method, `def components` is used by framework dependencies.  
         E.g. if you want to include Katex, just extend the `KatexDependencies` trait.  
