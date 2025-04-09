@@ -60,6 +60,15 @@ object Index extends HepekSsgDocsPage {
         ```
         This makes it easy to interpolate values inside markdown, rather that using error-prone YAML front matter..
         
+        
+        ### Static build to the max
+        
+        #### Code snippets
+        The code snippets in markdown are rendered statically, via [Shiki](https://shiki.style/) nodejs library.  
+        No need for any JS libraries in the browser.  
+        > Note that you need to have nodejs installed.
+        
+        
         ---
         How is Hepek different from other SSGs?  
         There are no kilometers of HTML, emmet snippets, regex find-and-replace...  

@@ -14,7 +14,7 @@ object NodejsScriptExecutor {
   def execute(
       env: Environment,
       jsScript: String,
-      dependencies: Set[NpmDependency],
+      dependencies: Set[NpmDependency] = Set.empty,
       scriptName: String = "script.js"
   ): String = {
     environments += env.key -> env

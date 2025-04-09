@@ -4,7 +4,9 @@ import ba.sake.nodejs.script.executor.NodejsScriptExecutor.*
 
 class NodejsScriptExecutorSpec extends munit.FunSuite {
   test("Hello NodeJS") {
-    val res = executeFresh(
+    val env = Environment(os.pwd / "tmp/hepek/tests/nodejs-hello")
+    val res = execute(
+      env,
       """
         |console.log("Hello NodeJS!")
         |""".stripMargin
@@ -13,7 +15,9 @@ class NodejsScriptExecutorSpec extends munit.FunSuite {
   }
 //
   test("CommonJS module with deps (katex math highlighter)") {
-    val res = executeFresh(
+    val env = Environment(os.pwd / "tmp/hepek/tests/nodejs-katex")
+    val res = execute(
+      env,
       """
          const katex = require('katex');
          
@@ -29,7 +33,9 @@ class NodejsScriptExecutorSpec extends munit.FunSuite {
   }
 
   test("ES6 module with deps (shiki highlighter)") {
-    val res = executeFresh(
+    val env = Environment(os.pwd / "tmp/hepek/tests/nodejs-shiki")
+    val res = execute(
+      env,
       """
         import { codeToHtml } from 'shiki';
     
