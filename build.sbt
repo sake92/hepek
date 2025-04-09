@@ -63,7 +63,7 @@ lazy val hepekSSG = (project in file("hepek"))
       "org.scalameta"         %%% "munit"                        % V.munit % Test
     )
   )
-  .dependsOn(hepekComponents.jvm)
+  .dependsOn(hepekComponents.jvm, nodejsScriptExecutor)
 
 // scala3 only !
 lazy val hepekPlay2_9 = (project in file("hepek-play-2_9"))
@@ -115,6 +115,16 @@ lazy val hepekCLI = (project in file("hepek-cli"))
     libraryDependencies ++= Seq(
       "ba.sake"      % "hepek-core" % "0.2.0",
       "com.lihaoyi" %% "os-lib"     % "0.11.4"
+    )
+  )
+
+lazy val nodejsScriptExecutor = (project in file("nodejs-script-executor"))
+  .settings(
+    name           := "nodejs-script-executor",
+    publish / skip := false,
+    libraryDependencies ++= Seq(
+      "com.lihaoyi"   %% "os-lib" % "0.11.4",
+      "org.scalameta" %% "munit"  % V.munit % Test
     )
   )
 

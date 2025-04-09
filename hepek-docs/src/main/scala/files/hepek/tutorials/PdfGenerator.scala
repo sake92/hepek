@@ -25,8 +25,7 @@ object PdfGenerator extends HepekTutorialPage {
         Rendering your PDF is just a matter of calling `PdfGenerator.generate(file, targetFolder, pages)`.  
         Hepek must know about the chromedriver via `webdriver.chrome.driver` system variable.  
         Example app:
-      """.md,
-      chl.scala("""
+        ```scala
         object PdfGenApp {
           def main(args: Array[String]): Unit = {
             System.setProperty("webdriver.chrome.driver", "C:/selenium/chromedriver.exe")
@@ -35,8 +34,8 @@ object PdfGenerator extends HepekTutorialPage {
             PdfGenerator.generate(file, targetFolder, pages)
           }
         }
-      """),
-      """
+        ```
+        
         And then just run it!  
       """.md
     )

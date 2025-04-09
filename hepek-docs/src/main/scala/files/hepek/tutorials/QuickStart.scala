@@ -56,17 +56,23 @@ object QuickStart extends HepekTutorialPage {
       Section(
         "jwebserver",
         frag(
-          s"If using Java 18+, use the `jwebserver` tool:".md,
-          chl.bash.withPrompt("$")("jwebserver"),
-          "By default it will serve the site at [http://localhost:8000](http://localhost:8000)".md
+          s"""
+          If using Java 18+, use the `jwebserver` tool:
+          ```shell
+          $$> jwebserver
+          ```
+          By default it will serve the site at [http://localhost:8000](http://localhost:8000)
+          """.md
         )
       ),
       Section(
         "Browsersync",
         frag(
-          s"Install [Browsersync](${links.BrowsersyncUrl}) and then:".md,
-          chl.bash.withPrompt("$")("browser-sync"),
-          """
+          s"""
+          Install [Browsersync](${links.BrowsersyncUrl}) and then:
+          ```shell
+          $$> browser-sync
+          ```
           Browsersync will **automatically refresh page** in browser when it gets changed!  
           By default it will serve the site at [http://localhost:3000/](http://localhost:3000/)
           """.md

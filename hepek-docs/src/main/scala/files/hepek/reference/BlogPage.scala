@@ -51,8 +51,7 @@ object BlogPage extends HepekReferencePage {
         `Section`s are tree-like, they can contain other sections.  
         Every section has a name, content, and optionally child sections.  
         Code usually looks like this:
-      """.md,
-      chl.scala("""
+        ```scala
         package files
 
         object ExampleBlogPost extends MyBlogPostPage {
@@ -70,8 +69,8 @@ object BlogPage extends HepekReferencePage {
             )
           )
         }
-      """),
-      """
+        ```
+        
         You can even get a link to a section!  
         `ExampleBlogPost.firstSection.ref` would return "example-blog-post.html#hello-world"
       """.md

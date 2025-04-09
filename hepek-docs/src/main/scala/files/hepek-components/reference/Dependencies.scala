@@ -19,8 +19,8 @@ object Dependencies extends HepekComponentsReferencePage {
         Every framework has its dependencies, JS and/or CSS.  
         The `HtmlPage` extends [`PageDependencies`](${links.PageDependenciesUrl}) 
         so you can add/remove deps as you like:
-      """.md,
-      chl.scala("""
+      
+        ```scala
         trait PageDependencies {
           def styleURLs: List[String]    = List.empty
           def stylesInline: List[String] = List.empty
@@ -30,8 +30,8 @@ object Dependencies extends HepekComponentsReferencePage {
 
           def components: List[(BaseComponentSettings, ComponentDependencies)] = List.empty
         }
-      """),
-      s"""
+        ```
+        
         Some dependencies are fetched from the web via CDNs, or your server.  
         But sometimes you need to inject some inline JS and CSS.
         Those have corresponding settings also.  

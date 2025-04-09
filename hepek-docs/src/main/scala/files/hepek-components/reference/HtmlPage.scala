@@ -47,8 +47,9 @@ object HtmlPage extends HepekComponentsReferencePage {
         For basic site settings you override `def siteSettings`. It has the following fields:
       """.md,
       renderClassProps(siteSettingsProps),
-      "`SiteSettings` are usually defined in a common trait, for example:".md,
-      chl.scala("""
+      """
+         `SiteSettings` are usually defined in a common trait, for example:
+       ```scala
         package utils
 
         import Imports.Bundle.*
@@ -58,15 +59,15 @@ object HtmlPage extends HepekComponentsReferencePage {
             .withName("example.com")
             .withFaviconNormal("favicon.jpg")
         }
-      """),
-      """
+        ```
         ---
         Per-page settings are in the `def pageSettings`.  
         `PageSettings` has the following fields:
       """.md,
       renderClassProps(pageSettingsProps),
-      "Example of page definition:",
-      chl.scala("""
+      """
+         Example of page definition:
+        ```scala
         package files
         import utils.*
         
@@ -76,7 +77,8 @@ object HtmlPage extends HepekComponentsReferencePage {
               .withTitle("Welcome!")
               .withDescription("My cool site")
         }
-      """)
+        ```
+      """.md
     )
   )
 

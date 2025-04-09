@@ -28,14 +28,16 @@ object GridReference extends HepekComponentsReferencePage {
         
         Also, it's easy to forget that sum of columns in a Bootstrap row must be 12, for example.  
         A buggy example:
-      """.md,
-      chl.markup("""
+        
+        ```html
         <div class="row">
           <div class="col-sm-6"></div>
           <div class="col-sm-7"></div>
         </div>
-      """),
-      "This won't yield wanted result, it will always stack the divs...".md
+        ```
+      
+      This won't yield wanted result, it will always stack the divs...
+      """.md
     )
   )
 
@@ -51,8 +53,8 @@ object GridReference extends HepekComponentsReferencePage {
         By default, columns have the same/proportional width, as expected.  
         You just need to import the `Grid` from your favorite `Bundle`.  
         So, in a nutshell, these will compile and work as expected:
-      """.md,
-      chl.scala("""
+        
+        ```scala
         import utils.Bundle.*, Grid.*
 
         row(div(), p(), "text"), // normal HTML
@@ -65,9 +67,10 @@ object GridReference extends HepekComponentsReferencePage {
           third(...),
           third(...)
         )
-      """),
-      md("These won't:"),
-      chl.scala("""
+        ```
+        
+        These won't:
+        ```scala
         row(
           half(...),
           half(...),
@@ -77,7 +80,8 @@ object GridReference extends HepekComponentsReferencePage {
           third(...),
           third(...) // missing one third, compile error!
         )
-      """)
+        ```
+      """.md
     ),
     List(hepekGridConfigSection)
   )
@@ -85,13 +89,13 @@ object GridReference extends HepekComponentsReferencePage {
   def hepekGridConfigSection = Section(
     "Configuration",
     frag(
-      md("""
+      """
         Halves and thirds use the `screenRatios` configuration. 
         You can configure each screen size separately: 
           `lg`, `md`, `sm` and `xs`.  
         Example:
-      """),
-      chl.scala("""
+        
+        ```scala
         val customRatios = Ratios()
           .withSingle(1, 4, 1) // 1:4:1 because you usually want some padding around
           .withHalf(5, 7)     // 5:7
@@ -107,8 +111,8 @@ object GridReference extends HepekComponentsReferencePage {
 
         import customGrid.*
         row(half("left"), half(right)) // will be 5:7
-      """),
-      s"""
+        ```
+        
         These are pretty self-explanatory. For large screens, halves have 5:7 ratio.  
         So, first `half` will get `col-lg-5` class, and second `half` will get `col-lg-7` class (when using BS 5).  
         Same pattern follows for thirds etc.

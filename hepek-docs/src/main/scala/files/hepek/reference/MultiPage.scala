@@ -24,8 +24,7 @@ object MultiPage extends HepekReferencePage {
         We'd like to render **multiple files** based on *one template*.  
 
         Here's a simple example:
-      """.md,
-      chl.scala("""
+        ```scala
         package files
         import java.nio.file.Paths
         import ba.sake.hepek.path.ScalaMultiRenderable
@@ -38,13 +37,13 @@ object MultiPage extends HepekReferencePage {
         
         case class MyPage(num: Int) extends StaticPage {
           override def relPath =
-            Paths.get(s"files/pages/page-$num.html")
+            Paths.get(s"files/pages/page-$$num.html")
         
           override def pageContent =
-            div(s"This is page number $num")
+            div(s"This is page number $$num")
         }
-      """),
-      s"""
+        ```
+        
         This will render 3 pages with paths `pages/page-1.html`, `pages/page-2.html` and `pages/page-3.html`
         with their corresponding contents.
 

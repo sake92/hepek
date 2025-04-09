@@ -22,15 +22,15 @@ object StaticBundle extends HepekReferencePage {
         Recommended usage is to create a `Bundle` object from one of the predefined bundles.  
         Then you `import utils.Bundle._` in every other page/template you make.  
         Customize it as needed.
-      """.md,
-      chl.scala("""
+        
+        ```scala
         package utils
 
         import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
 
         val Bundle = BootstrapStaticBundle.default
-      """),
-      """
+        ```
+        
         ---
         The `StaticBundle` contains these utilities:
           - `StaticPage`, base trait you need to extend

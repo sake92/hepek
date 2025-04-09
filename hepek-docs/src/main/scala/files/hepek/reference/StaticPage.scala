@@ -31,8 +31,10 @@ object StaticPage extends HepekReferencePage {
         For basic settings you can override `def staticSiteSettings`. It has the following fields:
       """.md,
       renderClassProps(staticSiteSettingsProps),
-      "You usually define it in a common trait, for example:".md,
-      chl.scala("""
+      """
+        You usually define it in a common trait, for example:
+
+        ```scala
         package utils
         import Bundle.*
 
@@ -40,9 +42,10 @@ object StaticPage extends HepekReferencePage {
           override def staticSiteSettings = super.staticSiteSettings
             .withIndexPage(files.Index)
         }
-      """),
-      "Example of a page definition:",
-      chl.scala("""
+        ```
+        
+        Example of a page definition:
+        ```scala
         package files
         import utils.*
         import Bundle.*. Tags.*
@@ -50,8 +53,8 @@ object StaticPage extends HepekReferencePage {
         object Index extends MyStaticPageTemplate {
           override def pageContent = div("content here")
         }
-      """),
-      """
+        ```
+      
         ---
         You can get a relative link to `Index` page with the `ref` method.  
         E.g. if you have another page in `files.posts` package,

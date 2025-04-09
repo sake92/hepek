@@ -17,8 +17,7 @@ object GhPagesDeployment extends HepekTutorialPage {
     frag(
       raw"""
       Add `.github\workflows\ghpages.yml` to your repo:
-      """.md,
-      chl.yaml("""
+      ```yaml
         name: Deploy GhPages
         on:
           push:
@@ -44,7 +43,7 @@ object GhPagesDeployment extends HepekTutorialPage {
                 uses: JamesIves/github-pages-deploy-action@v4
                 with:
                   folder: site/hepek_output
-    """)
+    """.md
     )
   )
 }

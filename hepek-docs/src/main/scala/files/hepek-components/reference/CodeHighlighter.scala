@@ -28,8 +28,7 @@ object CodeHighlighter extends HepekComponentsReferencePage {
         ```
 
         Example:
-      """.md,
-      chl.scala(s"""
+        ```scala
         chl.java(""\"
           public class HelloWorld {
               public static void main(String[] args) {
@@ -37,16 +36,17 @@ object CodeHighlighter extends HepekComponentsReferencePage {
               }
           }
         ""\")
-      """),
-      "gets rendered as:".md,
-      chl.java("""
+        ```
+        
+        gets rendered as:
+        ```java
         public class HelloWorld {
             public static void main(String[] args) {
                 System.out.println("Hello, Java!"); // a comment
             }
         }
-      """),
-      s"""
+        ```
+      
         ---
         There is support for all PrismJS languages.  
         Also, most of PrismJS features are expressed as methods:

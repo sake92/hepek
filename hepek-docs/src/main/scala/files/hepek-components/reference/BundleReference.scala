@@ -19,16 +19,15 @@ object BundleReference extends HepekComponentsReferencePage {
         Currently supported frameworks are Bootstrap5, Bootstrap3, Bulma.
 
         It is recommended to create an `Imports` object which contains one of the predefined bundles:
-      """.md,
-      chl.scala("""
+        ```scala
         package utils
 
         import ba.sake.hepek.bootstrap5.BootstrapBundle
         
         object Imports:
           val Bundle = BootstrapBundle.default
-      """),
-      """
+        ```
+      
         Then you `import utils.Imports.Bundle.*` in every other page/template you make.  
         This provides you with flexibility of changing your framework with just one line.
 
