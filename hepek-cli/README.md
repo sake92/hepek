@@ -5,7 +5,7 @@ This is a small package that enables you to run Hepek SSG via scala-cli.
 
 Create a file `runHepekCLI.scala` with the following content:
 ```scala
-//> using dep ba.sake::hepek-cli:0.30.0
+//> using dep ba.sake::hepek-cli:0.32.0
 import ba.sake.hepek.cli.HepekCLI
 
 @main def runHepekCLI() =

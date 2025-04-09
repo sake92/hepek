@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## 0.30.2
+## 0.32.0
 - SSR support for code snippets via Shiki (calling npm/NodeJS processes..)
 - SSR support for math snippets via KaTeX (calling npm/NodeJS processes..)
 
