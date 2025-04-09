@@ -4,15 +4,17 @@ import ba.sake.hepek.html.*
 
 trait KatexDependencies extends PageDependencies {
 
-  def katexSettings: KatexSettings = KatexSettings("0.10.2", "KaTeX")
+  def katexSettings: KatexSettings =
+    KatexSettings("0.16.21", "KaTeX").withDepsProvider(DependencyProvider.unpkg)
 
+  // https://unpkg.com/katex@0.16.21/dist/katex.min.css
   def katexDependencies =
     ComponentDependencies.default
       .withJsDependencies(
         Dependencies.default
           .withDeps(
-            Dependency("katex.min.js", katexSettings.version, katexSettings.pkg),
-            Dependency("contrib/auto-render.min.js", katexSettings.version, katexSettings.pkg)
+            Dependency("dist/katex.min.js", katexSettings.version, katexSettings.pkg),
+            Dependency("dist/contrib/auto-render.min.js", katexSettings.version, katexSettings.pkg)
           )
           .withInlines(
             s"""
@@ -30,7 +32,7 @@ trait KatexDependencies extends PageDependencies {
       )
       .withCssDependencies(
         Dependencies.default
-          .withDeps(Dependency("katex.min.css", katexSettings.version, katexSettings.pkg))
+          .withDeps(Dependency("dist/katex.min.css", katexSettings.version, katexSettings.pkg))
       )
 
   override def components =

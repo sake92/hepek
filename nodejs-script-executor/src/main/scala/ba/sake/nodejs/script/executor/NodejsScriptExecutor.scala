@@ -11,6 +11,17 @@ object NodejsScriptExecutor {
 
   private var installedDepsCache = Map[String, Set[NpmDependency]]()
 
+  /** @param env
+    *   execution environment, a nodejs project folder/"sandbox"...
+    * @param jsScript
+    *   code to execute
+    * @param dependencies
+    *   npm dependencies to install
+    * @param scriptName
+    *   name of the script file to create
+    * @return
+    *   stdout of the script
+    */
   def execute(
       env: Environment,
       jsScript: String,

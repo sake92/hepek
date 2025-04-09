@@ -7,20 +7,19 @@ import utils.Imports.Bundle.*, Tags.*
 object CodeHighlighter extends HepekComponentsReferencePage {
 
   override def pageSettings =
-    super.pageSettings.withTitle("Code highlighter")
+    super.pageSettings.withTitle("PrismJS Code Highlighter")
 
   override def blogSettings =
     super.blogSettings.withSections(codeHighlighterSection)
 
   def codeHighlighterSection = Section(
-    "Code highlighter",
+    "PrismJS Code Highlighter",
     frag(
       s"""
-        Hepek has support for the awesome PrismJS code highlighter.  
-        Add its dependencies by extending `PrismDependencies`.  
+        Hepek has support for PrismJS code highlighter.  
+        You need to add the dependencies by extending `PrismDependencies` (or manually).  
 
-        You can use its goodies by importing the `PrismCodeHighlightComponents` trait.  
-        It is recommended to make a helper in the `Imports` object so you can tweak it if needed:
+        You can use it via `PrismCodeHighlightComponents` object:
         ```scala
         object Imports:
           ...
