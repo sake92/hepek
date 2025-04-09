@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## 0.30.2
+- SSR support for code snippets via Shiki (calling npm/NodeJS processes..)
+- SSR support for math snippets via KaTeX (calling npm/NodeJS processes..)
+
 ## 0.30.0
 - add scala-cli support
 
