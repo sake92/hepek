@@ -7,8 +7,8 @@ trait JQueryDependencies extends PageDependencies {
   def jQuerySettings: ComponentSettings =
     ComponentSettings("3.6.0", "jquery")
 
-  def jQueryDependencies = ComponentDependencies.default.withJsDependencies(
-    Dependencies.default.withDeps(
+  def jQueryDependencies = ComponentDependencies.empty.withJsDependencies(
+    Dependencies.empty.withDeps(
       Dependency(
         "jquery.min.js",
         jQuerySettings.version,

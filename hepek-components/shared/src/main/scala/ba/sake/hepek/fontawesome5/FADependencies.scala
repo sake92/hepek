@@ -8,14 +8,14 @@ trait FADependencies extends PageDependencies {
     ComponentSettings("5.11.2", "font-awesome")
 
   def faDependencies: ComponentDependencies =
-    ComponentDependencies.default
+    ComponentDependencies.empty
       .withJsDependencies(
-        Dependencies.default.withDeps(
+        Dependencies.empty.withDeps(
           Dependency("js/all.js", faSettings.version, faSettings.pkg)
         )
       )
       .withCssDependencies(
-        Dependencies.default.withDeps(
+        Dependencies.empty.withDeps(
           Dependency("css/all.css", faSettings.version, faSettings.pkg)
         )
       )

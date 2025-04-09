@@ -7,7 +7,7 @@ import ba.sake.hepek.katex.KatexDependencies
 object Index extends HepekSsgDocsPage with KatexDependencies {
 
   override def katexDependencies: ComponentDependencies =
-    super.katexDependencies.withJsDependencies(Dependencies.default)
+    super.katexDependencies.withJsDependencies(Dependencies.empty)
 
   override def pageSettings =
     super.pageSettings
@@ -104,6 +104,7 @@ object Index extends HepekSsgDocsPage with KatexDependencies {
     
     ```
     
+    > Note that you need to have nodejs installed.
     > Note that you need to add the KaTeX CSS!
     """.md
   )

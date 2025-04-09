@@ -10,8 +10,8 @@ trait MermaidDependencies extends PageDependencies {
   def mermaidSettings: ComponentSettings =
     ComponentSettings("8.4.4", "mermaid")
 
-  def mermaidDependencies = ComponentDependencies.default.withJsDependencies(
-    Dependencies.default.withDeps(
+  def mermaidDependencies = ComponentDependencies.empty.withJsDependencies(
+    Dependencies.empty.withDeps(
       Dependency("mermaid.min.js", mermaidSettings.version, mermaidSettings.pkg)
     )
   )

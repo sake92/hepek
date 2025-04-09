@@ -11,8 +11,8 @@ trait HtmxDependencies extends PageDependencies {
     ComponentSettings("1.9.10", "htmx.org").withDepsProvider(DependencyProvider.unpkg)
 
   def htmxDependencies: ComponentDependencies =
-    ComponentDependencies.default.withJsDependencies(
-      Dependencies.default.withDeps(
+    ComponentDependencies.empty.withJsDependencies(
+      Dependencies.empty.withDeps(
         Dependency("htmx.min.js", htmxSettings.version, htmxSettings.pkg).withBaseFolder("dist/")
       )
     )

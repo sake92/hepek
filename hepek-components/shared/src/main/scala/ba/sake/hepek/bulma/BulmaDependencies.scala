@@ -8,8 +8,8 @@ trait BulmaDependencies extends PageDependencies {
   def bulmaSettings: ComponentSettings =
     ComponentSettings("0.8.2", bulmaFilename)
 
-  def bulmaDependencies = ComponentDependencies.default.withCssDependencies(
-    Dependencies.default.withDeps(
+  def bulmaDependencies = ComponentDependencies.empty.withCssDependencies(
+    Dependencies.empty.withDeps(
       Dependency(s"css/$bulmaFilename.min.css", bulmaSettings.version, bulmaSettings.pkg)
     )
   )

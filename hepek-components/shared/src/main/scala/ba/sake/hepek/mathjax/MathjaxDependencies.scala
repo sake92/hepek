@@ -8,8 +8,8 @@ trait MathjaxDependencies extends PageDependencies {
   def mathjaxSettings: ComponentSettings =
     ComponentSettings("2.7.2", "mathjax")
 
-  def mathjaxDependencies = ComponentDependencies.default.withJsDependencies(
-    Dependencies.default.withDeps(
+  def mathjaxDependencies = ComponentDependencies.empty.withJsDependencies(
+    Dependencies.empty.withDeps(
       Dependency(
         "MathJax.js",
         mathjaxSettings.version,

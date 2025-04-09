@@ -9,9 +9,9 @@ trait KatexDependencies extends PageDependencies {
 
   // https://unpkg.com/katex@0.16.21/dist/katex.min.css
   def katexDependencies =
-    ComponentDependencies.default
+    ComponentDependencies.empty
       .withJsDependencies(
-        Dependencies.default
+        Dependencies.empty
           .withDeps(
             Dependency("dist/katex.min.js", katexSettings.version, katexSettings.pkg),
             Dependency("dist/contrib/auto-render.min.js", katexSettings.version, katexSettings.pkg)
@@ -31,7 +31,7 @@ trait KatexDependencies extends PageDependencies {
           )
       )
       .withCssDependencies(
-        Dependencies.default
+        Dependencies.empty
           .withDeps(Dependency("dist/katex.min.css", katexSettings.version, katexSettings.pkg))
       )
 

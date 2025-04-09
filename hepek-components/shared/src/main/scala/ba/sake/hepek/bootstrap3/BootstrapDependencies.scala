@@ -9,9 +9,9 @@ trait BootstrapDependencies extends JQueryDependencies {
     ComponentSettings("3.4.1", "bootstrap").withDepsProvider(DependencyProvider.unpkg)
 
   def bootstrapDependencies: ComponentDependencies =
-    ComponentDependencies.default
+    ComponentDependencies.empty
       .withJsDependencies(
-        Dependencies.default.withDeps(
+        Dependencies.empty.withDeps(
           Dependency(
             "js/bootstrap.min.js",
             bootstrapSettings.version,
@@ -20,7 +20,7 @@ trait BootstrapDependencies extends JQueryDependencies {
         )
       )
       .withCssDependencies(
-        Dependencies.default.withDeps(
+        Dependencies.empty.withDeps(
           Dependency(
             "css/bootstrap.min.css",
             bootstrapSettings.version,

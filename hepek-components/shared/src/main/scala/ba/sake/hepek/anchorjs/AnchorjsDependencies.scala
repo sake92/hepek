@@ -11,8 +11,8 @@ trait AnchorjsDependencies extends PageDependencies {
     ComponentSettings("4.1.0", "anchor-js")
 
   def anchorjsDependencies: ComponentDependencies =
-    ComponentDependencies.default.withJsDependencies(
-      Dependencies.default.withDeps(
+    ComponentDependencies.empty.withJsDependencies(
+      Dependencies.empty.withDeps(
         Dependency("anchor.min.js", anchorjsSettings.version, anchorjsSettings.pkg)
       )
     )

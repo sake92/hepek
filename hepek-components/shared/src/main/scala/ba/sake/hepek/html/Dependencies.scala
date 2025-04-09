@@ -34,4 +34,4 @@ final class Dependencies private (
 }
 
 object Dependencies:
-  val default: Dependencies = new Dependencies(List.empty, List.empty, List.empty)
+  val empty: Dependencies = new Dependencies(List.empty, List.empty, List.empty)
