@@ -61,16 +61,17 @@ object Index extends HepekSsgDocsPage {
         This makes it easy to interpolate values inside markdown, rather that using error-prone YAML front matter..
         
         
-        ### Static build to the max
+        ### Static to the max
         
         #### Code snippets
         The code snippets in markdown are rendered statically, via [Shiki](https://shiki.style/) nodejs library.  
         No need for any JS libraries in the browser.  
         > Note that you need to have nodejs installed.
         
+        #### Math snippets
         
-        ---
-        How is Hepek different from other SSGs?  
+        
+        ### Why Hepek?
         There are no kilometers of HTML, emmet snippets, regex find-and-replace...  
         Everything is nice and tidy with functions, for loops, data abstractions, markdown etc.  
 
@@ -78,7 +79,7 @@ object Index extends HepekSsgDocsPage {
           to construct table of contents, RSS feed, `sitemap.xml`, PDFs etc.  
 
         Sick of rewriting relative urls all over the place, like `my/folder/../styles.....`?  
-        Me too, the year is ${currYear.getYear()}, we can do better!  
+        Me too, the year is ${currYear.getYear}, we can do better!  
         Just use `.ref` method and you're done!  
         Hepek SSG **figures out relative path for you**!
       """.md

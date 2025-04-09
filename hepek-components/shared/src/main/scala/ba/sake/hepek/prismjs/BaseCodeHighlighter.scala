@@ -28,7 +28,7 @@ private[hepek] abstract class BasePrismCodeHighlighter(
 
   def inline(text: String): Frag =
     highlightInline(lang, text)
-    
+
   def diff(text: String): Frag =
     highlight(
       lang,

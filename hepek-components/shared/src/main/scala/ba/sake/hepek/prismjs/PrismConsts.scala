@@ -18,11 +18,11 @@ object PrismConsts {
     "previewers"           -> true,  // preview CSS stuff live (colors, gradients..)
     "toolbar"              -> true,  // needed for copy plugin and show-language etc
     "unescaped-markup"     -> true,  // handy for HTML markup
-    "copy-to-clipboard" -> false, // button for copying code
-    "keep-markup"       -> false, // keep markup in code
-    "match-braces"      -> true,  // highlight matching braces
-    "show-language" -> false, // show language name in the top right corner
-    "treeview"      -> true   // treeview for tree-like output
+    "copy-to-clipboard"    -> false, // button for copying code
+    "keep-markup"          -> false, // keep markup in code
+    "match-braces"         -> true,  // highlight matching braces
+    "show-language"        -> false, // show language name in the top right corner
+    "treeview"             -> true   // treeview for tree-like output
     // "wpd"                  -> true,   // WebPlatform Docs
     // "show-invisibles"      -> true,  // show invisible characters
   )

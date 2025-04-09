@@ -2,26 +2,18 @@ package ba.sake.hepek.markdown
 
 import java.util as ju
 import com.vladsch.flexmark.ast.FencedCodeBlock
-import com.vladsch.flexmark.html.HtmlRenderer
-import com.vladsch.flexmark.html.HtmlRenderer.HtmlRendererExtension
 import com.vladsch.flexmark.html.renderer.{
   DelegatingNodeRendererFactory,
   NodeRenderer,
   NodeRenderingHandler
 }
-import com.vladsch.flexmark.util.data.{DataHolder, MutableDataHolder}
-import ba.sake.nodejs.script.executor.NodejsScriptExecutor.*
+import com.vladsch.flexmark.util.data.DataHolder
+import ba.sake.nodejs.script.executor.NodejsScriptExecutor.{execute, Environment, NpmDependency}
 
-class NodejsShikiRendererExtension(themeName: String) extends HtmlRendererExtension {
+// TODO support ```math Katex ..... and maybe CodeBlock too with `$ MY_FORMULA_X_Y $`
+class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: String)
+    extends NodeRenderer {
 
-  override def rendererOptions(options: MutableDataHolder): Unit = {}
-
-  override def extend(htmlRendererBuilder: HtmlRenderer.Builder, rendererType: String): Unit =
-    htmlRendererBuilder.nodeRendererFactory(new NodejsShikiNodeRenderer.Factory(themeName))
-}
-
-class NodejsShikiNodeRenderer(private var options: DataHolder, themeName: String) extends NodeRenderer {
-  
   private val nodejsScriptExecEnvironment = Environment(os.pwd / "tmp/hepek/nodejs-shiki")
 
   override def getNodeRenderingHandlers: ju.Set[NodeRenderingHandler[_]] = {
@@ -59,9 +51,9 @@ class NodejsShikiNodeRenderer(private var options: DataHolder, themeName: String
 
 }
 
-object NodejsShikiNodeRenderer {
+object HepekStaticCodeNodeRenderer {
   class Factory(themeName: String) extends DelegatingNodeRendererFactory {
-    def apply(options: DataHolder) = new NodejsShikiNodeRenderer(options, themeName)
+    def apply(options: DataHolder) = new HepekStaticCodeNodeRenderer(options, themeName)
 
     override def getDelegates: ju.Set[Class[_]] = null
   }

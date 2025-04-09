@@ -13,12 +13,12 @@ trait PrismDependencies extends ClipboardjsDependencies {
         Dependency(s"plugins/$plugin/prism-$plugin.css", prismSettings.version, "prism")
       }
     val jsDeps = List(
-        Dependency(
-          s"prism.js",
-          prismSettings.version,
-          prismSettings.pkg
-        )
+      Dependency(
+        s"prism.js",
+        prismSettings.version,
+        prismSettings.pkg
       )
+    )
     val jsPluginDeps = prismSettings.plugins.map { case (plugin, _) =>
       Dependency(s"plugins/$plugin/prism-$plugin.min.js", prismSettings.version, "prism")
     }

@@ -6,10 +6,10 @@ import ba.sake.hepek.markdown.*
 import ba.sake.hepek.path.ClassPackageRelativePath
 
 trait StaticPage extends Renderable with ClassPackageRelativePath with HtmlPage {
-  
+
   def shikiSettings: ShikiSettings = ShikiSettings.default
 
-  override def markdownHandler: MarkdownHandler = NodejsShikiMarkdownHandler(shikiSettings.theme)
+  override def markdownHandler: MarkdownHandler = HepekStaticMarkdownHandler(shikiSettings.theme)
 
   def staticSiteSettings: StaticSiteSettings = StaticSiteSettings.default
 

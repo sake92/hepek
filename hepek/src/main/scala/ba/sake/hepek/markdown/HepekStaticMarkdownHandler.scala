@@ -1,6 +1,5 @@
 package ba.sake.hepek.markdown
 
-
 import java.util as ju
 import scala.jdk.CollectionConverters.*
 import scalatags.Text.all.*
@@ -13,7 +12,7 @@ import com.vladsch.flexmark.util.data.MutableDataSet
 import com.vladsch.flexmark.util.misc.Extension
 import ba.sake.hepek.utils.StringUtils
 
-private class NodejsShikiMarkdownHandler(themeName: String) extends MarkdownHandler {
+private class HepekStaticMarkdownHandler(themeName: String) extends MarkdownHandler {
 
   def render(str: String, suppressHTML: Boolean, escapeHTML: Boolean = false): Frag = {
     val options = new MutableDataSet()
@@ -22,7 +21,7 @@ private class NodejsShikiMarkdownHandler(themeName: String) extends MarkdownHand
       List(
         TablesExtension.create(),
         StrikethroughExtension.create(),
-        NodejsShikiRendererExtension(themeName) // Custom extension for Shiki code highlighting
+        HepekStaticCodeRendererExtension(themeName) // Custom extension for SSR
       ).asJava: ju.Collection[Extension]
     )
     options.set(HtmlRenderer.ESCAPE_HTML, escapeHTML)
@@ -36,6 +35,6 @@ private class NodejsShikiMarkdownHandler(themeName: String) extends MarkdownHand
   }
 }
 
-object NodejsShikiMarkdownHandler {
-  def apply(themeName: String): MarkdownHandler = new NodejsShikiMarkdownHandler(themeName)
+object HepekStaticMarkdownHandler {
+  def apply(themeName: String): MarkdownHandler = new HepekStaticMarkdownHandler(themeName)
 }

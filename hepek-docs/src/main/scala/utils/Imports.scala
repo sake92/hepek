@@ -13,7 +13,7 @@ object Imports {
     )
     b.withGrid(grid)
   }
-  
+
   val FA = ba.sake.hepek.fontawesome5.FA
 
   // class field/method description

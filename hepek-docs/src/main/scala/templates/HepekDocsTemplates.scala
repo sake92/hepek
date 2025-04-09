@@ -12,12 +12,10 @@ import Tags.*
 import ba.sake.hepek.html.ComponentSettings
 import scalatags.Text
 
-trait HepekDocsAbstractPage
-    extends HepekBootstrap5BlogPage
-    with HepekDocsStaticPage {
+trait HepekDocsAbstractPage extends HepekBootstrap5BlogPage with HepekDocsStaticPage {
 
   override def pageHeader = None
-  
+
   override def tocSettings =
     Some(TocSettings(tocType = TocType.Scrollspy(45)))
 
