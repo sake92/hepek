@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="hepek" /><meta name="theme-color" content="#000" /><meta name="mobile-web-app-capable" content="yes" /><meta property="og:title" content="hepek" /><meta name="twitter:card" content="summary_large_image" /><title>Grid - hepek</title><link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootswatch@5.3.2/dist/yeti/bootstrap.min.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-okaidia.min.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autolinker/prism-autolinker.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/command-line/prism-command-line.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/diff-highlight/prism-diff-highlight.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-highlight/prism-line-highlight.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/previewers/prism-previewers.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/toolbar/prism-toolbar.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/unescaped-markup/prism-unescaped-markup.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/match-braces/prism-match-braces.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/treeview/prism-treeview.css" /><link rel="stylesheet" href="../../../styles/main.css" /><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="hepek" /><meta name="theme-color" content="#000" /><meta name="mobile-web-app-capable" content="yes" /><meta property="og:title" content="hepek" /><meta name="twitter:card" content="summary_large_image" /><title>Grid - hepek</title><link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://unpkg.com/bootswatch@5.3.2/dist/yeti/bootstrap.min.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" /><link rel="stylesheet" href="../../../styles/main.css" /><style>
     nav#tocScrollspy {
       display: none;
     }
@@ -37,10 +37,11 @@ What if you just want to position an image to the right? Not so fast!<br />
 You need to mix in some inline HTML in your beautiful markdown and get a real mess...</p>
 <p>Also, it's easy to forget that sum of columns in a Bootstrap row must be 12, for example.<br />
 A buggy example:</p>
-<pre class="line-numbers" data-start="1"><code class="language-markup"><!--<div class="row">
-  <div class="col-sm-6"></div>
-  <div class="col-sm-7"></div>
-</div>--></code></pre><p>This won't yield wanted result, it will always stack the divs...</p>
+<pre class="shiki catppuccin-latte" style="background-color:#eff1f5;color:#4c4f69" tabindex="0"><code><span class="line"><span style="color:#179299">  &#x3C;</span><span style="color:#1E66F5">div</span><span style="color:#DF8E1D"> class</span><span style="color:#179299">=</span><span style="color:#40A02B">"row"</span><span style="color:#179299">></span></span>
+<span class="line"><span style="color:#179299">    &#x3C;</span><span style="color:#1E66F5">div</span><span style="color:#DF8E1D"> class</span><span style="color:#179299">=</span><span style="color:#40A02B">"col-sm-6"</span><span style="color:#179299">>&#x3C;/</span><span style="color:#1E66F5">div</span><span style="color:#179299">></span></span>
+<span class="line"><span style="color:#179299">    &#x3C;</span><span style="color:#1E66F5">div</span><span style="color:#DF8E1D"> class</span><span style="color:#179299">=</span><span style="color:#40A02B">"col-sm-7"</span><span style="color:#179299">>&#x3C;/</span><span style="color:#1E66F5">div</span><span style="color:#179299">></span></span>
+<span class="line"><span style="color:#179299">  &#x3C;/</span><span style="color:#1E66F5">div</span><span style="color:#179299">></span></span></code></pre>
+<p>This won't yield wanted result, it will always stack the divs...</p>
 </section><section id="hepek-grid"><h3>Hepek grid</h3><p>Hepek has the typesafe <code>row</code> abstraction, with these overloads:</p>
 <ul>
 <li>arbitrary HTML (Scalatags <code>Frag</code>s)</li>
@@ -50,51 +51,48 @@ A buggy example:</p>
 <p>By default, columns have the same/proportional width, as expected.<br />
 You just need to import the <code>Grid</code> from your favorite <code>Bundle</code>.<br />
 So, in a nutshell, these will compile and work as expected:</p>
-<pre class="line-numbers" data-start="1"><code class="language-scala">
-        import utils.Bundle.*, Grid.*
-
-        row(div(), p(), &quot;text&quot;), // normal HTML
-        row(
-          half( /* content */  ),
-          half(...)
-        ),
-        row(
-          third(...),
-          third(...),
-          third(...)
-        )
-      </code></pre><p>These won't:</p>
-<pre class="line-numbers" data-start="1"><code class="language-scala">
-        row(
-          half(...),
-          half(...),
-          half(...) // too many halves, compile error, yay!
-        ),
-        row(
-          third(...),
-          third(...) // missing one third, compile error!
-        )
-      </code></pre><section id="configuration"><h4>Configuration</h4><p>Halves and thirds use the <code>screenRatios</code> configuration.
+<pre class="shiki catppuccin-latte" style="background-color:#eff1f5;color:#4c4f69" tabindex="0"><code><span class="line"><span style="color:#8839EF">import</span><span style="color:#4C4F69"> utils</span><span style="color:#7C7F93">.</span><span style="color:#DF8E1D;font-style:italic">Bundle</span><span style="color:#7C7F93">.</span><span style="color:#4C4F69">*, </span><span style="color:#DF8E1D;font-style:italic">Grid</span><span style="color:#7C7F93">.</span><span style="color:#4C4F69">*</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#4C4F69">row(div(), p(), </span><span style="color:#40A02B">"text"</span><span style="color:#4C4F69">), </span><span style="color:#7C7F93;font-style:italic">// normal HTML</span></span>
+<span class="line"><span style="color:#4C4F69">row(</span></span>
+<span class="line"><span style="color:#4C4F69">  half( </span><span style="color:#7C7F93;font-style:italic">/* content */</span><span style="color:#4C4F69">  ),</span></span>
+<span class="line"><span style="color:#4C4F69">  half(...)</span></span>
+<span class="line"><span style="color:#4C4F69">),</span></span>
+<span class="line"><span style="color:#4C4F69">row(</span></span>
+<span class="line"><span style="color:#4C4F69">  third(...),</span></span>
+<span class="line"><span style="color:#4C4F69">  third(...),</span></span>
+<span class="line"><span style="color:#4C4F69">  third(...)</span></span>
+<span class="line"><span style="color:#4C4F69">)</span></span></code></pre>
+<p>These won't:</p>
+<pre class="shiki catppuccin-latte" style="background-color:#eff1f5;color:#4c4f69" tabindex="0"><code><span class="line"><span style="color:#4C4F69">row(</span></span>
+<span class="line"><span style="color:#4C4F69">  half(...),</span></span>
+<span class="line"><span style="color:#4C4F69">  half(...),</span></span>
+<span class="line"><span style="color:#4C4F69">  half(...) </span><span style="color:#7C7F93;font-style:italic">// too many halves, compile error, yay!</span></span>
+<span class="line"><span style="color:#4C4F69">),</span></span>
+<span class="line"><span style="color:#4C4F69">row(</span></span>
+<span class="line"><span style="color:#4C4F69">  third(...),</span></span>
+<span class="line"><span style="color:#4C4F69">  third(...) </span><span style="color:#7C7F93;font-style:italic">// missing one third, compile error!</span></span>
+<span class="line"><span style="color:#4C4F69">)</span></span></code></pre>
+<section id="configuration"><h4>Configuration</h4><p>Halves and thirds use the <code>screenRatios</code> configuration.
 You can configure each screen size separately:
 <code>lg</code>, <code>md</code>, <code>sm</code> and <code>xs</code>.<br />
 Example:</p>
-<pre class="line-numbers" data-start="1"><code class="language-scala">
-        val customRatios = Ratios()
-          .withSingle(1, 4, 1) // 1:4:1 because you usually want some padding around
-          .withHalf(5, 7)     // 5:7
-          .withThird(4, 3, 5) // 4:3:5
-
-        val customGrid = Grid.withScreenRatios(
-          Grid.screenRatios
-            .withLg(customRatios)
-            .withMd(customRatios)
-            .withSm(None) // stack on small
-            .withXs(None) // and extra-small screens
-        )
-
-        import customGrid.*
-        row(half(&quot;left&quot;), half(right)) // will be 5:7
-      </code></pre><p>These are pretty self-explanatory. For large screens, halves have 5:7 ratio.<br />
+<pre class="shiki catppuccin-latte" style="background-color:#eff1f5;color:#4c4f69" tabindex="0"><code><span class="line"><span style="color:#8839EF">val</span><span style="color:#4C4F69"> customRatios </span><span style="color:#179299">=</span><span style="color:#DF8E1D;font-style:italic"> Ratios</span><span style="color:#4C4F69">()</span></span>
+<span class="line"><span style="color:#4C4F69">  .withSingle(</span><span style="color:#FE640B">1</span><span style="color:#4C4F69">, </span><span style="color:#FE640B">4</span><span style="color:#4C4F69">, </span><span style="color:#FE640B">1</span><span style="color:#4C4F69">) </span><span style="color:#7C7F93;font-style:italic">// 1:4:1 because you usually want some padding around</span></span>
+<span class="line"><span style="color:#4C4F69">  .withHalf(</span><span style="color:#FE640B">5</span><span style="color:#4C4F69">, </span><span style="color:#FE640B">7</span><span style="color:#4C4F69">)     </span><span style="color:#7C7F93;font-style:italic">// 5:7</span></span>
+<span class="line"><span style="color:#4C4F69">  .withThird(</span><span style="color:#FE640B">4</span><span style="color:#4C4F69">, </span><span style="color:#FE640B">3</span><span style="color:#4C4F69">, </span><span style="color:#FE640B">5</span><span style="color:#4C4F69">) </span><span style="color:#7C7F93;font-style:italic">// 4:3:5</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8839EF">val</span><span style="color:#4C4F69"> customGrid </span><span style="color:#179299">=</span><span style="color:#DF8E1D;font-style:italic"> Grid</span><span style="color:#4C4F69">.withScreenRatios(</span></span>
+<span class="line"><span style="color:#DF8E1D;font-style:italic">  Grid</span><span style="color:#4C4F69">.screenRatios</span></span>
+<span class="line"><span style="color:#4C4F69">    .withLg(customRatios)</span></span>
+<span class="line"><span style="color:#4C4F69">    .withMd(customRatios)</span></span>
+<span class="line"><span style="color:#4C4F69">    .withSm(</span><span style="color:#DF8E1D;font-style:italic">None</span><span style="color:#4C4F69">) </span><span style="color:#7C7F93;font-style:italic">// stack on small</span></span>
+<span class="line"><span style="color:#4C4F69">    .withXs(</span><span style="color:#DF8E1D;font-style:italic">None</span><span style="color:#4C4F69">) </span><span style="color:#7C7F93;font-style:italic">// and extra-small screens</span></span>
+<span class="line"><span style="color:#4C4F69">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8839EF">import</span><span style="color:#4C4F69"> customGrid</span><span style="color:#7C7F93">.</span><span style="color:#4C4F69">*</span></span>
+<span class="line"><span style="color:#4C4F69">row(half(</span><span style="color:#40A02B">"left"</span><span style="color:#4C4F69">), half(right)) </span><span style="color:#7C7F93;font-style:italic">// will be 5:7</span></span></code></pre>
+<p>These are pretty self-explanatory. For large screens, halves have 5:7 ratio.<br />
 So, first <code>half</code> will get <code>col-lg-5</code> class, and second <code>half</code> will get <code>col-lg-7</code> class (when using BS 5).<br />
 Same pattern follows for thirds etc.</p>
 <p>Ratio for <code>row</code>s with arbitrary HTML is specified in <code>singleRatio</code>s.<br />
@@ -102,4 +100,4 @@ First value is padding left, then the column, and then right padding.<br />
 Padding can be zero, of course.</p>
 <p>Notice that <code>sm</code> and <code>xs</code> have <code>None</code> as value. These won't be filled at all.<br />
 This means that on small and extra-small screens these columns will stack like divs normally do.</p>
-</section></section></section></div></div><div class="col-md-3 hidden-sm hidden-xs hidden-print"><nav id="tocScrollspy" class="affix"><ul class="nav nav-pills flex-column"><li><a href="#grid-support" class="nav-link">Grid support</a><ul class="nav nav-pills flex-column"><li><a href="#problem" class="nav-link">Problem</a></li><li><a href="#hepek-grid" class="nav-link">Hepek grid</a></li></ul></li></ul></nav></div></div></div><footer class="text-center bg-info fixed-bottom"><a href="https://github.com/sake92/hepek" class="btn"><i class="fa-github fab"></i></a><a href="https://discord.gg/R2FtxDKyRE" class="btn"><i class="fa-discord fab"></i></a></footer><script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/prism.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autoloader/prism-autoloader.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/autolinker/prism-autolinker.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/command-line/prism-command-line.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/diff-highlight/prism-diff-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/data-uri-highlight/prism-data-uri-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/file-highlight/prism-file-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/jsonp-highlight/prism-jsonp-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-highlight/prism-line-highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/line-numbers/prism-line-numbers.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/previewers/prism-previewers.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/toolbar/prism-toolbar.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/unescaped-markup/prism-unescaped-markup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/keep-markup/prism-keep-markup.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/match-braces/prism-match-braces.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/show-language/prism-show-language.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/plugins/treeview/prism-treeview.min.js"></script><script src="../../../scripts/main.js"></script></body></html>
+</section></section></section></div></div><div class="col-md-3 hidden-sm hidden-xs hidden-print"><nav id="tocScrollspy" class="affix"><ul class="nav nav-pills flex-column"><li><a href="#grid-support" class="nav-link">Grid support</a><ul class="nav nav-pills flex-column"><li><a href="#problem" class="nav-link">Problem</a></li><li><a href="#hepek-grid" class="nav-link">Hepek grid</a></li></ul></li></ul></nav></div></div></div><footer class="text-center bg-info fixed-bottom"><a href="https://github.com/sake92/hepek" class="btn"><i class="fa-github fab"></i></a><a href="https://discord.gg/R2FtxDKyRE" class="btn"><i class="fa-discord fab"></i></a></footer><script src="https://unpkg.com/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js"></script><script src="../../../scripts/main.js"></script></body></html>
