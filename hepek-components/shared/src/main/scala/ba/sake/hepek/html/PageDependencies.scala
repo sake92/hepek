@@ -6,7 +6,10 @@ trait PageDependencies {
   def stylesInline: List[String] = List.empty
 
   // JS
-  def scriptURLs: List[String]    = List.empty
+  def scriptURLs: List[String] = List.empty
+
+  /** Using type="module" by default!!!
+    */
   def scriptsInline: List[String] = List.empty
 
   // component (3rd party) dependencies

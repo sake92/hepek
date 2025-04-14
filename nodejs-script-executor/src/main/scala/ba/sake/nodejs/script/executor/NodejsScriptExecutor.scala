@@ -2,14 +2,19 @@ package ba.sake.nodejs.script.executor
 
 import scala.util.Properties
 
+class NodejsScriptExecutor {
+  // TODO odma u konstruktoru inicijalizovat deps itd.
+}
+
 object NodejsScriptExecutor {
   private val npmExe  = if Properties.isWin then "npm.cmd" else "npm"
   private val nodeExe = if Properties.isWin then "node.exe" else "node"
 
   // absolute_path -> environment
   private var environments = Map[String, Environment]()
-
+  // environment -> installed dependencies
   private var installedDepsCache = Map[String, Set[NpmDependency]]()
+  // TODO cache overall results on disk!!!
 
   /** @param env
     *   execution environment, a nodejs project folder/"sandbox"...
@@ -49,6 +54,7 @@ object NodejsScriptExecutor {
     res.out.text().replaceAll("\u001B\\[[;\\d]*m", "")
   }
 
+  // TODO remove and just use os.Path
   case class Environment(folder: os.Path) {
     def key: String = folder.toNIO.toAbsolutePath.toString
   }

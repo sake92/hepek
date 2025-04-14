@@ -55,7 +55,7 @@ trait HtmlPage extends PageDependencies {
       ),
       body(bodyAttrs)(
         bodyContent,
-        allInlineScripts.map(s => script(raw(s)))
+        allInlineScripts.map(s => script(tpe := "module")(raw(s)))
       )
     )
   }

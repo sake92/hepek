@@ -38,8 +38,8 @@ final class BootstrapNavbarComponents private (
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[Frag] = Seq.empty,
-      right: Seq[Frag] = Seq.empty
+      left: Frag = frag(),
+      right: Frag = frag()
   ): Frag =
     tag("nav")(cls := s"navbar ${style.classes} ${position.classes}")(
       div(cls := width.classes)(

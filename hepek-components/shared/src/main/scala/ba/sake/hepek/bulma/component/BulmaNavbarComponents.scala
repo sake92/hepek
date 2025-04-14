@@ -36,8 +36,8 @@ final class BulmaNavbarComponent private (
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[Frag] = Seq.empty,
-      right: Seq[Frag] = Seq.empty
+      left: Frag = frag(),
+      right: Frag = frag()
   ): Frag =
     tag("nav")(cls := s"""navbar ${style
       .map(_.classes)

@@ -1,6 +1,8 @@
 package files
 
-import utils.Imports.Bundle.*, Tags.*, Grid.*
+import utils.Imports.Bundle.*
+import Tags.*
+import Grid.*
 
 object Index extends templates.HepekDocsStaticPage {
 
@@ -11,7 +13,23 @@ object Index extends templates.HepekDocsStaticPage {
 
   override def pageContent =
     div(cls := "container")(
-      maybeNavbar,
+      Navbar.nav(
+        brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
+        brandName = siteSettings.name.map(" " + _),
+        brandIconUrl = siteSettings.faviconInverted,
+        left = form(action := SearchResults.ref, method := "GET", cls := "form-inline")(
+          input(
+            name        := "q",
+            tpe         := "search",
+            cls         := "form-control",
+            placeholder := "Search"
+          )
+        ),
+        right = for
+          page <- staticSiteSettings.mainPages
+          labela = page.pageCategory.getOrElse(page.pageSettings.label)
+        yield Navbar.link(page.ref, labela)
+      ),
       row(
         s"""
           Hepek is a collection of useful projects for making websites in Scala:
@@ -41,4 +59,5 @@ object Index extends templates.HepekDocsStaticPage {
       ),
       super.pageContent
     )
+
 }

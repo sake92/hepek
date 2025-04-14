@@ -8,8 +8,8 @@ trait NavbarComponents {
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[Frag] = Seq.empty,
-      right: Seq[Frag] = Seq.empty
+      left: Frag = frag(),
+      right: Frag = frag()
   ): Frag
 
   def link(url: String, content: Frag): Frag

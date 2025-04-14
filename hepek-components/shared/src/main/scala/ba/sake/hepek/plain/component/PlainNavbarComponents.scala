@@ -29,8 +29,8 @@ final class PlainNavbarComponents private (activeUrl: String) extends NavbarComp
       brandUrl: String,
       brandName: Option[String] = None,
       brandIconUrl: Option[String] = None,
-      left: Seq[Frag] = Seq.empty,
-      right: Seq[Frag] = Seq.empty
+      left: Frag = frag(),
+      right: Frag = frag()
   ): Frag =
     tag("nav")(cls := s"navbar")(
       div(cls := "container")(
