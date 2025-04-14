@@ -8,14 +8,13 @@ import com.vladsch.flexmark.html.renderer.{
   NodeRenderingHandler
 }
 import com.vladsch.flexmark.util.data.DataHolder
-import ba.sake.nodejs.script.executor.NodejsScriptExecutor.{execute, Environment, NpmDependency}
+import ba.sake.nodejs.script.executor.NodejsScriptExecutor
+import ba.sake.nodejs.script.executor.NodejsScriptExecutor.NpmDependency
 
 // TODO support math CodeBlock too with `$ MY_FORMULA_X_Y $`
 class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: String)
     extends NodeRenderer {
 
-  private val shikiEnv = Environment(os.pwd / "tmp/hepek/nodejs-shiki")
-  private val katexEnv = Environment(os.pwd / "tmp/hepek/nodejs-katex")
 
   override def getNodeRenderingHandlers: ju.Set[NodeRenderingHandler[_]] = {
     val set = new ju.HashSet[NodeRenderingHandler[_]]()
@@ -29,8 +28,7 @@ class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: St
             codeBlockText.toString.linesIterator.toSeq.tail.dropRight(1).mkString("\n")
 
           val res = if codeInfo == "math" then {
-            execute(
-              katexEnv,
+            HepekStaticCodeNodeRenderer.katexExecutor.executeScript(
               s"""
               |const katex = require('katex');
               |require('katex/contrib/mhchem');
@@ -39,12 +37,10 @@ class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: St
               |`.trim();
               |const html = katex.renderToString(latex);
               |console.log(html);
-              """.stripMargin,
-              Set(NpmDependency("katex", Some("0.16.21")))
+              """.stripMargin
             )
           } else {
-            execute(
-              shikiEnv,
+            HepekStaticCodeNodeRenderer.shikiExecutor.executeScript(
               s"""
               |import { codeToHtml } from 'shiki';
               |const code = String.raw`
@@ -56,7 +52,6 @@ class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: St
               |});
               |console.log(html);
               """.stripMargin,
-              Set(NpmDependency("shiki", Some("3.2.1"))),
               scriptName = "script.mjs" // must explicitly use .mjs for ES6 modules
             )
           }
@@ -70,6 +65,16 @@ class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: St
 }
 
 object HepekStaticCodeNodeRenderer {
+  // init only once, not per render..
+  private val shikiExecutor = NodejsScriptExecutor(
+    os.pwd / "tmp/hepek/nodejs-shiki",
+    Seq(NpmDependency("shiki", Some("3.2.1")))
+  )
+  private val katexExecutor = NodejsScriptExecutor(
+    os.pwd / "tmp/hepek/nodejs-katex",
+    Seq(NpmDependency("katex", Some("0.16.21")))
+  )
+  
   class Factory(themeName: String) extends DelegatingNodeRendererFactory {
     def apply(options: DataHolder) = new HepekStaticCodeNodeRenderer(options, themeName)
 

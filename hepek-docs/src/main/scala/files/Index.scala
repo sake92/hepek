@@ -17,6 +17,7 @@ object Index extends templates.HepekDocsStaticPage {
         brandUrl = staticSiteSettings.indexPage.map(_.ref).getOrElse("#"),
         brandName = siteSettings.name.map(" " + _),
         brandIconUrl = siteSettings.faviconInverted,
+        // TODO add to other pages too
         left = form(action := SearchResults.ref, method := "GET", cls := "form-inline")(
           input(
             name        := "q",

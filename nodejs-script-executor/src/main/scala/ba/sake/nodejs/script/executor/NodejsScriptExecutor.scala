@@ -1,63 +1,58 @@
 package ba.sake.nodejs.script.executor
 
 import scala.util.Properties
+import NodejsScriptExecutor.*
 
-class NodejsScriptExecutor {
-  // TODO odma u konstruktoru inicijalizovat deps itd.
+/** Executes a Node.js script in a given folder (sandbox) with optional npm dependencies.
+  * @param baseFolder
+  *   Base folder for the script execution.
+  * @param dependencies
+  *   List of npm dependencies to install before executing the script.
+  */
+class NodejsScriptExecutor(
+    baseFolder: os.Path,
+    dependencies: Seq[NpmDependency] = Seq.empty
+) {
+  initialize()
+
+  private def initialize(): Unit = {
+    val envKey = baseFolder.toNIO.toAbsolutePath.toString
+    if !os.exists(baseFolder) then os.makeDir.all(baseFolder)
+
+    for dep <- dependencies do {
+      val installedDeps = installedDepsCache.getOrElse(envKey, Set.empty)
+      if !installedDeps(dep) then {
+        os.call((npmExe, "install", dep.asNpmString), cwd = baseFolder)
+        installedDepsCache += envKey -> (installedDeps + dep)
+      }
+    }
+  }
+
+  // TODO cache overall results on disk!!! ???
+
+  /** Executes a Node.js script in the given folder.
+    * @param jsScript
+    *   JavaScript code to be executed.
+    * @param scriptName
+    *   Name of the script file to be created.
+    * @return
+    *   stdout of the script
+    */
+  def executeScript(jsScript: String, scriptName: String = "script.js"): String = {
+    val scriptFile = baseFolder / scriptName
+    os.write.over(scriptFile, jsScript)
+    val res = os.call((nodeExe, scriptFile), cwd = baseFolder)
+    // remove ANSI codes from output https://stackoverflow.com/a/14652763/4496364
+    res.out.text().replaceAll("\u001B\\[[;\\d]*m", "")
+  }
 }
 
 object NodejsScriptExecutor {
   private val npmExe  = if Properties.isWin then "npm.cmd" else "npm"
   private val nodeExe = if Properties.isWin then "node.exe" else "node"
 
-  // absolute_path -> environment
-  private var environments = Map[String, Environment]()
   // environment -> installed dependencies
   private var installedDepsCache = Map[String, Set[NpmDependency]]()
-  // TODO cache overall results on disk!!!
-
-  /** @param env
-    *   execution environment, a nodejs project folder/"sandbox"...
-    * @param jsScript
-    *   code to execute
-    * @param dependencies
-    *   npm dependencies to install
-    * @param scriptName
-    *   name of the script file to create
-    * @return
-    *   stdout of the script
-    */
-  def execute(
-      env: Environment,
-      jsScript: String,
-      dependencies: Set[NpmDependency] = Set.empty,
-      scriptName: String = "script.js"
-  ): String = {
-    environments += env.key -> env
-
-    if !os.exists(env.folder) then os.makeDir.all(env.folder)
-
-    val cwd        = env.folder
-    val scriptFile = cwd / scriptName
-    os.write.over(scriptFile, jsScript)
-
-    for dep <- dependencies do {
-      val installedDeps = installedDepsCache.getOrElse(env.key, Set.empty)
-      if !installedDeps(dep) then {
-        os.call((npmExe, "install", dep.asNpmString), cwd = cwd)
-        installedDepsCache += env.key -> (installedDeps + dep)
-      }
-    }
-
-    val res = os.call((nodeExe, scriptFile), cwd = cwd)
-    // remove ANSI codes from output https://stackoverflow.com/a/14652763/4496364
-    res.out.text().replaceAll("\u001B\\[[;\\d]*m", "")
-  }
-
-  // TODO remove and just use os.Path
-  case class Environment(folder: os.Path) {
-    def key: String = folder.toNIO.toAbsolutePath.toString
-  }
 
   case class NpmDependency(name: String, version: Option[String] = None) {
     def asNpmString: String = name + version.map("@" + _).getOrElse("")
