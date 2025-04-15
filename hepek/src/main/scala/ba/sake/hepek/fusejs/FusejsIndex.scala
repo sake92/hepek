@@ -8,7 +8,7 @@ import org.jsoup.Jsoup
 trait FusejsIndex extends Renderable with ClassPackageRelativePath {
   def indexedPages: Seq[StaticPage]
 
-  lazy val fusejsIndexedPagesData: Seq[FusejsStaticPageData] = indexedPages.map { page =>
+  def fusejsIndexedPagesData: Seq[FusejsStaticPageData] = indexedPages.map { page =>
     val pageText = Jsoup.parse(page.render).text()
     FusejsStaticPageData(
       title = page.pageSettings.title,

@@ -1,10 +1,7 @@
-package files.hepek
-package reference
+package files.hepek.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
-
 object StaticBundle extends HepekReferencePage {
 
   override def pageSettings =

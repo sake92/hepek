@@ -1,8 +1,8 @@
 package files.hepek
 package tutorials
 
-import utils.Imports.Bundle.*, Tags.*
-
+import scalatags.Text.all.*
+import utils.Imports.*
 object Index extends HepekTutorialPage {
 
   override def pageSettings =

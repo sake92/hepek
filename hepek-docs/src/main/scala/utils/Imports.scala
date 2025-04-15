@@ -1,18 +1,12 @@
 package utils
 
-import ba.sake.hepek.bootstrap5.statik.BootstrapStaticBundle
+import ba.sake.hepek.html.statik
+
+import scalatags.Text.all.*
 
 object Imports {
-  val Bundle = locally {
-    val b = BootstrapStaticBundle.default
-    import b.*
-
-    val ratios = Ratios.default.withSingle(1, 4, 1).withHalf(1, 1).withThird(1, 4, 1)
-    val grid = Grid.withScreenRatios(
-      Grid.screenRatios.withSm(None).withXs(None).withLg(ratios).withMd(ratios)
-    )
-    b.withGrid(grid)
-  }
+  val Section = statik.Section
+  type Section = statik.Section
 
   // class field/method description
   case class ClassProperty(
@@ -23,9 +17,8 @@ object Imports {
   )
 
   def renderClassProps(props: List[ClassProperty]) =
-    import Bundle.*, Tags.*
-    div(Classes.tableResponsive)(
-      table(Classes.tableClass, Classes.tableHoverable)(
+    div(
+      table(
         tr(th("Name"), th("Mandatory"), th("Type"), th("Default value"), th("Description")),
         props.map { cp =>
           tr(

@@ -1,8 +1,7 @@
 package files.hepek.components.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object HtmlPage extends HepekComponentsReferencePage {
 

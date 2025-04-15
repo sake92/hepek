@@ -1,9 +1,7 @@
-package files.hepek
-package reference
+package files.hepek.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object StaticPage extends HepekReferencePage {
 
@@ -27,7 +25,7 @@ object StaticPage extends HepekReferencePage {
     "Basic settings",
     frag(
       s"""
-        When you extend [`StaticPage`](${links.StaticPageUrl}) you get support for a static HTML page.  
+        When you extend [`StaticPage`](${utils.links.StaticPageUrl}) you get support for a static HTML page.  
         For basic settings you can override `def staticSiteSettings`. It has the following fields:
       """.md,
       renderClassProps(staticSiteSettingsProps),
@@ -51,7 +49,7 @@ object StaticPage extends HepekReferencePage {
         import Bundle.*. Tags.*
 
         object Index extends MyStaticPageTemplate {
-          override def pageContent = div("content here")
+          override def mainContent = div("content here")
         }
         ```
       

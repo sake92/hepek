@@ -1,8 +1,7 @@
 package files.hepek.components.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object CodeHighlighter extends HepekComponentsReferencePage {
 
@@ -62,7 +61,7 @@ object CodeHighlighter extends HepekComponentsReferencePage {
         Note that `withPrompt`, `withUser` and `withOutputLines` 
           are available only on console languages like `bash` and `batch`. Nifty! :)
         
-        Examples are available [here](${links.PrismJSExampleUrl}).
+        Examples are available [here](${utils.links.PrismJSExampleUrl}).
       """.md
     )
   )

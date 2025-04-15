@@ -1,7 +1,5 @@
 package files.integrations
 
-import utils.Imports.Bundle.Navbar
-
 trait HepekIntegrationsDocsPage extends templates.HepekDocsAbstractPage {
 
   override def categoryPosts = List(
@@ -14,5 +12,5 @@ trait HepekIntegrationsDocsPage extends templates.HepekDocsAbstractPage {
 
   override def pageCategory = Some(Index.pageSettings.label)
 
-  override def navbar = Some(Navbar.withActiveUrl(Index.ref))
+  override def currentCategoryPage = Some(Index)
 }

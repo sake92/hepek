@@ -1,8 +1,7 @@
 package files.hepek.tutorials
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object QuickStart extends HepekTutorialPage {
 
@@ -20,7 +19,7 @@ object QuickStart extends HepekTutorialPage {
       You need to:
       - install Java 11+
       - install Sbt or Mill (included in starter template)
-      - clone the [starter project](${links.StarterProjectURL})
+      - clone the [starter project](${utils.links.StarterProjectURL})
       
       and you're ready!
     """.md,
@@ -69,7 +68,7 @@ object QuickStart extends HepekTutorialPage {
         "Browsersync",
         frag(
           s"""
-          Install [Browsersync](${links.BrowsersyncUrl}) and then:
+          Install [Browsersync](${utils.links.BrowsersyncUrl}) and then:
           ```shell
           $$> browser-sync
           ```

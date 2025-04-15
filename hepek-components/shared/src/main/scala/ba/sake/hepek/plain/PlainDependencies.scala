@@ -1,9 +1,9 @@
 package ba.sake.hepek.plain
 
-import ba.sake.hepek.jquery.JQueryDependencies
+import ba.sake.hepek.html.PageDependencies
 
 // stolen from https://hacks.mozilla.org/2017/04/replace-bootstrap-layouts-with-css-grid/
-trait PlainDependencies extends JQueryDependencies {
+trait PlainDependencies extends PageDependencies {
 
   private val gridStyles = {
     val Total = 12

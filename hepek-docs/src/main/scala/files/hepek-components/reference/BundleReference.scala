@@ -1,7 +1,7 @@
 package files.hepek.components.reference
 
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object BundleReference extends HepekComponentsReferencePage {
 

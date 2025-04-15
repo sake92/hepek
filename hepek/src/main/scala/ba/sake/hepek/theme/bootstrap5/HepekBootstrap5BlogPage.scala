@@ -44,7 +44,6 @@ trait HepekBootstrap5BlogPage extends BlogPostPage with StaticPage {
       else (3, 8, 1)
 
     frag(
-      maybeNavbar.map(n => div(clsNoPrint)(n)),
       div(clsContainerFluid)(
         div(cls := "row")(
           div(cls := s"col-md-$w1 d-flex justify-content-end", Classes.clsNoPrint)(

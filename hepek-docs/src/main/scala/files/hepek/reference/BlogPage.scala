@@ -1,9 +1,7 @@
-package files.hepek
-package reference
+package files.hepek.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object BlogPage extends HepekReferencePage {
 
@@ -33,8 +31,8 @@ object BlogPage extends HepekReferencePage {
     "Blog post settings",
     frag(
       s"""
-        When you extend a [`BlogPostPage`](${links.BlogPostPageUrl}) you get support for a static blog post page.  
-        For a Bootstrap-themed blogpost page extend [`HepekBootstrap5BlogPage`](${links.HepekBootstrap5BlogPageUrl}).
+        When you extend a [`BlogPostPage`](${utils.links.BlogPostPageUrl}) you get support for a static blog post page.  
+        For a Bootstrap-themed blogpost page extend [`HepekBootstrap5BlogPage`](${utils.links.HepekBootstrap5BlogPageUrl}).
 
         You can override `def blogSettings` method with following fields:
       """.md,

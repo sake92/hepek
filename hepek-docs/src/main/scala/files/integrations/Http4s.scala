@@ -1,8 +1,8 @@
 package files.integrations
 
-import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
+import scalatags.Text.all.*
 import utils.Site
+import utils.Imports.*
 
 object Http4s extends HepekIntegrationsDocsPage {
 

@@ -1,6 +1,7 @@
 package files.integrations
 
-import utils.Imports.Bundle.*, Tags.*
+import scalatags.Text.all.*
+import utils.Imports.*
 
 object Index extends HepekIntegrationsDocsPage {
 

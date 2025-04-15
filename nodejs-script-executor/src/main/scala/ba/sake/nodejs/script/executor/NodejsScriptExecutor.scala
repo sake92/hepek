@@ -22,8 +22,8 @@ class NodejsScriptExecutor(
     val bytesOfMessage = str.getBytes("UTF-8")
     val md             = MessageDigest.getInstance("MD5")
     val theMD5digest   = md.digest(bytesOfMessage)
-    val b64 = Base64.getEncoder.encode(theMD5digest)
-    new String(b64, "UTF-8").replace('/', '-').replace('=','_').replace('+','$')
+    val b64            = Base64.getEncoder.encode(theMD5digest)
+    new String(b64, "UTF-8").replace('/', '-').replace('=', '_').replace('+', '$')
   }
 
   private def initialize(): Unit = {
@@ -50,7 +50,6 @@ class NodejsScriptExecutor(
   def executeScript(jsScript: String, scriptName: String = "script.js"): String = {
     val scriptMd5            = getMd5B64(jsScript)
     val cachedResultFileName = baseFolder / "cached-results" / s"$scriptMd5.txt"
-    println(s"cachedResultFileName = $cachedResultFileName")
     if os.exists(cachedResultFileName) then {
       os.read(cachedResultFileName)
     } else {

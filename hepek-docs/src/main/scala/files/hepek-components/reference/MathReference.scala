@@ -1,7 +1,8 @@
 package files.hepek.components.reference
 
+import scalatags.Text.all.*
 import ba.sake.hepek.katex.KatexDependencies
-import utils.Imports.Bundle.*, Tags.*
+import utils.Imports.*
 
 object MathReference extends HepekComponentsReferencePage with KatexDependencies {
 

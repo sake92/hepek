@@ -1,19 +1,17 @@
 package files.hepek
 
-import utils.Imports.Bundle.*
-import ba.sake.hepek.html.ComponentDependencies
-import ba.sake.hepek.katex.KatexDependencies
+import utils.Imports.*
 
-object Index extends HepekSsgDocsPage with KatexDependencies {
-
-  override def katexDependencies: ComponentDependencies =
-    super.katexDependencies.withJsDependencies(Dependencies.empty)
+object Index extends HepekSsgDocsPage {
 
   override def pageSettings =
     super.pageSettings
       .withTitle("Hepek SSG")
       .withLabel("Hepek SSG")
       .withDescription("Hepek Static Site Generator")
+
+  override def styleURLs =
+    super.styleURLs ++ List("https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css")
 
   val currYear = java.time.LocalDate.now()
 

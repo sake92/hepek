@@ -1,8 +1,7 @@
 package files.hepek.tutorials
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object PdfGenerator extends HepekTutorialPage {
 

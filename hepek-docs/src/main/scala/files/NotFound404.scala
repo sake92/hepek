@@ -1,8 +1,6 @@
 package files
 
 import ba.sake.hepek.core.RelativePath
-import ba.sake.hepek.scalatags.all.*
-import utils.Imports.Bundle.*
 import utils.Site
 
 object NotFound extends templates.HepekDocsAbstractPage {
@@ -15,11 +13,10 @@ object NotFound extends templates.HepekDocsAbstractPage {
   override def relTo(other: RelativePath) =
     Site.url + "/" + super.relTo(other)
 
-  override def pageContent =
-    div(Classes.txtAlignCenter)(
-      s"""
-      This page does not exist... :///  
-      Click [here](${Site.url}) to go back
-      """.md
-    )
+  override def mainContent =
+    s"""
+    This page does not exist... :///  
+    Click [here](${Site.url}) to go back
+    """.md
+
 }

@@ -1,10 +1,7 @@
-package files.hepek
-package reference
+package files.hepek.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
-
 object MultiPage extends HepekReferencePage {
 
   override def pageSettings =
@@ -39,7 +36,7 @@ object MultiPage extends HepekReferencePage {
           override def relPath =
             Paths.get(s"files/pages/page-$$num.html")
         
-          override def pageContent =
+          override def mainContent =
             div(s"This is page number $$num")
         }
         ```
@@ -48,7 +45,7 @@ object MultiPage extends HepekReferencePage {
         with their corresponding contents.
 
         It's a very powerful and intuitive abstraction.  
-        You can browse through an [example of using Wordpress API](${links.WpExampleUrl})
+        You can browse through an [example of using Wordpress API](${utils.links.WpExampleUrl})
         for rendering a static site.
         
         It makes Hepek SSG a powerful tool for Headles CMS-es.  

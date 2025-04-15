@@ -140,5 +140,9 @@ trait HtmlPage extends PageDependencies {
     )
   }
 
-  def pageContent: Frag = frag()
+  def pageContent: Frag = tag("main")(
+    mainContent
+  )
+
+  def mainContent: Frag = frag()
 }

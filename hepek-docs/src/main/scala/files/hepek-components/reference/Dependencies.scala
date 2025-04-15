@@ -1,8 +1,7 @@
 package files.hepek.components.reference
 
-import utils.*
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
 
 object Dependencies extends HepekComponentsReferencePage {
 
@@ -17,7 +16,7 @@ object Dependencies extends HepekComponentsReferencePage {
     frag(
       s"""
         Every framework has its dependencies, JS and/or CSS.  
-        The `HtmlPage` extends [`PageDependencies`](${links.PageDependenciesUrl}) 
+        The `HtmlPage` extends [`PageDependencies`](${utils.links.PageDependenciesUrl}) 
         so you can add/remove deps as you like:
       
         ```scala

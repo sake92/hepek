@@ -15,7 +15,6 @@ import ba.sake.nodejs.script.executor.NodejsScriptExecutor.NpmDependency
 class HepekStaticCodeNodeRenderer(private var options: DataHolder, themeName: String)
     extends NodeRenderer {
 
-
   override def getNodeRenderingHandlers: ju.Set[NodeRenderingHandler[_]] = {
     val set = new ju.HashSet[NodeRenderingHandler[_]]()
     set.add(
@@ -74,7 +73,7 @@ object HepekStaticCodeNodeRenderer {
     os.pwd / "tmp/hepek/nodejs-katex",
     Seq(NpmDependency("katex", Some("0.16.21")))
   )
-  
+
   class Factory(themeName: String) extends DelegatingNodeRendererFactory {
     def apply(options: DataHolder) = new HepekStaticCodeNodeRenderer(options, themeName)
 

@@ -1,8 +1,7 @@
 package files.integrations
 
+import scalatags.Text.all.*
 import utils.Imports.*
-import utils.Imports.Bundle.*, Tags.*
-
 object SharafFramework extends HepekIntegrationsDocsPage {
 
   override def pageSettings =
