@@ -112,7 +112,7 @@ object HtmlPage extends HepekComponentsReferencePage {
   )
 
   
-  val pageContentSection = Section(
+  def pageContentSection = Section(
     "Page content",
     s"""
     Next up is the `def pageContent: Frag` method.  
