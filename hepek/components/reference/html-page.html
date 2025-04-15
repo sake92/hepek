@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="hepek" /><meta name="theme-color" content="#000" /><meta name="mobile-web-app-capable" content="yes" /><meta property="og:title" content="Hepek" /><meta name="twitter:card" content="summary_large_image" /><title>Html page - Hepek</title><link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.cyan.min.css" /><link rel="stylesheet" href="../../../styles/main.css" /></head><body><header class="container"><nav><ul><li><a href="/">Hepek</a></li></ul><ul><li><form action="../../../search-results.html" method="GET"><input name="q" type="search" placeholder="Search" /></form></li></ul><ul><li><a href="../index.html" aria-current="true">Hepek Components</a></li><li><a href="../../index.html">Hepek SSG</a></li><li><a href="../../../integrations/index.html">Hepek Integrations</a></li></ul></nav></header><main class="container"><div class="blog-post"><aside id="left-menu"><nav><ul><li><a href="index.html">Reference</a></li><li><a href="bundle-reference.html">Bundle</a></li><li><a href="html-page.html" aria-current="page">Html page</a></li><li><a href="dependencies.html">JS and CSS deps</a></li><li><a href="grid-reference.html">Grid</a></li><li><a href="code-highlighter.html">PrismJS Code Highlighter</a></li><li><a href="math-reference.html">Math support</a></li></ul></nav></aside><div class="main-content"><section id="basic-settings"><h2>Basic settings</h2><p>When you extend <code>Page</code> from your favorite bundle, you get basic support for a HTML page.<br />
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta http-equiv="X-UA-Compatible" content="ie=edge" /><meta name="viewport" content="width=device-width, initial-scale=1" /><meta name="generator" content="hepek" /><meta name="theme-color" content="#000" /><meta name="mobile-web-app-capable" content="yes" /><meta property="og:title" content="Hepek" /><meta name="twitter:card" content="summary_large_image" /><title>Html page - Hepek</title><link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.1.1/css/pico.cyan.min.css" /><link rel="stylesheet" href="../../../styles/main.css" /></head><body><header class="container"><nav><ul><li><a href="https://sake92.github.io/hepek">Hepek</a></li></ul><ul><li><form action="../../../search-results.html" method="GET"><input name="q" type="search" placeholder="Search" /></form></li></ul><ul><li><a href="../index.html" aria-current="true">Hepek Components</a></li><li><a href="../../index.html">Hepek SSG</a></li><li><a href="../../../integrations/index.html">Hepek Integrations</a></li></ul></nav></header><main class="container"><div class="blog-post"><aside id="left-menu"><nav><ul><li><a href="index.html">Reference</a></li><li><a href="bundle-reference.html">Bundle</a></li><li><a href="html-page.html" aria-current="page">Html page</a></li><li><a href="dependencies.html">JS and CSS deps</a></li><li><a href="grid-reference.html">Grid</a></li><li><a href="code-highlighter.html">PrismJS Code Highlighter</a></li><li><a href="math-reference.html">Math support</a></li></ul></nav></aside><div class="main-content"><section id="basic-settings"><h2>Basic settings</h2><p>When you extend <code>Page</code> from your favorite bundle, you get basic support for a HTML page.<br />
 It is recommended to make a common template that <code>extends Page</code>.<br />
 Here you put site-wide settings, include common JS and CSS dependencies.<br />
 For basic site settings you override <code>def siteSettings</code>. It has the following fields:</p>
@@ -25,9 +25,34 @@ For basic site settings you override <code>def siteSettings</code>. It has the f
 <span class="line"><span style="color:#BABED8">      .withTitle(</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">Welcome!</span><span style="color:#89DDFF">"</span><span style="color:#BABED8">)</span></span>
 <span class="line"><span style="color:#BABED8">      .withDescription(</span><span style="color:#89DDFF">"</span><span style="color:#C3E88D">My cool site</span><span style="color:#89DDFF">"</span><span style="color:#BABED8">)</span></span>
 <span class="line"><span style="color:#89DDFF">}</span></span></code></pre>
+</section><section id="body-content"><h2>Body content</h2><p>If you really, really want to redefine content of the <code>&lt;body&gt;</code>, use the <code>def bodyContent: Frag</code> method.<br />
+Note that none of the <code>&lt;script&gt;</code>s will be included, you have to do all by yourself!<br />
+You can peek at the original implementation, copy-paste it and tweak it a bit.</p>
+<p>The <body> tag is roughly defined as follows:</p>
+<pre class="shiki material-theme-ocean" style="background-color:#0F111A;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#BABED8">body(</span></span>
+<span class="line"><span style="color:#BABED8">  bodyContent,</span></span>
+<span class="line"><span style="color:#BABED8">  inlineScripts..</span></span>
+<span class="line"><span style="color:#BABED8">)</span></span></code></pre>
+<p>and <code>bodyContent</code>:</p>
+<pre class="shiki material-theme-ocean" style="background-color:#0F111A;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#BABED8">frag(</span></span>
+<span class="line"><span style="color:#BABED8">  pageContent,</span></span>
+<span class="line"><span style="color:#BABED8">  inlineScripts..</span></span>
+<span class="line"><span style="color:#BABED8">)</span></span></code></pre>
+<p>See <a href="#page-content">Page Content</a> section.</p>
+<blockquote>
+<p>All this hierarchy is to allow you to override only the parts you want.
+For example, override pageContent to define rough layout of the page: navbar, main content, footer, sidebars etc.</p>
+</blockquote>
 </section><section id="page-content"><h2>Page content</h2><p>Next up is the <code>def pageContent: Frag</code> method.<br />
 Here is the content of your HTML page.<br />
 It will be embedded somewhere in the <code>&lt;body&gt;</code>, depending on your framework.</p>
+<p>The pageContent is roughly defined as follows:</p>
+<pre class="shiki material-theme-ocean" style="background-color:#0F111A;color:#babed8" tabindex="0"><code><span class="line"><span style="color:#BABED8">main(</span></span>
+<span class="line"><span style="color:#BABED8">  mainContent</span></span>
+<span class="line"><span style="color:#BABED8">)</span></span></code></pre>
+</section><section id="main-content"><h2>Main content</h2><p>Next up is the <code>def mainContent: Frag</code> method.<br />
+Here is the <em>main content</em> of your HTML page.<br />
+It will be embedded somewhere in the <code>pageContent</code>.</p>
 </section><section id="meta-content"><h2>Meta content</h2><p>The <code>def metaSettings</code> defines all things <code>&lt;meta&gt;</code>:</p>
 <ul>
 <li>charset</li>
@@ -35,9 +60,6 @@ It will be embedded somewhere in the <code>&lt;body&gt;</code>, depending on you
 <li>og tags</li>
 <li>etc</li>
 </ul>
-</section><section id="body-content"><h2>Body content</h2><p>If you really, really want to redefine content of the <code>&lt;body&gt;</code>, use the <code>def bodyContent: Frag</code> method.<br />
-Note that none of the <code>&lt;script&gt;</code>s will be included, you have to do all by yourself!<br />
-You can peek at the original implementation, copy-paste it and tweak it a bit.</p>
 </section><section id="head-content"><h2>Head content</h2><p>If you really, really want to redefine content of <code>&lt;head&gt;</code>, use the <code>def headContent: Frag</code> method.<br />
 Note that none of the <code>&lt;meta&gt;</code>, <code>&lt;title&gt;</code>.. will be included, you have to all by yourself!</p>
 </section><section id="manifest"><h2>Manifest</h2><p>The <code>def manifest</code> contains the <code>manifest</code> of your website, it is useful for PWAs (Progressive Web Apps).<br />
