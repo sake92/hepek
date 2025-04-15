@@ -6,7 +6,7 @@ object Site:
 
   val url          = "https://sake92.github.io/hepek"
   val name         = "Hepek"
-  val hepekVersion = "0.32.0"
+  val hepekVersion = "0.33.0"
 
   val allSearchIndexedPages: Seq[StaticPage] = Seq(files.Index) ++
     files.hepek.components.Index.categoryPosts ++

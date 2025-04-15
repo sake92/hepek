@@ -10,9 +10,10 @@ object HtmlPage extends HepekComponentsReferencePage {
 
   override def blogSettings = super.blogSettings.withSections(
     basicSettingsSection,
-    pageContentSection,
-    metaSettingsSection,
     bodyContentSection,
+    pageContentSection,
+    mainContentSection,
+    metaSettingsSection,
     headContentSection,
     manifestSection
   )
@@ -81,15 +82,61 @@ object HtmlPage extends HepekComponentsReferencePage {
     )
   )
 
-  val pageContentSection = Section(
-    "Page content",
+  val bodyContentSection = Section(
+    "Body content",
     s"""
-      Next up is the `def pageContent: Frag` method.  
-      Here is the content of your HTML page.  
-      It will be embedded somewhere in the `<body>`, depending on your framework.
+    If you really, really want to redefine content of the `<body>`, use the `def bodyContent: Frag` method.  
+    Note that none of the `<script>`s will be included, you have to do all by yourself!  
+    You can peek at the original implementation, copy-paste it and tweak it a bit.
+    
+    The <body> tag is roughly defined as follows:
+    ```scala
+    body(
+      bodyContent,
+      inlineScripts..
+    )
+    ```
+    and `bodyContent`:
+    ```scala
+    frag(
+      pageContent,
+      inlineScripts..
+    )
+    ```
+    
+    See [Page Content](${pageContentSection.ref}) section.
+    
+    > All this hierarchy is to allow you to override only the parts you want.
+    > For example, override pageContent to define rough layout of the page: navbar, main content, footer, sidebars etc.
     """.md
   )
 
+  
+  val pageContentSection = Section(
+    "Page content",
+    s"""
+    Next up is the `def pageContent: Frag` method.  
+    Here is the content of your HTML page.  
+    It will be embedded somewhere in the `<body>`, depending on your framework.
+    
+    The pageContent is roughly defined as follows:
+    ```scala
+    main(
+      mainContent
+    )
+    ```
+    """.md
+  )
+  
+  val mainContentSection = Section(
+    "Main content",
+    s"""
+    Next up is the `def mainContent: Frag` method.  
+    Here is the *main content* of your HTML page.  
+    It will be embedded somewhere in the `pageContent`.
+    """.md
+  )
+  
   val metaSettingsSection = Section(
     "Meta content",
     s"""
@@ -101,14 +148,6 @@ object HtmlPage extends HepekComponentsReferencePage {
     """.md
   )
 
-  val bodyContentSection = Section(
-    "Body content",
-    s"""
-      If you really, really want to redefine content of the `<body>`, use the `def bodyContent: Frag` method.  
-      Note that none of the `<script>`s will be included, you have to do all by yourself!  
-      You can peek at the original implementation, copy-paste it and tweak it a bit.
-    """.md
-  )
 
   val headContentSection = Section(
     "Head content",

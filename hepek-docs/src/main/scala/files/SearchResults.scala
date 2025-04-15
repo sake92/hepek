@@ -1,9 +1,14 @@
 package files
 
+import ba.sake.hepek.html.PageSettings
 import ba.sake.tupson.toJson
 import scalatags.Text.all.*
 
 object SearchResults extends templates.HepekDocsStaticPage {
+
+  override def pageSettings: PageSettings = super.pageSettings
+    .withTitle("Search results")
+    .withLabel("Search results")
 
   override def mainContent = div(
     h1("Search results"),

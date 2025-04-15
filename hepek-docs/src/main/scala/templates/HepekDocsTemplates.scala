@@ -68,7 +68,7 @@ trait HepekDocsStaticPage extends StaticPage with AnchorjsDependencies {
   override def shikiSettings = super.shikiSettings.withTheme("material-theme-ocean")
 
   private val topNavbar = nav(
-    ul(li(a(href := "/")(Site.name))),
+    ul(li(a(href := Site.url)(Site.name))),
     ul(
       li(
         form(action := SearchResults.ref, method := "GET")(
