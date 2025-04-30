@@ -17,5 +17,5 @@ object V {
 
   val selenium               = "4.31.0"
   val seleniumHtmlUnitDriver = "4.30.0"
-  val munit                  = "1.1.0"
+  val munit                  = "1.1.1"
 }
