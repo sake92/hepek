@@ -9,7 +9,7 @@ object V {
 
   // no play-filters-helpers published for 2.9.7 yet
   val play2 = "2.9.6"
-  val play3 = "3.0.7"
+  val play3 = "3.0.8"
 
   val http4s = "0.23.30"
 
