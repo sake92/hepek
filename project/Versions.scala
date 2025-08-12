@@ -15,7 +15,7 @@ object V {
 
   val zioHttp = "3.2.0"
 
-  val selenium               = "4.31.0"
+  val selenium               = "4.35.0"
   val seleniumHtmlUnitDriver = "4.30.0"
   val munit                  = "1.1.0"
 }
