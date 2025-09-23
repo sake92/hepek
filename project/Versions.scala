@@ -11,7 +11,7 @@ object V {
   val play2 = "2.9.6"
   val play3 = "3.0.7"
 
-  val http4s = "0.23.30"
+  val http4s = "0.23.31"
 
   val zioHttp = "3.2.0"
 
