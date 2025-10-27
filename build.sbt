@@ -114,7 +114,7 @@ lazy val hepekCLI = (project in file("hepek-cli"))
     publish / skip := false,
     libraryDependencies ++= Seq(
       "ba.sake"      % "hepek-core" % "0.2.0",
-      "com.lihaoyi" %% "os-lib"     % "0.11.4"
+      "com.lihaoyi" %% "os-lib"     % "0.11.6"
     )
   )
 
@@ -123,7 +123,7 @@ lazy val nodejsScriptExecutor = (project in file("nodejs-script-executor"))
     name           := "nodejs-script-executor",
     publish / skip := false,
     libraryDependencies ++= Seq(
-      "com.lihaoyi"   %% "os-lib" % "0.11.4",
+      "com.lihaoyi"   %% "os-lib" % "0.11.6",
       "org.scalameta" %% "munit"  % V.munit % Test
     )
   )
