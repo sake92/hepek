@@ -1,6 +1,6 @@
 object V {
   val scalaTags = "0.13.1"
-  val tupson    = "0.11.0"
+  val tupson    = "0.16.0"
 
   val hepekCore     = "0.2.0"
   val flexmark      = "0.64.8"
