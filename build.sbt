@@ -56,9 +56,9 @@ lazy val hepekSSG = (project in file("hepek"))
     libraryDependencies ++= Seq(
       "ba.sake"                 % "hepek-core"                   % V.hepekCore,
       "org.jsoup"               % "jsoup"                        % V.jsoup,
-      "com.openhtmltopdf"       % "openhtmltopdf-pdfbox"         % V.openHtmlToPdf,
-      "com.openhtmltopdf"       % "openhtmltopdf-svg-support"    % V.openHtmlToPdf,
-      "com.openhtmltopdf"       % "openhtmltopdf-mathml-support" % V.openHtmlToPdf,
+      "io.github.openhtmltopdf" % "openhtmltopdf-pdfbox"         % V.openHtmlToPdf,
+      "io.github.openhtmltopdf" % "openhtmltopdf-svg-support"    % V.openHtmlToPdf,
+      "io.github.openhtmltopdf" % "openhtmltopdf-mathml-support" % V.openHtmlToPdf,
       "org.seleniumhq.selenium" % "selenium-java"                % V.selenium,
       "org.scalameta"         %%% "munit"                        % V.munit % Test
     )
